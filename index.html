@@ -110,16 +110,42 @@ var LZString=function(){var r=String.fromCharCode,o="ABCDEFGHIJKLMNOPQRSTUVWXYZa
 }
 
 /* KAPITEL SCREEN = zentriert NUR hier */
-#title {
+.fade-trigger {
     text-align: center;
     font-size: 48px;
     margin-top: 40vh;
-    transition: opacity 1.5s ease;
+
+    opacity: 0; /* startet unsichtbar */
+
+    animation:
+        fadeIn 1.5s ease forwards,
+        fadeOut 1.5s ease forwards;
+
+    animation-delay:
+        0s,
+        3s; /* Fade-out startet nach 3 Sekunden */
 }
 
-/* Fade out */
-.fade-out {
-    opacity: 0;
+/* Fade In */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Fade Out */
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+#center-link {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    text-align: center;
+    font-size: 28px;
 }
 
 /* Intro Text Layout */
@@ -151,7 +177,25 @@ var LZString=function(){var r=String.fromCharCode,o="ABCDEFGHIJKLMNOPQRSTUVWXYZa
 
 .passage.journalansicht br {
     display: none;
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript">Config.history.maxStates = 1;
+}
+
+.player-stats {
+    width: 100%;
+    border-collapse: collapse;
+  	table-layout: fixed;
+}
+
+.player-stats th,
+.player-stats td {
+    border: 1px solid white;
+    padding: 4px 8px;
+  	text-align: center;
+}
+
+.player-stats th {
+    font-weight: bold;
+}
+</style><script role="script" id="twine-user-script" type="text/twine-javascript">Config.history.maxStates = 1;
 
 postdisplay["world-tracker"] = function () {
     const forbidden = [
@@ -164,6 +208,78 @@ postdisplay["world-tracker"] = function () {
 
     State.variables.world ||= {};
     State.variables.world.letztePassage = title;
+  
+    if (typeof Save !== "undefined") {
+        Save.slots.save(0);
+    }
+};
+
+setup.noJournalPages = [
+    "Intro",
+    "Das Erwachen",
+    "journalAnsicht"
+];
+
+setup.isJournalBlocked = function () {
+    const p = passage();
+
+    // feste Sperrliste
+    if (setup.noJournalPages.includes(p)) {
+        return true;
+    }
+
+    // dynamisch: Kapitel 1, Kapitel 2, ...
+    if (p.startsWith("Kapitel")) {
+        return true;
+    }
+
+    return false;
+};
+
+setup.renderPlayerTable = function () {
+    const p = State.variables.player;
+  
+  	const inventoryHTML =
+        p.inventory.length === 0
+            ? `<tr><td colspan="3">Inventar ist leer</td></tr>`
+            : p.inventory.map(item =>
+                `<tr><td colspan="3">${item}</td></tr>`
+            ).join("");
+
+    return `
+    <h3>Spielerwerte</h3>
+    <table class="player-stats">
+
+        <tr><th colspan="3">Persönliches</th></tr>
+        <tr><td>Name</td>
+        <td>Geschlecht</td>
+        <td>Rang</td></tr>
+        <tr><td>${p.name}</td>
+        <td>${p.sex}</td>
+        <td>${p.rank}</td></tr>
+		
+        <tr><th colspan="3">Stats</th></tr>
+        <tr><td>Gnade</td>
+        <td>Ehrgeiz</td>
+        <td>Ehrlichkeit</td></tr>
+        <tr><td>${p.stats.mercy}</td>
+        <td>${p.stats.ambition}</td>
+        <td>${p.stats.honesty}</td></tr>
+        
+        <tr><th colspan="3">Reputation</th></tr>
+        <tr><td>Land</td>
+        <td>Ohm</td>
+        <td>Kirche</td></tr>
+        <tr><td>${p.reputation.land}</td>
+        <td>${p.reputation.ohm}</td>
+        <td>${p.reputation.church}</td></tr>
+
+        <tr><th>Geld</th><td colspan="2">${p.money.copper} Kupfer; ${p.money.silver} Silber; ${p.money.gold} Gold</td></tr>
+
+        <tr><th colspan="3">Inventar</th></tr>
+        ${inventoryHTML}
+    </table>
+    `;
 };
 
 setup.renderJournal = function () {
@@ -219,16 +335,32 @@ setup.setNpcAffection = function (npcKey, value) {
     }
 
     npc.affection = value;
-};</script><tw-tag name="header" color="blue"></tw-tag><tw-passagedata pid="1" name="Kapitel 1" tags="" position="475,125" size="100,100">Vers. 0.1
-&lt;div id=&quot;title&quot;&gt;KAPITEL 1&lt;/div&gt;
+};
 
-&lt;&lt;timed 3s&gt;&gt;
-&lt;&lt;addclass &quot;#title&quot; &quot;fade-out&quot;&gt;&gt;
-&lt;&lt;/timed&gt;&gt;
+setup.setPlayerStat = function (statKey, value) {
+    const player = State.variables.player;
 
-&lt;&lt;timed 4.5s&gt;&gt;
-&lt;&lt;goto &quot;Intro&quot;&gt;&gt;
-&lt;&lt;/timed&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="StoryInit" tags="" position="0,0" size="100,100">&lt;&lt;include &quot;InitPlayer&quot;&gt;&gt;
+    if (!player) {
+        console.warn("Player nicht gefunden");
+        return;
+    }
+
+    if (!player.stats?.hasOwnProperty(statKey)) {
+        console.warn("Stat existiert nicht:", statKey);
+        return;
+    }
+
+    player.stats[statKey] = player.stats[statKey] + value;
+};</script><tw-tag name="header" color="blue"></tw-tag><tw-passagedata pid="1" name="Kapitel 0" tags="" position="400,125" size="100,100">Vers. 0.1
+&lt;div id=&quot;title&quot; class=&quot;fade-trigger&quot;&gt;Intro&lt;/div&gt;
+
+
+
+&lt;div id=&quot;center-link&quot;&gt;
+    &lt;&lt;timed 4.5s&gt;&gt;
+        [[Start-&gt;Intro]]
+    &lt;&lt;/timed&gt;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="2" name="StoryInit" tags="" position="0,0" size="100,100">&lt;&lt;include &quot;InitPlayer&quot;&gt;&gt;
 &lt;&lt;include &quot;InitNPC&quot;&gt;&gt;
 &lt;&lt;include &quot;InitWorld&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="Das Erwachen" tags="" position="675,125" size="100,100">Der Sergeant nickt brummend. Die Feder taucht in die Tinte, kratzt deinen Namen ins Pergament — ein trockenes, endgültiges Geräusch.
 
@@ -249,7 +381,8 @@ Für dich zählen erst einmal die harten Holzböden der Kaserne in Ohm — und d
 
 [[Befehl befolgen und direkt zum Kasernenhof gehen-&gt;Der Kasernenhof]]
 [[Sich heimlich von der Truppe absetzen und die Akademie-Hallen auskundschaften-&gt;Hallen erkunden]]
-[[Den Sergeant nach neuen Gerüchten ausfragen-&gt;Sergent aushorchen]]</tw-passagedata><tw-passagedata pid="4" name="Intro" tags="" position="575,125" size="100,100">Der Wind über Ohm ist kein sanfter Hauch.
+[[Den Sergeant nach neuen Gerüchten ausfragen-&gt;Sergent aushorchen]]
+</tw-passagedata><tw-passagedata pid="4" name="Intro" tags="" position="575,125" size="100,100">Der Wind über Ohm ist kein sanfter Hauch.
 
 Er kommt nicht und geht wieder — er liegt auf dem Gelände wie eine unsichtbare Last. Kalt. Trocken. Unnachgiebig.
 
@@ -275,7 +408,15 @@ Der Sergeant am hölzernen Tisch blickt von seinen Listen auf und bellt:
     &lt;&lt;set $player.name = &quot;Arla&quot;&gt;&gt;
     &lt;&lt;goto &quot;Das Erwachen&quot;&gt;&gt;
 &lt;&lt;/link&gt;&gt;
-</tw-passagedata><tw-passagedata pid="5" name="Der Kasernenhof" tags="" position="750,425" size="100,100">Der Schlamm klatscht unter deinen Stiefeln.
+</tw-passagedata><tw-passagedata pid="5" name="Der Kasernenhof" tags="" position="750,425" size="100,100">&lt;&lt;if $npc.kurt.affection != 0&gt;&gt;
+Das Tor zum Exerzierplatz fliegt auf.
+Die nasskalte Luft trifft dich wie eine Ohrfeige — und mit ihr der Blick des Schinders, der bereits wartet. Er sieht dich an. Dann sieht er Kurt. Sein Gesicht verändert sich nicht, aber in seinem einen Auge liegt etwas, das vielleicht Belustigung wäre, wenn er ein anderer Mann wäre.
+Kurt lässt dich los. Ohne Kommentar. Ohne dich noch eines Blickes zu würdigen dreht er sich um und verschwindet wieder ins Innere der Akademie.
+Der Schlamm klatscht unter deinen Stiefeln.
+Du stehst auf dem Exerzierplatz — nicht weil du gegangen bist, sondern weil man dich gebracht hat. Der Unterschied ist gering. Aber der Schinder sieht ihn.
+„Noch so ein unbeschriebenes Blatt für das 86. Banner&quot;, sagt er. Und dann, nach einer Pause, die einen Moment zu lang dauert: „Oder doch nicht ganz so unbeschrieben.&quot;
+&lt;&lt;else&gt;&gt;
+Der Schlamm klatscht unter deinen Stiefeln.
 Du hast dir diesen Moment vorgestellt. Irgendwie. Den Eintritt. Den Beginn. Vielleicht hast du an Fahnen gedacht, an Gleichschritt, an das Gefühl, zu etwas Größerem zu gehören.
 Dann siehst du den Schinder — und der Gedanke stirbt leise.
 Er steht am Rand des Hofes wie ein Mahnmal, das niemand aufgestellt hat. Der Körper eines Mannes, den der Krieg genommen und wieder ausgespuckt hat — nicht unversehrt, nicht gebrochen, aber für immer gezeichnet. Der graue Bart. Das eine Auge, das dich sofort findet und nicht mehr loslässt. Über der leeren linken Augenhöhle zieht sich eine Narbe, breit und tief, die Geschichte einer Klinge oder eines Schicksals, das du nicht kennst und nicht fragen wirst. Wo seine linke Hand sein sollte: Leder. Stumpf. Abgebunden.
@@ -283,13 +424,16 @@ Kein Holzbein aus den Liedern. Kein stolzer Veteran aus den Geschichten.
 Nur ein Mann, dem der Krieg etwas genommen hat — und der trotzdem noch hier steht.
 Er spuckt aus.
 „Noch so ein unbeschriebenes Blatt für das 86. Banner.&quot;
+&lt;&lt;/if&gt;&gt;
 Er schaut dich an, so wie man etwas anschaut, das man noch nicht einschätzen kann und auch noch nicht einschätzen muss. Dann, fast beiläufig:
 „Ich muss hier kriegsversehrt die Kinderstube hüten.&quot;
 Er sagt es ohne Bitterkeit. Das ist das Schlimmste daran.
 „Aber keine Sorge, $player.rank.&quot; Ein Schritt vorwärts. Langsam. Schwer. „Ich biege dich hin, bis du weißt, wierum man eine Hellebarde hält.&quot;
 Du sagst nichts. Was solltest du auch sagen.
 Irgendwo hinter dir schließt sich das Tor der Akademie mit einem dumpfen, endgültigen Laut.
-Du bist jetzt drin.</tw-passagedata><tw-passagedata pid="6" name="Hallen erkunden" tags="" position="875,150" size="100,100">Du stehlst dich von den anderen Rekruten fort und meidest das helle Tageslicht, das durch die großen Tore auf den Hof fällt. Stattdessen gleitest du einen schmalen, steinernen Treppenaufgang hinauf, der in den Offiziersflügel der Akademie führt. Hier oben riecht es nach Bohnerwachs und schwerem Tabak.
+Du bist jetzt drin.
+
+</tw-passagedata><tw-passagedata pid="6" name="Hallen erkunden" tags="" position="875,150" size="100,100">Du stehlst dich von den anderen Rekruten fort und meidest das helle Tageslicht, das durch die großen Tore auf den Hof fällt. Stattdessen gleitest du einen schmalen, steinernen Treppenaufgang hinauf, der in den Offiziersflügel der Akademie führt. Hier oben riecht es nach Bohnerwachs und schwerem Tabak.
 
 Aus einem leicht geöffneten Spalt einer schweren Eichentür dringt das gedämpfte Licht eines Kamins – und aufgebrachte Stimmen. Du drückst dich flach gegen die Wand und hältst den Atem an.
 
@@ -306,9 +450,11 @@ Du hast einen Befehl erhalten und der war nicht mit mir reden, also sieh zu dass
 //Zuneigung um 5 verringert//
     
 [[Befehl befolgen und direkt zum Kasernenhof gehen-&gt;Der Kasernenhof]]
-[[Sich heimlich von der Truppe absetzen und die Akademie-Hallen auskundschaften-&gt;Hallen erkunden]]</tw-passagedata><tw-passagedata pid="8" name="PassageHeader" tags="header" position="550,0" size="100,100">&lt;&lt;if passage() !== &quot;Kapitel 1&quot; &amp;&amp; passage() !== &quot;Intro&quot; &amp;&amp; passage() !== &quot;Das Erwachen&quot; &amp;&amp; passage() !== &quot;journalAnsicht&quot;&gt;&gt;&lt;div style=&quot;text-align:right;&quot;&gt;[[📖 Notizbuch öffnen|journalAnsicht]]&lt;/div&gt;&lt;hr&gt;&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="9" name="journalAnsicht" tags="" position="675,0" size="100,100">&lt;div id=&quot;passage-journalansicht&quot; class=&quot;passage journalansicht&quot;&gt;
+[[Sich heimlich von der Truppe absetzen und die Akademie-Hallen auskundschaften-&gt;Hallen erkunden]]</tw-passagedata><tw-passagedata pid="8" name="PassageHeader" tags="header" position="550,0" size="100,100">&lt;&lt;if !setup.isJournalBlocked()&gt;&gt;&lt;div style=&quot;text-align:right;&quot;&gt;[[📖 Notizbuch öffnen|journalAnsicht]]&lt;/div&gt;&lt;hr&gt;&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="9" name="journalAnsicht" tags="" position="675,0" size="100,100">&lt;div id=&quot;passage-journalansicht&quot; class=&quot;passage journalansicht&quot;&gt;
   &lt;h2&gt;📋 $player.name&#39;s Notizbuch&lt;/h2&gt;
   Hier sind deine bisherigen Erkenntnisse über die Personen in der Akademie von Ohm festgehalten:
+  &lt;h3&gt;Inventar und Werte&lt;/h3&gt;
+  &lt;&lt;print setup.renderPlayerTable()&gt;&gt;
   &lt;h3&gt;Personen in der Militärakademie&lt;/h3&gt;
   &lt;&lt;print setup.renderJournal()&gt;&gt;
   ---
@@ -322,8 +468,12 @@ Du hast einen Befehl erhalten und der war nicht mit mir reden, also sieh zu dass
         rank: &quot;Zivilist&quot;,
 
         money: {
-            copper: 2
+            copper: 2,
+            silver: 0,
+            gold: 0
         },
+        
+        inventory: [],
 
         stats: {
             mercy: 50,
@@ -337,8 +487,7 @@ Du hast einen Befehl erhalten und der war nicht mit mir reden, also sieh zu dass
             church: 0
         },
         
-        rumors: [
-        ]
+        rumors: []
 }&gt;&gt;</tw-passagedata><tw-passagedata pid="11" name="InitNPC" tags="" position="0,225" size="100,100">&lt;&lt;set $npc = {
 
           sergeant: {
@@ -440,11 +589,20 @@ Er sagt es ohne Lautstärke. Als wäre sein Schweigen das Großzügigste, was er
 
 &quot;Ein Frischling!&quot;, speit er aus. &quot;Spionierst uns nach, noch bevor du überhaupt den ersten Schlamm gefressen hast?!&quot;
 
-Deine Versuche, dich mit einer Ausrede über &#39;verlaufene Wege&#39; herauszureden, prallen an ihm ab wie stumpfe Pfeile. Er packt dich grob am Kragen deiner neuen Umhängetasche. &quot;Hier wird nicht diskutiert, Bürschchen!&quot; Er verpasst dir eine schmerzhafte Lektion in Sachen Gehorsam und schleift dich eigenhändig die Treppe hinunter, quer über den Korridor, direkt auf den nasskalten Exerzierplatz.
+Deine Ausrede stirbt, noch bevor sie fertig gedacht ist.
+„Verlaufene Wege&quot; — als hättest du dir dabei selbst geglaubt. 
+Kurt hört nicht einmal zu Ende zu. Seine Hand schließt sich um den Kragen deiner Umhängetasche mit dem Griff eines Mannes, der keine Gegenwehr erwartet und auch keine dulden würde.
 
-&lt;&lt;run setup.setNpcAffection(&quot;kurt&quot;, -5)&gt;&gt;
+„Hier wird nicht diskutiert, Bürschchen.&quot;
+
+Was folgt, ist keine Strafe im eigentlichen Sinne. Es ist eine Lektion — kurz, schmerzhaft und ohne jedes Übermaß. Gerade genug, damit du weißt, dass er es ernst meint. Dann zerrt er dich los.
+Die Treppe. Den Korridor. Keine Rücksicht auf dein Tempo, kein Wort mehr, nur der eiserne Zug an deinem Kragen und das Geräusch deiner eigenen Stiefel, die kaum mit den Schritten eines Mannes mithalten können, der seit Jahrzehnten weiß, wohin er geht.
+
+&lt;&lt;run setup.setNpcAffection(&quot;kurt&quot;, -10)&gt;&gt;
 &lt;&lt;set $npc.kurt.known = true&gt;&gt;
 //Zuneigung um 5 verringert//
+
+&lt;&lt;run setup.setPlayerStat(&quot;honesty&quot;, -5)&gt;&gt;
 
 [[Zähneknirschend auf den Hof zerren lassen.-&gt;Der Kasernenhof]]
 </tw-passagedata></tw-storydata>
