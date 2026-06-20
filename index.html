@@ -1122,14 +1122,7 @@ Der Sergeant am hölzernen Tisch blickt von seinen Listen auf und bellt:
             [[Weiter-&gt;Auf Stube 1]]
         &lt;&lt;/timed&gt;&gt;
     &lt;/div&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="15" name="Nachtruhe 1" tags="" position="250,950" size="100,100">&lt;&lt;if $npc.jarek.affection &gt;= 0&gt;&gt;
-//Zuneigung von $npc.jarek.name gestiegen//
-&lt;div class=&quot;system-alert status-positive&quot;&gt;Zuneigung von Jarek erhöht&lt;/div&gt;
-&lt;&lt;/if&gt;&gt;
-&lt;&lt;if $npc.karla.affection &gt;= 0&gt;&gt;
-&lt;div class=&quot;system-alert status-positive&quot;&gt;Zuneigung von Karla erhöht&lt;/div&gt;
-&lt;&lt;/if&gt;&gt;
-&lt;&lt;set $world.day += 1&gt;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="15" name="Nachtruhe 1" tags="" position="250,950" size="100,100">&lt;&lt;if $npc.jarek.affection &gt; 0&gt;&gt;&lt;div class=&quot;system-alert status-positive&quot;&gt;Zuneigung von Jarek erhöht&lt;/div&gt;&lt;&lt;/if&gt;&gt;&lt;&lt;if $npc.karla.affection &gt; 0&gt;&gt;&lt;div class=&quot;system-alert status-positive&quot;&gt;Zuneigung von Karla erhöht&lt;/div&gt;&lt;&lt;/if&gt;&gt;&lt;&lt;set $world.day += 1&gt;&gt;
 Ein vorbeigehender Korporal löscht das Talglicht mit einem harschen Fluch, als wäre selbst das Licht hier etwas, das Gehorsam schuldet.
 Dunkelheit.
 Nicht die sanfte Dunkelheit eines vertrauten Zimmers, in dem man weiß, wo die Wände stehen und wie der Schatten auf der Decke liegt, wenn der Mond durch das Fenster fällt. Diese Dunkelheit ist fremd und riecht nach nassem Holz und fremdem Schweiß und dem Talg der erloschenen Flamme. Sie gehört nicht dir.
