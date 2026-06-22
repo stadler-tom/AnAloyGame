@@ -1,0 +1,2824 @@
+:: StoryTitle
+An Aloy Story
+
+
+:: StoryData
+{
+  "ifid": "C7096067-F133-4DE2-AACD-2D383E8BB71A",
+  "format": "SugarCube",
+  "format-version": "2.37.3",
+  "start": "Kapitel 0",
+  "tag-colors": {
+    "header": "blue",
+    "script": "purple",
+    "startup-debug": "purple"
+  },
+  "zoom": 0.6
+}
+
+
+:: \ $world.lastPassage {"position":"850,0","size":"100,100"}
+
+
+
+:: 00_Sidequest_karla {"position":"25,1825","size":"100,100"}
+Die anderen Rekruten verschwinden zwischen den Zelten, und du willst gerade denselben Weg nehmen, als Karlas Stimme dich trifft — nicht laut, aber so, dass sie keinen Widerspruch einkalkuliert.
+
+„Du. Komm mit."
+
+Sie sieht dich nicht dabei an. Dreht sich einfach um und geht davon, als wäre bereits beschlossen, dass du folgst.
+
+<div class="scenery-text">Der Appellplatz liegt fast leer im Abendlicht. Irgendwo tropft Wasser in eine Pfütze. Der Wind riecht nach Rauch und nassem Stein.</div>
+
+Du könntest so tun, als hättest du es nicht gehört.
+
+[[Ihr folgen. ->00_Sidequest_karla_Karla_Privat_Einstieg]]
+[[Einfach weitergehen — als hättest du nichts gehört. ->00_Sidequest_karla_Karla_Ablehnung]]
+
+
+:: 00_Sidequest_karla_Karla_Ablehnung {"position":"225,1750","size":"100,100"}
+Du gehst weiter. Deine Stiefel knirschen auf dem Kies, und du tust so, als wärst du bereits zu weit weg, um noch umzukehren.
+
+Hinter dir: Stille.
+
+Keine zweite Aufforderung. Keine Drohung. Nur das leise Geräusch von jemandem, der sich einfach umdreht und geht.
+
+<div class="thought-box">Vielleicht war es nichts. Vielleicht war es eine Chance. Ich werd es nicht wissen.</div>
+
+<<= setup.setNpcAffection("karla", -2)>>
+<<include "00_Sidequest_karla_finalize">>
+
+
+:: 00_Sidequest_karla_Karla_Ablehnung_Spaet {"position":"225,2075","size":"100,100"}
+Du fängst die Lanze auf — und hältst sie einen Moment lang in den Händen, bevor du sie langsam wieder zum Boden senkst.
+
+„Nicht heute."
+
+Karla sieht dich an. Ihr Gesicht verändert sich nicht.
+
+„Warum."
+
+Kein Fragezeichen. Nur das Wort, hingestellt wie ein Block.
+
+Du nennst deinen Grund — Erschöpfung, ein steifer Nacken, was auch immer dir als erstes kommt. Sie hört zu. Oder sie tut so als ob.
+
+Dann nimmt sie dir die Lanze aus der Hand. Ohne Kommentar. Ohne sie fallen zu lassen.
+
+„Ein anderes Mal vielleicht", sagt sie. Und du weißt nicht, ob das eine Drohung ist oder ein Angebot.
+
+<div class="thought-box">Sie hat nicht widersprochen. Aber sie hat auch nichts vergessen.</div>
+
+<<= setup.setNpcAffection("karla", -1)>>
+<<include "00_Sidequest_karla_finalize">>
+
+
+:: 00_Sidequest_karla_Karla_Ansprechen {"position":"225,1850","size":"100,100"}
+„Von links", sagst du. „Du weichst zurück."
+
+Karla sieht dich an.
+
+Die Stille, die danach kommt, hat eine Textur — sie ist nicht leer, sie ist voll von etwas, das sie gerade in Schach hält.
+
+Dann entspannt sich ihr Kiefer, aber nicht ihr Blick.
+
+„Das hab ich nicht gefragt."
+
+Sie stellt die Lanze gegen den Holzpfosten. Das Training ist vorbei. Du weißt es, noch bevor sie sich umdreht.
+
+„Geh schlafen, Frischling."
+
+Keine Aggression. Nur eine Tür, die sich schließt — ruhig und endgültig.
+
+<div class="thought-box">Ich hab es richtig benannt. Und genau das war falsch. Nicht das Sehen — das Sagen.</div>
+
+<<= setup.setNpcAffection("karla", 1)>>
+<<include "00_Sidequest_karla_finalize">>
+
+
+:: 00_Sidequest_karla_Karla_Privat_Einstieg {"position":"0,2125","size":"100,100"}
+Sie führt dich hinter die Stallungen, an den Wachen vorbei, durch eine Lücke zwischen zwei Planwagen — und dann stehst du auf einem kleinen, abgegrenzten Flecken Erde, den das Lager vergessen hat. Ein paar ausgeblichene Strohballen, ein ramponierter Holzpfosten. Kein Talglicht. Nur das letzte Tageslicht, das von Westen her gegen die Palisaden drückt.
+
+Karla dreht sich um. Ihre Augen wandern einmal über dich — prüfend, kurz, ohne Erklärung.
+
+<div class="thought-box">Sie hat mich nicht hergebracht, um zu reden. Das ist klar. Aber was sie will, ist noch nicht klar.</div>
+
+„Du hast heute auf dem Platz nicht gezuckt", sagt sie. Keine Frage. Keine Schmeichelei. Nur eine Feststellung, die sie offenbar für relevant hält.
+
+Sie hebt eine der abgenutzten Übungslanzen vom Boden auf und wirft sie dir zu. Kein „fang" davor. Einfach werfen.
+
+„Ich brauche jemanden zum Üben. Jetzt. Du redest mit niemanden darüber." Sie dreht die eigene Lanze zwischen den Handflächen, locker und gewohnt. „Fang an."
+
+<div class="thought-box">Kein Bitte. Kein Warum. Einfach eine Tatsache, die sie ausgesprochen hat und die jetzt im Raum steht wie ein Werkzeug, das man entweder anfasst oder lässt.</div>
+
+[[Mit ihr üben — einfach mitmachen, ohne Fragen. ->00_Sidequest_karla_Karla_Training_Passiv]]
+[[Mit ihr üben — und dabei genau beobachten, wie sie kämpft. ->00_Sidequest_karla_Karla_Training_Aktiv]]
+[[Die Lanze auffangen und trotzdem ablehnen. Einen Grund nennen. ->00_Sidequest_karla_Karla_Ablehnung_Spaet]]
+
+
+:: 00_Sidequest_karla_Karla_Schweigen {"position":"225,2175","size":"100,100"}
+Du hebst die Lanze wieder in Position.
+
+Keine Bemerkung. Kein Blick, der zu lange bleibt. Du hast es gesehen — und du lässt es dort, wo es ist.
+
+Karla steht einen Moment lang still. Ihre Augen sind auf dir, und du spürst es, ohne hinzusehen. Dann dreht sie die Lanze langsam in den Händen und greift wieder an.
+
+Das Training geht weiter. Aber es ist jetzt anders — ruhiger, präziser. Als hätte sie beschlossen, dass du es verdient hast, ernst genommen zu werden.
+
+<div class="scenery-text">Irgendwo jenseits der Palisaden ruft eine Nachtwache ihren Posten. Das Licht ist fast weg. Der Abend riecht nach Erde und altem Holz.</div>
+
+Als sie schließlich abbricht, steht sie einen Moment lang mit dem Rücken zu dir und putzt den Schaft mit dem Ärmel ab. Dann, ohne sich umzudrehen:
+
+„Du hast ein gutes Auge."
+
+Kein Dankeschön. Kein Lächeln. Nur diese eine Feststellung — abgegeben wie eine Münze, die man auf einen Tisch legt.
+
+Sie geht.
+
+<div class="thought-box">Ich weiß nicht, was ich ihr gerade gegeben habe. Aber es war etwas. Das hab ich gespürt.</div>
+
+<<= setup.setNpcAffection("karla", 6)>>
+<<= setup.pushNpcMemory("karla", "hat_geschwiegen")>>
+<<include "00_Sidequest_karla_finalize">>
+
+
+:: 00_Sidequest_karla_Karla_Training_Aktiv {"position":"100,1925","size":"100,100"}
+Du fängst die Lanze auf — aber diesmal schaust du nicht auf deine eigenen Hände. Du schaust auf sie.
+
+Karla greift an. Schnell. Direkt. Von rechts, immer von rechts — und du bemerkst es erst beim dritten Mal: Wenn du von links kommst, macht sie einen Schritt zurück. Kein Ausweichen, keine Parade. Einen Schritt zurück. Den Körper leicht weggedreht. Als wäre es eine Gewohnheit.
+
+<div class="thought-box">Sie zieht die Linke nach. Das ist ein Reflex. Und Reflexe dieser Art hat man nicht gelernt — die hat man eingeübt, weil man musste.</div>
+
+Du greifst noch einmal von links an. Langsam diesmal, tiefer, mit mehr Gewicht auf der Klinge.
+
+Karla pariert — aber einen Herzschlag zu spät. Der Schaft streift ihre Schulter. Nicht stark. Nicht schmerzhaft. Aber er trifft.
+
+Sie hält inne.
+
+Ihr Blick sucht deinen. Kalt und aufmerksam wie der einer Frau, die gerade etwas bewertet.
+
+<div class="thought-box">Sie hat bemerkt das ich es gesehen habe. Soll ich sie darauf ansprechen oder nicht?</div>
+
+[[Nichts sagen. Einfach weitermachen, als wäre nichts gewesen. ->00_Sidequest_karla_Karla_Schweigen]]
+[[Ansprechen, was du gesehen hast. ->00_Sidequest_karla_Karla_Ansprechen]]
+
+
+:: 00_Sidequest_karla_Karla_Training_Passiv {"position":"225,1975","size":"100,100"}
+Du fängst die Lanze auf und nimmst die Position ein, die der Schinder euch eingeprügelt hat. Karla greift sofort an — schnell, direkt, ohne Vorwarnung — und du parierst, wie du es gelernt hast. Schlecht, aber instinktiv. Sie setzt nach. Du weichst aus.
+
+Es ist kein Kampf. Es ist auch kein Gespräch. Es ist etwas dazwischen — ein Takt aus Holz und Atem und dem dumpfen Aufschlag zweier Schäfte, die gegeneinander drücken.
+
+<div class="scenery-text">Karla kämpft, als wäre der Gegner schon besiegt — als wäre das Ergebnis bereits entschieden und das Training nur noch die Form, die es annimmt. Ihr Körper ist eine Aussage.</div>
+
+Irgendwann hört sie auf. Kein Signal, kein Wort — sie tritt einfach einen Schritt zurück und lässt die Lanze sinken. Ihr Atem geht gleichmäßig. Deiner nicht.
+
+Sie sieht dich kurz an.
+
+„Morgen wieder", sagt sie. Und geht.
+
+<div class="thought-box">Keine Erklärung. Keine Bewertung. Als wäre das hier eine Selbstverständlichkeit — als hätte sie nie etwas anderes erwartet als dass du mitkommst und mitmachst und den Mund hältst.</div>
+
+<<= setup.setNpcAffection("karla", 3)>>
+<<include "00_Sidequest_karla_finalize">>
+
+
+:: 00_Sidequest_karla_finalize {"position":"350,2000","size":"100,100"}
+<<set $npc.karla.memory.flags.sidequest00Complete = true>>
+[[in die Stube gehen->Auf Stube]] 
+
+
+:: Abendappell {"position":"850,1925","size":"100,100"}
+<<= setup.getAbendappellText("szenerie")>>
+
+Die Reihen schließen sich. Nicht ordentlich genug, um schön zu sein — aber ordentlich genug, dass niemand sofort angeschrien wird.
+
+Der Hauptmann schreitet die Front ab. Seine Stiefel knirschen gleichmäßig im Kies, sein Blick bleibt nie lange auf einem Gesicht liegen und scheint doch jedes einzelne zu wiegen. Neben dir steht Karla, aufrecht wie ein eingeschlagener Pflock. Sie sieht nicht zu dir herüber.
+
+<div class="voice-formal"><<= setup.getAbendappellText("hauptmann")>></div>
+
+Niemand antwortet. Niemand muss.
+
+---
+
+<div class="thought-box"><<= setup.getAbendappellText("gedanke")>></div>
+
+<<if ($world.day == 3 || $world.day == 4) && $npc.karla.memory.flags.sidequest00Complete !== true>>\
+Karla kommt auf dich zu, sie schaut verdammt ernst. "DU! komm mit!" 
+[[Mitgehen->00_Sidequest_karla]]
+<</if>>\
+<<run setup.resetDailyVariables()>>\
+Nochmal Trainieren:
+[[Das Lager auf eigene Faust erkunden ->Nachmittag Hub]]
+
+Deadlink:
+[[Auf Stube gehen ->Auf Stube]]
+
+
+:: AbendappellTexte {"position":"950,1800","size":"100,100"}
+{
+  "szenerie": [
+    {
+      "text": "Als das Signalhorn verklungen ist, strömen die Rekruten aus allen Winkeln des Lagers zurück auf den Appellplatz. Stiefel scharren über Kies, Stimmen verstummen nach und nach, und über den Zelten liegt bereits das matte Licht des frühen Abends.",
+      "context": {}
+    },
+    {
+      "text": "Der Abend kommt über das Lager wie eine Erschöpfung, die niemand ausgesprochen hat - langsam, grau, und mit der stillen Gewissheit, dass der nächste Morgen nicht weiter weg ist als ein Schlaf. Die Reihen formen sich zögernd, Schultern hängen tiefer als am Mittag.",
+      "context": {}
+    },
+    {
+      "text": "Über den Palisaden zieht dünner Rauch in langen Streifen gegen den Abend. Die Fackelhalter am Appellplatz werden gerade entzündet, und das flackernde Licht wirft lange, wackelige Schatten über die angetretenen Rekruten.",
+      "context": {}
+    },
+    {
+      "text": "Es riecht nach Pferden, feuchtem Leder und dem bitteren Rauch der Küchenfeuer. Die Nacht kommt früh in Ohm - und sie bringt die Kälte mit, die schon den ganzen Tag über hinter den Bergen gewartet hat.",
+      "context": {}
+    },
+    {
+      "text": "Der Kies knirscht unter dreißig Paar Stiefeln, die sich in die Abendformation schleppen. Niemand spricht. Die Erschöpfung hat eine eigene Sprache - und sie braucht keine Worte.",
+      "context": {}
+    }
+  ],
+  "hauptmann": [
+    {
+      "text": "Ihr habt heute gesehen, dass ein Heer mehr ist als eine Reihe Männer mit Waffen. Manche von euch lernen schnell. Manche lernen langsam. Und manche werden erst begreifen, wenn es zu spät ist. Morgen wird sich zeigen, wer von euch das Zeug für die echten Einheiten hat.",
+      "context": {}
+    },
+    {
+      "text": "Ein Soldat, der nicht weiß warum er kämpft, kämpft für den falschen Mann. Findet bis morgen früh eine Antwort darauf. Die braucht kein Mensch außer ihr selbst.",
+      "context": {}
+    },
+    {
+      "text": "Zwei Transportüberfälle in diesem Monat. Irgendwo in diesem Land gibt es Männer, die glauben, das Heer sei eine leichte Beute. Sie werden eines Besseren belehrt werden. Von Leuten, die ich hier ausbilde.",
+      "context": { "minDay": 3, "maxDay": 10 }
+    },
+    {
+      "text": "Ordnung ist keine Tugend. Ordnung ist eine Überlebenstechnik. Wer das heute noch nicht verstanden hat, wird es auf dem Schlachtfeld verstehen. Sofern er die Gelegenheit bekommt.",
+      "context": {}
+    },
+    {
+      "text": "Ihr werdet in zwei Jahren nicht zu Helden. Ihr werdet zu Soldaten. Der Unterschied ist, dass Soldaten wiederkommen.",
+      "context": {}
+    },
+    {
+      "text": "Ich hab heute drei Rekruten beim Schinder stehen sehen, die nicht wussten wohin mit den Füßen. Das werd ich nicht zweimal sagen müssen.",
+      "context": {}
+    }
+  ],
+  "gedanke": [
+    {
+      "text": "Der Abendwind streicht über den Platz, trägt den Geruch von Rauch, Staub und müden Körpern mit sich. Erst als der Hauptmann sich abwendet, lösen sich die Reihen langsam wieder.",
+      "context": {}
+    },
+    {
+      "text": "Du stehst noch einen Moment länger, als die anderen schon gehen. Nicht aus Ehrgeiz. Nur weil dein Körper vergessen hat, dass der Befehl bereits gefallen ist.",
+      "context": {}
+    },
+    {
+      "text": "Irgendwo hinter dir hustet jemand in die Stille. Der Lärm des Tages zieht sich langsam aus dem Platz zurück, und was bleibt, ist eine Stille, die sich sehr nach Erschöpfung anfühlt.",
+      "context": {}
+    },
+    {
+      "text": "Du denkst kurz daran, was der Hauptmann gesagt hat. Dann hörst du auf damit - nicht weil es unwichtig wäre, sondern weil dein Kopf gerade keinen Platz mehr hat.",
+      "context": {}
+    },
+    {
+      "text": "Die Dunkelheit sammelt sich zwischen den Zelten. Irgendwo wird dünne Suppe ausgeteilt, irgendwo flucht jemand über Blasen an den Füßen. Der Tag hat Spuren hinterlassen - in deinen Händen, in deinen Gedanken.",
+      "context": {}
+    },
+    {
+      "text": "Du hast überlebt. Das klingt nach nichts, und heute Morgen hätte es sich auch nach nichts angehört. Jetzt, mit dem Abendwind im Gesicht und den Beinen voller Blei, klingt es nach mehr.",
+      "context": { "activity": "pike" }
+    },
+    {
+      "text": "Der Schwefelgeruch sitzt noch immer in der Kleidung. Du wirst ihn morgen früh noch riechen, wenn du aufwachst. Vielleicht auch übermorgen.",
+      "context": { "activity": "cannon" }
+    },
+    {
+      "text": "Zwischen den stillstehenden Reihen hörst du plötzlich jedes Husten, jedes unterdrückte Stöhnen deutlicher als zuvor. Das Zelt des Feldschers hat etwas mit deinen Ohren gemacht.",
+      "context": { "activity": "medicine" }
+    },
+    {
+      "text": "Deine Finger sind noch wund vom Spannen der Sehne. Dein Blick bleibt unwillkürlich an Entfernungen hängen - an der Breite des Platzes, an der Linie zwischen dir und dem Hauptmann.",
+      "context": { "activity": "crossbow" }
+    },
+    {
+      "text": "Die Gesprächsfetzen des Tages gehen dir nicht aus dem Kopf. Namen, Andeutungen, halbe Wahrheiten - im Schweigen des Appells wirken sie lauter als zuvor.",
+      "context": { "activity": "gossip" }
+    },
+    {
+      "text": "Deine Augen wandern über Palisaden, Zeltgassen und Postenwege. Wo andere nur Lagerordnung sehen, erkennst du Lücken, tote Winkel und jene kurzen Augenblicke, in denen niemand wirklich hinsieht.",
+      "context": { "activity": "thievery" }
+    }
+  ]
+}
+
+
+:: Appell: Ausrichten {"position":"700,950","size":"100,100"}
+<<if $player.chosen_activity eq "zeigt_eigeninitiative">>\
+	@@.beziehung;Dank des unauffälligen Hinweises reagierst du blitzschnell. Noch bevor der Schinder die Augen zusammenkneifen kann, stehst du perfekt in der Formation. Ein kaum merkliches Nicken des Ausbilders zeigt dir, dass du die Situation gerettet hast.@@
+<<elseif $player.chosen_activity eq "ist_befehlstreu">>\
+	@@.beziehung;Du rührst dich keinen Zentimeter und wartest stur auf den Befehl, so wie es dir eingebläut wurde. Der Schinder baut sich vor dir auf, die Lederpeitsche klatscht rhythmisch gegen seinen Stiefel. „Wenigstens einer, der nicht wie ein aufgescheuchtes Huhn zappelt“, knurrt er. Nicht gelobt, aber auch nicht bestraft.@@
+<<elseif $player.chosen_activity eq "ist_panisch">>\
+	@@.beziehung;Du rätst auf gut Glück, straffst die Schultern und machst einen Schritt zur Seite – prompt in die falsche Richtung. Du rempelst deinen Nebenmann an. Das Auge des Schinders fixiert dich sofort. „Du elender, ungelenker Tölpel!", brüllt er dir ins Gesicht, dass der Speichel fliegt.@@
+<</if>>\
+<<= setup.pushNpcMemory("schinder", $player.chosen_activity)>>\
+<<silently>>
+<<if setup.hasNpcMemory("schinder", "zeigt_eigeninitiative")>>
+Er mustert dich anders als die anderen — er nickt kühl, einer der Eigeninitiative zeigt.<</if>>
+<<if setup.hasNpcMemory("schinder", "ist_befehlstreu")>>Er mustert dich anders als die anderen — er nickt kühl, ein Frontsoldat, der tut, was man ihm sagt.<</if>>
+<<if setup.hasNpcMemory("schinder", "ist_panisch")>>Er mustert dich anders als die anderen — er schüttelt enttäuscht den Kopf, dreht sich weg und geht weiter.<</if>>
+<</silently>>\
+
+Was folgt, lässt sich nicht in Worte fassen — nicht weil es unbeschreiblich wäre, sondern weil der Körper irgendwann aufhört, Eindrücke zu speichern, und nur noch funktioniert.
+Der Schinder treibt euch durch die Formation wie ein Schmied, der rohes Eisen bearbeitet. Kein Sadismus, kein Genuss an eurer Not — nur die kalte, unerbittliche Überzeugung eines Mannes, der weiß, was es kostet, wenn ein Soldat im Haufen die falsche Schulter dreht. Er brüllt nicht aus Freude. Er brüllt, weil Fehler dort draußen den Tod bedeuten.
+Ihr lernt, was eine Reihe ist. Was ein Glied ist. Dann lernt ihr es nochmal und nochmal. Dann nochmal. Der Spieß ist schwerer als erwartet, das Holz rau und unbarmherzig gegen die ungehärteten Handflächen. Wer stolpert, steht wieder auf. Wer jammert, macht es zweimal. Wer schweigt und weitermacht, bekommt keinen Applaus — aber auch keinen zweiten Durchgang.
+Der Schinder hat kein Mitleid. Aber er hat auch keine Grausamkeit. Er hat nur einen Maßstab — und der liegt höher als alles, was ihr bisher von euch selbst kanntet.
+
+Der Abend kommt grau und still über den Platz.
+In der Kantine riecht es wieder nach Aloyer Allerlei — dieselben Schupfnudeln wie am Morgen, dieselben Holzschüsseln. Aber diesmal schmeckt es anders. Nicht besser. Nur echter. Der Hunger ist kein höflicher Hunger mehr, sondern der Hunger eines Körpers, der heute tatsächlich gearbeitet hat.
+Niemand spricht viel. Die Löffel kratzen über das Holz, jemand hustet, jemand starrt einfach nur auf seine Schüssel. Die Worte, die man sich vielleicht am Morgen noch zugeworfen hätte — Prahlerei, Nervosität, das vorsichtige Abtasten fremder Menschen — sie sind alle verbraucht. Übrig bleibt nur die bleierne, ehrliche Erschöpfung von Menschen, die verstanden haben, was die nächsten zwei Jahre bedeuten.
+
+Die Baracke nimmt euch auf wie jeden Abend — ohne Begrüßung, ohne Wärme.
+Du lässt dich auf deine Pritsche fallen, und der Strohsack, der heute Morgen noch hart und fremd war, fühlt sich jetzt an wie das Weichste auf der Welt. Deine Hände brennen. Deine Schultern brennen. Irgendwo tief in den Oberschenkeln sitzt ein Schmerz, der morgen früh schlimmer sein wird als heute Nacht.
+Das Talglicht flackert.
+Du schließt die Augen, noch bevor jemand es löscht.
+<<set $world.day += 1>>
+[[Der nächste Tag. ->Der nächste Tag]]
+
+
+:: Auf Stube {"position":"1975,1925","size":"100,100"}
+Nach dem harten Tag bist du auf der Stube.
+
+Der Raum riecht nach kaltem Holz, Leder und abgestandenem Rauch, der sich irgendwo zwischen den Balken festgesetzt hat.  
+Draußen knackt das Gebäude leise im Wind, als würde es selbst noch den Dienst des Tages verdauen.
+
+Ein paar Kerzen flackern unruhig auf dem Tisch.  
+Schatten kriechen über die Wände, ziehen sich über Spinde, Stiefel und halb geöffnete Ausrüstungstaschen.
+
+Irgendwo lacht jemand zu laut. Dann wieder Stille.  
+Dieses kurze, gespannte Schweigen, das in Kasernen nie wirklich Ruhe bedeutet.
+
+<<if $world.needsDiceGame>>\
+	<<include "Event_Wuerfelspiel">>\
+<<else>>\
+	<<if random(1,100) <= 40>>\
+
+        <<set _event = either(
+            "Event_Wuerfelspiel",
+            "Event_Schlaegerei"
+        )>>\
+    <<include _event>>\
+    <</if>>\
+	
+    [[Zuhören, was geredet wird ->Event_Geschichte]]
+    [[Schlafen->Der nächste Tag]]
+    
+<</if>>\
+
+
+:: Auf Stube 1 {"position":"250,650","size":"100,100"}
+<<set $npc.karla.known = true, $npc.jarek.known = true>>
+Die schwere Holztür der Baracke fällt hinter dir ins Schloss, und für einen Herzschlag bleibt das Heulen des Windes draußen. Doch was dich drinnen erwartet, ist keine Gemütlichkeit — nur eine andere Art von Kälte.
+Der Raum riecht nach feuchter Wolle, billigem Talgöl und dem herben Schweiß von dreißig Menschen, die heute alle dasselbe an den Toren abgegeben haben. Zwei Reihen hölzerner Doppelstockbetten ziehen sich durch die Stube, die Strohsäcke flach und hart wie das Versprechen, das man dir hier nicht gegeben hat. Das Licht fällt grau und gleichgültig durch die schmalen Fenster.
+Die Hackordnung beginnt genau hier. Nicht auf dem Exerzierplatz, nicht in der Schreibstube des Sergeanten — hier, bei der Suche nach einem Platz zum Schlafen.
+Am hinteren Ende der Stube bricht Unruhe aus.
+Eine stämmige Rekrutin mit breiten Schultern und einem spöttischen Zug um die Lippen greift ohne ein Wort in die Habseligkeiten eines kleineren Jungen und befördert sie von der Pritsche in den Dreck. Das ist Karla. Ihre Stimme dröhnt rau durch den Raum wie ein Mühlstein über Kiesel.
+„Der Platz am Ofen gehört mir, Knirps. Such dir einen Platz im Zugwind, wenn dir deine Knochen lieb sind."
+Der vertriebene Junge zieht ab. Schweigend. Den Kopf gesenkt, die Wangen rot — nicht vor Scham allein, sondern vor der Ohnmacht dessen, der begriffen hat, dass Einspruch hier nichts kostet außer mehr Demütigung. Karla sieht sich um, langsam und lauernd, als würde sie geradezu darauf warten, dass jemand ihr widerspricht.
+Ihr Blick bleibt an dir hängen.
+<<if $npc.kurt.affection != 0>>
+Dann bricht ein Lachen aus ihr heraus — rau und breit und ohne jede Zurückhaltung. Sie mustert dich von oben bis unten, und das spöttische Funkeln in ihren Augen weicht etwas Echtererem. Einer fast dreckigen Begeisterung.
+„Haltet die Klappe!", ruft sie in den Raum, ohne den Blick von dir zu nehmen. „Schaut euch das an. Das ist der Frischling, den Brasner vorhin höchstpersönlich am Kragen über den Hof geschleift hat." Sie lacht wieder, kurz und anerkennend. „Dem alten Kurt am ersten Tag so in die Suppe zu spucken — verdammt, das braucht Eier."
+Ihre flache Hand trifft deine Schulter mit einem Klang, der durch die halbe Stube hallt.
+„Ich bin Karla. Wenn du im Schlamm genauso zäh bist wie im Offiziersflügel, werden wir beide hier verdammt viel Spaß haben." Sie nickt auf die freie Pritsche neben ihrer. „Schnapp sie dir, bevor es ein anderer tut."
+<<set $npc.karla.affection += 5>>
+
+[[Bei Karla einrichten->Stube: Bei Karla einrichten]]
+[[Ihr Angebot ablehnen und einen eigenen Platz suchen->Stube: Eigene Pritsche suchen][$npc.karla.affection -= 5]]
+
+<<else>>
+Bevor die Situation eskalieren kann, spürst du eine Hand auf deiner Schulter.
+Du fährst herum.
+Vor dir steht ein schlanker, sehniger Rekrut mit wachen, dunklen Augen und dem ruhigen Gesicht eines Menschen, dem Lärm noch nie viel bedeutet hat. Er trägt dieselbe rot-weiße Rekrutenkleidung wie du, wirkt darin aber seltsam gefasst — als hätte er sich mit dem Chaos um ihn herum bereits abgefunden, noch bevor es begann. Mit einer knappen Geste deutet er auf ein freies Stockbett nahe der Tür, weit genug von Karla entfernt, um unsichtbar zu bleiben.
+„Lass gut sein", sagt er mit leiser Stimme. „Wer am ersten Tag den dicken Max markiert, fängt sich beim Schinder als Erster den Schaft ein." Er streckt dir die Hand hin. „Ich bin Jarek. Sieht so aus, als müssten wir uns diese Holzkiste für die nächsten zwei Jahre teilen."
+
+[[Jareks Hand schütteln und das obere Bett für sich beanspruchen. ->Stube: Jarek anfreunden]]
+[[Jarek ignorieren und stattdessen eine eigene Pritsche suchen. ->Stube: Eigene Pritsche suchen]]
+
+<</if>>
+
+
+:: Das Erwachen {"position":"675,150","size":"100,100"}
+Der Sergeant nickt brummend. Die Feder taucht in die Tinte, kratzt deinen Namen ins Pergament — ein trockenes, endgültiges Geräusch.
+
+„Gut. $player.rank $player.name — ab heute gehörst du zum Heer Aloys."
+
+Er lehnt sich nicht zurück. Er verschwendet keine Geste.
+„Hier in Ohm werden wir euch das Söldner-Handwerk von der Pike auf beibringen. Kein Erlass, kein Erbe, kein Name schützt dich vor dem, was kommt." Ein kurzes Schweigen. „Schnapp dir deine Ausrüstung. Dann meldest du dich beim //Schinder// auf dem Hof."
+Den letzten Satz sagt er so, als wäre er eine Warnung. Vielleicht ist er das auch.
+
+Du nimmst, was dir gehört. Es ist nicht viel.
+Ein paar einfache Schuhe, zwei Hemden, zwei Beinlinge in Rot und Weiß, eine Bundhaube und ein verschlissener Gürtel. Das alles in einer Umhängetasche verpackt. 
+In den langen Hallen der Akademie hängen Stimmen in der Luft — gedämpft, aber nicht leise genug. Die Ausbilder tuscheln. Berichte aus dem Feld. Alfaltermark, Greifenorden
+Namen und Orte, die dir noch nichts bedeuten.
+Noch nicht.
+Für dich zählen erst einmal die harten Holzböden der Kaserne in Ohm — und der Mann auf dem Hof, den sie den Schinder nennen.
+
+<<set $npc.sergeant.known = true>>
+
+[[Befehl befolgen und direkt zum Kasernenhof gehen->Der Kasernenhof]]
+[[Sich heimlich von der Truppe absetzen und die Akademie-Hallen auskundschaften->Hallen erkunden]]
+[[Den Sergeant nach neuen Gerüchten ausfragen->Sergent aushorchen]]
+
+
+:: Das Training: Erster Tag {"position":"475,950","size":"100,100"}
+Der Morgen kommt nicht sanft.
+Er kommt mit dem Krachen einer Tür, die jemand mit dem Stiefel aufgestoßen hat, und einer Stimme, die keine Rücksicht auf den Schlaf nimmt, den du dir noch nicht geholt hast.
+„Aufstehen! Raus aus den Federn, ihr Maden! Die Sonne wartet nicht auf Rekruten!"
+Du bist auf den Beinen, bevor du wach bist. Der Körper hat bereits begriffen, was der Kopf noch nicht verarbeitet hat. Um dich herum das Chaos von dreißig Menschen, die gleichzeitig nach Stiefeln greifen, Gürtel zuschnallen und sich gegenseitig anrempeln, ohne sich zu entschuldigen. Niemand hat Zeit. Niemand weiß genau, wofür — aber die Dringlichkeit hängt im Raum wie Rauch.
+
+Die Kantine ist laut und riecht nach heißem Fett und gekochtem Gemüse.
+Aloyer Allerlei — Schupfnudeln mit Wurzelgemüse, dampfend und reichhaltig, in tiefen Holzschüsseln auf die langen Tische gestellt. Es ist gutes Essen. Nahrhaftes Essen. Unter anderen Umständen würdest du dir die Zeit nehmen, es zu genießen.
+Stattdessen löffelst du es stehend halb in dich hinein, weil alle anderen es auch stehend tun, weil niemand sitzen will und als Letzter aufstehen muss, weil die Nervosität im Raum von Tisch zu Tisch springt wie ein Feuer, das sich seinen eigenen Weg sucht. Ein Rekrut verschüttet seinen Becher Wasser. Ein anderer lacht zu laut und hört abrupt damit auf. Niemand spricht über das, worüber alle nachdenken.
+Was kommt danach.
+Dann fliegt die Kantinentür auf.
+Der Sergeant füllt den Rahmen wie ein Naturereignis. Seine Stimme trifft die Wände, bevor irgendjemand reagieren kann.
+„Auf den Platz! Antreten! Wer in fünf Minuten noch hier steht, lernt den Schinder von seiner ungemütlichen Seite kennen!"
+Die Schüsseln bleiben halbvoll. Niemand stellt sie ordentlich hin.
+
+Der Exerzierplatz liegt grau und weit im Morgenlicht. Der Wind ist derselbe wie gestern — er hat die Nacht nicht genutzt, um freundlicher zu werden.
+Sie stehen bereits da und warten.
+Kurt, mit dem Gesicht eines Mannes, der Rekruten schon gesehen hat, als ihre Väter noch in den Windeln lagen. Neben ihm die Ausbilder, eine Reihe von Männern und Frauen, deren Gesichter alle dasselbe ausdrücken: geduldige, professionelle Gleichgültigkeit. Und dann, einen halben Schritt vor allen anderen, der Schinder.
+Er braucht keine Einführung. Er ist einfach da, und das genügt.
+Kurt tritt vor. Seine Stimme ist nicht laut, aber sie trägt — die Stimme eines Mannes, der gelernt hat, dass man nicht brüllen muss, wenn man etwas zu sagen hat.
+<<if $npc.kurt.affection != 0>>Du duckst dich unter seinem Blick weg. Versteckst dich in der Masse. Dass du ausgerechnet den Fährich verärgert hast ist kein gutes Ohmen für deine Zeit hier.<</if>>
+„Ich bin Fähnrich Kurt Brasner. Ihr werdet mich Fähnrich nennen, oder ihr werdet mich gar nicht nennen. Ich bin nicht euer Vater, nicht euer Freund und nicht euer Pfaffe." Er lässt seinen Blick einmal langsam über die Reihe wandern. „Ich bin derjenige, der entscheidet, ob ihr in zwei Jahren als Söldner aus diesen Toren geht — oder gar nicht."
+Stille.
+Kurt tritt zurück.
+Ein Mann tritt vor.
+Er ist anders als die anderen hier — nicht lauter, nicht größer, aber auf eine Weise präsent, die nichts mit Lautstärke zu tun hat. Hauptmann Konrad Rindler trägt seine Uniform wie ein zweites Ich, jeden Knopf geschlossen, jeden Saum gerade, die Hände ruhig hinter dem Rücken verschränkt. Sein Gesicht ist glatt und kontrolliert, die Augen kühl und aufmerksam — die Augen eines Mannes, der gewohnt ist, Dinge zu bewerten, bevor er sie benennt.
+Er lässt sich einen Moment Zeit. Nicht um Eindruck zu schinden. Sondern weil er es kann.
+„Ich bin Hauptmann Konrad Rindler." Seine Stimme ist ruhig und trägt dennoch bis in die letzte Reihe, ohne dass er sie hebt. „Das 86. Banner existiert noch nicht. Was ihr hier seht — diese Ansammlung von Rekruten auf diesem Platz — das ist der Rohstoff, aus dem es entstehen soll."
+Sein Blick gleitet langsam über die Gruppe. Nicht feindselig. Eher wie jemand, der eine Rechnung aufmacht und noch nicht weiß, ob sie aufgehen wird.
+„Ich werde dieses Banner führen. Was das bedeutet, werden Sie — werdet ihr — in den kommenden zwei Jahren verstehen lernen. Bis dahin gilt: Ihr gehört der Akademie. Ihr gehört dem Fähnrich. Ihr gehört dem Ausbildungskorps." Eine kurze Pause. „Und ihr gehört dem Banner, das wir hier gemeinsam aufbauen werden."
+Er tritt zurück. Sauber. Ohne Übergang, ohne Nachsatz.
+Als wäre alles Wesentliche gesagt.
+Dann tritt schließlich der Schinder vor.
+Er stellt sich nicht vor. Er schaut euch an — einen nach dem anderen, als würde er bereits abschätzen, was in jedem von euch steckt und was nicht. Als er schließlich spricht, ist seine Stimme rau wie Schleifstein auf Eisen.
+„Ihr wollt Söldner werden. Schön. Dann fangen wir damit an, was einen Söldner am Leben hält — nicht Mut, nicht Stärke, nicht der Wille zum Kämpfen." Er lässt die Worte einen Moment stehen. „Formation. Wer nicht in der Formation steht, stirbt als Erster. Wer die Formation bricht, reißt seinen Nebenmann mit in den Tod. Wer den Spieß nicht kennt, ist eine Gefahr für jeden, der neben ihm steht."
+Er verschränkt den Lederarm hinter dem Rücken.
+„Heute lernt ihr, wie man einen Haufen aus dreißig einzelnen Idioten zu einem einzigen Körper macht. Das wird nicht schön. Das wird nicht schnell gehen. Und keiner von euch wird heute Abend zufrieden mit sich sein."
+Sein Auge wandert über die Gruppe.
+„Also."
+Eine Pause, kurz und absolut.
+„Herstellt euch in fünf Reihen!"
+Der Befehl kracht über den Platz wie ein Donnerschlag — und dann passiert genau das, was passiert, wenn dreißig Menschen gleichzeitig dasselbe wollen und keiner weiß wie.
+Chaos.
+Die Mutigsten — oder die Dümmsten, der Unterschied ist im ersten Moment schwer zu erkennen — laufen nach vorne und stellen sich hin, irgendwie, ungefähr. Die anderen folgen zögernd, füllen Lücken, weichen einander aus, stoßen zusammen. Jemand fragt flüsternd seinen Nachbarn, was eine Reihe überhaupt bedeutet. Niemand antwortet mit Überzeugung. Was am Ende entsteht, ist ein schlecht ausgerichtetes Rechteck aus dreißig Menschen, die alle geradeaus schauen und dabei so tun, als hätten sie genau das vorgehabt.
+Der Schinder schaut es sich an.
+Lange.
+Der Schinder geht die erste Reihe ab. Seine schweren Stiefel klatschen rhythmisch in den Matsch des Exerzierplatzes. 
+Er sagt kein Wort. Er schaut sich nicht einmal die Gesichter an, sondern starrt nur auf die schiefen Schulterlinien, 
+die ungleichen Abstände und die zitternden Knie. Die Stille, die er erzeugt, ist schlimmer als jedes Brüllen.
+Er bleibt genau vor dir stehen. Sein einzelnes Auge fixiert dich, kalt und prüfend.
+„Eine Reihe“, murmelt er, und seine Stimme ist gefährlich leise. „Ich verlangte fünf Reihen. Was ich sehe, ist ein Haufen betrunkener Bauern auf dem Weg zum Viehmarkt.“ 
+Er tritt einen halben Schritt näher. Sein Atem riecht nach bitterem Kautabak. „Du da. Ja, genau du. Du stehst schief. Deine Schulter hängt, 
+als hättest du schon jetzt keine Knochen mehr im Leib. Und dein Nebenmann klebt dir an der Hüfte, als wolltet ihr tanzen.“
+Er hebt den Holzschaft und deutet auf die Lücke hinter dir. 
+Der Schinder steht vor dir. Sein Auge wartet.
+
+<<if $npc.karla.affection gt 0>>
+	@@.beziehung;Karlas Stimme trifft dich von der Seite — kaum mehr als ein Zischen, aber scharf genug um anzukommen. „Beweg dich, Frischling.“@@
+<<elseif $npc.jarek.affection gt 0>>
+	@@.beziehung;Jarek rührt sich nicht. Aber sein rechter Fuß verschiebt sich einen halben Schritt — langsam, bewusst, so dass du es siehst. Eine stille Anweisung, mehr nicht.@@
+<<else>>
+	@@.beziehung;Du blickst dich suchend nach vertrauten Gesichtern aus deiner Stube um. Du entdeckst Jarek und Karla, aber beide ignorieren dich starr.@@
+<</if>>
+<<if $npc.karla.affection gt 0 or $npc.jarek.affection gt 0>>
+	[[Dich dank des Hinweises sofort ausrichten — du weißt, was zu tun ist. ->Appell: Ausrichten][$player.chosen_activity to "zeigt_eigeninitiative"]]
+<</if>>
+[[Warten, bis er es dir befiehlt. ->Appell: Ausrichten][$player.chosen_activity to "ist_befehlstreu"]]
+<<if $npc.karla.affection lte 0 and $npc.jarek.affection lte 0>>
+	[[Auf gut Glück versuchen dich auszurichten — du rätst, was verlangt ist. ->Appell: Ausrichten][$player.chosen_activity to "ist_panisch"]]
+<</if>>
+
+<<set $npc.hauptmann.known to true>>
+<<set $npc.schinder.known to true>>
+<<set $npc.kurt.known to true>>
+
+
+:: Der Kasernenhof {"position":"750,450","size":"100,100"}
+<<if $npc.kurt.affection < 0>>
+Das Tor zum Exerzierplatz fliegt auf.
+Die nasskalte Luft trifft dich wie eine Ohrfeige — und mit ihr der Blick des Schinders, der bereits wartet. Er sieht dich an. Dann sieht er Kurt. Sein Gesicht verändert sich nicht, aber in seinem einen Auge liegt etwas, das vielleicht Belustigung wäre, wenn er ein anderer Mann wäre.
+Kurt lässt dich los. Ohne Kommentar. Ohne dich noch eines Blickes zu würdigen dreht er sich um und verschwindet wieder ins Innere der Akademie.
+Der Schlamm klatscht unter deinen Stiefeln.
+Du stehst auf dem Exerzierplatz — nicht weil du gegangen bist, sondern weil man dich gebracht hat. Der Unterschied ist gering. Aber der Schinder sieht ihn.
+„Noch so ein unbeschriebenes Blatt für das Corps", sagt er. Und dann, nach einer Pause, die einen Moment zu lang dauert: „Oder doch nicht ganz so unbeschrieben."
+<<else>>
+Der Schlamm klatscht unter deinen Stiefeln.
+Du hast dir diesen Moment vorgestellt. Irgendwie. Den Eintritt. Den Beginn. Vielleicht hast du an Fahnen gedacht, an Gleichschritt, an das Gefühl, zu etwas Größerem zu gehören.
+Dann siehst du den Schinder — und der Gedanke stirbt leise.
+Er steht am Rand des Hofes wie ein Mahnmal, das niemand aufgestellt hat. Der Körper eines Mannes, den der Krieg genommen und wieder ausgespuckt hat — nicht unversehrt, nicht gebrochen, aber für immer gezeichnet. Der graue Bart. Das eine Auge, das dich sofort findet und nicht mehr loslässt. Über der leeren linken Augenhöhle zieht sich eine Narbe, breit und tief, die Geschichte einer Klinge oder eines Schicksals, das du nicht kennst und nicht fragen wirst. Wo seine linke Hand sein sollte: Leder. Stumpf. Abgebunden.
+Kein Holzbein aus den Liedern. Kein stolzer Veteran aus den Geschichten.
+Nur ein Mann, dem der Krieg etwas genommen hat — und der trotzdem noch hier steht.
+Er spuckt aus.
+„Noch so ein unbeschriebenes Blatt für das Corps."
+<</if>>
+Er schaut dich an, so wie man etwas anschaut, das man noch nicht einschätzen kann und auch noch nicht einschätzen muss. Dann, fast beiläufig:
+„Ich muss hier kriegsversehrt die Kinderstube hüten."
+Er sagt es ohne Bitterkeit. Das ist das Schlimmste daran.
+„Aber keine Sorge, $player.rank." Ein Schritt vorwärts. Langsam. Schwer. „Ich biege dich hin, bis du weißt, wierum man eine Hellebarde hält."
+Du sagst nichts. Was solltest du auch sagen.
+Irgendwo hinter dir schließt sich das Tor der Akademie mit einem dumpfen, endgültigen Laut.
+Du bist jetzt drin.
+
+[[Beginne deine Ausbildung->Kapitel 1]]
+
+
+:: Der nächste Tag {"position":"925,950","size":"100,100"}
+End for now
+
+
+
+Testings:
+Man Kann die Trainingsloop testen
+
+[[Das Lager auf eigene Faust erkunden ->Nachmittag Hub]]
+
+
+:: Event_Geschichte {"position":"2375,1800","size":"100,100"}
+<<set _istMumpitz = random(1,100) <= 15>>\
+<<if _istMumpitz>>\
+    <<include "Event_Geschichte_Mumpitz">>\
+<<else>>\
+    <<set _gossipStory = setup.getGossipStory()>>\
+    <<set $world.currentGossipStory = _gossipStory>>\
+    <<if _gossipStory == null>>\
+        Du lehnst dich zurück und horchst in den Raum.
+        Heute Abend ist nichts Neues zu hören — nur dieselben müden Männer,
+        die dieselben müden Geschichten erzählen.
+
+        <div class="thought-box">
+        Ich kenne diese Gesichter langsam. Aber ihre Geheimnisse hab ich noch nicht alle.
+        </div>
+
+        [[Schlafen ->Der nächste Tag]]\
+    <<else>>\
+        <div class="scenery-text">
+        Ein paar Kerzen flackern. Jemand lehnt sich vor.
+        Die Stimmen werden leiser — oder du wirst aufmerksamer, das ist schwer zu sagen.
+        </div>
+        <<= _gossipStory.base>>\
+        <<run setup.markGossipSeen(_gossipStory.id, false)>>\
+        <<if _gossipStory.probe>>\
+            <<if $player.knowledge.gossip >= _gossipStory.probe.difficulty>>\
+                <div class="thought-box">
+                Da muss doch mehr dran sein, soll ich nachhaken?
+                </div>
+                [[Nachfragen ->Event_Geschichte_Probe]]
+            <</if>>\
+        <</if>>\
+        [[Schlafen ->Der nächste Tag]]
+    <</if>>\
+<</if>>\
+
+
+
+:: Event_Geschichte_Mumpitz {"position":"2475,1650","size":"100,100"}
+<<set _gossipStory = setup.getFailedGossipStory()>>\
+<<if _gossipStory>>\
+    <<set $world.currentGossipStory = _gossipStory>>\
+    <div class="scenery-text">
+    Irgendwo im Raum kommt wieder ein altes Gespräch auf…
+    </div>
+    <<= _gossipStory.base>>\
+    <<if _gossipStory.probe>>\
+        <div class="thought-box">
+        Moment… die Geschichte kenn ich doch. Vielleicht ist da doch mehr dran.
+        </div>
+        [[Nachfragen ->Event_Geschichte_Probe]] \
+    <</if>>\
+    [[Schlafen ->Der nächste Tag]]
+<<else>>\
+    <div class="thought-box">
+    Das ist alles nur uninteressanter Tratsch. Ich hau ab...
+    </div>
+    [[Sich hinlegen und schlafen->Der nächste Tag]]
+<</if>>\
+
+
+:: Event_Geschichte_Probe {"position":"2375,1925","size":"100,100"}
+<<set _gossipStory = $world.currentGossipStory>>\
+<<if $player.knowledge.gossip <= 3>>\
+    <div class="scenery-text">Du hakst nach, etwas forsch.</div>
+<<elseif $player.knowledge.gossip <= 7>>\
+    <div class="scenery-text">Du hakst nach. Beiläufig. So, als wäre es keine echte Frage.</div>
+<<else>>\
+    <div class="scenery-text">Du musst nicht mal wirklich fragen und der Tratsch beginnt.</div>
+<</if>>\
+  <<if _gossipStory && _gossipStory.probe && (random(1,10) + $player.knowledge.gossip >= _gossipStory.probe.difficulty)>>\
+      <div class="thought-box">Oh ja! Erzähl mir was du weißt.</div>
+      <<= _gossipStory.probe.success>>
+      <<= setup.setPlayerKnowledge("gossip", 1)>>\
+      <<= setup.addRumor(_gossipStory.rumorText)>>\
+      <<run setup.markGossipSeen(_gossipStory.id, true)>>\
+  <<elseif _gossipStory && _gossipStory.probe>>\
+      <div class="thought-box">Mist — zu direkt. Der Typ zieht sich zurück.</div>
+      <<= _gossipStory.probe.fail>>\
+     <<run setup.markGossipSeen(_gossipStory.id, false)>>\
+  <<else>>\
+      <div class="thought-box">Hier war nichts zu holen.</div>
+      <<run setup.markGossipSeen(_gossipStory.id, false)>>\
+  <</if>>\
+
+<<set $world.currentGossipStory = null>>\
+
+[[Schlafen ->Der nächste Tag]]
+
+
+:: Event_Schlaegerei {"position":"2275,2225","size":"100,100"}
+Fäuster
+
+
+:: Event_Wuerfelspiel {"position":"1625,2050","size":"100,100"}
+Ein paar Rekruten sitzen um einen groben Holztisch.  
+Zwischen Krügen und Kerzenlicht klackern Würfel.
+
+<<if $world.needsDiceGame>>\
+    „Setz dich. Heute spielen wir.“
+<<else>>\
+    „Willst du würfeln oder zuschauen?“
+<</if>>\
+<<if $player.money.copper <= 0>>\
+Der Blick des Spielers wandert kurz zu deinem leeren Geldbeutel.
+
+„Ohne Kupfer bist du hier falsch, Bürschlein!“
+
+Du wirst vom Tisch weggeschickt.
+
+[[Weggehen->Der nächste Tag]]
+<<else>>\
+
+[[Mitspielen->Wuerfel_Start]] \
+[[Zuschauen->Wuerfel_Zuschauen]]
+<</if>>
+
+
+:: GossipTexte {"position":"2575,1800","size":"100,100"}
+{
+  "stories": {
+
+    "lagerklatsch": [
+      {
+	  "id": "lk_001",
+	    "minLevel": 0,
+        "maxLevel": 2,
+	
+	  "base": "Ich hab gehört, dass es damals im Lager vorm Steigler Wald vor Grodaus einen Drill vom 84sten gab. Nichts Ungewöhnliches, eher Routine. Ausgerechnet in dem Moment, als einige der Söldner im Wald waren, um kurz abzuwässern, sollen Banditen aufgetaucht sein. Wie genau das ablief, sagt jeder anders, aber die Geschichte endet immer gleich: Das Lager habe den Angriff überstanden.",
+
+	  "probe": {
+		"difficulty": 0,
+		"success": "Später kamen der Shek und Snorri de Alba ins Lager. Snorri stellte sich vor, wie man es von ihm erwartet – laut und selbstsicher. Darauf soll jemand aus dem 84. Banner gesagt haben: ‚In Aloy sind alle Ritter.‘ Ob das wirklich so fiel, weiß keiner genau, aber Snorri hat es angeblich nicht gut aufgenommen. Heute ist der Spruch im 84. ein halber Insider geworden, den man nur hinter vorgehaltener Hand benutzt.",
+		"fail": "Andere winken nur ab und sagen, es sei nichts Besonderes gewesen – Banditen, wie sie eben öfter vorkommen, mehr nicht."
+	  },
+
+	  "rumorText": "Snori de Alba nimmt es nicht gut auf wenn man den Ritterstand herabwürdigt."
+	},
+      {
+        "id": "lk_002",
+        "minLevel": 0,
+        "maxLevel": 2,
+        "base": "PLATZHALTER",
+        "probe": {
+          "minGossip": 2,
+          "success": "PLATZHALTER",
+          "fail": "PLATZHALTER"
+        },
+        "rumorText": "PLATZHALTER",
+        "npcKey": null
+      },
+      {
+        "id": "lk_003",
+        "minLevel": 0,
+        "maxLevel": 2,
+        "base": "PLATZHALTER",
+        "probe": {
+          "minGossip": 1,
+          "success": "PLATZHALTER",
+          "fail": "PLATZHALTER"
+        },
+        "rumorText": "PLATZHALTER",
+        "npcKey": null
+      }
+    ],
+
+    "landesinfos": [
+      {
+        "id": "li_001",
+        "minLevel": 3,
+        "maxLevel": 6,
+        "base": "PLATZHALTER – Andeutung zu Militärtransporten / Karlas Plot.",
+        "probe": {
+          "minGossip": 4,
+          "success": "PLATZHALTER – Mehr Detail, echter Plothinweis.",
+          "fail": "PLATZHALTER – Der Typ wird vorsichtig, wechselt das Thema."
+        },
+        "rumorText": "PLATZHALTER – Kurzsatz ins Notizbuch.",
+        "npcKey": null
+      },
+      {
+        "id": "li_002",
+        "minLevel": 3,
+        "maxLevel": 6,
+        "base": "PLATZHALTER – Andeutung zu Loyalisten / Jareks Plot.",
+        "probe": {
+          "minGossip": 5,
+          "success": "PLATZHALTER",
+          "fail": "PLATZHALTER"
+        },
+        "rumorText": "PLATZHALTER",
+        "npcKey": null
+      },
+      {
+        "id": "li_003",
+        "minLevel": 3,
+        "maxLevel": 6,
+        "base": "PLATZHALTER – Andeutung zu Truppenverlegungen.",
+        "probe": {
+          "minGossip": 3,
+          "success": "PLATZHALTER",
+          "fail": "PLATZHALTER"
+        },
+        "rumorText": "PLATZHALTER",
+        "npcKey": null
+      }
+    ],
+
+    "knaller": [
+      {
+        "id": "kn_001",
+        "minLevel": 0,
+        "maxLevel": 99,
+		
+        "base": "kann nicht geschafft werden",
+		
+        "probe": {
+		"difficulty": 100,
+		"success": "Debug das darf nicht sichtbar sein",
+		"fail": "Das muss sichtbar sein"
+	  },
+	  
+        "rumorText": "PLATZHALTER"
+      },
+      {
+        "id": "kn_002",
+        "minLevel": 7,
+        "maxLevel": 99,
+        "base": "PLATZHALTER – Easteregg Lars / Hauptmann Lenz.",
+        "probe": {
+          "minGossip": 8,
+          "success": "PLATZHALTER",
+          "fail": "PLATZHALTER"
+        },
+        "rumorText": "PLATZHALTER",
+        "npcKey": "weibelLars"
+      }
+    ]
+
+  }
+}
+
+
+
+:: Hallen erkunden {"position":"900,150","size":"100,100"}
+Du stehlst dich von den anderen Rekruten fort und meidest das helle Tageslicht, das durch die großen Tore auf den Hof fällt. Stattdessen gleitest du einen schmalen, steinernen Treppenaufgang hinauf, der in den Offiziersflügel der Akademie führt. Hier oben riecht es nach Bohnerwachs und schwerem Tabak.
+
+Aus einem leicht geöffneten Spalt einer schweren Eichentür dringt das gedämpfte Licht eines Kamins – und aufgebrachte Stimmen. Du drückst dich flach gegen die Wand und hältst den Atem an.
+
+"Ich sage dir, Hauptmann, diese ewige politische Schaukelbude bricht uns irgendwann das Genick", grollt die tiefe, raue Stimme eines älteren Mannes, den sie hier Kurt nennen. "Aloy rühmt sich seiner Neutralität, während unsere Banner über den halben Kontinent verstreut für fremdes Gold bluten. Wir entblößen die Heimat, nur weil jede Klinge hier frei buchbar ist!"
+
+Die jüngere, kühlere Stimme des Hauptmanns antwortet: "Das ist das Gesetz des Städtebundes, Kurt. Uns geht die Politik nichts an, wir füllen nur die Truppenrollen. Unsere Pflicht gilt der Ausbildung des Corps, um mehr nicht. Also lass das Gerede und bring den Frischlingen da draußen gefälligst bei, wie man überlebt."
+
+Du lehnst dich ein Stück zu weit vor, um mehr zu verstehen – und prompt knarrt eine morsche Holzdiele laut unter deinem Stiefel. Drinnen herrscht schlagartig eisige Stille.
+[[Hastig herumwirbeln und zur Treppe am anderen Ende des Flurs sprinten! ->Treppe runterrennen]]
+[[Stehen bleiben und versuchen, sich irgendwie herauszureden. ->Rausreden Versuch]]
+
+
+:: InitNPC {"position":"0,225","size":"100,100"}
+<<set $npc = {
+
+    /* ===========================
+       KASERNE / AKADEMIE - OHMS
+       =========================== */
+
+    sergeant: {
+        name: "Sergeant",
+        known: false,
+        affection: 0,
+        trust: 0,
+        isRealPlayer: false,
+        memory: { flags: {}, events: [] },
+        journalEntry: "Der mürrische Protokollant in der Schreibstube der Kaserne. Er führt die Truppenrolle des Corps mit eiserner Bürokratie und versteht absolut keinen Spaß, wenn man die feine Ordnung seiner Listen stört."
+    },
+
+    kurt: {
+        name: "Kurt Brasner",
+        known: false,
+        affection: 0,
+        trust: 0,
+        isRealPlayer: false,
+        memory: { flags: {}, events: [] },
+        journalEntry: "Chefausbilder und Fähnrich der Militärakademie zu Ohm und ein grauhaariger Veteran."
+    },
+
+    schinder: {
+        name: "Schinder",
+        known: false,
+        affection: 0,
+        trust: 0,
+        isRealPlayer: false,
+        memory: { flags: {}, events: [] },
+        journalEntry: "Der kriegsversehrte Weibel auf dem Exerzierplatz."
+    },
+
+    hauptmann: {
+        name: "Konrad Rindler",
+        known: false,
+        affection: 0,
+        trust: 0,
+        isRealPlayer: false,
+        memory: { flags: {}, events: [] },
+        journalEntry: "Ein kühler, etwas vornehmer Typ. Pragmatischer Offizier des Corps."
+    },
+
+    /* Echte Spieler - Offiziere */
+
+    hauptmannLenz: {
+        name: "Hauptmann Lenz",
+        known: false,
+        affection: 0,
+        trust: 0,
+        isRealPlayer: true,
+        memory: { flags: {}, events: [] },
+        journalEntry: "Führer des unkonventionellen 84. Banners im 33. Regiment. Ein Mann der seine eigenen Wege geht – und manchmal die seiner Leute auch."
+    },
+
+    weibelWenzel: {
+        name: "Weibel Wenzel",
+        known: false,
+        affection: 0,
+        trust: 0,
+        isRealPlayer: true,
+        memory: { flags: {}, events: [] },
+        journalEntry: "Ein Weibel der Akademie. Mehr steckt noch nicht in deinen Aufzeichnungen."
+    },
+
+    weibelLars: {
+        name: "Weibel Lars",
+        known: false,
+        affection: 0,
+        trust: 0,
+        isRealPlayer: true,
+        memory: { flags: {}, events: [] },
+        journalEntry: "Ein Weibel der Akademie. Mehr steckt noch nicht in deinen Aufzeichnungen."
+    },
+
+    hansFichtensplitter: {
+        name: "Hans Fichtensplitter",
+        known: false,
+        affection: 0,
+        trust: 0,
+        isRealPlayer: true,
+        memory: { flags: {}, events: [] },
+        journalEntry: "Ein Name der fällt. Ein Gesicht das auftaucht. Was Hans Fichtensplitter hier zu suchen hat – das weißt du noch nicht."
+    },
+
+    /* ===========================
+       MITREKRUTEN
+       =========================== */
+
+    karla: {
+        name: "Karla",
+        known: false,
+        affection: 0,
+        trust: 0,
+        isRealPlayer: false,
+        memory: { flags: {}, events: [] },
+        /* Sichtbares Profil – kein Hinweis auf das Geheimnis */
+        journalEntry: "Breitschultrig, direkt, laut. Hat sich am ersten Abend den Platz am Ofen gesichert und dafür jemanden von seiner Pritsche geworfen. Wirkt wie jemand der fürs Soldatenleben gemacht wurde."
+        /*
+            GEHEIMNIS (nicht im Journal – für interne Plotlogik):
+            Ihr Onkel Edric, ein Fuhrmann aus Umseck, sitzt seit zwei Jahren
+            in Haft – verurteilt als Ortskundiger bei einem Überfall auf einen
+            Militärtransport. Karla weiß: Er war krank, lag mit Fieber im Bett.
+            Der einzige Zeuge hat geschwiegen. Warum – das weiß sie nicht.
+            Sie ist hier wegen der Militärakten. Zugang zu Schreibstuben,
+            Archiv, Verwaltung. Das ist der Plan.
+            Verbindung zu laufendem Plot: "Überfälle auf Militärtransporte"
+        */
+    },
+
+    jarek: {
+        name: "Jarek",
+        known: false,
+        affection: 0,
+        trust: 0,
+        isRealPlayer: false,
+        memory: { flags: {}, events: [] },
+        /* Sichtbares Profil – kein Hinweis auf das Geheimnis */
+        journalEntry: "Schmächtig, ruhig, fällt nicht auf. Hat mir am ersten Abend die Pritsche neben sich angeboten und erklärt, dass er hier wegen des Solds ist – Geld für die Familie daheim. Hält sich aus Streitereien raus und beobachtet mehr als er redet. Niemand nimmt ihn besonders ernst."
+        /*
+            GEHEIMNIS (nicht im Journal – für interne Plotlogik):
+            Heimlicher Loyalist, von klein auf indoktriniert.
+            Sucht Zugang zum Gründungsarchiv der Akademie in Grodaus.
+            Ziel: Die sechste, unleserliche Unterschrift der Freiheitserklärung
+            lesbar machen. Seine Familie glaubt: kein Gott hat unterschrieben,
+            sondern ein Adeliger – unter Androhung von Gewalt.
+            Beweis dafür würde die Gründungslegende der Republik erschüttern.
+            Verbindung zu laufendem Plot: "Loyalisten" (Fraktion im Untergrund)
+        */
+    },
+
+    /* ===========================
+       DIPLOMATIE / AUSSENWELT
+       =========================== */
+
+    diplomatHannes: {
+        name: "Hannes Böttcher",
+        known: false,
+        affection: 0,
+        trust: 0,
+        isRealPlayer: true,
+        memory: { flags: {}, events: [] },
+        journalEntry: "Ein Diplomat im Dienste des Städtebundes. Tritt höflich auf – zu höflich vielleicht."
+    },
+
+    /* ===========================
+       DER STILLE HINTERGRUND
+       =========================== */
+
+    luigi: {
+        name: "Luigi vom Luigi Handelskontor",
+        known: false,
+        affection: 0,
+        trust: 0,
+        isRealPlayer: true,
+        memory: { flags: {}, events: [] },
+        journalEntry: "Ein Name. Ein Handelszeichen. Jemand hat sich um dich gekümmert, einmal – in den Bergen Aloys, als du noch klein und krank warst. Wer das war, weißt du nicht mehr genau."
+        /*
+            PLOTNOTIZ:
+            Luigi ist Thomas' Pate. Er taucht nicht persönlich auf –
+            wird nur erwähnt: ein Brief, ein Handelszeichen, ein Name der fällt.
+            Der echte Spieler Luigi soll beim Lesen erkennen:
+            Das ist mein Patenkind.
+        */
+    }
+
+} >>
+
+
+:: InitPlayer {"position":"0,125","size":"100,100"}
+<<set $player = {
+        name: "Thomas",
+		fullname:"Thomaso Wabbler",
+        rank: "Zivilist",
+        chosen_activity: "",
+
+        money: {
+            copper: 2
+        },
+        
+        inventory: [],
+
+        stats: {
+            mercy: 50,
+            ambition: 50,
+            honesty: 50
+        },
+
+        reputation: {
+            land: 0,
+            ohm: 0,
+            church: 0
+        },
+        
+        knowledge: {
+            pike: 0,     
+            cannon: 0,     
+            medicine: 0,
+            thievery: 0,     
+            crossbow: 0,
+            gossip: 0      
+        },
+        
+        rumors: []
+        
+        
+}>>
+
+
+:: InitWorld {"position":"0,325","size":"100,100"}
+<<set $world = {
+	
+    lastPassage:"",
+    day: 1,
+    weather: "windig",
+    wasPracticing: false,
+    needsDiceGame: true,
+    seenGossip: {},
+    currentGossipStory: "",
+    
+}>>
+
+
+:: Intro {"position":"500,150","size":"100,100"}
+<div class="scenery-text">Der Wind über Ohm ist kein sanfter Hauch.
+Er kommt nicht und geht wieder — er liegt auf dem kahlen Gelände der Akademie wie eine unsichtbare, eiserne Last, kalt und trocken und ohne jedes Erbarmen. Er kriecht durch die Nähte deiner Zivilkleidung, als wollte er dir die letzte Wärme deines alten Lebens aus den Knochen saugen. Und vielleicht tut er genau das.</div>
+Du denkst an das Strohbett daheim. An den vertrauten Geruch der Küche am Morgen, an die Geräusche, die du nie bewusst wahrgenommen hast, weil sie einfach immer da waren. An das Gewicht eines Tages, der keine Konsequenzen hatte.
+Das alles liegt hinter dir. Nicht weit — aber unerreichbar.
+Vor dir ragt die Kaserne auf. Grauer Stein, fensterlos zur Straße hin, ohne Verzierung, ohne Geste. Kein Willkommen, keine Schwelle, die man feierlich überschreitet. Nur Mauern, die schon Hunderte vor dir aufgenommen haben und die deinen Namen nicht kennen und nicht kennen wollen. Ein Ort, dem dein bisheriges Leben vollkommen gleichgültig ist.
+Du schaust nach links. Nach rechts.
+Die anderen Rekruten stehen genauso starr im Wind wie du — Bündel unter den Armen, Blicke geradeaus, Münder geschlossen. Niemand spricht. Ein Stück weiter zittert ein junger Bursche, und es ist nicht nur die Kälte, die seinen Kiefer beben lässt. Es ist etwas Älteres als Kälte. Die nackte, lähmende Angst vor einem Leben, das man noch nicht kennt und dem man sich trotzdem gerade ausgeliefert hat.
+
+<div class="thought-box">Ich kenne dieses Zittern. Ich spüre es selbst in meinen Fingern, die sich viel zu fest um mein Bündel klammern. Dieses erbärmliche, kleine Paket ist alles, was mir von zu Hause geblieben ist... und hier drinnen wiegt es einfach gar nichts. Warum bin ich überhaupt hierhergekommen? Was habe ich mir dabei gedacht? Es gibt kein Zurück mehr. Atmen, Thomas. Einfach nur atmen, sonst merken sie, wie viel Angst ich habe.
+</div>
+Der Exerzierplatz lehrt dich das Schweigen, noch bevor ein einziger Ausbilder das Wort ergriffen hat.
+Du bist klein hier. Nicht als Beleidigung — als Tatsache. Ein Mensch unter vielen, ohne Rang, ohne Geschichte, ohne den geringsten Beweis, dass du irgendetwas kannst oder bist. Die Kindheit, die dich bis heute getragen hat wie selbstverständlicher Grund unter den Füßen — sie ist nicht langsam zu Ende gegangen. Sie hat mit dem heutigen Sonnenaufgang aufgehört. Ohne Ankündigung. Ohne Abschied.
+Und während du noch versuchst, das zu begreifen, reißt ein metallisches Knallen dich aus den Gedanken.
+Die schwere Eichentür zum Hauptgebäude fliegt auf — nicht geöffnet, sondern aufgestoßen, mit der Gleichgültigkeit von jemandem, dem Türen aus dem Weg zu gehen haben.
+„Ausrichten, ihr Maden!" Die Stimme gellt über den Hof wie ein Peitschenhieb. „Die Truppenrolle wartet nicht!"
+Der Strom der Rekruten setzt sich in Bewegung. Schwerfällig. Lautlos. Wie Menschen, die noch nicht wissen, wie man hier geht — aber bereits ahnen, dass man es ihnen beibringen wird.
+Du gehst mit.
+Was bleibt dir anderes übrig.
+
+---
+Der Sergeant am hölzernen Tisch blickt von seinen Listen auf und bellt:
+"Na und wer bist du? Was soll ich in die Truppenrolle eintragen?"
+---
+
+<<silently>>
+	<<set $player.rank = "Rekrut">>
+<</silently>>\
+[["Ein junger Mann, bereit für die Ausbildung."->Das Erwachen]]
+
+
+:: Kapitel 0 {"position":"225,50","size":"200,200"}
+Vers. 0.3.3  22.06.2026
+
+<div class="chapter-screen">
+    <div class="fade-trigger">Intro</div>
+
+    <div class="center-link">
+        <<timed 4500ms>>
+            [[Start->Intro]]
+        <</timed>>
+    </div>
+</div>
+
+
+:: Kapitel 1 {"position":"200,425","size":"200,200"}
+<div class="chapter-screen">
+    <div class="chapter-title">KAPITEL 1</div>
+    <div class="chapter-time">
+    	$world.day <<if $world.day == 1>>Tag<<else>>Tage<</if>> in der Ausbildung
+	</div>
+
+    <div class="center-link">
+        <<timed 4500ms>>
+            [[Weiter->Auf Stube 1]]
+        <</timed>>
+    </div>
+</div>
+
+
+:: Nachmittag Cannon {"position":"725,1475","size":"100,100"}
+Die Geschütze der Artillerie
+<div class="scenery-text"><<= setup.executeStationRewards("cannon", "scenery")>></div>
+<<= setup.executeStationRewards("cannon", "main")>>
+---
+<div class="thought-box"><<= setup.executeStationRewards("cannon", "thoughts")>></div>
+---
+[[Zurück zum Appellplatz ->Abendappell]]
+
+
+:: Nachmittag Crossbow {"position":"925,1475","size":"100,100"}
+Der Stand der Armbrustschützen
+<div class="scenery-text"><<= setup.executeStationRewards("crossbow", "scenery")>></div>
+<<= setup.executeStationRewards("crossbow", "main")>>
+---
+<div class="thought-box"><<= setup.executeStationRewards("crossbow", "thoughts")>></div>
+---
+[[Zurück zum Appellplatz ->Abendappell]]
+
+
+:: Nachmittag Hub {"position":"825,1325","size":"100,100"}
+<<= setup.getRandomText("hubIntros")>>
+
+<div class="scenery-text"><<= setup.getRandomText("hubScenery")>></div>
+Fünf Gelegenheiten fallen dir im Vorbeigehen ins Auge:
+<ul class="sandbox-menu">
+    <li>[[Zu den Waffengestellen der Infanterie ->Nachmittag Pike]]<span class="subtext"><<= setup.getRandomText("hubSubtexts", "pike")>></span></li>
+    <li>[[Zu den schweren Geschützen ->Nachmittag Cannon]]<span class="subtext"><<= setup.getRandomText("hubSubtexts", "cannon")>></span></li>
+    <li>[[Zum Zelt des Feldschers ->Nachmittag Medicine]]<span class="subtext"><<= setup.getRandomText("hubSubtexts", "medicine")>></span></li>
+    <li>[[Zu den Armbrustschützen ->Nachmittag Crossbow]]<span class="subtext"><<= setup.getRandomText("hubSubtexts", "crossbow")>></span></li>
+    <li>[[Hinter den Stallungen herumtreiben ->Nachmittag Thievery]]<span class="subtext"><<= setup.getRandomText("hubSubtexts", "thievery")>></span></li>
+</ul>
+<div class="thought-box"> <<= setup.getRandomText("hubThoughts")>></div>
+
+
+:: Nachmittag Medicine {"position":"825,1475","size":"100,100"}
+Das Zelt des Feldschers
+<div class="scenery-text"><<= setup.executeStationRewards("medicine", "scenery")>></div>
+<<= setup.executeStationRewards("medicine", "main")>>
+---
+<div class="thought-box"><<= setup.executeStationRewards("medicine", "thoughts")>></div>
+---
+[[Zurück zum Appellplatz ->Abendappell]]
+
+
+:: Nachmittag Pike {"position":"625,1475","size":"100,100"}
+Die Waffengestelle der Infanterie
+<div class="scenery-text"><<= setup.executeStationRewards("pike", "scenery")>></div>
+<<= setup.executeStationRewards("pike", "main")>>
+---
+<div class="thought-box"><<= setup.executeStationRewards("pike", "thoughts")>></div>
+---
+[[Zurück zum Appellplatz ->Abendappell]]
+
+
+:: Nachmittag Thievery {"position":"1025,1475","size":"100,100"}
+Die Schatten hinter den Stallungen
+<div class="scenery-text"><<= setup.executeStationRewards("thievery", "scenery")>></div>
+<<= setup.executeStationRewards("thievery", "main")>>
+---
+<div class="thought-box"><<= setup.executeStationRewards("thievery", "thoughts")>></div>
+---
+[[Zurück zum Appellplatz ->Abendappell]]
+
+
+:: Nachtruhe 1 {"position":"250,950","size":"100,100"}
+<<if $npc.jarek.affection > 0>>\
+<div class="system-alert status-positive">\
+	Zuneigung von Jarek erhöht
+    </div>\
+    <</if>>\
+<<if $npc.karla.affection > 0>>\
+    <div class="system-alert status-positive">\
+    Zuneigung von Karla erhöht
+    </div>\
+<</if>>\
+<<run setup.resetDailyVariables()>>\
+Ein vorbeigehender Korporal löscht das Talglicht mit einem harschen Fluch, als wäre selbst das Licht hier etwas, das Gehorsam schuldet.
+Dunkelheit.
+Nicht die sanfte Dunkelheit eines vertrauten Zimmers, in dem man weiß, wo die Wände stehen und wie der Schatten auf der Decke liegt, wenn der Mond durch das Fenster fällt. Diese Dunkelheit ist fremd und riecht nach nassem Holz und fremdem Schweiß und dem Talg der erloschenen Flamme. Sie gehört nicht dir.
+Aus dem Atem von dreißig Menschen formt sich allmählich ein Rhythmus. Schnarchen. Das Knarren eines Holzgestells. Und irgendwo, nicht weit genug entfernt, das leise, unterdrückte Schluchzen eines Rekruten, der nicht will, dass man es hört — und den trotzdem jeder hört, und dem trotzdem niemand etwas sagt. Manche Dinge lässt man der Nacht.
+Du liegst auf dem harten Stroh und spürst, wie deine Muskeln brennen. Nicht stark. Nur genug, um dich daran zu erinnern, dass heute wirklich passiert ist.
+Das war Tag eins.
+Es bleiben noch exakt einhundert und vier Wochen.
+Du schließt die Augen.
+
+[[Der nächste Morgen: Der erste Tag vergeht... ->Das Training: Erster Tag]]
+
+
+:: PassageHeader [header] {"position":"550,0","size":"100,100"}
+<<if !setup.isJournalBlocked()>>\
+<div id="hud-bar">
+    <div class="hud-left">
+        <span class="hud-item hud-day">⚔ Tag <<= $world.day >></span>
+        <span class="hud-item hud-money">\
+            💰<<set _m = setup.getMoney($player.money.copper)>>\
+            <<= _m.gold >> G&nbsp; <<= _m.silver >> S &nbsp;<<= _m.copper >> K
+        </span>\
+        <<if $world.weather>>\
+        <span class="hud-item hud-weather"><<= $world.weather >></span>
+        <</if>>\
+    </div>\
+    <div class="hud-right">\
+        [[📖 Notizbuch|journalAnsicht]]
+    </div>
+</div>\
+<hr class="hud-divider">
+<</if>>
+
+
+:: Rausreden Versuch {"position":"825,300","size":"100,100"}
+Die Eichentür fliegt mit einem lauten Knall auf. Kurt, der ältere Ausbilder, steht im Rahmen. Seine Augen verengen sich zu Schlitzen, als er dich sieht. 
+
+@@.voice-aggressive;"Ein Frischling!", speit er aus. "Spionierst uns nach, noch bevor du überhaupt den ersten Staub gefressen hast?!"@@
+
+Deine Ausrede stirbt, noch bevor sie fertig gedacht ist.
+„Verlaufene Wege" — als hättest du dir dabei selbst geglaubt. 
+Kurt hört nicht einmal zu Ende zu. Seine Hand schließt sich um den Kragen deiner Umhängetasche mit dem Griff eines Mannes, der keine Gegenwehr erwartet und auch keine dulden würde.
+
+@@.voice-aggressive;„Hier wird nicht diskutiert, Bürschchen.“@@
+
+Was folgt, ist keine Strafe im eigentlichen Sinne. Es ist eine Lektion — kurz, schmerzhaft und ohne jedes Übermaß. Gerade genug, damit du weißt, dass er es ernst meint. Dann zerrt er dich los.
+Die Treppe. Den Korridor. Keine Rücksicht auf dein Tempo, kein Wort mehr, nur der eiserne Zug an deinem Kragen und das Geräusch deiner eigenen Stiefel, die kaum mit den Schritten eines Mannes mithalten können, der seit Jahrzehnten weiß, wohin er geht.
+
+<<=setup.setNpcAffection("kurt", -10)>><<set $npc.kurt.known = true>>
+<<=setup.setPlayerStat("honesty", -5)>>
+[[Zähneknirschend auf den Hof zerren lassen.->Der Kasernenhof]]
+
+
+:: Sergent aushorchen {"position":"600,300","size":"100,100"}
+@@.voice-aggressive;"BIN ICH EINE KLATSCHTANTE???"@@.
+@@.voice-aggressive;„Du hast einen Befehl erhalten und der war nicht mit mir zu reden, also sieh zu dass du Land gewinnst sonst schmeiss ich dich in den Turm bevor deine Ausbildung angefangen hat!!!“@@
+
+<<= setup.setNpcAffection("sergeant", -5)>>
+
+[[Befehl befolgen und direkt zum Kasernenhof gehen->Der Kasernenhof]]
+[[Sich heimlich von der Truppe absetzen und die Akademie-Hallen auskundschaften->Hallen erkunden]]
+
+
+:: StoryInit {"position":"0,0","size":"100,100"}
+<<include "InitPlayer">>
+<<include "InitNPC">>
+<<include "InitWorld">>
+<<set setup.trainingsHubTextVault to JSON.parse(Story.get("TrainingsHubTexte").text)>>
+<<set setup.abendappellTextVault to JSON.parse(Story.get("AbendappellTexte").text)>>
+
+
+:: Stube: Bei Karla einrichten {"position":"425,775","size":"100,100"}
+Du wirfst deine Umhängetasche auf die raue Holzpritsche neben Karla, und der dumpfe Aufschlag ist laut genug, um ein paar Köpfe herumfahren zu lassen. Die Rekruten in der Nähe weichen einen halben Schritt zurück — nicht aus Respekt vor dir, sondern aus dem instinktiven Gespür, dass es klüger ist, Abstand zu halten, wenn jemand eine Entscheidung trifft, ohne dabei zu zögern.
+Karla grinst. Schief und ohne jeden Aufwand, es freundlicher aussehen zu lassen als es ist. Sie lässt sich auf ihre eigene Decke fallen, zieht ein kurzes Messer aus dem Stiefelschaft und beginnt, mit der Ruhe eines Menschen, dem die Meinung anderer seit Jahren gleichgültig ist, den Dreck unter ihren Fingernägeln hervorzukratzen.
+„Gute Wahl, Frischling." Sie schaut dabei nicht auf. „Wer bei mir schläft, hat nachts seine Ruhe vor den Langfingern im Raum."
+„Aber bild dir nichts ein: Morgen auf dem Exerzierplatz krieche ich dir genauso wenig in den Hintern wie der Schinder."
+Du weißt, dass das kein Angebot war. Nur eine Tatsache, die sie der Vollständigkeit halber ausspricht.
+Am anderen Ende der Baracke, nahe der Tür, sitzt Jarek auf seiner Pritsche. Seine dunklen Augen ruhen einen Moment lang auf dir — ruhig, aufmerksam, ohne Vorwurf. Dann schüttelt er kaum merklich den Kopf, wendet sich ab und rollt sich auf seiner Decke zusammen. Nicht beleidigt. Nur fertig mit dem Tag.
+Die Talglichtflammen zucken im Zugwind. Irgendwo in der Stube hustet jemand. Das Stroh unter dir ist hart und riecht nach altem Heu und fremden Körpern.
+Du liegst in deiner neuen Welt.
+
+[[Dich wortlos schlafen legen. ->Nachtruhe 1]]
+
+
+:: Stube: Eigene Pritsche suchen {"position":"250,775","size":"100,100"}
+Du wendest dich ab und gehst.
+Keine Erklärung. Kein Blick zurück. Nur deine Schritte durch den Mittelgang der Baracke, vorbei an Rekruten, die sich bereits zusammenrotten, Allianzen schließen, Namen austauschen — all die kleinen, hastigen Versuche von Menschen, die plötzlich allein sind und es nicht bleiben wollen.
+Du bleibst allein.
+Weiter hinten, im zugigen Teil der Baracke, ist noch ein oberes Etagenbett frei. Niemand hat es gewollt. Der Wind findet hier seinen Weg durch die Ritzen der alten Holzwände, und das Stroh auf dem Gestell ist dünner als anderswo, als hätte man bei diesem Platz von Anfang an weniger Mühe gegeben. Du wirfst deine Tasche hinauf und kletterst nach.
+Von hier oben siehst du die ganze Stube.
+Karla, die am Ofen ihren Thron errichtet hat und jeden, der zu nah kommt, mit einem einzigen Blick auf Abstand hält. Die kleinen Gruppen, die sich bereits gebildet haben — zwei Jungen aus derselben Gegend, die an ihren Dialekten erkennbar sind, eine Handvoll Rekruten, die gemeinsam geschwiegen haben und nun gemeinsam reden. Jarek, der ein paar Betten weiter seine Stiefel ordentlich nebeneinanderstellt und dir dann kurz zunickt — ruhig, ohne Erwartung.
+Du nickst zurück. Mehr nicht.
+Es wäre so einfach gewesen. Ein Wort. Ein Händedruck. Und du wärst nicht allein.
+Aber du hast dich entschieden, und jetzt liegt die Entscheidung hinter dir wie ein Schritt, den man nicht zurücknehmen kann. Vielleicht ist es Stolz. Vielleicht ist es etwas, das du selbst noch nicht benennen kannst — das Bedürfnis, in diesem fremden, lauten, überfordernden Raum wenigstens einen einzigen Moment lang nur dir selbst zu gehören.
+Die Talglichtflammen zucken im Zugwind. Das Gemurmel der Stube ebbt langsam ab. Irgendwo hustet jemand, irgendwo lacht jemand zu laut, und dann wird es stiller, und stiller, bis nur noch das Heulen des Windes draußen übrig bleibt.
+Du liegst auf dem Rücken und starrst an die Decke der Baracke. Das Holz über dir ist dunkel und rissig und trägt die Kratzer von all denen, die vor dir hier gelegen haben. Menschen, die dieselbe erste Nacht hatten. Dieselbe Stille. Denselben Gedanken, den du jetzt nicht ganz zu Ende denkst, weil er zu groß ist für einen Abend, der ohnehin schon zu viel war.
+Morgen beginnt es.
+Heute Nacht bist du noch einfach nur müde.
+
+[[Die Augen schließen. ->Nachtruhe 1]]
+
+
+:: Stube: Jarek anfreunden {"position":"100,775","size":"100,100"}
+Du ergreifst Jareks Hand und erwiederst seinen Händedruck fest. „Das obere Bett ist gebucht." Deine Tasche landet mit einem dumpfen Schlag auf dem morschen Holzgestell.
+Jarek lächelt — schmal und ohne Überschwang, das Lächeln eines Menschen, der gelernt hat, sparsam damit umzugehen. Er lehnt sich mit dem Rücken gegen den hölzernen Pfosten und lässt den Blick kurz durch die Stube wandern.
+„Gute Entscheidung. Hier vorne zieht es zwar ordentlich durch die Türritzen — aber du bist am weitesten weg vom ewigen Theater da hinten." Er deutet mit dem Kinn zu Karla, die am Ofen noch immer ihr Revier absteckt wie ein Tier, das seinen Käfig vermisst. „Wir sollten ihr aus dem Weg gehen. Sie ist anstrengend." Eine kurze Pause. „Aber verdammt gut an der Waffe. Man hört sie in den Schenken von Ohm über ihre Kraft reden — und die Leute, die es hören, widersprechen ihr meistens nicht."
+Er setzt sich auf die untere Pritsche und beginnt, seine schweren Marschstiefel aufzuknoten. Die Bewegungen sind gleichmäßig, fast mechanisch — die Bewegungen eines Mannes, der mit seinen Gedanken schon woanders ist.
+„Ich bin übrigens hier, weil das Banner pünktlich zahlt." Er sagt es ohne Scham, aber auch ohne Leichtigkeit. Nur als Tatsache. „Zu Hause in der Unterstadt ernährt das Schusterhandwerk meines Vaters keine fünf Mäuler mehr. Wenn ich die zwei Jahre hier überstehe, schicke ich genug Gold heim, damit er aufhören kann, sich die Augen kaputt zu nähen."
+Er stellt die Stiefel nebeneinander auf den Boden — ordentlich, parallel — und sieht dich dann an. Seine dunklen Augen wirken alt für sein Gesicht. Nicht müde. Nur alt.
+„Ich hoffe, auf dich ist Verlass, wenn wir erst im Schildwall stehen."
+Es ist keine Drohung. Keine Prüfung. Nur eine ehrliche Frage von jemandem, der weiß, dass die Antwort darauf irgendwann zählen wird.
+
+[[Ihm versichern, dass er auf dich zählen kann. ->Nachtruhe 1][$npc.jarek.affection += 2]]
+[[Dich einfach wortlos hinlegen und das Gespräch beenden. ->Nachtruhe 1]]
+
+
+:: TrainingsHubTexte {"position":"1000,1325","size":"100,100"}
+{
+  "hubIntros": [
+    "Der Staub des Exerzierplatzes hat sich in deine Poren gefressen und klebt wie eine zweite Haut auf deinen Wangen. Du wischst dir den Schweiß von der Stirn und blickst über das weitläufige Gelände der Akademie. Der Nachmittag ist kurz, und du weißt bereits, dass man hier keine Zeit verschenkt — du wirst nur an einem einzigen Ort wirklich präsent sein können.",
+
+    "Die unbarmherzige Mittagssonne weicht einem drückenden, bleigrauen Nachmittag, der keine Erholung verspricht. Deine Muskeln brennen noch vom Morgenappell, und der Schweiß in deinem Kragen ist längst kalt geworden. Das Lager breitet sich vor dir aus wie ein eigener, lärmender Kosmos — aber deine Energie reicht heute nur noch für einen einzigen Weg.",
+
+    "Das Brüllen der Ausbilder hallt noch in deinen Ohren nach, als sich der Exerzierplatz langsam leert. Du bleibst einen Moment stehen und atmest durch. Vor dir liegen die staubigen Gassen des Lagers mit allem, was sie zu bieten haben — und hinter dir liegt ein Morgen, der dich bereits mehr gekostet hat, als du zugeben willst. Einen Abstecher. Mehr ist heute nicht drin.",
+
+    "Ein langer, zermürbender Tag neigt sich seinem Ende entgegen, und er tut es ohne Gnade. Die Riemen deiner Ausrüstung haben tiefe, rote Striemen in deine Schultern gegraben, und jeder Schritt kostet mehr als der vorherige. Du stehst am Rand des Platzes und weißt, dass dir bis zum Abendappell nur noch eine einzige freie Entscheidung bleibt. Sie sollte die richtige sein.",
+
+    "Der bittere Geschmack von Staub und Schweiß klebt an deinem Gaumen, und kein Schluck Wasser hat ihn bisher vertrieben. Die Formationen haben sich aufgelöst, die Ausbilder sind verschwunden, und für einen kurzen, trügerischen Moment wirkt das Lager fast still. Aber die Zeit läuft. Sie läuft hier immer. Du hast Kraft für einen einzigen Weg — also wähl ihn mit Bedacht."
+  ],
+
+  "hubScenery": [
+    "Der Geruch von verbranntem Pulver, feuchtem Stroh und kochender Brühe liegt schwer in der stickigen Nachmittagsluft und legt sich auf Zunge und Lunge wie ein feuchtes Tuch. Das dumpfe, rhythmische Hämmern aus der Schmiede mischt sich mit dem fernen Brüllen eines Ausbilders, der noch nicht aufgegeben hat.",
+
+    "Ein nasskalter Wind fährt durch die engen Zeltgassen und reißt trockenen Staub in flachen, wirbelnden Bahnen mit sich fort. Irgendwo schlägt eine schlecht gesicherte Holztür in stetigem, nervtötendem Takt gegen ihren Rahmen, und das Klirren von Eisen irgendwo in der Tiefe des Lagers gibt ihr einen unregelmäßigen Gegentakt.",
+
+    "Rauchschwaden aus den Feldküchen ziehen träge und grau über den festgetretenen Platz, als hätte der Himmel selbst keine Lust mehr, sich zu bewegen. Die Rekruten, die ihre freie Stunde haben, suchen den Schatten der Planwagen, während die älteren Männer schweigend und mit geübten Händen ihre Ausrüstung in Ordnung bringen — als wäre es das Einzige, was sie noch interessiert.",
+
+    "Das ständige Wiehern der Zugpferde drückt auf die Stimmung wie ein nasses Tuch auf eine Wunde, untermalt vom harten, monotonen Aufschlagen von Holz auf Holz an den Palisaden. Der Dreck des Lagers klebt an den Stiefeln, an den Hosenbeinen, an den Händen — er gehört bereits dazu, so wie der Lärm und der Geruch und die Erschöpfung.",
+
+    "Die Schatten der Baracken werden länger und kriechen wie dunkle, schwere Finger über den festgetretenen Lehm des Platzes. Fliegen kreisen träge über den Abfallgruben am Rand des Lagers, und das gleichmäßige, fast meditative Schleifen von Klingen an Wetzsteinen zieht sich wie ein leises, unerbittliches Grundrauschen durch den Abend."
+  ],
+
+  "hubThoughts": [
+    "Ich kann nicht überall gleichzeitig sein. Jede Stunde hier hat ihren Preis, und wer sie falsch ausgibt, merkt es spätestens dann, wenn es zu spät ist. Ich muss wählen — und ich muss klug wählen.",
+
+    "Was ich jetzt tue, hinterlässt Spuren. Nicht auf dem Papier, nicht in der Truppenrolle — aber in mir selbst. Die Zeit der Spielereien ist vorbei. Also: wohin?",
+
+    "Meine Knochen verlangen nach Ruhe. Mein Verstand weiß, dass Ruhe hier ein Luxus ist, den die Toten sich leisten. Jeder Vorsprung zählt. Jede Stunde. Also reiß dich zusammen und entscheide.",
+
+    "Jede dieser Stationen formt mich zu einem anderen Soldaten. Wer ich in zwei Jahren sein werde, entscheidet sich nicht auf dem Schlachtfeld — es entscheidet sich hier, in diesen langen, grauen Nachmittagen, in denen niemand hinschaut und trotzdem alles gesehen wird.",
+
+    "Die Zeit rinnt durch meine Finger wie der feine Staub dieses Platzes. Ein verschwendeter Nachmittag ist eine verpasste Chance, und verpasste Chancen sammeln sich — bis sie einen irgendwann einholen. Konzentrier dich. Entscheid dich. Geh."
+  ],
+
+  "hubSubtexts": {
+    "pike": [
+      "— Reihe dich in die eiserne Formation ein. Lerne, was es bedeutet, nicht als Einzelner zu kämpfen, sondern als Teil einer Wand aus Holz und Stahl.",
+      "— Die Infanterie ist das Rückgrat jeder Armee — und das Rückgrat bricht zuerst, wenn es nicht hart genug ist. Hier lernst du, was Standhaftigkeit wirklich bedeutet.",
+      "— Schweiß, Staub und das ewige Gewicht der langen Esche in den Armen. Wer hier überlebt, überlebt auch den Ansturm der Kavallerie.",
+      "— Der hölzerne Igel. Dreißig Männer, dreißig Spitzen, ein einziger Körper. Hier lernst du, deinen Platz in diesem Körper zu finden.",
+      "— Nackte Disziplin und rohes Holz. Spüre das Gewicht der Hellebarde — und begreife, warum Ordnung in der Formation über Leben und Tod entscheidet."
+    ],
+    "cannon": [
+      "— Die Feuerwerker messen Pulver ab wie Apotheker Gift. Lerne, wie man den eisernen Donner der Kanone beherrscht, ohne selbst in Stücke zu fliegen.",
+      "— Bronzerohre, die tonnenschwer auf ihren Lafetten schlafen und auf den richtigen Winkel warten. Hier lernst du, sie aufzuwecken.",
+      "— Schwarzpulver brennt in den Augen und Schwefel in der Lunge. Erfahre, was es wirklich bedeutet, die eiserne Faust der Artillerie zu bedienen.",
+      "— Die Mathematik des Todes ist gnadenlos präzise. Verstehe den tödlichen Winkel, das unberechenbare Wesen der Lunte — und respektiere beides.",
+      "— Ohrenbetäubender Lärm, tonnenschweres Metall und der bittere Qualm verbrannten Pulvers. Hier wird kein Ruhm verdient — nur Überleben."
+    ],
+    "medicine": [
+      "— Wunden werden nicht sauberer, wenn man wegschaut. Beobachte, lerne, halte den Magen ruhig — und vielleicht rettest du damit eines Tages ein Leben.",
+      "— Der Feldscher riecht nach Essig und altem Blut, und seine Hände zittern nie. Schau ihm über die Schulter, solange du noch die Wahl hast, wegzuschauen.",
+      "— Zwischen Schmerzensschreien und Verbandszeug liegt die ruhige, grausame Arbeit des Überlebens. Hier lernt man sie.",
+      "— Das Fleisch ist schwach. Wer weiß, wie man es flickt, hat auf dem Schlachtfeld einen Vorteil, den kein Schwert aufwiegt.",
+      "— Die Kehrseite des Ruhms riecht nach Wundbrand und nassen Verbänden. Wer das hier aushält, hält auch das Schlachtfeld aus."
+    ],
+    "crossbow": [
+      "— Ein Atemzug, ein Herzschlag, ein Bolzen. Die Armbrust verzeiht keine Ungeduld — und belohnt jeden, der sie trotzdem lernt.",
+      "— Stählerne Sehnen und mechanische Präzision. Wer den Bogen beherrscht, tötet aus der Distanz, bevor der Feind auch nur die Klinge zieht.",
+      "— Spannen, zielen, atmen, warten. Die Armbrust ist ein Werkzeug für Menschen mit Nerven aus Draht. Hast du sie?",
+      "— Der lautlose Tod auf hundert Schritt. Verstehe die Mechanik von Winde, Nuss und stählernem Bogen — und was ein einziger Bolzen im richtigen Moment wert ist.",
+      "— Ausatmen. Innehalten. Abdrücken. Kein Muskel, keine Wut, keine Hektik. Nur Kontrolle. Hier lernst du, ob du sie hast."
+    ],
+    "thievery": [
+      "— Wer im Dunkeln die Augen offen hält, sieht mehr als jeder Ausbilder auf dem Exerzierplatz. Was hier geflüstert wird, hat oft mehr Gewicht als jeder Befehl.",
+      "— Die langen Schatten hinter den Stallungen gehören niemandem — und genau deshalb gehören sie jedem, der weiß, wie man sich in ihnen bewegt.",
+      "— Im Lager gibt es eine zweite Ordnung, die in keiner Truppenrolle steht. Wer sie kennt, überlebt länger als mancher Hauptmann.",
+      "— Lose Taschen, wegschauende Wachen und das richtige Timing. Wer hier die Regeln bricht, findet Wege, die kein Ausbilder je gezeigt hat.",
+      "— Zwischen Heuballen und Hehlern spielt sich das wahre Leben des Lagers ab. Manches lässt sich kaufen. Manches lässt sich stehlen. Und manches erfährt man nur, wenn man zuhört."
+    ]
+  },
+
+  "stations": {
+    "pike": {
+      "scenery": [
+        "Die hölzernen Waffengestelle riechen nach billigem Leinöl und verwitterter Esche, einem Geruch, der sich in die Nase bohrt wie ein stumpfer Nagel. Ein mürrischer Korporal treibt eine Reihe schwitzender Rekruten vor sich her, und seine Stimme klingt, als hätte er sie seit Jahren nur für einen einzigen Zweck benutzt: zu brüllen.",
+        "Der Boden rund um die Übungsgestelle ist vom ständigen Stampfen der schweren Stiefel so fest getreten, dass er sich anfühlt wie alter Stein. Eisenbeschläge klirren monoton im Wind, und irgendwo weiter hinten schlägt ein Schaft gegen einen anderen — ein dumpfer, rhythmischer Laut ohne Melodie.",
+        "Reihenweise lehnen die sechs Meter langen Eschenschäfte an den Barrikaden wie ein kahler, toter Wald, aus dem kein Vogel mehr singt. Hier herrscht der Ton der Front — rau, kurz, ohne Raum für Missverständnisse.",
+        "Dicker Schlamm klammert sich an die hölzernen Tritte der Übungsplätze und gibt bei jedem Schritt nach wie frisch umgegrabene Erde. Der süßliche Gestank von billigem Schmalz, mit dem die Schäfte gepflegt werden, hängt schwer und unbeweglich in der Luft.",
+        "Der Wind treibt feinen Exerzierplatz-Staub in dichten Schwaden durch die Reihen der Infanterie-Gestelle, wo Dutzende hölzerne Übungswaffen wie erstarrte Finger in den grauen Himmel ragen und auf Hände warten, die wissen, wie man sie hält."
+      ],
+      "main": {
+        "novice": [
+          "Du greifst nach dem rauen Holz einer Übungs-Pike, und das erste, was du bemerkst, ist das Gewicht — ein Gewicht, das sich nicht gleichmäßig verteilt, sondern zieht und drückt und sich gegen dich stellt wie ein lebendiges Ding. Deine Arme zittern schon nach wenigen Minuten. Als der Trupp im Gleichschritt anzieht, stolperst du über deine eigenen Stiefel, und der Korporal bellt dich an, bis ihm die Spucke vor den Lippen steht und seine Stimme sich überschlägt.",
+
+          "Du rammst die Pike in den Boden, und der Rückstoß fährt dir wie ein Peitschenhieb durch die Schulter, schmerzhaft und abrupt und ohne jede Vorwarnung. Das ungeschliffene Holz reibt bei jeder Bewegung tief in deine ungeschützten Handflächen, und du bemerkst erst jetzt, wie weit du davon entfernt bist, hier irgendetwas richtig zu machen.",
+
+          "Der Ausbilder verpasst dir ohne Ankündigung einen harten Hieb mit dem Exerzierstecken gegen die Innenseite der Knie. 'Tiefer! Du stehst da wie eine Hure beim Sonntagsgottesdienst!' Keuchend sackst du ab, und das Gewicht der Esche presst dir die Wirbelsäule zusammen, als wollte es dich in den Boden treiben.",
+
+          "Gemeinsam mit den anderen Frischlingen versuchst du, den hölzernen Igel zu formen — dreißig Spitzen, die alle in dieselbe Richtung zeigen sollen, gleichmäßig, geschlossen, unüberwindbar. Deine schwankt wie ein Schilfrohr im Sturm. Als die Nachbarpike gegen deine schlägt, verlierst du beinahe den Halt, und die Flüche, die von der Seite kommen, sind alles andere als leise.",
+
+          "Deine Finger krampfen sich um den dicken Schaft, und das Ausrichten der Waffe nach vorn fühlt sich an, als müsstest du einen ausgewachsenen Baumstamm balancieren. Nach einer halben Stunde brennen deine Unterarme so tief und so stetig, dass du nicht mehr sicher bist, ob du die Pike noch einen einzigen weiteren Schritt tragen kannst."
+        ],
+        "medium": [
+          "Das Gewicht der Pike zieht immer noch in den Schultern, aber du hast gelernt, wie man damit umgeht — den Schwerpunkt mit dem Becken abfängt, die Last auf den ganzen Körper verteilt statt auf die Arme allein. Du hältst die Formation. Deine Stiefel finden den Takt im Dreck, und der Stoß nach vorn erfolgt ohne Zögern und ohne die zitternde Unentschlossenheit des ersten Tages.",
+
+          "Der Ausbilder schlägt dir im Vorbeigehen mit einer Eisenstange gegen den Schaft, um deinen Stand zu prüfen. Du weichst nicht zurück. Die frische Hornhaut an deinen Handflächen schützt dich vor den gröbsten Splittern, und zum ersten Mal seit Beginn der Ausbildung fühlt sich die Waffe nicht wie dein Feind an.",
+
+          "Im dumpfen Rhythmus der Trommel senkst du die Pike auf Kniehöhe und wartest das Kommando ab, ohne mit der Spitze zu zucken. Der Schaft liegt ruhig in deinen Händen — schwer noch immer, aber gehorchend. Das ist kein kleiner Unterschied.",
+
+          "Du übst das rasche Schwenken der Formation im Kollektiv. 'Flanke rechts!' Das Holz saust herum, Spitzen gleiten haarscharf aneinander vorbei, und du hältst deinen Abstand zum Vordermann ohne darüber nachzudenken. Das ist der Moment, in dem du begreifst, dass Formation keine Choreographie ist — es ist Überleben.",
+
+          "Der Schweiß läuft dir in den Kragen, aber deine Konzentration steht. Wenn du den Stoß ausführst, nutzt du das Gewicht deines gesamten Körpers, nicht nur der Arme. Ein mechanischer Ablauf, der langsam und unwiderruflich Sinn ergibt."
+        ],
+        "expert": [
+          "Das sechs Meter lange Eschenholz fühlt sich an wie eine verlängerte Gliedmaße — als wärst du damit geboren worden, als gehörte es zu dir so selbstverständlich wie ein Arm. Ohne nachzudenken senkst du die eiserne Spitze im perfekten Winkel, und dein Blick ist ruhig und absolut leer von allem außer dem, was vor dir liegt.",
+
+          "Die Formation bewegt sich um dich herum wie ein einziger, tödlicher Organismus, und du bist ein Teil davon ohne jede Reibung, ohne jedes Zögern. Die komplexen Stiche und Paraden laufen mit einer fast schläfrigen Präzision ab, und der Korporal, der dich in der ersten Woche noch angebrüllt hat bis ihm die Stimme versagte, nickt dir heute schweigend zu.",
+
+          "Als die Übungs-Kavallerie auf eure Reihe zuprescht, zuckst du nicht. Du stemmst den Schuh tief in den Lehm, blockierst den Schaft im Boden und bildest mit deinen Nebenmännern eine Wand, gegen die kein Pferd und kein Reiter bestehen würde — nicht weil du mutiger bist, sondern weil du weißt, was du tust.",
+
+          "Du beherrschst den Wechsel von der Pike zur Hellebarde in der Zeit, die andere brauchen, um sich umzusehen. Der schwere Stahl der Kurzwaffe wirbelt durch deine Hände, nutzt den Schwung des eigenen Gewichts, schlägt mit kontrollierter, dumpfer Wucht in die hölzerne Übungspuppe — und du bist bereits wieder in Position, bevor der Aufprall verhallt.",
+
+          "Deine Muskeln haben das Gewicht der Waffe so vollständig verinnerlicht, dass du sie im Schlaf führen könntest. Du atmest ruhig durch die Nase, stehst im vordersten Glied und spürst die absolute, stille Kontrolle über den Raum vor dir. Wer in deine Reichweite tritt, hat eine schlechte Entscheidung getroffen."
+        ]
+      },
+      "thoughts": {
+        "novice": [
+          "Dieses schwere Holz bringt mich noch um. Auf dem Schlachtfeld bin ich mit diesem zitternden Griff ein wandelndes Ziel — und das weiß jeder hier, der mich ansieht.",
+          "Wenn ein Pferd im vollen Galopp auf mich zukommt, reiße ich mit dieser Technik gar nichts aus. Ich muss schneller besser werden, sonst spießt mich der Feind auf wie Federvieh auf dem Markt.",
+          "Meine Finger bluten, mein Rücken ist gebrochen, und mein Stolz liegt irgendwo im Dreck zwischen den Stiefeln des Korporals. Ist das die glorreiche Infanterie?",
+          "Ein einziger falscher Schritt von mir, und die ganze Reihe gerät ins Stolpern. Der Druck ist physisch und psychisch zugleich — und beides ist gerade zu viel.",
+          "Reiß dich zusammen. Wenn die anderen es halten können, kannst du es auch. Lass dir von diesem Platz nicht den Willen brechen."
+        ],
+        "medium": [
+          "Wir sind keine Einzelkämpfer. Wir sind eine Wand. Ich fange an, meinen Platz in diesem System aus Holz und Stahl wirklich zu begreifen — und was es bedeutet, wenn einer von uns versagt.",
+          "Die Hornhaut wird dicker, der Stand sicherer. Ich bin kein Kanonenfutter mehr. Noch nicht fertig — aber nicht mehr ganz am Anfang.",
+          "Es geht nicht um Kraft. Es geht um Timing, Hebel und Körpergefühl. Wenn man die Physik begreift, wird die Pike plötzlich zu einem Werkzeug statt zu einem Feind.",
+          "Er schreit mich nicht mehr bei jedem Schritt an. Ein kleiner Fortschritt. Aber auf diesem Platz muss man für jeden Handbreit Boden schwitzen.",
+          "Ein simpler Spieß. Und doch hängt das Schicksal ganzer Schlachten an diesen stumpfen Holzstangen. Wenn die Wand hält, bricht uns niemand."
+        ],
+        "expert": [
+          "Bringt mir die Reiter. Ich weiß genau, wo der Spalt zwischen den Rossharnischen liegt, und diese Spitze wird ihn finden.",
+          "Die Ritter mögen glänzen. Aber am Ende zerschellen sie an uns — an der Wand, die niemand romantisiert und ohne die keine Armee einen einzigen Tag steht.",
+          "In meinen Händen ist diese Waffe kein klobiger Ast mehr. Sie ist ein Instrument, und ich bin derjenige, der entscheidet, wohin sie geht.",
+          "Lass das Chaos kommen, lass die Trommeln dröhnen. Ich kenne meinen Platz in der Kette. Ich werde ihn nicht verlassen.",
+          "Ich bin bereit für das Schlachtfeld. Möge der Feind so unklug sein, diese Reihe stürmen zu wollen. Es wird sein letzter Fehler sein."
+        ]
+      },
+      "rewards": { "stat": "ambition", "statValue": 1, "knowledge": "pike", "knowledgeValue": 1 }
+    },
+
+    "cannon": {
+      "scenery": [
+        "Die schweren Bronzerohre der Artillerie ruhen auf ihren hölzernen Lafetten wie träge, schlafende Monster — unbeweglich, schwer und mit einer Geduld, die sich anfühlt wie eine Drohung. Der Geruch von Schwefel ist hier so tief und so dicht, dass er sich in die Kehle legt wie ein Tuch.",
+        "Rauch kriecht aus den Testpfannen der Feuerwerker in flachen, grauen Schwaden über den Boden, und überall liegen schwere gusseiserne Kugeln und hölzerne Kartätschenkisten im Dreck, achtlos und gefährlich wie alles hier.",
+        "Ein markerschütterndes Dröhnen fegt über die Batterie, als eines der kleineren Stücke weiter hinten abgefeuert wird — und der Boden zittert unter deinen Stiefeln nicht wie bei einem Erdbeben, sondern wie bei einem Tier, das sich bewegt."
+      ],
+      "main": {
+        "novice": [
+          "Das grobkörnige Schwarzpulver brennt dir in den Augen, noch bevor du begreifst, was du falsch gemacht hast. Als du den schweren Wischer in das heiße Rohr rammst, hustest du so heftig vom beißenden Qualm, dass dir die Augen tränen — und dahinter, tief und konstant, sitzt die nackte Angst, dass dir das Ding um die Ohren fliegt.",
+
+          "Ein alter Büchsenmeister schlägt dir grob auf die Finger, weil du die Lunte zu nah am Zündloch hältst, und sagt dabei kein einziges Wort. Als das Nachbargeschütz donnert und der Boden bebt, weichen deine Knie, und du hasst dich dafür."
+        ],
+        "medium": [
+          "Du misst das Pulver mit ruhiger Hand ab, und die Begriffe Ladeschaufel, Kartätsche und Schildzapfen sind keine Fremdwörter mehr — sie sind Werkzeuge, die du kennst und benutzt. Du hilfst koordiniert dabei, das tonnenschwere Belagerungsgeschütz mit Hebebäumen auszurichten, und der Büchsenmeister sieht dir dabei zu, ohne etwas zu sagen. Das bedeutet, du machst es richtig.",
+
+          "Der Lärm dröhnt noch immer in den Ohren, aber du zuckst nicht mehr zusammen. Du reinigst das Rohr mit dem nassen Wischer, bereitest den nächsten Schuss vor und arbeitest dabei mit einer Ruhe, die du dir vor zwei Wochen nicht hättest vorstellen können."
+        ],
+        "expert": [
+          "Du berechnest den tödlichen Winkel fast im Kopf, ein kurzer prüfender Blick auf die Pulverqualität, eine kleine Justierung der Keile an der Lafette — und dann wartest du. Nicht aus Nervosität, sondern weil du weißt, wann der richtige Moment ist. Du regierst diese eiserne Bestie mit einer Autorität, die kein Befehl dir gegeben hat.",
+
+          "Die Mathematik des Todes ist dir in Fleisch und Blut übergegangen, so tief, dass du nicht mehr darüber nachdenken musst. Während um dich herum das Chaos der Übung tobt, senkst du die brennende Lunte mit der Ruhe eines Mannes, der weiß, was gleich passiert — und dem das vollkommen recht ist."
+        ]
+      },
+      "thoughts": {
+        "novice": [
+          "Ein Funke am falschen Ort, und wir fliegen alle in Stücke. Das ist kein abstrakter Gedanke hier. Das ist eine reale, gegenwärtige Möglichkeit.",
+          "Ich habe Respekt vor dieser Waffe — den Respekt, den man vor etwas hat, das einen töten kann, ohne böse Absicht zu haben."
+        ],
+        "medium": [
+          "Wer den Winkel beherrscht, beherrscht die Distanz. Und wer die Distanz beherrscht, entscheidet, wer überhaupt nah genug kommt, um zu kämpfen.",
+          "Der Lärm hört auf, mich zu erschrecken. Das ist entweder Gewöhnung oder der Beginn von etwas Besserem."
+        ],
+        "expert": [
+          "Das ist die eigentliche Macht in diesem Krieg. Nicht die Schwerter, nicht die Fahnen, nicht die Reden. Nur das Rohr, der richtige Winkel — und der Donner danach.",
+          "Ich verstehe jetzt, warum die Feuerwerker so wenig sprechen. Was sie wissen, braucht keine Worte."
+        ]
+      },
+      "rewards": { "stat": "ambition", "statValue": 1, "knowledge": "cannon", "knowledgeValue": 1 }
+    },
+
+    "medicine": {
+      "scenery": [
+        "Das Zelt des Feldschers riecht stechend nach Essig, ranzigem Schmalz und dem süßlichen, schweren Dunst von frischem Blut — ein Geruch, der sich festsetzt und nicht wieder loslädt. Aus dem Halbdunkel dringt das Stöhnen eines Mannes, der schon zu erschöpft ist, um laut zu klagen.",
+
+        "Auf dem rohen Holztisch liegt das Handwerk des Überlebens ausgebreitet: Knochensägen mit vergilbten Griffen, gebogene Nadeln an einem Faden, der zu grob aussieht für das, wofür er bestimmt ist, und stumpfe Zangen, die in einem Topf kochendem Wasser klappern wie ein schlechtes Omen.",
+
+        "Ein Gehilfe trägt einen Eimer voller blutiger Verbände nach draußen, ohne den Blick zu heben. Hier wird nicht marschiert, nicht exerziert, nicht befohlen. Hier wird um jeden einzelnen Atemzug gefeilscht, und manchmal verliert man."
+      ],
+      "main": {
+        "novice": [
+          "Der Feldscher nickt dir flüchtig zu und drückt dir einen sauberen Lappen in die Hand, als wäre das Erklärung genug. Du sollst die Wunde eines Infanteristen fixieren, während die Nadel sich durch seine Haut frisst. Sein Schrei hallt in dir nach, lange nachdem er verstummt ist.",
+
+          "Unter deinen ungeschickten Fingern spürst du das Knirschen von gebrochenem Knochen, und dein Magen antwortet darauf bevor dein Verstand kann. Du musst dich zwingen, weiterzumachen — die Schiene anlegen, den Mann ruhig halten, die Hände nicht zittern lassen — und du schaffst es, aber nur knapp."
+        ],
+        "medium": [
+          "Das Flicken von Fleisch verliert seinen Schrecken — nicht weil es weniger schlimm geworden wäre, sondern weil du gelernt hast, es von einer anderen Seite zu sehen. Du reinigst Wunden mit Essigwasser, reißt Verbände mit einer Hand ab und gehst dabei im Kopf bereits die nächsten Schritte durch.",
+
+          "Ein Verwundeter kämpft unter deinen Händen, und du drückst ihn mit festem, ruhigem Griff auf den Tisch — nicht grob, aber unmissverständlich. Die Empathie ist noch da. Aber sie steht jetzt hinter der Konzentration, nicht davor."
+        ],
+        "expert": [
+          "Du führst die Knochensäge mit einer Hand, die nicht zittert. Das Schreien um dich herum ist vorhanden, aber es erreicht dich nicht mehr auf dieselbe Weise — es ist Hintergrund geworden, wie der Wind oder das Feuer, während du arbeitest.",
+
+          "Dein diagnostischer Blick braucht Sekunden, keine Minuten. Im Halbdunkel des Lazaretts sortierst du die hoffnungslosen Fälle von denen, die noch eine Chance haben — nicht mit Kälte, sondern mit der grausamen, notwendigen Effizienz eines Menschen, der verstanden hat, dass Mitgefühl allein hier niemanden rettet."
+        ]
+      },
+      "thoughts": {
+        "novice": [
+          "Das ist der wahre Preis des Krieges. Nicht der Trommelwirbel und die Fahnen — sondern das leise Wimmern im Stroh und die Hände, die zu langsam sind, um zu helfen.",
+          "Ich darf hier nicht wegsehen. Auch wenn alles in mir es verlangt."
+        ],
+        "medium": [
+          "Fleisch flicken wie Zeltstoff. Es ist hart und es ist unromantisch, und ohne diese Arbeit wäre jede Armee nach der ersten Schlacht eine Ansammlung von Sterbenden.",
+          "Die Hände werden ruhiger. Das ist kein schlechtes Zeichen — das ist das Einzige, was hier zählt."
+        ],
+        "expert": [
+          "Das Blut wäscht sich ab. Die Schreie verblassen. Was bleibt, ist das Wissen darüber, wie ein menschlicher Körper funktioniert — und wie er aufhört zu funktionieren. Das lässt sich nicht mehr vergessen.",
+          "Ich rette keine Helden hier. Ich rette Männer. Das ist genug."
+        ]
+      },
+      "rewards": { "stat": "mercy", "statValue": 1, "knowledge": "medicine", "knowledgeValue": 1 }
+    },
+
+    "crossbow": {
+      "scenery": [
+        "Am Schießstand herrscht eine konzentrierte, fast unheimliche Stille — die Stille von Menschen, die alle denselben Punkt in der Ferne anstarren und nichts anderes mehr wahrnehmen. Das harte Peitschen der Stahlsehnen und das dumpfe Einschlagen der Bolzen in Strohscheiben geben ihr einen regelmäßigen, fast beruhigenden Takt.",
+
+        "Die Schützen stehen in perfekter Reihe. Kein Gespräch, kein Geräusch außer dem, was zur Aufgabe gehört. Die Armbrust ist eine Waffe für Menschen, die gelernt haben zu warten — und hier lernt man es, ob man will oder nicht.",
+
+        "Der Wind pfeift durch die hölzernen Schießscharten und macht die Berechnungen komplizierter, als sie ohnehin schon sind. Auf den Tischen liegen Spindelwinden, Fettnäpfchen und Kisten voller gefiederter Bolzen, aufgereiht mit einer Sorgfalt, die zeigt, dass die Leute hier wissen, was sie tun."
+      ],
+      "main": {
+        "novice": [
+          "Du legst die schwere Wippe an die Schulter und stemmst den Fuß in den stählernen Steigbügel. Das Spannen der Sehne kostet mehr Kraft als erwartet — weit mehr — und als sie endlich knackend einrastet, zittern deine Arme. Beim Schuss reißt dir der Rückstoß fast die Waffe aus den Händen, und der Bolzen verschwindet irgendwo weit rechts vom Ziel im Nirgendwo.",
+
+          "Das Visier tanzt, deine Finger sind zu hektisch, und als du schließlich drückst, passiert es einen Herzschlag zu früh. Der Bolzen klatsch in den Dreck, meilenweit an der Scheibe vorbei. Der Ausbilder sagt nichts. Das ist fast schlimmer."
+        ],
+        "medium": [
+          "Das Kurbeln der Spindelwinde wird zur Gewohnheit — eine feste Folge von Bewegungen, die der Körper irgendwann ohne Nachdenken ausführt. Du legst den Schaft an die Wange, fängst den Wind ab, ziehst den Abzug sauber durch. Der Bolzen klatscht mit einem satten, befriedigenden Laut ins Holz der Scheibe.",
+
+          "Finger weg von der Nuss, Bolzen in die Führungsnut, Blick nach vorn, atmen. Die Handgriffe sitzen. Jetzt feilst du an der Geschwindigkeit — und an der Geduld, die der einzige Unterschied zwischen einem guten und einem toten Schützen ist."
+        ],
+        "expert": [
+          "Du atmest flach aus. Hältst inne. Im exakten Moment zwischen zwei Herzschlägen löst sich der Schuss — präzise und ohne Zögern — und der Bolzen durchschlägt das Zentrum der Eichenbohle auf hundert Schritt und spaltet den Treffer vom Vortag.",
+
+          "Die schwere Belagerungsarmbrust fühlt sich in deinen Händen nicht mehr schwer an. Du beherrschst die Ballistik im Schlaf, lädst blind und in Rekordzeit nach — und weißt dabei genau, dass Geschwindigkeit hier nur die halbe Kunst ist. Die andere Hälfte ist die Ruhe, die kein Befehl lehren kann."
+        ]
+      },
+      "thoughts": {
+        "novice": [
+          "Hier zählt kein Brüllen, keine Muskelkraft, kein Wille. Nur die Kontrolle über den eigenen Körper. Und genau die fehlt mir noch vollständig.",
+          "Die Armbrust wartet nicht auf mich. Sie verzeiht nichts. Das ist entweder das Härteste oder das Ehrlichste, was mir diese Ausbildung bisher gegeben hat."
+        ],
+        "medium": [
+          "Kein Zögern, keine Hektik. Ein ruhiger Finger ist mehr wert als jede Muskelkraft auf diesem Stand.",
+          "Ich werde schneller. Aber Schnelligkeit ohne Präzision ist Verschwendung. Beides muss kommen — und es kommt, langsam und unweigerlich."
+        ],
+        "expert": [
+          "Ein Bolzen, der richtige Moment, der richtige Winkel. Mehr braucht es nicht. Das ist eine wunderschöne, rein mechanische Wahrheit.",
+          "Ich schieße nicht mehr. Ich warte, bis der Schuss selbst kommt. Der Unterschied klingt gering. Er ist alles."
+        ]
+      },
+      "rewards": { "stat": "ambition", "statValue": 1, "knowledge": "crossbow", "knowledgeValue": 1 }
+    },
+
+    "thievery": {
+      "scenery": [
+        "Hinter den Stallungen hört der militärische Drill auf wie ein Licht, das man ausdreht. Der beißende Geruch von Pferdemist mischt sich mit dem Rauch billigen Tabaks, und schattenhafte Gestalten drücken sich an die Holzwände mit der geübten Unauffälligkeit von Menschen, die das seit Jahren tun.",
+
+        "Hier patrouillieren keine Wachen — sie meiden diese Ecken aus demselben instinktiven Grund, aus dem man dunkle Gassen meidet: nicht weil sie Angst haben, sondern weil sie wissen, dass manche Dinge reibungsloser laufen, wenn man nicht hinschaut. Das Tuscheln und das dumpfe Rollen von Würfeln auf einem umgedrehten Fass sind die einzigen Geräusche.",
+
+        "Die Zivilisation endet an den Stalltoren. Dahinter gelten andere Regeln — keine, die in einer Truppenrolle stehen, und keine, über die man laut spricht. Aber Regeln sind es trotzdem."
+      ],
+      "main": {
+        "novice": [
+          "Du schleichst dich im Schatten eines Heuwagens entlang und trittst dabei prompt in einen umgekippten Metalleimer. Das Scheppern ist so laut, dass du für einen Moment zu Stein erstarrst und nicht mehr weißt, ob du atmen sollst. Ein Pferd wiehert unruhig. Niemand kommt. Aber es war knapp.",
+
+          "Du versuchst, einem betrunkenen Trossbuben die Geldbörse vom Gürtel zu schneiden. Deine Hände zittern, du rutschst ab, und im letzten Moment, kurz bevor er sich umdreht, ziehst du die Hand zurück. Du gehst mit leeren Händen und mit dem unangenehmen Wissen, dass du noch nicht bereit bist."
+        ],
+        "medium": [
+          "Du bewegst dich durch das tote Sichtfeld der Wachen so lautlos, dass du selbst kaum hörst, wie deine Stiefel den Boden berühren. Deine Augen haben gelernt, die kleinen, nervösen Gesten der Hehler zu lesen — das kurze Augenzwinkern, das leichte Rücken des Ellbogens. Im Vorbeigehen lässt du eine Handvoll Eisennägel und ein schmales Seil in deiner Tasche verschwinden, ohne dass irgendjemand den Kopf dreht.",
+
+          "Hinter einer Holzwand belauschst du ein Gespräch zweier Fourier-Gehilfen über unterschlagene Rationen, die irgendwo zwischen den Lagerbeständen verschwunden sind und die niemand sucht. Du hältst dich flach, atmest flach, bewegst dich nicht. Jedes Wort landet in deinem Gedächtnis, als wäre es eingebrannt."
+        ],
+        "expert": [
+          "Du gleitest durch das nächtliche Lager wie ein Schatten, der vergessen hat, dass er einen Körper hat. Das Knirschen von Kieselsteinen unter deinen Stiefeln fängst du instinktiv ab, noch bevor es entsteht. Die verriegelte Kiste im Quartier des Zahlmeisters öffnet sich unter deinen Fingern, und du bist wieder draußen, bevor der Raum deine Wärme gespürt hat.",
+
+          "Niemand sieht dich, wenn du es nicht willst. Du nutzt die Trägheit der betrunkenen Soldaten, die langen Sichtlinien der müden Wachen, die kurzen Momente der Ablenkung — und am Ende hast du mehr gewonnen als jeden Abend auf dem Exerzierplatz, ohne einen einzigen Befehl befolgt zu haben."
+        ]
+      },
+      "thoughts": {
+        "novice": [
+          "Mein Herz hämmert so laut, dass ich sicher bin, die Wache muss es hören. Wenn sie mich hier erwischen, endet das nicht mit einem Verweis.",
+          "Ich bin noch nicht gut genug für das, was ich hier versuche. Das ist keine Meinung — das ist eine Tatsache, die mich gerade fast erwischt hätte."
+        ],
+        "medium": [
+          "Die Armee hat ihre Ordnung. Aber das wahre Überleben wird im Verborgenen verhandelt — in Flüstern und Blicken und Dingen, die nie aufgeschrieben werden.",
+          "Ich lerne, wer hier die Fäden zieht. Nicht die Offiziere. Nicht die Ausbilder. Die Männer, die man nie beim Namen nennt."
+        ],
+        "expert": [
+          "Ehrlichkeit füllt keinen leeren Magen und schützt nicht vor einem Messer im Rücken. Die Schatten gehören mir — und wer in diesem Lager nicht weiß, wie man in ihnen lebt, kennt das Lager nicht wirklich.",
+          "Ich bewege mich durch diesen Ort wie durch ein Werkzeug, das ich von innen kenne. Jede Wache, jede Lücke, jeder blinde Winkel. Das Lager ist mein Jagdrevier."
+        ]
+      },
+      "rewards": { "stat": "honesty", "statValue": -1, "knowledge": "thievery", "knowledgeValue": 1 }
+    }
+  }
+}
+
+
+:: Treppe runterrennen {"position":"1000,300","size":"100,100"}
+Die Panik schießt dir in die Glieder wie eisiges Wasser, und bevor du einen klaren Gedanken fassen kannst, hast du dich bereits umgeworfen und sprintest den Flur hinunter. Die Stufen der hinteren Treppe nimmst du im freien Fall, die Finger kaum am Geländer, die Stiefel auf dem glatten Stein ohne Halt.
+An der Biegung unten tritt ein Mann aus dem Schatten — und du hast keine Chance mehr zu bremsen.
+Der Aufprall ist hart und ungnädig. Papiere explodieren in alle Richtungen, eine kunstvoll versiegelte Dokumentenrolle entgleitet seinen Fingern und kracht polternd über die Steinstufen. Der Mann taumelt, greift mit beiden Händen nach dem Geländer und fängt sich mit einer Beherrschung, die unter den Umständen fast unheimlich wirkt. Dann richtet er sich auf und sieht dich an — mit einer Mischung aus Bestürzung und einer eisigen Würde, die keinen Zweifel daran lässt, dass er an Situationen gewöhnt ist, die er nicht selbst verschuldet hat.
+Er ist mittelgroß und trägt einen kurzen, gepflegten Vollbart über einem harten Kiefer. Ein Söldnerbarret mit dem Abzeichen des Haubentauchers sitzt auf seinem Kopf, darunter ein rotes Wollwams mit geschlitzten Pluderärmeln — und über den Schultern liegt, breit und unverkennbar, ein weißer bodenlanger Mantel ohne Ärmel. Das Zeichen der Diplomaten. Du erkennst es, noch bevor er den Mund öffnet.
+„//Hortum//—", keucht er, dann streicht er mit langsamen, kontrollierten Bewegungen seine Kleidung glatt. Nach den Papieren bückt er sich nicht. Er fixiert dich stattdessen mit braunen Augen, die scharf und ruhig sind wie die Klinge eines Mannes, der gelernt hat, Wut in Kälte zu verwandeln.
+Als er bemerkt, wie ungläubig du ihn anschaust, zieht sich sein Mundwinkel einen knappen Moment zusammen.
+„Mein Name ist $npc.diplomatHannes.name . Diplomat im Dienste des Städtebundes." Eine kurze, gewichtete Pause. „Und du bist ein Rekrut, der offenbar die Orientierung //und// die Manieren verloren hat."
+Er hebt die Dokumentenrolle vom Boden auf und klopft den Staub mit zwei gemessenen Schlägen herab, als wäre selbst diese Geste ein Urteil über dich.
+„Merke dir eines für deine Zeit in dieser Akademie: Du wirst hier niemals glücklich werden — und vermutlich nicht einmal die nächsten zwei Jahre überleben —, wenn du dich nicht augenblicklich an die Regeln hältst. Ordnung und Verträge sind das Einzige, was dieses Land zusammenhält. Daran solltest du dich erinnern, solange du in Ohm bist."
+Mit einer herrischen, absolut unmissverständlichen Geste deutet er auf die schwere Flügeltür hinter dir.
+„Und jetzt ab mit dir — bevor ich dem Sergeanten von diesem Vorfall berichte."
+Er sagt es ohne Lautstärke. Als wäre sein Schweigen das Großzügigste, was er dir anbieten kann.
+
+<<set $npc.diplomatHannes.known = true>>
+
+[[Befehl befolgen und direkt zum Kasernenhof gehen->Der Kasernenhof]]
+
+
+:: Untitled Passage 1 {"position":"1025,1100","size":"100,100"}
+\:: Tag 2: Morgen
+## Tag 2 — Der Vormittag
+
+Das dumpfe Horn des Schinders reißt dich aus dem Schlaf, noch bevor die Sonne den Dunst über dem Lager vertrieben hat. Das Frühstück besteht aus demselben grauen Brei wie am Vortag. Karla kauft schweigend, während Jarek mit starrem Blick seine Stiefel schnürt. Keine Worte. Nur die Routine.
+
+Wenig später brennt die Mittagssonne unbarmherzig auf dem Exerzierplatz. Der Drill bricht dir fast die Knochen. „Ausrichten! Schilde hoch! Bewegen!“, gellt die Stimme des Hauptmanns. Als er euch zur Mittagsstunde endlich wegtreten lässt, zittern deine Arme vor Erschöpfung. 
+
+Doch als du den Platz verlässt, merkst du, dass die Wachen die Gatter öffnen. Bis zum Abendappell kontrolliert niemand, wo die Rekruten sich herumtreiben.
+
+[[Das Lager auf eigene Faust erkunden ->Nachmittag Hub]]
+
+
+:: Wuerfel_AllIn {"position":"1850,2325","size":"100,100"}
+<<set _bet = $player.money.copper>>
+<<include "Wuerfel_Auswertung">>
+
+
+:: Wuerfel_Auswertung {"position":"1700,1925","size":"100,100"}
+
+<<set _win = false>>\
+
+<<if $world.needsDiceGame>> \
+    /* SCRIPTED WIN (Story-Moment) */
+    <<set _win = true>> \
+    <<set $player.money.copper = 0>>\
+<<else>>\	
+    /* NORMAL GAME */
+    <<set $player.money.copper -= _bet>>\
+    <<set _roll = random(1,100)>>\
+    <<set _win = (_roll <= 45)>>\
+<</if>>\
+<<if _win>>\
+	<<set _gain = _bet * 2>>\
+    <<set $player.money.copper += _gain>>\
+<</if>>
+
+<div class="scenery-text">Du würfelst...
+
+Die Würfel schlagen auf den Tisch.</div>
+
+<<timed 3s>>\
+	<<if _win>>\
+		<div class="system-alert status-positive">„<<= _bet >> Kupfer Gewonnen.“</div>
+    <<else>> \
+    	<div class="system-alert status-negative">„<<= _bet >> Kupfer Verloren.“</div>
+    <</if>>\
+<</timed>> \
+
+<<if $world.needsDiceGame>>\
+	<<set $world.needsDiceGame = false>>\
+    Dein Herz schlägt bis zum Hals.
+
+	Karla schlägt dir auf die Schulter "Schau an, du solltes öfter auf mich hören!"
+
+	Du stehst auf und wakels in Richtung deiner Pritsche
+    
+    [[Aufhören->Der nächste Tag]] 
+<<else>>   \
+ <<timed 5s>>
+ ---
+    <<if $player.money.copper > 0>>\
+
+        [[Nochmal spielen->Wuerfel_Start]] \
+        [[Aufhören->Der nächste Tag]] 
+
+    <<else>>\
+
+    Du hast kein Geld mehr.
+
+    [[Aufstehen->Auf Stube]]
+
+    <</if>>
+<</timed>>
+<</if>>
+
+
+:: Wuerfel_Set_1 {"position":"1750,2225","size":"100,100"}
+<<set _bet = 1>>
+<<include "Wuerfel_Auswertung">>
+
+
+:: Wuerfel_Set_2 {"position":"1750,2325","size":"100,100"}
+<<set _bet = 2>>
+<<include "Wuerfel_Auswertung">>
+
+
+:: Wuerfel_Set_5 {"position":"1850,2225","size":"100,100"}
+<<set _bet = 5>>
+<<include "Wuerfel_Auswertung">>
+
+
+:: Wuerfel_Start {"position":"1825,2100","size":"100,100"}
+Wie viel willst du setzen?
+<<if $world.needsDiceGame>>
+Heute ist dein Absoluter Glückstag!
+Wir spielen Alles oder Nichts, dafür gehts auch um alles am Tisch!
+
+Du siehst am Tisch 8 Kupfer liegen.
+
+<div class="thought-box">"Verdammt! ich hab nur 2 Kupfer, das ist alles was ich von der Käserei mitgenommen habe..."</div>
+[[Dein ganzes Kupfer auf den Tisch legen->Wuerfel_Set_5]]
+<<else>>
+[[1 Kupfer->Wuerfel_Set_1]]
+[[2 Kupfer->Wuerfel_Set_2]]
+[[5 Kupfer->Wuerfel_Set_5]]
+[[Alles setzen->Wuerfel_AllIn]]
+[[Abbrechen->Auf Stube]]
+<</if>>
+
+
+:: Wuerfel_Zuschauen {"position":"1625,2175","size":"100,100"}
+<<if $world.needsDiceGame>> \
+
+Du willst dich gerade abwenden, als eine Stimme hinter dir schneidet.
+
+„Wirklich?“
+
+Karla steht schon hinter dir, viel zu nah.
+
+Ein schiefes Grinsen zieht über ihr Gesicht, während sie deinen Blick festhält.
+
+„Du gehst nirgendwo hin.“
+
+Bevor du reagieren kannst, packt sie dich am Kragen und zieht dich zurück an den Tisch.
+
+
+[[Der Würfel klackt auf Holz->Wuerfel_Start]] 
+
+<<else>>
+
+Du lehnst dich zurück.
+
+Die Würfel rollen gleichmäßig über das Holz, begleitet von gedämpftem Lachen und dem leisen Klirren leerer Krüge.
+
+Für einen Moment bist du nur Zuschauer.
+
+Die Wärme des Raumes, das monotone Klacken der Würfel und das leise Murmeln der Rekruten ziehen langsam an dir vorbei.
+
+Deine Augen werden schwer.
+Nicht plötzlich – eher so, als würde die Müdigkeit sich einfach neben dich setzen und nicht mehr weggehen.
+
+<<timed 9s>>
+    Die Geräusche verschwimmen.
+    Stimmen werden zu etwas Fernem, Unwichtigem.
+<</timed>>
+
+<<timed 13s>>
+    Irgendwann merkst du kaum noch, dass du noch wach bist.
+<</timed>>
+
+<<timed 16s>>
+    Dein Kopf sinkt leicht nach vorne.
+
+    Niemand sagt etwas dagegen.
+    In einer Kaserne schläft jeder irgendwann irgendwo ein.
+    
+    [[schlafen->Der nächste Tag]]
+<</timed>>
+<</if>>
+
+
+:: journalAnsicht {"position":"675,0","size":"100,100"}
+<div id="passage-journalansicht" class="passage journalansicht">
+  <h2>📋 $player.name's Notizbuch</h2>
+  Hier sind deine bisherigen Erkenntnisse über die Personen in der Akademie von Ohm festgehalten:
+  <h3>Inventar und Werte</h3>
+  <<print setup.renderPlayerTable()>>
+  <h3>Personen in der Militärakademie</h3>
+  <<print setup.renderJournal()>>
+  ---
+  <h3>Gerüchte</h3>
+  <<print setup.renderRumors()>>
+
+</div>
+[[↩️ Zurück zum Dienst -> $world.lastPassage]]
+
+
+:: StoryScript [script]
+Config.history.maxStates = 1;
+Config.debug = false;
+
+setup.money = {
+  copperPerSilver: 7,
+  silverPerGold: 10,
+}
+
+setup.getMoney = function (copper) {
+
+  let silver = Math.floor(copper / setup.money.copperPerSilver)
+  let gold = Math.floor(silver / setup.money.silverPerGold)
+
+  silver = silver % setup.money.silverPerGold
+  copper = copper % setup.money.copperPerSilver
+
+  return {
+    gold,
+    silver,
+    copper
+  }
+};
+
+
+postdisplay["world-tracker"] = function () {
+    const forbidden = [
+        "journalAnsicht"
+    ];
+
+    const title = State.current.title;
+
+    if (forbidden.includes(title)) return;
+
+    State.variables.world ||= {};
+    State.variables.world.lastPassage = title;
+  
+    if (typeof Save !== "undefined") {
+        Save.slots.save(0);
+    }
+};
+
+setup.noJournalPages = [
+    "Intro",
+    "Das Erwachen",
+    "journalAnsicht"
+];
+
+setup.isJournalBlocked = function () {
+    const p = passage();
+
+    // feste Sperrliste
+    if (setup.noJournalPages.includes(p)) {
+        return true;
+    }
+
+    // dynamisch: Kapitel 1, Kapitel 2, ...
+    if (p.startsWith("Kapitel")) {
+        return true;
+    }
+
+    return false;
+};
+
+setup.renderPlayerTable = function () {
+    const p = State.variables.player;
+  
+  	const money = setup.getMoney(p.money.copper);
+  
+    const inventoryHTML =
+        p.inventory.length === 0
+            ? `<tr><td colspan="3" style="font-style: italic; color: #888;">Inventar ist leer</td></tr>`
+            : p.inventory.map(item =>
+                `<tr><td colspan="3">${item}</td></tr>`
+            ).join("");
+  	
+
+    return `
+    <h3 class="voice-formal">Spielerwerte</h3>
+    <table class="player-stats">
+
+        <tr><th colspan="3" class="voice-formal">Persönliches</th></tr>
+        <tr><td colspan="1">Name</td>
+        <td colspan="2">Rang</td></tr>
+        <tr><td colspan="1">${p.name}</td>
+        <td colspan="2">${p.rank}</td></tr>     
+        
+        <tr><th colspan="3" class="voice-formal">Charaktereigenschaften (Stats)</th></tr>
+        <tr><td>Gnade</td>
+        <td>Ehrgeiz</td>
+        <td>Ehrlichkeit</td></tr>
+        <tr><td>${p.stats.mercy}</td>
+        <td>${p.stats.ambition}</td>
+        <td>${p.stats.honesty}</td></tr>
+        
+        <tr><th colspan="3" class="voice-formal">Kampfwerte &amp; Wissen (Knowledge)</th></tr>
+        <tr><td>Pike &amp; Hellebarde</td>
+        <td>Artillerie-Wissen</td>
+        <td>Armbrust-Präzision</td></tr>
+        <tr><td>Level ${p.knowledge.pike}</td>
+        <td>Level ${p.knowledge.cannon}</td>
+        <td>Level ${p.knowledge.crossbow}</td></tr>
+        
+        <tr><td>Heilkunde</td>
+        <td>Schattenarbeit</td>
+        <td>Gerüchteküche</td></tr>
+        <tr><td>Level ${p.knowledge.medicine}</td>
+        <td>Level ${p.knowledge.thievery}</td>
+        <td>Level ${p.knowledge.gossip}</td></tr>
+        
+        <tr><th colspan="3" class="voice-formal">Reputation</th></tr>
+        <tr><td>Land</td>
+        <td>Ohm</td>
+        <td>Kirche</td></tr>
+        <tr><td>${p.reputation.land}</td>
+        <td>${p.reputation.ohm}</td>
+        <td>${p.reputation.church}</td></tr>
+
+        <tr><th class="voice-formal">Finanzen</th>
+        <td colspan="2">${money.gold} Gold &nbsp;|&nbsp; ${money.silver} Silber &nbsp;|&nbsp; ${money.copper} Kupfer</td></tr>
+
+
+        <tr><th colspan="3" class="voice-formal">Inventar</th></tr>
+        ${inventoryHTML}
+    </table>
+    `;
+};
+
+setup.renderJournal = function () {
+    let output = "";
+    let found = false;
+
+    for (let key in State.variables.npc) {
+        let npc = State.variables.npc[key];
+
+        if (npc.known === true) {
+            found = true;
+            output += `
+                <div class="npc-entry">
+                    <b>${npc.name}</b>
+                    <div>${npc.journalEntry}</div>
+                    <div>Zuneigung: ${npc.affection}</div>
+                </div>
+            `;
+        }
+    }
+
+    if (!found) {
+        output = "Ich kenne niemanden.";
+    }
+
+    return output;
+};
+
+//----------------Textbuilding Section & Single Point of Truth
+
+setup.executeStationRewards = function (stationKey, stationType) {
+    var vault = setup.trainingsHubTextVault;
+    if (!vault) return "Fehler: TrainingsHub-Daten wurden in StoryInit nicht geladen.";
+
+    var stationData = vault.stations && vault.stations[stationKey] ? vault.stations[stationKey] : null;
+    if (!stationData) return "Fehler: Station [" + stationKey + "] nicht gefunden.";
+
+    var rewardAlerts = "";
+
+    // --- AUTOMATISCHE BELOHNUNGS-VERARBEITUNG ---
+    // Wir triggern die Wertevergabe nur bei "scenery" (dem ersten Aufruf der Passage)
+    if (stationType === "scenery" && stationData.rewards) {
+        var r = stationData.rewards;
+        
+        // 1. Stat-Box direkt von deiner Funktion abfangen
+        var statFeedback = setup.setPlayerStat(r.stat, r.statValue);
+        if (statFeedback) {
+            rewardAlerts += "\n" + statFeedback;
+        }
+
+        // 2. Wissens-Box abfangen oder im exakt selben Stil generieren
+        var knowledgeFeedback = setup.setPlayerKnowledge ? setup.setPlayerKnowledge(r.knowledge, r.knowledgeValue) : "";
+        
+        if (knowledgeFeedback) {
+            rewardAlerts += "\n" + knowledgeFeedback;
+        } else {
+            // Fallback im exakt identischen Format, falls setPlayerKnowledge keinen String liefert
+            var knowledgeNames = {
+                pike: "Pikenkampf",
+                cannon: "Artillerie",
+                medicine: "Feldscherkunst",
+                crossbow: "Armbrustschießen",
+                thievery: "Diebeskunst"
+            };
+            var displayKnowledge = knowledgeNames[r.knowledge] || r.knowledge;
+            rewardAlerts += '\n<div class="system-alert status-positive">Wissen (' + displayKnowledge + ') erhöht</div>';
+        }
+
+        // Aktivität im Player-Objekt speichern
+        State.variables.player.chosen_activity = r.knowledge;
+      	State.variables.world.wasPracticing = true;
+    }
+
+    // --- SZENERIE-POOL (Levelunabhängig) ---
+    if (stationType === "scenery") {
+        var pool = stationData.scenery;
+        if (!pool || pool.length === 0) return "";
+        
+        // Hängt die reinen HTML-Boxen direkt per Zeilenumbruch an den Text an
+        return pool[Math.floor(Math.random() * pool.length)] + rewardAlerts;
+    }
+
+    // --- AUTOMATISCHE LEVEL-ERMITTLUNG ---
+    var playerObj = State.variables.player;
+    var currentSkill = 0;
+    
+    if (playerObj && playerObj.knowledge && playerObj.knowledge[stationKey] !== undefined) {
+        currentSkill = playerObj.knowledge[stationKey];
+    }
+
+    // Stufen-Einteilung
+    var levelBracket = "novice"; // Unter Level 4
+    if (currentSkill >= 4 && currentSkill <= 7) {
+        levelBracket = "medium";
+    } else if (currentSkill > 7) {
+        levelBracket = "expert";
+    }
+
+    // --- TEXT-AUSGABE NACH STUFE ---
+    var textPool = stationData[stationType] ? stationData[stationType][levelBracket] : null;
+    
+    if (!textPool || textPool.length === 0) {
+        return "Fehler: Text-Pool für [" + stationType + "] im Level [" + levelBracket + "] nicht gefunden.";
+    }
+    
+    return textPool[Math.floor(Math.random() * textPool.length)];
+};
+
+// Beibehalten für direkte/alte Hub-Abrufe falls nötig
+setup.getRandomText = function(category, subKey, stationType) {
+    var vault = setup.trainingsHubTextVault;
+    if (!vault) return "Fehler: TrainingsHub-Daten wurden in StoryInit nicht geladen.";
+
+    if (stationType) {
+        return setup.executeStationRewards(subKey, stationType);
+    }
+    
+    if (subKey) {
+        var subPool = vault[category] ? vault[category][subKey] : null;
+        if (!subPool || subPool.length === 0) return "Fehler: Unterkategorie [" + subKey + "] nicht gefunden.";
+        return subPool[Math.floor(Math.random() * subPool.length)];
+    }
+    
+    var pool = vault[category];
+    if (!pool || pool.length === 0) return "Fehler: Kategorie [" + category + "] nicht gefunden.";
+    return pool[Math.floor(Math.random() * pool.length)];
+};
+
+
+setup.abendappellTextVault = null;
+
+setup.loadAbendappellVault = function () {
+    if (!setup.abendappellTextVault) {
+        setup.abendappellTextVault = JSON.parse(Story.get("AbendappellTexte").text);
+    }
+};
+
+setup.getAbendappellText = function (category) {
+    setup.loadAbendappellVault();
+
+    var vault = setup.abendappellTextVault;
+    if (!vault || !vault[category]) {
+        return "Fehler: Abendappell-Kategorie [" + category + "] nicht gefunden.";
+    }
+
+    var day      = State.variables.world ? State.variables.world.day : 1;
+    var activity = State.variables.player ? State.variables.player.chosen_activity : "";
+
+    var pool = vault[category];
+
+    var contextMatches = pool.filter(function (entry) {
+        var ctx = entry.context || {};
+        if (ctx.minDay !== undefined && day < ctx.minDay) return false;
+        if (ctx.maxDay !== undefined && day > ctx.maxDay) return false;
+        if (ctx.activity !== undefined) return ctx.activity === activity;
+        return false;
+    });
+
+    var genericPool = pool.filter(function (entry) {
+        var ctx = entry.context || {};
+        if (ctx.minDay !== undefined && day < ctx.minDay) return false;
+        if (ctx.maxDay !== undefined && day > ctx.maxDay) return false;
+        if (ctx.activity !== undefined) return false;
+        return true;
+    });
+
+    var finalPool = contextMatches.length > 0 ? contextMatches : genericPool;
+    if (finalPool.length === 0) finalPool = pool;
+
+    var pick = finalPool[Math.floor(Math.random() * finalPool.length)];
+    return pick ? pick.text : "";
+};
+
+
+//---------------------NPC Section
+
+setup.setNpcAffection = function (npcKey, modifier) {
+    const npc = State.variables.npc?.[npcKey];
+
+    if (!npc) {
+        console.warn("NPC nicht gefunden:", npcKey);
+        return "";
+    }
+
+    npc.affection += modifier;
+
+    if (modifier < 0) {
+        return '<div class="system-alert status-negative">Zuneigung von ' + npc.name + ' verringert</div>';
+    } else if (modifier > 0) {
+        return '<div class="system-alert status-positive">Zuneigung von ' + npc.name + ' erhöht</div>';
+    }
+    
+    return "";
+};
+
+setup.pushNpcMemory = function(npcKey, event) {
+    const npc = State.variables.npc[npcKey];
+    if (npc && npc.memory && Array.isArray(npc.memory.events)) {
+        npc.memory.events.push(event);
+        return '<div class="system-alert status-info">' + npc.name + ' wird sich das merken</div>';
+    }
+    return ""; 
+};
+
+setup.hasNpcMemory = function(npcKey, event) {
+    const npc = State.variables.npc[npcKey];
+    if (npc && npc.memory && Array.isArray(npc.memory.events)) {
+        return npc.memory.events.includes(event);
+    }
+    return false;
+};
+
+setup.enoughNpcAffection = function (npcKey, requiredValue) {
+    const npc = State.variables.npc?.[npcKey];
+    if (!npc) return false;
+    
+    return npc.affection >= requiredValue;
+};
+
+
+//---------------------Player Section
+
+setup.renderRumors = function () {
+    if (State.variables.player.rumors.length === 0) {
+        return "Noch keine Gerüchte notiert.";
+    }
+
+    let out = "";
+    for (let r of State.variables.player.rumors) {
+        out += `<div>- ${r}</div>`;
+    }
+    return out;
+};
+
+setup.addRumor = function (rumorText) {
+    const player = State.variables.player;
+    if (!player || !Array.isArray(player.rumors)) return "";
+
+    if (!player.rumors.includes(rumorText)) {
+        player.rumors.push(rumorText);
+        return '<div class="system-alert status-info">Neues Gerücht im Notizbuch vermerkt.</div>';
+    }
+    return "";
+};
+
+setup.setPlayerStat = function (statKey, modifier) {
+    const player = State.variables.player;
+
+    if (!player) {
+        console.warn("Player nicht gefunden");
+        return "";
+    }
+
+    if (!player.stats?.hasOwnProperty(statKey)) {
+        console.warn("Stat existiert nicht:", statKey);
+        return "";
+    }
+
+    player.stats[statKey] = player.stats[statKey] + modifier;
+
+    const statNames = {
+        mercy: "Gnade",
+        ambition: "Ehrgeiz",
+        honesty: "Ehrlichkeit"
+    };
+
+    const displayName = statNames[statKey] || statKey;
+
+    if (modifier < 0) {
+        return '<div class="system-alert status-negative">' + displayName + ' verringert</div>';
+    } else if (modifier > 0) {
+        return '<div class="system-alert status-positive">' + displayName + ' erhöht</div>';
+    }
+    
+    return ""; 
+};
+
+setup.setPlayerKnowledge = function (knowledgeKey, modifier) {
+    const player = State.variables.player;
+
+    if (!player) {
+        console.warn("Player nicht gefunden");
+        return "";
+    }
+
+    if (!player.knowledge?.hasOwnProperty(knowledgeKey)) {
+        console.warn("Fähigkeit existiert nicht:", knowledgeKey);
+        return "";
+    }
+
+    player.knowledge[knowledgeKey] = player.knowledge[knowledgeKey] + modifier;
+
+    const knowledgeNames = {
+        pike: "Pike & Hellebarde",
+        cannon: "Artillerie-Wissen",
+        medicine: "Heilkunde",
+        thievery: "Schattenarbeit",
+        crossbow: "Armbrust-Präzision",
+        gossip: "Gerüchteküche"
+    };
+
+    const displayName = knowledgeNames[knowledgeKey] || knowledgeKey;
+
+    if (modifier < 0) {
+        return '<div class="system-alert status-negative">' + displayName + ' verringert</div>';
+    } else if (modifier > 0) {
+        return '<div class="system-alert status-positive">' + displayName + ' verbessert</div>';
+    }
+    
+    return ""; 
+};
+
+setup.setPlayerReputation = function (repKey, modifier) {
+    const player = State.variables.player;
+
+    if (!player) {
+        console.warn("Player nicht gefunden");
+        return "";
+    }
+
+    if (!player.reputation?.hasOwnProperty(repKey)) {
+        console.warn("Fraktion existiert nicht:", repKey);
+        return "";
+    }
+
+    player.reputation[repKey] = player.reputation[repKey] + modifier;
+
+    const repNames = {
+        land: "Ruf beim Land",
+        ohm: "Ruf in Ohm",
+        church: "Ruf bei der Kirche"
+    };
+
+    const displayName = repNames[repKey] || repKey;
+
+    if (modifier < 0) {
+        return '<div class="system-alert status-negative">Dein ' + displayName + ' ist gesunken</div>';
+    } else if (modifier > 0) {
+        return '<div class="system-alert status-positive">Dein ' + displayName + ' ist gestiegen</div>';
+    }
+    
+    return ""; 
+};
+
+setup.addItem = function (itemName) {
+    const player = State.variables.player;
+    if (!player || !Array.isArray(player.inventory)) return "";
+
+    player.inventory.push(itemName);
+    return '<div class="system-alert status-positive">Gegenstand erhalten: ' + itemName + '</div>';
+};
+
+setup.hasItem = function (itemName) {
+    const player = State.variables.player;
+    if (!player || !Array.isArray(player.inventory)) return false;
+
+    return player.inventory.includes(itemName);
+};
+
+//------------------------WORLD SECTION
+
+
+setup.resetDailyVariables = function() {
+	const world = State.variables.world;
+    const weatherConditions = [
+    "sonnig", 
+    "klar", 
+    "heiter",
+    "wolkig", 
+    "bewoelkt", 
+    "stark_bewoelkt",
+    "regen", 
+    "schauer", 
+    "nieselregen",  
+    "frostig",
+    "windig", 
+    "gewitter", 
+    "neblig", 
+    "schwuel"
+  ];
+  	
+  	const rnd = Math.floor(Math.random() * weatherConditions.length);
+  	world.weather = weatherConditions[rnd];
+    world.wasPracticing = false;
+  	world.day+=1
+  	
+};
+
+// ========================
+// GOSSIP SYSTEM
+// ========================
+
+// Vault laden
+setup.gossipTextVault = null;
+
+setup.loadGossipVault = function () {
+    if (!setup.gossipTextVault) {
+        setup.gossipTextVault = JSON.parse(
+            Story.get("GossipTexte").text
+        );
+    }
+};
+
+// ========================
+// GOSSIP TRACKING (OBJECT MAP)
+// ========================
+
+setup.markGossipSeen = function (storyId, success = false) {
+
+    if (!State.variables.world.seenGossip) {
+        State.variables.world.seenGossip = {};
+    }
+
+    State.variables.world.seenGossip[storyId] = {
+        success: success
+    };
+};
+
+// ========================
+// HAS SEEN CHECK
+// ========================
+
+setup.hasSeenGossip = function (storyId) {
+
+    const seen = State.variables.world.seenGossip || {};
+
+    return seen[storyId] !== undefined;
+};
+
+// ========================
+// SUCCESS CHECK
+// ========================
+
+setup.wasGossipSuccessful = function (storyId) {
+
+    const seen = State.variables.world.seenGossip || {};
+
+    return seen[storyId]?.success === true;
+};
+
+// ========================
+// ALL STORIES HELPER
+// ========================
+
+setup.getAllGossipStories = function () {
+
+    setup.loadGossipVault();
+
+    const vault = setup.gossipTextVault;
+
+    if (!vault || !vault.stories) {
+        return [];
+    }
+
+    return [
+        ...(vault.stories.lagerklatsch || []),
+        ...(vault.stories.landesinfos || []),
+        ...(vault.stories.knaller || [])
+    ];
+};
+
+// ========================
+// NEW GOSSIP STORIES
+// ========================
+
+setup.getGossipStory = function () {
+
+    const gossipLevel =
+        State.variables.player.knowledge.gossip || 0;
+
+    const allStories =
+        setup.getAllGossipStories();
+
+    const available = allStories.filter(function (story) {
+
+        if (setup.hasSeenGossip(story.id)) {
+            return false;
+        }
+
+        if (gossipLevel < story.minLevel) {
+            return false;
+        }
+
+        if (gossipLevel > story.maxLevel) {
+            return false;
+        }
+
+        return true;
+    });
+
+    if (available.length === 0) {
+        return null;
+    }
+
+    return available[
+        Math.floor(Math.random() * available.length)
+    ];
+};
+
+// ========================
+// FAILED / RETRY STORIES
+// ========================
+
+setup.getFailedGossipStory = function () {
+
+    const gossipLevel =
+        State.variables.player.knowledge.gossip || 0;
+
+    const allStories =
+        setup.getAllGossipStories();
+
+    const failed = allStories.filter(function (story) {
+
+        const entry =
+            (State.variables.world.seenGossip || {})[story.id];
+
+        if (!entry) return false;
+
+        if (entry.success === true) return false;
+
+        if (gossipLevel < story.minLevel) return false;
+
+        if (gossipLevel > story.maxLevel) return false;
+
+        return true;
+    });
+
+    if (failed.length === 0) {
+        return null;
+    }
+
+    return failed[
+        Math.floor(Math.random() * failed.length)
+    ];
+};
+
+:: StoryStylesheet [stylesheet]
+/* STANDARD = NICHT zentriert */
+.passage {
+    text-align: left;
+}
+
+.chapter-screen {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* KAPITEL SCREEN = zentriert NUR hier */
+/* Gemeinsamer Screen für Intro + Kapitel */
+.chapter-screen {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Intro bleibt wie gehabt */
+.fade-trigger {
+    font-size: 48px;
+    opacity: 0;
+
+    animation:
+        fadeIn 1.5s ease forwards,
+        fadeOut 1.5s ease forwards;
+
+    animation-delay:
+        0s,
+        3s;
+}
+
+/* Kapitel-Titel */
+.chapter-title {
+    font-size: 48px;
+    font-weight: bold;
+    letter-spacing: 0.08em;
+    opacity: 0;
+
+    animation:
+        fadeIn 1.5s ease forwards,
+        fadeOut 1.5s ease forwards;
+
+    animation-delay:
+        0s,
+        3s;
+}
+
+/* Zeit-Text kommt nach dem Kapitel-Titel */
+.chapter-time {
+    font-size: 24px;
+    margin-top: 0.75em;
+    opacity: 0;
+
+    animation:
+        fadeIn 1.5s ease forwards,
+        fadeOut 1.5s ease forwards;
+
+    animation-delay:
+        1.5s,
+        3s;
+}
+
+/* Link */
+.center-link {
+    margin-top: 2em;
+    min-height: 2em;
+    text-align: center;
+}
+
+/* Fade In */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Fade Out */
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+
+
+
+.journal-link {
+    text-align: right;
+    margin: 0;
+    padding: 0;
+}
+/* --- HUD HEADER --- */
+
+#hud-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 4px 4px 4px;
+    margin-bottom: 0;
+    flex-wrap: wrap;
+    gap: 0.4em;
+}
+
+.hud-left {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6em;
+    align-items: center;
+}
+
+.hud-right {
+    margin-left: auto;
+    white-space: nowrap;
+}
+
+/* Einzelne HUD-Chips */
+.hud-item {
+    font-size: 0.82em;
+    font-variant: small-caps;
+    letter-spacing: 0.04em;
+    color: #a39e93;
+    background: #1a1917;
+    border: 1px solid #2d2b27;
+    border-radius: 2px;
+    padding: 2px 8px;
+}
+
+/* Notizbuch-Knopf: erbt den Link-Style, aber kompakter */
+.hud-right a.link-internal {
+    display: inline-block !important;
+    padding: 4px 14px !important;
+    margin-bottom: 0 !important;
+    font-size: 0.88em !important;
+    font-variant: small-caps;
+    letter-spacing: 0.04em;
+    border-left-width: 2px !important;
+    transform: none !important;
+}
+
+.hud-right a.link-internal:hover {
+    transform: none !important;
+    border-left-color: #c5b394 !important;
+}
+
+.hud-divider {
+    margin-top: 6px;
+    border-color: #2d2b27;
+}
+
+#passage-header {
+    margin: 0;
+    padding: 0;
+}
+
+.npc-entry {
+    margin-bottom: 1em;
+}
+
+.npc-entry div {
+    margin-top: 0.3em;
+}
+
+.passage.journalansicht br {
+    display: none;
+}
+
+.player-stats {
+    width: 100%;
+    border-collapse: collapse;
+  	table-layout: fixed;
+}
+
+.player-stats th,
+.player-stats td {
+    border: 1px solid white;
+    padding: 4px 8px;
+  	text-align: center;
+}
+
+.player-stats th {
+    font-weight: bold;
+}
+
+/* --- DIALOGE & STIMMEN --- */
+
+/* Laut, aggressiv, gebrüllt */
+.voice-aggressive {
+    color: #e05252;         /* Klares Blutrot */
+    font-weight: bold;
+    letter-spacing: 0.05em;
+}
+
+/* Geflüstert, heimlich, bedrohlich ruhig */
+.voice-whisper {
+    color: #7ab3a0;         /* Gedämpftes Seegrün – kalt, still, unheimlich */
+    font-style: italic;
+    font-size: 0.95em;
+}
+
+/* Feierlich, formell, diplomatisch */
+.voice-formal {
+    color: #c9a84c;         /* Sattes Ocker/Gold – würdevoll, aber nicht Messing */
+    font-variant: small-caps;
+    letter-spacing: 0.03em;
+}
+
+
+/* --- ATMOSPHÄRE & UMGEBUNG --- */
+
+/* Umgebungsbeschreibungen, Wetter, Szenerie */
+.scenery-text {
+    font-style: italic;
+    color: #8a9a7a;         /* Gedämpftes Moosgrün – Natur, Außenwelt, Distanz */
+    margin: 1em 0;
+    padding-left: 10px;
+    border-left: 2px solid #3a4a32;
+}
+
+/* Innerer Monolog, Gedanken, Reflexion */
+.thought-box {
+    background-color: #16161a;
+    border: 1px dashed #3a3560;
+    padding: 12px;
+    margin: 1.2em 0;
+    font-size: 0.95em;
+    color: #b0a8d8;         /* Gedämpftes Lavendel – introspektiv, träumerisch */
+}
+
+
+/* --- SYSTEM-MELDUNGEN & WERTE --- */
+
+.system-alert {
+    padding: 10px;
+    margin: 0.8em 0;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+/* Positiv */
+.status-positive {
+    background-color: #1b2b1c;
+    border: 1px solid #2e5230;
+    color: #73c976;         /* Grün – bleibt, ist eindeutig */
+}
+
+/* Negativ */
+.status-negative {
+    background-color: #2b1b1b;
+    border: 1px solid #522e2e;
+    color: #e57373;         /* Rot – bleibt, ist eindeutig */
+}
+
+/* Neutral/Info */
+.status-info {
+    background-color: #22252a;
+    border: 1px solid #3b424c;
+    color: #a3b8cc;         /* Stahlblau – bleibt */
+}
+
+/* Beziehungs-gesteuerter Text */
+.beziehung {
+    display: block;
+    border-left: 2px solid #7a5c8a;   /* Gedämpftes Violett – eigene Identität */
+    padding-left: 0.8em;
+    color: #b08acc;                    /* Helles Lavendel/Rosa-Lila */
+    font-style: italic;
+    margin: 0.5em 0;
+}
+
+
+
+
+
+
+
+
+
+
+/* Styling für das Sandbox-Auswahlmenü - Militärischer Akademie-Look */
+.sandbox-menu {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 2em 0;
+}
+
+.sandbox-menu li {
+    background-color: #1a1917; /* Dunkles Ruß-Schwarz/Braun statt dem kühlen Gedanken-Blau */
+    border: 1px solid #2d2b27;  /* Mattes, dreckiges Dunkelgrau */
+    border-left: 4px solid #5a564c; /* Altes, stumpfes Eisen */
+    padding: 15px 20px;
+    margin-bottom: 1em;
+    border-radius: 2px; /* Eckiger und härter als die weichen Gedanken-Boxen */
+    transition: all 0.2s ease-in-out;
+}
+
+/* Hover-Effekt: Der physische Ort wird "beleuchtet" */
+.sandbox-menu li:hover {
+    background-color: #24221f; /* Helleres Lagerfeuer-Asche-Grau */
+    border-color: #4a453d;
+    border-left-color: #c5b394; /* Stumpfes Messing/Kettenhemd-Silber leuchtet auf */
+    transform: translateX(4px);
+}
+
+/* Die Links (Die Orte im Lager) */
+.sandbox-menu li a {
+    font-weight: bold;
+    font-size: 1.15em;
+    color: #dfdcd6 !important; /* Mattes Pergament-Weiß statt dem kühlen Magie-/Gedanken-Weiß */
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 0.3em;
+}
+
+/* Wenn man den Link direkt hovert */
+.sandbox-menu li a:hover {
+    color: #fff !important;
+}
+
+/* Die atmosphärische Beschreibung der Station */
+.sandbox-menu .subtext {
+    display: block;
+    font-size: 0.95em;
+    color: #a39e93; /* Dreckiges Staub-Grau, das sich klar vom Flüstern abhebt */
+    line-height: 1.4;
+}
+
+/* --- LINKS & ENTSCHEIDUNGEN --- */
+
+/* --- PASSAGE-LINKS als Panel-Buttons --- */
+
+#passages a.link-internal {
+    display: block;
+    background-color: #1a1917;
+    border: 1px solid #2d2b27;
+    border-left: 4px solid #5a564c;
+    padding: 12px 18px;
+    margin-bottom: 0.75em;
+    border-radius: 2px;
+    color: #dfdcd6;
+    font-weight: bold;
+    font-size: 1.05em;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+
+#passages a.link-internal:hover {
+    background-color: #24221f;
+    border-color: #4a453d;
+    border-left-color: #c5b394;
+    color: #fff;
+    transform: translateX(4px);
+    cursor: pointer;
+}
+
+#passages a.link-internal:visited {
+    color: #8a7f6e;
+    border-left-color: #3d3a34;
+}
