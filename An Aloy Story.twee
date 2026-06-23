@@ -18,7 +18,7 @@ An Aloy Story
 }
 
 
-:: \ $world.lastPassage {"position":"850,0","size":"100,100"}
+:: $world.lastPassage {"position":"850,0","size":"100,100"}
 
 
 
@@ -182,12 +182,12 @@ Sie sieht dich kurz an.
 <<include "00_Sidequest_karla_finalize">>
 
 
-:: 00_Sidequest_karla_finalize {"position":"350,2000","size":"100,100"}
+:: 00_Sidequest_karla_finalize {"position":"350,1925","size":"100,100"}
 <<set $npc.karla.memory.flags.sidequest00Complete = true>>
 [[in die Stube gehen->Auf Stube]]
 
 
-:: 01_Sidequest_jarek {"position":"150,2400","size":"100,100"}
+:: 01_Sidequest_jarek {"position":"300,2325","size":"100,100"}
 <<set $npc.jarek.known = true>>
 Die Reihen lösen sich, Rekruten zerstreuen sich in Richtung Stube. Du bist schon halb im Gehen, als Jarek neben dir auftaucht — nicht plötzlich, nicht eilig. Er ist einfach da, als wäre er die ganze Zeit dort gewesen und du hättest es nur nicht bemerkt.
 
@@ -299,7 +299,7 @@ Draußen im Gang bleibt Jarek kurz stehen.
 <<include "01_Sidequest_jarek_finalize">>
 
 
-:: 01_Sidequest_jarek_Einstieg {"position":"2525,2100","size":"100,100"}
+:: 01_Sidequest_jarek_Einstieg {"position":"475,2425","size":"100,100"}
 Die Schreibstube liegt am Ende eines schmalen Ganges, hinter einer Tür, die zu schwer ist für den Raum dahinter. Drinnen: der Geruch von Wachs, alter Tinte und feuchtem Pergament. Ein einzelner Schreiber sitzt am Pult und kratzt mit der Feder, ohne aufzusehen. An den Wänden Regale, Truhen, Stapel von Verzeichnissen, die seit Jahren niemand mehr angefasst hat.
 
 „Die hier", sagt der Schreiber knapp und deutet auf einen Wust loser Folianten. „Nach Jahr sortieren. Was zerfällt, kommt in die Kiste. Und fasst mir nichts an, das ein Siegel trägt."
@@ -342,7 +342,7 @@ Er sieht dich an, und zum ersten Mal hast du das Gefühl, dass er dich tatsächl
 <<include "01_Sidequest_jarek_finalize">>
 
 
-:: 01_Sidequest_jarek_finalize {"position":"50,2375","size":"100,100"}
+:: 01_Sidequest_jarek_finalize {"position":"450,2575","size":"100,100"}
 <<set $npc.jarek.memory.flags.sidequest01Complete = true>>
 [[zurück in die Stube ->Auf Stube]]
 
@@ -362,15 +362,14 @@ Niemand antwortet. Niemand muss.
 
 <div class="thought-box"><<= setup.getAbendappellText("gedanke")>></div>
 
-<<if ($world.day == 3 || $world.day == 4) && $npc.karla.memory.flags.sidequest00Complete !== true>>\
+<<if ($world.day == 2 ) && $npc.karla.memory.flags.sidequest00Complete neq true>>\
 Karla kommt auf dich zu, sie schaut verdammt ernst. "DU! komm mit!" 
 [[Mitgehen->00_Sidequest_karla]]
 <</if>>\
-
-Nochmal Trainieren:
-[[Das Lager auf eigene Faust erkunden ->Nachmittag Hub]]
-
-Deadlink:
+<<if ($world.day == 3) && $npc.jarek.memory.flags.sidequest01Complete neq true>>\
+Jarek tritt neben dich, ohne dass du ihn hast kommen hören. „Auf ein Wort", sagt er leise.
+[[Hören, was er will ->01_Sidequest_jarek]]
+<</if>>\
 [[Auf Stube gehen ->Auf Stube]]
 
 
@@ -525,7 +524,7 @@ Dieses kurze, gespannte Schweigen, das in Kasernen nie wirklich Ruhe bedeutet.
         <<set _event = either(
             "Event_Wuerfelspiel",
             "Event_Schlaegerei"
-        )>>\
+        )>>\        
     <<include _event>>\
     <</if>>\
 	
@@ -533,38 +532,6 @@ Dieses kurze, gespannte Schweigen, das in Kasernen nie wirklich Ruhe bedeutet.
     [[Schlafen->Kap1_Der nächste Tag]]
     
 <</if>>\
-
-
-:: Auf Stube 1 {"position":"250,650","size":"100,100"}
-<<set $npc.karla.known = true, $npc.jarek.known = true>>
-Die schwere Holztür der Baracke fällt hinter dir ins Schloss, und für einen Herzschlag bleibt das Heulen des Windes draußen. Doch was dich drinnen erwartet, ist keine Gemütlichkeit — nur eine andere Art von Kälte.
-Der Raum riecht nach feuchter Wolle, billigem Talgöl und dem herben Schweiß von dreißig Menschen, die heute alle dasselbe an den Toren abgegeben haben. Zwei Reihen hölzerner Doppelstockbetten ziehen sich durch die Stube, die Strohsäcke flach und hart wie das Versprechen, das man dir hier nicht gegeben hat. Das Licht fällt grau und gleichgültig durch die schmalen Fenster.
-Die Hackordnung beginnt genau hier. Nicht auf dem Exerzierplatz, nicht in der Schreibstube des Sergeanten — hier, bei der Suche nach einem Platz zum Schlafen.
-Am hinteren Ende der Stube bricht Unruhe aus.
-Eine stämmige Rekrutin mit breiten Schultern und einem spöttischen Zug um die Lippen greift ohne ein Wort in die Habseligkeiten eines kleineren Jungen und befördert sie von der Pritsche in den Dreck. Das ist Karla. Ihre Stimme dröhnt rau durch den Raum wie ein Mühlstein über Kiesel.
-„Der Platz am Ofen gehört mir, Knirps. Such dir einen Platz im Zugwind, wenn dir deine Knochen lieb sind."
-Der vertriebene Junge zieht ab. Schweigend. Den Kopf gesenkt, die Wangen rot — nicht vor Scham allein, sondern vor der Ohnmacht dessen, der begriffen hat, dass Einspruch hier nichts kostet außer mehr Demütigung. Karla sieht sich um, langsam und lauernd, als würde sie geradezu darauf warten, dass jemand ihr widerspricht.
-Ihr Blick bleibt an dir hängen.
-<<if $npc.kurt.affection != 0>>
-Dann bricht ein Lachen aus ihr heraus — rau und breit und ohne jede Zurückhaltung. Sie mustert dich von oben bis unten, und das spöttische Funkeln in ihren Augen weicht etwas Echtererem. Einer fast dreckigen Begeisterung.
-„Haltet die Klappe!", ruft sie in den Raum, ohne den Blick von dir zu nehmen. „Schaut euch das an. Das ist der Frischling, den Brasner vorhin höchstpersönlich am Kragen über den Hof geschleift hat." Sie lacht wieder, kurz und anerkennend. „Dem alten Kurt am ersten Tag so in die Suppe zu spucken — verdammt, das braucht Eier."
-Ihre flache Hand trifft deine Schulter mit einem Klang, der durch die halbe Stube hallt.
-„Ich bin Karla. Wenn du im Schlamm genauso zäh bist wie im Offiziersflügel, werden wir beide hier verdammt viel Spaß haben." Sie nickt auf die freie Pritsche neben ihrer. „Schnapp sie dir, bevor es ein anderer tut."
-<<set $npc.karla.affection += 5>>
-
-[[Bei Karla einrichten->Stube: Bei Karla einrichten]]
-[[Ihr Angebot ablehnen und einen eigenen Platz suchen->Stube: Eigene Pritsche suchen][$npc.karla.affection -= 5]]
-
-<<else>>
-Bevor die Situation eskalieren kann, spürst du eine Hand auf deiner Schulter.
-Du fährst herum.
-Vor dir steht ein schlanker, sehniger Rekrut mit wachen, dunklen Augen und dem ruhigen Gesicht eines Menschen, dem Lärm noch nie viel bedeutet hat. Er trägt dieselbe rot-weiße Rekrutenkleidung wie du, wirkt darin aber seltsam gefasst — als hätte er sich mit dem Chaos um ihn herum bereits abgefunden, noch bevor es begann. Mit einer knappen Geste deutet er auf ein freies Stockbett nahe der Tür, weit genug von Karla entfernt, um unsichtbar zu bleiben.
-„Lass gut sein", sagt er mit leiser Stimme. „Wer am ersten Tag den dicken Max markiert, fängt sich beim Schinder als Erster den Schaft ein." Er streckt dir die Hand hin. „Ich bin Jarek. Sieht so aus, als müssten wir uns diese Holzkiste für die nächsten zwei Jahre teilen."
-
-[[Jareks Hand schütteln und das obere Bett für sich beanspruchen. ->Stube: Jarek anfreunden]]
-[[Jarek ignorieren und stattdessen eine eigene Pritsche suchen. ->Stube: Eigene Pritsche suchen]]
-
-<</if>>
 
 
 :: Das Erwachen {"position":"675,150","size":"100,100"}
@@ -610,7 +577,8 @@ Sie stehen bereits da und warten.
 Kurt, mit dem Gesicht eines Mannes, der Rekruten schon gesehen hat, als ihre Väter noch in den Windeln lagen. Neben ihm die Ausbilder, eine Reihe von Männern und Frauen, deren Gesichter alle dasselbe ausdrücken: geduldige, professionelle Gleichgültigkeit. Und dann, einen halben Schritt vor allen anderen, der Schinder.
 Er braucht keine Einführung. Er ist einfach da, und das genügt.
 Kurt tritt vor. Seine Stimme ist nicht laut, aber sie trägt — die Stimme eines Mannes, der gelernt hat, dass man nicht brüllen muss, wenn man etwas zu sagen hat.
-<<if $npc.kurt.affection != 0>>Du duckst dich unter seinem Blick weg. Versteckst dich in der Masse. Dass du ausgerechnet den Fährich verärgert hast ist kein gutes Ohmen für deine Zeit hier.<</if>>
+<<if $npc.kurt.affection < 0>>\
+Du duckst dich unter seinem Blick weg. Versteckst dich in der Masse. Dass du ausgerechnet den Fährich verärgert hast ist kein gutes Ohmen für deine Zeit hier.<</if>>\
 „Ich bin Fähnrich Kurt Brasner. Ihr werdet mich Fähnrich nennen, oder ihr werdet mich gar nicht nennen. Ich bin nicht euer Vater, nicht euer Freund und nicht euer Pfaffe." Er lässt seinen Blick einmal langsam über die Reihe wandern. „Ich bin derjenige, der entscheidet, ob ihr in zwei Jahren als Söldner aus diesen Toren geht — oder gar nicht."
 Stille.
 Kurt tritt zurück.
@@ -1226,24 +1194,192 @@ Der Sergeant am hölzernen Tisch blickt von seinen Listen auf und bellt:
 [["Ein junger Mann, bereit für die Ausbildung."->Das Erwachen]]
 
 
+:: Kap01_RekrutenKennenlernen {"position":"250,650","size":"100,100"}
+<<set $npc.karla.known = true, $npc.jarek.known = true>>
+Die schwere Holztür der Baracke fällt hinter dir ins Schloss, und für einen Herzschlag bleibt das Heulen des Windes draußen. Doch was dich drinnen erwartet, ist keine Gemütlichkeit — nur eine andere Art von Kälte.
+Der Raum riecht nach feuchter Wolle, billigem Talgöl und dem herben Schweiß von dreißig Menschen, die heute alle dasselbe an den Toren abgegeben haben. Zwei Reihen hölzerner Doppelstockbetten ziehen sich durch die Stube, die Strohsäcke flach und hart wie das Versprechen, das man dir hier nicht gegeben hat. Das Licht fällt grau und gleichgültig durch die schmalen Fenster.
+Die Hackordnung beginnt genau hier. Nicht auf dem Exerzierplatz, nicht in der Schreibstube des Sergeanten — hier, bei der Suche nach einem Platz zum Schlafen.
+Am hinteren Ende der Stube bricht Unruhe aus.
+Eine stämmige Rekrutin mit breiten Schultern und einem spöttischen Zug um die Lippen greift ohne ein Wort in die Habseligkeiten eines kleineren Jungen und befördert sie von der Pritsche in den Dreck. Das ist Karla. Ihre Stimme dröhnt rau durch den Raum wie ein Mühlstein über Kiesel.
+„Der Platz am Ofen gehört mir, Knirps. Such dir einen Platz im Zugwind, wenn dir deine Knochen lieb sind."
+Der vertriebene Junge zieht ab. Schweigend. Den Kopf gesenkt, die Wangen rot — nicht vor Scham allein, sondern vor der Ohnmacht dessen, der begriffen hat, dass Einspruch hier nichts kostet außer mehr Demütigung. Karla sieht sich um, langsam und lauernd, als würde sie geradezu darauf warten, dass jemand ihr widerspricht.
+Ihr Blick bleibt an dir hängen.
+<<if $npc.kurt.affection < 0 >>
+Dann bricht ein Lachen aus ihr heraus — rau und breit und ohne jede Zurückhaltung. Sie mustert dich von oben bis unten, und das spöttische Funkeln in ihren Augen weicht etwas Echtererem. Einer fast dreckigen Begeisterung.
+„Haltet die Klappe!", ruft sie in den Raum, ohne den Blick von dir zu nehmen. „Schaut euch das an. Das ist der Frischling, den Brasner vorhin höchstpersönlich am Kragen über den Hof geschleift hat." Sie lacht wieder, kurz und anerkennend. „Dem alten Kurt am ersten Tag so in die Suppe zu spucken — verdammt, das braucht Eier."
+Ihre flache Hand trifft deine Schulter mit einem Klang, der durch die halbe Stube hallt.
+„Ich bin Karla. Wenn du im Schlamm genauso zäh bist wie im Offiziersflügel, werden wir beide hier verdammt viel Spaß haben." Sie nickt auf die freie Pritsche neben ihrer. „Schnapp sie dir, bevor es ein anderer tut."
+<<set $npc.karla.affection += 5>>
+
+[[Bei Karla einrichten->Stube: Bei Karla einrichten]]
+[[Ihr Angebot ablehnen und einen eigenen Platz suchen->Stube: Eigene Pritsche suchen][$npc.karla.affection -= 5]]
+
+<<else>>
+Bevor die Situation eskalieren kann, spürst du eine Hand auf deiner Schulter.
+Du fährst herum.
+Vor dir steht ein schlanker, sehniger Rekrut mit wachen, dunklen Augen und dem ruhigen Gesicht eines Menschen, dem Lärm noch nie viel bedeutet hat. Er trägt dieselbe rot-weiße Rekrutenkleidung wie du, wirkt darin aber seltsam gefasst — als hätte er sich mit dem Chaos um ihn herum bereits abgefunden, noch bevor es begann. Mit einer knappen Geste deutet er auf ein freies Stockbett nahe der Tür, weit genug von Karla entfernt, um unsichtbar zu bleiben.
+„Lass gut sein", sagt er mit leiser Stimme. „Wer am ersten Tag den dicken Max markiert, fängt sich beim Schinder als Erster den Schaft ein." Er streckt dir die Hand hin. „Ich bin Jarek. Sieht so aus, als müssten wir uns diese Holzkiste für die nächsten zwei Jahre teilen."
+
+[[Jareks Hand schütteln und das obere Bett für sich beanspruchen. ->Stube: Jarek anfreunden]]
+[[Jarek ignorieren und stattdessen eine eigene Pritsche suchen. ->Stube: Eigene Pritsche suchen]]
+
+<</if>>
+
+
 :: Kap1_Der nächste Tag [tagesstart] {"position":"1400,925","size":"100,100"}
 /* 
-   Die Passage dient als einstiegspuntk für den Tag
+   Die Passage dient als einstiegspuntk für den Tag 
 */
+<div class="scenery-text"><<= setup.getNaechsterTagText("morgen")>></div>
+<<= setup.getNaechsterTagText("koerper")>>
 
-
-End for now
-
-
-
-Testings:
-Man Kann die Trainingsloop testen
-
+<div class="thought-box"><<= setup.getNaechsterTagText("gedanke")>></div>
+<<= setup.getNaechsterTagText("luigi_schatten")>>\
 [[Das Lager auf eigene Faust erkunden ->Nachmittag Hub]]
 
 
+:: Kap1_Der_naechste_Tag_Texte {"position":"1525,800","size":"100,100"}
+{
+  "morgen": [
+    {
+      "text": "Das erste Licht kriecht durch die Ritzen der Baracke wie ein Bote, der weiß, dass er nicht willkommen ist. Es ist noch kein richtiger Tag — nur das blasse Versprechen davon. Draußen beginnt irgendwo ein Horn zu rufen, und das Lager erwacht, langsam und ohne Gnade.",
+      "context": { "weather": "klar" }
+    },
+    {
+      "text": "Regen gegen das Holz. Gleichmäßig, trocken, gnadenlos. Draußen werden die Stiefel schwer werden vom ersten Schritt an, und der Dreck des Appellplatzes wird heute kein Staub, sondern Matsch sein. Du weißt das, noch bevor du die Augen aufmachst.",
+      "context": { "weather": "regen" }
+    },
+    {
+      "text": "Nebel liegt über dem Lager wie ein zweiter Vorhang, dichter als der erste. Die Baracke riecht nach feuchtem Holz und dem Atem von dreißig Männern. Draußen sind die Konturen der Palisaden verschwommen, und die Wachen klingen weiter weg als sie sind.",
+      "context": { "weather": "neblig" }
+    },
+    {
+      "text": "Die Kälte dieser Nacht hat sich zwischen die Bohlenwände gefressen und hält sich noch fest. Du atmest und siehst deinen Atem. Ein Geräusch wie Holzknacken — das Gebäude selbst, das sich gegen den Frost behauptet. Draußen ist der Exerzierplatz sicher weiß und hart.",
+      "context": { "weather": "frostig" }
+    },
+    {
+      "text": "Wind presst gegen die Baracke von der westlichen Seite. Das Holz gibt nach und federt wieder, ein leises, stetiges Atmen der Wände. Das Horn klingt anders als sonst — zerfetzt, in Fetzen, die der Wind davonträgt bevor sie ankommen.",
+      "context": { "weather": "windig" }
+    },
+    {
+      "text": "Donnern. Nicht das Donnern der Kanonen am Schießstand — tiefer, weiter, ohne Richtung. Ein Gewitter irgendwo hinter den Bergen, das langsam näherwandert. Das Horn ruft trotzdem. Das Horn ruft immer.",
+      "context": { "weather": "gewitter" }
+    },
+    {
+      "text": "Der Morgen kommt ohne Ankündigung, so wie alle Morgen hier. Das Horn. Der Reflex, aufzustehen. Der Körper, der es tut, noch bevor der Kopf gefragt hat. Irgendwann wird das zur zweiten Natur sein. Noch ist es nur Gehorsam.",
+      "context": {}
+    },
+    {
+      "text": "Ein graues Licht kriecht unter die Tür. Es ist nicht schön, aber es ist eindeutig: Der Tag hat begonnen. Du hast keine Wahl, als ihm zu folgen.",
+      "context": {}
+    },
+    {
+      "text": "Der Morgen riecht nach Küchenfeuer — irgendwo wird die Suppe bereits angesetzt. Es ist kein angenehmer Geruch. Aber er bedeutet, dass jemand früher aufgestanden ist als du, und das bedeutet Essen, und das ist genug.",
+      "context": {}
+    }
+  ],
+
+  "koerper": [
+    {
+      "text": "Deine Handflächen tun noch weh von gestern. Die Pike lässt keine sanften Spuren. Hornhaut bildet sich langsam — aber noch nicht schnell genug.",
+      "context": { "activity": "pike" }
+    },
+    {
+      "text": "Der Schwefelgeruch sitzt noch immer in der Kleidung. Du wirst ihn bis zum nächsten Waschen nicht loswerden. Ein paar der anderen rümpfen die Nase, als du an ihnen vorbeigehst.",
+      "context": { "activity": "cannon" }
+    },
+    {
+      "text": "Du streckst die Finger und prüfst instinktiv die Beugung. Der Wundarzt gestern hatte kalte Hände und einen warmen Blick — du hast beides bemerkt.",
+      "context": { "activity": "medicine" }
+    },
+    {
+      "text": "Die Schulter, an der die Sehne gestern gezogen hat, schmerzt mit einer dumpfen, vertrauten Beharrlichkeit. Armbrust. Du hast keine Ahnung, wie viele Schuss es braucht, bis der Körper aufhört zu klagen.",
+      "context": { "activity": "crossbow" }
+    },
+    {
+      "text": "Du weißt jetzt, welche Wachablösung wann kommt, und welche Lücke zwischen Planwagen und Palisade breit genug ist, um ungesehen zu passieren. Das Wissen sitzt wie ein kleines, stilles Gewicht hinter dem Sternum.",
+      "context": { "activity": "thievery" }
+    },
+    {
+      "text": "Die Gesprächsfetzen des gestrigen Abends kehren zurück, klarer jetzt als im Moment ihres Entstehens. Namen. Andeutungen. Halbe Wahrheiten. Du tust nichts damit — noch nicht.",
+      "context": { "activity": "gossip" }
+    },
+    {
+      "text": "Dein Körper weiß bereits, was ihn erwartet. Er hat aufgehört zu fragen, ob er will.",
+      "context": {}
+    },
+    {
+      "text": "Die Muskeln melden sich. Nicht dramatisch. Nur ein leises, stetiges Brennen, das daran erinnert, dass gestern tatsächlich passiert ist.",
+      "context": {}
+    },
+    {
+      "text": "Du stehst auf, und der Körper tut es mit dir. Das ist mehr, als du nach dem ersten Tag für möglich gehalten hättest.",
+      "context": {}
+    }
+  ],
+
+  "gedanke": [
+    {
+      "text": "Tag <<= $world.day>> in der Akademie. Ich zähle. Ich weiß, dass ich irgendwann aufhören muss zu zählen — aber noch bin ich nicht so weit.",
+      "context": { "maxDay": 10 }
+    },
+    {
+      "text": "Ich hätte nicht gedacht, dass Erschöpfung eine eigene Struktur hat. Aber sie hat eine. Sie legt sich über alles andere, und darunter liegen dann die echten Gedanken. Irgendwann komme ich zu ihnen.",
+      "context": { "minDay": 3, "maxDay": 20 }
+    },
+    {
+      "text": "Was man hier lernt, ist kein Wissen — es ist Gewohnheit. Gewohnheit brennt sich tiefer ein. Das sagt man. Ich glaube es langsam.",
+      "context": { "minDay": 10 }
+    },
+    {
+      "text": "Niemand hier fragt, woher du kommst. Das ist der erste Unterschied zu allem, was davor war. In den Bergen war ich immer der Junge mit dem Atem. Hier bin ich ein Rekrut. Nichts weiter. Das ist weniger und mehr zugleich.",
+      "context": { "maxDay": 15 }
+    },
+    {
+      "text": "Manchmal frage ich mich, was die anderen über sich denken, wenn niemand hinsieht. Ob Karla zählt. Ob Jarek zählt. Ob jeder hier seine eigene kleine Rechenaufgabe mitschleppt.",
+      "context": {}
+    },
+    {
+      "text": "Ich weiß nicht, ob ich stärker werde. Ich weiß, dass ich müde bin auf eine Art, die nicht mehr dasselbe ist wie am ersten Tag. Vielleicht ist das dieselbe Sache.",
+      "context": {}
+    },
+    {
+      "text": "Der Körper erinnert sich an mehr als der Kopf. Heute Morgen wussten meine Hände bereits, wie man die Riemen bindet, bevor ich daran gedacht hatte.",
+      "context": { "minDay": 5 }
+    }
+  ],
+
+  "luigi_schatten": [
+    {
+      "text": "",
+      "context": {}
+    },
+    {
+      "text": "",
+      "context": {}
+    },
+    {
+      "text": "",
+      "context": {}
+    },
+    {
+      "text": "<div class=\"thought-box\">Manchmal — selten, und nie wenn ich es erwarte — fällt mir das Siegel ein. Ein Handelszeichen auf einem Brief, den ich als Kind gehalten habe, ohne zu wissen, was es bedeutet. Ich erinnere mich nicht an das Gesicht. Nur an das Zeichen. Und daran, dass jemand sich gekümmert hat.</div>",
+      "context": { "minDay": 3, "maxDay": 20, "luigi_chance": true }
+    },
+    {
+      "text": "<div class=\"thought-box\">Die Berge von Aloy. Ich war jung und krank, und jemand hat mich dorthin gebracht. Hat mir Zeit gegeben, die mein Körper brauchte. Ich weiß nicht mehr, wer. Nur dass es jemand war. Dass es jemanden gab, dem das nicht gleichgültig war.</div>",
+      "context": { "minDay": 7, "maxDay": 40, "luigi_chance": true }
+    },
+    {
+      "text": "<div class=\"thought-box\">Es gibt Menschen, die Spuren hinterlassen, ohne Namen. Man merkt es erst viel später. Wenn man atmen kann. Wenn man läuft, ohne nach Luft zu schnappen. Dann denkt man: Das war nicht immer so. Und: Wer hat das verändert?</div>",
+      "context": { "minDay": 15, "luigi_chance": true }
+    }
+  ]
+}
+
+
 :: Kapitel 0 {"position":"225,50","size":"200,200"}
-Vers. 0.3.2
+Vers. 0.3.5
 
 <div class="chapter-screen">
     <div class="fade-trigger">Intro</div>
@@ -1265,7 +1401,7 @@ Vers. 0.3.2
 
     <div class="center-link">
         <<timed 4500ms>>
-            [[Weiter->Auf Stube 1]]
+            [[Weiter->Kap01_RekrutenKennenlernen]]
         <</timed>>
     </div>
 </div>
@@ -1797,31 +1933,18 @@ Er sagt es ohne Lautstärke. Als wäre sein Schweigen das Großzügigste, was er
 [[Befehl befolgen und direkt zum Kasernenhof gehen->Der Kasernenhof]]
 
 
-:: Untitled Passage 1 {"position":"600,1125","size":"100,100"}
-\:: Tag 2: Morgen
-## Tag 2 — Der Vormittag
-
-Das dumpfe Horn des Schinders reißt dich aus dem Schlaf, noch bevor die Sonne den Dunst über dem Lager vertrieben hat. Das Frühstück besteht aus demselben grauen Brei wie am Vortag. Karla kauft schweigend, während Jarek mit starrem Blick seine Stiefel schnürt. Keine Worte. Nur die Routine.
-
-Wenig später brennt die Mittagssonne unbarmherzig auf dem Exerzierplatz. Der Drill bricht dir fast die Knochen. „Ausrichten! Schilde hoch! Bewegen!“, gellt die Stimme des Hauptmanns. Als er euch zur Mittagsstunde endlich wegtreten lässt, zittern deine Arme vor Erschöpfung. 
-
-Doch als du den Platz verlässt, merkst du, dass die Wachen die Gatter öffnen. Bis zum Abendappell kontrolliert niemand, wo die Rekruten sich herumtreiben.
-
-[[Das Lager auf eigene Faust erkunden ->Nachmittag Hub]]
-
-
-:: Wuerfel_AllIn {"position":"2675,2500","size":"100,100"}
+:: Wuerfel_AllIn {"position":"2700,2500","size":"100,100"}
 <<set _bet = $player.money.copper>>
 <<include "Wuerfel_Auswertung">>
 
 
-:: Wuerfel_Auswertung {"position":"2525,2100","size":"100,100"}
+:: Wuerfel_Auswertung {"position":"2850,2250","size":"100,100"}
+<<set _isScripted = $world.needsDiceGame>>\
 <<set _win = false>>\
-
-<<if $world.needsDiceGame>> \
+<<if _isScripted>> \
     /* SCRIPTED WIN (Story-Moment) */
     <<set _win = true>> \
-    <<set $player.money.copper = 0>>\
+    <<set _bet = 5>>\
 <<else>>\	
     /* NORMAL GAME */
     <<set $player.money.copper -= _bet>>\
@@ -1831,29 +1954,28 @@ Doch als du den Platz verlässt, merkst du, dass die Wachen die Gatter öffnen. 
 <<if _win>>\
 	<<set _gain = _bet * 2>>\
     <<set $player.money.copper += _gain>>\
-<</if>>
-
+<</if>>\
 <div class="scenery-text">Du würfelst...
 
 Die Würfel schlagen auf den Tisch.</div>
-
 <<timed 3s>>\
-	<<if _win>>\
-		<div class="system-alert status-positive">„<<= _bet >> Kupfer Gewonnen.“</div>
-    <<else>> \
-    	<div class="system-alert status-negative">„<<= _bet >> Kupfer Verloren.“</div>
+    <<if _win >>\
+        <div class="system-alert status-positive">„<<= _bet >> Kupfer Gewonnen."</div>
+    <<else>>\
+        <div class="system-alert status-negative">„<<= _bet >> Kupfer Verloren."</div>
     <</if>>\
-<</timed>> \
+<</timed>>\
+<<if _isScripted>>\
+ <<timed 5s>>\
+      <<set $world.needsDiceGame = false>>\
+      Dein Herz schlägt bis zum Hals.
 
-<<if $world.needsDiceGame>>\
-	<<set $world.needsDiceGame = false>>\
-    Dein Herz schlägt bis zum Hals.
+      Karla schlägt dir auf die Schulter "Schau an, du solltes öfter auf mich hören!"
 
-	Karla schlägt dir auf die Schulter "Schau an, du solltes öfter auf mich hören!"
+      Du stehst auf und wakels in Richtung deiner Pritsche
 
-	Du stehst auf und wakels in Richtung deiner Pritsche
-    
-    [[Aufhören->Kap1_Der nächste Tag]] 
+      [[Aufhören->Kap1_Der nächste Tag]] 
+    <</timed>>\
 <<else>>   \
  <<timed 5s>>
  ---
@@ -1873,32 +1995,33 @@ Die Würfel schlagen auf den Tisch.</div>
 <</if>>
 
 
-:: Wuerfel_Set_1 {"position":"2575,2400","size":"100,100"}
+:: Wuerfel_Set_1 {"position":"2600,2400","size":"100,100"}
 <<set _bet = 1>>
 <<include "Wuerfel_Auswertung">>
 
 
-:: Wuerfel_Set_2 {"position":"2575,2500","size":"100,100"}
+:: Wuerfel_Set_2 {"position":"2700,2400","size":"100,100"}
 <<set _bet = 2>>
 <<include "Wuerfel_Auswertung">>
 
 
-:: Wuerfel_Set_5 {"position":"2675,2400","size":"100,100"}
+:: Wuerfel_Set_5 {"position":"2600,2500","size":"100,100"}
 <<set _bet = 5>>
 <<include "Wuerfel_Auswertung">>
 
 
 :: Wuerfel_Start {"position":"2650,2275","size":"100,100"}
-Wie viel willst du setzen?
-<<if $world.needsDiceGame>>
-Heute ist dein Absoluter Glückstag!
-Wir spielen Alles oder Nichts, dafür gehts auch um alles am Tisch!
+<<if $world.needsDiceGame>>\
+    Heute ist dein Absoluter Glückstag!
+    Wir spielen Alles oder Nichts, dafür gehts auch um alles am Tisch!
 
 Du siehst am Tisch 8 Kupfer liegen.
 
-<div class="thought-box">"Verdammt! ich hab nur 2 Kupfer, das ist alles was ich von der Käserei mitgenommen habe..."</div>
-[[Dein ganzes Kupfer auf den Tisch legen->Wuerfel_Set_5]]
-<<else>>
+<div class="thought-box">"Verdammt! ich hab nur 2 Kupfer, das ist alles was  von der Käserei übrig ist..."</div>
+[[Dein ganzes Kupfer auf den Tisch legen->Wuerfel_AllIn]]
+<<else>>\
+Wie viel willst du setzen?
+
 [[1 Kupfer->Wuerfel_Set_1]]
 [[2 Kupfer->Wuerfel_Set_2]]
 [[5 Kupfer->Wuerfel_Set_5]]
@@ -1958,7 +2081,7 @@ Nicht plötzlich – eher so, als würde die Müdigkeit sich einfach neben dich 
 <</if>>
 
 
-:: journalAnsicht {"position":"675,0","size":"100,100"}
+:: journalAnsicht {"position":"700,0","size":"100,100"}
 <div id="passage-journalansicht" class="passage journalansicht">
   <h2>📋 $player.name's Notizbuch</h2>
   Hier sind deine bisherigen Erkenntnisse über die Personen in der Akademie von Ohm festgehalten:
@@ -1971,7 +2094,7 @@ Nicht plötzlich – eher so, als würde die Müdigkeit sich einfach neben dich 
   <<print setup.renderRumors()>>
 
 </div>
-[[↩️ Zurück zum Dienst -> $world.lastPassage]]
+[[↩️ Zurück zum Dienst ->$world.lastPassage]]
 
 
 :: StoryScript [script]
@@ -2274,6 +2397,79 @@ setup.getAbendappellText = function (category) {
 
     var finalPool = contextMatches.length > 0 ? contextMatches : genericPool;
     if (finalPool.length === 0) finalPool = pool;
+
+    var pick = finalPool[Math.floor(Math.random() * finalPool.length)];
+    return pick ? pick.text : "";
+};
+
+setup.naechsterTagTextVault = null;
+
+setup.loadNaechsterTagVault = function () {
+    if (!setup.naechsterTagTextVault) {
+        setup.naechsterTagTextVault = JSON.parse(Story.get("Kap1_Der_naechste_Tag_Texte").text);
+    }
+};
+
+setup.getNaechsterTagText = function (category) {
+    setup.loadNaechsterTagVault();
+
+    var vault = setup.naechsterTagTextVault;
+    if (!vault || !vault[category]) {
+        return "";
+    }
+
+    var day      = State.variables.world ? State.variables.world.day : 1;
+    var weather  = State.variables.world ? State.variables.world.weather : "";
+    var activity = State.variables.player ? State.variables.player.chosen_activity : "";
+
+    var pool = vault[category];
+
+    // luigi_schatten: nur selten, ca. 25% Chance, und nur wenn Kontext passt
+    if (category === "luigi_schatten") {
+        var luigiPool = pool.filter(function (entry) {
+            var ctx = entry.context || {};
+            if (!ctx.luigi_chance) return false;
+            if (ctx.minDay !== undefined && day < ctx.minDay) return false;
+            if (ctx.maxDay !== undefined && day > ctx.maxDay) return false;
+            return true;
+        });
+
+        // 25% Chance, einen Luigi-Moment anzuzeigen
+        if (luigiPool.length > 0 && Math.random() < 0.25) {
+            var pick = luigiPool[Math.floor(Math.random() * luigiPool.length)];
+            return pick ? pick.text : "";
+        }
+        return ""; // meistens: kein Luigi-Moment
+    }
+
+    // Für alle anderen Kategorien: Kontext-Match bevorzugen
+    var contextMatches = pool.filter(function (entry) {
+        var ctx = entry.context || {};
+        if (ctx.luigi_chance) return false; // luigi-Einträge nur über eigenen Zweig
+        if (ctx.minDay !== undefined && day < ctx.minDay) return false;
+        if (ctx.maxDay !== undefined && day > ctx.maxDay) return false;
+
+        // Wetter-Match (nur wenn weather im context angegeben)
+        if (ctx.weather !== undefined) return ctx.weather === weather;
+
+        // Aktivitäts-Match (nur wenn activity im context angegeben)
+        if (ctx.activity !== undefined) return ctx.activity === activity;
+
+        return false; // kein generischer Treffer über diesen Pfad
+    });
+
+    var genericPool = pool.filter(function (entry) {
+        var ctx = entry.context || {};
+        if (ctx.luigi_chance) return false;
+        if (ctx.minDay !== undefined && day < ctx.minDay) return false;
+        if (ctx.maxDay !== undefined && day > ctx.maxDay) return false;
+        if (ctx.weather !== undefined) return false;
+        if (ctx.activity !== undefined) return false;
+        return true;
+    });
+
+    var finalPool = contextMatches.length > 0 ? contextMatches : genericPool;
+    if (finalPool.length === 0) finalPool = pool.filter(function(e){ return !e.context || !e.context.luigi_chance; });
 
     var pick = finalPool[Math.floor(Math.random() * finalPool.length)];
     return pick ? pick.text : "";
