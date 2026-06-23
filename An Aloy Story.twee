@@ -12,7 +12,12 @@ An Aloy Story
     "header": "blue",
     "script": "purple",
     "startup-debug": "purple",
-    "tagesstart": "green"
+    "tagesstart": "green",
+    "widget": "purple",
+    "nach_stube": "orange",
+    "nach_hub": "yellow",
+    "einmalig": "red",
+    "nach_morgen": "red"
   },
   "zoom": 0.6
 }
@@ -362,11 +367,11 @@ Niemand antwortet. Niemand muss.
 
 <div class="thought-box"><<= setup.getAbendappellText("gedanke")>></div>
 
-<<if ($world.day == 2 ) && $npc.karla.memory.flags.sidequest00Complete neq true>>\
+<<if $world.karla_druck >= 5 && $npc.karla.memory.flags.sidequest00Complete neq true>>\
 Karla kommt auf dich zu, sie schaut verdammt ernst. "DU! komm mit!" 
 [[Mitgehen->00_Sidequest_karla]]
 <</if>>\
-<<if ($world.day == 3) && $npc.jarek.memory.flags.sidequest01Complete neq true>>\
+<<if $world.jarek_druck >= 5 && $npc.jarek.memory.flags.sidequest01Complete neq true>>\
 Jarek tritt neben dich, ohne dass du ihn hast kommen hören. „Auf ein Wort", sagt er leise.
 [[Hören, was er will ->01_Sidequest_jarek]]
 <</if>>\
@@ -504,7 +509,7 @@ Du schließt die Augen, noch bevor jemand es löscht.
 [[Der nächste Tag. ->Kap1_Der nächste Tag]]
 
 
-:: Auf Stube {"position":"1950,1750","size":"100,100"}
+:: Auf Stube {"position":"1925,1750","size":"100,100"}
 Nach dem harten Tag bist du auf der Stube.
 
 Der Raum riecht nach kaltem Holz, Leder und abgestandenem Rauch, der sich irgendwo zwischen den Balken festgesetzt hat.  
@@ -746,7 +751,7 @@ Du bist jetzt drin.
 [[Schlafen ->Kap1_Der nächste Tag]]
 
 
-:: Event_Schlaegerei {"position":"2400,1450","size":"100,100"}
+:: Event_Schlaegerei {"position":"2600,1300","size":"100,100"}
 Fäuster
 
 
@@ -958,11 +963,12 @@ Du lehnst dich ein Stück zu weit vor, um mehr zu verstehen – und prompt knarr
         journalEntry: "Ein kühler, etwas vornehmer Typ. Pragmatischer Offizier des Corps."
     },
 
-    /* Echte Spieler - Offiziere */
+    /* Echte Spieler */
 
     hauptmannLenz: {
         name: "Hauptmann Lenz",
         known: false,
+        faction: "84. Banner",
         affection: 0,
         trust: 0,
         isRealPlayer: true,
@@ -973,6 +979,7 @@ Du lehnst dich ein Stück zu weit vor, um mehr zu verstehen – und prompt knarr
     weibelWenzel: {
         name: "Weibel Wenzel",
         known: false,
+        faction: "84. Banner",
         affection: 0,
         trust: 0,
         isRealPlayer: true,
@@ -980,25 +987,51 @@ Du lehnst dich ein Stück zu weit vor, um mehr zu verstehen – und prompt knarr
         journalEntry: "Ein Weibel der Akademie. Mehr steckt noch nicht in deinen Aufzeichnungen."
     },
 
-    weibelLars: {
-        name: "Weibel Lars",
-        known: false,
-        affection: 0,
-        trust: 0,
-        isRealPlayer: true,
-        memory: { flags: {}, events: [] },
-        journalEntry: "Ein Weibel der Akademie. Mehr steckt noch nicht in deinen Aufzeichnungen."
-    },
+weibelLars: {
+    name: "Lars Spalter",
+    known: false,
+    faction: "84. Banner",
+    affection: 0,
+    trust: 0,
+    isRealPlayer: true,
+    memory: { flags: {}, events: [] },
+    journalEntry: "Wachweibl des 84. Banners. Roter Mantel, schwarzer Arm, das Wappenschild der GWALT auf der Brust. Redet wenig, meint viel. Reibt sich den Nasenrücken wenn er nachdenkt — oder wenn ihm etwas Schmerzen bereitet."
+},
+
+haddl: {
+    name: "Hartmut Hadde Wurz",
+    known: false,
+    faction: "84. Banner",
+    affection: 0,
+    trust: 0,
+    isRealPlayer: true,
+    memory: { flags: {}, events: [] },
+    journalEntry: "Armbruster und Fahnenträger des 84. Banners. Kein Bart, lange Haare, große Klappe. Trinkt mehr als gut ist und wird dabei nie laut. Zitiert ständig seinen Opa."
+},
+
+diplomatHannes: {
+    name: "Hannes Böttcher",
+    known: false,
+    faction: "Städtebund",
+    affection: 0,
+    trust: 0,
+    isRealPlayer: true,
+    memory: { flags: {}, events: [] },
+    journalEntry: "Diplomat im Dienste des Städtebundes für das 84. Banner. Weißer Mantel, Abzeichen des Haubentauchers. Tritt höflich auf — zu höflich vielleicht. Hat braune Augen die scharf und ruhig sind wie die Klinge eines Mannes der gelernt hat Wut in Kälte zu verwandeln."
+},
 
     hansFichtensplitter: {
         name: "Hans Fichtensplitter",
         known: false,
+        faction: "84. Banner",
         affection: 0,
         trust: 0,
         isRealPlayer: true,
         memory: { flags: {}, events: [] },
         journalEntry: "Ein Name der fällt. Ein Gesicht das auftaucht. Was Hans Fichtensplitter hier zu suchen hat – das weißt du noch nicht."
     },
+    
+
 
     /* ===========================
        MITREKRUTEN
@@ -1050,15 +1083,7 @@ Du lehnst dich ein Stück zu weit vor, um mehr zu verstehen – und prompt knarr
        DIPLOMATIE / AUSSENWELT
        =========================== */
 
-    diplomatHannes: {
-        name: "Hannes Böttcher",
-        known: false,
-        affection: 0,
-        trust: 0,
-        isRealPlayer: true,
-        memory: { flags: {}, events: [] },
-        journalEntry: "Ein Diplomat im Dienste des Städtebundes. Tritt höflich auf – zu höflich vielleicht."
-    },
+    
 
     /* ===========================
        DER STILLE HINTERGRUND
@@ -1100,7 +1125,8 @@ Du lehnst dich ein Stück zu weit vor, um mehr zu verstehen – und prompt knarr
         stats: {
             mercy: 50,
             ambition: 50,
-            honesty: 50
+            honesty: 50,
+			scholarship:20
         },
 
         reputation: {
@@ -1134,8 +1160,41 @@ Du lehnst dich ein Stück zu weit vor, um mehr zu verstehen – und prompt knarr
     needsDiceGame: true,
     seenGossip: {},
     currentGossipStory: "",
+    kondition: 70,        // 0 = Zusammenbruch, 100 = Bestform
+    karla_druck: 0,       // steigt automatisch -> Sidequest wird dringlich
+    jarek_druck: 0,
+    interruptDoneToday: false,
+    interruptHistory: {},
     
 }>>
+
+
+:: InterruptWidgets\  [widget] {"position":"1350,2275","size":"100,100"}
+<<widget "weiterImTag">>\
+<<link "Weiter">><<goto setup.routeFromTags(tags())>><</link>>\
+<</widget>>
+
+
+:: Interrupts {"position":"1475,2125","size":"100,100"}
+Routing-Tags (genau einer pro Interrupt, legt das Rücksprungziel fest):
+
+nach_hub    		Nachmittag HubMorgen-Einschub, Tag läuft normal weiter
+
+nach_appell 		Abendappellder Einschub frisst den Nachmittag
+
+nach_stube			Auf Stubeganzer Tag weg, direkt zum Abend
+
+nach_morgen		Kompletter Tag und abend verloren
+
+
+
+Verhaltens-Tag (optional, zusätzlich):
+
+einmalig			feuert nie wieder, sobald er einmal gelaufen ist
+
+
+---
+<<weiterImTag>>
 
 
 :: Intro {"position":"500,150","size":"100,100"}
@@ -1205,6 +1264,10 @@ Vor dir steht ein schlanker, sehniger Rekrut mit wachen, dunklen Augen und dem r
 /* 
    Die Passage dient als einstiegspuntk für den Tag 
 */
+<<set _interrupt = setup.checkInterrupt()>>\
+<<if _interrupt != null>>\
+    <<goto _interrupt>>\
+<</if>>\
 <div class="scenery-text"><<= setup.getNaechsterTagText("morgen")>></div>
 <<= setup.getNaechsterTagText("koerper")>>
 
@@ -1354,7 +1417,7 @@ Vor dir steht ein schlanker, sehniger Rekrut mit wachen, dunklen Augen und dem r
 
 
 :: Kapitel 0 {"position":"225,50","size":"200,200"}
-Vers. 0.3.5
+Vers. 0.4.0
 
 <div class="chapter-screen">
     <div class="fade-trigger">Intro</div>
@@ -1480,6 +1543,7 @@ Du schließt die Augen.
             💰<<set _m = setup.getMoney($player.money.copper)>>\
             <<= _m.gold >> G&nbsp; <<= _m.silver >> S &nbsp;<<= _m.copper >> K
         </span>\
+        <span class="hud-item hud-kondition"><<= setup.getKonditionLabel($world.kondition) >></span>\
         <<if $world.weather>>\
         <span class="hud-item hud-weather"><<= $world.weather >></span>
         <</if>>\
@@ -1519,6 +1583,155 @@ Die Treppe. Den Korridor. Keine Rücksicht auf dein Tempo, kein Wort mehr, nur d
 
 [[Befehl befolgen und direkt zum Kasernenhof gehen->Der Kasernenhof]]
 [[Sich heimlich von der Truppe absetzen und die Akademie-Hallen auskundschaften->Hallen erkunden]]
+
+
+:: Story002_BierAnnehmen {"position":"1775,2550","size":"100,100"}
+Du nimmst den Becher.
+Das Bier ist dünn und hat einen Stich ins Saure — das Billige, das der Wirt für Soldaten aufhebt weil er weiß dass sie es trotzdem trinken. Es schmeckt trotzdem gut. Vielleicht wegen der Gesellschaft. Vielleicht wegen des Tages der dahinter liegt.
+Haddl redet. Über die Gebirgsmarine, über einen Winter irgendwo an der Grenze, über einen Maultier das klüger war als sein Reiter. Lars hört zu mit dem Gesicht eines Mannes der die meisten dieser Geschichten schon kennt und sie trotzdem lässt.
+Irgendwann bist du kein Rekrut mehr an ihrem Tisch. Du bist jemand der dazugehört.
+
+<div class="scenery-text">Der Abend wird länger als geplant.</div>
+
+[[Noch eine Runde ->Story002_finalize]]\
+
+
+:: Story002_Bier_Ausgeben {"position":"1925,2550","size":"100,100"}
+<<set $player.gold -= 8>>\
+<<set $npc.weibelLars.affection += 1>>\
+<<set $npc.weibelLars.memory.events.push("Hat Bier ausgegeben")>>\
+<<set $npc.haddl.affection += 1>>\
+<<set $npc.haddl.memory.events.push("Hat Bier ausgegeben")>>\
+Du winkst den Wirt heran und legst acht Kupfer auf den Tisch.
+„Für die zwei."
+Der Wirt nimmt das Geld ohne Kommentar. Haddl dreht sich um, sieht den Becher, sieht dich — und grinst dann breit wie ein Mann dem gerade ein langer Tag besser wird.
+„Der Opa hat immer gesagt—"
+„Ich weiß", sagt Lars. Aber er nimmt den Becher.
+Eine kurze Stille. Dann lehnt sich Lars zurück und hebt den Becher in deine Richtung. Nicht warm. Nicht feierlich. Einfach nur — anerkennend.
+„Wie heißt du."
+Du sagst es.
+Er nickt. Dann dreht er sich zum Wirt.
+„Noch eine Runde. Der Bursche auch."
+Haddl strahlt. „Der Opa hat immer gesagt: Wer großzügig ist bekommt mehr zurück als er gegeben hat."
+„Das hat der Opa diesmal vielleicht sogar gesagt", gibt Lars zu.
+
+[[Noch eine Runde ->Story002_finalize]]\
+
+
+:: Story002_Taverne_Ansprechen_KeinAufhaenger {"position":"2000,2400","size":"100,100"}
+Du gehst rüber. Ohne Grund. Ohne Plan.
+Der Große bemerkt dich zuerst. Sein Blick kommt langsam hoch — so wie ein Mann der gelernt hat dass das meiste was auf ihn zukommt entweder Arbeit oder Ärger ist. Er wartet ab welches du bist.
+Der Lange dreht sich um. Mustert dich von oben bis unten mit der entspannten Gründlichkeit von jemandem dem das Ergebnis egal ist.
+Stille.
+„Nun!" Der Große. Kein Fragezeichen dahinter.
+<div class="thought-box">Oh Mann! Ich hätte mir echt vorher überlegen sollen was ich eigentlich sagen will!</div> 
+Der Lange greift seinen Becher, lehnt sich zurück und rettet dich auf seine Art.
+„Setz dich, Bursche. Wer steht wenn er sitzen könnte ist entweder auf der Flucht—" er trinkt, „—oder zu dumm um's zu merken."
+Der Große sieht ihn an mit dem Gesicht eines Mannes der sich an diesen Satz seit Jahren gewöhnt.
+Sie nennen ihre Namen. $npc.weibelLars.name und $npc.haddl.name .
+<<set $npc.weibelLars.known = true>>\
+<<set $npc.haddl.known = true>>\
+Das Gespräch ist kurz und unverbindlich. Lars antwortet wenn er muss, Haddl redet in die Lücken. Draußen wird es dunkler. Irgendwo kracht ein Stuhl um.
+<<if $player.money.copper >= 8>>
+
+Du könntest die Runde schmeißen. Ein Becher Bier kauft mehr als Bier.
+[[Ihnen ein Bier ausgeben ->Story002_Bier_Ausgeben]]\
+[[Sich verabschieden und zurück zu den Rekruten ->Auf Stube][$world.kondition += 5]]
+<<else>>\
+[[Sich verabschieden und zurück zu den Rekruten ->Auf Stube][$world.kondition += 5]]
+<</if>>\
+
+
+:: Story002_Taverne_Ansprechen_MitAufhaenger {"position":"1725,2400","size":"100,100"}
+Du gehst rüber. Das Wappen auf dem Mantel gibt dir genug.
+„Das Wappenschild—" du nickst in Richtung seiner Brust. „Das 84. Banner."
+Der Große sieht dich an. Dann sieht er dich //anders// an — so wie man jemanden ansieht der gerade von Hund auf Mensch hochgestuft wurde.
+„Ja." Eine kurze Pause. „Woher weißt du das."
+Keine Frage. Eine Prüfung.
+Du nennst den Namen. $story002_knownSoeldner
+Etwas in seinem Gesicht verändert sich. Kaum merklich. Er reibt sich den Nasenrücken, langsam, und nickt dann einmal — so wie Männer nicken wenn eine Rechnung aufgeht die sie nicht erwartet haben.
+„Setz dich."
+Der Lange hat das Ganze mit stiller Freude verfolgt. Er schiebt mit dem Fuß einen Stuhl heraus ohne aufzuhören zu trinken.
+„Lars", sagt der Große.
+„Haddl." Der Lange hebt seinen Becher. „Und der Opa hat immer gesagt: Wer das Wappen kennt ohne gefragt zu werden — der schaut hin. Wer hinschaut überlebt länger."
+Lars sieht ihn an.
+„Das hat der Opa nie gesagt."
+„Nein", gibt Haddl zu. „Aber es klingt gut."
+<<set $npc.weibelLars.known = true>>\
+<<set $npc.weibelLars.affection += 2>>\
+<<set $npc.haddl.known = true>>\
+<<set $npc.haddl.affection += 1>>\
+<div class="scenery-text">Das Gespräch findet seinen eigenen Rhythmus. Lars redet wenig aber wenn er redet hat es Gewicht. Haddl füllt die Lücken mit Geschichten die halb gelogen und halb zu gut sind um erfunden zu sein.
+Irgendwann bestellt Lars ohne zu fragen eine neue Runde.</div>
+[[Das Bier annehmen ->Story002_BierAnnehmen]]\
+
+
+:: Story002_Taverne_mit_Lars_Und_Hadde [einmalig nach_morgen] {"position":"1875,2275","size":"100,100"}
+Es war die Idee von jemand anderem. Zumindest sagst du dir das.
+Drei Mann, ein Loch im Zaun das schon seit Wochen niemand geflickt hat, und ein Nachmittag der sich lang genug anfühlt um es zu riskieren. Der Weg zur Taverne dauert keine zehn Minuten — aber die ersten zwei gehst du mit dem Nacken zwischen den Schultern.
+Niemand ruft euch zurück.
+<div class="scenery-text">Es riecht nach Talg, saurem Bier und dem angenehmen Nichts von //nach dem Dienst//. Ein Dutzend Tische, halb besetzt. Irgendwer lacht zu laut. Niemand schaut hin.
+</div>
+Becher werden bestellt. Einer deiner Kameraden zieht unter dem Tisch die Stiefel aus und seufzt dabei wie ein alter Mann. Die Schultern fallen zum ersten Mal seit dem Morgen ein wenig nach unten.
+Du lässt den Blick wandern.
+In der hinteren Ecke sitzen zwei Männer.
+
+Der Größere lehnt mit dem Rücken zur Wand — roter Mantel, der rechte Arm schwarz abgesetzt, ein auffälliges Wappenschild auf der Brust 
+<<if setup.isFactionKnown("84. Banner")>>\
+	<div class="scenery-text">Der Haubentaucher!</div>
+    <<set $story002_knownSoeldner = setup.getRandomKnownNpcByFaction("84. Banner")>>\
+    <div class="thought-box">Den habe ich schon bei $story002_knownSoeldner gesehen</div>
+<<else>>\
+//Aber du kannst es nicht einordnen. 
+
+<</if>>\
+Er hört zu, die Arme vor der Brust verschränkt, und reibt sich dabei langsam den Nasenrücken. Das Gesicht eines Mannes dem das hier nicht der erste schwierige Nachmittag ist.
+Der andere — kein Bart, lange Haare, eine rot-weiße Hose die nach Gebirge aussieht — redet. Mit den Händen, mit dem Oberkörper, mit dem halben Becher der dabei gefährlich schwappt. Was er sagt geht im Lärm des Raumes unter.
+
+Der Große antwortet mit zwei Worten.
+
+Der Lange lacht
+
+<<if setup.isFactionKnown("84. Banner")>>\
+	Das Barret, das Wappen, Du willst mehr über die Kerle erfahren.
+    Aber du bist mit deinen Kammeraden gekommen und willst eigentlich die Zeit mit ihnen genießen
+    
+	[[Hingehen ->Story002_Taverne_Ansprechen_MitAufhaenger]]\
+    [[Den Nachmittag genießen und die zwei vergessen ->Auf Stube][$world.kondition += 1]]\
+<<else>>\
+Fremde Gesichter. Kein Grund hinzugehen.
+
+Und trotzdem.
+
+Irgendetwas an den zwei — die Haltung, der Mantel, die Art wie der Große zuhört — lässt deinen Blick immer wieder rüberwandern.
+
+[[Den Nachmittag genießen und die zwei vergessen ->Auf Stube][$world.kondition += 1]]\
+[[Hingehen ->Story002_Taverne_Ansprechen_KeinAufhaenger]]
+<</if>>\
+
+
+:: Story002_finalize {"position":"1850,2700","size":"100,100"}
+<div class="scenery-text">Was danach passiert lässt sich schwer in einer geraden Linie erzählen.</div>
+Irgendwann war der Becher leer und dann voll und dann wieder leer. 
+
+Haddl hat eine Sau aufgetrieben — woher, das hat niemand gefragt und er hat es nicht erklärt. 
+Die Gasse draußen war schmal genug dass es knapp wurde.
+Lars hat dabei das Gesicht eines Mannes gemacht der das nicht gutheißt und trotzdem nicht aufgehört hat zu lachen.
+Du erinnerst dich an Pflastersteine. An kalte Luft. An Haddl der irgendetwas über den Opa ruft während die Sau die Richtung wechselt.
+Den Rest reimst du dir morgen zusammen. Vielleicht hast du dir was notiert?
+<div class="thought-box">Es war ein guter Abend. Das weißt du noch. Den Rest nicht.</div>
+
+<<unset $story002_knownSoeldner>>\
+<<= setup.setKondition(-10)>>\
+<<= setup.setPlayerStat("ambition", -10)>>\
+<<= setup.pushNpcMemory("weibelLars", "Saurreiten in Ohm")>>\
+<<= setup.pushNpcMemory("haddl", "Saurreiten in Ohm")>>\
+<<= setup.addRumor("Lars hat schon mal wem ins Bier gepisst.")>>\
+<<run setup.addRumor("Haddl verwendet oft den Satz: Der Opa hat immer gesagt...")>>\
+<<= setup.addItem("Söldner-Handbuch mit Widmung von Lars und Hadde")>>\
+
+---
+<<weiterImTag>>
 
 
 :: StoryInit {"position":"0,0","size":"100,100"}
@@ -2077,25 +2290,31 @@ Config.history.maxStates = 1;
 Config.debug = false;
 
 
+
+/*==============================================================
+CONTITIONAL INTERRUPTS
+==============================================================*/
+
+setup.interruptCond     = {};   // optional: "Name" -> w => boolean
+setup.interruptCooldown = {};   // optional: "Name" -> Tage (sonst Default 3)
+setup.interruptPrio     = {};   // NEU: höher = wird zuerst gefeuert
+
+/*ab hier Prios und conditions eintragen*/
+setup.interruptCond["Story002_Taverne_mit_Lars_Und_Hadde"] = w => w.day >= 8;
+setup.interruptPrio["Story002_Taverne_mit_Lars_Und_Hadde"] = 60;
+
+
+
+
+
+
+
 setup.money = {
   copperPerSilver: 7,
   silverPerGold: 10,
 }
 
-setup.getMoney = function (copper) {
 
-  let silver = Math.floor(copper / setup.money.copperPerSilver)
-  let gold = Math.floor(silver / setup.money.silverPerGold)
-
-  silver = silver % setup.money.silverPerGold
-  copper = copper % setup.money.copperPerSilver
-
-  return {
-    gold,
-    silver,
-    copper
-  }
-};
 
 
 postdisplay["world-tracker"] = function () {
@@ -2500,6 +2719,23 @@ setup.enoughNpcAffection = function (npcKey, requiredValue) {
 
 //---------------------Player Section
 
+setup.getMoney = function (copper) {
+
+  let silver = Math.floor(copper / setup.money.copperPerSilver)
+  let gold = Math.floor(silver / setup.money.silverPerGold)
+
+  silver = silver % setup.money.silverPerGold
+  copper = copper % setup.money.copperPerSilver
+
+  return {
+    gold,
+    silver,
+    copper
+  }
+};
+
+
+
 setup.renderRumors = function () {
     if (State.variables.player.rumors.length === 0) {
         return "Noch keine Gerüchte notiert.";
@@ -2637,6 +2873,29 @@ setup.hasItem = function (itemName) {
     return player.inventory.includes(itemName);
 };
 
+setup.isFactionKnown = function(factionString) {
+    return Object.values(State.variables.npc).some(npc => 
+        npc.faction === factionString && npc.known === true
+    );
+};
+
+setup.getRandomKnownNpcByFaction = function(factionString) {
+    const known = Object.values(State.variables.npc).filter(npc => 
+        npc.known === true && npc.faction === factionString
+    );
+    if (known.length === 0) return null;
+    return known[Math.floor(Math.random() * known.length)].name;
+};
+
+setup.getKonditionLabel = function (k) {
+    if (k >= 90) return "💪 Bestform";
+    if (k >= 70) return "🟢 Fit";
+    if (k >= 50) return "🟡 Angeschlagen";
+    if (k >= 30) return "🟠 Erschöpft";
+    if (k >= 10) return "🔴 Am Limit";
+    return "💀 Zusammenbruch";
+};
+
 //------------------------WORLD SECTION
 
 
@@ -2663,7 +2922,100 @@ setup.resetDailyVariables = function() {
   	world.weather = weatherConditions[rnd];
     world.wasPracticing = false;
   	world.day+=1
+  	// --- Kondition: zehrt jeden Tag, Sterben nur durch Vernachlässigung ---
+    world.kondition = Math.max(0, world.kondition - 5);
+
+    // --- Plotdruck steigt passiv, solange Sidequest offen ist ---
+    const k = State.variables.npc.karla;
+    const j = State.variables.npc.jarek;
+    if (k && !k.memory.flags.sidequest00Complete) world.karla_druck += 1;
+    if (j && !j.memory.flags.sidequest01Complete) world.jarek_druck += 1;
+
+    world.interruptDoneToday = false;
   	
+};
+
+setup.setKondition = function (modifier) {
+    const world = State.variables.world;
+    if (!world) {
+        console.warn("World nicht gefunden");
+        return "";
+    }
+    world.kondition = world.kondition + modifier;
+    if (modifier < 0) {
+        return '<div class="system-alert status-negative">Kondition verringert</div>';
+    } else if (modifier > 0) {
+        return '<div class="system-alert status-positive">Kondition erhöht</div>';
+    }
+    return "";
+};
+
+setup.routeTags = {
+    nach_hub:    "Nachmittag Hub",
+    nach_appell: "Abendappell",
+    nach_stube:  "Auf Stube",
+  	nach_morgen: "Kap1_Der nächste Tag" 
+};
+
+
+
+/*==============================================================
+ INTERRUPTS
+==============================================================*/
+setup.checkInterrupt = function() {
+    const w = State.variables.world;
+    if (w.interruptDoneToday) return null;
+    const hist = w.interruptHistory;
+
+    // Eignung: nicht auf Cooldown, nicht verbrauchter Einmaliger
+    const eligible = name => {
+        if (Story.get(name).tags.includes("einmalig") && hist[name]) return false;
+        const cd = setup.interruptCooldown[name] || 3;
+        if (hist[name] && (w.day - hist[name]) < cd) return false;
+        return true;
+    };
+
+    // alle Interrupt-Passagen einsammeln
+    let pool = [];
+    Object.keys(setup.routeTags).forEach(tag => {
+        Story.lookup("tags", tag).forEach(p => pool.push(p.title));
+    });
+    pool = [...new Set(pool)];
+
+    // --- 1. PFLICHT: hat eine Bedingung UND sie ist erfüllt -> muss feuern ---
+    const pflicht = pool
+        .filter(name => setup.interruptCond[name])           // nur mit Bedingung
+        .filter(name => setup.interruptCond[name](w))        // Bedingung erfüllt
+        .filter(eligible)
+        .sort((a, b) => (setup.interruptPrio[b] || 0) - (setup.interruptPrio[a] || 0));
+
+    if (pflicht.length > 0) {
+        const winner = pflicht[0];
+        hist[winner] = w.day;
+        w.interruptDoneToday = true;
+        return winner;                  // KEIN Zufalls-Gate -> garantiert
+    }
+
+    // --- 2. ZUFALL: keine Bedingung -> normaler Pool wie bisher ---
+    const zufall = pool
+        .filter(name => !setup.interruptCond[name])
+        .filter(eligible);
+
+    if (zufall.length === 0) return null;
+    if (Math.random() > (w.interruptChance || 0.35)) return null;
+
+    const winner = zufall.random();
+    hist[winner] = w.day;
+    w.interruptDoneToday = true;
+    return winner;
+};
+
+// liest aus den Tags der aktuellen Passage das Rücksprungziel
+setup.routeFromTags = function(tagList) {
+    for (const t of tagList) {
+        if (setup.routeTags[t]) return setup.routeTags[t];
+    }
+    return "Nachmittag Hub";
 };
 
 // ========================
