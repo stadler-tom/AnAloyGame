@@ -12,11 +12,12 @@ An Aloy Story
     "header": "blue",
     "script": "purple",
     "startup-debug": "purple",
-    "widget": "purple",
+    "widget": "blue",
     "nach_stube": "orange",
     "nach_hub": "green",
     "einmalig": "red",
-    "nach_morgen": "red"
+    "nach_morgen": "red",
+    "interrupt": "purple"
   },
   "zoom": 0.6
 }
@@ -750,6 +751,7 @@ Du bist jetzt drin.
 Fäuste Fliegen, sonst gibt es nix zu sehen.
 [[Schlafen ->Kap1_Der nächste Tag]]
 
+
 :: Event_Wuerfelspiel {"position":"2450,2225","size":"100,100"}
 Ein paar Rekruten sitzen um einen groben Holztisch.  
 Zwischen Krügen und Kerzenlicht klackern Würfel.
@@ -1161,6 +1163,7 @@ diplomatHannes: {
     jarek_druck: 0,
     interruptDoneToday: false,
     interruptHistory: {},
+    appliedPassages : {},
     
 }>>
 
@@ -1172,7 +1175,9 @@ diplomatHannes: {
 
 
 :: Interrupts {"position":"1925,2025","size":"100,100"}
-Routing-Tags (genau einer pro Interrupt, legt das Rücksprungziel fest):
+interrupt an die erste Passage, das ist der einsprung punkt
+
+Routing-Tags (genau am einer pro Interrupt, legt das Rücksprungziel fest, bei mehreren passagen da wo ein rücksprung passert taggen):
 
 nach_hub    		Nachmittag HubMorgen-Einschub, Tag läuft normal weiter
 
@@ -1662,7 +1667,7 @@ Irgendwann bestellt Lars ohne zu fragen eine neue Runde.</div>
 [[Das Bier annehmen ->Story002_BierAnnehmen]]\
 
 
-:: Story002_Taverne_mit_Lars_Und_Hadde [nach_morgen] {"position":"2175,2400","size":"100,100"}
+:: Story002_Taverne_mit_Lars_Und_Hadde [interrupt] {"position":"2175,2400","size":"100,100"}
 Es war die Idee von jemand anderem. Zumindest sagst du dir das.
 Drei Mann, ein Loch im Zaun das schon seit Wochen niemand geflickt hat, und ein Nachmittag der sich lang genug anfühlt um es zu riskieren. Der Weg zur Taverne dauert keine zehn Minuten — aber die ersten zwei gehst du mit dem Nacken zwischen den Schultern.
 Niemand ruft euch zurück.
@@ -1717,14 +1722,15 @@ Du erinnerst dich an Pflastersteine. An kalte Luft. An Haddl der irgendetwas üb
 Den Rest reimst du dir morgen zusammen. Vielleicht hast du dir was notiert?
 <div class="thought-box">Es war ein guter Abend. Das weißt du noch. Den Rest nicht.</div>
 
-<<unset $story002_knownSoeldner>>\
-<<= setup.setKondition(-10)>>\
-<<= setup.setPlayerStat("ambition", -10)>>\
-<<= setup.pushNpcMemory("weibelLars", "Saurreiten in Ohm")>>\
-<<= setup.pushNpcMemory("haddl", "Saurreiten in Ohm")>>\
-<<= setup.addRumor("Lars hat schon mal wem ins Bier gepisst.")>>\
-<<run setup.addRumor("Haddl verwendet oft den Satz: Der Opa hat immer gesagt...")>>\
-<<= setup.addItem("Söldner-Handbuch mit Widmung von Lars und Hadde")>>\
+	<<unset $story002_knownSoeldner>>\
+    <<= setup.setKondition(-10)>>\
+    <<= setup.setPlayerStat("ambition", -10)>>\
+    <<= setup.pushNpcMemory("weibelLars", "Saurreiten in Ohm")>>\
+    <<= setup.pushNpcMemory("haddl", "Saurreiten in Ohm")>>\
+    <<= setup.addRumor("Lars hat schon mal wem ins Bier gepisst.")>>\
+    <<run setup.addRumor("Haddl verwendet oft den Satz: Der Opa hat immer gesagt...")>>\
+    <<= setup.addItem("Söldner-Handbuch mit Widmung von Lars und Hadde")>>\
+
 
 ---
 <<weiterImTag>>
@@ -1773,7 +1779,7 @@ Du denkst an nichts Bestimmtes.
 [[Weiter->Story003_Abend]]
 
 
-:: Story003_ErsterMorgen [einmalig] {"position":"875,2425","size":"100,100"}
+:: Story003_ErsterMorgen [einmalig interrupt] {"position":"875,2425","size":"100,100"}
 Der zweite Tag beginnt, bevor du bereit bist.
 
 Nicht mit Licht – das kommt später. Erst mit Geräuschen. Das Knarren einer Pritsche. Das dumpfe Aufsetzen von Stiefeln auf Holzdielen. Jemand hustet, kurz und trocken, und hört damit nicht auf. Dreißig Menschen in einem Raum, die alle gleichzeitig aufwachen und dabei so wenig Platz brauchen wollen wie möglich.
@@ -1858,7 +1864,7 @@ Ihr esst nebeneinander ohne ein Wort. Das ist keine Ablehnung. Das ist, auf sein
 [[Weiter->Story003_Drill]]
 
 
-:: Story004_Interrupt_Schinder_Stellprobe [nach_hub] {"position":"1150,2300","size":"100,100"}
+:: Story004_Interrupt_Schinder_Stellprobe [nach_hub interrupt] {"position":"1150,2300","size":"100,100"}
 <div class="scenery-text">Der Morgen ist kaum eine Stunde alt, da steht der Schinder schon mitten in der Formation. Er geht die Reihe ab, langsam, mit der Geduld eines Mannes, der weiß, dass die Zeit auf seiner Seite arbeitet. Vor dir bleibt er stehen. Sieht dich an. Sagt nichts.</div>
 Dann, ohne Vorwarnung, tritt er dir den Stiefel gegen die Ferse, sodass dein Stand für einen Moment bricht.
 
@@ -1911,6 +1917,7 @@ Dann zwanzig Liegestütze, sofort, im Kies. Deine Arme zittern bei der zwölften
 <<include "InitWorld">>
 <<set setup.trainingsHubTextVault to JSON.parse(Story.get("TrainingsHubTexte").text)>>
 <<set setup.abendappellTextVault to JSON.parse(Story.get("AbendappellTexte").text)>>
+
 
 
 :: Stube: Bei Karla einrichten {"position":"425,775","size":"100,100"}
@@ -2453,13 +2460,11 @@ Nicht plötzlich – eher so, als würde die Müdigkeit sich einfach neben dich 
   <<print setup.renderRumors()>>
 
 </div>
-<<link "↩️ Zurück zum Dienst">>
-    <<goto $world.lastPassage>>
-<</link>>
+<<back "↩️ Zurück zum Dienst">>
 
 
 :: StoryScript [script]
-Config.history.maxStates = 1;
+Config.history.maxStates = 2;
 Config.debug = false;
 
 
@@ -2476,8 +2481,6 @@ setup.interruptPrio     = {};   // NEU: höher = wird zuerst gefeuert
 setup.interruptCond["Story002_Taverne_mit_Lars_Und_Hadde"] = w => w.day >= 8;
 setup.interruptPrio["Story002_Taverne_mit_Lars_Und_Hadde"] = 60;
 setup.interruptCond["Story003_ErsterMorgen"] = w => w.day == 2;
-
-
 
 
 
@@ -2603,6 +2606,8 @@ setup.renderPlayerTable = function () {
     </table>
     `;
 };
+
+
 
 setup.renderJournal = function () {
     let output = "";
@@ -3151,32 +3156,33 @@ setup.routeTags = {
 
 
 /*==============================================================
- INTERRUPTS
+  INTERRUPTS
 ==============================================================*/
-setup.checkInterrupt = function() {
+setup.checkInterrupt = function () {
     const w = State.variables.world;
     if (w.interruptDoneToday) return null;
     const hist = w.interruptHistory;
 
     // Eignung: nicht auf Cooldown, nicht verbrauchter Einmaliger
     const eligible = name => {
-        if (Story.get(name).tags.includes("einmalig") && hist[name]) return false;
+        const passage = Story.get(name);
+        if (!passage) return false;
+        if (passage.tags.includes("einmalig") && hist[name]) return false;
         const cd = setup.interruptCooldown[name] || 3;
         if (hist[name] && (w.day - hist[name]) < cd) return false;
         return true;
     };
 
-    // alle Interrupt-Passagen einsammeln
-    let pool = [];
-    Object.keys(setup.routeTags).forEach(tag => {
-        Story.lookup("tags", tag).forEach(p => pool.push(p.title));
-    });
-    pool = [...new Set(pool)];
+    // --- NUR Passagen mit dem Tag "interrupt" kommen in den Pool ---
+    // Routing-Tags (nach_morgen, einmalig, nach_stube ...) auf Folge-Passagen
+    // stören den Pool damit nicht mehr.
+    const pool = Story.lookupWith(p => p.tags.includes("interrupt"))
+                      .map(p => p.title);
 
     // --- 1. PFLICHT: hat eine Bedingung UND sie ist erfüllt -> muss feuern ---
     const pflicht = pool
-        .filter(name => setup.interruptCond[name])           // nur mit Bedingung
-        .filter(name => setup.interruptCond[name](w))        // Bedingung erfüllt
+        .filter(name => setup.interruptCond[name])
+        .filter(name => setup.interruptCond[name](w))
         .filter(eligible)
         .sort((a, b) => (setup.interruptPrio[b] || 0) - (setup.interruptPrio[a] || 0));
 
@@ -3184,10 +3190,10 @@ setup.checkInterrupt = function() {
         const winner = pflicht[0];
         hist[winner] = w.day;
         w.interruptDoneToday = true;
-        return winner;                  // KEIN Zufalls-Gate -> garantiert
+        return winner;
     }
 
-    // --- 2. ZUFALL: keine Bedingung -> normaler Pool wie bisher ---
+    // --- 2. ZUFALL: keine Bedingung -> normaler Pool ---
     const zufall = pool
         .filter(name => !setup.interruptCond[name])
         .filter(eligible);
@@ -3195,20 +3201,20 @@ setup.checkInterrupt = function() {
     if (zufall.length === 0) return null;
     if (Math.random() > (w.interruptChance || 0.35)) return null;
 
-    const winner = zufall.random();
+    const winner = zufall[Math.floor(Math.random() * zufall.length)];
     hist[winner] = w.day;
     w.interruptDoneToday = true;
     return winner;
 };
 
-// liest aus den Tags der aktuellen Passage das Rücksprungziel
-setup.routeFromTags = function(tagList) {
+// Liest aus den Tags der aktuellen Passage das Rücksprungziel
+setup.routeFromTags = function (tagList) {
     const player = State.variables.player;
     for (const t of tagList) {
-      	State player.hasSlept = (t !== "nach_morgen");
+        player.hasSlept = (t !== "nach_morgen");
         if (setup.routeTags[t]) return setup.routeTags[t];
     }
-  	player.hasSlept = true;
+    player.hasSlept = true;
     return "Nachmittag Hub";
 };
 
@@ -3394,11 +3400,14 @@ setup.getSuccessThought = function (skill, difficulty) {
   	return '<div class="thought-box">' + result + '</div>';
 };
 
-
 :: StoryStylesheet [stylesheet]
 /* STANDARD = NICHT zentriert */
 .passage {
     text-align: left;
+}
+
+#ui-bar-history {
+    display: none;
 }
 
 .chapter-screen {
