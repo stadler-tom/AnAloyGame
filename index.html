@@ -104,7 +104,7 @@ var LZString=function(){var r=String.fromCharCode,o="ABCDEFGHIJKLMNOPQRSTUVWXYZa
 		<div id="init-lacking"><p>Browser lacks capabilities required to play.</p><p>Upgrade or switch to another browser.</p></div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<tw-storydata name="An Aloy Story" startnode="40" creator="Twine" creator-version="2.12.0" format="SugarCube" format-version="2.37.3" ifid="C7096067-F133-4DE2-AACD-2D383E8BB71A" options="" tags="" zoom="0.6" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* STANDARD = NICHT zentriert */
+	<tw-storydata name="An Aloy Story" startnode="39" creator="Twine" creator-version="2.12.0" format="SugarCube" format-version="2.37.3" ifid="C7096067-F133-4DE2-AACD-2D383E8BB71A" options="" tags="" zoom="0.6" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* STANDARD = NICHT zentriert */
 .passage {
     text-align: left;
 }
@@ -511,9 +511,8 @@ postdisplay["world-tracker"] = function () {
     State.variables.world ||= {};
     State.variables.world.lastPassage = title;
   
-    if (typeof Save !== "undefined") {
-        Save.slots.save(0);
-    }
+    Save.slots.save(0);
+	
 };
 
 predisplay["tagesstart"] = function () {
@@ -525,7 +524,12 @@ predisplay["tagesstart"] = function () {
 setup.noJournalPages = [
     "Intro",
     "Das Erwachen",
-    "journalAnsicht"
+    "journalAnsicht",
+  	"Nachmittag Pike",
+  	"Nachmittag Cannon",
+  	"Nachmittag Medicine",
+  	"Nachmittag Crossbow",
+  	"Nachmittag Thievery"
 ];
 
 setup.isJournalBlocked = function () {
@@ -635,6 +639,12 @@ setup.renderJournal = function () {
 };
 
 //----------------Textbuilding Section & Single Point of Truth
+
+setup.loadTrainingsHubVault = function () {
+    if (!setup.trainingsHubTextVault) {
+        setup.trainingsHubTextVault = JSON.parse(Story.get("TrainingsHubTexte").text);
+    }
+};
 
 setup.executeStationRewards = function (stationKey, stationType) {
     var vault = setup.trainingsHubTextVault;
@@ -1105,12 +1115,12 @@ setup.resetDailyVariables = function() {
     world.wasPracticing = false;
   	world.day+=1
   	// --- Kondition: zehrt jeden Tag, Sterben nur durch Vernachlässigung ---
-    if (player.hasSlept) {
+    if (State.variables.player.hasSlept) {
     // Erholung durch Schlaf
-    world.kondition = Math.min(100, world.kondition + 10);
+    	world.kondition = Math.min(100, world.kondition + 10);
 	} else {
     // Schlafmangel
-    world.kondition = Math.max(0, world.kondition - 10);
+    	world.kondition = Math.max(0, world.kondition - 10);
 	}
 
     // --- Plotdruck steigt passiv, solange Sidequest offen ist ---
@@ -1389,7 +1399,7 @@ setup.getSuccessThought = function (skill, difficulty) {
 
   	return '<div class="thought-box">' + result + '</div>';
 };
-</script><tw-tag name="header" color="blue"></tw-tag><tw-tag name="script" color="purple"></tw-tag><tw-tag name="startup-debug" color="purple"></tw-tag><tw-tag name="widget" color="purple"></tw-tag><tw-tag name="nach_stube" color="orange"></tw-tag><tw-tag name="nach_hub" color="green"></tw-tag><tw-tag name="einmalig" color="red"></tw-tag><tw-tag name="nach_morgen" color="red"></tw-tag><tw-passagedata pid="1" name="$world.lastPassage" tags="" position="850,0" size="100,100"></tw-passagedata><tw-passagedata pid="2" name="00_Sidequest_karla" tags="" position="25,1825" size="100,100">Die anderen Rekruten verschwinden zwischen den Zelten, und du willst gerade denselben Weg nehmen, als Karlas Stimme dich trifft — nicht laut, aber so, dass sie keinen Widerspruch einkalkuliert.
+</script><tw-tag name="header" color="blue"></tw-tag><tw-tag name="script" color="purple"></tw-tag><tw-tag name="startup-debug" color="purple"></tw-tag><tw-tag name="widget" color="purple"></tw-tag><tw-tag name="nach_stube" color="orange"></tw-tag><tw-tag name="nach_hub" color="green"></tw-tag><tw-tag name="einmalig" color="red"></tw-tag><tw-tag name="nach_morgen" color="red"></tw-tag><tw-passagedata pid="1" name="00_Sidequest_karla" tags="" position="25,1825" size="100,100">Die anderen Rekruten verschwinden zwischen den Zelten, und du willst gerade denselben Weg nehmen, als Karlas Stimme dich trifft — nicht laut, aber so, dass sie keinen Widerspruch einkalkuliert.
 
 „Du. Komm mit.&quot;
 
@@ -1400,7 +1410,7 @@ Sie sieht dich nicht dabei an. Dreht sich einfach um und geht davon, als wäre b
 Du könntest so tun, als hättest du es nicht gehört.
 
 [[Ihr folgen. -&gt;00_Sidequest_karla_Karla_Privat_Einstieg]]
-[[Einfach weitergehen — als hättest du nichts gehört. -&gt;00_Sidequest_karla_Karla_Ablehnung]]</tw-passagedata><tw-passagedata pid="3" name="00_Sidequest_karla_Karla_Ablehnung" tags="" position="225,1750" size="100,100">Du gehst weiter. Deine Stiefel knirschen auf dem Kies, und du tust so, als wärst du bereits zu weit weg, um noch umzukehren.
+[[Einfach weitergehen — als hättest du nichts gehört. -&gt;00_Sidequest_karla_Karla_Ablehnung]]</tw-passagedata><tw-passagedata pid="2" name="00_Sidequest_karla_Karla_Ablehnung" tags="" position="225,1750" size="100,100">Du gehst weiter. Deine Stiefel knirschen auf dem Kies, und du tust so, als wärst du bereits zu weit weg, um noch umzukehren.
 
 Hinter dir: Stille.
 
@@ -1409,7 +1419,7 @@ Keine zweite Aufforderung. Keine Drohung. Nur das leise Geräusch von jemandem, 
 &lt;div class=&quot;thought-box&quot;&gt;Vielleicht war es nichts. Vielleicht war es eine Chance. Ich werd es nicht wissen.&lt;/div&gt;
 
 &lt;&lt;= setup.setNpcAffection(&quot;karla&quot;, -2)&gt;&gt;
-&lt;&lt;include &quot;00_Sidequest_karla_finalize&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="4" name="00_Sidequest_karla_Karla_Ablehnung_Spaet" tags="" position="225,2075" size="100,100">Du fängst die Lanze auf — und hältst sie einen Moment lang in den Händen, bevor du sie langsam wieder zum Boden senkst.
+&lt;&lt;include &quot;00_Sidequest_karla_finalize&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="00_Sidequest_karla_Karla_Ablehnung_Spaet" tags="" position="225,2075" size="100,100">Du fängst die Lanze auf — und hältst sie einen Moment lang in den Händen, bevor du sie langsam wieder zum Boden senkst.
 
 „Nicht heute.&quot;
 
@@ -1428,7 +1438,7 @@ Dann nimmt sie dir die Lanze aus der Hand. Ohne Kommentar. Ohne sie fallen zu la
 &lt;div class=&quot;thought-box&quot;&gt;Sie hat nicht widersprochen. Aber sie hat auch nichts vergessen.&lt;/div&gt;
 
 &lt;&lt;= setup.setNpcAffection(&quot;karla&quot;, -1)&gt;&gt;
-&lt;&lt;include &quot;00_Sidequest_karla_finalize&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="5" name="00_Sidequest_karla_Karla_Ansprechen" tags="" position="225,1850" size="100,100">„Von links&quot;, sagst du. „Du weichst zurück.&quot;
+&lt;&lt;include &quot;00_Sidequest_karla_finalize&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="4" name="00_Sidequest_karla_Karla_Ansprechen" tags="" position="225,1850" size="100,100">„Von links&quot;, sagst du. „Du weichst zurück.&quot;
 
 Karla sieht dich an.
 
@@ -1447,7 +1457,7 @@ Keine Aggression. Nur eine Tür, die sich schließt — ruhig und endgültig.
 &lt;div class=&quot;thought-box&quot;&gt;Ich hab es richtig benannt. Und genau das war falsch. Nicht das Sehen — das Sagen.&lt;/div&gt;
 
 &lt;&lt;= setup.setNpcAffection(&quot;karla&quot;, 1)&gt;&gt;
-&lt;&lt;include &quot;00_Sidequest_karla_finalize&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="6" name="00_Sidequest_karla_Karla_Privat_Einstieg" tags="" position="0,2125" size="100,100">Sie führt dich hinter die Stallungen, an den Wachen vorbei, durch eine Lücke zwischen zwei Planwagen — und dann stehst du auf einem kleinen, abgegrenzten Flecken Erde, den das Lager vergessen hat. Ein paar ausgeblichene Strohballen, ein ramponierter Holzpfosten. Kein Talglicht. Nur das letzte Tageslicht, das von Westen her gegen die Palisaden drückt.
+&lt;&lt;include &quot;00_Sidequest_karla_finalize&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="5" name="00_Sidequest_karla_Karla_Privat_Einstieg" tags="" position="0,2125" size="100,100">Sie führt dich hinter die Stallungen, an den Wachen vorbei, durch eine Lücke zwischen zwei Planwagen — und dann stehst du auf einem kleinen, abgegrenzten Flecken Erde, den das Lager vergessen hat. Ein paar ausgeblichene Strohballen, ein ramponierter Holzpfosten. Kein Talglicht. Nur das letzte Tageslicht, das von Westen her gegen die Palisaden drückt.
 
 Karla dreht sich um. Ihre Augen wandern einmal über dich — prüfend, kurz, ohne Erklärung.
 
@@ -1463,7 +1473,7 @@ Sie hebt eine der abgenutzten Übungslanzen vom Boden auf und wirft sie dir zu. 
 
 [[Mit ihr üben — einfach mitmachen, ohne Fragen. -&gt;00_Sidequest_karla_Karla_Training_Passiv]]
 [[Mit ihr üben — und dabei genau beobachten, wie sie kämpft. -&gt;00_Sidequest_karla_Karla_Training_Aktiv]]
-[[Die Lanze auffangen und trotzdem ablehnen. Einen Grund nennen. -&gt;00_Sidequest_karla_Karla_Ablehnung_Spaet]]</tw-passagedata><tw-passagedata pid="7" name="00_Sidequest_karla_Karla_Schweigen" tags="" position="225,2175" size="100,100">Du hebst die Lanze wieder in Position.
+[[Die Lanze auffangen und trotzdem ablehnen. Einen Grund nennen. -&gt;00_Sidequest_karla_Karla_Ablehnung_Spaet]]</tw-passagedata><tw-passagedata pid="6" name="00_Sidequest_karla_Karla_Schweigen" tags="" position="225,2175" size="100,100">Du hebst die Lanze wieder in Position.
 
 Keine Bemerkung. Kein Blick, der zu lange bleibt. Du hast es gesehen — und du lässt es dort, wo es ist.
 
@@ -1485,7 +1495,7 @@ Sie geht.
 
 &lt;&lt;= setup.setNpcAffection(&quot;karla&quot;, 6)&gt;&gt;
 &lt;&lt;= setup.pushNpcMemory(&quot;karla&quot;, &quot;hat_geschwiegen&quot;)&gt;&gt;
-&lt;&lt;include &quot;00_Sidequest_karla_finalize&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="8" name="00_Sidequest_karla_Karla_Training_Aktiv" tags="" position="100,1925" size="100,100">Du fängst die Lanze auf — aber diesmal schaust du nicht auf deine eigenen Hände. Du schaust auf sie.
+&lt;&lt;include &quot;00_Sidequest_karla_finalize&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="7" name="00_Sidequest_karla_Karla_Training_Aktiv" tags="" position="100,1925" size="100,100">Du fängst die Lanze auf — aber diesmal schaust du nicht auf deine eigenen Hände. Du schaust auf sie.
 
 Karla greift an. Schnell. Direkt. Von rechts, immer von rechts — und du bemerkst es erst beim dritten Mal: Wenn du von links kommst, macht sie einen Schritt zurück. Kein Ausweichen, keine Parade. Einen Schritt zurück. Den Körper leicht weggedreht. Als wäre es eine Gewohnheit.
 
@@ -1502,7 +1512,7 @@ Ihr Blick sucht deinen. Kalt und aufmerksam wie der einer Frau, die gerade etwas
 &lt;div class=&quot;thought-box&quot;&gt;Sie hat bemerkt das ich es gesehen habe. Soll ich sie darauf ansprechen oder nicht?&lt;/div&gt;
 
 [[Nichts sagen. Einfach weitermachen, als wäre nichts gewesen. -&gt;00_Sidequest_karla_Karla_Schweigen]]
-[[Ansprechen, was du gesehen hast. -&gt;00_Sidequest_karla_Karla_Ansprechen]]</tw-passagedata><tw-passagedata pid="9" name="00_Sidequest_karla_Karla_Training_Passiv" tags="" position="225,1975" size="100,100">Du fängst die Lanze auf und nimmst die Position ein, die der Schinder euch eingeprügelt hat. Karla greift sofort an — schnell, direkt, ohne Vorwarnung — und du parierst, wie du es gelernt hast. Schlecht, aber instinktiv. Sie setzt nach. Du weichst aus.
+[[Ansprechen, was du gesehen hast. -&gt;00_Sidequest_karla_Karla_Ansprechen]]</tw-passagedata><tw-passagedata pid="8" name="00_Sidequest_karla_Karla_Training_Passiv" tags="" position="225,1975" size="100,100">Du fängst die Lanze auf und nimmst die Position ein, die der Schinder euch eingeprügelt hat. Karla greift sofort an — schnell, direkt, ohne Vorwarnung — und du parierst, wie du es gelernt hast. Schlecht, aber instinktiv. Sie setzt nach. Du weichst aus.
 
 Es ist kein Kampf. Es ist auch kein Gespräch. Es ist etwas dazwischen — ein Takt aus Holz und Atem und dem dumpfen Aufschlag zweier Schäfte, die gegeneinander drücken.
 
@@ -1517,8 +1527,8 @@ Sie sieht dich kurz an.
 &lt;div class=&quot;thought-box&quot;&gt;Keine Erklärung. Keine Bewertung. Als wäre das hier eine Selbstverständlichkeit — als hätte sie nie etwas anderes erwartet als dass du mitkommst und mitmachst und den Mund hältst.&lt;/div&gt;
 
 &lt;&lt;= setup.setNpcAffection(&quot;karla&quot;, 3)&gt;&gt;
-&lt;&lt;include &quot;00_Sidequest_karla_finalize&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="10" name="00_Sidequest_karla_finalize" tags="" position="350,1925" size="100,100">&lt;&lt;set $npc.karla.memory.flags.sidequest00Complete = true&gt;&gt;
-[[in die Stube gehen-&gt;Auf Stube]]</tw-passagedata><tw-passagedata pid="11" name="01_Sidequest_jarek" tags="" position="300,2325" size="100,100">&lt;&lt;set $npc.jarek.known = true&gt;&gt;
+&lt;&lt;include &quot;00_Sidequest_karla_finalize&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="9" name="00_Sidequest_karla_finalize" tags="" position="350,1925" size="100,100">&lt;&lt;set $npc.karla.memory.flags.sidequest00Complete = true&gt;&gt;
+[[in die Stube gehen-&gt;Auf Stube]]</tw-passagedata><tw-passagedata pid="10" name="01_Sidequest_jarek" tags="" position="300,2325" size="100,100">&lt;&lt;set $npc.jarek.known = true&gt;&gt;
 Die Reihen lösen sich, Rekruten zerstreuen sich in Richtung Stube. Du bist schon halb im Gehen, als Jarek neben dir auftaucht — nicht plötzlich, nicht eilig. Er ist einfach da, als wäre er die ganze Zeit dort gewesen und du hättest es nur nicht bemerkt.
 
 Er spricht leise, ohne dich anzusehen, den Blick geradeaus auf den leeren Kies gerichtet.
@@ -1532,7 +1542,7 @@ Er bleibt stehen, dreht sich halb zu dir. Im letzten Tageslicht wirken seine dun
 „Es ist trocken und warm da drin. Besser als Exerzieren im Schlamm. Kommst du mit?&quot;
 
 [[Mitgehen. Warum nicht. -&gt;01_Sidequest_jarek_Einstieg]]
-[[Ablehnen. Du hast genug für heute. -&gt;01_Sidequest_jarek_Ablehnung]]</tw-passagedata><tw-passagedata pid="12" name="01_Sidequest_jarek_Ablehnung" tags="" position="0,2525" size="100,100">„Nicht heute&quot;, sagst du. „Ich bin durch.&quot;
+[[Ablehnen. Du hast genug für heute. -&gt;01_Sidequest_jarek_Ablehnung]]</tw-passagedata><tw-passagedata pid="11" name="01_Sidequest_jarek_Ablehnung" tags="" position="0,2525" size="100,100">„Nicht heute&quot;, sagst du. „Ich bin durch.&quot;
 
 Jarek nickt. Kein Vorwurf, keine zweite Frage. Er hatte die Antwort offenbar schon einkalkuliert, bevor er gefragt hat.
 
@@ -1543,7 +1553,7 @@ Er geht. Aufrecht, unauffällig, schon wieder Teil der Kulisse.
 &lt;div class=&quot;thought-box&quot;&gt;Er hat mich nicht gebraucht. Er hat geprüft. Und ich hab eine Tür zugemacht, von der ich nicht mal wusste, dass sie offen stand.&lt;/div&gt;
 
 &lt;&lt;= setup.setNpcAffection(&quot;jarek&quot;, -2)&gt;&gt;
-&lt;&lt;include &quot;01_Sidequest_jarek_finalize&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="13" name="01_Sidequest_jarek_Einstieg" tags="" position="475,2425" size="100,100">Die Schreibstube liegt am Ende eines schmalen Ganges, hinter einer Tür, die zu schwer ist für den Raum dahinter. Drinnen: der Geruch von Wachs, alter Tinte und feuchtem Pergament. Ein einzelner Schreiber sitzt am Pult und kratzt mit der Feder, ohne aufzusehen. An den Wänden Regale, Truhen, Stapel von Verzeichnissen, die seit Jahren niemand mehr angefasst hat.
+&lt;&lt;include &quot;01_Sidequest_jarek_finalize&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="12" name="01_Sidequest_jarek_Einstieg" tags="" position="475,2425" size="100,100">Die Schreibstube liegt am Ende eines schmalen Ganges, hinter einer Tür, die zu schwer ist für den Raum dahinter. Drinnen: der Geruch von Wachs, alter Tinte und feuchtem Pergament. Ein einzelner Schreiber sitzt am Pult und kratzt mit der Feder, ohne aufzusehen. An den Wänden Regale, Truhen, Stapel von Verzeichnissen, die seit Jahren niemand mehr angefasst hat.
 
 „Die hier&quot;, sagt der Schreiber knapp und deutet auf einen Wust loser Folianten. „Nach Jahr sortieren. Was zerfällt, kommt in die Kiste. Und fasst mir nichts an, das ein Siegel trägt.&quot;
 
@@ -1555,7 +1565,7 @@ Du könntest die Arbeit einfach herunterreißen und an deine Pritsche denken. Od
 
 [[Einfach arbeiten. Sortieren, schweigen, fertig werden. -&gt;01_Sidequest_jarek_Arbeit_Passiv]]
 [[Arbeiten — aber genau darauf achten, was Jarek tut. -&gt;01_Sidequest_jarek_Arbeit_Aktiv]]
-[[Doch keine Lust. Einen Vorwand finden und gehen. -&gt;01_Sidequest_jarek_Ablehnung_Spaet]]</tw-passagedata><tw-passagedata pid="14" name="01_Sidequest_jarek_Arbeit_Passiv" tags="" position="250,2450" size="100,100">Du sortierst. Jahr für Jahr, Stapel für Stapel. Es ist stumpfe, ehrliche Arbeit, und du verlierst dich darin, wie man sich in jeder Arbeit verliert, die keine Gedanken verlangt.
+[[Doch keine Lust. Einen Vorwand finden und gehen. -&gt;01_Sidequest_jarek_Ablehnung_Spaet]]</tw-passagedata><tw-passagedata pid="13" name="01_Sidequest_jarek_Arbeit_Passiv" tags="" position="250,2450" size="100,100">Du sortierst. Jahr für Jahr, Stapel für Stapel. Es ist stumpfe, ehrliche Arbeit, und du verlierst dich darin, wie man sich in jeder Arbeit verliert, die keine Gedanken verlangt.
 
 Jarek arbeitet neben dir, schweigend. Hin und wieder hält er einen Folianten einen Atemzug länger in den Händen als nötig — aber du achtest nicht darauf. Du willst nur ins Bett.
 
@@ -1568,7 +1578,7 @@ Draußen im Gang bleibt Jarek kurz stehen.
 &lt;div class=&quot;thought-box&quot;&gt;Eine ruhige Stunde, ein bisschen Wärme, ein Danke. Mehr war es nicht. Vielleicht musste es auch nicht mehr sein.&lt;/div&gt;
 
 &lt;&lt;= setup.setNpcAffection(&quot;jarek&quot;, 3)&gt;&gt;
-&lt;&lt;include &quot;01_Sidequest_jarek_finalize&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="15" name="01_Sidequest_jarek_Arbeit_Aktiv" tags="" position="125,2525" size="100,100">Du sortierst — aber diesmal schaust du nicht nur auf deine eigenen Hände. Du schaust auf ihn.
+&lt;&lt;include &quot;01_Sidequest_jarek_finalize&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="14" name="01_Sidequest_jarek_Arbeit_Aktiv" tags="" position="125,2525" size="100,100">Du sortierst — aber diesmal schaust du nicht nur auf deine eigenen Hände. Du schaust auf ihn.
 
 Jarek arbeitet schnell und sicher. Zu sicher. Wo du die verblassten Jahreszahlen auf den Rücken der Folianten mühsam entzifferst, greift er, ohne zu zögern. Er liest die Aufschriften wie jemand, der das Lesen nicht in der Kaserne gelernt hat — flüssig, mühelos, auch dort, wo die Schrift alt und verschnörkelt ist und die meisten hier nur Striche sehen würden.
 
@@ -1587,7 +1597,7 @@ Jareks Gesicht verrät nichts. Aber seine Hand liegt still auf dem Band, und du 
 &lt;div class=&quot;thought-box&quot;&gt;Er will, dass dieser Band nicht in die Kiste kommt. Und der Schreiber sieht gleich, dass er nicht zerfallen ist. Sag ich was — oder lass ich es?&lt;/div&gt;
 
 [[Den Schreiber ablenken. Irgendetwas sagen, damit sein Blick von Jarek weggeht. -&gt;01_Sidequest_jarek_Schweigen]]
-[[Jarek darauf ansprechen, was du gerade gesehen hast. -&gt;01_Sidequest_jarek_Ansprechen]]</tw-passagedata><tw-passagedata pid="16" name="01_Sidequest_jarek_Ablehnung_Spaet" tags="" position="325,2575" size="100,100">Du legst den Folianten zur Seite, den du gerade in den Händen hattest.
+[[Jarek darauf ansprechen, was du gerade gesehen hast. -&gt;01_Sidequest_jarek_Ansprechen]]</tw-passagedata><tw-passagedata pid="15" name="01_Sidequest_jarek_Ablehnung_Spaet" tags="" position="325,2575" size="100,100">Du legst den Folianten zur Seite, den du gerade in den Händen hattest.
 
 „Mein Kopf ist nicht hier&quot;, sagst du. „Ich bring euch mehr durcheinander, als ich helfe.&quot;
 
@@ -1600,7 +1610,7 @@ Aber als du dich umdrehst, spürst du seinen Blick noch im Rücken. Wägend. Als
 &lt;div class=&quot;thought-box&quot;&gt;Er hat mir die Tür offen gelassen. Ich bin nur nicht durchgegangen. Das ist nicht dasselbe wie ein Nein — aber es ist auch kein Ja.&lt;/div&gt;
 
 &lt;&lt;= setup.setNpcAffection(&quot;jarek&quot;, -1)&gt;&gt;
-&lt;&lt;include &quot;01_Sidequest_jarek_finalize&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="17" name="01_Sidequest_jarek_Schweigen" tags="" position="100,2650" size="100,100">Du fragst nicht, was er da hat. Du fragst auch nicht dich selbst.
+&lt;&lt;include &quot;01_Sidequest_jarek_finalize&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="16" name="01_Sidequest_jarek_Schweigen" tags="" position="100,2650" size="100,100">Du fragst nicht, was er da hat. Du fragst auch nicht dich selbst.
 
 „Diese Kiste hier&quot;, sagst du in Richtung Schreiber und hältst einen halb zerfallenen Stapel hoch, von dem beim Anheben gleich ein paar Fetzen auf den Boden segeln. „Soll das alles raus, oder nur was komplett hinüber ist? Ich will Euch nichts wegwerfen, das Ihr noch braucht.&quot;
 
@@ -1623,7 +1633,7 @@ Er sieht dich an, und zum ersten Mal hast du das Gefühl, dass er dich tatsächl
 &lt;&lt;= setup.setPlayerStat(&quot;honesty&quot;, -2)&gt;&gt;
 &lt;&lt;= setup.setNpcAffection(&quot;jarek&quot;, 6)&gt;&gt;
 &lt;&lt;= setup.pushNpcMemory(&quot;jarek&quot;, &quot;war_diskret&quot;)&gt;&gt;
-&lt;&lt;include &quot;01_Sidequest_jarek_finalize&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="18" name="01_Sidequest_jarek_Ansprechen" tags="" position="225,2575" size="100,100">„Was ist das für ein Band?&quot;, fragst du leise. „Du liest das, als würdest du wissen, was drinsteht.&quot;
+&lt;&lt;include &quot;01_Sidequest_jarek_finalize&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="17" name="01_Sidequest_jarek_Ansprechen" tags="" position="225,2575" size="100,100">„Was ist das für ein Band?&quot;, fragst du leise. „Du liest das, als würdest du wissen, was drinsteht.&quot;
 
 Jarek erstarrt nicht. Nichts an ihm verändert sich sichtbar — und genau das ist es, was dich erschreckt. Er wird nur einen Hauch zu still, zu glatt, wie Wasser kurz bevor es zufriert.
 
@@ -1641,8 +1651,8 @@ Er sieht dich an, und der ruhige, freundliche Jarek ist immer noch da. Aber dahi
 
 &lt;&lt;= setup.setNpcAffection(&quot;jarek&quot;, 1)&gt;&gt;
 &lt;&lt;= setup.pushNpcMemory(&quot;jarek&quot;, &quot;hat_zu_genau_hingesehen&quot;)&gt;&gt;
-&lt;&lt;include &quot;01_Sidequest_jarek_finalize&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="19" name="01_Sidequest_jarek_finalize" tags="" position="450,2575" size="100,100">&lt;&lt;set $npc.jarek.memory.flags.sidequest01Complete = true&gt;&gt;
-[[zurück in die Stube -&gt;Auf Stube]]</tw-passagedata><tw-passagedata pid="20" name="Abendappell" tags="" position="850,1925" size="100,100">&lt;&lt;= setup.getAbendappellText(&quot;szenerie&quot;)&gt;&gt;
+&lt;&lt;include &quot;01_Sidequest_jarek_finalize&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="18" name="01_Sidequest_jarek_finalize" tags="" position="450,2575" size="100,100">&lt;&lt;set $npc.jarek.memory.flags.sidequest01Complete = true&gt;&gt;
+[[zurück in die Stube -&gt;Auf Stube]]</tw-passagedata><tw-passagedata pid="19" name="Abendappell" tags="" position="850,1925" size="100,100">&lt;&lt;= setup.getAbendappellText(&quot;szenerie&quot;)&gt;&gt;
 
 Die Reihen schließen sich. Nicht ordentlich genug, um schön zu sein — aber ordentlich genug, dass niemand sofort angeschrien wird.
 
@@ -1664,7 +1674,7 @@ Karla kommt auf dich zu, sie schaut verdammt ernst. &quot;DU! komm mit!&quot;
 Jarek tritt neben dich, ohne dass du ihn hast kommen hören. „Auf ein Wort&quot;, sagt er leise.
 [[Hören, was er will -&gt;01_Sidequest_jarek]]
 &lt;&lt;/if&gt;&gt;\
-[[Auf Stube gehen -&gt;Auf Stube]]</tw-passagedata><tw-passagedata pid="21" name="AbendappellTexte" tags="" position="700,1750" size="100,100">{
+[[Auf Stube gehen -&gt;Auf Stube]]</tw-passagedata><tw-passagedata pid="20" name="AbendappellTexte" tags="" position="700,1750" size="100,100">{
   &quot;szenerie&quot;: [
     {
       &quot;text&quot;: &quot;Als das Signalhorn verklungen ist, strömen die Rekruten aus allen Winkeln des Lagers zurück auf den Appellplatz. Stiefel scharren über Kies, Stimmen verstummen nach und nach, und über den Zelten liegt bereits das matte Licht des frühen Abends.&quot;,
@@ -1759,7 +1769,7 @@ Jarek tritt neben dich, ohne dass du ihn hast kommen hören. „Auf ein Wort&quo
       &quot;context&quot;: { &quot;activity&quot;: &quot;thievery&quot; }
     }
   ]
-}</tw-passagedata><tw-passagedata pid="22" name="Appell: Ausrichten" tags="" position="700,950" size="100,100">&lt;&lt;if $player.chosen_activity eq &quot;zeigt_eigeninitiative&quot;&gt;&gt;\
+}</tw-passagedata><tw-passagedata pid="21" name="Appell: Ausrichten" tags="" position="700,950" size="100,100">&lt;&lt;if $player.chosen_activity eq &quot;zeigt_eigeninitiative&quot;&gt;&gt;\
 	@@.beziehung;Dank des unauffälligen Hinweises reagierst du blitzschnell. Noch bevor der Schinder die Augen zusammenkneifen kann, stehst du perfekt in der Formation. Ein kaum merkliches Nicken des Ausbilders zeigt dir, dass du die Situation gerettet hast.@@
 &lt;&lt;elseif $player.chosen_activity eq &quot;ist_befehlstreu&quot;&gt;&gt;\
 	@@.beziehung;Du rührst dich keinen Zentimeter und wartest stur auf den Befehl, so wie es dir eingebläut wurde. Der Schinder baut sich vor dir auf, die Lederpeitsche klatscht rhythmisch gegen seinen Stiefel. „Wenigstens einer, der nicht wie ein aufgescheuchtes Huhn zappelt“, knurrt er. Nicht gelobt, aber auch nicht bestraft.@@
@@ -1787,7 +1797,7 @@ Die Baracke nimmt euch auf wie jeden Abend — ohne Begrüßung, ohne Wärme.
 Du lässt dich auf deine Pritsche fallen, und der Strohsack, der heute Morgen noch hart und fremd war, fühlt sich jetzt an wie das Weichste auf der Welt. Deine Hände brennen. Deine Schultern brennen. Irgendwo tief in den Oberschenkeln sitzt ein Schmerz, der morgen früh schlimmer sein wird als heute Nacht.
 Das Talglicht flackert.
 Du schließt die Augen, noch bevor jemand es löscht.
-[[Der nächste Tag. -&gt;Kap1_Der nächste Tag]]</tw-passagedata><tw-passagedata pid="23" name="Auf Stube" tags="" position="1925,1750" size="100,100">Nach dem harten Tag bist du auf der Stube.
+[[Der nächste Tag. -&gt;Kap1_Der nächste Tag]]</tw-passagedata><tw-passagedata pid="22" name="Auf Stube" tags="" position="1925,1750" size="100,100">Nach dem harten Tag bist du auf der Stube.
 
 Der Raum riecht nach kaltem Holz, Leder und abgestandenem Rauch, der sich irgendwo zwischen den Balken festgesetzt hat.  
 Draußen knackt das Gebäude leise im Wind, als würde es selbst noch den Dienst des Tages verdauen.
@@ -1813,7 +1823,7 @@ Dieses kurze, gespannte Schweigen, das in Kasernen nie wirklich Ruhe bedeutet.
     [[Zuhören, was geredet wird -&gt;Event_Geschichte]]
     [[Schlafen-&gt;Kap1_Der nächste Tag]]
     
-&lt;&lt;/if&gt;&gt;\</tw-passagedata><tw-passagedata pid="24" name="Kap01_RekrutenKennenlernen" tags="" position="250,650" size="100,100">&lt;&lt;set $npc.karla.known = true, $npc.jarek.known = true&gt;&gt;
+&lt;&lt;/if&gt;&gt;\</tw-passagedata><tw-passagedata pid="23" name="Kap01_RekrutenKennenlernen" tags="" position="250,650" size="100,100">&lt;&lt;set $npc.karla.known = true, $npc.jarek.known = true&gt;&gt;
 Die schwere Holztür der Baracke fällt hinter dir ins Schloss, und für einen Herzschlag bleibt das Heulen des Windes draußen. Doch was dich drinnen erwartet, ist keine Gemütlichkeit — nur eine andere Art von Kälte.
 Der Raum riecht nach feuchter Wolle, billigem Talgöl und dem herben Schweiß von dreißig Menschen, die heute alle dasselbe an den Toren abgegeben haben. Zwei Reihen hölzerner Doppelstockbetten ziehen sich durch die Stube, die Strohsäcke flach und hart wie das Versprechen, das man dir hier nicht gegeben hat. Das Licht fällt grau und gleichgültig durch die schmalen Fenster.
 Die Hackordnung beginnt genau hier. Nicht auf dem Exerzierplatz, nicht in der Schreibstube des Sergeanten — hier, bei der Suche nach einem Platz zum Schlafen.
@@ -1841,7 +1851,7 @@ Vor dir steht ein schlanker, sehniger Rekrut mit wachen, dunklen Augen und dem r
 [[Jareks Hand schütteln und das obere Bett für sich beanspruchen. -&gt;Stube: Jarek anfreunden]]
 [[Jarek ignorieren und stattdessen eine eigene Pritsche suchen. -&gt;Stube: Eigene Pritsche suchen]]
 
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="25" name="Das Erwachen" tags="" position="675,150" size="100,100">Der Sergeant nickt brummend. Die Feder taucht in die Tinte, kratzt deinen Namen ins Pergament — ein trockenes, endgültiges Geräusch.
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="24" name="Das Erwachen" tags="" position="675,150" size="100,100">Der Sergeant nickt brummend. Die Feder taucht in die Tinte, kratzt deinen Namen ins Pergament — ein trockenes, endgültiges Geräusch.
 
 „Gut. $player.rank $player.name — ab heute gehörst du zum Heer Aloys.&quot;
 
@@ -1860,7 +1870,7 @@ Für dich zählen erst einmal die harten Holzböden der Kaserne in Ohm — und d
 
 [[Befehl befolgen und direkt zum Kasernenhof gehen-&gt;Der Kasernenhof]]
 [[Sich heimlich von der Truppe absetzen und die Akademie-Hallen auskundschaften-&gt;Hallen erkunden]]
-[[Den Sergeant nach neuen Gerüchten ausfragen-&gt;Sergent aushorchen]]</tw-passagedata><tw-passagedata pid="26" name="Das Training: Erster Tag" tags="" position="475,950" size="100,100">Der Morgen kommt nicht sanft.
+[[Den Sergeant nach neuen Gerüchten ausfragen-&gt;Sergent aushorchen]]</tw-passagedata><tw-passagedata pid="25" name="Das Training: Erster Tag" tags="" position="475,950" size="100,100">Der Morgen kommt nicht sanft.
 Er kommt mit dem Krachen einer Tür, die jemand mit dem Stiefel aufgestoßen hat, und einer Stimme, die keine Rücksicht auf den Schlaf nimmt, den du dir noch nicht geholt hast.
 „Aufstehen! Raus aus den Federn, ihr Maden! Die Sonne wartet nicht auf Rekruten!&quot;
 Du bist auf den Beinen, bevor du wach bist. Der Körper hat bereits begriffen, was der Kopf noch nicht verarbeitet hat. Um dich herum das Chaos von dreißig Menschen, die gleichzeitig nach Stiefeln greifen, Gürtel zuschnallen und sich gegenseitig anrempeln, ohne sich zu entschuldigen. Niemand hat Zeit. Niemand weiß genau, wofür — aber die Dringlichkeit hängt im Raum wie Rauch.
@@ -1933,7 +1943,7 @@ Der Schinder steht vor dir. Sein Auge wartet.
 
 &lt;&lt;set $npc.hauptmann.known to true&gt;&gt;
 &lt;&lt;set $npc.schinder.known to true&gt;&gt;
-&lt;&lt;set $npc.kurt.known to true&gt;&gt;</tw-passagedata><tw-passagedata pid="27" name="Der Kasernenhof" tags="" position="750,450" size="100,100">&lt;&lt;if $npc.kurt.affection &lt; 0&gt;&gt;
+&lt;&lt;set $npc.kurt.known to true&gt;&gt;</tw-passagedata><tw-passagedata pid="26" name="Der Kasernenhof" tags="" position="750,450" size="100,100">&lt;&lt;if $npc.kurt.affection &lt; 0&gt;&gt;
 Das Tor zum Exerzierplatz fliegt auf.
 Die nasskalte Luft trifft dich wie eine Ohrfeige — und mit ihr der Blick des Schinders, der bereits wartet. Er sieht dich an. Dann sieht er Kurt. Sein Gesicht verändert sich nicht, aber in seinem einen Auge liegt etwas, das vielleicht Belustigung wäre, wenn er ein anderer Mann wäre.
 Kurt lässt dich los. Ohne Kommentar. Ohne dich noch eines Blickes zu würdigen dreht er sich um und verschwindet wieder ins Innere der Akademie.
@@ -1958,7 +1968,7 @@ Du sagst nichts. Was solltest du auch sagen.
 Irgendwo hinter dir schließt sich das Tor der Akademie mit einem dumpfen, endgültigen Laut.
 Du bist jetzt drin.
 
-[[Beginne deine Ausbildung-&gt;Kapitel 1]]</tw-passagedata><tw-passagedata pid="28" name="Kap1_Der nächste Tag" tags="tagesstart" position="1400,925" size="100,100">/* 
+[[Beginne deine Ausbildung-&gt;Kapitel 1]]</tw-passagedata><tw-passagedata pid="27" name="Kap1_Der nächste Tag" tags="tagesstart" position="1400,925" size="100,100">/* 
    Die Passage dient als einstiegspuntk für den Tag 
 */
 &lt;&lt;set _interrupt = setup.checkInterrupt()&gt;&gt;\
@@ -1970,7 +1980,7 @@ Du bist jetzt drin.
 
 &lt;div class=&quot;thought-box&quot;&gt;&lt;&lt;= setup.getNaechsterTagText(&quot;gedanke&quot;)&gt;&gt;&lt;/div&gt;
 &lt;&lt;= setup.getNaechsterTagText(&quot;luigi_schatten&quot;)&gt;&gt;\
-[[Das Lager auf eigene Faust erkunden -&gt;Nachmittag Hub]]</tw-passagedata><tw-passagedata pid="29" name="Event_Geschichte" tags="" position="2375,1800" size="100,100">&lt;&lt;set _istMumpitz = random(1,100) &lt;= 15&gt;&gt;\
+[[Das Lager auf eigene Faust erkunden -&gt;Nachmittag Hub]]</tw-passagedata><tw-passagedata pid="28" name="Event_Geschichte" tags="" position="2375,1800" size="100,100">&lt;&lt;set _istMumpitz = random(1,100) &lt;= 15&gt;&gt;\
 &lt;&lt;if _istMumpitz&gt;&gt;\
     &lt;&lt;include &quot;Event_Geschichte_Mumpitz&quot;&gt;&gt;\
 &lt;&lt;else&gt;&gt;\
@@ -2000,7 +2010,7 @@ Du bist jetzt drin.
         &lt;&lt;/if&gt;&gt;\
         [[Schlafen -&gt;Kap1_Der nächste Tag]]
     &lt;&lt;/if&gt;&gt;\
-&lt;&lt;/if&gt;&gt;\</tw-passagedata><tw-passagedata pid="30" name="Event_Geschichte_Mumpitz" tags="" position="2475,1650" size="100,100">&lt;&lt;set _gossipStory = setup.getFailedGossipStory()&gt;&gt;\
+&lt;&lt;/if&gt;&gt;\</tw-passagedata><tw-passagedata pid="29" name="Event_Geschichte_Mumpitz" tags="" position="2475,1650" size="100,100">&lt;&lt;set _gossipStory = setup.getFailedGossipStory()&gt;&gt;\
 &lt;div class=&quot;scenery-text&quot;&gt;Irgendwo im Raum kommt wieder ein altes Gespräch auf…
     &lt;/div&gt;
 &lt;&lt;if _gossipStory&gt;&gt;\
@@ -2016,7 +2026,7 @@ Du bist jetzt drin.
     &lt;div class=&quot;thought-box&quot;&gt;Das ist alles nur uninteressanter Tratsch. Ich hau ab...
     &lt;/div&gt;
     [[Sich hinlegen und schlafen-&gt;Kap1_Der nächste Tag]]
-&lt;&lt;/if&gt;&gt;\</tw-passagedata><tw-passagedata pid="31" name="Event_Geschichte_Probe" tags="" position="2375,1925" size="100,100">&lt;&lt;set _gossipStory = $world.currentGossipStory&gt;&gt;\
+&lt;&lt;/if&gt;&gt;\</tw-passagedata><tw-passagedata pid="30" name="Event_Geschichte_Probe" tags="" position="2375,1925" size="100,100">&lt;&lt;set _gossipStory = $world.currentGossipStory&gt;&gt;\
 &lt;&lt;set _gossipDiff = _gossipStory.probe.difficulty&gt;&gt;\
 &lt;&lt;set _gossipSkill = $player.knowledge.gossip&gt;&gt;\
 &lt;&lt;if _gossipSkill &lt;= 3&gt;&gt;\
@@ -2041,7 +2051,7 @@ Du bist jetzt drin.
 &lt;&lt;/if&gt;&gt;\
 
 &lt;&lt;set $world.currentGossipStory = null&gt;&gt;\
-[[Schlafen -&gt;Kap1_Der nächste Tag]]</tw-passagedata><tw-passagedata pid="32" name="Event_Schlaegerei" tags="" position="2600,1300" size="100,100">Fäuster</tw-passagedata><tw-passagedata pid="33" name="Event_Wuerfelspiel" tags="" position="2450,2225" size="100,100">Ein paar Rekruten sitzen um einen groben Holztisch.  
+[[Schlafen -&gt;Kap1_Der nächste Tag]]</tw-passagedata><tw-passagedata pid="31" name="Event_Schlaegerei" tags="" position="2600,1300" size="100,100">Fäuster</tw-passagedata><tw-passagedata pid="32" name="Event_Wuerfelspiel" tags="" position="2450,2225" size="100,100">Ein paar Rekruten sitzen um einen groben Holztisch.  
 Zwischen Krügen und Kerzenlicht klackern Würfel.
 
 &lt;&lt;if $world.needsDiceGame&gt;&gt;\
@@ -2061,7 +2071,7 @@ Du wirst vom Tisch weggeschickt.
 
 [[Mitspielen-&gt;Wuerfel_Start]] \
 [[Zuschauen-&gt;Wuerfel_Zuschauen]]
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="34" name="GossipTexte" tags="" position="2575,1800" size="100,100">{
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="33" name="GossipTexte" tags="" position="2575,1800" size="100,100">{
   &quot;stories&quot;: {
 
     &quot;lagerklatsch&quot;: [
@@ -2180,7 +2190,7 @@ Du wirst vom Tisch weggeschickt.
     ]
 
   }
-}</tw-passagedata><tw-passagedata pid="35" name="Hallen erkunden" tags="" position="900,150" size="100,100">Du stehlst dich von den anderen Rekruten fort und meidest das helle Tageslicht, das durch die großen Tore auf den Hof fällt. Stattdessen gleitest du einen schmalen, steinernen Treppenaufgang hinauf, der in den Offiziersflügel der Akademie führt. Hier oben riecht es nach Bohnerwachs und schwerem Tabak.
+}</tw-passagedata><tw-passagedata pid="34" name="Hallen erkunden" tags="" position="900,150" size="100,100">Du stehlst dich von den anderen Rekruten fort und meidest das helle Tageslicht, das durch die großen Tore auf den Hof fällt. Stattdessen gleitest du einen schmalen, steinernen Treppenaufgang hinauf, der in den Offiziersflügel der Akademie führt. Hier oben riecht es nach Bohnerwachs und schwerem Tabak.
 
 Aus einem leicht geöffneten Spalt einer schweren Eichentür dringt das gedämpfte Licht eines Kamins – und aufgebrachte Stimmen. Du drückst dich flach gegen die Wand und hältst den Atem an.
 
@@ -2190,7 +2200,7 @@ Die jüngere, kühlere Stimme des Hauptmanns antwortet: &quot;Das ist das Gesetz
 
 Du lehnst dich ein Stück zu weit vor, um mehr zu verstehen – und prompt knarrt eine morsche Holzdiele laut unter deinem Stiefel. Drinnen herrscht schlagartig eisige Stille.
 [[Hastig herumwirbeln und zur Treppe am anderen Ende des Flurs sprinten! -&gt;Treppe runterrennen]]
-[[Stehen bleiben und versuchen, sich irgendwie herauszureden. -&gt;Rausreden Versuch]]</tw-passagedata><tw-passagedata pid="36" name="InitNPC" tags="" position="0,225" size="100,100">&lt;&lt;set $npc = {
+[[Stehen bleiben und versuchen, sich irgendwie herauszureden. -&gt;Rausreden Versuch]]</tw-passagedata><tw-passagedata pid="35" name="InitNPC" tags="" position="0,225" size="100,100">&lt;&lt;set $npc = {
 
     /* ===========================
        KASERNE / AKADEMIE - OHMS
@@ -2379,7 +2389,7 @@ diplomatHannes: {
         */
     }
 
-} &gt;&gt;</tw-passagedata><tw-passagedata pid="37" name="InitPlayer" tags="" position="0,125" size="100,100">&lt;&lt;set $player = {
+} &gt;&gt;</tw-passagedata><tw-passagedata pid="36" name="InitPlayer" tags="" position="0,125" size="100,100">&lt;&lt;set $player = {
         name: &quot;Thomas&quot;,
 		fullname:&quot;Thomaso Wabbler&quot;,
         rank: &quot;Zivilist&quot;,
@@ -2417,7 +2427,7 @@ diplomatHannes: {
         rumors: []
         
         
-}&gt;&gt;</tw-passagedata><tw-passagedata pid="38" name="InitWorld" tags="" position="0,325" size="100,100">&lt;&lt;set $world = {
+}&gt;&gt;</tw-passagedata><tw-passagedata pid="37" name="InitWorld" tags="" position="0,325" size="100,100">&lt;&lt;set $world = {
 	
     lastPassage:&quot;&quot;,
     day: 1,
@@ -2432,7 +2442,7 @@ diplomatHannes: {
     interruptDoneToday: false,
     interruptHistory: {},
     
-}&gt;&gt;</tw-passagedata><tw-passagedata pid="39" name="Intro" tags="" position="500,150" size="100,100">&lt;div class=&quot;scenery-text&quot;&gt;Der Wind über Ohm ist kein sanfter Hauch.
+}&gt;&gt;</tw-passagedata><tw-passagedata pid="38" name="Intro" tags="" position="500,150" size="100,100">&lt;div class=&quot;scenery-text&quot;&gt;Der Wind über Ohm ist kein sanfter Hauch.
 Er kommt nicht und geht wieder — er liegt auf dem kahlen Gelände der Akademie wie eine unsichtbare, eiserne Last, kalt und trocken und ohne jedes Erbarmen. Er kriecht durch die Nähte deiner Zivilkleidung, als wollte er dir die letzte Wärme deines alten Lebens aus den Knochen saugen. Und vielleicht tut er genau das.&lt;/div&gt;
 Du denkst an das Strohbett daheim. An den vertrauten Geruch der Küche am Morgen, an die Geräusche, die du nie bewusst wahrgenommen hast, weil sie einfach immer da waren. An das Gewicht eines Tages, der keine Konsequenzen hatte.
 Das alles liegt hinter dir. Nicht weit — aber unerreichbar.
@@ -2459,7 +2469,7 @@ Der Sergeant am hölzernen Tisch blickt von seinen Listen auf und bellt:
 &lt;&lt;silently&gt;&gt;
 	&lt;&lt;set $player.rank = &quot;Rekrut&quot;&gt;&gt;
 &lt;&lt;/silently&gt;&gt;\
-[[&quot;Ein junger Mann, bereit für die Ausbildung.&quot;-&gt;Das Erwachen]]</tw-passagedata><tw-passagedata pid="40" name="Kapitel 0" tags="" position="225,50" size="200,200">Vers. 0.4.0
+[[&quot;Ein junger Mann, bereit für die Ausbildung.&quot;-&gt;Das Erwachen]]</tw-passagedata><tw-passagedata pid="39" name="Kapitel 0" tags="" position="225,50" size="200,200">Vers. 0.4.0
 
 &lt;div class=&quot;chapter-screen&quot;&gt;
     &lt;div class=&quot;fade-trigger&quot;&gt;Intro&lt;/div&gt;
@@ -2469,7 +2479,7 @@ Der Sergeant am hölzernen Tisch blickt von seinen Listen auf und bellt:
             [[Start-&gt;Intro]]
         &lt;&lt;/timed&gt;&gt;
     &lt;/div&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="41" name="Kapitel 1" tags="" position="200,425" size="200,200">&lt;div class=&quot;chapter-screen&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="40" name="Kapitel 1" tags="" position="200,425" size="200,200">&lt;div class=&quot;chapter-screen&quot;&gt;
     &lt;div class=&quot;chapter-title&quot;&gt;KAPITEL 1&lt;/div&gt;
     &lt;div class=&quot;chapter-time&quot;&gt;
     	$world.day &lt;&lt;if $world.day == 1&gt;&gt;Tag&lt;&lt;else&gt;&gt;Tage&lt;&lt;/if&gt;&gt; in der Ausbildung
@@ -2480,19 +2490,19 @@ Der Sergeant am hölzernen Tisch blickt von seinen Listen auf und bellt:
             [[Weiter-&gt;Kap01_RekrutenKennenlernen]]
         &lt;&lt;/timed&gt;&gt;
     &lt;/div&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="42" name="Nachmittag Cannon" tags="" position="725,1475" size="100,100">Die Geschütze der Artillerie
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="41" name="Nachmittag Cannon" tags="" position="725,1475" size="100,100">Die Geschütze der Artillerie
 &lt;div class=&quot;scenery-text&quot;&gt;&lt;&lt;= setup.executeStationRewards(&quot;cannon&quot;, &quot;scenery&quot;)&gt;&gt;&lt;/div&gt;
 &lt;&lt;= setup.executeStationRewards(&quot;cannon&quot;, &quot;main&quot;)&gt;&gt;
 ---
 &lt;div class=&quot;thought-box&quot;&gt;&lt;&lt;= setup.executeStationRewards(&quot;cannon&quot;, &quot;thoughts&quot;)&gt;&gt;&lt;/div&gt;
 ---
-[[Zurück zum Appellplatz -&gt;Abendappell]]</tw-passagedata><tw-passagedata pid="43" name="Nachmittag Crossbow" tags="" position="925,1475" size="100,100">Der Stand der Armbrustschützen
+[[Zurück zum Appellplatz -&gt;Abendappell]]</tw-passagedata><tw-passagedata pid="42" name="Nachmittag Crossbow" tags="" position="925,1475" size="100,100">Der Stand der Armbrustschützen
 &lt;div class=&quot;scenery-text&quot;&gt;&lt;&lt;= setup.executeStationRewards(&quot;crossbow&quot;, &quot;scenery&quot;)&gt;&gt;&lt;/div&gt;
 &lt;&lt;= setup.executeStationRewards(&quot;crossbow&quot;, &quot;main&quot;)&gt;&gt;
 ---
 &lt;div class=&quot;thought-box&quot;&gt;&lt;&lt;= setup.executeStationRewards(&quot;crossbow&quot;, &quot;thoughts&quot;)&gt;&gt;&lt;/div&gt;
 ---
-[[Zurück zum Appellplatz -&gt;Abendappell]]</tw-passagedata><tw-passagedata pid="44" name="Nachmittag Hub" tags="" position="825,1325" size="100,100">&lt;&lt;= setup.getRandomText(&quot;hubIntros&quot;)&gt;&gt;
+[[Zurück zum Appellplatz -&gt;Abendappell]]</tw-passagedata><tw-passagedata pid="43" name="Nachmittag Hub" tags="" position="825,1325" size="100,100">&lt;&lt;= setup.getRandomText(&quot;hubIntros&quot;)&gt;&gt;
 
 &lt;div class=&quot;scenery-text&quot;&gt;&lt;&lt;= setup.getRandomText(&quot;hubScenery&quot;)&gt;&gt;&lt;/div&gt;
 Fünf Gelegenheiten fallen dir im Vorbeigehen ins Auge:
@@ -2503,25 +2513,25 @@ Fünf Gelegenheiten fallen dir im Vorbeigehen ins Auge:
     &lt;li&gt;[[Zu den Armbrustschützen -&gt;Nachmittag Crossbow]]&lt;span class=&quot;subtext&quot;&gt;&lt;&lt;= setup.getRandomText(&quot;hubSubtexts&quot;, &quot;crossbow&quot;)&gt;&gt;&lt;/span&gt;&lt;/li&gt;
     &lt;li&gt;[[Hinter den Stallungen herumtreiben -&gt;Nachmittag Thievery]]&lt;span class=&quot;subtext&quot;&gt;&lt;&lt;= setup.getRandomText(&quot;hubSubtexts&quot;, &quot;thievery&quot;)&gt;&gt;&lt;/span&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class=&quot;thought-box&quot;&gt; &lt;&lt;= setup.getRandomText(&quot;hubThoughts&quot;)&gt;&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="45" name="Nachmittag Medicine" tags="" position="825,1475" size="100,100">Das Zelt des Feldschers
+&lt;div class=&quot;thought-box&quot;&gt; &lt;&lt;= setup.getRandomText(&quot;hubThoughts&quot;)&gt;&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="44" name="Nachmittag Medicine" tags="" position="825,1475" size="100,100">Das Zelt des Feldschers
 &lt;div class=&quot;scenery-text&quot;&gt;&lt;&lt;= setup.executeStationRewards(&quot;medicine&quot;, &quot;scenery&quot;)&gt;&gt;&lt;/div&gt;
 &lt;&lt;= setup.executeStationRewards(&quot;medicine&quot;, &quot;main&quot;)&gt;&gt;
 ---
 &lt;div class=&quot;thought-box&quot;&gt;&lt;&lt;= setup.executeStationRewards(&quot;medicine&quot;, &quot;thoughts&quot;)&gt;&gt;&lt;/div&gt;
 ---
-[[Zurück zum Appellplatz -&gt;Abendappell]]</tw-passagedata><tw-passagedata pid="46" name="Nachmittag Pike" tags="" position="625,1475" size="100,100">Die Waffengestelle der Infanterie
+[[Zurück zum Appellplatz -&gt;Abendappell]]</tw-passagedata><tw-passagedata pid="45" name="Nachmittag Pike" tags="" position="625,1475" size="100,100">Die Waffengestelle der Infanterie
 &lt;div class=&quot;scenery-text&quot;&gt;&lt;&lt;= setup.executeStationRewards(&quot;pike&quot;, &quot;scenery&quot;)&gt;&gt;&lt;/div&gt;
 &lt;&lt;= setup.executeStationRewards(&quot;pike&quot;, &quot;main&quot;)&gt;&gt;
 ---
 &lt;div class=&quot;thought-box&quot;&gt;&lt;&lt;= setup.executeStationRewards(&quot;pike&quot;, &quot;thoughts&quot;)&gt;&gt;&lt;/div&gt;
 ---
-[[Zurück zum Appellplatz -&gt;Abendappell]]</tw-passagedata><tw-passagedata pid="47" name="Nachmittag Thievery" tags="" position="1025,1475" size="100,100">Die Schatten hinter den Stallungen
+[[Zurück zum Appellplatz -&gt;Abendappell]]</tw-passagedata><tw-passagedata pid="46" name="Nachmittag Thievery" tags="" position="1025,1475" size="100,100">Die Schatten hinter den Stallungen
 &lt;div class=&quot;scenery-text&quot;&gt;&lt;&lt;= setup.executeStationRewards(&quot;thievery&quot;, &quot;scenery&quot;)&gt;&gt;&lt;/div&gt;
 &lt;&lt;= setup.executeStationRewards(&quot;thievery&quot;, &quot;main&quot;)&gt;&gt;
 ---
 &lt;div class=&quot;thought-box&quot;&gt;&lt;&lt;= setup.executeStationRewards(&quot;thievery&quot;, &quot;thoughts&quot;)&gt;&gt;&lt;/div&gt;
 ---
-[[Zurück zum Appellplatz -&gt;Abendappell]]</tw-passagedata><tw-passagedata pid="48" name="Nachtruhe 1" tags="" position="250,950" size="100,100">&lt;&lt;if $npc.jarek.affection &gt; 0&gt;&gt;\
+[[Zurück zum Appellplatz -&gt;Abendappell]]</tw-passagedata><tw-passagedata pid="47" name="Nachtruhe 1" tags="" position="250,950" size="100,100">&lt;&lt;if $npc.jarek.affection &gt; 0&gt;&gt;\
 &lt;div class=&quot;system-alert status-positive&quot;&gt;\
 	Zuneigung von Jarek erhöht
     &lt;/div&gt;\
@@ -2541,7 +2551,7 @@ Das war Tag eins.
 Es bleiben noch exakt einhundert und vier Wochen.
 Du schließt die Augen.
 
-[[Der nächste Morgen: Der erste Tag vergeht... -&gt;Das Training: Erster Tag]]</tw-passagedata><tw-passagedata pid="49" name="PassageHeader" tags="header" position="550,0" size="100,100">&lt;&lt;if !setup.isJournalBlocked()&gt;&gt;\
+[[Der nächste Morgen: Der erste Tag vergeht... -&gt;Das Training: Erster Tag]]</tw-passagedata><tw-passagedata pid="48" name="PassageHeader" tags="header" position="550,0" size="100,100">&lt;&lt;if !setup.isJournalBlocked()&gt;&gt;\
 &lt;div id=&quot;hud-bar&quot;&gt;
     &lt;div class=&quot;hud-left&quot;&gt;
         &lt;span class=&quot;hud-item hud-day&quot;&gt;⚔ Tag &lt;&lt;= $world.day &gt;&gt;&lt;/span&gt;
@@ -2559,7 +2569,7 @@ Du schließt die Augen.
     &lt;/div&gt;
 &lt;/div&gt;\
 &lt;hr class=&quot;hud-divider&quot;&gt;
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="50" name="Rausreden Versuch" tags="" position="825,300" size="100,100">Die Eichentür fliegt mit einem lauten Knall auf. Kurt, der ältere Ausbilder, steht im Rahmen. Seine Augen verengen sich zu Schlitzen, als er dich sieht. 
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="49" name="Rausreden Versuch" tags="" position="825,300" size="100,100">Die Eichentür fliegt mit einem lauten Knall auf. Kurt, der ältere Ausbilder, steht im Rahmen. Seine Augen verengen sich zu Schlitzen, als er dich sieht. 
 
 @@.voice-aggressive;&quot;Ein Frischling!&quot;, speit er aus. &quot;Spionierst uns nach, noch bevor du überhaupt den ersten Staub gefressen hast?!&quot;@@
 
@@ -2574,17 +2584,17 @@ Die Treppe. Den Korridor. Keine Rücksicht auf dein Tempo, kein Wort mehr, nur d
 
 &lt;&lt;=setup.setNpcAffection(&quot;kurt&quot;, -10)&gt;&gt;&lt;&lt;set $npc.kurt.known = true&gt;&gt;
 &lt;&lt;=setup.setPlayerStat(&quot;honesty&quot;, -5)&gt;&gt;
-[[Zähneknirschend auf den Hof zerren lassen.-&gt;Der Kasernenhof]]</tw-passagedata><tw-passagedata pid="51" name="Sergent aushorchen" tags="" position="600,300" size="100,100">@@.voice-aggressive;&quot;BIN ICH EINE KLATSCHTANTE???&quot;@@.
+[[Zähneknirschend auf den Hof zerren lassen.-&gt;Der Kasernenhof]]</tw-passagedata><tw-passagedata pid="50" name="Sergent aushorchen" tags="" position="600,300" size="100,100">@@.voice-aggressive;&quot;BIN ICH EINE KLATSCHTANTE???&quot;@@.
 @@.voice-aggressive;„Du hast einen Befehl erhalten und der war nicht mit mir zu reden, also sieh zu dass du Land gewinnst sonst schmeiss ich dich in den Turm bevor deine Ausbildung angefangen hat!!!“@@
 
 &lt;&lt;= setup.setNpcAffection(&quot;sergeant&quot;, -5)&gt;&gt;
 
 [[Befehl befolgen und direkt zum Kasernenhof gehen-&gt;Der Kasernenhof]]
-[[Sich heimlich von der Truppe absetzen und die Akademie-Hallen auskundschaften-&gt;Hallen erkunden]]</tw-passagedata><tw-passagedata pid="52" name="StoryInit" tags="" position="0,0" size="100,100">&lt;&lt;include &quot;InitPlayer&quot;&gt;&gt;
+[[Sich heimlich von der Truppe absetzen und die Akademie-Hallen auskundschaften-&gt;Hallen erkunden]]</tw-passagedata><tw-passagedata pid="51" name="StoryInit" tags="" position="0,0" size="100,100">&lt;&lt;include &quot;InitPlayer&quot;&gt;&gt;
 &lt;&lt;include &quot;InitNPC&quot;&gt;&gt;
 &lt;&lt;include &quot;InitWorld&quot;&gt;&gt;
 &lt;&lt;set setup.trainingsHubTextVault to JSON.parse(Story.get(&quot;TrainingsHubTexte&quot;).text)&gt;&gt;
-&lt;&lt;set setup.abendappellTextVault to JSON.parse(Story.get(&quot;AbendappellTexte&quot;).text)&gt;&gt;</tw-passagedata><tw-passagedata pid="53" name="Stube: Bei Karla einrichten" tags="" position="425,775" size="100,100">Du wirfst deine Umhängetasche auf die raue Holzpritsche neben Karla, und der dumpfe Aufschlag ist laut genug, um ein paar Köpfe herumfahren zu lassen. Die Rekruten in der Nähe weichen einen halben Schritt zurück — nicht aus Respekt vor dir, sondern aus dem instinktiven Gespür, dass es klüger ist, Abstand zu halten, wenn jemand eine Entscheidung trifft, ohne dabei zu zögern.
+&lt;&lt;set setup.abendappellTextVault to JSON.parse(Story.get(&quot;AbendappellTexte&quot;).text)&gt;&gt;</tw-passagedata><tw-passagedata pid="52" name="Stube: Bei Karla einrichten" tags="" position="425,775" size="100,100">Du wirfst deine Umhängetasche auf die raue Holzpritsche neben Karla, und der dumpfe Aufschlag ist laut genug, um ein paar Köpfe herumfahren zu lassen. Die Rekruten in der Nähe weichen einen halben Schritt zurück — nicht aus Respekt vor dir, sondern aus dem instinktiven Gespür, dass es klüger ist, Abstand zu halten, wenn jemand eine Entscheidung trifft, ohne dabei zu zögern.
 Karla grinst. Schief und ohne jeden Aufwand, es freundlicher aussehen zu lassen als es ist. Sie lässt sich auf ihre eigene Decke fallen, zieht ein kurzes Messer aus dem Stiefelschaft und beginnt, mit der Ruhe eines Menschen, dem die Meinung anderer seit Jahren gleichgültig ist, den Dreck unter ihren Fingernägeln hervorzukratzen.
 „Gute Wahl, Frischling.&quot; Sie schaut dabei nicht auf. „Wer bei mir schläft, hat nachts seine Ruhe vor den Langfingern im Raum.&quot;
 „Aber bild dir nichts ein: Morgen auf dem Exerzierplatz krieche ich dir genauso wenig in den Hintern wie der Schinder.&quot;
@@ -2593,7 +2603,7 @@ Am anderen Ende der Baracke, nahe der Tür, sitzt Jarek auf seiner Pritsche. Sei
 Die Talglichtflammen zucken im Zugwind. Irgendwo in der Stube hustet jemand. Das Stroh unter dir ist hart und riecht nach altem Heu und fremden Körpern.
 Du liegst in deiner neuen Welt.
 
-[[Dich wortlos schlafen legen. -&gt;Nachtruhe 1]]</tw-passagedata><tw-passagedata pid="54" name="Stube: Eigene Pritsche suchen" tags="" position="250,775" size="100,100">Du wendest dich ab und gehst.
+[[Dich wortlos schlafen legen. -&gt;Nachtruhe 1]]</tw-passagedata><tw-passagedata pid="53" name="Stube: Eigene Pritsche suchen" tags="" position="250,775" size="100,100">Du wendest dich ab und gehst.
 Keine Erklärung. Kein Blick zurück. Nur deine Schritte durch den Mittelgang der Baracke, vorbei an Rekruten, die sich bereits zusammenrotten, Allianzen schließen, Namen austauschen — all die kleinen, hastigen Versuche von Menschen, die plötzlich allein sind und es nicht bleiben wollen.
 Du bleibst allein.
 Weiter hinten, im zugigen Teil der Baracke, ist noch ein oberes Etagenbett frei. Niemand hat es gewollt. Der Wind findet hier seinen Weg durch die Ritzen der alten Holzwände, und das Stroh auf dem Gestell ist dünner als anderswo, als hätte man bei diesem Platz von Anfang an weniger Mühe gegeben. Du wirfst deine Tasche hinauf und kletterst nach.
@@ -2607,7 +2617,7 @@ Du liegst auf dem Rücken und starrst an die Decke der Baracke. Das Holz über d
 Morgen beginnt es.
 Heute Nacht bist du noch einfach nur müde.
 
-[[Die Augen schließen. -&gt;Nachtruhe 1]]</tw-passagedata><tw-passagedata pid="55" name="Stube: Jarek anfreunden" tags="" position="100,775" size="100,100">Du ergreifst Jareks Hand und erwiederst seinen Händedruck fest. „Das obere Bett ist gebucht.&quot; Deine Tasche landet mit einem dumpfen Schlag auf dem morschen Holzgestell.
+[[Die Augen schließen. -&gt;Nachtruhe 1]]</tw-passagedata><tw-passagedata pid="54" name="Stube: Jarek anfreunden" tags="" position="100,775" size="100,100">Du ergreifst Jareks Hand und erwiederst seinen Händedruck fest. „Das obere Bett ist gebucht.&quot; Deine Tasche landet mit einem dumpfen Schlag auf dem morschen Holzgestell.
 Jarek lächelt — schmal und ohne Überschwang, das Lächeln eines Menschen, der gelernt hat, sparsam damit umzugehen. Er lehnt sich mit dem Rücken gegen den hölzernen Pfosten und lässt den Blick kurz durch die Stube wandern.
 „Gute Entscheidung. Hier vorne zieht es zwar ordentlich durch die Türritzen — aber du bist am weitesten weg vom ewigen Theater da hinten.&quot; Er deutet mit dem Kinn zu Karla, die am Ofen noch immer ihr Revier absteckt wie ein Tier, das seinen Käfig vermisst. „Wir sollten ihr aus dem Weg gehen. Sie ist anstrengend.&quot; Eine kurze Pause. „Aber verdammt gut an der Waffe. Man hört sie in den Schenken von Ohm über ihre Kraft reden — und die Leute, die es hören, widersprechen ihr meistens nicht.&quot;
 Er setzt sich auf die untere Pritsche und beginnt, seine schweren Marschstiefel aufzuknoten. Die Bewegungen sind gleichmäßig, fast mechanisch — die Bewegungen eines Mannes, der mit seinen Gedanken schon woanders ist.
@@ -2617,7 +2627,7 @@ Er stellt die Stiefel nebeneinander auf den Boden — ordentlich, parallel — u
 Es ist keine Drohung. Keine Prüfung. Nur eine ehrliche Frage von jemandem, der weiß, dass die Antwort darauf irgendwann zählen wird.
 
 [[Ihm versichern, dass er auf dich zählen kann. -&gt;Nachtruhe 1][$npc.jarek.affection += 2]]
-[[Dich einfach wortlos hinlegen und das Gespräch beenden. -&gt;Nachtruhe 1]]</tw-passagedata><tw-passagedata pid="56" name="TrainingsHubTexte" tags="" position="1000,1325" size="100,100">{
+[[Dich einfach wortlos hinlegen und das Gespräch beenden. -&gt;Nachtruhe 1]]</tw-passagedata><tw-passagedata pid="55" name="TrainingsHubTexte" tags="" position="1000,1325" size="100,100">{
   &quot;hubIntros&quot;: [
     &quot;Der Staub des Exerzierplatzes hat sich in deine Poren gefressen und klebt wie eine zweite Haut auf deinen Wangen. Du wischst dir den Schweiß von der Stirn und blickst über das weitläufige Gelände der Akademie. Der Nachmittag ist kurz, und du weißt bereits, dass man hier keine Zeit verschenkt — du wirst nur an einem einzigen Ort wirklich präsent sein können.&quot;,
 
@@ -2928,7 +2938,7 @@ Es ist keine Drohung. Keine Prüfung. Nur eine ehrliche Frage von jemandem, der 
       &quot;rewards&quot;: { &quot;stat&quot;: &quot;honesty&quot;, &quot;statValue&quot;: -1, &quot;knowledge&quot;: &quot;thievery&quot;, &quot;knowledgeValue&quot;: 1 }
     }
   }
-}</tw-passagedata><tw-passagedata pid="57" name="Treppe runterrennen" tags="" position="1000,300" size="100,100">Die Panik schießt dir in die Glieder wie eisiges Wasser, und bevor du einen klaren Gedanken fassen kannst, hast du dich bereits umgeworfen und sprintest den Flur hinunter. Die Stufen der hinteren Treppe nimmst du im freien Fall, die Finger kaum am Geländer, die Stiefel auf dem glatten Stein ohne Halt.
+}</tw-passagedata><tw-passagedata pid="56" name="Treppe runterrennen" tags="" position="1000,300" size="100,100">Die Panik schießt dir in die Glieder wie eisiges Wasser, und bevor du einen klaren Gedanken fassen kannst, hast du dich bereits umgeworfen und sprintest den Flur hinunter. Die Stufen der hinteren Treppe nimmst du im freien Fall, die Finger kaum am Geländer, die Stiefel auf dem glatten Stein ohne Halt.
 An der Biegung unten tritt ein Mann aus dem Schatten — und du hast keine Chance mehr zu bremsen.
 Der Aufprall ist hart und ungnädig. Papiere explodieren in alle Richtungen, eine kunstvoll versiegelte Dokumentenrolle entgleitet seinen Fingern und kracht polternd über die Steinstufen. Der Mann taumelt, greift mit beiden Händen nach dem Geländer und fängt sich mit einer Beherrschung, die unter den Umständen fast unheimlich wirkt. Dann richtet er sich auf und sieht dich an — mit einer Mischung aus Bestürzung und einer eisigen Würde, die keinen Zweifel daran lässt, dass er an Situationen gewöhnt ist, die er nicht selbst verschuldet hat.
 Er ist mittelgroß und trägt einen kurzen, gepflegten Vollbart über einem harten Kiefer. Ein Söldnerbarret mit dem Abzeichen des Haubentauchers sitzt auf seinem Kopf, darunter ein rotes Wollwams mit geschlitzten Pluderärmeln — und über den Schultern liegt, breit und unverkennbar, ein weißer bodenlanger Mantel ohne Ärmel. Das Zeichen der Diplomaten. Du erkennst es, noch bevor er den Mund öffnet.
@@ -2943,8 +2953,8 @@ Er sagt es ohne Lautstärke. Als wäre sein Schweigen das Großzügigste, was er
 
 &lt;&lt;set $npc.diplomatHannes.known = true&gt;&gt;
 
-[[Befehl befolgen und direkt zum Kasernenhof gehen-&gt;Der Kasernenhof]]</tw-passagedata><tw-passagedata pid="58" name="Wuerfel_AllIn" tags="" position="2700,2500" size="100,100">&lt;&lt;set _bet = $player.money.copper&gt;&gt;
-&lt;&lt;include &quot;Wuerfel_Auswertung&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="59" name="Wuerfel_Auswertung" tags="" position="2850,2250" size="100,100">&lt;&lt;set _isScripted = $world.needsDiceGame&gt;&gt;\
+[[Befehl befolgen und direkt zum Kasernenhof gehen-&gt;Der Kasernenhof]]</tw-passagedata><tw-passagedata pid="57" name="Wuerfel_AllIn" tags="" position="2700,2500" size="100,100">&lt;&lt;set _bet = $player.money.copper&gt;&gt;
+&lt;&lt;include &quot;Wuerfel_Auswertung&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="58" name="Wuerfel_Auswertung" tags="" position="2850,2250" size="100,100">&lt;&lt;set _isScripted = $world.needsDiceGame&gt;&gt;\
 &lt;&lt;set _win = false&gt;&gt;\
 &lt;&lt;if _isScripted&gt;&gt; \
     /* SCRIPTED WIN (Story-Moment) */
@@ -2997,10 +3007,10 @@ Die Würfel schlagen auf den Tisch.&lt;/div&gt;
 
     &lt;&lt;/if&gt;&gt;
 &lt;&lt;/timed&gt;&gt;
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="60" name="Wuerfel_Set_1" tags="" position="2600,2400" size="100,100">&lt;&lt;set _bet = 1&gt;&gt;
-&lt;&lt;include &quot;Wuerfel_Auswertung&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="61" name="Wuerfel_Set_2" tags="" position="2700,2400" size="100,100">&lt;&lt;set _bet = 2&gt;&gt;
-&lt;&lt;include &quot;Wuerfel_Auswertung&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="62" name="Wuerfel_Set_5" tags="" position="2600,2500" size="100,100">&lt;&lt;set _bet = 5&gt;&gt;
-&lt;&lt;include &quot;Wuerfel_Auswertung&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="63" name="Wuerfel_Start" tags="" position="2650,2275" size="100,100">&lt;&lt;if $world.needsDiceGame&gt;&gt;\
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="59" name="Wuerfel_Set_1" tags="" position="2600,2400" size="100,100">&lt;&lt;set _bet = 1&gt;&gt;
+&lt;&lt;include &quot;Wuerfel_Auswertung&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="60" name="Wuerfel_Set_2" tags="" position="2700,2400" size="100,100">&lt;&lt;set _bet = 2&gt;&gt;
+&lt;&lt;include &quot;Wuerfel_Auswertung&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="61" name="Wuerfel_Set_5" tags="" position="2600,2500" size="100,100">&lt;&lt;set _bet = 5&gt;&gt;
+&lt;&lt;include &quot;Wuerfel_Auswertung&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="62" name="Wuerfel_Start" tags="" position="2650,2275" size="100,100">&lt;&lt;if $world.needsDiceGame&gt;&gt;\
     Heute ist dein Absoluter Glückstag!
     Wir spielen Alles oder Nichts, dafür gehts auch um alles am Tisch!
 
@@ -3016,7 +3026,7 @@ Wie viel willst du setzen?
 [[5 Kupfer-&gt;Wuerfel_Set_5]]
 [[Alles setzen-&gt;Wuerfel_AllIn]]
 [[Abbrechen-&gt;Auf Stube]]
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="64" name="Wuerfel_Zuschauen" tags="" position="2450,2350" size="100,100">&lt;&lt;if $world.needsDiceGame&gt;&gt; \
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="63" name="Wuerfel_Zuschauen" tags="" position="2450,2350" size="100,100">&lt;&lt;if $world.needsDiceGame&gt;&gt; \
 
 Du willst dich gerade abwenden, als eine Stimme hinter dir schneidet.
 
@@ -3063,7 +3073,7 @@ Nicht plötzlich – eher so, als würde die Müdigkeit sich einfach neben dich 
     
     [[schlafen-&gt;Kap1_Der nächste Tag]]
 &lt;&lt;/timed&gt;&gt;
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="65" name="journalAnsicht" tags="" position="700,0" size="100,100">&lt;div id=&quot;passage-journalansicht&quot; class=&quot;passage journalansicht&quot;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="64" name="journalAnsicht" tags="" position="700,0" size="100,100">&lt;div id=&quot;passage-journalansicht&quot; class=&quot;passage journalansicht&quot;&gt;
   &lt;h2&gt;📋 $player.name&#39;s Notizbuch&lt;/h2&gt;
   Hier sind deine bisherigen Erkenntnisse über die Personen in der Akademie von Ohm festgehalten:
   &lt;h3&gt;Inventar und Werte&lt;/h3&gt;
@@ -3075,7 +3085,9 @@ Nicht plötzlich – eher so, als würde die Müdigkeit sich einfach neben dich 
   &lt;&lt;print setup.renderRumors()&gt;&gt;
 
 &lt;/div&gt;
-[[↩️ Zurück zum Dienst -&gt;$world.lastPassage]]</tw-passagedata><tw-passagedata pid="66" name="Kap1_Der_naechste_Tag_Texte" tags="" position="1525,800" size="100,100">{
+&lt;&lt;link &quot;↩️ Zurück zum Dienst&quot;&gt;&gt;
+    &lt;&lt;goto $world.lastPassage&gt;&gt;
+&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="65" name="Kap1_Der_naechste_Tag_Texte" tags="" position="1525,800" size="100,100">{
   &quot;morgen&quot;: [
     {
       &quot;text&quot;: &quot;Das erste Licht kriecht durch die Ritzen der Baracke wie ein Bote, der weiß, dass er nicht willkommen ist. Es ist noch kein richtiger Tag — nur das blasse Versprechen davon. Draußen beginnt irgendwo ein Horn zu rufen, und das Lager erwacht, langsam und ohne Gnade.&quot;,
@@ -3211,9 +3223,9 @@ Nicht plötzlich – eher so, als würde die Müdigkeit sich einfach neben dich 
       &quot;context&quot;: { &quot;minDay&quot;: 15, &quot;luigi_chance&quot;: true }
     }
   ]
-}</tw-passagedata><tw-passagedata pid="67" name="InterruptWidgets " tags="widget" position="1925,2125" size="100,100">&lt;&lt;widget &quot;weiterImTag&quot;&gt;&gt;\
+}</tw-passagedata><tw-passagedata pid="66" name="InterruptWidgets " tags="widget" position="1925,2125" size="100,100">&lt;&lt;widget &quot;weiterImTag&quot;&gt;&gt;\
 &lt;&lt;link &quot;Weiter&quot;&gt;&gt;&lt;&lt;goto setup.routeFromTags(tags())&gt;&gt;&lt;&lt;/link&gt;&gt;\
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="68" name="Interrupts" tags="" position="1925,2025" size="100,100">Routing-Tags (genau einer pro Interrupt, legt das Rücksprungziel fest):
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="67" name="Interrupts" tags="" position="1925,2025" size="100,100">Routing-Tags (genau einer pro Interrupt, legt das Rücksprungziel fest):
 
 nach_hub    		Nachmittag HubMorgen-Einschub, Tag läuft normal weiter
 
@@ -3231,7 +3243,7 @@ einmalig			feuert nie wieder, sobald er einmal gelaufen ist
 
 
 ---
-&lt;&lt;weiterImTag&gt;&gt;</tw-passagedata><tw-passagedata pid="69" name="Story002_Taverne_mit_Lars_Und_Hadde" tags="nach_morgen" position="2175,2400" size="100,100">Es war die Idee von jemand anderem. Zumindest sagst du dir das.
+&lt;&lt;weiterImTag&gt;&gt;</tw-passagedata><tw-passagedata pid="68" name="Story002_Taverne_mit_Lars_Und_Hadde" tags="nach_morgen" position="2175,2400" size="100,100">Es war die Idee von jemand anderem. Zumindest sagst du dir das.
 Drei Mann, ein Loch im Zaun das schon seit Wochen niemand geflickt hat, und ein Nachmittag der sich lang genug anfühlt um es zu riskieren. Der Weg zur Taverne dauert keine zehn Minuten — aber die ersten zwei gehst du mit dem Nacken zwischen den Schultern.
 Niemand ruft euch zurück.
 &lt;div class=&quot;scenery-text&quot;&gt;Es riecht nach Talg, saurem Bier und dem angenehmen Nichts von //nach dem Dienst//. Ein Dutzend Tische, halb besetzt. Irgendwer lacht zu laut. Niemand schaut hin.
@@ -3271,7 +3283,7 @@ Irgendetwas an den zwei — die Haltung, der Mantel, die Art wie der Große zuh�
 
 [[Den Nachmittag genießen und die zwei vergessen -&gt;Auf Stube][$world.kondition += 1]]\
 [[Hingehen -&gt;Story002_Taverne_Ansprechen_KeinAufhaenger]]
-&lt;&lt;/if&gt;&gt;\</tw-passagedata><tw-passagedata pid="70" name="Story002_Taverne_Ansprechen_MitAufhaenger" tags="" position="2025,2525" size="100,100">Du gehst rüber. Das Wappen auf dem Mantel gibt dir genug.
+&lt;&lt;/if&gt;&gt;\</tw-passagedata><tw-passagedata pid="69" name="Story002_Taverne_Ansprechen_MitAufhaenger" tags="" position="2025,2525" size="100,100">Du gehst rüber. Das Wappen auf dem Mantel gibt dir genug.
 „Das Wappenschild—&quot; du nickst in Richtung seiner Brust. „Das 84. Banner.&quot;
 Der Große sieht dich an. Dann sieht er dich //anders// an — so wie man jemanden ansieht der gerade von Hund auf Mensch hochgestuft wurde.
 „Ja.&quot; Eine kurze Pause. „Woher weißt du das.&quot;
@@ -3291,7 +3303,7 @@ Lars sieht ihn an.
 &lt;&lt;set $npc.haddl.affection += 1&gt;&gt;\
 &lt;div class=&quot;scenery-text&quot;&gt;Das Gespräch findet seinen eigenen Rhythmus. Lars redet wenig aber wenn er redet hat es Gewicht. Haddl füllt die Lücken mit Geschichten die halb gelogen und halb zu gut sind um erfunden zu sein.
 Irgendwann bestellt Lars ohne zu fragen eine neue Runde.&lt;/div&gt;
-[[Das Bier annehmen -&gt;Story002_BierAnnehmen]]\</tw-passagedata><tw-passagedata pid="71" name="Story002_Taverne_Ansprechen_KeinAufhaenger" tags="" position="2300,2525" size="100,100">Du gehst rüber. Ohne Grund. Ohne Plan.
+[[Das Bier annehmen -&gt;Story002_BierAnnehmen]]\</tw-passagedata><tw-passagedata pid="70" name="Story002_Taverne_Ansprechen_KeinAufhaenger" tags="" position="2300,2525" size="100,100">Du gehst rüber. Ohne Grund. Ohne Plan.
 Der Große bemerkt dich zuerst. Sein Blick kommt langsam hoch — so wie ein Mann der gelernt hat dass das meiste was auf ihn zukommt entweder Arbeit oder Ärger ist. Er wartet ab welches du bist.
 Der Lange dreht sich um. Mustert dich von oben bis unten mit der entspannten Gründlichkeit von jemandem dem das Ergebnis egal ist.
 Stille.
@@ -3311,7 +3323,7 @@ Du könntest die Runde schmeißen. Ein Becher Bier kauft mehr als Bier.
 [[Sich verabschieden und zurück zu den Rekruten -&gt;Auf Stube][$world.kondition += 5]]
 &lt;&lt;else&gt;&gt;\
 [[Sich verabschieden und zurück zu den Rekruten -&gt;Auf Stube][$world.kondition += 5]]
-&lt;&lt;/if&gt;&gt;\</tw-passagedata><tw-passagedata pid="72" name="Story002_Bier_Ausgeben" tags="" position="2225,2675" size="100,100">&lt;&lt;set $player.gold -= 8&gt;&gt;\
+&lt;&lt;/if&gt;&gt;\</tw-passagedata><tw-passagedata pid="71" name="Story002_Bier_Ausgeben" tags="" position="2225,2675" size="100,100">&lt;&lt;set $player.gold -= 8&gt;&gt;\
 &lt;&lt;= setup.setNpcAffection(&quot;weibelLars&quot;, 1)&gt;&gt;\
 &lt;&lt;= pushNpcMemory(&quot;weibelLars&quot;,&quot;Hat Bier ausgegeben&quot;)&gt;&gt;\
 &lt;&lt;= setup.setNpcAffection(&quot;haddl&quot;, 1)&gt;&gt;\
@@ -3329,14 +3341,14 @@ Er nickt. Dann dreht er sich zum Wirt.
 Haddl strahlt. „Der Opa hat immer gesagt: Wer großzügig ist bekommt mehr zurück als er gegeben hat.&quot;
 „Das hat der Opa diesmal vielleicht sogar gesagt&quot;, gibt Lars zu.
 
-[[Noch eine Runde -&gt;Story002_finalize]]\</tw-passagedata><tw-passagedata pid="73" name="Story002_BierAnnehmen" tags="" position="2075,2675" size="100,100">Du nimmst den Becher.
+[[Noch eine Runde -&gt;Story002_finalize]]\</tw-passagedata><tw-passagedata pid="72" name="Story002_BierAnnehmen" tags="" position="2075,2675" size="100,100">Du nimmst den Becher.
 Das Bier ist dünn und hat einen Stich ins Saure — das Billige, das der Wirt für Soldaten aufhebt weil er weiß dass sie es trotzdem trinken. Es schmeckt trotzdem gut. Vielleicht wegen der Gesellschaft. Vielleicht wegen des Tages der dahinter liegt.
 Haddl redet. Über die Gebirgsmarine, über einen Winter irgendwo an der Grenze, über einen Maultier das klüger war als sein Reiter. Lars hört zu mit dem Gesicht eines Mannes der die meisten dieser Geschichten schon kennt und sie trotzdem lässt.
 Irgendwann bist du kein Rekrut mehr an ihrem Tisch. Du bist jemand der dazugehört.
 
 &lt;div class=&quot;scenery-text&quot;&gt;Der Abend wird länger als geplant.&lt;/div&gt;
 
-[[Noch eine Runde -&gt;Story002_finalize]]\</tw-passagedata><tw-passagedata pid="74" name="Story002_finalize" tags="nach_morgen" position="2150,2825" size="100,100">&lt;div class=&quot;scenery-text&quot;&gt;Was danach passiert lässt sich schwer in einer geraden Linie erzählen.&lt;/div&gt;
+[[Noch eine Runde -&gt;Story002_finalize]]\</tw-passagedata><tw-passagedata pid="73" name="Story002_finalize" tags="nach_morgen" position="2150,2825" size="100,100">&lt;div class=&quot;scenery-text&quot;&gt;Was danach passiert lässt sich schwer in einer geraden Linie erzählen.&lt;/div&gt;
 Irgendwann war der Becher leer und dann voll und dann wieder leer. 
 
 Haddl hat eine Sau aufgetrieben — woher, das hat niemand gefragt und er hat es nicht erklärt. 
@@ -3356,7 +3368,7 @@ Den Rest reimst du dir morgen zusammen. Vielleicht hast du dir was notiert?
 &lt;&lt;= setup.addItem(&quot;Söldner-Handbuch mit Widmung von Lars und Hadde&quot;)&gt;&gt;\
 
 ---
-&lt;&lt;weiterImTag&gt;&gt;</tw-passagedata><tw-passagedata pid="75" name="Story003_ErsterMorgen" tags="einmalig" position="875,2425" size="100,100">Der zweite Tag beginnt, bevor du bereit bist.
+&lt;&lt;weiterImTag&gt;&gt;</tw-passagedata><tw-passagedata pid="74" name="Story003_ErsterMorgen" tags="einmalig" position="875,2425" size="100,100">Der zweite Tag beginnt, bevor du bereit bist.
 
 Nicht mit Licht – das kommt später. Erst mit Geräuschen. Das Knarren einer Pritsche. Das dumpfe Aufsetzen von Stiefeln auf Holzdielen. Jemand hustet, kurz und trocken, und hört damit nicht auf. Dreißig Menschen in einem Raum, die alle gleichzeitig aufwachen und dabei so wenig Platz brauchen wollen wie möglich.
 
@@ -3376,7 +3388,7 @@ Jemand stößt im Vorbeigehen gegen deine Pritsche. Keine Absicht. Einfach zu we
 
 Du stehst auf.
 
-[[Weiter-&gt;Story003_Fruehstueck]]</tw-passagedata><tw-passagedata pid="76" name="Story003_Fruehstueck" tags="" position="875,2550" size="100,100">Die Kantine riecht nach heißem Fett und gekochtem Kohl.
+[[Weiter-&gt;Story003_Fruehstueck]]</tw-passagedata><tw-passagedata pid="75" name="Story003_Fruehstueck" tags="" position="875,2550" size="100,100">Die Kantine riecht nach heißem Fett und gekochtem Kohl.
 
 Es ist lautes, rohes Essen – eine Schüssel Brei, dazu ein Kanten Brot der sich biegt wenn man ihn hält. Kein schlechtes Essen. Nur keines, bei dem man sich Zeit lässt.
 
@@ -3391,7 +3403,7 @@ Irgendwo an diesem Tisch sitzen Karla und Jarek. Du weißt das, ohne hinzusehen.
 Wie du den Morgen angehst – das entscheidest du jetzt, ohne groß darüber nachzudenken. Meistens sind das die Entscheidungen, die zählen.
 
 [[Schweigend essen und in Ruhe lassen wollen-&gt;Story003_Stille]]
-[[Den Blickkontakt suchen – irgendjemanden ansprechen-&gt;Story003_Kontakt]]</tw-passagedata><tw-passagedata pid="77" name="Story003_Stille" tags="" position="825,2675" size="100,100">Du isst.
+[[Den Blickkontakt suchen – irgendjemanden ansprechen-&gt;Story003_Kontakt]]</tw-passagedata><tw-passagedata pid="76" name="Story003_Stille" tags="" position="825,2675" size="100,100">Du isst.
 
 Nicht weil das Essen gut ist. Nicht weil du Hunger hast, genau genommen. Sondern weil es etwas ist, das du tun kannst ohne dabei mit jemandem reden zu müssen.
 
@@ -3407,7 +3419,7 @@ Ihr esst nebeneinander ohne ein Wort. Das ist keine Ablehnung. Das ist, auf sein
 
 &lt;&lt;set $npc.jarek.affection += 1&gt;&gt;
 
-[[Weiter-&gt;Story003_Drill]]</tw-passagedata><tw-passagedata pid="78" name="Story003_Kontakt" tags="" position="950,2675" size="100,100">Du schaust auf.
+[[Weiter-&gt;Story003_Drill]]</tw-passagedata><tw-passagedata pid="77" name="Story003_Kontakt" tags="" position="950,2675" size="100,100">Du schaust auf.
 
 Karla sitzt drei Plätze weiter und isst mit einer Effizienz, die fast respekteinflößend ist. Sie schaut nicht auf. Aber als du dich setzt – näher als nötig, nah genug damit es kein Zufall mehr ist – hebt sie kurz den Kopf.
 
@@ -3425,7 +3437,7 @@ Du nimmst ein Stück Brot.
 
 &lt;&lt;set $npc.karla.affection += 1&gt;&gt;
 
-[[Weiter-&gt;Story003_Drill]]</tw-passagedata><tw-passagedata pid="79" name="Story003_Drill" tags="" position="875,2800" size="100,100">Was folgt, lässt sich nicht als Erzählung zusammenfassen.
+[[Weiter-&gt;Story003_Drill]]</tw-passagedata><tw-passagedata pid="78" name="Story003_Drill" tags="" position="875,2800" size="100,100">Was folgt, lässt sich nicht als Erzählung zusammenfassen.
 
 Es ist zu viel und zu gleichförmig und zu erschöpfend um Gestalt anzunehmen – ein langer, grauer Block aus Kommandos, Kies, kaltem Wind und dem rhythmischen Schlagen von Holzschäften auf Leder. Der Schinder brüllt nicht mehr als gestern. Er muss auch nicht. Sein Schweigen funktioniert genauso gut.
 
@@ -3439,7 +3451,7 @@ Du denkst an nichts Bestimmtes.
 
 &lt;div class=&quot;thought-box&quot;&gt;Das ist ungewohnt. Meistens denkst du an zu viel auf einmal. Aber der Körper, wenn er müde genug ist, macht den Kopf still. Das ist vielleicht die ehrlichste Form der Ruhe.&lt;/div&gt;
 
-[[Weiter-&gt;Story003_Abend]]</tw-passagedata><tw-passagedata pid="80" name="Story003_Abend" tags="nach_stube" position="875,2925" size="100,100">Der Abendappell verläuft ohne Vorfall.
+[[Weiter-&gt;Story003_Abend]]</tw-passagedata><tw-passagedata pid="79" name="Story003_Abend" tags="nach_stube" position="875,2925" size="100,100">Der Abendappell verläuft ohne Vorfall.
 
 Das ist, wie du inzwischen verstehst, bereits eine Leistung.
 
@@ -3460,7 +3472,7 @@ Keine Gedanken über morgen. Keine Pläne. Nur das leise Knacken des Holzes, das
 &lt;div class=&quot;thought-box&quot;&gt;Das zählt.&lt;/div&gt;
 
 ---
-&lt;&lt;weiterImTag&gt;&gt;</tw-passagedata><tw-passagedata pid="81" name="Story004_Interrupt_Schinder_Stellprobe" tags="nach_hub" position="1150,2300" size="100,100">&lt;div class=&quot;scenery-text&quot;&gt;Der Morgen ist kaum eine Stunde alt, da steht der Schinder schon mitten in der Formation. Er geht die Reihe ab, langsam, mit der Geduld eines Mannes, der weiß, dass die Zeit auf seiner Seite arbeitet. Vor dir bleibt er stehen. Sieht dich an. Sagt nichts.&lt;/div&gt;
+&lt;&lt;weiterImTag&gt;&gt;</tw-passagedata><tw-passagedata pid="80" name="Story004_Interrupt_Schinder_Stellprobe" tags="nach_hub" position="1150,2300" size="100,100">&lt;div class=&quot;scenery-text&quot;&gt;Der Morgen ist kaum eine Stunde alt, da steht der Schinder schon mitten in der Formation. Er geht die Reihe ab, langsam, mit der Geduld eines Mannes, der weiß, dass die Zeit auf seiner Seite arbeitet. Vor dir bleibt er stehen. Sieht dich an. Sagt nichts.&lt;/div&gt;
 Dann, ohne Vorwarnung, tritt er dir den Stiefel gegen die Ferse, sodass dein Stand für einen Moment bricht.
 
 &lt;div class=&quot;voice-formal&quot;&gt;„Wackelig, Wabbler. Wie ein Kalb auf Eis. Ich frage mich, ob in dir überhaupt was steckt — oder ob du nur die Suppe wegfrisst, die ein anderer verdient hätte.&quot;&lt;/div&gt;

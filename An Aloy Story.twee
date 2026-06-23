@@ -22,10 +22,6 @@ An Aloy Story
 }
 
 
-:: $world.lastPassage {"position":"850,0","size":"100,100"}
-
-
-
 :: 00_Sidequest_karla {"position":"25,1825","size":"100,100"}
 Die anderen Rekruten verschwinden zwischen den Zelten, und du willst gerade denselben Weg nehmen, als Karlas Stimme dich trifft — nicht laut, aber so, dass sie keinen Widerspruch einkalkuliert.
 
@@ -582,7 +578,7 @@ Kurt, mit dem Gesicht eines Mannes, der Rekruten schon gesehen hat, als ihre Vä
 Er braucht keine Einführung. Er ist einfach da, und das genügt.
 Kurt tritt vor. Seine Stimme ist nicht laut, aber sie trägt — die Stimme eines Mannes, der gelernt hat, dass man nicht brüllen muss, wenn man etwas zu sagen hat.
 <<if $npc.kurt.affection < 0>>\
-Du duckst dich unter seinem Blick weg. Versteckst dich in der Masse. Dass du ausgerechnet den Fährich verärgert hast ist kein gutes Ohmen für deine Zeit hier.<</if>>\
+Du duckst dich unter seinem Blick weg. Versteckst dich in der Masse. Dass du ausgerechnet den Fähnrich verärgert hast ist kein gutes Omen für deine Zeit hier.<</if>>\
 „Ich bin Fähnrich Kurt Brasner. Ihr werdet mich Fähnrich nennen, oder ihr werdet mich gar nicht nennen. Ich bin nicht euer Vater, nicht euer Freund und nicht euer Pfaffe." Er lässt seinen Blick einmal langsam über die Reihe wandern. „Ich bin derjenige, der entscheidet, ob ihr in zwei Jahren als Söldner aus diesen Toren geht — oder gar nicht."
 Stille.
 Kurt tritt zurück.
@@ -751,8 +747,8 @@ Du bist jetzt drin.
 
 
 :: Event_Schlaegerei {"position":"2600,1300","size":"100,100"}
-Fäuster
-
+Fäuste Fliegen, sonst gibt es nix zu sehen.
+[[Schlafen ->Kap1_Der nächste Tag]]
 
 :: Event_Wuerfelspiel {"position":"2450,2225","size":"100,100"}
 Ein paar Rekruten sitzen um einen groben Holztisch.  
@@ -792,7 +788,7 @@ Du wirst vom Tisch weggeschickt.
 
 	  "probe": {
 		"difficulty": 0,
-		"success": "Später kamen der Shek und Snorri de Alba ins Lager. Snorri stellte sich vor, wie man es von ihm erwartet – laut und selbstsicher. Darauf soll jemand aus dem 84. Banner gesagt haben: ‚In Aloy sind alle Ritter.‘ Ob das wirklich so fiel, weiß keiner genau, aber Snorri hat es angeblich nicht gut aufgenommen. Heute ist der Spruch im 84. ein halber Insider geworden, den man nur hinter vorgehaltener Hand benutzt.",
+		"success": "Später kamen der Shek und Snori de Alba ins Lager. Snori stellte sich vor, wie man es von ihm erwartet – laut und selbstsicher. Darauf soll jemand aus dem 84. Banner gesagt haben: ‚In Aloy sind alle Ritter.‘ Ob das wirklich so fiel, weiß keiner genau, aber Snorri hat es angeblich nicht gut aufgenommen. Heute ist der Spruch im 84. ein halber Insider geworden, den man nur hinter vorgehaltener Hand benutzt.",
 		"fail": "Andere winken nur ab und sagen, es sei nichts Besonderes gewesen – Banditen, wie sie eben öfter vorkommen, mehr nicht."
 	  },
 
@@ -908,7 +904,7 @@ Aus einem leicht geöffneten Spalt einer schweren Eichentür dringt das gedämpf
 
 "Ich sage dir, Hauptmann, diese ewige politische Schaukelbude bricht uns irgendwann das Genick", grollt die tiefe, raue Stimme eines älteren Mannes, den sie hier Kurt nennen. "Aloy rühmt sich seiner Neutralität, während unsere Banner über den halben Kontinent verstreut für fremdes Gold bluten. Wir entblößen die Heimat, nur weil jede Klinge hier frei buchbar ist!"
 
-Die jüngere, kühlere Stimme des Hauptmanns antwortet: "Das ist das Gesetz des Städtebundes, Kurt. Uns geht die Politik nichts an, wir füllen nur die Truppenrollen. Unsere Pflicht gilt der Ausbildung des Corpss, um mehr nicht. Also lass das Gerede und bring den Frischlingen da draußen gefälligst bei, wie man überlebt."
+Die jüngere, kühlere Stimme des Hauptmanns antwortet: "Das ist das Gesetz des Städtebundes, Kurt. Uns geht die Politik nichts an, wir füllen nur die Truppenrollen. Unsere Pflicht gilt der Ausbildung des Corps, um mehr nicht. Also lass das Gerede und bring den Frischlingen da draußen gefälligst bei, wie man überlebt."
 
 Du lehnst dich ein Stück zu weit vor, um mehr zu verstehen – und prompt knarrt eine morsche Holzdiele laut unter deinem Stiefel. Drinnen herrscht schlagartig eisige Stille.
 [[Hastig herumwirbeln und zur Treppe am anderen Ende des Flurs sprinten! ->Treppe runterrennen]]
@@ -1262,7 +1258,7 @@ Vor dir steht ein schlanker, sehniger Rekrut mit wachen, dunklen Augen und dem r
 
 :: Kap1_Der nächste Tag [tagesstart] {"position":"1400,925","size":"100,100"}
 /* 
-   Die Passage dient als einstiegspuntk für den Tag 
+   Die Passage dient als Einstiegspunkt für den Tag 
 */
 <<set _interrupt = setup.checkInterrupt()>>\
 <<if _interrupt != null>>\
@@ -1949,7 +1945,7 @@ Heute Nacht bist du noch einfach nur müde.
 
 
 :: Stube: Jarek anfreunden {"position":"100,775","size":"100,100"}
-Du ergreifst Jareks Hand und erwiederst seinen Händedruck fest. „Das obere Bett ist gebucht." Deine Tasche landet mit einem dumpfen Schlag auf dem morschen Holzgestell.
+Du ergreifst Jareks Hand und erwiderst seinen Händedruck fest. „Das obere Bett ist gebucht." Deine Tasche landet mit einem dumpfen Schlag auf dem morschen Holzgestell.
 Jarek lächelt — schmal und ohne Überschwang, das Lächeln eines Menschen, der gelernt hat, sparsam damit umzugehen. Er lehnt sich mit dem Rücken gegen den hölzernen Pfosten und lässt den Blick kurz durch die Stube wandern.
 „Gute Entscheidung. Hier vorne zieht es zwar ordentlich durch die Türritzen — aber du bist am weitesten weg vom ewigen Theater da hinten." Er deutet mit dem Kinn zu Karla, die am Ofen noch immer ihr Revier absteckt wie ein Tier, das seinen Käfig vermisst. „Wir sollten ihr aus dem Weg gehen. Sie ist anstrengend." Eine kurze Pause. „Aber verdammt gut an der Waffe. Man hört sie in den Schenken von Ohm über ihre Kraft reden — und die Leute, die es hören, widersprechen ihr meistens nicht."
 Er setzt sich auf die untere Pritsche und beginnt, seine schweren Marschstiefel aufzuknoten. Die Bewegungen sind gleichmäßig, fast mechanisch — die Bewegungen eines Mannes, der mit seinen Gedanken schon woanders ist.
@@ -2333,9 +2329,9 @@ Die Würfel schlagen auf den Tisch.</div>
       <<set $world.needsDiceGame = false>>\
       Dein Herz schlägt bis zum Hals.
 
-      Karla schlägt dir auf die Schulter "Schau an, du solltes öfter auf mich hören!"
+      Karla schlägt dir auf die Schulter "Schau an, du solltest öfter auf mich hören!"
 
-      Du stehst auf und wakels in Richtung deiner Pritsche
+      Du stehst auf und wackelst in Richtung deiner Pritsche
 
       [[Aufhören->Kap1_Der nächste Tag]] 
     <</timed>>\
@@ -2457,7 +2453,9 @@ Nicht plötzlich – eher so, als würde die Müdigkeit sich einfach neben dich 
   <<print setup.renderRumors()>>
 
 </div>
-[[↩️ Zurück zum Dienst ->$world.lastPassage]]
+<<link "↩️ Zurück zum Dienst">>
+    <<goto $world.lastPassage>>
+<</link>>
 
 
 :: StoryScript [script]
@@ -2505,9 +2503,8 @@ postdisplay["world-tracker"] = function () {
     State.variables.world ||= {};
     State.variables.world.lastPassage = title;
   
-    if (typeof Save !== "undefined") {
-        Save.slots.save(0);
-    }
+    Save.slots.save(0);
+	
 };
 
 predisplay["tagesstart"] = function () {
@@ -2519,7 +2516,12 @@ predisplay["tagesstart"] = function () {
 setup.noJournalPages = [
     "Intro",
     "Das Erwachen",
-    "journalAnsicht"
+    "journalAnsicht",
+  	"Nachmittag Pike",
+  	"Nachmittag Cannon",
+  	"Nachmittag Medicine",
+  	"Nachmittag Crossbow",
+  	"Nachmittag Thievery"
 ];
 
 setup.isJournalBlocked = function () {
@@ -2629,6 +2631,12 @@ setup.renderJournal = function () {
 };
 
 //----------------Textbuilding Section & Single Point of Truth
+
+setup.loadTrainingsHubVault = function () {
+    if (!setup.trainingsHubTextVault) {
+        setup.trainingsHubTextVault = JSON.parse(Story.get("TrainingsHubTexte").text);
+    }
+};
 
 setup.executeStationRewards = function (stationKey, stationType) {
     var vault = setup.trainingsHubTextVault;
@@ -3099,12 +3107,12 @@ setup.resetDailyVariables = function() {
     world.wasPracticing = false;
   	world.day+=1
   	// --- Kondition: zehrt jeden Tag, Sterben nur durch Vernachlässigung ---
-    if (player.hasSlept) {
+    if (State.variables.player.hasSlept) {
     // Erholung durch Schlaf
-    world.kondition = Math.min(100, world.kondition + 10);
+    	world.kondition = Math.min(100, world.kondition + 10);
 	} else {
     // Schlafmangel
-    world.kondition = Math.max(0, world.kondition - 10);
+    	world.kondition = Math.max(0, world.kondition - 10);
 	}
 
     // --- Plotdruck steigt passiv, solange Sidequest offen ist ---
