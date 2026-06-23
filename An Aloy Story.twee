@@ -12,10 +12,9 @@ An Aloy Story
     "header": "blue",
     "script": "purple",
     "startup-debug": "purple",
-    "tagesstart": "green",
     "widget": "purple",
     "nach_stube": "orange",
-    "nach_hub": "yellow",
+    "nach_hub": "green",
     "einmalig": "red",
     "nach_morgen": "red"
   },
@@ -1115,6 +1114,7 @@ diplomatHannes: {
 		fullname:"Thomaso Wabbler",
         rank: "Zivilist",
         chosen_activity: "",
+        hasSlept: true,
 
         money: {
             copper: 2
@@ -1169,13 +1169,13 @@ diplomatHannes: {
 }>>
 
 
-:: InterruptWidgets\  [widget] {"position":"1350,2275","size":"100,100"}
+:: InterruptWidgets\  [widget] {"position":"1925,2125","size":"100,100"}
 <<widget "weiterImTag">>\
 <<link "Weiter">><<goto setup.routeFromTags(tags())>><</link>>\
 <</widget>>
 
 
-:: Interrupts {"position":"1475,2125","size":"100,100"}
+:: Interrupts {"position":"1925,2025","size":"100,100"}
 Routing-Tags (genau einer pro Interrupt, legt das Rücksprungziel fest):
 
 nach_hub    		Nachmittag HubMorgen-Einschub, Tag läuft normal weiter
@@ -1585,7 +1585,7 @@ Die Treppe. Den Korridor. Keine Rücksicht auf dein Tempo, kein Wort mehr, nur d
 [[Sich heimlich von der Truppe absetzen und die Akademie-Hallen auskundschaften->Hallen erkunden]]
 
 
-:: Story002_BierAnnehmen {"position":"1775,2550","size":"100,100"}
+:: Story002_BierAnnehmen {"position":"2075,2675","size":"100,100"}
 Du nimmst den Becher.
 Das Bier ist dünn und hat einen Stich ins Saure — das Billige, das der Wirt für Soldaten aufhebt weil er weiß dass sie es trotzdem trinken. Es schmeckt trotzdem gut. Vielleicht wegen der Gesellschaft. Vielleicht wegen des Tages der dahinter liegt.
 Haddl redet. Über die Gebirgsmarine, über einen Winter irgendwo an der Grenze, über einen Maultier das klüger war als sein Reiter. Lars hört zu mit dem Gesicht eines Mannes der die meisten dieser Geschichten schon kennt und sie trotzdem lässt.
@@ -1596,12 +1596,12 @@ Irgendwann bist du kein Rekrut mehr an ihrem Tisch. Du bist jemand der dazugehö
 [[Noch eine Runde ->Story002_finalize]]\
 
 
-:: Story002_Bier_Ausgeben {"position":"1925,2550","size":"100,100"}
+:: Story002_Bier_Ausgeben {"position":"2225,2675","size":"100,100"}
 <<set $player.gold -= 8>>\
-<<set $npc.weibelLars.affection += 1>>\
-<<set $npc.weibelLars.memory.events.push("Hat Bier ausgegeben")>>\
-<<set $npc.haddl.affection += 1>>\
-<<set $npc.haddl.memory.events.push("Hat Bier ausgegeben")>>\
+<<= setup.setNpcAffection("weibelLars", 1)>>\
+<<= pushNpcMemory("weibelLars","Hat Bier ausgegeben")>>\
+<<= setup.setNpcAffection("haddl", 1)>>\
+<<= pushNpcMemory("haddl","Hat Bier ausgegeben")>>\
 Du winkst den Wirt heran und legst acht Kupfer auf den Tisch.
 „Für die zwei."
 Der Wirt nimmt das Geld ohne Kommentar. Haddl dreht sich um, sieht den Becher, sieht dich — und grinst dann breit wie ein Mann dem gerade ein langer Tag besser wird.
@@ -1618,7 +1618,7 @@ Haddl strahlt. „Der Opa hat immer gesagt: Wer großzügig ist bekommt mehr zur
 [[Noch eine Runde ->Story002_finalize]]\
 
 
-:: Story002_Taverne_Ansprechen_KeinAufhaenger {"position":"2000,2400","size":"100,100"}
+:: Story002_Taverne_Ansprechen_KeinAufhaenger {"position":"2300,2525","size":"100,100"}
 Du gehst rüber. Ohne Grund. Ohne Plan.
 Der Große bemerkt dich zuerst. Sein Blick kommt langsam hoch — so wie ein Mann der gelernt hat dass das meiste was auf ihn zukommt entweder Arbeit oder Ärger ist. Er wartet ab welches du bist.
 Der Lange dreht sich um. Mustert dich von oben bis unten mit der entspannten Gründlichkeit von jemandem dem das Ergebnis egal ist.
@@ -1642,7 +1642,7 @@ Du könntest die Runde schmeißen. Ein Becher Bier kauft mehr als Bier.
 <</if>>\
 
 
-:: Story002_Taverne_Ansprechen_MitAufhaenger {"position":"1725,2400","size":"100,100"}
+:: Story002_Taverne_Ansprechen_MitAufhaenger {"position":"2025,2525","size":"100,100"}
 Du gehst rüber. Das Wappen auf dem Mantel gibt dir genug.
 „Das Wappenschild—" du nickst in Richtung seiner Brust. „Das 84. Banner."
 Der Große sieht dich an. Dann sieht er dich //anders// an — so wie man jemanden ansieht der gerade von Hund auf Mensch hochgestuft wurde.
@@ -1666,7 +1666,7 @@ Irgendwann bestellt Lars ohne zu fragen eine neue Runde.</div>
 [[Das Bier annehmen ->Story002_BierAnnehmen]]\
 
 
-:: Story002_Taverne_mit_Lars_Und_Hadde [einmalig nach_morgen] {"position":"1875,2275","size":"100,100"}
+:: Story002_Taverne_mit_Lars_Und_Hadde [nach_morgen] {"position":"2175,2400","size":"100,100"}
 Es war die Idee von jemand anderem. Zumindest sagst du dir das.
 Drei Mann, ein Loch im Zaun das schon seit Wochen niemand geflickt hat, und ein Nachmittag der sich lang genug anfühlt um es zu riskieren. Der Weg zur Taverne dauert keine zehn Minuten — aber die ersten zwei gehst du mit dem Nacken zwischen den Schultern.
 Niemand ruft euch zurück.
@@ -1710,7 +1710,7 @@ Irgendetwas an den zwei — die Haltung, der Mantel, die Art wie der Große zuh�
 <</if>>\
 
 
-:: Story002_finalize {"position":"1850,2700","size":"100,100"}
+:: Story002_finalize [nach_morgen] {"position":"2150,2825","size":"100,100"}
 <div class="scenery-text">Was danach passiert lässt sich schwer in einer geraden Linie erzählen.</div>
 Irgendwann war der Becher leer und dann voll und dann wieder leer. 
 
@@ -1732,6 +1732,181 @@ Den Rest reimst du dir morgen zusammen. Vielleicht hast du dir was notiert?
 
 ---
 <<weiterImTag>>
+
+
+:: Story003_Abend [nach_stube] {"position":"875,2925","size":"100,100"}
+Der Abendappell verläuft ohne Vorfall.
+
+Das ist, wie du inzwischen verstehst, bereits eine Leistung.
+
+<div class="scenery-text">Der Hauptmann spricht. Du hörst die Worte ohne sie vollständig aufzunehmen. Deine Beine stehen, dein Rücken ist gerade, deine Augen sind geradeaus gerichtet. Das reicht. Das ist heute alles was verlangt wird und alles was du geben kannst.</div>
+
+Dann: entlassen.
+
+---
+
+Die Stube am Abend ist anders als am Morgen. Leiser. Die Erschöpfung hat die Lautstärke herausgezogen. Jemand putzt seine Stiefel. Jemand anderes liegt bereits auf der Pritsche und schaut an dieselbe Fichtenholzdecke wie du heute früh.
+
+Du setzt dich auf dein Bett.
+
+Keine Gedanken über morgen. Keine Pläne. Nur das leise Knacken des Holzes, das Atmen von dreißig Menschen, und das langsam nachlassende Pochen in deinen Beinen.
+
+<div class="scenery-text">Draußen ist der Wind noch immer da. Er wird morgen auch noch da sein. Du wirst auch noch da sein.</div>
+
+<div class="thought-box">Das zählt.</div>
+
+---
+<<weiterImTag>>
+
+
+:: Story003_Drill {"position":"875,2800","size":"100,100"}
+Was folgt, lässt sich nicht als Erzählung zusammenfassen.
+
+Es ist zu viel und zu gleichförmig und zu erschöpfend um Gestalt anzunehmen – ein langer, grauer Block aus Kommandos, Kies, kaltem Wind und dem rhythmischen Schlagen von Holzschäften auf Leder. Der Schinder brüllt nicht mehr als gestern. Er muss auch nicht. Sein Schweigen funktioniert genauso gut.
+
+<div class="scenery-text">Du läufst. Du stehst. Du läufst wieder. Irgendwann hört dein Körper auf zu protestieren und fängt an, einfach zu funktionieren – nicht weil er es will, sondern weil er keine andere Wahl hat. Das ist, soweit du das beurteilen kannst, der Punkt.</div>
+
+Mittags gibt es Suppe.
+
+Du sitzt auf einer Bank vor der Kantine, die Schüssel zwischen den Knien, und schaust auf den Hof. Der Wind hat nicht nachgelassen. Die Fahne über dem Hauptgebäude peitscht gleichmäßig.
+
+Du denkst an nichts Bestimmtes.
+
+<div class="thought-box">Das ist ungewohnt. Meistens denkst du an zu viel auf einmal. Aber der Körper, wenn er müde genug ist, macht den Kopf still. Das ist vielleicht die ehrlichste Form der Ruhe.</div>
+
+[[Weiter->Story003_Abend]]
+
+
+:: Story003_ErsterMorgen [einmalig] {"position":"875,2425","size":"100,100"}
+Der zweite Tag beginnt, bevor du bereit bist.
+
+Nicht mit Licht – das kommt später. Erst mit Geräuschen. Das Knarren einer Pritsche. Das dumpfe Aufsetzen von Stiefeln auf Holzdielen. Jemand hustet, kurz und trocken, und hört damit nicht auf. Dreißig Menschen in einem Raum, die alle gleichzeitig aufwachen und dabei so wenig Platz brauchen wollen wie möglich.
+
+Du liegst einen Moment still.
+
+<div class="scenery-text">Die Decke über dir ist aus rohem Fichtenholz. Astlöcher, eine alte Verfärbung in der Ecke, ein Riss der sich quer durch zwei Bretter zieht. Du hast sie heute Nacht lange genug angestarrt um zu wissen, dass sich das nicht ändern wird.</div>
+
+Dein Körper meldet sich der Reihe nach. Rücken zuerst. Dann die Schultern. Dann die Beine, mit einem dumpfen Pochen, das sich nicht ganz wie Muskelkater anfühlt und auch nicht ganz wie etwas anderes.
+
+Du atmest.
+
+Nur das. Kalt, ein bisschen nach fremdem Schweiß und nassem Holz, aber gleichmäßig. Kein Ziehen in der Brust. Kein Kratzen im Hals das bleibt.
+
+<div class="thought-box">Früher war das nicht selbstverständlich.</div>
+
+Jemand stößt im Vorbeigehen gegen deine Pritsche. Keine Absicht. Einfach zu wenig Platz und zu viel Morgenmüdigkeit.
+
+Du stehst auf.
+
+[[Weiter->Story003_Fruehstueck]]
+
+
+:: Story003_Fruehstueck {"position":"875,2550","size":"100,100"}
+Die Kantine riecht nach heißem Fett und gekochtem Kohl.
+
+Es ist lautes, rohes Essen – eine Schüssel Brei, dazu ein Kanten Brot der sich biegt wenn man ihn hält. Kein schlechtes Essen. Nur keines, bei dem man sich Zeit lässt.
+
+<div class="scenery-text">Die langen Tische sind voll. Stimmen überlagern sich, Holzlöffel kratzen über Ton. Draußen vor den Fenstern ist der Himmel noch grau, und das Licht das hereinkommt ist das blasse, unentschlossene Licht eines Morgens der noch nicht weiß ob er schön wird.</div>
+
+Du isst stehend. Alle essen stehend. Niemand hat das angeordnet – es hat sich einfach so ergeben, aus der kollektiven Nervosität von Menschen die nicht sitzen wollen wenn sie gleich wieder aufspringen müssen.
+
+Du schaust in die Schüssel. Du schaust kurz auf. Du schaust wieder in die Schüssel.
+
+Irgendwo an diesem Tisch sitzen Karla und Jarek. Du weißt das, ohne hinzusehen.
+
+Wie du den Morgen angehst – das entscheidest du jetzt, ohne groß darüber nachzudenken. Meistens sind das die Entscheidungen, die zählen.
+
+[[Schweigend essen und in Ruhe lassen wollen->Story003_Stille]]
+[[Den Blickkontakt suchen – irgendjemanden ansprechen->Story003_Kontakt]]
+
+
+:: Story003_Kontakt {"position":"950,2675","size":"100,100"}
+Du schaust auf.
+
+Karla sitzt drei Plätze weiter und isst mit einer Effizienz, die fast respekteinflößend ist. Sie schaut nicht auf. Aber als du dich setzt – näher als nötig, nah genug damit es kein Zufall mehr ist – hebt sie kurz den Kopf.
+
+Kein Lächeln. Nur ein kurzes Abschätzen.
+
+„Wabbler."
+
+„Karla."
+
+Das war alles. Aber es war genug. Sie schiebt den Brotkorb ein Stück in deine Richtung, ohne etwas dabei zu sagen, und schaut wieder auf ihre Schüssel.
+
+<div class="thought-box">Manche Menschen reden mit Gesten. Du hast gelernt, das zu lesen.</div>
+
+Du nimmst ein Stück Brot.
+
+<<set $npc.karla.affection += 1>>
+
+[[Weiter->Story003_Drill]]
+
+
+:: Story003_Stille {"position":"825,2675","size":"100,100"}
+Du isst.
+
+Nicht weil das Essen gut ist. Nicht weil du Hunger hast, genau genommen. Sondern weil es etwas ist, das du tun kannst ohne dabei mit jemandem reden zu müssen.
+
+<div class="scenery-text">Das Geräusch der Kantine läuft an dir ab wie Wasser. Stimmen, Gelächter, das Scharren von Bänken. Du nimmst es wahr ohne darin zu versinken. Eine Fertigkeit, die du irgendwann gelernt hast und nicht mehr weißt wann.</div>
+
+Jemand stellt sich neben dich. Sagt nichts. Isst auch nur.
+
+Du schaust kurz zur Seite.
+
+Jarek. Er hat denselben Ausdruck wie du – nicht unzugänglich, nur abwesend. Als würde er den Morgen durchrechnen bevor er anfängt.
+
+Ihr esst nebeneinander ohne ein Wort. Das ist keine Ablehnung. Das ist, auf seine eigene Art, eine Verständigung.
+
+<<set $npc.jarek.affection += 1>>
+
+[[Weiter->Story003_Drill]]
+
+
+:: Story004_Interrupt_Schinder_Stellprobe [nach_hub] {"position":"1150,2300","size":"100,100"}
+<div class="scenery-text">Der Morgen ist kaum eine Stunde alt, da steht der Schinder schon mitten in der Formation. Er geht die Reihe ab, langsam, mit der Geduld eines Mannes, der weiß, dass die Zeit auf seiner Seite arbeitet. Vor dir bleibt er stehen. Sieht dich an. Sagt nichts.</div>
+Dann, ohne Vorwarnung, tritt er dir den Stiefel gegen die Ferse, sodass dein Stand für einen Moment bricht.
+
+<div class="voice-formal">„Wackelig, Wabbler. Wie ein Kalb auf Eis. Ich frage mich, ob in dir überhaupt was steckt — oder ob du nur die Suppe wegfrisst, die ein anderer verdient hätte."</div>
+Die Reihe um dich herum ist still. Niemand schaut. Alle schauen. Das ist hier dasselbe.
+
+<div class="thought-box">Er will eine Reaktion. Die Frage ist nur, welche.</div>
+
+<span id="schinder-wahl">
+<<link "Den Blick senken und es schlucken">>\
+<<replace "#schinder-wahl">>\
+Du senkst den Blick. Nicht aus Angst — oder nicht nur. Sondern weil du in den letzten Tagen gelernt hast, dass ein gesenkter Blick hier nichts kostet außer Stolz, und Stolz ist billig, wenn man wenig davon hat.
+
+Der Schinder mustert dich einen Herzschlag zu lang, als hätte er auf mehr gehofft. Dann ein knappes, fast enttäuschtes Schnauben. Er geht weiter.
+
+<div class="thought-box">Er wird mich vergessen, bis morgen. Genau das wollte ich. Wer nicht auffällt, überlebt den Drill. Aber irgendwas an dem gesenkten Blick fühlt sich an wie eine kleine Niederlage, die niemand außer mir gesehen hat.</div>
+<<= setup.setNpcAffection("schinder", 2)>>\
+<<= setup.setPlayerStat("ambition", -2)>>\
+
+---
+<<weiterImTag>>\
+<</replace>>\
+<</link>>\
+
+<<link "Den Blick halten und ihn ansehen">>\
+<<replace "#schinder-wahl">>\
+Du senkst den Blick nicht. Du sagst nichts — so dumm bist du nicht — aber du hältst seinem Blick stand, ruhig, ohne Trotz, ohne Angst, die du eigentlich spürst.
+
+Einen Moment lang geschieht gar nichts. Dann verengen sich seine Augen, und etwas darin verschiebt sich — nicht Wohlwollen, eher die Art Aufmerksamkeit, die ein Mann einem Hund schenkt, der zum ersten Mal knurrt.
+
+<div class="voice-formal">„Mut oder Dummheit. Bei deiner Sorte ist das meistens dasselbe." Er beugt sich vor. „Wir werden sehen, was von dir übrig ist, wenn ich damit fertig bin."</div>
+
+Dann zwanzig Liegestütze, sofort, im Kies. Deine Arme zittern bei der zwölften. Du machst alle zwanzig.
+
+<div class="thought-box">Das hat etwas gekostet. Aber er kennt jetzt meinen Namen aus einem anderen Grund als nur dem Suppentopf. Ob das gut ist, weiß ich nicht.</div>
+<<= setup.setKondition(-8)>>\
+<<= setup.setNpcAffection("schinder", -1)>>\
+<<= setup.setPlayerStat("ambition", 3)>>\
+
+---
+<<weiterImTag>>\
+<</replace>>\
+<</link>>\
+</span>\
 
 
 :: StoryInit {"position":"0,0","size":"100,100"}
@@ -2302,6 +2477,7 @@ setup.interruptPrio     = {};   // NEU: höher = wird zuerst gefeuert
 /*ab hier Prios und conditions eintragen*/
 setup.interruptCond["Story002_Taverne_mit_Lars_Und_Hadde"] = w => w.day >= 8;
 setup.interruptPrio["Story002_Taverne_mit_Lars_Und_Hadde"] = 60;
+setup.interruptCond["Story003_ErsterMorgen"] = w => w.day == 2;
 
 
 
@@ -2923,7 +3099,13 @@ setup.resetDailyVariables = function() {
     world.wasPracticing = false;
   	world.day+=1
   	// --- Kondition: zehrt jeden Tag, Sterben nur durch Vernachlässigung ---
-    world.kondition = Math.max(0, world.kondition - 5);
+    if (player.hasSlept) {
+    // Erholung durch Schlaf
+    world.kondition = Math.min(100, world.kondition + 10);
+	} else {
+    // Schlafmangel
+    world.kondition = Math.max(0, world.kondition - 10);
+	}
 
     // --- Plotdruck steigt passiv, solange Sidequest offen ist ---
     const k = State.variables.npc.karla;
@@ -3013,8 +3195,10 @@ setup.checkInterrupt = function() {
 // liest aus den Tags der aktuellen Passage das Rücksprungziel
 setup.routeFromTags = function(tagList) {
     for (const t of tagList) {
+      	player.hasSlept = (t !== "nach_morgen");
         if (setup.routeTags[t]) return setup.routeTags[t];
     }
+  	player.hasSlept = true;
     return "Nachmittag Hub";
 };
 
