@@ -11,7 +11,8 @@ An Aloy Story
   "tag-colors": {
     "header": "blue",
     "script": "purple",
-    "startup-debug": "purple"
+    "startup-debug": "purple",
+    "tagesstart": "green"
   },
   "zoom": 0.6
 }
@@ -183,7 +184,167 @@ Sie sieht dich kurz an.
 
 :: 00_Sidequest_karla_finalize {"position":"350,2000","size":"100,100"}
 <<set $npc.karla.memory.flags.sidequest00Complete = true>>
-[[in die Stube gehen->Auf Stube]] 
+[[in die Stube gehen->Auf Stube]]
+
+
+:: 01_Sidequest_jarek {"position":"150,2400","size":"100,100"}
+<<set $npc.jarek.known = true>>
+Die Reihen lösen sich, Rekruten zerstreuen sich in Richtung Stube. Du bist schon halb im Gehen, als Jarek neben dir auftaucht — nicht plötzlich, nicht eilig. Er ist einfach da, als wäre er die ganze Zeit dort gewesen und du hättest es nur nicht bemerkt.
+
+Er spricht leise, ohne dich anzusehen, den Blick geradeaus auf den leeren Kies gerichtet.
+
+„Der Sergeant sucht zwei Mann für die Schreibstube. Alte Verzeichnisse umräumen, Botengänge. Stumpfe Arbeit." Eine kurze Pause. „Ich hab mich gemeldet. Für zwei. Du fällst nicht auf, du redest nicht viel — das passt."
+
+<div class="thought-box">Er fragt nicht, ob ich will. Er stellt fest, dass ich passe. Wie ein Werkzeug, das die richtige Form hat.</div>
+
+Er bleibt stehen, dreht sich halb zu dir. Im letzten Tageslicht wirken seine dunklen Augen ruhig wie immer — und doch liegt etwas darunter, das du nicht benennen kannst.
+
+„Es ist trocken und warm da drin. Besser als Exerzieren im Schlamm. Kommst du mit?"
+
+[[Mitgehen. Warum nicht. ->01_Sidequest_jarek_Einstieg]]
+[[Ablehnen. Du hast genug für heute. ->01_Sidequest_jarek_Ablehnung]]
+
+
+:: 01_Sidequest_jarek_Ablehnung {"position":"0,2525","size":"100,100"}
+„Nicht heute", sagst du. „Ich bin durch."
+
+Jarek nickt. Kein Vorwurf, keine zweite Frage. Er hatte die Antwort offenbar schon einkalkuliert, bevor er gefragt hat.
+
+„Verständlich." Er sieht dich noch einen Moment an — diesen ruhigen, abwägenden Blick, der nichts preisgibt. „Dann nehm ich jemand anderen."
+
+Er geht. Aufrecht, unauffällig, schon wieder Teil der Kulisse.
+
+<div class="thought-box">Er hat mich nicht gebraucht. Er hat geprüft. Und ich hab eine Tür zugemacht, von der ich nicht mal wusste, dass sie offen stand.</div>
+
+<<= setup.setNpcAffection("jarek", -2)>>
+<<include "01_Sidequest_jarek_finalize">>
+
+
+:: 01_Sidequest_jarek_Ablehnung_Spaet {"position":"325,2575","size":"100,100"}
+Du legst den Folianten zur Seite, den du gerade in den Händen hattest.
+
+„Mein Kopf ist nicht hier", sagst du. „Ich bring euch mehr durcheinander, als ich helfe."
+
+Der Schreiber winkt gleichgültig ab. Jarek sieht dich an — kurz, ruhig, ohne dich aufzuhalten.
+
+„Geh schlafen", sagt er. Keine Spitze, kein Vorwurf. Nur das Wort.
+
+Aber als du dich umdrehst, spürst du seinen Blick noch im Rücken. Wägend. Als hätte er sich gerade eine Antwort notiert, ohne eine Frage gestellt zu haben.
+
+<div class="thought-box">Er hat mir die Tür offen gelassen. Ich bin nur nicht durchgegangen. Das ist nicht dasselbe wie ein Nein — aber es ist auch kein Ja.</div>
+
+<<= setup.setNpcAffection("jarek", -1)>>
+<<include "01_Sidequest_jarek_finalize">>
+
+
+:: 01_Sidequest_jarek_Ansprechen {"position":"225,2575","size":"100,100"}
+„Was ist das für ein Band?", fragst du leise. „Du liest das, als würdest du wissen, was drinsteht."
+
+Jarek erstarrt nicht. Nichts an ihm verändert sich sichtbar — und genau das ist es, was dich erschreckt. Er wird nur einen Hauch zu still, zu glatt, wie Wasser kurz bevor es zufriert.
+
+Der Schreiber ist herangetreten, nimmt den Band wortlos an sich, mustert ihn kurz und legt ihn zurück ins Regal. Der Moment ist vorbei. Was auch immer Jarek vorhatte — es ist ihm gerade aus den Händen geglitten.
+
+„Ich kann ein bisschen lesen", sagt Jarek schließlich. Tonlos. „Mein Vater hat darauf bestanden. Damit man uns in den Verträgen nicht übers Ohr haut."
+
+Es ist eine glatte Antwort. Eine gute Antwort. Und du weißt mit jeder Faser, dass sie nicht stimmt — oder höchstens zur Hälfte.
+
+Er sieht dich an, und der ruhige, freundliche Jarek ist immer noch da. Aber dahinter steht jetzt jemand, der dich neu vermessen hat und zu einem Schluss gekommen ist, der dir nicht gefällt.
+
+„Du beobachtest aufmerksam", sagt er. „Das ist eine seltene Gabe." Ein dünnes Lächeln. „Pass nur auf, dass sie dir keinen Ärger macht."
+
+<div class="thought-box">Ich hab es benannt. Und genau das war der Fehler. Nicht das Sehen — das Aussprechen. Wer Jarek ansieht, soll nichts sehen. Das hab ich gerade vergessen.</div>
+
+<<= setup.setNpcAffection("jarek", 1)>>
+<<= setup.pushNpcMemory("jarek", "hat_zu_genau_hingesehen")>>
+<<include "01_Sidequest_jarek_finalize">>
+
+
+:: 01_Sidequest_jarek_Arbeit_Aktiv {"position":"125,2525","size":"100,100"}
+Du sortierst — aber diesmal schaust du nicht nur auf deine eigenen Hände. Du schaust auf ihn.
+
+Jarek arbeitet schnell und sicher. Zu sicher. Wo du die verblassten Jahreszahlen auf den Rücken der Folianten mühsam entzifferst, greift er, ohne zu zögern. Er liest die Aufschriften wie jemand, der das Lesen nicht in der Kaserne gelernt hat — flüssig, mühelos, auch dort, wo die Schrift alt und verschnörkelt ist und die meisten hier nur Striche sehen würden.
+
+<div class="thought-box">Ein Schustersohn aus der Unterstadt. Der liest verschnörkelte Kanzleischrift schneller als ich gedruckte Lettern. Wo lernt man das?</div>
+
+Dann hält er inne. In seinen Händen liegt ein dünner Band, dunkel und brüchig, das Pergament fleckig vom Alter. Auf dem Rücken ein halb abgeplatztes Siegel und ein Wort, das du nicht entziffern kannst — er aber schon. Seine Augen wandern über die erste Seite, langsam, und für einen Moment verschwindet alles Beiläufige aus seinem Gesicht. Was übrig bleibt, ist Hunger. Konzentriert, still, alt.
+
+Es dauert nur einen Herzschlag. Dann ist es wieder weg, und er legt den Band zur Seite — nicht in die Kiste für das, was zerfällt. Daneben. Ein Fingerbreit abseits.
+
+In diesem Moment hebt der Schreiber den Kopf.
+
+„Was hast du da?"
+
+Jareks Gesicht verrät nichts. Aber seine Hand liegt still auf dem Band, und du spürst, ohne hinzusehen, dass er auf eine Sekunde wartet, die über mehr entscheidet als diese Stube.
+
+<div class="thought-box">Er will, dass dieser Band nicht in die Kiste kommt. Und der Schreiber sieht gleich, dass er nicht zerfallen ist. Sag ich was — oder lass ich es?</div>
+
+[[Den Schreiber ablenken. Irgendetwas sagen, damit sein Blick von Jarek weggeht. ->01_Sidequest_jarek_Schweigen]]
+[[Jarek darauf ansprechen, was du gerade gesehen hast. ->01_Sidequest_jarek_Ansprechen]]
+
+
+:: 01_Sidequest_jarek_Arbeit_Passiv {"position":"250,2450","size":"100,100"}
+Du sortierst. Jahr für Jahr, Stapel für Stapel. Es ist stumpfe, ehrliche Arbeit, und du verlierst dich darin, wie man sich in jeder Arbeit verliert, die keine Gedanken verlangt.
+
+Jarek arbeitet neben dir, schweigend. Hin und wieder hält er einen Folianten einen Atemzug länger in den Händen als nötig — aber du achtest nicht darauf. Du willst nur ins Bett.
+
+Irgendwann nickt der Schreiber euch weg. „Reicht für heute."
+
+Draußen im Gang bleibt Jarek kurz stehen.
+
+„Danke. Das ging schneller zu zweit." Es klingt aufrichtig, aber auch wie etwas, das er sagt, weil man es sagt.
+
+<div class="thought-box">Eine ruhige Stunde, ein bisschen Wärme, ein Danke. Mehr war es nicht. Vielleicht musste es auch nicht mehr sein.</div>
+
+<<= setup.setNpcAffection("jarek", 3)>>
+<<include "01_Sidequest_jarek_finalize">>
+
+
+:: 01_Sidequest_jarek_Einstieg {"position":"2525,2100","size":"100,100"}
+Die Schreibstube liegt am Ende eines schmalen Ganges, hinter einer Tür, die zu schwer ist für den Raum dahinter. Drinnen: der Geruch von Wachs, alter Tinte und feuchtem Pergament. Ein einzelner Schreiber sitzt am Pult und kratzt mit der Feder, ohne aufzusehen. An den Wänden Regale, Truhen, Stapel von Verzeichnissen, die seit Jahren niemand mehr angefasst hat.
+
+„Die hier", sagt der Schreiber knapp und deutet auf einen Wust loser Folianten. „Nach Jahr sortieren. Was zerfällt, kommt in die Kiste. Und fasst mir nichts an, das ein Siegel trägt."
+
+Jarek nickt, knapp und folgsam, und macht sich an die Arbeit. Seine Bewegungen sind ruhig und gleichmäßig — dieselben mechanischen Bewegungen, mit denen er an eurem ersten Abend seine Stiefel aufgeknotet hat.
+
+<div class="scenery-text">Draußen ist es längst dunkel. Das Kerzenlicht zieht die Schatten der Regale lang über den Boden. Nur das Kratzen der Feder und das Rascheln von altem Papier füllen den Raum.</div>
+
+Du könntest die Arbeit einfach herunterreißen und an deine Pritsche denken. Oder du könntest darauf achten, was Jarek hier eigentlich tut.
+
+[[Einfach arbeiten. Sortieren, schweigen, fertig werden. ->01_Sidequest_jarek_Arbeit_Passiv]]
+[[Arbeiten — aber genau darauf achten, was Jarek tut. ->01_Sidequest_jarek_Arbeit_Aktiv]]
+[[Doch keine Lust. Einen Vorwand finden und gehen. ->01_Sidequest_jarek_Ablehnung_Spaet]]
+
+
+:: 01_Sidequest_jarek_Schweigen {"position":"100,2650","size":"100,100"}
+Du fragst nicht, was er da hat. Du fragst auch nicht dich selbst.
+
+„Diese Kiste hier", sagst du in Richtung Schreiber und hältst einen halb zerfallenen Stapel hoch, von dem beim Anheben gleich ein paar Fetzen auf den Boden segeln. „Soll das alles raus, oder nur was komplett hinüber ist? Ich will Euch nichts wegwerfen, das Ihr noch braucht."
+
+Der Schreiber seufzt, steht auf, kommt herüber. Während er den Stapel begutachtet, ist sein Rücken Jarek zugewandt — lange genug.
+
+Es ist nicht ganz die Wahrheit. Du brauchst die Antwort nicht. Aber sie zieht den Blick dorthin, wo er hin soll, und weg von dort, wo er nicht hin soll.
+
+<div class="scenery-text">Hinter dem Rücken des Schreibers verschwindet der dunkle Band lautlos — nicht in die Kiste, sondern unter Jareks Kittel, an einer Stelle, an der schon viel zu oft etwas verschwunden ist, um noch ein Zufall zu sein.</div>
+
+Als ihr später durch den dunklen Gang zurückgeht, sagt Jarek lange nichts. Erst an der Tür zur Stube bleibt er stehen.
+
+„Du hast nicht gefragt." Es ist keine Frage. „Die meisten hätten gefragt."
+
+Er sieht dich an, und zum ersten Mal hast du das Gefühl, dass er dich tatsächlich ansieht — nicht abwägt, nicht einschätzt. Ansieht.
+
+„Das merk ich mir." Eine winzige Pause. „Schlaf gut."
+
+<div class="thought-box">Ich weiß nicht, was ich da rausgetragen hab unter seinem Kittel. Und vielleicht ist es besser so. Was ich weiß: Eben hat sich etwas verschoben. Leise. Aber es hat sich verschoben.</div>
+
+<<= setup.setPlayerStat("honesty", -2)>>
+<<= setup.setNpcAffection("jarek", 6)>>
+<<= setup.pushNpcMemory("jarek", "war_diskret")>>
+<<include "01_Sidequest_jarek_finalize">>
+
+
+:: 01_Sidequest_jarek_finalize {"position":"50,2375","size":"100,100"}
+<<set $npc.jarek.memory.flags.sidequest01Complete = true>>
+[[zurück in die Stube ->Auf Stube]]
 
 
 :: Abendappell {"position":"850,1925","size":"100,100"}
@@ -205,7 +366,7 @@ Niemand antwortet. Niemand muss.
 Karla kommt auf dich zu, sie schaut verdammt ernst. "DU! komm mit!" 
 [[Mitgehen->00_Sidequest_karla]]
 <</if>>\
-<<run setup.resetDailyVariables()>>\
+
 Nochmal Trainieren:
 [[Das Lager auf eigene Faust erkunden ->Nachmittag Hub]]
 
@@ -213,7 +374,7 @@ Deadlink:
 [[Auf Stube gehen ->Auf Stube]]
 
 
-:: AbendappellTexte {"position":"950,1800","size":"100,100"}
+:: AbendappellTexte {"position":"700,1750","size":"100,100"}
 {
   "szenerie": [
     {
@@ -341,11 +502,10 @@ Die Baracke nimmt euch auf wie jeden Abend — ohne Begrüßung, ohne Wärme.
 Du lässt dich auf deine Pritsche fallen, und der Strohsack, der heute Morgen noch hart und fremd war, fühlt sich jetzt an wie das Weichste auf der Welt. Deine Hände brennen. Deine Schultern brennen. Irgendwo tief in den Oberschenkeln sitzt ein Schmerz, der morgen früh schlimmer sein wird als heute Nacht.
 Das Talglicht flackert.
 Du schließt die Augen, noch bevor jemand es löscht.
-<<set $world.day += 1>>
-[[Der nächste Tag. ->Der nächste Tag]]
+[[Der nächste Tag. ->Kap1_Der nächste Tag]]
 
 
-:: Auf Stube {"position":"1975,1925","size":"100,100"}
+:: Auf Stube {"position":"1950,1750","size":"100,100"}
 Nach dem harten Tag bist du auf der Stube.
 
 Der Raum riecht nach kaltem Holz, Leder und abgestandenem Rauch, der sich irgendwo zwischen den Balken festgesetzt hat.  
@@ -370,7 +530,7 @@ Dieses kurze, gespannte Schweigen, das in Kasernen nie wirklich Ruhe bedeutet.
     <</if>>\
 	
     [[Zuhören, was geredet wird ->Event_Geschichte]]
-    [[Schlafen->Der nächste Tag]]
+    [[Schlafen->Kap1_Der nächste Tag]]
     
 <</if>>\
 
@@ -535,25 +695,20 @@ Du bist jetzt drin.
 [[Beginne deine Ausbildung->Kapitel 1]]
 
 
-:: Der nächste Tag {"position":"925,950","size":"100,100"}
-End for now
-
-
-
-Testings:
-Man Kann die Trainingsloop testen
-
-[[Das Lager auf eigene Faust erkunden ->Nachmittag Hub]]
-
-
 :: Event_Geschichte {"position":"2375,1800","size":"100,100"}
-<<set _istMumpitz = random(1,100) <= 15>>\
-<<if _istMumpitz>>\
-    <<include "Event_Geschichte_Mumpitz">>\
-<<else>>\
-    <<set _gossipStory = setup.getGossipStory()>>\
-    <<set $world.currentGossipStory = _gossipStory>>\
-    <<if _gossipStory == null>>\
+<<set _istMumpitz = random(1,100) <= 15>>
+
+<<if _istMumpitz>>
+
+    <<include "Event_Geschichte_Mumpitz">>
+
+<<else>>
+
+    <<set _gossipStory = setup.getGossipStory()>>
+    <<set $world.currentGossipStory = _gossipStory>>
+
+    <<if _gossipStory == null>>
+
         Du lehnst dich zurück und horchst in den Raum.
         Heute Abend ist nichts Neues zu hören — nur dieselben müden Männer,
         die dieselben müden Geschichten erzählen.
@@ -562,26 +717,36 @@ Man Kann die Trainingsloop testen
         Ich kenne diese Gesichter langsam. Aber ihre Geheimnisse hab ich noch nicht alle.
         </div>
 
-        [[Schlafen ->Der nächste Tag]]\
-    <<else>>\
+        [[Schlafen ->Kap1_Der nächste Tag]]
+
+    <<else>>
+
         <div class="scenery-text">
         Ein paar Kerzen flackern. Jemand lehnt sich vor.
         Die Stimmen werden leiser — oder du wirst aufmerksamer, das ist schwer zu sagen.
         </div>
-        <<= _gossipStory.base>>\
-        <<run setup.markGossipSeen(_gossipStory.id, false)>>\
-        <<if _gossipStory.probe>>\
-            <<if $player.knowledge.gossip >= _gossipStory.probe.difficulty>>\
+
+        <<= _gossipStory.base>>
+
+        <<run setup.markGossipSeen(_gossipStory.id, false)>>
+
+        <<if _gossipStory.probe>>
+            <<if $player.knowledge.gossip >= _gossipStory.probe.difficulty>>
+
                 <div class="thought-box">
                 Da muss doch mehr dran sein, soll ich nachhaken?
                 </div>
-                [[Nachfragen ->Event_Geschichte_Probe]]
-            <</if>>\
-        <</if>>\
-        [[Schlafen ->Der nächste Tag]]
-    <</if>>\
-<</if>>\
 
+                [[Nachfragen ->Event_Geschichte_Probe]]
+
+            <</if>>
+        <</if>>
+
+        [[Schlafen ->Kap1_Der nächste Tag]]
+
+    <</if>>
+
+<</if>>
 
 
 :: Event_Geschichte_Mumpitz {"position":"2475,1650","size":"100,100"}
@@ -598,17 +763,18 @@ Man Kann die Trainingsloop testen
         </div>
         [[Nachfragen ->Event_Geschichte_Probe]] \
     <</if>>\
-    [[Schlafen ->Der nächste Tag]]
+    [[Schlafen ->Kap1_Der nächste Tag]]
 <<else>>\
     <div class="thought-box">
     Das ist alles nur uninteressanter Tratsch. Ich hau ab...
     </div>
-    [[Sich hinlegen und schlafen->Der nächste Tag]]
+    [[Sich hinlegen und schlafen->Kap1_Der nächste Tag]]
 <</if>>\
 
 
 :: Event_Geschichte_Probe {"position":"2375,1925","size":"100,100"}
 <<set _gossipStory = $world.currentGossipStory>>\
+
 <<if $player.knowledge.gossip <= 3>>\
     <div class="scenery-text">Du hakst nach, etwas forsch.</div>
 <<elseif $player.knowledge.gossip <= 7>>\
@@ -616,31 +782,32 @@ Man Kann die Trainingsloop testen
 <<else>>\
     <div class="scenery-text">Du musst nicht mal wirklich fragen und der Tratsch beginnt.</div>
 <</if>>\
-  <<if _gossipStory && _gossipStory.probe && (random(1,10) + $player.knowledge.gossip >= _gossipStory.probe.difficulty)>>\
-      <div class="thought-box">Oh ja! Erzähl mir was du weißt.</div>
-      <<= _gossipStory.probe.success>>
-      <<= setup.setPlayerKnowledge("gossip", 1)>>\
-      <<= setup.addRumor(_gossipStory.rumorText)>>\
-      <<run setup.markGossipSeen(_gossipStory.id, true)>>\
-  <<elseif _gossipStory && _gossipStory.probe>>\
-      <div class="thought-box">Mist — zu direkt. Der Typ zieht sich zurück.</div>
-      <<= _gossipStory.probe.fail>>\
-     <<run setup.markGossipSeen(_gossipStory.id, false)>>\
-  <<else>>\
-      <div class="thought-box">Hier war nichts zu holen.</div>
-      <<run setup.markGossipSeen(_gossipStory.id, false)>>\
-  <</if>>\
+<<if >>
+<<if _gossipStory && _gossipStory.probe && (random(1,10) + $player.knowledge.gossip >= _gossipStory.probe.difficulty)>>\
+    <div class="thought-box">Oh ja! Erzähl mir was du weißt.</div>
+    <<= _gossipStory.probe.success>>\
+    <<= setup.setPlayerKnowledge("gossip", 1)>>\
+    <<= setup.addRumor(_gossipStory.rumorText)>>\
+    <<run setup.markGossipSeen(_gossipStory.id, true)>>\
+<<elseif _gossipStory && _gossipStory.probe>>\
+    <div class="thought-box">Mist — zu direkt. Der Typ zieht sich zurück.</div>
+    <<= _gossipStory.probe.fail>>\
+   <<run setup.markGossipSeen(_gossipStory.id, false)>>\
+<<else>>\
+    <div class="thought-box">Hier war nichts zu holen.</div>
+    <<run setup.markGossipSeen(_gossipStory.id, false)>>\
+<</if>>\
 
 <<set $world.currentGossipStory = null>>\
 
-[[Schlafen ->Der nächste Tag]]
+[[Schlafen ->Kap1_Der nächste Tag]]
 
 
-:: Event_Schlaegerei {"position":"2275,2225","size":"100,100"}
+:: Event_Schlaegerei {"position":"2400,1450","size":"100,100"}
 Fäuster
 
 
-:: Event_Wuerfelspiel {"position":"1625,2050","size":"100,100"}
+:: Event_Wuerfelspiel {"position":"2450,2225","size":"100,100"}
 Ein paar Rekruten sitzen um einen groben Holztisch.  
 Zwischen Krügen und Kerzenlicht klackern Würfel.
 
@@ -656,7 +823,7 @@ Der Blick des Spielers wandert kurz zu deinem leeren Geldbeutel.
 
 Du wirst vom Tisch weggeschickt.
 
-[[Weggehen->Der nächste Tag]]
+[[Weggehen->Kap1_Der nächste Tag]]
 <<else>>\
 
 [[Mitspielen->Wuerfel_Start]] \
@@ -757,18 +924,16 @@ Du wirst vom Tisch weggeschickt.
     "knaller": [
       {
         "id": "kn_001",
-        "minLevel": 0,
+        "minLevel": 7,
         "maxLevel": 99,
-		
-        "base": "kann nicht geschafft werden",
-		
+        "base": "PLATZHALTER – Easteregg / Echter Spieler Hinweis.",
         "probe": {
-		"difficulty": 100,
-		"success": "Debug das darf nicht sichtbar sein",
-		"fail": "Das muss sichtbar sein"
-	  },
-	  
-        "rumorText": "PLATZHALTER"
+          "minGossip": 7,
+          "success": "PLATZHALTER – Der Knaller der sich entfaltet.",
+          "fail": "PLATZHALTER – Fast – aber nicht ganz."
+        },
+        "rumorText": "PLATZHALTER",
+        "npcKey": "luigi"
       },
       {
         "id": "kn_002",
@@ -789,7 +954,6 @@ Du wirst vom Tisch weggeschickt.
 }
 
 
-
 :: Hallen erkunden {"position":"900,150","size":"100,100"}
 Du stehlst dich von den anderen Rekruten fort und meidest das helle Tageslicht, das durch die großen Tore auf den Hof fällt. Stattdessen gleitest du einen schmalen, steinernen Treppenaufgang hinauf, der in den Offiziersflügel der Akademie führt. Hier oben riecht es nach Bohnerwachs und schwerem Tabak.
 
@@ -797,7 +961,7 @@ Aus einem leicht geöffneten Spalt einer schweren Eichentür dringt das gedämpf
 
 "Ich sage dir, Hauptmann, diese ewige politische Schaukelbude bricht uns irgendwann das Genick", grollt die tiefe, raue Stimme eines älteren Mannes, den sie hier Kurt nennen. "Aloy rühmt sich seiner Neutralität, während unsere Banner über den halben Kontinent verstreut für fremdes Gold bluten. Wir entblößen die Heimat, nur weil jede Klinge hier frei buchbar ist!"
 
-Die jüngere, kühlere Stimme des Hauptmanns antwortet: "Das ist das Gesetz des Städtebundes, Kurt. Uns geht die Politik nichts an, wir füllen nur die Truppenrollen. Unsere Pflicht gilt der Ausbildung des Corps, um mehr nicht. Also lass das Gerede und bring den Frischlingen da draußen gefälligst bei, wie man überlebt."
+Die jüngere, kühlere Stimme des Hauptmanns antwortet: "Das ist das Gesetz des Städtebundes, Kurt. Uns geht die Politik nichts an, wir füllen nur die Truppenrollen. Unsere Pflicht gilt der Ausbildung des Corpss, um mehr nicht. Also lass das Gerede und bring den Frischlingen da draußen gefälligst bei, wie man überlebt."
 
 Du lehnst dich ein Stück zu weit vor, um mehr zu verstehen – und prompt knarrt eine morsche Holzdiele laut unter deinem Stiefel. Drinnen herrscht schlagartig eisige Stille.
 [[Hastig herumwirbeln und zur Treppe am anderen Ende des Flurs sprinten! ->Treppe runterrennen]]
@@ -1062,8 +1226,24 @@ Der Sergeant am hölzernen Tisch blickt von seinen Listen auf und bellt:
 [["Ein junger Mann, bereit für die Ausbildung."->Das Erwachen]]
 
 
+:: Kap1_Der nächste Tag [tagesstart] {"position":"1400,925","size":"100,100"}
+/* 
+   Die Passage dient als einstiegspuntk für den Tag
+*/
+
+
+End for now
+
+
+
+Testings:
+Man Kann die Trainingsloop testen
+
+[[Das Lager auf eigene Faust erkunden ->Nachmittag Hub]]
+
+
 :: Kapitel 0 {"position":"225,50","size":"200,200"}
-Vers. 0.3.3  22.06.2026
+Vers. 0.3.2
 
 <div class="chapter-screen">
     <div class="fade-trigger">Intro</div>
@@ -1617,7 +1797,7 @@ Er sagt es ohne Lautstärke. Als wäre sein Schweigen das Großzügigste, was er
 [[Befehl befolgen und direkt zum Kasernenhof gehen->Der Kasernenhof]]
 
 
-:: Untitled Passage 1 {"position":"1025,1100","size":"100,100"}
+:: Untitled Passage 1 {"position":"600,1125","size":"100,100"}
 \:: Tag 2: Morgen
 ## Tag 2 — Der Vormittag
 
@@ -1630,13 +1810,12 @@ Doch als du den Platz verlässt, merkst du, dass die Wachen die Gatter öffnen. 
 [[Das Lager auf eigene Faust erkunden ->Nachmittag Hub]]
 
 
-:: Wuerfel_AllIn {"position":"1850,2325","size":"100,100"}
+:: Wuerfel_AllIn {"position":"2675,2500","size":"100,100"}
 <<set _bet = $player.money.copper>>
 <<include "Wuerfel_Auswertung">>
 
 
-:: Wuerfel_Auswertung {"position":"1700,1925","size":"100,100"}
-
+:: Wuerfel_Auswertung {"position":"2525,2100","size":"100,100"}
 <<set _win = false>>\
 
 <<if $world.needsDiceGame>> \
@@ -1674,14 +1853,14 @@ Die Würfel schlagen auf den Tisch.</div>
 
 	Du stehst auf und wakels in Richtung deiner Pritsche
     
-    [[Aufhören->Der nächste Tag]] 
+    [[Aufhören->Kap1_Der nächste Tag]] 
 <<else>>   \
  <<timed 5s>>
  ---
     <<if $player.money.copper > 0>>\
 
         [[Nochmal spielen->Wuerfel_Start]] \
-        [[Aufhören->Der nächste Tag]] 
+        [[Aufhören->Kap1_Der nächste Tag]] 
 
     <<else>>\
 
@@ -1694,22 +1873,22 @@ Die Würfel schlagen auf den Tisch.</div>
 <</if>>
 
 
-:: Wuerfel_Set_1 {"position":"1750,2225","size":"100,100"}
+:: Wuerfel_Set_1 {"position":"2575,2400","size":"100,100"}
 <<set _bet = 1>>
 <<include "Wuerfel_Auswertung">>
 
 
-:: Wuerfel_Set_2 {"position":"1750,2325","size":"100,100"}
+:: Wuerfel_Set_2 {"position":"2575,2500","size":"100,100"}
 <<set _bet = 2>>
 <<include "Wuerfel_Auswertung">>
 
 
-:: Wuerfel_Set_5 {"position":"1850,2225","size":"100,100"}
+:: Wuerfel_Set_5 {"position":"2675,2400","size":"100,100"}
 <<set _bet = 5>>
 <<include "Wuerfel_Auswertung">>
 
 
-:: Wuerfel_Start {"position":"1825,2100","size":"100,100"}
+:: Wuerfel_Start {"position":"2650,2275","size":"100,100"}
 Wie viel willst du setzen?
 <<if $world.needsDiceGame>>
 Heute ist dein Absoluter Glückstag!
@@ -1728,7 +1907,7 @@ Du siehst am Tisch 8 Kupfer liegen.
 <</if>>
 
 
-:: Wuerfel_Zuschauen {"position":"1625,2175","size":"100,100"}
+:: Wuerfel_Zuschauen {"position":"2450,2350","size":"100,100"}
 <<if $world.needsDiceGame>> \
 
 Du willst dich gerade abwenden, als eine Stimme hinter dir schneidet.
@@ -1774,7 +1953,7 @@ Nicht plötzlich – eher so, als würde die Müdigkeit sich einfach neben dich 
     Niemand sagt etwas dagegen.
     In einer Kaserne schläft jeder irgendwann irgendwo ein.
     
-    [[schlafen->Der nächste Tag]]
+    [[schlafen->Kap1_Der nächste Tag]]
 <</timed>>
 <</if>>
 
@@ -1834,6 +2013,12 @@ postdisplay["world-tracker"] = function () {
   
     if (typeof Save !== "undefined") {
         Save.slots.save(0);
+    }
+};
+
+predisplay["tagesstart"] = function () {
+    if (tags().includes("tagesstart")) {
+        setup.resetDailyVariables();
     }
 };
 
@@ -2325,44 +2510,57 @@ setup.loadGossipVault = function () {
 };
 
 // ========================
-// GOSSIP TRACKING (OBJECT MAP)
+// GOSSIP TRACKING
 // ========================
 
 setup.markGossipSeen = function (storyId, success = false) {
 
     if (!State.variables.world.seenGossip) {
-        State.variables.world.seenGossip = {};
+        State.variables.world.seenGossip = [];
     }
 
-    State.variables.world.seenGossip[storyId] = {
-        success: success
-    };
-};
+    const existing =
+        State.variables.world.seenGossip.find(
+            g => g.id === storyId
+        );
 
-// ========================
-// HAS SEEN CHECK
-// ========================
+    if (existing) {
+        existing.success = success;
+    } else {
+        State.variables.world.seenGossip.push({
+            id: storyId,
+            success: success
+        });
+    }
+};
 
 setup.hasSeenGossip = function (storyId) {
 
-    const seen = State.variables.world.seenGossip || {};
+    const seen =
+        State.variables.world.seenGossip || [];
 
-    return seen[storyId] !== undefined;
+    return seen.some(
+        g => g.id === storyId
+    );
 };
-
-// ========================
-// SUCCESS CHECK
-// ========================
 
 setup.wasGossipSuccessful = function (storyId) {
 
-    const seen = State.variables.world.seenGossip || {};
+    const seen =
+        State.variables.world.seenGossip || [];
 
-    return seen[storyId]?.success === true;
+    const entry =
+        seen.find(
+            g => g.id === storyId
+        );
+
+    return entry
+        ? entry.success === true
+        : false;
 };
 
 // ========================
-// ALL STORIES HELPER
+// HILFSFUNKTION
 // ========================
 
 setup.getAllGossipStories = function () {
@@ -2383,7 +2581,7 @@ setup.getAllGossipStories = function () {
 };
 
 // ========================
-// NEW GOSSIP STORIES
+// NEUE GESCHICHTEN
 // ========================
 
 setup.getGossipStory = function () {
@@ -2394,34 +2592,37 @@ setup.getGossipStory = function () {
     const allStories =
         setup.getAllGossipStories();
 
-    const available = allStories.filter(function (story) {
+    const available =
+        allStories.filter(function (story) {
 
-        if (setup.hasSeenGossip(story.id)) {
-            return false;
-        }
+            if (setup.hasSeenGossip(story.id)) {
+                return false;
+            }
 
-        if (gossipLevel < story.minLevel) {
-            return false;
-        }
+            if (gossipLevel < story.minLevel) {
+                return false;
+            }
 
-        if (gossipLevel > story.maxLevel) {
-            return false;
-        }
+            if (gossipLevel > story.maxLevel) {
+                return false;
+            }
 
-        return true;
-    });
+            return true;
+        });
 
     if (available.length === 0) {
         return null;
     }
 
     return available[
-        Math.floor(Math.random() * available.length)
+        Math.floor(
+            Math.random() * available.length
+        )
     ];
 };
 
 // ========================
-// FAILED / RETRY STORIES
+// FEHLGESCHLAGENE GESCHICHTEN
 // ========================
 
 setup.getFailedGossipStory = function () {
@@ -2432,28 +2633,42 @@ setup.getFailedGossipStory = function () {
     const allStories =
         setup.getAllGossipStories();
 
-    const failed = allStories.filter(function (story) {
+    const failed =
+        allStories.filter(function (story) {
 
-        const entry =
-            (State.variables.world.seenGossip || {})[story.id];
+            const entry =
+                (State.variables.world.seenGossip || [])
+                .find(
+                    g => g.id === story.id
+                );
 
-        if (!entry) return false;
+            if (!entry) {
+                return false;
+            }
 
-        if (entry.success === true) return false;
+            if (entry.success === true) {
+                return false;
+            }
 
-        if (gossipLevel < story.minLevel) return false;
+            if (gossipLevel < story.minLevel) {
+                return false;
+            }
 
-        if (gossipLevel > story.maxLevel) return false;
+            if (gossipLevel > story.maxLevel) {
+                return false;
+            }
 
-        return true;
-    });
+            return true;
+        });
 
     if (failed.length === 0) {
         return null;
     }
 
     return failed[
-        Math.floor(Math.random() * failed.length)
+        Math.floor(
+            Math.random() * failed.length
+        )
     ];
 };
 
