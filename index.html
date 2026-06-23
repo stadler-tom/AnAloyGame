@@ -470,6 +470,7 @@ var LZString=function(){var r=String.fromCharCode,o="ABCDEFGHIJKLMNOPQRSTUVWXYZa
 }</style><script role="script" id="twine-user-script" type="text/twine-javascript">Config.history.maxStates = 1;
 Config.debug = false;
 
+
 setup.money = {
   copperPerSilver: 7,
   silverPerGold: 10,
@@ -1079,49 +1080,29 @@ setup.loadGossipVault = function () {
 // ========================
 
 setup.markGossipSeen = function (storyId, success = false) {
-
     if (!State.variables.world.seenGossip) {
-        State.variables.world.seenGossip = [];
+        State.variables.world.seenGossip = {};
     }
-
-    const existing =
-        State.variables.world.seenGossip.find(
-            g => g.id === storyId
-        );
-
+    const existing = State.variables.world.seenGossip[storyId];
     if (existing) {
         existing.success = success;
     } else {
-        State.variables.world.seenGossip.push({
+        State.variables.world.seenGossip[storyId] = {
             id: storyId,
             success: success
-        });
+        };
     }
 };
 
 setup.hasSeenGossip = function (storyId) {
-
-    const seen =
-        State.variables.world.seenGossip || [];
-
-    return seen.some(
-        g => g.id === storyId
-    );
+    const seen = State.variables.world.seenGossip || {};
+    return Object.prototype.hasOwnProperty.call(seen, storyId);
 };
 
 setup.wasGossipSuccessful = function (storyId) {
-
-    const seen =
-        State.variables.world.seenGossip || [];
-
-    const entry =
-        seen.find(
-            g => g.id === storyId
-        );
-
-    return entry
-        ? entry.success === true
-        : false;
+    const seen = State.variables.world.seenGossip || {};
+    const entry = seen[storyId];
+    return entry ? entry.success === true : false;
 };
 
 // ========================
@@ -1129,15 +1110,11 @@ setup.wasGossipSuccessful = function (storyId) {
 // ========================
 
 setup.getAllGossipStories = function () {
-
     setup.loadGossipVault();
-
     const vault = setup.gossipTextVault;
-
     if (!vault || !vault.stories) {
         return [];
     }
-
     return [
         ...(vault.stories.lagerklatsch || []),
         ...(vault.stories.landesinfos || []),
@@ -1150,40 +1127,28 @@ setup.getAllGossipStories = function () {
 // ========================
 
 setup.getGossipStory = function () {
+    const gossipLevel = State.variables.player.knowledge.gossip || 0;
+    const allStories = setup.getAllGossipStories();
+    const seen = State.variables.world.seenGossip || {};
 
-    const gossipLevel =
-        State.variables.player.knowledge.gossip || 0;
-
-    const allStories =
-        setup.getAllGossipStories();
-
-    const available =
-        allStories.filter(function (story) {
-
-            if (setup.hasSeenGossip(story.id)) {
-                return false;
-            }
-
-            if (gossipLevel < story.minLevel) {
-                return false;
-            }
-
-            if (gossipLevel > story.maxLevel) {
-                return false;
-            }
-
-            return true;
-        });
+    const available = allStories.filter(function (story) {
+        if (Object.prototype.hasOwnProperty.call(seen, story.id)) {
+            return false;
+        }
+        if (gossipLevel < story.minLevel) {
+            return false;
+        }
+        if (gossipLevel > story.maxLevel) {
+            return false;
+        }
+        return true;
+    });
 
     if (available.length === 0) {
         return null;
     }
 
-    return available[
-        Math.floor(
-            Math.random() * available.length
-        )
-    ];
+    return available[Math.floor(Math.random() * available.length)];
 };
 
 // ========================
@@ -1191,51 +1156,92 @@ setup.getGossipStory = function () {
 // ========================
 
 setup.getFailedGossipStory = function () {
+    const gossipLevel = State.variables.player.knowledge.gossip || 0;
+    const allStories = setup.getAllGossipStories();
+    const seen = State.variables.world.seenGossip || {};
 
-    const gossipLevel =
-        State.variables.player.knowledge.gossip || 0;
+    const failed = allStories.filter(function (story) {
+        const entry = seen[story.id];
 
-    const allStories =
-        setup.getAllGossipStories();
-
-    const failed =
-        allStories.filter(function (story) {
-
-            const entry =
-                (State.variables.world.seenGossip || [])
-                .find(
-                    g => g.id === story.id
-                );
-
-            if (!entry) {
-                return false;
-            }
-
-            if (entry.success === true) {
-                return false;
-            }
-
-            if (gossipLevel < story.minLevel) {
-                return false;
-            }
-
-            if (gossipLevel > story.maxLevel) {
-                return false;
-            }
-
-            return true;
-        });
+        if (!entry) {
+            return false;
+        }
+        if (entry.success === true) {
+            return false;
+        }
+        if (gossipLevel < story.minLevel) {
+            return false;
+        }
+        if (gossipLevel > story.maxLevel) {
+            return false;
+        }
+        return true;
+    });
 
     if (failed.length === 0) {
         return null;
     }
 
-    return failed[
-        Math.floor(
-            Math.random() * failed.length
-        )
-    ];
-};</script><tw-tag name="header" color="blue"></tw-tag><tw-tag name="script" color="purple"></tw-tag><tw-tag name="startup-debug" color="purple"></tw-tag><tw-tag name="tagesstart" color="green"></tw-tag><tw-passagedata pid="1" name="$world.lastPassage" tags="" position="850,0" size="100,100"></tw-passagedata><tw-passagedata pid="2" name="00_Sidequest_karla" tags="" position="25,1825" size="100,100">Die anderen Rekruten verschwinden zwischen den Zelten, und du willst gerade denselben Weg nehmen, als Karlas Stimme dich trifft — nicht laut, aber so, dass sie keinen Widerspruch einkalkuliert.
+    return failed[Math.floor(Math.random() * failed.length)];
+};
+
+// ========================
+// PROBE BERECHNEN
+// ========================
+
+setup.rollGossipProbe = function (skill, difficulty) {
+    if (difficulty === 0) return true;
+    
+    const dice = Math.floor(Math.random() * 10) + 1;
+    
+    // Einsteigerbonus: skill 1-2 hat immer mindestens 80% Chance
+    if (skill >= 1 && skill < 3) {
+        return dice <= 8; // 8 von 10 = 80%
+    }
+    
+    return dice + skill >= difficulty + 5;
+};
+
+setup.getProbeThoughtText = function (skill, difficulty) {
+    const vorsprung = skill - difficulty;
+    
+    if (skill < difficulty - 2) return null; // kein Link
+    
+    if (vorsprung >= 4) return "Du kennst diese Sorte Gespräch. Der Typ will reden — er braucht nur den richtigen Moment. Den kannst du ihm geben.";
+    if (vorsprung >= 2) return "Da ist noch was. Du bist dir nicht sicher ob er redet, aber die Chance ist da. Die Frage ist wie du fragst.";
+    return "Vielleicht steckt mehr dahinter. Vielleicht auch nicht. Nachhaken könnte klappen — oder den Abend beenden.";
+};
+
+
+// ========================
+// PROBE GESCHAFFT GEDANKENBOX
+// ========================
+
+setup.getSuccessThought = function (skill, difficulty) {
+    const texts = {
+      1: "Du weißt nicht genau was du richtig gemacht hast. Aber es hat funktioniert.",
+      3: "Die Stimmen um euch herum werden lauter. Oder ihr werdet leiser. Schwer zu sagen. Er redet jedenfalls.",
+      5: "Da ist es. Der Moment wo jemand aufhört abzuwägen ob er redet — und einfach redet.",
+      7: "Der Mann lehnt sich vor. Kaum merklich — aber es ist da. Du hast den richtigen Nerv getroffen.",
+      9: "Du hast es nicht mal wirklich versucht. Und trotzdem redet er.",
+      
+}
+    
+    const thresholds = Object.keys(texts)
+        .map(Number)
+        .sort((a, b) => a - b);
+
+    let result = texts[thresholds[0]];
+
+    for (const threshold of thresholds) {
+        if (skill >= threshold) {
+            result = texts[threshold];
+        }
+    }
+
+  	return '<div class="thought-box">' + result + '</div>';
+};
+</script><tw-tag name="header" color="blue"></tw-tag><tw-tag name="script" color="purple"></tw-tag><tw-tag name="startup-debug" color="purple"></tw-tag><tw-tag name="tagesstart" color="green"></tw-tag><tw-passagedata pid="1" name="$world.lastPassage" tags="" position="850,0" size="100,100"></tw-passagedata><tw-passagedata pid="2" name="00_Sidequest_karla" tags="" position="25,1825" size="100,100">Die anderen Rekruten verschwinden zwischen den Zelten, und du willst gerade denselben Weg nehmen, als Karlas Stimme dich trifft — nicht laut, aber so, dass sie keinen Widerspruch einkalkuliert.
 
 „Du. Komm mit.&quot;
 
@@ -1812,102 +1818,77 @@ Du bist jetzt drin.
 
 &lt;div class=&quot;thought-box&quot;&gt;&lt;&lt;= setup.getNaechsterTagText(&quot;gedanke&quot;)&gt;&gt;&lt;/div&gt;
 &lt;&lt;= setup.getNaechsterTagText(&quot;luigi_schatten&quot;)&gt;&gt;\
-[[Das Lager auf eigene Faust erkunden -&gt;Nachmittag Hub]]</tw-passagedata><tw-passagedata pid="29" name="Event_Geschichte" tags="" position="2375,1800" size="100,100">&lt;&lt;set _istMumpitz = random(1,100) &lt;= 15&gt;&gt;
-
-&lt;&lt;if _istMumpitz&gt;&gt;
-
-    &lt;&lt;include &quot;Event_Geschichte_Mumpitz&quot;&gt;&gt;
-
-&lt;&lt;else&gt;&gt;
-
-    &lt;&lt;set _gossipStory = setup.getGossipStory()&gt;&gt;
-    &lt;&lt;set $world.currentGossipStory = _gossipStory&gt;&gt;
-
-    &lt;&lt;if _gossipStory == null&gt;&gt;
-
+[[Das Lager auf eigene Faust erkunden -&gt;Nachmittag Hub]]</tw-passagedata><tw-passagedata pid="29" name="Event_Geschichte" tags="" position="2375,1800" size="100,100">&lt;&lt;set _istMumpitz = random(1,100) &lt;= 15&gt;&gt;\
+&lt;&lt;if _istMumpitz&gt;&gt;\
+    &lt;&lt;include &quot;Event_Geschichte_Mumpitz&quot;&gt;&gt;\
+&lt;&lt;else&gt;&gt;\
+    &lt;&lt;set _gossipStory = setup.getGossipStory()&gt;&gt;\
+    &lt;&lt;set $world.currentGossipStory = _gossipStory&gt;&gt;\
+    &lt;&lt;if _gossipStory == null&gt;&gt;\
         Du lehnst dich zurück und horchst in den Raum.
         Heute Abend ist nichts Neues zu hören — nur dieselben müden Männer,
         die dieselben müden Geschichten erzählen.
-
-        &lt;div class=&quot;thought-box&quot;&gt;
-        Ich kenne diese Gesichter langsam. Aber ihre Geheimnisse hab ich noch nicht alle.
+        &lt;div class=&quot;thought-box&quot;&gt;Ich kenne diese Gesichter langsam. Aber ihre Geheimnisse hab ich noch nicht alle.
         &lt;/div&gt;
-
         [[Schlafen -&gt;Kap1_Der nächste Tag]]
-
-    &lt;&lt;else&gt;&gt;
-
-        &lt;div class=&quot;scenery-text&quot;&gt;
-        Ein paar Kerzen flackern. Jemand lehnt sich vor.
+    &lt;&lt;else&gt;&gt;\
+        &lt;div class=&quot;scenery-text&quot;&gt;Ein paar Kerzen flackern. Jemand lehnt sich vor.
         Die Stimmen werden leiser — oder du wirst aufmerksamer, das ist schwer zu sagen.
         &lt;/div&gt;
-
-        &lt;&lt;= _gossipStory.base&gt;&gt;
-
-        &lt;&lt;run setup.markGossipSeen(_gossipStory.id, false)&gt;&gt;
-
-        &lt;&lt;if _gossipStory.probe&gt;&gt;
-            &lt;&lt;if $player.knowledge.gossip &gt;= _gossipStory.probe.difficulty&gt;&gt;
-
-                &lt;div class=&quot;thought-box&quot;&gt;
-                Da muss doch mehr dran sein, soll ich nachhaken?
-                &lt;/div&gt;
-
-                [[Nachfragen -&gt;Event_Geschichte_Probe]]
-
-            &lt;&lt;/if&gt;&gt;
-        &lt;&lt;/if&gt;&gt;
-
+        &lt;&lt;= _gossipStory.base&gt;&gt;\
+        &lt;&lt;run setup.markGossipSeen(_gossipStory.id, false)&gt;&gt;\
+        &lt;&lt;if _gossipStory.probe&gt;&gt;\
+            &lt;&lt;set _gossipDiff = _gossipStory.probe.difficulty&gt;&gt;\
+            &lt;&lt;set _gossipSkill = $player.knowledge.gossip&gt;&gt;\
+            &lt;&lt;set _probeThought = setup.getProbeThoughtText(_gossipSkill, _gossipDiff)&gt;&gt;\
+            &lt;&lt;if _probeThought !== null&gt;&gt;\
+                &lt;div class=&quot;thought-box&quot;&gt;&lt;&lt;= _probeThought&gt;&gt;&lt;/div&gt;
+                [[Nachhaken -&gt;Event_Geschichte_Probe]]
+            &lt;&lt;/if&gt;&gt;\
+        &lt;&lt;/if&gt;&gt;\
         [[Schlafen -&gt;Kap1_Der nächste Tag]]
-
-    &lt;&lt;/if&gt;&gt;
-
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="30" name="Event_Geschichte_Mumpitz" tags="" position="2475,1650" size="100,100">&lt;&lt;set _gossipStory = setup.getFailedGossipStory()&gt;&gt;\
+    &lt;&lt;/if&gt;&gt;\
+&lt;&lt;/if&gt;&gt;\</tw-passagedata><tw-passagedata pid="30" name="Event_Geschichte_Mumpitz" tags="" position="2475,1650" size="100,100">&lt;&lt;set _gossipStory = setup.getFailedGossipStory()&gt;&gt;\
+&lt;div class=&quot;scenery-text&quot;&gt;Irgendwo im Raum kommt wieder ein altes Gespräch auf…
+    &lt;/div&gt;
 &lt;&lt;if _gossipStory&gt;&gt;\
     &lt;&lt;set $world.currentGossipStory = _gossipStory&gt;&gt;\
-    &lt;div class=&quot;scenery-text&quot;&gt;
-    Irgendwo im Raum kommt wieder ein altes Gespräch auf…
-    &lt;/div&gt;
     &lt;&lt;= _gossipStory.base&gt;&gt;\
     &lt;&lt;if _gossipStory.probe&gt;&gt;\
-        &lt;div class=&quot;thought-box&quot;&gt;
-        Moment… die Geschichte kenn ich doch. Vielleicht ist da doch mehr dran.
+        &lt;div class=&quot;thought-box&quot;&gt;Moment… die Geschichte kenn ich doch. Vielleicht ist da doch mehr dran.
         &lt;/div&gt;
         [[Nachfragen -&gt;Event_Geschichte_Probe]] \
     &lt;&lt;/if&gt;&gt;\
     [[Schlafen -&gt;Kap1_Der nächste Tag]]
 &lt;&lt;else&gt;&gt;\
-    &lt;div class=&quot;thought-box&quot;&gt;
-    Das ist alles nur uninteressanter Tratsch. Ich hau ab...
+    &lt;div class=&quot;thought-box&quot;&gt;Das ist alles nur uninteressanter Tratsch. Ich hau ab...
     &lt;/div&gt;
     [[Sich hinlegen und schlafen-&gt;Kap1_Der nächste Tag]]
 &lt;&lt;/if&gt;&gt;\</tw-passagedata><tw-passagedata pid="31" name="Event_Geschichte_Probe" tags="" position="2375,1925" size="100,100">&lt;&lt;set _gossipStory = $world.currentGossipStory&gt;&gt;\
-
-&lt;&lt;if $player.knowledge.gossip &lt;= 3&gt;&gt;\
+&lt;&lt;set _gossipDiff = _gossipStory.probe.difficulty&gt;&gt;\
+&lt;&lt;set _gossipSkill = $player.knowledge.gossip&gt;&gt;\
+&lt;&lt;if _gossipSkill &lt;= 3&gt;&gt;\
     &lt;div class=&quot;scenery-text&quot;&gt;Du hakst nach, etwas forsch.&lt;/div&gt;
-&lt;&lt;elseif $player.knowledge.gossip &lt;= 7&gt;&gt;\
+&lt;&lt;elseif _gossipSkill &lt;= 7&gt;&gt;\
     &lt;div class=&quot;scenery-text&quot;&gt;Du hakst nach. Beiläufig. So, als wäre es keine echte Frage.&lt;/div&gt;
 &lt;&lt;else&gt;&gt;\
     &lt;div class=&quot;scenery-text&quot;&gt;Du musst nicht mal wirklich fragen und der Tratsch beginnt.&lt;/div&gt;
 &lt;&lt;/if&gt;&gt;\
-&lt;&lt;if &gt;&gt;
-&lt;&lt;if _gossipStory &amp;&amp; _gossipStory.probe &amp;&amp; (random(1,10) + $player.knowledge.gossip &gt;= _gossipStory.probe.difficulty)&gt;&gt;\
-    &lt;div class=&quot;thought-box&quot;&gt;Oh ja! Erzähl mir was du weißt.&lt;/div&gt;
-    &lt;&lt;= _gossipStory.probe.success&gt;&gt;\
+&lt;&lt;if setup.rollGossipProbe(_gossipSkill, _gossipDiff)&gt;&gt;\
+    &lt;&lt;= setup.getSuccessThought($player.knowledge.gossip, _gossipSkill)&gt;&gt;
+    &lt;&lt;= _gossipStory.probe.success&gt;&gt;&lt;br&gt;
     &lt;&lt;= setup.setPlayerKnowledge(&quot;gossip&quot;, 1)&gt;&gt;\
     &lt;&lt;= setup.addRumor(_gossipStory.rumorText)&gt;&gt;\
     &lt;&lt;run setup.markGossipSeen(_gossipStory.id, true)&gt;&gt;\
-&lt;&lt;elseif _gossipStory &amp;&amp; _gossipStory.probe&gt;&gt;\
-    &lt;div class=&quot;thought-box&quot;&gt;Mist — zu direkt. Der Typ zieht sich zurück.&lt;/div&gt;
-    &lt;&lt;= _gossipStory.probe.fail&gt;&gt;\
-   &lt;&lt;run setup.markGossipSeen(_gossipStory.id, false)&gt;&gt;\
 &lt;&lt;else&gt;&gt;\
-    &lt;div class=&quot;thought-box&quot;&gt;Hier war nichts zu holen.&lt;/div&gt;
+    &lt;div class=&quot;thought-box&quot;&gt;Mist. Er hatte noch was zu sagen — das war spürbar.
+    Aber jetzt ist die Tür zu.
+    &lt;/div&gt;
+    &lt;&lt;= _gossipStory.probe.fail&gt;&gt;\
     &lt;&lt;run setup.markGossipSeen(_gossipStory.id, false)&gt;&gt;\
 &lt;&lt;/if&gt;&gt;\
 
 &lt;&lt;set $world.currentGossipStory = null&gt;&gt;\
-
 [[Schlafen -&gt;Kap1_Der nächste Tag]]</tw-passagedata><tw-passagedata pid="32" name="Event_Schlaegerei" tags="" position="2400,1450" size="100,100">Fäuster</tw-passagedata><tw-passagedata pid="33" name="Event_Wuerfelspiel" tags="" position="2450,2225" size="100,100">Ein paar Rekruten sitzen um einen groben Holztisch.  
 Zwischen Krügen und Kerzenlicht klackern Würfel.
 
@@ -1948,73 +1929,73 @@ Du wirst vom Tisch weggeschickt.
 	  &quot;rumorText&quot;: &quot;Snori de Alba nimmt es nicht gut auf wenn man den Ritterstand herabwürdigt.&quot;
 	},
       {
-        &quot;id&quot;: &quot;lk_002&quot;,
-        &quot;minLevel&quot;: 0,
-        &quot;maxLevel&quot;: 2,
-        &quot;base&quot;: &quot;PLATZHALTER&quot;,
-        &quot;probe&quot;: {
-          &quot;minGossip&quot;: 2,
-          &quot;success&quot;: &quot;PLATZHALTER&quot;,
-          &quot;fail&quot;: &quot;PLATZHALTER&quot;
-        },
-        &quot;rumorText&quot;: &quot;PLATZHALTER&quot;,
-        &quot;npcKey&quot;: null
+      &quot;id&quot;: &quot;lk_002&quot;,
+      &quot;minLevel&quot;: 0,
+      &quot;maxLevel&quot;: 2,
+      &quot;base&quot;: &quot;Jemand vom älteren Jahrgang hat mal erzählt, der Schinder soll früher im Söldnerdienst gewesen sein — nicht als Ausbilder, sondern als Offizier. Irgendwo draußen, weit weg von Aloy. Was genau passiert ist, weiß keiner so genau. Aber danach war er hier. Und seine Hand war weg.&quot;,
+      &quot;probe&quot;: {
+        &quot;difficulty&quot;: 1,
+        &quot;success&quot;: &quot;Der Typ, der&#39;s erzählt hat, kannte angeblich jemanden aus dem alten 12. Banner. Die sagen, der Schinder hat damals einer ganzen Lanze das Leben gerettet — durch einen Befehl, den er hätte nicht geben dürfen. Er hat es getan. Die Lanze kam heim. Er kam auch heim, aber vor ein Kriegsgericht. Verurteilt wurde er nicht. Warum, weiß keiner. Aber Offizier war er danach keiner mehr.&quot;,
+        &quot;fail&quot;: &quot;Du hakst nach, aber der Typ zuckt nur mit den Schultern. &#39;Ich hab&#39;s halt irgendwo aufgeschnappt. Vielleicht ist&#39;s auch Quatsch.&#39;&quot;
       },
-      {
+      &quot;rumorText&quot;: &quot;Der Schinder war früher Offizier. Was ihn hierher gebracht hat, erzählt er nicht.&quot;,
+      &quot;npcKey&quot;: &quot;schinder&quot;
+    },
+            {
         &quot;id&quot;: &quot;lk_003&quot;,
         &quot;minLevel&quot;: 0,
         &quot;maxLevel&quot;: 2,
-        &quot;base&quot;: &quot;PLATZHALTER&quot;,
+        &quot;base&quot;: &quot;In Tiafunt soll es ein Freudenhaus geben, das jetzt &#39;Rosengarten&#39; heißt — früher hieß es die Bumsburg, und der Name erklärt sich von selbst. Irgendein Söldner aus dem 84. soll da stiller Teilhaber sein. Ob das stimmt oder nur eine dieser Geschichten ist, die sich Rekruten erzählen, wenn die Nächte lang werden — wer weiß.&quot;,
         &quot;probe&quot;: {
-          &quot;minGossip&quot;: 1,
-          &quot;success&quot;: &quot;PLATZHALTER&quot;,
-          &quot;fail&quot;: &quot;PLATZHALTER&quot;
+          &quot;difficulty&quot;: 2,
+          &quot;success&quot;: &quot;Der Name, den man flüstert, ist Lars. Weibel Lars, einer von denen die manchmal an der Akademie vorbeischauen. Kein Mensch weiß wie er da reingerutscht ist — aber angeblich war&#39;s eine Wette. Oder eine Schuld. Oder beides. Er redet selbst nie drüber. Wer ihn fragt, findet seine Stiefel plötzlich sehr interessant.&quot;,
+          &quot;fail&quot;: &quot;Der Typ grinst nur breit. &#39;Namen nenn ich keine. Nicht wegen mir — wegen meiner Knie.&#39;&quot;
         },
-        &quot;rumorText&quot;: &quot;PLATZHALTER&quot;,
-        &quot;npcKey&quot;: null
+        &quot;rumorText&quot;: &quot;Weibel Lars soll stiller Teilhaber eines Freudenhauses in Tiafunt sein. Er redet nicht darüber.&quot;,
+        &quot;npcKey&quot;: &quot;weibelLars&quot;
       }
     ],
 
     &quot;landesinfos&quot;: [
-      {
+            {
         &quot;id&quot;: &quot;li_001&quot;,
         &quot;minLevel&quot;: 3,
         &quot;maxLevel&quot;: 6,
-        &quot;base&quot;: &quot;PLATZHALTER – Andeutung zu Militärtransporten / Karlas Plot.&quot;,
+        &quot;base&quot;: &quot;Schon der zweite Transport in diesem Monat, der nicht angekommen ist. Material, Sold, irgendwas Wichtiges — genau erfährt man das nicht. Oben heißt es, man ermittelt. Unten heißt es, man hat noch niemanden. Ein Mann sitzt dafür schon im Turm — aber ob er&#39;s wirklich war, das glauben hier nicht alle.&quot;,
         &quot;probe&quot;: {
-          &quot;minGossip&quot;: 4,
-          &quot;success&quot;: &quot;PLATZHALTER – Mehr Detail, echter Plothinweis.&quot;,
-          &quot;fail&quot;: &quot;PLATZHALTER – Der Typ wird vorsichtig, wechselt das Thema.&quot;
+          &quot;difficulty&quot;: 4,
+          &quot;success&quot;: &quot;Der Mann, der sitzt, ist ein Fuhrmann aus Umseck. Edric heißt er. Soll als Ortskundiger für die Räuber gewirkt haben — so steht&#39;s im Urteil. Aber es gibt Leute, die sagen: Der hatte zur Tatzeit Fieber, lag im Bett, und der einzige Zeuge hat beim Prozess einfach den Mund gehalten. Warum, weiß niemand. Und die echten Täter — die machen offenbar munter weiter.&quot;,
+          &quot;fail&quot;: &quot;Der Typ, der&#39;s erzählt, wirft einen kurzen Blick zur Tür. &#39;Ich weiß nicht mehr als du. Und ich will auch nicht mehr wissen.&#39;&quot;
         },
-        &quot;rumorText&quot;: &quot;PLATZHALTER – Kurzsatz ins Notizbuch.&quot;,
-        &quot;npcKey&quot;: null
+        &quot;rumorText&quot;: &quot;Ein Fuhrmann aus Umseck sitzt für die Transportüberfälle — aber nicht alle glauben, dass er schuldig ist.&quot;,
+        &quot;npcKey&quot;: &quot;karla&quot;
       },
       {
-        &quot;id&quot;: &quot;li_002&quot;,
-        &quot;minLevel&quot;: 3,
-        &quot;maxLevel&quot;: 6,
-        &quot;base&quot;: &quot;PLATZHALTER – Andeutung zu Loyalisten / Jareks Plot.&quot;,
-        &quot;probe&quot;: {
-          &quot;minGossip&quot;: 5,
-          &quot;success&quot;: &quot;PLATZHALTER&quot;,
-          &quot;fail&quot;: &quot;PLATZHALTER&quot;
-        },
-        &quot;rumorText&quot;: &quot;PLATZHALTER&quot;,
-        &quot;npcKey&quot;: null
-      },
-      {
-        &quot;id&quot;: &quot;li_003&quot;,
-        &quot;minLevel&quot;: 3,
-        &quot;maxLevel&quot;: 6,
-        &quot;base&quot;: &quot;PLATZHALTER – Andeutung zu Truppenverlegungen.&quot;,
-        &quot;probe&quot;: {
-          &quot;minGossip&quot;: 3,
-          &quot;success&quot;: &quot;PLATZHALTER&quot;,
-          &quot;fail&quot;: &quot;PLATZHALTER&quot;
-        },
-        &quot;rumorText&quot;: &quot;PLATZHALTER&quot;,
-        &quot;npcKey&quot;: null
-      }
+            &quot;id&quot;: &quot;li_002&quot;,
+            &quot;minLevel&quot;: 3,
+            &quot;maxLevel&quot;: 6,
+            &quot;base&quot;: &quot;Es soll Leute geben, die finden, die Republik war von Anfang an ein Fehler. Nicht laut — nicht hier, nicht in der Kaserne. Aber man hört&#39;s. In Wirtshäusern. In Kellern. Leute, die glauben, irgendwas an der Gründungsgeschichte stimmt nicht. Dass da eine Lüge drin steckt, tief unten, seit dem ersten Tag.&quot;,
+            &quot;probe&quot;: {
+              &quot;difficulty&quot;: 5,
+              &quot;success&quot;: &quot;Die Geschichte geht so: Die Freiheitserklärung — das Original, das im Grodauser Wirtshaus verfasst wurde — hat sechs Unterschriften. Fünf kennt jeder. Die sechste ist unleserlich. Offizielle Lesart: Barsinger höchstselbst, der Spielmanngott. Aber es gibt welche, die sagen, da hat ein Adeliger unterschrieben. Unter Androhung. Als Feigenblatt für Legitimität. Wenn das stimmte — wenn der Name lesbar würde — wäre die Gründung keine Befreiung mehr. Sondern Nötigung.&quot;,
+              &quot;fail&quot;: &quot;Der Typ schüttelt den Kopf. &#39;Das ist Wirtshausklatsch von Leuten, die zu viel getrunken haben. Hör nicht drauf.&#39;&quot;
+            },
+            &quot;rumorText&quot;: &quot;Manche glauben, die sechste Unterschrift der Freiheitserklärung stammt nicht von einem Gott — sondern von einem Adeligen, der unter Zwang unterschrieb.&quot;,
+            &quot;npcKey&quot;: &quot;jarek&quot;
+          },
+               {
+            &quot;id&quot;: &quot;li_003&quot;,
+            &quot;minLevel&quot;: 3,
+            &quot;maxLevel&quot;: 6,
+            &quot;base&quot;: &quot;Die Verlegungen gehen weiter. Regimenter, die seit Jahren an denselben Posten standen, werden auf einmal abgezogen und woanders hingeschickt. Keiner erklärt warum. Oben redet man von Umstrukturierung. Unten sagt man, da braut sich was zusammen — man weiß nur noch nicht wo.&quot;,
+            &quot;probe&quot;: {
+              &quot;difficulty&quot;: 3,
+              &quot;success&quot;: &quot;Einer aus dem alten Jahrgang meint, er hat den Namen Alfaltermark aufgeschnappt — im Flur, zwischen zwei Offizieren, die nicht wussten dass jemand zuhört. Alfaltermark ist der einzige Landweg rein nach Aloy. Wenn da was passiert, gibt&#39;s keinen Puffer mehr. Ob die Verlegungen damit zusammenhängen — keine Ahnung. Aber die Richtung stimmt.&quot;,
+              &quot;fail&quot;: &quot;Der Typ lehnt sich zurück. &#39;Ich weiß nur, dass das 14. verlegt wurde. Mehr hab ich nicht. Und mehr will ich auch nicht wissen.&#39;&quot;
+            },
+            &quot;rumorText&quot;: &quot;Die Truppenverlegungen könnten mit Alfaltermark zusammenhängen — dem einzigen Landweg nach Aloy.&quot;,
+            &quot;npcKey&quot;: null
+          }
     ],
 
     &quot;knaller&quot;: [
