@@ -3085,6 +3085,7 @@ setup.getKonditionLabel = function (k) {
 
 setup.resetDailyVariables = function() {
 	const world = State.variables.world;
+    const player = State.variables.player;
     const weatherConditions = [
     "sonnig", 
     "klar", 
@@ -3107,7 +3108,7 @@ setup.resetDailyVariables = function() {
     world.wasPracticing = false;
   	world.day+=1
   	// --- Kondition: zehrt jeden Tag, Sterben nur durch Vernachlässigung ---
-    if (State.variables.player.hasSlept) {
+    if (player.hasSlept) {
     // Erholung durch Schlaf
     	world.kondition = Math.min(100, world.kondition + 10);
 	} else {
@@ -3202,8 +3203,9 @@ setup.checkInterrupt = function() {
 
 // liest aus den Tags der aktuellen Passage das Rücksprungziel
 setup.routeFromTags = function(tagList) {
+    const player = State.variables.player;
     for (const t of tagList) {
-      	player.hasSlept = (t !== "nach_morgen");
+      	State player.hasSlept = (t !== "nach_morgen");
         if (setup.routeTags[t]) return setup.routeTags[t];
     }
   	player.hasSlept = true;
