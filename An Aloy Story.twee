@@ -17,7 +17,10 @@ An Aloy Story
     "nach_hub": "green",
     "einmalig": "red",
     "nach_morgen": "red",
-    "interrupt": "purple"
+    "interrupt": "purple",
+    "nach_appell": "yellow",
+    "studium": "yellow",
+    "pruefung": "green"
   },
   "zoom": 0.6
 }
@@ -183,8 +186,8 @@ Sie sieht dich kurz an.
 <<include "00_Sidequest_karla_finalize">>
 
 
-:: 00_Sidequest_karla_finalize {"position":"350,1925","size":"100,100"}
-<<set $npc.karla.memory.flags.sidequest00Complete = true>>
+:: 00_Sidequest_karla_finalize {"position":"400,1975","size":"100,100"}
+<<run setup.completeSidequest("karla_01")>>
 [[in die Stube gehen->Auf Stube]]
 
 
@@ -344,7 +347,7 @@ Er sieht dich an, und zum ersten Mal hast du das Gefühl, dass er dich tatsächl
 
 
 :: 01_Sidequest_jarek_finalize {"position":"450,2575","size":"100,100"}
-<<set $npc.jarek.memory.flags.sidequest01Complete = true>>
+<<run setup.completeSidequest("jarek_01")>>
 [[zurück in die Stube ->Auf Stube]]
 
 
@@ -363,14 +366,12 @@ Niemand antwortet. Niemand muss.
 
 <div class="thought-box"><<= setup.getAbendappellText("gedanke")>></div>
 
-<<if $world.karla_druck >= 5 && $npc.karla.memory.flags.sidequest00Complete neq true>>\
-Karla kommt auf dich zu, sie schaut verdammt ernst. "DU! komm mit!" 
-[[Mitgehen->00_Sidequest_karla]]
-<</if>>\
-<<if $world.jarek_druck >= 5 && $npc.jarek.memory.flags.sidequest01Complete neq true>>\
-Jarek tritt neben dich, ohne dass du ihn hast kommen hören. „Auf ein Wort", sagt er leise.
-[[Hören, was er will ->01_Sidequest_jarek]]
-<</if>>\
+<<set _q = setup.readySidequest()>>\
+<<if _q>>\
+  <<run setup.questState(_q).active = true>>\
+  <<goto setup.sidequests[_q].start>>\
+<</if>>
+
 [[Auf Stube gehen ->Auf Stube]]
 
 
@@ -502,7 +503,7 @@ Die Baracke nimmt euch auf wie jeden Abend — ohne Begrüßung, ohne Wärme.
 Du lässt dich auf deine Pritsche fallen, und der Strohsack, der heute Morgen noch hart und fremd war, fühlt sich jetzt an wie das Weichste auf der Welt. Deine Hände brennen. Deine Schultern brennen. Irgendwo tief in den Oberschenkeln sitzt ein Schmerz, der morgen früh schlimmer sein wird als heute Nacht.
 Das Talglicht flackert.
 Du schließt die Augen, noch bevor jemand es löscht.
-[[Der nächste Tag. ->Kap1_Der nächste Tag]]
+[[Der nächste Tag. ->Kap1_Tagesstart]] 
 
 
 :: Auf Stube {"position":"1925,1750","size":"100,100"}
@@ -530,7 +531,7 @@ Dieses kurze, gespannte Schweigen, das in Kasernen nie wirklich Ruhe bedeutet.
     <</if>>\
 	
     [[Zuhören, was geredet wird ->Event_Geschichte]]
-    [[Schlafen->Kap1_Der nächste Tag]]
+    [[Schlafen->Kap1_Tagesstart]]
     
 <</if>>\
 
@@ -622,8 +623,13 @@ Der Schinder steht vor dir. Sein Auge wartet.
 <<else>>
 	@@.beziehung;Du blickst dich suchend nach vertrauten Gesichtern aus deiner Stube um. Du entdeckst Jarek und Karla, aber beide ignorieren dich starr.@@
 <</if>>
-<<if $npc.karla.affection gt 0 or $npc.jarek.affection gt 0>>
-	[[Dich dank des Hinweises sofort ausrichten — du weißt, was zu tun ist. ->Appell: Ausrichten][$player.chosen_activity to "zeigt_eigeninitiative"]]
+<<if $npc.karla.affection gt 0 or $npc.jarek.affection gt 0>>\
+<<link "Dich dank des Hinweises sofort ausrichten — du weißt, was zu tun ist.">>\
+<<if $npc.karla.affection gt 0>><<set $player.rel.karla += 1>><</if>>\
+<<if $npc.jarek.affection gt 0>><<set $player.rel.jarek += 1>><</if>>\
+<<set $player.chosen_activity to "zeigt_eigeninitiative">>\
+<<goto "Appell: Ausrichten">>\
+<</link>>
 <</if>>
 [[Warten, bis er es dir befiehlt. ->Appell: Ausrichten][$player.chosen_activity to "ist_befehlstreu"]]
 <<if $npc.karla.affection lte 0 and $npc.jarek.affection lte 0>>
@@ -664,7 +670,7 @@ Du bist jetzt drin.
 [[Beginne deine Ausbildung->Kapitel 1]]
 
 
-:: Event_Geschichte {"position":"2375,1800","size":"100,100"}
+:: Event_Geschichte {"position":"2400,1675","size":"100,100"}
 <<set _istMumpitz = random(1,100) <= 15>>\
 <<if _istMumpitz>>\
     <<include "Event_Geschichte_Mumpitz">>\
@@ -677,7 +683,7 @@ Du bist jetzt drin.
         die dieselben müden Geschichten erzählen.
         <div class="thought-box">Ich kenne diese Gesichter langsam. Aber ihre Geheimnisse hab ich noch nicht alle.
         </div>
-        [[Schlafen ->Kap1_Der nächste Tag]]
+        [[Schlafen ->Kap1_Tagesstart]]
     <<else>>\
         <div class="scenery-text">Ein paar Kerzen flackern. Jemand lehnt sich vor.
         Die Stimmen werden leiser — oder du wirst aufmerksamer, das ist schwer zu sagen.
@@ -690,15 +696,16 @@ Du bist jetzt drin.
             <<set _probeThought = setup.getProbeThoughtText(_gossipSkill, _gossipDiff)>>\
             <<if _probeThought !== null>>\
                 <div class="thought-box"><<= _probeThought>></div>
-                [[Nachhaken ->Event_Geschichte_Probe]]
+                <<set _label to 'Nachhaken' + setup.checkHint('gossip', _gossipDiff)>>\
+                <<link _label>><<goto 'Event_Geschichte_Probe'>><</link>>
             <</if>>\
         <</if>>\
-        [[Schlafen ->Kap1_Der nächste Tag]]
+        [[Schlafen ->Kap1_Tagesstart]]
     <</if>>\
 <</if>>\
 
 
-:: Event_Geschichte_Mumpitz {"position":"2475,1650","size":"100,100"}
+:: Event_Geschichte_Mumpitz {"position":"2575,1600","size":"100,100"}
 <<set _gossipStory = setup.getFailedGossipStory()>>\
 <div class="scenery-text">Irgendwo im Raum kommt wieder ein altes Gespräch auf…
     </div>
@@ -710,49 +717,103 @@ Du bist jetzt drin.
         </div>
         [[Nachfragen ->Event_Geschichte_Probe]] \
     <</if>>\
-    [[Schlafen ->Kap1_Der nächste Tag]]
+    [[Schlafen ->Kap1_Tagesstart]]
 <<else>>\
     <div class="thought-box">Das ist alles nur uninteressanter Tratsch. Ich hau ab...
     </div>
-    [[Sich hinlegen und schlafen->Kap1_Der nächste Tag]]
+    [[Sich hinlegen und schlafen->Kap1_Tagesstart]]
 <</if>>\
 
 
-:: Event_Geschichte_Probe {"position":"2375,1925","size":"100,100"}
+:: Event_Geschichte_Probe {"position":"2400,1900","size":"100,100"}
 <<set _gossipStory = $world.currentGossipStory>>\
-<<set _gossipDiff = _gossipStory.probe.difficulty>>\
-<<set _gossipSkill = $player.knowledge.gossip>>\
-<<if _gossipSkill <= 3>>\
+<<set _r = setup.skillCheck("gossip", _gossipStory.probe.difficulty)>>\
+<<if _r.skill <= 3>>\
     <div class="scenery-text">Du hakst nach, etwas forsch.</div>
-<<elseif _gossipSkill <= 7>>\
+<<elseif _r.skill <= 7>>\
     <div class="scenery-text">Du hakst nach. Beiläufig. So, als wäre es keine echte Frage.</div>
 <<else>>\
     <div class="scenery-text">Du musst nicht mal wirklich fragen und der Tratsch beginnt.</div>
 <</if>>\
-<<if setup.rollGossipProbe(_gossipSkill, _gossipDiff)>>\
-    <<= setup.getSuccessThought($player.knowledge.gossip, _gossipSkill)>>
+
+<<if _r.success>>\
+    <<= setup.getSuccessThought($player.knowledge.gossip, _r.skill)>>
+    <<if _r.outcome == "crit">>\
+        <div class="thought-box">Und noch mehr — er redet sich in Fahrt, du erfährst Dinge, nach denen du nie gefragt hättest.</div>
+    <</if>>\
     <<= _gossipStory.probe.success>><br>
     <<= setup.setPlayerKnowledge("gossip", 1)>>\
     <<= setup.addRumor(_gossipStory.rumorText)>>\
     <<run setup.markGossipSeen(_gossipStory.id, true)>>\
 <<else>>\
-    <div class="thought-box">Mist. Er hatte noch was zu sagen — das war spürbar.
-    Aber jetzt ist die Tür zu.
-    </div>
+    <<if _r.outcome == "fumble">>\
+        <div class="thought-box">Du fragst zu plump. Er macht dicht — und sieht dich jetzt schief an. Die halbe Stube weiß jetzt, dass du schnüffelst.</div>
+        <<= setup.setPlayerSuspicion(5)>>\
+    <<else>>\
+        <div class="thought-box">Mist. Er hatte noch was zu sagen — das war spürbar.
+        Aber jetzt ist die Tür zu.</div>
+    <</if>>\
     <<= _gossipStory.probe.fail>>\
     <<run setup.markGossipSeen(_gossipStory.id, false)>>\
 <</if>>\
 
 <<set $world.currentGossipStory = null>>\
-[[Schlafen ->Kap1_Der nächste Tag]]
+[[Schlafen ->Kap1_Tagesstart]]
 
 
-:: Event_Schlaegerei {"position":"2600,1300","size":"100,100"}
-Fäuste Fliegen, sonst gibt es nix zu sehen.
-[[Schlafen ->Kap1_Der nächste Tag]]
+:: Event_Schlaegerei {"position":"2725,1600","size":"100,100"}
+<<if $player.knowledge.combat == 0>>
+    Es hört sich an als würden zwei Rekruten streiten.
+    [[Versuchen zu schlafen ->Kap1_Tagesstart]]
+<<elseif $player.knowledge.combat == 10>>
+    Zwei Rekruten gehen sich an die Gurgel — doch als du dich aufrichtest, verstummen sie. Vor deiner Kampferfahrung haben sie Respekt.
+    
+    [[Zur Pritsche gehen ->Kap1_Tagesstart]]
+<<else>>\
+    <div class="thought-box">Zwei Rekruten streiten lautstark. Du könntest dazwischengehen — ob du sie auseinanderbekommst, hängt von deiner Kampferfahrung ab.</div>
+    <span id="stubeFightJoice">\
+        <<set _label to 'Dazwischen gehen.' + setup.checkHint('combat', 13)>>\
+        <<link _label>>\
+            <<replace "#stubeFightJoice">>\
+                <<set _allianz to (random(1, 100) <= 10)>>\
+                <<set _r to setup.skillCheck('combat', 13, _allianz ? 3 : 0)>>\
+                <<if _allianz>>\
+                    Kaum stehst du zwischen ihnen, wenden sich beide gemeinsam gegen dich. Zwei gegen einen.
+                <<else>>\
+                    Du schiebst dich zwischen die beiden.
+                <</if>>\
+                <<if _r.outcome == 'crit'>>\
+                    Ein einziger harter Schlag, perfekt ins Ziel – und es ist vorbei. Die ganze Stube hat es gesehen.
+                    <<= setup.setPlayerKnowledge('combat', 1)>>\
+                    [[Stolz geschwellt zur Pritsche gehen ->Kap1_Tagesstart]]
+                <<elseif _r.success>>\
+                    Fäuste fliegen, beide Seiten stecken ein und teilen aus. Am Ende bleibst du stehen.
+                    <<= setup.setPlayerKnowledge('combat', 1)>>\
+                    [[Zur Pritsche gehen ->Kap1_Tagesstart]]
+                <<elseif _r.outcome == 'fumble'>>\
+                    Du greifst voll daneben und gehst selbst zu Boden, ehe ein Weibel dazwischenfährt.
+                    <<= setup.setPlayerCondition(-5)>>\
+                    <<= setup.setPlayerStat('discipline', -2)>>\
+                    <<= setup.setPlayerStat('ambition', -1)>>\
+                    [[Unter Lachen der Anderen zur Pritsche gehen ->Kap1_Tagesstart]]
+                <<else>>\
+                    Es misslingt – du fängst ein paar Hiebe, ein Weibel reißt euch auseinander.
+                    <<= setup.setPlayerCondition(-2)>>\
+                    <<= setup.setPlayerStat('discipline', -1)>>\
+                    [[Zur Pritsche humpeln ->Kap1_Tagesstart]]
+                <</if>>\
+            <</replace>>\
+        <</link>>\
+        <<link 'Sich abwenden und wegschauen.'>>\
+            <<replace "#stubeFightJoice">>\
+                [[Versuchen zu schlafen ->Kap1_Tagesstart]]
+            <</replace>>\
+        <</link>>\
+    </span>
+<</if>>
 
 
-:: Event_Wuerfelspiel {"position":"2450,2225","size":"100,100"}
+:: Event_Wuerfelspiel {"position":"2450,2200","size":"100,100"}
 Ein paar Rekruten sitzen um einen groben Holztisch.  
 Zwischen Krügen und Kerzenlicht klackern Würfel.
 
@@ -768,7 +829,7 @@ Der Blick des Spielers wandert kurz zu deinem leeren Geldbeutel.
 
 Du wirst vom Tisch weggeschickt.
 
-[[Weggehen->Kap1_Der nächste Tag]]
+[[Weggehen->Kap1_Tagesstart]]
 <<else>>\
 
 [[Mitspielen->Wuerfel_Start]] \
@@ -924,7 +985,7 @@ Du lehnst dich ein Stück zu weit vor, um mehr zu verstehen – und prompt knarr
         name: "Sergeant",
         known: false,
         affection: 0,
-        trust: 0,
+        trust: false,
         isRealPlayer: false,
         memory: { flags: {}, events: [] },
         journalEntry: "Der mürrische Protokollant in der Schreibstube der Kaserne. Er führt die Truppenrolle des Corps mit eiserner Bürokratie und versteht absolut keinen Spaß, wenn man die feine Ordnung seiner Listen stört."
@@ -934,7 +995,7 @@ Du lehnst dich ein Stück zu weit vor, um mehr zu verstehen – und prompt knarr
         name: "Kurt Brasner",
         known: false,
         affection: 0,
-        trust: 0,
+        trust: false,
         isRealPlayer: false,
         memory: { flags: {}, events: [] },
         journalEntry: "Chefausbilder und Fähnrich der Militärakademie zu Ohm und ein grauhaariger Veteran."
@@ -944,7 +1005,7 @@ Du lehnst dich ein Stück zu weit vor, um mehr zu verstehen – und prompt knarr
         name: "Schinder",
         known: false,
         affection: 0,
-        trust: 0,
+        trust: false,
         isRealPlayer: false,
         memory: { flags: {}, events: [] },
         journalEntry: "Der kriegsversehrte Weibel auf dem Exerzierplatz."
@@ -954,10 +1015,30 @@ Du lehnst dich ein Stück zu weit vor, um mehr zu verstehen – und prompt knarr
         name: "Konrad Rindler",
         known: false,
         affection: 0,
-        trust: 0,
+        trust: false,
         isRealPlayer: false,
         memory: { flags: {}, events: [] },
         journalEntry: "Ein kühler, etwas vornehmer Typ. Pragmatischer Offizier des Corps."
+    },
+    magister: {
+        name: "Magister Cornelius Halm",
+        known: false,
+        affection: 0,
+        trust: false,
+        isRealPlayer: false,
+        archivzugang: false,
+        memory: { flags: {}, events: [] },
+        journalEntry: "Der hagere Magister für Staatskunde – Tintenfinger, trockene Stimme, kein Wort zu viel. Hält die Vorlesungen und ist zugleich Archivar der Akademie. Wer in die Schreibstuben oder gar ins Archiv will, kommt an ihm nicht vorbei."
+        /*
+            PLOTNOTIZ (nicht im Journal):
+            Magister Halm ist Archivar der Akademie zu Ohm. Er verwaltet die
+            Militärakten (-> Karlas Onkel Edric / Transportüberfall) und steht
+            im Briefwechsel mit dem Gründungsarchiv in Grodaus
+            (-> Jareks sechste Unterschrift der Freiheitserklärung).
+            Er ist der Gatekeeper BEIDER Archiv-Sidequests. Gunst erkauft man
+            sich bei ihm nicht mit Gold, sondern mit Gelehrsamkeit (scholarship).
+            Plumpes Nachfragen nach Akten erhöht $player.suspicion.
+        */
     },
 
     /* Echte Spieler */
@@ -981,7 +1062,7 @@ Du lehnst dich ein Stück zu weit vor, um mehr zu verstehen – und prompt knarr
         trust: 0,
         isRealPlayer: true,
         memory: { flags: {}, events: [] },
-        journalEntry: "Ein Weibel der Akademie. Mehr steckt noch nicht in deinen Aufzeichnungen."
+       journalEntry: "Feldweibel aus Umseck, farbenfrohster Söldner im 84. Banner. Offener Gambeson, Pluderhose, rotes Barett. Knüppel und Dolch immer am Mann. Direkt, vorlaut, gut mit Leuten. Organisiert den Haufen — und schaut gerne zu wenn jemand auf ein Missgeschick zusteuert."
     },
 
 weibelLars: {
@@ -992,7 +1073,7 @@ weibelLars: {
     trust: 0,
     isRealPlayer: true,
     memory: { flags: {}, events: [] },
-    journalEntry: "Wachweibl des 84. Banners. Roter Mantel, schwarzer Arm, das Wappenschild der GWALT auf der Brust. Redet wenig, meint viel. Reibt sich den Nasenrücken wenn er nachdenkt — oder wenn ihm etwas Schmerzen bereitet."
+    journalEntry: "Wachweibl des 84. Banners, einer der drei GWALT-Sprecher im Heer. Roter Mantel, schwarzer Arm, Widder-Dolchscheide — Andenken an die Tiafunter Rammböcke. Groß, gewissenhaft, direkt wenn man ihn reizt. Reibt sich den Nasenrücken wenn das Banner wieder Blödsinn macht — also oft."
 },
 
 haddl: {
@@ -1003,18 +1084,30 @@ haddl: {
     trust: 0,
     isRealPlayer: true,
     memory: { flags: {}, events: [] },
-    journalEntry: "Armbruster und Fahnenträger des 84. Banners. Kein Bart, lange Haare, große Klappe. Trinkt mehr als gut ist und wird dabei nie laut. Zitiert ständig seinen Opa."
+    journalEntry: "Armbruster und Fahnenträger des 84. Banners, Gebirgsmarine-Ausbildung. Kein Bart, lange Haare, große Klappe. Zitiert pausenlos seinen Opa. Trinkt mehr als gut ist und wird dabei nie laut. "
 },
 
 diplomatHannes: {
     name: "Hannes Böttcher",
     known: false,
-    faction: "Städtebund",
+    faction: "84. Banner",
     affection: 0,
     trust: 0,
     isRealPlayer: true,
     memory: { flags: {}, events: [] },
-    journalEntry: "Diplomat im Dienste des Städtebundes für das 84. Banner. Weißer Mantel, Abzeichen des Haubentauchers. Tritt höflich auf — zu höflich vielleicht. Hat braune Augen die scharf und ruhig sind wie die Klinge eines Mannes der gelernt hat Wut in Kälte zu verwandeln."
+    journalEntry: "Aloyer Diplomat aus Grodaus. Kurzer gepflegter Bart, kleine Narbe rechts neben der Nase. Diplomatenmantel und Amtskette im Dienst, sonst Söldner-Ausgehkleidung. Ruhig und besonnen — erst denken, dann reden, aber dann weit ausholend. Prinzipientreu bis er nicht mehr merkt dass Diplomatie längst keine Option mehr ist."
+},
+
+bast: {
+    name: "Bast Lercher",
+    known: false,
+    faction: "84. Banner",
+    affection: 0,
+    trust: 0,
+    isRealPlayer: true,
+    memory: { flags: {}, events: [] },
+    journalEntry: "Diplomat und Offizier aus Vormberg. Roter Bart, rotes Barett, Dokumentenrolle am Gurt. Redet viel, sagt wenig mehr als er will. Pragmatisch, loyal — außer wenn Frauen im Spiel sind."
+
 },
 
     hansFichtensplitter: {
@@ -1038,7 +1131,7 @@ diplomatHannes: {
         name: "Karla",
         known: false,
         affection: 0,
-        trust: 0,
+        trust: false,
         isRealPlayer: false,
         memory: { flags: {}, events: [] },
         /* Sichtbares Profil – kein Hinweis auf das Geheimnis */
@@ -1059,7 +1152,7 @@ diplomatHannes: {
         name: "Jarek",
         known: false,
         affection: 0,
-        trust: 0,
+        trust: false,
         isRealPlayer: false,
         memory: { flags: {}, events: [] },
         /* Sichtbares Profil – kein Hinweis auf das Geheimnis */
@@ -1108,43 +1201,81 @@ diplomatHannes: {
 
 :: InitPlayer {"position":"0,125","size":"100,100"}
 <<set $player = {
-        name: "Thomas",
-		fullname:"Thomaso Wabbler",
-        rank: "Zivilist",
-        chosen_activity: "",
-        hasSlept: true,
+    name: "Thomas",
+    fullname: "Thomaso Wabbler",
+    rank: "Zivilist",
+    chosen_activity: "",
+    hasSlept: true,
 
-        money: {
-            copper: 2
-        },
-        
-        inventory: [],
+    money: {
+        copper: 2
+    },
 
-        stats: {
-            mercy: 50,
-            ambition: 50,
-            honesty: 50,
-			scholarship:20
-        },
+    inventory: [],
 
-        reputation: {
-            land: 0,
-            ohm: 0,
-            church: 0
-        },
-        
-        knowledge: {
-            pike: 0,     
-            cannon: 0,     
-            medicine: 0,
-            thievery: 0,     
-            crossbow: 0,
-            gossip: 0      
-        },
-        
-        rumors: []
-        
-        
+    /* Charakter & Haltung (0–100, 50 = neutral) */
+    stats: {
+        mercy: 50,
+        ambition: 50,
+        honesty: 50,
+        discipline: 30,   /* frischer Rekrut – wächst durch Drill, fällt durch Regelbruch */
+        faith: 50         /* Verhältnis zur Drei-Götter-Kirche: 0 gottlos … 100 fromm */
+    },
+
+    /* Erlernte Fertigkeiten (Start niedrig, wachsen mit Übung) */
+    knowledge: {
+        scholarship: 20,
+        pike: 0,
+        crossbow: 0,
+        cannon: 0,
+        medicine: 0,
+        thievery: 0,
+        gossip: 0,
+        combat: 0         /* Kampferfahrung: echte Gefechte, nicht Training */
+    },
+
+    reputation: {
+        land: 0,
+        ohm: 0,
+        church: 0
+    },
+
+    condition: 40,        /* Körperverfassung – Thomas' Genesungs-Bogen */
+    suspicion: 0,         /* gezogene Aufmerksamkeit (Archiv-/Schnüffel-Plots) */
+
+    rumors: [],
+    
+    rel : {
+    karla: 0,
+    jarek: 0,
+    luigi: 0,
+    lenz: 0,
+    wenzl: 0,
+    lars: 0,
+    hannes: 0
+}
+    
+}>>
+
+
+:: InitStudium {"position":"0,425","size":"100,100"}
+\:: InitStudium {"position":"0,425","size":"100,100"}
+/* Defensiv: legt nur an, was fehlt - sicher beim Merge ins Hauptspiel */
+<<if not $player.knowledge>><<set $player.knowledge = {}>><</if>>\
+<<if $player.stats.scholarship === undefined>><<set $player.stats.scholarship = 20>><</if>>\
+<<run ["splitterlande","aloy","geographie","diplomatie"].forEach(function(k){
+  if (State.variables.player.knowledge[k] === undefined) { State.variables.player.knowledge[k] = 0; }
+})>>\
+<<set $edu = {
+  learned: [],
+  archivzugang: false,
+  exam: {
+    queue: [], pos: 0, correct: 0, lastAnswer: null, done: false, score: 0, total: 0,
+    announced: false,
+    dueDay: null,
+    passed: false,
+    attempts: 0
+  }
 }>>
 
 
@@ -1158,7 +1289,7 @@ diplomatHannes: {
     needsDiceGame: true,
     seenGossip: {},
     currentGossipStory: "",
-    kondition: 70,        // 0 = Zusammenbruch, 100 = Bestform
+    //kondition: 70,         0 = Zusammenbruch, 100 = Bestform
     karla_druck: 0,       // steigt automatisch -> Sidequest wird dringlich
     jarek_druck: 0,
     interruptDoneToday: false,
@@ -1170,7 +1301,8 @@ diplomatHannes: {
 
 :: InterruptWidgets\  [widget] {"position":"1925,2125","size":"100,100"}
 <<widget "weiterImTag">>\
-<<link "Weiter">><<goto setup.routeFromTags(tags())>><</link>>\
+<<set _txt to _args.length > 0 ? _args[0] : 'Weiter'>>\
+<span class="weiter-link"><<link _txt>><<goto setup.routeFromTags(tags())>><</link>></span>\
 <</widget>>
 
 
@@ -1244,7 +1376,7 @@ Dann bricht ein Lachen aus ihr heraus — rau und breit und ohne jede Zurückhal
 „Haltet die Klappe!", ruft sie in den Raum, ohne den Blick von dir zu nehmen. „Schaut euch das an. Das ist der Frischling, den Brasner vorhin höchstpersönlich am Kragen über den Hof geschleift hat." Sie lacht wieder, kurz und anerkennend. „Dem alten Kurt am ersten Tag so in die Suppe zu spucken — verdammt, das braucht Eier."
 Ihre flache Hand trifft deine Schulter mit einem Klang, der durch die halbe Stube hallt.
 „Ich bin Karla. Wenn du im Schlamm genauso zäh bist wie im Offiziersflügel, werden wir beide hier verdammt viel Spaß haben." Sie nickt auf die freie Pritsche neben ihrer. „Schnapp sie dir, bevor es ein anderer tut."
-<<set $npc.karla.affection += 5>>
+
 
 [[Bei Karla einrichten->Stube: Bei Karla einrichten]]
 [[Ihr Angebot ablehnen und einen eigenen Platz suchen->Stube: Eigene Pritsche suchen][$npc.karla.affection -= 5]]
@@ -1261,23 +1393,46 @@ Vor dir steht ein schlanker, sehniger Rekrut mit wachen, dunklen Augen und dem r
 <</if>>
 
 
-:: Kap1_Der nächste Tag [tagesstart] {"position":"1400,925","size":"100,100"}
-/* 
-   Die Passage dient als Einstiegspunkt für den Tag 
-*/
+:: Kap1_Der nächste Tag {"position":"1175,1025","size":"100,100"}
+
 <<set _interrupt = setup.checkInterrupt()>>\
 <<if _interrupt != null>>\
     <<goto _interrupt>>\
+<<else>>\
+    
+ <<if random(1, 100) <= 50>>\
+      <div class="scenery-text">Kaum hast du dein Frühstück beendet, erklingt das vertraute Läuten der Glocken über den Dächern der Akademie. 
+        Ihr Klang hallt durch Höfe und Korridore und ruft Studenten wie Lehrmeister gleichermaßen zu ihren Pflichten.
+        
+        Überall setzen sich Gruppen in Bewegung, Bücher werden unter die Arme geklemmt und Gespräche verstummen. 
+        Offenbar beginnt gleich die erste Vorlesung des Tages.
+    </div>
+
+    <div class="thought-box">
+        Zeit, sich dem Studium zu widmen.
+    </div>
+    [[Die Glocken zuStudium läuten ->Studium Hub]]
+    <<else>>\
+      <div class="scenery-text">Nach dem Frühstück gab es heute Vormittag lediglich einen kurzen Drill.
+        Nichts Außergewöhnliches, aber auch nichts besonders Anstrengendes.
+        Die Ausbilder wirkten ungewohnt gelassen und entließen euch bereits vorzeitig.
+
+        Auf den Höfen der Akademie herrscht geschäftiges Treiben. Manche Studenten
+        eilen ihren Verpflichtungen nach, andere nutzen die unerwartete Freizeit,
+        um eigenen Interessen nachzugehen.
+    </div>
+      <<if random(1, 100) <= 50>>\
+        Den Nachmittag hat man euch zur freien wahl gelassen.
+      <<else>>\
+        Nach dem Frühstück wurde der reguläre Unterricht überraschend abgesagt. Offenbar waren mehrere Dozenten anderweitig beschäftigt. Die meisten Studenten nutzten die unerwartete Freizeit, um ihren eigenen Angelegenheiten nachzugehen.
+      <</if>>\
+      <div class="thought-box">Einfach mal in Ruhe los ziehen...</div>
+        [[Die Akkademie auf eigene Faust erkunden ->Nachmittag Hub]]
+    <</if>>\
 <</if>>\
-<div class="scenery-text"><<= setup.getNaechsterTagText("morgen")>></div>
-<<= setup.getNaechsterTagText("koerper")>>
-
-<div class="thought-box"><<= setup.getNaechsterTagText("gedanke")>></div>
-<<= setup.getNaechsterTagText("luigi_schatten")>>\
-[[Das Lager auf eigene Faust erkunden ->Nachmittag Hub]]
 
 
-:: Kap1_Der_naechste_Tag_Texte {"position":"1525,800","size":"100,100"}
+:: Kap1_Der_naechste_Tag_Texte {"position":"1350,1175","size":"100,100"}
 {
   "morgen": [
     {
@@ -1417,8 +1572,19 @@ Vor dir steht ein schlanker, sehniger Rekrut mit wachen, dunklen Augen und dem r
 }
 
 
+:: Kap1_Tagesstart [tagesstart] {"position":"1500,975","size":"100,100"}
+/* Einstiegspunkt für den Tag */
+<<= setup.renderTagesbericht()>>
+<div class="scenery-text"><<= setup.getNaechsterTagText("morgen")>></div>
+<<= setup.getNaechsterTagText("koerper")>>
+<div class="thought-box"><<= setup.getNaechsterTagText("gedanke")>></div>
+<<= setup.getNaechsterTagText("luigi_schatten")>>\
+
+[[Sieh was der Tag bringt->Kap1_Der nächste Tag]] 
+
+
 :: Kapitel 0 {"position":"225,50","size":"200,200"}
-Vers. 0.4.0
+Vers. 0.4.3
 
 <div class="chapter-screen">
     <div class="fade-trigger">Intro</div>
@@ -1495,6 +1661,10 @@ Das Zelt des Feldschers
 Die Waffengestelle der Infanterie
 <div class="scenery-text"><<= setup.executeStationRewards("pike", "scenery")>></div>
 <<= setup.executeStationRewards("pike", "main")>>
+<<if $player.knowledge.pike == 4>>
+    <div class="voice-formal">Das ganze Trainieren macht sich bezahlt, du dein Gegenüber schon ganz von selbst ein.</div>
+    <<= setup.setPlayerKnowledge("combat", 1)>>\
+<</if>>\
 ---
 <div class="thought-box"><<= setup.executeStationRewards("pike", "thoughts")>></div>
 ---
@@ -1511,17 +1681,7 @@ Die Schatten hinter den Stallungen
 [[Zurück zum Appellplatz ->Abendappell]]
 
 
-:: Nachtruhe 1 {"position":"250,950","size":"100,100"}
-<<if $npc.jarek.affection > 0>>\
-<div class="system-alert status-positive">\
-	Zuneigung von Jarek erhöht
-    </div>\
-    <</if>>\
-<<if $npc.karla.affection > 0>>\
-    <div class="system-alert status-positive">\
-    Zuneigung von Karla erhöht
-    </div>\
-<</if>>\
+:: Nachtruhe 1 {"position":"325,1200","size":"100,100"}
 <<run setup.resetDailyVariables()>>\
 Ein vorbeigehender Korporal löscht das Talglicht mit einem harschen Fluch, als wäre selbst das Licht hier etwas, das Gehorsam schuldet.
 Dunkelheit.
@@ -1544,7 +1704,7 @@ Du schließt die Augen.
             💰<<set _m = setup.getMoney($player.money.copper)>>\
             <<= _m.gold >> G&nbsp; <<= _m.silver >> S &nbsp;<<= _m.copper >> K
         </span>\
-        <span class="hud-item hud-kondition"><<= setup.getKonditionLabel($world.kondition) >></span>\
+        <span class="hud-item hud-kondition"><<= setup.getKonditionLabel($player.condition) >></span>\
         <<if $world.weather>>\
         <span class="hud-item hud-weather"><<= $world.weather >></span>
         <</if>>\
@@ -1555,6 +1715,83 @@ Du schließt die Augen.
 </div>\
 <hr class="hud-divider">
 <</if>>
+
+
+:: Pruefung Ergebnis [pruefung] {"position":"1550,675","size":"100,100"}
+<<set _g = setup.examGrade()>>\
+Das Urteil des Magisters
+<div class="scenery-text">Der Magister sammelt die Boegen ein, ohne ein Wort. Dann hebt er den Blick.</div>
+
+<<if _g.total === 0>>\
+<div class="voice-formal">„Wer nichts lernt, hat auch nichts zu verlieren – ausser dem eigenen Platz hier. Geht. Und kommt das naechste Mal mit etwas im Kopf.“</div>
+<<else>>\
+<div class="system-alert <<= _g.pct >= 50 ? 'status-positive' : 'status-negative'>>">
+Ergebnis: <<= _g.correct>> von <<= _g.total>> richtig (<<= _g.pct>>%) — <<= _g.label>>
+</div>
+<div class="voice-formal"><<= setup.examVerdict(_g.pct)>></div>
+<<run setup.applyExamRewards(_g.pct)>>\
+<<run setup.markExamResult(_g.pct)>>\
+<<= setup.examRewardHTML(_g.pct)>>
+<</if>>\
+
+
+<span class="subtext">[Test] [[Zurueck zum Testmenue ->Studium Hub]]</span>
+
+
+
+:: Pruefung Frage [pruefung] {"position":"1700,675","size":"100,100"}
+<set _e = $edu.exam>>\
+<<set _q = _e.queue[_e.pos]>>\
+<div class="voice-formal">Frage <<= _e.pos + 1>> von <<= _e.queue.length>> · <<= _q.subject>></div>
+<div class="lecture-text"><<= _q.q>></div>
+
+<<if _e.lastAnswer === null>>\
+<ul class="exam-options">
+<<for _i to 0; _i lt _q.options.length; _i++>>\
+<<capture _i>>\
+<li><<link _q.options[_i]>><<run setup.answerExam(_i)>><<goto "Pruefung Frage">><</link>></li>
+<</capture>>\
+<</for>>\
+</ul>
+<<else>>\
+<ul class="exam-options exam-revealed">
+<<for _i to 0; _i lt _q.options.length; _i++>>\
+<<if _i === _q.answer>>\
+<li class="exam-option-correct">✓ <<= _q.options[_i]>></li>
+<<elseif _i === _e.lastAnswer>>\
+<li class="exam-option-wrong">✗ <<= _q.options[_i]>> <span class="subtext">(deine Wahl)</span></li>
+<<else>>\
+<li class="exam-option-muted"><<= _q.options[_i]>></li>
+<</if>>\
+<</for>>\
+</ul>
+<<if $edu.exam.lastAnswer === _q.answer>>\
+<div class="system-alert status-positive">Richtig.</div>
+<<else>>\
+<div class="system-alert status-negative">Falsch.</div>
+<</if>>\
+<<link "Weiter">>\
+<<run setup.nextExam()>>\
+<<if $edu.exam.done>><<goto "Pruefung Ergebnis">><<else>><<goto "Pruefung Frage">><</if>>\
+<</link>>
+<</if>>
+
+
+:: Pruefung Start [pruefung] {"position":"1625,500","size":"100,100"}
+<<set _anzahl = setup.buildExam(6)>>\
+Abschlusspruefung – Kapitel 1
+<div class="scenery-text">Der Hoersaal ist heute anders. Kein Gemurmel, kein Scharren. Vor jedem Platz liegt ein Bogen Papier, und vorne steht der Magister mit dem Gesicht eines Mannes, der heute keine Ausreden hoeren will. „Ihr habt zugehoert oder ihr habt es nicht“, sagt er. „Gleich wissen wir, was davon stimmt."</div>
+
+<<if _anzahl === 0>>\
+<div class="system-alert status-negative">Du hast bisher keine einzige Vorlesung wirklich verfolgt. Es gibt nichts, was man dich fragen koennte – und das ist die schlechteste aller Antworten.</div>
+[[Den Hoersaal beschaemt verlassen ->Pruefung Ergebnis]]
+<<else>>\
+<div class="thought-box">Sechs Fragen. Oder so viele, wie ich mir ueberhaupt gemerkt habe. Atmen. Was ich weiss, das weiss ich.</div>
+[[Die Pruefung beginnen ->Pruefung Frage]]
+<</if>>\
+
+<span class="subtext">[Test] [[Zurueck zum Testmenue ->Studium Hub]]</span>
+
 
 
 :: Rausreden Versuch {"position":"825,300","size":"100,100"}
@@ -1586,6 +1823,79 @@ Die Treppe. Den Korridor. Keine Rücksicht auf dein Tempo, kein Wort mehr, nur d
 [[Sich heimlich von der Truppe absetzen und die Akademie-Hallen auskundschaften->Hallen erkunden]]
 
 
+:: Storry006_DrillMitSchinder [interrupt nach_appell] {"position":"1100,2575","size":"100,100"}
+Noch vor dem ersten Licht jagt der Schinder die Rekruten auf den Hof. „Aufstellung! Wer schläft, schläft auf dem Boden weiter!" Sein Stock klopft den Takt, während die Reihen sich im Halbdunkel formieren. Der Atem steht weiß in der Luft, die Knochen sind noch steif vom Stroh.
+
+Der Schinder geht die Reihe ab. Bei Thomas bleibt er stehen, mustert ihn von oben bis unten, sagt nichts. Noch nichts.
+
+<span id="drill-wahl">\
+<div><<link "Zähne zusammenbeißen und jeden Befehl übererfüllen">>\
+    <<set _out to setup.setPlayerStat("discipline", 3) + setup.setPlayerCondition(-8)>>\
+    <<replace "#drill-wahl">><div class="scenery-text">Du gibst alles, schneller und härter als verlangt. Der Schinder sagt nichts — aber er geht weiter, und das ist bei ihm schon fast ein Lob.</div>_out<</replace>>\
+    <<run $("#gd-weiter").show()>>\
+<</link>></div>\
+
+<div><<link "Sauber im Mittelmaß mitlaufen, nicht auffallen">>\
+    <<set _out to setup.setPlayerStat("discipline", 1) + setup.setPlayerCondition(-6)>>\
+    <<replace "#drill-wahl">><div class="scenery-text">Du tust, was nötig ist, nicht mehr. Der Blick des Schinders gleitet über dich hinweg zum Nächsten. Unsichtbar zu sein ist auch eine Kunst.</div>_out<</replace>>\
+    <<run $("#gd-weiter").show()>>\
+<</link>></div>\
+
+<div>\
+<<set _label to "Dem Schinder die Stirn bieten, als er dich anbrüllt" + setup.checkHint("combat", 13)>>\
+<<link _label>>\
+    <<set _r to setup.skillCheck("combat", 13)>>\
+    <<if _r.success>>\
+        <<set _out to setup.setPlayerStat("ambition", 3) + setup.setPlayerKnowledge("combat", 6)>>\
+        <<set _txt to 'Du hältst seinem Blick stand, Rücken gerade, Kiefer fest. Einen langen Moment misst er dich — dann ein knappes Nicken. Manche muss man sich erst verdienen.'>>\
+    <<else>>\
+        <<set _out to setup.setPlayerStat("discipline", -3) + setup.setPlayerCondition(-10)>>\
+        <<set _txt to 'Du hältst nicht stand. Der Schinder riecht die Schwäche wie ein Hund und lässt dich Liegestütze zählen, bis dir die Arme zittern. Die ganze Reihe schaut zu.'>>\
+    <</if>>\
+    <<replace "#drill-wahl">><div class="scenery-text">_txt</div>_out<</replace>>\
+    <<run $("#gd-weiter").show()>>\
+<</link>>\
+</div>\
+
+<div>\
+<<set _label to 'Einem schwächelnden Rekruten heimlich unter die Arme greifen' + setup.checkHint("thievery", 12)>>\
+<<link _label>>\
+    <<set _r to setup.skillCheck("thievery", 12)>>\
+    <<if _r.success>>\
+        <<set _out to setup.setPlayerStat("mercy", 3)>>\
+        <<set _txt to 'Du stützt ihn unauffällig, fängst seinen Tritt ab, ohne dass der Schinder es bemerkt. Der andere wirft dir einen Blick zu, den du nicht vergisst.'>>\
+    <<else>>\
+        <<set _out to setup.setPlayerStat("mercy", 2) + setup.setPlayerStat("discipline", -2) + setup.setPlayerSuspicion(5)>>\
+        <<set _txt to 'Du greifst ihm unter die Arme — und der Schinder sieht es. „Ist das hier ein Krankenlager?" Sein Stock zeigt auf euch beide. Geholfen hast du trotzdem.'>>\
+    <</if>>\
+    <<replace "#drill-wahl">><div class="scenery-text">_txt</div>_out<</replace>>\
+    <<run $("#gd-weiter").show()>>\
+<</link>>\
+</div>\
+
+<div>\
+<<set _label to "So tun, als wäre dir schlecht, um dich zu drücken" + setup.checkHint("gossip", 13)>>\
+<<link _label>>\
+    <<set _r to setup.skillCheck("gossip", 13)>>\
+    <<if _r.success>>\
+        <<set _out to setup.setPlayerCondition(4)>>\
+        <<set _out to setup.setPlayerStat("honesty", -5)>>\
+        <<set _txt to "Du spielst es überzeugend — blass, schwankend, glaubhaft. Der Schinder winkt dich angewidert an den Rand. Du verschnaufst, während die anderen schwitzen.">>\
+    <<else>>\
+        <<set _out to setup.setPlayerStat("discipline", -4) + setup.setPlayerCondition(-6) + setup.setPlayerSuspicion(8)>>\
+        <<set _txt to 'Er durchschaut dich sofort. „Krank? Dann schwitz es raus." Du läufst Extrarunden, und ab jetzt hat er ein Auge auf dich.'>>\
+    <</if>>\
+    <<replace "#drill-wahl">><div class="scenery-text">_txt</div>_out<</replace>>\
+    <<run $("#gd-weiter").show()>>\
+<</link>>\
+</div>\
+</span>\
+
+<span id="gd-weiter" style="display:none">\
+<<weiterImTag "Das war ein antrengender Tag. Zum Appell">>
+</span>\
+
+
 :: Story002_BierAnnehmen {"position":"2075,2675","size":"100,100"}
 Du nimmst den Becher.
 Das Bier ist dünn und hat einen Stich ins Saure — das Billige, das der Wirt für Soldaten aufhebt weil er weiß dass sie es trotzdem trinken. Es schmeckt trotzdem gut. Vielleicht wegen der Gesellschaft. Vielleicht wegen des Tages der dahinter liegt.
@@ -1600,9 +1910,9 @@ Irgendwann bist du kein Rekrut mehr an ihrem Tisch. Du bist jemand der dazugehö
 :: Story002_Bier_Ausgeben {"position":"2225,2675","size":"100,100"}
 <<set $player.gold -= 8>>\
 <<= setup.setNpcAffection("weibelLars", 1)>>\
-<<= pushNpcMemory("weibelLars","Hat Bier ausgegeben")>>\
+<<= setup.pushNpcMemory("weibelLars","Hat Bier ausgegeben")>>\
 <<= setup.setNpcAffection("haddl", 1)>>\
-<<= pushNpcMemory("haddl","Hat Bier ausgegeben")>>\
+<<= setup.pushNpcMemory("haddl","Hat Bier ausgegeben")>>\
 Du winkst den Wirt heran und legst acht Kupfer auf den Tisch.
 „Für die zwei."
 Der Wirt nimmt das Geld ohne Kommentar. Haddl dreht sich um, sieht den Becher, sieht dich — und grinst dann breit wie ein Mann dem gerade ein langer Tag besser wird.
@@ -1667,7 +1977,7 @@ Irgendwann bestellt Lars ohne zu fragen eine neue Runde.</div>
 [[Das Bier annehmen ->Story002_BierAnnehmen]]\
 
 
-:: Story002_Taverne_mit_Lars_Und_Hadde [interrupt] {"position":"2175,2400","size":"100,100"}
+:: Story002_Taverne_mit_Lars_Und_Hadde [interrupt einmalig] {"position":"2175,2400","size":"100,100"}
 Es war die Idee von jemand anderem. Zumindest sagst du dir das.
 Drei Mann, ein Loch im Zaun das schon seit Wochen niemand geflickt hat, und ein Nachmittag der sich lang genug anfühlt um es zu riskieren. Der Weg zur Taverne dauert keine zehn Minuten — aber die ersten zwei gehst du mit dem Nacken zwischen den Schultern.
 Niemand ruft euch zurück.
@@ -1723,7 +2033,7 @@ Den Rest reimst du dir morgen zusammen. Vielleicht hast du dir was notiert?
 <div class="thought-box">Es war ein guter Abend. Das weißt du noch. Den Rest nicht.</div>
 
 	<<unset $story002_knownSoeldner>>\
-    <<= setup.setKondition(-10)>>\
+    <<= setup.setPlayerCondition(-10)>>\
     <<= setup.setPlayerStat("ambition", -10)>>\
     <<= setup.pushNpcMemory("weibelLars", "Saurreiten in Ohm")>>\
     <<= setup.pushNpcMemory("haddl", "Saurreiten in Ohm")>>\
@@ -1733,7 +2043,7 @@ Den Rest reimst du dir morgen zusammen. Vielleicht hast du dir was notiert?
 
 
 ---
-<<weiterImTag>>
+<<weiterImTag "Tswu .. viel... lang... verdammt!">>
 
 
 :: Story003_Abend [nach_stube] {"position":"875,2925","size":"100,100"}
@@ -1742,6 +2052,8 @@ Der Abendappell verläuft ohne Vorfall.
 Das ist, wie du inzwischen verstehst, bereits eine Leistung.
 
 <div class="scenery-text">Der Hauptmann spricht. Du hörst die Worte ohne sie vollständig aufzunehmen. Deine Beine stehen, dein Rücken ist gerade, deine Augen sind geradeaus gerichtet. Das reicht. Das ist heute alles was verlangt wird und alles was du geben kannst.</div>
+
+<<= setup.setPlayerStat('amition', 1)>>\
 
 Dann: entlassen.
 
@@ -1758,7 +2070,7 @@ Keine Gedanken über morgen. Keine Pläne. Nur das leise Knacken des Holzes, das
 <div class="thought-box">Das zählt.</div>
 
 ---
-<<weiterImTag>>
+<<weiterImTag "Das war ein antrengender Tag. Auf die Stube">>
 
 
 :: Story003_Drill {"position":"875,2800","size":"100,100"}
@@ -1767,6 +2079,8 @@ Was folgt, lässt sich nicht als Erzählung zusammenfassen.
 Es ist zu viel und zu gleichförmig und zu erschöpfend um Gestalt anzunehmen – ein langer, grauer Block aus Kommandos, Kies, kaltem Wind und dem rhythmischen Schlagen von Holzschäften auf Leder. Der Schinder brüllt nicht mehr als gestern. Er muss auch nicht. Sein Schweigen funktioniert genauso gut.
 
 <div class="scenery-text">Du läufst. Du stehst. Du läufst wieder. Irgendwann hört dein Körper auf zu protestieren und fängt an, einfach zu funktionieren – nicht weil er es will, sondern weil er keine andere Wahl hat. Das ist, soweit du das beurteilen kannst, der Punkt.</div>
+<<= setup.setPlayerStat('discipline', 2)>>\
+<<= setup.setPlayerCondition(-6)>>\
 
 Mittags gibt es Suppe.
 
@@ -1798,9 +2112,9 @@ Nur das. Kalt, ein bisschen nach fremdem Schweiß und nassem Holz, aber gleichm�
 
 Jemand stößt im Vorbeigehen gegen deine Pritsche. Keine Absicht. Einfach zu wenig Platz und zu viel Morgenmüdigkeit.
 
-Du stehst auf.
 
-[[Weiter->Story003_Fruehstueck]]
+
+[[Du stehst auf.->Story003_Fruehstueck]]
 
 
 :: Story003_Fruehstueck {"position":"875,2550","size":"100,100"}
@@ -1864,7 +2178,7 @@ Ihr esst nebeneinander ohne ein Wort. Das ist keine Ablehnung. Das ist, auf sein
 [[Weiter->Story003_Drill]]
 
 
-:: Story004_Interrupt_Schinder_Stellprobe [nach_hub interrupt] {"position":"1150,2300","size":"100,100"}
+:: Story004_Interrupt_Schinder_Stellprobe [nach_hub interrupt einmalig] {"position":"1100,2300","size":"100,100"}
 <div class="scenery-text">Der Morgen ist kaum eine Stunde alt, da steht der Schinder schon mitten in der Formation. Er geht die Reihe ab, langsam, mit der Geduld eines Mannes, der weiß, dass die Zeit auf seiner Seite arbeitet. Vor dir bleibt er stehen. Sieht dich an. Sagt nichts.</div>
 Dann, ohne Vorwarnung, tritt er dir den Stiefel gegen die Ferse, sodass dein Stand für einen Moment bricht.
 
@@ -1900,7 +2214,7 @@ Einen Moment lang geschieht gar nichts. Dann verengen sich seine Augen, und etwa
 Dann zwanzig Liegestütze, sofort, im Kies. Deine Arme zittern bei der zwölften. Du machst alle zwanzig.
 
 <div class="thought-box">Das hat etwas gekostet. Aber er kennt jetzt meinen Namen aus einem anderen Grund als nur dem Suppentopf. Ob das gut ist, weiß ich nicht.</div>
-<<= setup.setKondition(-8)>>\
+<<= setup.setPlayerCondition(-8)>>\
 <<= setup.setNpcAffection("schinder", -1)>>\
 <<= setup.setPlayerStat("ambition", 3)>>\
 
@@ -1911,16 +2225,77 @@ Dann zwanzig Liegestütze, sofort, im Kies. Deine Arme zittern bei der zwölften
 </span>\
 
 
+:: Story005_Gottesdienst [interrupt nach_hub] {"position":"1100,2450","size":"100,100"}
+Am Morgen ruft die Glocke zum Gottesdienst. Im Betsaal der Akademie stehen die Rekruten in Reihen, der Priester der Drei spricht von Limbas Funken, von Mirams Waage, von Hortum, der die Taten der Toten wiegt. Weihrauch hängt schwer in der kalten Luft.
+Thomas steht zwischen den anderen. Niemand prüft, ob er wirklich betet — aber jeder sieht, was er tut.
+
+<span id="gd-wahl">\
+<<link "Andächtig mitbeten, Wort für Wort">>\
+    <<set _out to setup.setPlayerStat("faith", 3) + setup.setPlayerReputation("church", 1)>>\
+    <<replace "#gd-wahl">><div class="scenery-text">Du sprichst die Worte mit, und für einen Moment trägt dich der gemeinsame Gesang.</div>_out<</replace>>\
+    <<run $("#gd-weiter").show()>>\
+<</link>>\
+
+<<if $player.money.copper >= 1>>\
+<<link "Eine Kupfermünze in den Opferstock werfen">>\
+    <<set $player.money.copper -= 1>>\
+    <<set _out to setup.setPlayerStat("faith", 2) + setup.setPlayerReputation("church", 2)>>\
+    <<replace "#gd-wahl">><div class="scenery-text">Die Münze klimpert in den Stock. Ein Priester nickt dir kaum merklich zu.</div>_out<</replace>>\
+    <<run $("#gd-weiter").show()>>\
+<</link>>\
+<</if>>\
+
+<<link "Still zu Hortum beten — um Kraft im Kampf">>\
+    <<if random(1, 100) <= 10>>\
+        <<set _out to setup.setPlayerKnowledge("combat", 1)>>\
+        <<set _txt to "Etwas in dir wird ruhiger und härter zugleich. Als hätte der Schwarze kurz hergesehen.">>\
+    <<else>>\
+        <<set _out to "">>\
+        <<set _txt to "Du sprichst dein stilles Gebet. Ob es gehört wird, weißt du nicht.">>\
+    <</if>>\
+    <<replace "#gd-wahl">><div class="scenery-text">_txt</div>_out<</replace>>\
+    <<run $("#gd-weiter").show()>>\
+<</link>>\
+
+<<link "Die Gedanken schweifen lassen, die Predigt über sich ergehen lassen">>\
+    <<set _out to setup.setPlayerStat("faith", -2)>>\
+    <<replace "#gd-wahl">><div class="scenery-text">Deine Gedanken wandern. Die Worte des Priesters werden zu einem fernen Summen.</div>_out<</replace>>\
+    <<run $("#gd-weiter").show()>>\
+<</link>>\
+
+<<link "Den Reihen lauschen — wer tuschelt, wer fehlt">>\
+    <<set _out to "">>\
+    <<set _r to setup.skillCheck("gossip", 11)>>\
+    <<if _r.success>>\
+        <<set _out to setup.setPlayerKnowledge("gossip", 1) + setup.addRumor("Aufgeschnapptes Geflüster aus dem Betsaal")>>\
+        <<set _txt to "Zwischen zwei Versen schnappst du auf, was nicht für deine Ohren bestimmt war.">>\
+    <<else>>\
+        <<set _txt to "Du lauschst — aber außer Gemurmel und Husten ist nichts zu holen.">>\
+    <</if>>\
+    <<set _out to _out + setup.setPlayerStat("faith", -1)>>\
+    <<replace "#gd-wahl">><div class="scenery-text">_txt</div>_out<</replace>>\
+    <<run $("#gd-weiter").show()>>\
+<</link>>\
+</span>\
+
+<span id="gd-weiter" style="display:none">\
+<<weiterImTag "Die Kirche verlassen">>
+</span>\
+
+
 :: StoryInit {"position":"0,0","size":"100,100"}
 <<include "InitPlayer">>
 <<include "InitNPC">>
 <<include "InitWorld">>
+<<include "InitStudium">>
+<<set setup.studiumVault to JSON.parse(Story.get("StudiumTexte").text)>>
+<<run setup.syncPlayerRel()>>
 <<set setup.trainingsHubTextVault to JSON.parse(Story.get("TrainingsHubTexte").text)>>
 <<set setup.abendappellTextVault to JSON.parse(Story.get("AbendappellTexte").text)>>
 
 
 
-:: Stube: Bei Karla einrichten {"position":"425,775","size":"100,100"}
+:: Stube: Bei Karla einrichten {"position":"50,800","size":"100,100"}
 Du wirfst deine Umhängetasche auf die raue Holzpritsche neben Karla, und der dumpfe Aufschlag ist laut genug, um ein paar Köpfe herumfahren zu lassen. Die Rekruten in der Nähe weichen einen halben Schritt zurück — nicht aus Respekt vor dir, sondern aus dem instinktiven Gespür, dass es klüger ist, Abstand zu halten, wenn jemand eine Entscheidung trifft, ohne dabei zu zögern.
 Karla grinst. Schief und ohne jeden Aufwand, es freundlicher aussehen zu lassen als es ist. Sie lässt sich auf ihre eigene Decke fallen, zieht ein kurzes Messer aus dem Stiefelschaft und beginnt, mit der Ruhe eines Menschen, dem die Meinung anderer seit Jahren gleichgültig ist, den Dreck unter ihren Fingernägeln hervorzukratzen.
 „Gute Wahl, Frischling." Sie schaut dabei nicht auf. „Wer bei mir schläft, hat nachts seine Ruhe vor den Langfingern im Raum."
@@ -1929,8 +2304,9 @@ Du weißt, dass das kein Angebot war. Nur eine Tatsache, die sie der Vollständi
 Am anderen Ende der Baracke, nahe der Tür, sitzt Jarek auf seiner Pritsche. Seine dunklen Augen ruhen einen Moment lang auf dir — ruhig, aufmerksam, ohne Vorwurf. Dann schüttelt er kaum merklich den Kopf, wendet sich ab und rollt sich auf seiner Decke zusammen. Nicht beleidigt. Nur fertig mit dem Tag.
 Die Talglichtflammen zucken im Zugwind. Irgendwo in der Stube hustet jemand. Das Stroh unter dir ist hart und riecht nach altem Heu und fremden Körpern.
 Du liegst in deiner neuen Welt.
+<<= setup.setNpcAffection("karla", 4)>>\
 
-[[Dich wortlos schlafen legen. ->Nachtruhe 1]]
+[[Dich hinlegen und auf den Schlaf warten. ->Stube: Jarek kommt vorbei]]
 
 
 :: Stube: Eigene Pritsche suchen {"position":"250,775","size":"100,100"}
@@ -1948,10 +2324,10 @@ Du liegst auf dem Rücken und starrst an die Decke der Baracke. Das Holz über d
 Morgen beginnt es.
 Heute Nacht bist du noch einfach nur müde.
 
-[[Die Augen schließen. ->Nachtruhe 1]]
+[[Versuchen, zur Ruhe zu kommen. ->Stube: Jarek kommt vorbei]]
 
 
-:: Stube: Jarek anfreunden {"position":"100,775","size":"100,100"}
+:: Stube: Jarek anfreunden {"position":"425,775","size":"100,100"}
 Du ergreifst Jareks Hand und erwiderst seinen Händedruck fest. „Das obere Bett ist gebucht." Deine Tasche landet mit einem dumpfen Schlag auf dem morschen Holzgestell.
 Jarek lächelt — schmal und ohne Überschwang, das Lächeln eines Menschen, der gelernt hat, sparsam damit umzugehen. Er lehnt sich mit dem Rücken gegen den hölzernen Pfosten und lässt den Blick kurz durch die Stube wandern.
 „Gute Entscheidung. Hier vorne zieht es zwar ordentlich durch die Türritzen — aber du bist am weitesten weg vom ewigen Theater da hinten." Er deutet mit dem Kinn zu Karla, die am Ofen noch immer ihr Revier absteckt wie ein Tier, das seinen Käfig vermisst. „Wir sollten ihr aus dem Weg gehen. Sie ist anstrengend." Eine kurze Pause. „Aber verdammt gut an der Waffe. Man hört sie in den Schenken von Ohm über ihre Kraft reden — und die Leute, die es hören, widersprechen ihr meistens nicht."
@@ -1963,6 +2339,569 @@ Es ist keine Drohung. Keine Prüfung. Nur eine ehrliche Frage von jemandem, der 
 
 [[Ihm versichern, dass er auf dich zählen kann. ->Nachtruhe 1][$npc.jarek.affection += 2]]
 [[Dich einfach wortlos hinlegen und das Gespräch beenden. ->Nachtruhe 1]]
+
+
+:: Stube: Jarek kommt vorbei {"position":"250,925","size":"100,100"}
+
+<<if previous() is "Stube: Bei Karla einrichten">>\
+Du streckst dich auf der harten Pritsche neben Karla aus. Sie hat sich zur Wand gedreht, den Rücken dir zugekehrt wie eine Mauer, und atmet bald tief und gleichmäßig. Das Gemurmel der Stube ebbt ab, die Talglichter sterben eins nach dem anderen, bis nur noch das Heulen des Windes bleibt.
+Du bist noch nicht eingeschlafen, als sich ein Schatten neben deine Pritsche schiebt — leise, mit einem kurzen Blick zu Karlas reglosem Rücken, als wolle er sie um keinen Preis wecken. Er geht neben dir in die Hocke. „Schlecht angekommen?", fragt Jarek leise.
+<<else>>\
+Du liegst oben in der zugigen Koje und starrst an das rissige Holz über dir. Der Wind findet jede Ritze. Unter dir wird die Stube still, ein Husten hier, ein Lachen da, dann nur noch das Heulen draußen.
+Du bist noch nicht eingeschlafen, als das Gestell leise knarrt. Jemand hat sich am Pfosten hochgezogen, gerade weit genug, um über die Kante zu sehen. „Ist oben noch Platz für ein Wort?", fragt Jarek — leise, und ohne die Antwort abzuwarten, als hätte ein Nein ihn nicht gekränkt.
+<</if>>\
+
+Er drängt sich nicht auf. Er hockt einfach da, die Arme auf die Knie gestützt, und sieht dich an mit diesen ruhigen, viel zu wachen Augen. „Der erste Abend ist der schlimmste", sagt er. „Danach gewöhnt man sich an das meiste. Nicht an alles. Aber an das meiste."
+
+Im fahlen Restlicht siehst du, wie dünn sein Hemd ist, wie abgelaufen die Stiefel, die er ordentlich neben sich gestellt hat. Es ist kalt in der Baracke, und Jarek hat nichts, was wärmt. Fast ohne nachzudenken schiebst du ihm deine Decke ein Stück hin.
+
+Jarek schüttelt den Kopf. Nicht hastig, nicht stolz im lauten Sinn. Nur bestimmt. „Behalt's", sagt er. „Ich komm schon klar." Und er sagt es so ruhig, so fertig mit der Sache, dass es dir für einen Moment seltsam vorkommt — als hätte einer mit sechzehn schon zu Ende gelernt, dass man sich auf nichts verlassen darf, das man nicht selbst in der Hand hält. Dann ist der Moment vorbei, und es ist nur wieder Jarek, der dir nichts schuldig sein will.
+
+„Zu Hause näht mein Vater Schuhe", sagt er, mehr zur Wand als zu dir. „Seine Augen werden schlechter. Bald sieht er die Naht nicht mehr, und dann sieht sie keiner mehr für ihn." Er zuckt mit den Schultern, als hätte er über das Wetter gesprochen. „Ist nicht wichtig. Ich bin hier, das ist der Plan. Schlaf jetzt. Morgen wird hart."
+
+Er macht keine Anstalten zu gehen, und er wartet auch auf nichts. Aber da ist dieser Moment, in dem du etwas sagen könntest — oder eben nicht.
+
+[[Ihm von früher erzählen — davon, dass auch du nicht immer stark warst. ->Stube: Thomas erzählt]]
+[[Auch schweigen. Zwei, die nichts hermachen aus dem, was sie tragen. ->Stube: Schweigen mit Jarek]]
+
+
+:: Stube: Schweigen mit Jarek {"position":"250,1050","size":"100,100"}
+
+Du sagst nichts. Was sollte es auch ändern.
+
+Jarek scheint das nicht im Geringsten zu stören — im Gegenteil, etwas in seiner Haltung wird ruhiger, als hätte er eine Frage gestellt und genau die Antwort bekommen, auf die er gehofft hatte. Ein Frischling, der nicht redet. Der nicht jammert, nicht fragt, nicht klammert.
+
+„Gut", sagt er nur, steht auf und geht so leise zu seiner Pritsche zurück, wie er gekommen ist.
+
+Du liegst noch eine Weile wach und denkst, dass das der erste Mensch hier ist, der nichts von dir wollte. Du wirst dich später an diesen Gedanken erinnern.
+
+<<= setup.setNpcAffection("jarek", 2)>>\
+
+[[Die Augen schließen. ->Nachtruhe 1]]
+
+
+:: Stube: Thomas erzählt {"position":"25,1075","size":"100,100"}
+
+Du weißt selbst nicht, warum es ausgerechnet jetzt aus dir herauskommt. Vielleicht, weil er nicht gefragt hat.
+
+„Ich war als Kind oft krank", sagst du leise. „So krank, dass keiner geglaubt hat, ich käme je auf die Beine. Die Luft blieb mir weg, wenn ich rannte. Ein Junge, der die Treppe nicht hochkam, ohne stehenzubleiben." Du starrst an die Decke. „Es gab jemanden, der das nicht hingenommen hat. Der mich in die Berge gebracht hat, Sommer um Sommer, bis der Weg und die Höhe aus mir etwas anderes gemacht haben. Ich weiß heute kaum noch sein Gesicht. Aber ich weiß, dass ich ohne ihn nicht hier läge."
+
+Jarek sagt eine Weile nichts. Dann nickt er, einmal, als hätte er etwas verstanden, das über deine Worte hinausgeht. „Dann sind wir beide hier, weil ein anderer es so wollte", sagt er schließlich. Es klingt fast warm. Es klingt wie der Anfang von etwas.
+
+Du schläfst ein, bevor dir auffällt, dass er nie gesagt hat, wer es bei ihm war.
+
+<<= setup.setNpcAffection("jarek", 1)>>\
+
+[[Die Augen schließen. ->Nachtruhe 1]]
+
+
+:: Studium Aloy [nach_stube studium] {"position":"1325,275","size":"100,100"}
+<<set _r = setup.teachLecture("aloy")>>\
+Aloyer Staatskunde
+<div class="scenery-text"><<= setup.getStudiumText("aloy", "scenery")>></div>
+<div class="voice-formal"><<= setup.getStudiumText("aloy", "intro")>></div>
+<<if _r.isNew>>\
+<<= _r.lessonHTML>>
+<<= _r.rewardHTML>>
+<<else>>\
+<<= _r.revisionHTML>>
+<</if>>\
+---
+<div class="thought-box"><<= setup.getStudiumText("aloy", "thought")>></div>
+---
+<<weiterImTag >>
+
+
+:: Studium Archivzugang [studium] {"position":"1175,50","size":"100,100"}
+<div class="scenery-text">Halm mustert dich lange. Dann nickt er, kaum merklich, und schiebt dir ein abgegriffenes Holztäfelchen über das Pult – ein Archivzeichen, abgewetzt von vielen Händen vor dir.</div>
+<div class="voice-formal">„Du trägst Akten von der Schreibstube ins Regal und zurück. Du liest sie nicht. Du sprichst nicht über das, was du siehst. Und du fragst niemanden nach Namen.“ Er hält inne. „Das Archiv kennt keinen Rang. Es kennt nur mich. Vergiss das nicht.“</div>
+<div class="thought-box">Ein Fuß in den Schreibstuben. Militärakten, Prozessrollen, alte Verträge – sogar Abschriften aus dem Gründungsarchiv in Grodaus sollen hier durchlaufen. Wenn jemand etwas Bestimmtes suchen würde ... aber wer sollte das schon.</div>
+<div class="system-alert status-positive">Archivzugang erhalten — die Schreibstuben der Akademie stehen dir offen.</div>
+
+<span class="weiter-link">[[Weiter ->Studium Hub]]</span>
+
+
+:: Studium Diplomatie [studium nach_stube] {"position":"1725,275","size":"100,100"}
+<<set _r = setup.teachLecture("diplomatie")>>\
+Diplomatie & Recht
+<div class="scenery-text"><<= setup.getStudiumText("diplomatie", "scenery")>></div>
+<div class="voice-formal"><<= setup.getStudiumText("diplomatie", "intro")>></div>
+<<if _r.isNew>>\
+<<= _r.lessonHTML>>
+<<= _r.rewardHTML>>
+<<else>>\
+<<= _r.revisionHTML>>
+<</if>>\
+---
+<div class="thought-box"><<= setup.getStudiumText("diplomatie", "thought")>></div>
+---
+<<weiterImTag >>
+
+
+:: Studium Disput [studium] {"position":"1475,125","size":"100,100"}
+<div class="scenery-text">Du wagst einen Einwand – und für einen Moment hebt Halm tatsächlich eine Augenbraue. Ihr ringt um einen einzigen Satz aus der Freiheitserklärung, bis er die Hand hebt. „Falsch begründet“, sagt er. „Aber nicht dumm gedacht. Das ist mehr, als ich von den meisten hier sagen kann.“</div>
+<div class="system-alert status-positive">Wissen (Aloyer Staatskunde) vertieft.</div>
+<div class="thought-box">Er streitet gern – solange das Gegenüber etwas zu sagen hat. Das werde ich mir merken.</div>
+
+<span class="weiter-link">[[Zurück ->Studium Magister]]</span>
+
+
+:: Studium Geographie [studium nach_stube] {"position":"1450,275","size":"100,100"}
+<<set _r = setup.teachLecture("geographie")>>\
+Geographie & Landeskunde
+<div class="scenery-text"><<= setup.getStudiumText("geographie", "scenery")>></div>
+<div class="voice-formal"><<= setup.getStudiumText("geographie", "intro")>></div>
+<<if _r.isNew>>\
+<<= _r.lessonHTML>>
+<<= _r.rewardHTML>>
+<<else>>\
+<<= _r.revisionHTML>>
+<</if>>\
+---
+<div class="thought-box"><<= setup.getStudiumText("geographie", "thought")>></div>
+---
+<<weiterImTag >>
+
+
+:: Studium Hub [studium] {"position":"1200,450","size":"100,100"}
+<<if not $npc.magister.known>><<goto "Studium Magister Vorstellung">><</if>>\
+<<set _fresh = setup.maybeAnnounceExam()>>\
+<<if _fresh>><div class="system-alert status-info">Der Magister hat soeben die Abschlusspruefung angekuendigt.</div><</if>>\
+
+<<= setup.getStudiumHubText("hubIntros")>>
+
+<div class="scenery-text"><<= setup.getStudiumHubText("hubScenery")>></div>
+An der grossen Wandtafel haengt der Stundenplan. Vier Faecher stehen heute zur Wahl:
+<ul class="sandbox-menu">
+    <li>[[Aloyer Staatskunde ->Studium Aloy]]<span class="subtext"><<= setup.getStudiumHubText("hubSubtexts", "aloy")>> <<= setup.studiumProgressTag("aloy")>></span></li>
+    <li>[[Geographie & Landeskunde ->Studium Geographie]]<span class="subtext"><<= setup.getStudiumHubText("hubSubtexts", "geographie")>> <<= setup.studiumProgressTag("geographie")>></span></li>
+    <li>[[Die Splitterlande ->Studium Splitterlande]]<span class="subtext"><<= setup.getStudiumHubText("hubSubtexts", "splitterlande")>> <<= setup.studiumProgressTag("splitterlande")>></span></li>
+    <li>[[Diplomatie & Recht ->Studium Diplomatie]]<span class="subtext"><<= setup.getStudiumHubText("hubSubtexts", "diplomatie")>> <<= setup.studiumProgressTag("diplomatie")>></span></li>
+    <li>[[Beim Magister vorsprechen ->Studium Magister]]<span class="subtext">— Gelehrsamkeit einsetzen. Aktuell: <b><<= setup.scholarship()>></b></span></li>
+</ul>
+<div class="thought-box"><<= setup.getStudiumHubText("hubThoughts")>></div>
+
+
+<<= setup.examHubHTML()>>
+
+
+
+:: Studium Magister [studium] {"position":"1300,125","size":"100,100"}
+<<set _s = setup.scholarship()>>\
+Beim Magister vorsprechen
+<div class="scenery-text">Du bleibst, bis die Bänke leer sind. Halm ordnet seine Papiere, ohne aufzusehen. „Wer freiwillig bleibt, will entweder etwas wissen oder etwas erbitten“, sagt er. „Beides kostet. Du zahlst mit dem, was zwischen deinen Ohren sitzt – oder du lässt es bleiben.“</div>
+
+<div class="system-alert status-info">Gelehrsamkeit: <<= _s>></div>
+
+<ul class="sandbox-menu">
+<<if $edu.archivzugang>>\
+  <li><span class="subtext"><b>Archivzugang gewährt.</b> Die Schreibstuben stehen dir offen – solange du nicht auffällst.</span></li>
+<<elseif setup.canAfford(15)>>\
+  <li><<link "Um Zugang zu den Schreibstuben ersuchen (15 Gelehrsamkeit)">><<run setup.spendScholarship(15)>><<set $edu.archivzugang = true, $npc.magister.archivzugang = true, $npc.magister.trust += 1>><<goto "Studium Archivzugang">><</link>></li>
+<<else>>\
+  <li><span class="subtext">Um Zugang zu den Schreibstuben ersuchen — <i>verlangt 15 Gelehrsamkeit (du hast <<= _s>>)</i></span></li>
+<</if>>\
+<<if setup.canAfford(8)>>\
+  <li><<link "Einen Disput mit dem Magister wagen (8 Gelehrsamkeit)">><<run setup.spendScholarship(8)>><<set $player.knowledge.aloy += 1, $npc.magister.affection += 1>><<goto "Studium Disput">><</link>></li>
+<<else>>\
+  <li><span class="subtext">Einen Disput mit dem Magister wagen — <i>verlangt 8 Gelehrsamkeit</i></span></li>
+<</if>>\
+</ul>
+
+<span class="weiter-link">[[Zurück in den Hörsaal ->Studium Hub]]</span>
+
+
+:: Studium Magister Vorstellung [studium] {"position":"1100,175","size":"100,100"}
+<<set $npc.magister.known = true>>\
+Der Magister
+<div class="scenery-text">Der Mann, der den Hörsaal betritt, ist hager bis an die Grenze des Möglichen, als hätte das viele Lesen ihm das Fleisch von den Knochen gezogen. Tinte sitzt in den Furchen seiner Finger, so tief, dass keine Bürste sie je wieder herausholt. Er setzt sich nicht. Er steht, legt ein abgegriffenes Buch aufs Pult und lässt den Blick über die Bänke wandern, langsam, als zähle er, wie viele von euch die zwei Jahre überstehen werden.</div>
+
+<div class="voice-formal">„Ich bin Magister Halm. Ihr werdet bei mir lernen, wem ihr eigentlich dient – und es ist kein Mann mit einer Krone.“ Eine Pause, in der niemand zu atmen wagt. „Manche von euch halten den Spieß für die wichtigste Sache hier drin. Ihr irrt. Ein Spieß tötet einen Mann. Ein falsch gelesener Satz tötet ein ganzes Banner.“</div>
+
+<div class="scenery-text">Auf dem Pult liegt, neben dem Buch, eine vergilbte Abschrift der Freiheitserklärung. Halm legt im Reden den Finger darauf, beiläufig, wie auf einen Zeugen, den man jederzeit aufrufen kann.</div>
+
+<div class="voice-formal">„Und damit ihr es wisst: Ich lese euch nicht nur vor. Ich bin der Archivar dieser Akademie. Jede Akte, jede Prozessrolle, jeder alte Vertrag, der durch diese Mauern geht, geht durch meine Hände. Das Archiv kennt keinen Rang, Rekruten. Es kennt nur mich.“</div>
+
+<div class="thought-box">Ein Archivar also. Akten, Prozesse, alte Verträge – alles an einem Ort, hinter einer einzigen Tür, und der Schlüssel hängt an diesem dürren Mann. Ich weiß noch nicht, warum, aber ich habe das Gefühl, dass dieser Satz noch wichtig wird.</div>
+
+Halm schlägt sein Buch auf. „Genug der Vorrede. Wer etwas wissen will, fragt. Wer etwas erbittet, zahlt – und zwar nicht in Kupfer.“
+
+[[Ihm offen in die Augen sehen und nicken. ->Studium Hub][$npc.magister.affection += 1]]
+[[Den Blick senken und einfach mitschreiben. ->Studium Hub]]
+
+
+:: Studium Splitterlande [studium nach_stube] {"position":"1600,275","size":"100,100"}
+<<set _r = setup.teachLecture("splitterlande")>>\
+Die Splitterlande
+<div class="scenery-text"><<= setup.getStudiumText("splitterlande", "scenery")>></div>
+<div class="voice-formal"><<= setup.getStudiumText("splitterlande", "intro")>></div>
+<<if _r.isNew>>\
+<<= _r.lessonHTML>>
+<<= _r.rewardHTML>>
+<<else>>\
+<<= _r.revisionHTML>>
+<</if>>\
+---
+<div class="thought-box"><<= setup.getStudiumText("splitterlande", "thought")>></div>
+---
+<<weiterImTag >>
+
+
+:: StudiumTexte {"position":"1100,500","size":"100,100"}
+{
+  "hubIntros": [
+    "Der Hoersaal der Akademie riecht nach Tinte, kaltem Stein und dem Talg der Leuchter. Nach dem Drill draussen fuehlt sich das Sitzen fast wie eine List an – bis der Magister den Raum betritt und klarmacht, dass auch Stille hier eine Form von Anstrengung ist.",
+    "Man hat euch gesagt, ein Soldat brauche nur seinen Spiess. Der Magister sieht das anders. „Wer nicht weiss, fuer welches Land er stirbt, stirbt fuer gar keins“, pflegt er zu sagen, und schlaegt sein Buch auf. Du suchst dir einen Platz auf den harten Baenken.",
+    "Zwischen Exerzieren und Abendappell schiebt sich die Bildung wie ein Fremdkoerper in den Tag. Doch in Aloy gilt: Wer den Rang will, muss auch den Kopf fuellen. Die Bank ist hart, die Luft stickig, und vorne raeuspert sich bereits der Lehrmeister.",
+    "Du wischst dir den Staub vom Aermel und trittst in den kuehlen Hoersaal. Hier zaehlt nicht, wie schwer dein Arm ist, sondern was du behaeltst. Fuer einen Rekruten aus den Bergen ist das eine ungewohnte Art von Schlachtfeld."
+  ],
+
+  "hubScenery": [
+    "An den Waenden haengen vergilbte Karten der Splitterlande, ein verblasstes Wappen des Rates und eine Tafel voller Kreidespuren, die niemand je ganz wegwischt. Vorne stehen die Pulte der Magister, abgegriffen von Generationen, die hier sassen, bevor sie marschierten.",
+    "Das Tageslicht faellt schraeg durch hohe, schmale Fenster und legt sich in Streifen ueber die Baenke. Irgendwo kratzt eine Feder, irgendwo blaettert jemand zu laut. Der Raum verlangt eine Ruhe, die draussen niemand von dir verlangt haette.",
+    "Ein grosser Globus aus bemaltem Holz steht in der Ecke, daneben Regale voller Schriftrollen und gebundener Baende. Es ist der einzige Ort in dieser Kaserne, an dem mehr Papier liegt als Eisen."
+  ],
+
+  "hubThoughts": [
+    "Wissen ist hier kein Luxus – es ist eine Waffe wie jede andere. Wer das Land versteht, versteht auch die Befehle, die es ihm gibt. Ich sollte mir merken, was ich hier hoere. Frueher oder spaeter wird man mich danach fragen.",
+    "Am Ende des Kapitels steht eine Pruefung. Das hat der Magister mehr als einmal durchblicken lassen. Was ich heute ueberhoere, fehlt mir dann. Also: zuhoeren, behalten, mitschreiben.",
+    "Ich kann nicht alles an einem Tag lernen. Jedes Fach baut auf sich selbst auf – ich komme nur weiter, wenn ich dranbleibe. Eine Vorlesung nach der anderen.",
+    "Mein Kopf ist mueder als meine Beine, und das will etwas heissen. Aber genau hier trennt sich der Soldat vom Offizier. Konzentrier dich."
+  ],
+
+  "hubSubtexts": {
+    "aloy": [
+      "— Wie regiert sich ein Land ohne Koenig? Der Rat, die Drei-Goetter-Kirche, die Akademie. Das Fundament, auf dem alles steht.",
+      "— Vom Bauernkrieg zur Raeterepublik. Wer hier dient, sollte wissen, wessen Ordnung er verteidigt."
+    ],
+    "geographie": [
+      "— Staedte, Grenzen, Gebirge. Wo Aloy verwundbar ist und wo nicht – und warum Ohm das Tor ist, an dem du stehst.",
+      "— Karten lesen heisst ueberleben. Wer das Land kennt, weiss, wohin er marschiert."
+    ],
+    "splitterlande": [
+      "— Aloy ist nicht allein. Nachbarn, Grossreiche, Buendnisse. Die Welt ausserhalb der Berge.",
+      "— Warum sich Aloy aus jedem Krieg heraushaelt – und was das wert ist."
+    ],
+    "diplomatie": [
+      "— Reden statt schlagen. Neutralitaet, Recht und der schmale Grat, auf dem Aloys Diplomaten gehen.",
+      "— Manchmal entscheidet ein Satz mehr als ein Banner. Hier lernst du, welcher."
+    ]
+  },
+
+  "subjects": {
+
+    "aloy": {
+      "name": "Aloyer Staatskunde",
+      "scenery": [
+        "Der Magister fuer Staatskunde ist ein hagerer Mann mit Tintenfingern, der jedes Wort so setzt, als koste es ihn Geld. Er duldet keine Zwischenrufe, aber er beantwortet jede ehrliche Frage.",
+        "Vorne haengt ein grosses Schaubild des Rates – sechsundvierzig Felder, sortiert nach Zuenften, Staedten, Voelkern, Akademie und Glaube. Es sieht aus wie ein Bienenstock, der gelernt hat, abzustimmen.",
+        "Auf dem Pult liegt ein abgegriffenes Exemplar der Freiheitserklaerung – eine Abschrift, versteht sich. Der Magister tippt beim Reden gern mit dem Finger darauf, als sei sie ein Zeuge, den man jederzeit aufrufen koenne."
+      ],
+      "intro": [
+        "„Setzt euch. Heute lernt ihr, wem ihr eigentlich dient – und es ist kein Mann mit einer Krone."
+      ],
+      "lessons": [
+        {
+          "id": "aloy_01",
+          "topic": "Die Staatsform",
+          "teach": "Aloy ist eine Raeterepublik. Es gibt keinen Koenig und keinen Fuersten an der Spitze, sondern einen gewaehlten Rat aus sechsundvierzig Vertretern des Volkes. Hervorgegangen ist diese Ordnung aus einem Bauernkrieg, in dem sich das Land von einem tyrannischen Adelsgeschlecht befreite. Wer in Aloy dient, dient also nicht einem Herrscher, sondern einer Gemeinschaft.",
+          "fact": "Aloy ist eine Raeterepublik mit einem gewaehlten 46-koepfigen Rat – kein Koenig, kein Adel an der Spitze.",
+          "quiz": {
+            "q": "Wie viele Mitglieder hat der Rat von Aloy?",
+            "options": ["46", "12", "100", "7"],
+            "answer": 0
+          }
+        },
+        {
+          "id": "aloy_02",
+          "topic": "Wer im Rat sitzt",
+          "teach": "Die Sitze des Rates sind genau verteilt: zweiundzwanzig fuer die Zuenfte, zwoelf fuer die Staedte, vier fuer die Voelker und acht fuer Akademie und Glaube zusammen. Den Vorsitz fuehrt der Hohepriester der Drei-Goetter-Kirche. Seine Stimme zaehlt im Normalfall wie jede andere – aber bei Stimmengleichheit gibt sein Wort den Ausschlag.",
+          "fact": "Ratssitze: 22 Zuenfte, 12 Staedte, 4 Voelker, 8 Akademie & Glaube. Vorsitz: der Hohepriester (Entscheidungsstimme bei Gleichstand).",
+          "quiz": {
+            "q": "Wer entscheidet im Rat bei Stimmengleichheit?",
+            "options": ["Der Hohepriester der Drei-Goetter-Kirche", "Der Oberste Heerfuehrer", "Die aelteste Zunft", "Es wird neu gewaehlt"],
+            "answer": 0
+          }
+        },
+        {
+          "id": "aloy_03",
+          "topic": "Das Ende des Adels",
+          "teach": "Seit der Gruendung der Republik gibt es in Aloy keinen Adel mehr. Niemand erbt Rang oder Recht durch seine Geburt. Der gesellschaftliche Status bemisst sich allein nach Werk, Verstand, Mut und Leistung. Ein Schmied, der etwas taugt, steht hoeher als ein Muessiggaenger mit altem Namen – jedenfalls dem Gesetz nach.",
+          "fact": "In Aloy gibt es keinen Adel. Status zaehlt nach Leistung – Werk, Verstand, Mut –, nicht nach Geburt.",
+          "quiz": {
+            "q": "Woran bemisst sich gesellschaftlicher Status in Aloy?",
+            "options": ["An Werk, Verstand, Mut und Leistung", "An der Geburt und am Familiennamen", "Am Grundbesitz", "Am Dienstgrad im Heer allein"],
+            "answer": 0
+          }
+        },
+        {
+          "id": "aloy_04",
+          "topic": "Gleichheit der Voelker",
+          "teach": "Vor dem Recht sind in Aloy vier Voelker vollkommen gleichgestellt – in Pflichten wie in Rechten: Menschen, Elfen, Zwerge (im Volksmund Twerke) und Halblinge (die man Hobbits nennt). Ein Zwerg aus den Stollen hat dieselben Pflichten und denselben Anspruch auf Recht wie ein Mensch aus Grodaus.",
+          "fact": "Vier Voelker sind rechtlich gleichgestellt: Menschen, Elfen, Zwerge (Twerke) und Halblinge (Hobbits).",
+          "quiz": {
+            "q": "Welche vier Voelker sind in Aloy rechtlich gleichgestellt?",
+            "options": ["Menschen, Elfen, Zwerge, Halblinge", "Menschen, Orks, Elfen, Zwerge", "Menschen, Elfen, Halblinge, Riesen", "Nur Menschen und Elfen"],
+            "answer": 0
+          }
+        },
+        {
+          "id": "aloy_05",
+          "topic": "Die Drei-Goetter-Kirche",
+          "teach": "Staatsreligion ist der Glaube an die gepriesenen Drei. Limba der Weisse steht fuer Schoepfung und Erfindungsgeist, Miram die Graue fuer Ausgleich und Wandel, und Hortum der Schwarze ist Gott des Krieges und Richter der Unterwelt – er waegt die Taten der Verstorbenen ab. Es gilt Glaubens- und Meinungsfreiheit, solange niemand den Drei oeffentlich spottet.",
+          "fact": "Die Drei: Limba (weiss, Schoepfung), Miram (grau, Ausgleich/Wandel), Hortum (schwarz, Krieg & Richter der Unterwelt).",
+          "quiz": {
+            "q": "Welcher der Drei ist Gott des Krieges und Richter der Unterwelt?",
+            "options": ["Hortum, der Schwarze", "Limba, der Weisse", "Miram, die Graue", "Barsinger, der Spielmann"],
+            "answer": 0
+          }
+        },
+        {
+          "id": "aloy_06",
+          "topic": "Die Akademie",
+          "teach": "Die Aloyer Akademie verwaltet Wissenschaft, Glaube, Militaer und Handwerk in vier Fachbereichen, jeder mit einer eigenen Farbe: Blau fuer Wissenschaft und Magie (Sitz Grodaus), Gruen fuer Religion und Glaube (Grodaus), Rot fuer Militaer und Krieg (Ohm zu Land, Tiafunt zu Wasser) und Braun fuer Handwerk und Handel (dezentral). Eure Soldatenausbildung faellt unter Rot.",
+          "fact": "Akademie, 4 Fachbereiche: Blau Wissenschaft/Magie, Gruen Glaube, Rot Militaer (Ohm & Tiafunt), Braun Handwerk/Handel.",
+          "quiz": {
+            "q": "Welche Farbe und welcher Sitz gehoeren zum Fachbereich Militaer & Krieg?",
+            "options": ["Rot – Ohm (Land) und Tiafunt (Wasser)", "Blau – Grodaus", "Gruen – Grodaus", "Braun – dezentral"],
+            "answer": 0
+          }
+        }
+      ],
+      "exhausted": [
+        "Der Magister wiederholt heute nur, was du laengst weisst. Du nutzt die Zeit, deine Notizen zu ordnen – Rat, Kirche, Akademie, alles sitzt.",
+        "Nichts Neues heute. Du kennst die Ordnung Aloys inzwischen besser als mancher, der hier geboren wurde."
+      ]
+    },
+
+    "geographie": {
+      "name": "Geographie & Landeskunde",
+      "scenery": [
+        "Die Magisterin der Landeskunde rollt eine grosse, von vielen Haenden abgegriffene Karte aus und beschwert die Ecken mit Steinen. „Ein Soldat, der seine Karte nicht lesen kann“, sagt sie, „ist nur ein teurer Wegweiser fuer den Feind.“",
+        "An der Wand haengt ein Querschnitt durch das Gebirge, das Aloy umschliesst, mit eingezeichneten Paessen und Wasserwegen. Der hoelzerne Zeigestab der Magisterin tippt im Reden ueber das Land wie ein wanderndes Schicksal."
+      ],
+      "intro": [
+        "„Heute lernt ihr, wo ihr eigentlich seid. Erstaunlich viele wissen das naemlich nicht."
+      ],
+      "lessons": [
+        {
+          "id": "geo_01",
+          "topic": "Lage und Zugaenge",
+          "teach": "Aloy liegt zwischen den Laendern Morgon und Alfalter, ringsum geschuetzt von einem hohen Gebirgszug. Dieser Wall ist Aloys groesster Verbuendeter: Der einzige Landzugang fuehrt ueber Alfalter. Nur im Suedosten ist das Land zusaetzlich ueber das Meer erreichbar. Wer Aloy zu Lande angreifen will, muss zuerst durch dieses eine Tor.",
+          "fact": "Aloy liegt zwischen Morgon und Alfalter, von Gebirge umschlossen. Einziger Landzugang: ueber Alfalter; im Suedosten Zugang ueber das Meer.",
+          "quiz": {
+            "q": "Ueber welches Nachbarland fuehrt der einzige Landzugang nach Aloy?",
+            "options": ["Alfalter", "Morgon", "Kan Kuzgun", "Kupferstein"],
+            "answer": 0
+          }
+        },
+        {
+          "id": "geo_02",
+          "topic": "Grodaus, die Hauptstadt",
+          "teach": "Grodaus ist mit rund dreissigtausend Einwohnern die groesste Stadt und das Herz des Landes. Hier sitzen der Rat, das hohe Gericht und die Akademie. Man schaetzt in Grodaus Bildung, feine Worte und den klaren Satz – es ist die Stadt der Tinte, nicht des Ambosses.",
+          "fact": "Grodaus (~30.000): Hauptstadt, Sitz von Rat, hohem Gericht und Akademie.",
+          "quiz": {
+            "q": "In welcher Stadt sitzen der Rat, das hohe Gericht und die Akademie?",
+            "options": ["Grodaus", "Ohm", "Tiafunt", "Vormberg"],
+            "answer": 0
+          }
+        },
+        {
+          "id": "geo_03",
+          "topic": "Tiafunt, das Fenster zur Welt",
+          "teach": "Tiafunt ist die groesste Hafenstadt am Meer und Aloys Fenster zur Welt. Bekannt fuer Seehandel, Schiffbauer, Barden und eine laute Schankkultur. Hier sagt man, eine „Tiafunter Wahrheit“ wachse mit jedem Krug Bier – man sollte also nicht alles fuer bare Muenze nehmen, was im Hafen erzaehlt wird.",
+          "fact": "Tiafunt (~16.000): groesste Hafenstadt, Seehandel, Barden, laute Schankkultur – Aloys Fenster zur Welt.",
+          "quiz": {
+            "q": "Welche Stadt ist Aloys groesste Hafenstadt und sein Fenster zur Welt?",
+            "options": ["Tiafunt", "Grodaus", "Umseck", "Weitfurth"],
+            "answer": 0
+          }
+        },
+        {
+          "id": "geo_04",
+          "topic": "Ohm, das Landtor",
+          "teach": "Ohm ist die stark befestigte Grenzstadt und das Landtor Aloys – genau hier stehst du gerade. In Ohm sitzt die grosse Kriegerausbildungsstaette, und man schaetzt hier Puenktlichkeit, Zucht, Ordnung und klare Angaben. Wer in Ohm schlampt, faellt auf.",
+          "fact": "Ohm (~14.000): befestigte Grenzstadt, Landtor Aloys, Sitz der grossen Kriegerausbildung.",
+          "quiz": {
+            "q": "Welche Stadt ist das befestigte Landtor Aloys und Sitz der Kriegerausbildung?",
+            "options": ["Ohm", "Tiafunt", "Grodaus", "Vormberg"],
+            "answer": 0
+          }
+        },
+        {
+          "id": "geo_05",
+          "topic": "Vormberg und Umseck",
+          "teach": "Zwei Staedte versorgen das Land mit dem Noetigsten: Vormberg lebt vom Bergbau, von Schmieden und harter Arbeit und pflegt enge Handelsbeziehungen zu den Zwergen in den Stollen. Umseck ist die traditionsbewusste Kornkammer – der Magen des Landes, gepraegt von Aeckern und Muehlen. Wer Umsecker Bauern verspottet, vergisst, was ein voller Speicher wert ist.",
+          "fact": "Vormberg (~10.000): Bergbau & Schmieden, Handel mit Zwergen. Umseck (~8.000): Kornkammer, der Magen des Landes.",
+          "quiz": {
+            "q": "Welche Stadt gilt als Kornkammer und 'Magen des Landes'?",
+            "options": ["Umseck", "Vormberg", "Tiafunt", "Ohm"],
+            "answer": 0
+          }
+        },
+        {
+          "id": "geo_06",
+          "topic": "Weitfurth am Wald",
+          "teach": "Weitfurth – auch Waidfuath genannt – ist die Holzstadt tief am Rand der grossen Waelder. Ihre Menschen gelten als verschwiegen, standhaft und von altem Widerstandsgeist gepraegt. Wegen der Schmuggler und der Naehe zum tiefen Wald stellt man hier besser nicht zu viele Fragen.",
+          "fact": "Weitfurth/Waidfuath (~5.000): Holzstadt am Waldrand, verschwiegen, alter Widerstandsgeist, Schmugglernaehe.",
+          "quiz": {
+            "q": "Was kennzeichnet Weitfurth am ehesten?",
+            "options": ["Holzstadt am Waldrand, verschwiegen und schmuggelnah", "Groesste Hafenstadt", "Sitz des Rates", "Zentrum des Bergbaus"],
+            "answer": 0
+          }
+        }
+      ],
+      "exhausted": [
+        "Die Karte ist dir vertraut geworden. Du koenntest die sechs Staedte und ihre Eigenheiten im Schlaf herunterbeten.",
+        "Heute nichts Neues – du kennst die Wege, Tore und Grenzen Aloys inzwischen aus dem Gedaechtnis."
+      ]
+    },
+
+    "splitterlande": {
+      "name": "Die Splitterlande",
+      "scenery": [
+        "Der aelteste der Magister kuemmert sich um die weite Welt. Vor ihm liegt eine Karte, auf der Aloy nur ein kleiner Fleck zwischen vielen ist. „Vergesst nie“, sagt er, „dass es ausserhalb dieser Berge Maechte gibt, die von uns noch nie gehoert haben.“",
+        "An der Wand haengen die Wappen fremder Reiche, manche prunkvoll, manche grob. Der Magister deutet im Reden mal auf das eine, mal auf das andere, als blaettere er durch die Nachbarschaft eines ganzen Kontinents."
+      ],
+      "intro": [
+        "„Heute schauen wir ueber den eigenen Tellerrand. Oder besser: ueber die eigenen Berge."
+      ],
+      "lessons": [
+        {
+          "id": "split_01",
+          "topic": "Aloys Platz in der Welt",
+          "teach": "Aloy ist Teil der Splitterlande, einer Welt vieler kleiner und grosser Maechte. Das Besondere an Aloy: Es versucht mit aller Kraft, sich aus den Kriegen der Splitterlande herauszuhalten. Diese Neutralitaet ist kein Zufall, sondern Staatsraison – und sie macht Aloy fuer alle Seiten wertvoll.",
+          "fact": "Aloy ist Teil der Splitterlande und haelt sich grundsaetzlich aus deren Kriegen heraus (Neutralitaet als Staatsraison).",
+          "quiz": {
+            "q": "Welche Haltung nimmt Aloy in den Konflikten der Splitterlande ein?",
+            "options": ["Es haelt sich aus den Kriegen heraus (Neutralitaet)", "Es fuehrt die Kriege an", "Es verbuendet sich immer mit dem Staerksten", "Es greift jeden Nachbarn zuerst an"],
+            "answer": 0
+          }
+        },
+        {
+          "id": "split_02",
+          "topic": "Die direkten Nachbarn",
+          "teach": "Direkt an Aloy grenzen zwei Laender: Morgon und Alfalter. Da der einzige Landweg ueber Alfalter fuehrt, ist das Verhaeltnis zu diesem Nachbarn besonders heikel – durch Alfalter kommt jeder, der zu Lande nach Aloy will, ob als Haendler oder als Heer.",
+          "fact": "Aloys direkte Nachbarn sind Morgon und Alfalter. Der Landweg fuehrt durch Alfalter.",
+          "quiz": {
+            "q": "Wie heissen Aloys zwei direkte Nachbarlaender?",
+            "options": ["Morgon und Alfalter", "Kan Kuzgun und Kupferstein", "Grodaus und Ohm", "Drachengard und Morgon"],
+            "answer": 0
+          }
+        },
+        {
+          "id": "split_03",
+          "topic": "Groessere Maechte",
+          "teach": "Weiter draussen liegen groessere Maechte, mit denen Aloy in Verbindung steht: das Grossreich Kan Kuzgun und das Fuerstentum Kupferstein. Sie sind keine Nachbarn ueber die Berge hinweg, aber sie spielen im Geflecht von Handel, Buendnissen und Soeldnervertraegen eine Rolle, die ein gebildeter Soldat kennen sollte.",
+          "fact": "Wichtige groessere Maechte der Splitterlande: das Grossreich Kan Kuzgun und das Fuerstentum Kupferstein.",
+          "quiz": {
+            "q": "Welches davon ist ein Grossreich der Splitterlande?",
+            "options": ["Kan Kuzgun", "Umseck", "Alfaltermark", "Tiafunt"],
+            "answer": 0
+          }
+        },
+        {
+          "id": "split_04",
+          "topic": "Der neutrale Boden",
+          "teach": "Weil Aloy sich aus Kriegen heraushaelt, kann es etwas anbieten, das selten ist: einen neutralen Ort. Andere Laender nutzen Aloy als Boden fuer ihre Verhandlungen. Diese Rolle als Vermittler ist eine der wichtigsten Saeulen aloyer Aussenpolitik – und ein Grund, warum man das Land in Ruhe laesst.",
+          "fact": "Aloy bietet anderen Laendern neutralen Boden fuer Verhandlungen – eine Kernsaeule seiner Aussenpolitik.",
+          "quiz": {
+            "q": "Welche besondere Rolle spielt Aloy fuer andere Laender?",
+            "options": ["Es bietet neutralen Boden fuer Verhandlungen", "Es stellt den obersten Richter aller Reiche", "Es verleiht Adelstitel", "Es kontrolliert allen Seehandel"],
+            "answer": 0
+          }
+        },
+        {
+          "id": "split_05",
+          "topic": "Drachengard und das Heinrichsfest",
+          "teach": "Auch wenn Aloy neutral bleibt, sind seine Soeldner ueberall in den Splitterlanden im Dienst. Das 84. Banner etwa ist alljaehrlich beim Heinrichsfest in Drachengard zugegen. Drachengard ist damit einer jener Orte ausserhalb Aloys, an denen aloyer Soldaten ein vertrautes Bild sind.",
+          "fact": "Aloyer Soeldner (z.B. das 84. Banner) sind im Ausland im Einsatz – etwa alljaehrlich beim Heinrichsfest in Drachengard.",
+          "quiz": {
+            "q": "Wo ist das 84. Banner alljaehrlich beim Heinrichsfest zugegen?",
+            "options": ["In Drachengard", "In Kan Kuzgun", "In Morgon", "In Umseck"],
+            "answer": 0
+          }
+        }
+      ],
+      "exhausted": [
+        "Die fremden Wappen sagen dir inzwischen etwas. Du weisst, wo Aloy in der Welt steht – und wo nicht.",
+        "Heute keine neue Macht, kein neues Reich. Die Splitterlande sind dir vertraut geworden."
+      ]
+    },
+
+    "diplomatie": {
+      "name": "Diplomatie & Recht",
+      "scenery": [
+        "Der Magister der Diplomatie traegt selbst eine schlichte Amtskette, mehr Andenken als Schmuck. „Eine Klinge“, sagt er, „beendet ein Gespraech. Ein gutes Wort beendet einen Krieg. Ueberlegt euch, was teurer ist.“",
+        "Auf dem Pult liegen Vertragsabschriften und ein Siegelring unter Glas. Der Magister spricht langsam, fast umstaendlich – als demonstriere die Art seines Redens bereits die halbe Lektion."
+      ],
+      "intro": [
+        "„Heute lernt ihr die Waffe, die kein Weibel euch zeigt: das Wort – und das Recht, das dahintersteht."
+      ],
+      "lessons": [
+        {
+          "id": "diplo_01",
+          "topic": "Neutralitaet als Werkzeug",
+          "teach": "Aloys Neutralitaet ist nicht Feigheit, sondern Strategie. Weil das Land sich nicht in fremde Kriege ziehen laesst, bleibt es fuer alle Seiten ein moeglicher Gespraechspartner. Ein aloyer Diplomat verkauft nicht Waffen, sondern Vertrauen – und Vertrauen ist die seltenste Ware der Splitterlande.",
+          "fact": "Aloys Neutralitaet ist ein diplomatisches Werkzeug: Sie macht das Land zum moeglichen Vermittler fuer alle Seiten.",
+          "quiz": {
+            "q": "Warum ist Aloys Neutralitaet diplomatisch wertvoll?",
+            "options": ["Sie macht Aloy zum moeglichen Vermittler fuer alle Seiten", "Sie erlaubt Aloy, jeden anzugreifen", "Sie befreit Aloy von allen Vertraegen", "Sie senkt die Steuern"],
+            "answer": 0
+          }
+        },
+        {
+          "id": "diplo_02",
+          "topic": "Ein Heer, das sich selbst bezahlt",
+          "teach": "Aloy finanziert seine Armee zu grossen Teilen selbst – und zwar, indem es Soeldnerregimenter gegen harte Muenze ins Ausland vermietet. So bleibt das Heer autark, ohne das eigene Volk zu erdruecken. Acht der Regimenter stehen im Soeldnerdienst. Das erklaert, warum aloyer Soldaten so oft fern der Heimat kaempfen.",
+          "fact": "Aloy finanziert sein Heer autark, indem es Soeldnerregimenter ins Ausland vermietet (8 Regimenter im Soeldnerdienst).",
+          "quiz": {
+            "q": "Wie finanziert Aloy sein Heer zu grossen Teilen?",
+            "options": ["Durch Vermietung von Soeldnerregimentern ins Ausland", "Durch eine Kopfsteuer auf alle Buerger", "Durch Tribut der Nachbarn", "Durch Beute aus Eroberungen"],
+            "answer": 0
+          }
+        },
+        {
+          "id": "diplo_03",
+          "topic": "Glaubens- und Meinungsfreiheit",
+          "teach": "In Aloy gilt Glaubens- und Meinungsfreiheit. Jeder darf glauben und sagen, was er will – mit einer Grenze: Den gepriesenen Drei darf nicht oeffentlich gespottet werden. Diese eine Schranke ist eng mit der Justiz verknuepft, denn die Rechtsprechung Aloys ist tief mit dem Glauben verwoben.",
+          "fact": "Es gilt Glaubens- und Meinungsfreiheit – mit einer Grenze: oeffentlicher Spott ueber die Drei ist nicht erlaubt.",
+          "quiz": {
+            "q": "Wo endet in Aloy die Meinungs- und Glaubensfreiheit?",
+            "options": ["Beim oeffentlichen Spott ueber die Drei", "Bei Kritik am Rat", "Bei Liedern ueber den Krieg", "Bei Gespraechen ueber andere Laender"],
+            "answer": 0
+          }
+        },
+        {
+          "id": "diplo_04",
+          "topic": "Das Waffenrecht",
+          "teach": "Ein Grundsatz, der Auswaertige oft ueberrascht: In Aloy hat jeder Buerger das ausdrueckliche Recht, eine Waffe zu tragen – oder es bleiben zu lassen. Beides ist seine freie Entscheidung. Fuer einen Diplomaten ist das wichtig zu wissen: Ein bewaffnetes Gegenueber ist in Aloy keine Drohung, sondern der Normalfall.",
+          "fact": "Jeder Buerger Aloys darf Waffen tragen – oder es lassen. Beides ist sein gutes Recht.",
+          "quiz": {
+            "q": "Was gilt in Aloy beim Tragen von Waffen?",
+            "options": ["Jeder Buerger darf Waffen tragen oder es lassen", "Nur Soldaten duerfen Waffen tragen", "Waffen sind fuer alle verboten", "Nur der Rat darf Waffen erlauben"],
+            "answer": 0
+          }
+        },
+        {
+          "id": "diplo_05",
+          "topic": "Wahrheit vor Ultima",
+          "teach": "Recht und Glaube sind in Aloy untrennbar. Schutzpatronin der Rechtsprechung ist Ultima, die Gerechte; ihr Zeichen ist die Waage, mit der sie Taten gegen Motive abwaegt. In ihren Tempeln und vor ihren Statuen darf nur die absolute Wahrheit gesprochen werden – Luegen straft sie unbarmherzig. Wer in Aloy verhandelt, sollte wissen, wo er besser nicht luegt.",
+          "fact": "Ultima, die Gerechte, ist Schutzpatronin der Rechtsprechung (Zeichen: die Waage). Vor ihren Statuen gilt nur die Wahrheit.",
+          "quiz": {
+            "q": "Vor welcher Gottheit darf nur die absolute Wahrheit gesprochen werden?",
+            "options": ["Ultima, die Gerechte", "Hortum, der Schwarze", "Barsinger, der Spielmann", "Limba, der Weisse"],
+            "answer": 0
+          }
+        }
+      ],
+      "exhausted": [
+        "Der Magister wiederholt Bekanntes. Du faellst innerlich in die Rolle des Pruefers und beantwortest seine Fragen, bevor er sie stellt.",
+        "Nichts Neues – die Grundsaetze aloyer Diplomatie und ihres Rechts sitzen bei dir fest."
+      ]
+    }
+  }
+}
 
 
 :: TrainingsHubTexte {"position":"1000,1325","size":"100,100"}
@@ -2304,7 +3243,7 @@ Er sagt es ohne Lautstärke. Als wäre sein Schweigen das Großzügigste, was er
 <<include "Wuerfel_Auswertung">>
 
 
-:: Wuerfel_Auswertung {"position":"2850,2250","size":"100,100"}
+:: Wuerfel_Auswertung {"position":"2900,2250","size":"100,100"}
 <<set _isScripted = $world.needsDiceGame>>\
 <<set _win = false>>\
 <<if _isScripted>> \
@@ -2326,21 +3265,27 @@ Er sagt es ohne Lautstärke. Als wäre sein Schweigen das Großzügigste, was er
 Die Würfel schlagen auf den Tisch.</div>
 <<timed 3s>>\
     <<if _win >>\
-        <div class="system-alert status-positive">„<<= _bet >> Kupfer Gewonnen."</div>
+        <<if _isScripted>>\
+            <div class="system-alert status-positive">10 Kupfer Gewonnen.</div>
+        <<else>>\
+            <div class="system-alert status-positive">„<<= _bet >> Kupfer Gewonnen."</div>
+        <</if>>\
     <<else>>\
         <div class="system-alert status-negative">„<<= _bet >> Kupfer Verloren."</div>
     <</if>>\
 <</timed>>\
 <<if _isScripted>>\
- <<timed 5s>>\
-      <<set $world.needsDiceGame = false>>\
-      Dein Herz schlägt bis zum Hals.
+    <<timed 5s>>\
+        <<set $world.needsDiceGame = false>>\
+        Dein Herz schlägt bis zum Hals.
+        <<if $sendByKarla>>\
+            Karla schlägt dir auf die Schulter "Schau an, du solltest öfter auf mich hören!"
+        <<else>>\
+            Das Spiel ist vorbei. Du hast gewonnen, der Rausch des Moments lässt dich noch immer zittern.   
+        <</if>>\
+        Du stehst auf und wackelst in Richtung deiner Pritsche
 
-      Karla schlägt dir auf die Schulter "Schau an, du solltest öfter auf mich hören!"
-
-      Du stehst auf und wackelst in Richtung deiner Pritsche
-
-      [[Aufhören->Kap1_Der nächste Tag]] 
+        [[Aufhören->Kap1_Tagesstart]] 
     <</timed>>\
 <<else>>   \
  <<timed 5s>>
@@ -2348,7 +3293,7 @@ Die Würfel schlagen auf den Tisch.</div>
     <<if $player.money.copper > 0>>\
 
         [[Nochmal spielen->Wuerfel_Start]] \
-        [[Aufhören->Kap1_Der nächste Tag]] 
+        [[Aufhören->Kap1_Tagesstart]] 
 
     <<else>>\
 
@@ -2409,8 +3354,7 @@ Ein schiefes Grinsen zieht über ihr Gesicht, während sie deinen Blick festhäl
 
 „Du gehst nirgendwo hin.“
 
-Bevor du reagieren kannst, packt sie dich am Kragen und zieht dich zurück an den Tisch.
-
+Bevor du reagieren kannst, packt sie dich am Kragen und zieht dich zurück an den Tisch.<<set $sendByKarla = true>>\
 
 [[Der Würfel klackt auf Holz->Wuerfel_Start]] 
 
@@ -2442,7 +3386,7 @@ Nicht plötzlich – eher so, als würde die Müdigkeit sich einfach neben dich 
     Niemand sagt etwas dagegen.
     In einer Kaserne schläft jeder irgendwann irgendwo ein.
     
-    [[schlafen->Kap1_Der nächste Tag]]
+    [[schlafen->Kap1_Tagesstart]]
 <</timed>>
 <</if>>
 
@@ -2483,7 +3427,62 @@ setup.interruptPrio["Story002_Taverne_mit_Lars_Und_Hadde"] = 60;
 setup.interruptCond["Story003_ErsterMorgen"] = w => w.day == 2;
 
 
+/* ============ SIDEQUEST-REGISTER ============ */
+setup.sidequests = {
+  karla_01: { npc: "karla", threshold: 5, completeFlag: "sidequest00Complete", start: "Karla Archiv Start",  priority: 10 },
+  jarek_01: { npc: "jarek", threshold: 5, completeFlag: "sidequest01Complete", start: "Jarek Archiv Start",  priority: 10 }
+  // neue Quest = einfach eine Zeile mehr
+};
 
+/* Druck/Status liegt generisch in $world.quest[id] – lazy angelegt, save-sicher */
+setup.questState = function (id) {
+  var w = State.variables.world;
+  if (!w.quest) w.quest = {};
+  if (!w.quest[id]) w.quest[id] = { druck: 0, active: false, done: false };
+  return w.quest[id];
+};
+
+setup.readySidequest = function () {
+  var npc = State.variables.npc, ready = [];
+  Object.keys(setup.sidequests).forEach(function (id) {
+    var q = setup.sidequests[id], st = setup.questState(id), n = npc[q.npc];
+    if (st.done || st.active) return;
+    if (n && n.memory.flags[q.completeFlag]) return;
+    if (st.druck >= q.threshold) ready.push({ id: id, prio: q.priority || 0 });
+  });
+  if (!ready.length) return null;
+  ready.sort(function (a, b) { return b.prio - a.prio; });
+  return ready[0].id;   // höchste Priorität gewinnt, der Rest wartet auf die nächste Gelegenheit
+};
+
+setup.completeSidequest = function (id) {
+  var q = setup.sidequests[id], st = setup.questState(id), n = State.variables.npc[q.npc];
+  st.done = true; st.active = false;
+  if (n) n.memory.flags[q.completeFlag] = true;
+};
+
+
+
+
+
+setup.syncPlayerRel = function () {
+    var V = State.variables;
+    if (!V.player) return;
+    if (!V.player.rel) V.player.rel = {};
+
+    var rel  = V.player.rel;
+    var npcs = V.npc || {};   // dein initNPC füllt $npc – ggf. Namen anpassen
+
+    Object.keys(npcs).forEach(function (key) {
+        if (typeof rel[key] === "undefined") {
+            rel[key] = 0;     // neutraler Startwert, bestehende Werte bleiben unangetastet
+        }
+    });
+};
+
+$(document).on(":passagestart", function () {
+    setup.syncPlayerRel();
+});
 
 
 setup.money = {
@@ -2506,7 +3505,14 @@ postdisplay["world-tracker"] = function () {
     State.variables.world ||= {};
     State.variables.world.lastPassage = title;
   
-    Save.slots.save(0);
+    try {
+	Save.browser.slot.save(0, "Autosave");
+    }
+    catch (error) {
+        /* Failure.  Handle the error. */
+        console.error(error);
+        UI.alert(error);
+    }
 	
 };
 
@@ -2545,27 +3551,48 @@ setup.isJournalBlocked = function () {
 
 setup.renderPlayerTable = function () {
     const p = State.variables.player;
-  
-  	const money = setup.getMoney(p.money.copper);
-  
+
+    const money = setup.getMoney(p.money.copper);
+
     const inventoryHTML =
         p.inventory.length === 0
             ? `<tr><td colspan="3" style="font-style: italic; color: #888;">Inventar ist leer</td></tr>`
             : p.inventory.map(item =>
                 `<tr><td colspan="3">${item}</td></tr>`
             ).join("");
-  	
+
+    // Beziehungen dynamisch aus $rel + Namen aus $npc
+    const rel = p.rel || {};
+    const relKeys = Object.keys(rel);
+    let relHTML;
+    if (relKeys.length === 0) {
+        relHTML = `<tr><td colspan="3" style="font-style: italic; color: #888;">Noch keine Bekanntschaften</td></tr>`;
+    } else {
+        relHTML = "";
+        for (let i = 0; i < relKeys.length; i += 3) {
+            const row = relKeys.slice(i, i + 3);
+            const names  = row.map(k => `<td>${(State.variables.npc?.[k]?.name) || k}</td>`).join("");
+            const values = row.map(k => `<td>${rel[k]}</td>`).join("");
+            const pad = "<td></td>".repeat(3 - row.length);
+            relHTML += `<tr>${names}${pad}</tr><tr>${values}${pad}</tr>`;
+        }
+    }
 
     return `
     <h3 class="voice-formal">Spielerwerte</h3>
     <table class="player-stats">
-
         <tr><th colspan="3" class="voice-formal">Persönliches</th></tr>
         <tr><td colspan="1">Name</td>
         <td colspan="2">Rang</td></tr>
         <tr><td colspan="1">${p.name}</td>
-        <td colspan="2">${p.rank}</td></tr>     
-        
+        <td colspan="2">${p.rank}</td></tr>
+
+        <tr><th colspan="3" class="voice-formal">Zustand</th></tr>
+        <tr><td>Kondition</td>
+        <td colspan="2">Verdacht</td></tr>
+        <tr><td>${setup.getKonditionLabel(p.condition)} (${p.condition})</td>
+        <td colspan="2">${p.suspicion}</td></tr>
+
         <tr><th colspan="3" class="voice-formal">Charaktereigenschaften (Stats)</th></tr>
         <tr><td>Gnade</td>
         <td>Ehrgeiz</td>
@@ -2573,7 +3600,13 @@ setup.renderPlayerTable = function () {
         <tr><td>${p.stats.mercy}</td>
         <td>${p.stats.ambition}</td>
         <td>${p.stats.honesty}</td></tr>
-        
+        <tr><td>Disziplin</td>
+        <td>Glaube</td>
+        <td></td></tr>
+        <tr><td>${p.stats.discipline}</td>
+        <td>${p.stats.faith}</td>
+        <td></td></tr>
+
         <tr><th colspan="3" class="voice-formal">Kampfwerte &amp; Wissen (Knowledge)</th></tr>
         <tr><td>Pike &amp; Hellebarde</td>
         <td>Artillerie-Wissen</td>
@@ -2581,14 +3614,21 @@ setup.renderPlayerTable = function () {
         <tr><td>Level ${p.knowledge.pike}</td>
         <td>Level ${p.knowledge.cannon}</td>
         <td>Level ${p.knowledge.crossbow}</td></tr>
-        
+
         <tr><td>Heilkunde</td>
         <td>Schattenarbeit</td>
         <td>Gerüchteküche</td></tr>
         <tr><td>Level ${p.knowledge.medicine}</td>
         <td>Level ${p.knowledge.thievery}</td>
         <td>Level ${p.knowledge.gossip}</td></tr>
-        
+
+        <tr><td>Gelehrsamkeit</td>
+        <td>Kampferfahrung</td>
+        <td></td></tr>
+        <tr><td>${p.stats.scholarship}</td>
+        <td>Level ${p.knowledge.combat}</td>
+        <td></td></tr>
+
         <tr><th colspan="3" class="voice-formal">Reputation</th></tr>
         <tr><td>Land</td>
         <td>Ohm</td>
@@ -2597,9 +3637,11 @@ setup.renderPlayerTable = function () {
         <td>${p.reputation.ohm}</td>
         <td>${p.reputation.church}</td></tr>
 
+        <tr><th colspan="3" class="voice-formal">Beziehungen</th></tr>
+        ${relHTML}
+
         <tr><th class="voice-formal">Finanzen</th>
         <td colspan="2">${money.gold} Gold &nbsp;|&nbsp; ${money.silver} Silber &nbsp;|&nbsp; ${money.copper} Kupfer</td></tr>
-
 
         <tr><th colspan="3" class="voice-formal">Inventar</th></tr>
         ${inventoryHTML}
@@ -2635,7 +3677,10 @@ setup.renderJournal = function () {
     return output;
 };
 
-//----------------Textbuilding Section & Single Point of Truth
+
+/*==============================================================
+Textbuilding Section & Single Point of Truth
+==============================================================*/
 
 setup.loadTrainingsHubVault = function () {
     if (!setup.trainingsHubTextVault) {
@@ -2717,8 +3762,10 @@ setup.executeStationRewards = function (stationKey, stationType) {
     if (!textPool || textPool.length === 0) {
         return "Fehler: Text-Pool für [" + stationType + "] im Level [" + levelBracket + "] nicht gefunden.";
     }
-    
+
     return textPool[Math.floor(Math.random() * textPool.length)];
+
+    
 };
 
 // Beibehalten für direkte/alte Hub-Abrufe falls nötig
@@ -2860,53 +3907,80 @@ setup.getNaechsterTagText = function (category) {
 };
 
 
-//---------------------NPC Section
+/*==============================================================
+                       NPC-SECTION
+==============================================================*/
 
 setup.setNpcAffection = function (npcKey, modifier) {
     const npc = State.variables.npc?.[npcKey];
+    if (!npc) { console.warn("NPC nicht gefunden:", npcKey); return ""; }
 
-    if (!npc) {
-        console.warn("NPC nicht gefunden:", npcKey);
-        return "";
-    }
+    npc.affection = setup.clamp(npc.affection + modifier, -100, 100);
 
-    npc.affection += modifier;
-
-    if (modifier < 0) {
-        return '<div class="system-alert status-negative">Zuneigung von ' + npc.name + ' verringert</div>';
-    } else if (modifier > 0) {
-        return '<div class="system-alert status-positive">Zuneigung von ' + npc.name + ' erhöht</div>';
-    }
-    
-    return "";
+    return setup.statusAlert("Zuneigung von " + npc.name + (modifier < 0 ? " verringert" : " erhöht"), modifier);
 };
 
-setup.pushNpcMemory = function(npcKey, event) {
-    const npc = State.variables.npc[npcKey];
-    if (npc && npc.memory && Array.isArray(npc.memory.events)) {
-        npc.memory.events.push(event);
-        return '<div class="system-alert status-info">' + npc.name + ' wird sich das merken</div>';
-    }
-    return ""; 
+setup.pushNpcMemory = function (npcKey, event) {
+    const npc = State.variables.npc?.[npcKey];
+    if (!npc?.memory || !Array.isArray(npc.memory.events)) return "";
+
+    npc.memory.events.push(event);
+    return '<div class="system-alert status-info">' + npc.name + ' wird sich das merken</div>';
 };
 
-setup.hasNpcMemory = function(npcKey, event) {
-    const npc = State.variables.npc[npcKey];
-    if (npc && npc.memory && Array.isArray(npc.memory.events)) {
-        return npc.memory.events.includes(event);
-    }
-    return false;
+setup.hasNpcMemory = function (npcKey, event) {
+    const npc = State.variables.npc?.[npcKey];
+    if (!npc?.memory || !Array.isArray(npc.memory.events)) return false;
+
+    return npc.memory.events.includes(event);
 };
 
 setup.enoughNpcAffection = function (npcKey, requiredValue) {
     const npc = State.variables.npc?.[npcKey];
     if (!npc) return false;
-    
+
     return npc.affection >= requiredValue;
 };
 
+/*==============================================================
+                       PLAYER-SECTION
+==============================================================*/
+setup.clamp = function (val, min, max) {
+    return Math.max(min, Math.min(max, val));
+};
 
-//---------------------Player Section
+// Einheitliches Alert-Rendering. Farbe richtet sich nach dem Vorzeichen.
+setup.statusAlert = function (text, modifier) {
+    if (modifier > 0) return '<div class="system-alert status-positive">' + text + '</div>';
+    if (modifier < 0) return '<div class="system-alert status-negative">' + text + '</div>';
+    return "";
+};
+
+setup.statNames = {
+    mercy: "Gnade",
+    ambition: "Ehrgeiz",
+    honesty: "Ehrlichkeit",
+    discipline: "Disziplin",
+    faith: "Glaube"
+};
+
+setup.knowledgeNames = {
+    scholarship: "Gelehrsamkeit",
+    pike: "Pike & Hellebarde",
+    crossbow: "Armbrust-Präzision",
+    cannon: "Artillerie-Wissen",
+    medicine: "Heilkunde",
+    thievery: "Schattenarbeit",
+    gossip: "Gerüchteküche",
+    combat: "Kampferfahrung"
+};
+
+setup.reputationNames = {
+    land: "Ruf beim Land",
+    ohm: "Ruf in Ohm",
+    church: "Ruf bei der Kirche"
+};
+
 
 setup.getMoney = function (copper) {
 
@@ -2922,7 +3996,6 @@ setup.getMoney = function (copper) {
     copper
   }
 };
-
 
 
 setup.renderRumors = function () {
@@ -2948,104 +4021,79 @@ setup.addRumor = function (rumorText) {
     return "";
 };
 
+
+
 setup.setPlayerStat = function (statKey, modifier) {
     const player = State.variables.player;
+    if (!player) { console.warn("Player nicht gefunden"); return ""; }
+    if (!player.stats?.hasOwnProperty(statKey)) { console.warn("Stat existiert nicht:", statKey); return ""; }
 
-    if (!player) {
-        console.warn("Player nicht gefunden");
-        return "";
-    }
+    player.stats[statKey] = setup.clamp(player.stats[statKey] + modifier, 0, 100);
 
-    if (!player.stats?.hasOwnProperty(statKey)) {
-        console.warn("Stat existiert nicht:", statKey);
-        return "";
-    }
-
-    player.stats[statKey] = player.stats[statKey] + modifier;
-
-    const statNames = {
-        mercy: "Gnade",
-        ambition: "Ehrgeiz",
-        honesty: "Ehrlichkeit"
-    };
-
-    const displayName = statNames[statKey] || statKey;
-
-    if (modifier < 0) {
-        return '<div class="system-alert status-negative">' + displayName + ' verringert</div>';
-    } else if (modifier > 0) {
-        return '<div class="system-alert status-positive">' + displayName + ' erhöht</div>';
-    }
-    
-    return ""; 
+    const name = setup.statNames[statKey] || statKey;
+    return setup.statusAlert(name + (modifier < 0 ? " verringert" : " erhöht"), modifier);
 };
 
 setup.setPlayerKnowledge = function (knowledgeKey, modifier) {
     const player = State.variables.player;
+    if (!player) { console.warn("Player nicht gefunden"); return ""; }
+    if (!player.knowledge?.hasOwnProperty(knowledgeKey)) { console.warn("Fähigkeit existiert nicht:", knowledgeKey); return ""; }
 
-    if (!player) {
-        console.warn("Player nicht gefunden");
-        return "";
-    }
+    player.knowledge[knowledgeKey] = setup.clamp(player.knowledge[knowledgeKey] + modifier, 0, 100);
 
-    if (!player.knowledge?.hasOwnProperty(knowledgeKey)) {
-        console.warn("Fähigkeit existiert nicht:", knowledgeKey);
-        return "";
-    }
-
-    player.knowledge[knowledgeKey] = player.knowledge[knowledgeKey] + modifier;
-
-    const knowledgeNames = {
-        pike: "Pike & Hellebarde",
-        cannon: "Artillerie-Wissen",
-        medicine: "Heilkunde",
-        thievery: "Schattenarbeit",
-        crossbow: "Armbrust-Präzision",
-        gossip: "Gerüchteküche"
-    };
-
-    const displayName = knowledgeNames[knowledgeKey] || knowledgeKey;
-
-    if (modifier < 0) {
-        return '<div class="system-alert status-negative">' + displayName + ' verringert</div>';
-    } else if (modifier > 0) {
-        return '<div class="system-alert status-positive">' + displayName + ' verbessert</div>';
-    }
-    
-    return ""; 
+    const name = setup.knowledgeNames[knowledgeKey] || knowledgeKey;
+    return setup.statusAlert(name + (modifier < 0 ? " verringert" : " verbessert"), modifier);
 };
 
 setup.setPlayerReputation = function (repKey, modifier) {
     const player = State.variables.player;
+    if (!player) { console.warn("Player nicht gefunden"); return ""; }
+    if (!player.reputation?.hasOwnProperty(repKey)) { console.warn("Fraktion existiert nicht:", repKey); return ""; }
 
-    if (!player) {
-        console.warn("Player nicht gefunden");
-        return "";
-    }
+    player.reputation[repKey] = setup.clamp(player.reputation[repKey] + modifier, -100, 100);
 
-    if (!player.reputation?.hasOwnProperty(repKey)) {
-        console.warn("Fraktion existiert nicht:", repKey);
-        return "";
-    }
-
-    player.reputation[repKey] = player.reputation[repKey] + modifier;
-
-    const repNames = {
-        land: "Ruf beim Land",
-        ohm: "Ruf in Ohm",
-        church: "Ruf bei der Kirche"
-    };
-
-    const displayName = repNames[repKey] || repKey;
-
-    if (modifier < 0) {
-        return '<div class="system-alert status-negative">Dein ' + displayName + ' ist gesunken</div>';
-    } else if (modifier > 0) {
-        return '<div class="system-alert status-positive">Dein ' + displayName + ' ist gestiegen</div>';
-    }
-    
-    return ""; 
+    const name = setup.reputationNames[repKey] || repKey;
+    return setup.statusAlert("Dein " + name + (modifier < 0 ? " ist gesunken" : " ist gestiegen"), modifier);
 };
+
+setup.setPlayerCondition = function (modifier) {
+    const player = State.variables.player;
+    if (!player || typeof player.condition !== "number") { console.warn("Kondition nicht gefunden"); return ""; }
+
+    player.condition = setup.clamp(player.condition + modifier, 0, 100);
+
+    const verb  = modifier < 0 ? "verschlechtert" : "verbessert";
+    const label = setup.getKonditionLabel(player.condition);
+    return setup.statusAlert("Kondition " + verb + " (" + label + ")", modifier);
+};
+
+setup.setPlayerSuspicion = function (modifier) {
+    const player = State.variables.player;
+    if (!player || typeof player.suspicion !== "number") { console.warn("Verdacht nicht gefunden"); return ""; }
+
+    player.suspicion = setup.clamp(player.suspicion + modifier, 0, 100);
+
+    // Mehr Verdacht = schlecht -> Farbe gegen das Vorzeichen drehen
+    if (modifier > 0) return '<div class="system-alert status-negative">Verdacht gegen dich gestiegen</div>';
+    if (modifier < 0) return '<div class="system-alert status-positive">Verdacht gegen dich gesunken</div>';
+    return "";
+};
+
+setup.setPlayerRel = function (npcKey, modifier) {
+    const player = State.variables.player;
+    if (!player || !player.rel) { console.warn("Beziehungen nicht gefunden"); return ""; }
+
+    if (!player.rel.hasOwnProperty(npcKey)) player.rel[npcKey] = 0;  // Altstände heilen sich
+
+    player.rel[npcKey] = setup.clamp(player.rel[npcKey] + modifier, -100, 100);
+
+    const npc  = State.variables.npc?.[npcKey];
+    const name = (npc && npc.name) ? npc.name : npcKey;
+    return setup.statusAlert("Verhältnis zu " + name + (modifier < 0 ? " verschlechtert" : " verbessert"), modifier);
+};
+
+
+
 
 setup.addItem = function (itemName) {
     const player = State.variables.player;
@@ -3085,72 +4133,83 @@ setup.getKonditionLabel = function (k) {
     return "💀 Zusammenbruch";
 };
 
-//------------------------WORLD SECTION
+/*==============================================================
+                       WORLD-SECTION
+==============================================================*/
 
+setup.weatherConditions = [
+    "sonnig", "klar", "heiter",
+    "wolkig", "bewoelkt", "stark_bewoelkt",
+    "regen", "schauer", "nieselregen",
+    "frostig", "windig", "gewitter", "neblig", "schwuel"
+];
 
-setup.resetDailyVariables = function() {
-	const world = State.variables.world;
+setup.resetDailyVariables = function () {
+    const world  = State.variables.world;
     const player = State.variables.player;
-    const weatherConditions = [
-    "sonnig", 
-    "klar", 
-    "heiter",
-    "wolkig", 
-    "bewoelkt", 
-    "stark_bewoelkt",
-    "regen", 
-    "schauer", 
-    "nieselregen",  
-    "frostig",
-    "windig", 
-    "gewitter", 
-    "neblig", 
-    "schwuel"
-  ];
-  	
-  	const rnd = Math.floor(Math.random() * weatherConditions.length);
-  	world.weather = weatherConditions[rnd];
-    world.wasPracticing = false;
-  	world.day+=1
-  	// --- Kondition: zehrt jeden Tag, Sterben nur durch Vernachlässigung ---
-    if (player.hasSlept) {
-    // Erholung durch Schlaf
-    	world.kondition = Math.min(100, world.kondition + 10);
-	} else {
-    // Schlafmangel
-    	world.kondition = Math.max(0, world.kondition - 10);
-	}
 
-    // --- Plotdruck steigt passiv, solange Sidequest offen ist ---
-    const k = State.variables.npc.karla;
-    const j = State.variables.npc.jarek;
-    if (k && !k.memory.flags.sidequest00Complete) world.karla_druck += 1;
-    if (j && !j.memory.flags.sidequest01Complete) world.jarek_druck += 1;
+    world.weather = setup.weatherConditions[Math.floor(Math.random() * setup.weatherConditions.length)];
+    world.wasPracticing = false;
+    world.day += 1;
+
+    // Werte VOR der Änderung merken
+    const condBefore = player.condition;
+    const suspBefore = player.suspicion;
+
+    const konditionDelta = player.hasSlept ? 10 : -10;
+    player.condition = setup.clamp(player.condition + konditionDelta, 0, 100);
+
+    const karla = State.variables.npc?.karla;
+    const jarek = State.variables.npc?.jarek;
+    setup.tickSidequestDruck();
+
+    player.suspicion = setup.clamp(player.suspicion - 2, 0, 100);
+
+    // Tagesbericht ablegen: echte Differenzen (nach dem Clampen)
+    world.tagesbericht = {
+        condition: player.condition - condBefore,
+        suspicion: player.suspicion - suspBefore,
+        hasSlept:  player.hasSlept
+    };
 
     world.interruptDoneToday = false;
-  	
 };
 
-setup.setKondition = function (modifier) {
-    const world = State.variables.world;
-    if (!world) {
-        console.warn("World nicht gefunden");
-        return "";
+setup.tickSidequestDruck = function () {
+  var npc = State.variables.npc;
+  Object.keys(setup.sidequests).forEach(function (id) {
+    var q  = setup.sidequests[id];
+    var st = setup.questState(id);
+    var n  = npc[q.npc];
+    if (st.done || (n && n.memory.flags[q.completeFlag])) { st.done = true; return; }
+    st.druck += 1;
+  });
+};
+
+setup.renderTagesbericht = function () {
+    const b = State.variables.world?.tagesbericht;
+    if (!b) return "";
+
+    let out = "";
+
+    if (b.condition > 0) {
+        out += '<div class="system-alert status-positive">Erholsamer Schlaf — Kondition +' + b.condition + ' (' + setup.getKonditionLabel(State.variables.player.condition) + ')</div>';
+    } else if (b.condition < 0) {
+        out += '<div class="system-alert status-negative">Unruhige Nacht — Kondition ' + b.condition + ' (' + setup.getKonditionLabel(State.variables.player.condition) + ')</div>';
     }
-    world.kondition = world.kondition + modifier;
-    if (modifier < 0) {
-        return '<div class="system-alert status-negative">Kondition verringert</div>';
-    } else if (modifier > 0) {
-        return '<div class="system-alert status-positive">Kondition erhöht</div>';
+
+    if (b.suspicion < 0) {
+        out += '<div class="system-alert status-positive">Du bist eine Weile nicht aufgefallen — Verdacht ' + b.suspicion + '</div>';
     }
-    return "";
+
+    return out;
 };
 
 setup.routeTags = {
     nach_hub:    "Nachmittag Hub",
     nach_appell: "Abendappell",
     nach_stube:  "Auf Stube",
-  	nach_morgen: "Kap1_Der nächste Tag" 
+  	nach_morgen: "Kap1_Tagesstart" 
 };
 
 
@@ -3178,6 +4237,11 @@ setup.checkInterrupt = function () {
     // stören den Pool damit nicht mehr.
     const pool = Story.lookupWith(p => p.tags.includes("interrupt"))
                       .map(p => p.title);
+  
+  // NEU:
+console.log('[Interrupt] Tag ' + w.day + ' | Pool:', pool);
+  
+
 
     // --- 1. PFLICHT: hat eine Bedingung UND sie ist erfüllt -> muss feuern ---
     const pflicht = pool
@@ -3185,18 +4249,22 @@ setup.checkInterrupt = function () {
         .filter(name => setup.interruptCond[name](w))
         .filter(eligible)
         .sort((a, b) => (setup.interruptPrio[b] || 0) - (setup.interruptPrio[a] || 0));
+  		
+  		console.log('[pflicht] Tag ' + w.day + ' | Pool:', pflicht);
 
     if (pflicht.length > 0) {
         const winner = pflicht[0];
         hist[winner] = w.day;
         w.interruptDoneToday = true;
-        return winner;
+      	return winner;
     }
 
     // --- 2. ZUFALL: keine Bedingung -> normaler Pool ---
     const zufall = pool
         .filter(name => !setup.interruptCond[name])
         .filter(eligible);
+  
+  	console.log('[zufall] Tag ' + w.day + ' | Pool:', zufall);
 
     if (zufall.length === 0) return null;
     if (Math.random() > (w.interruptChance || 0.35)) return null;
@@ -3204,7 +4272,7 @@ setup.checkInterrupt = function () {
     const winner = zufall[Math.floor(Math.random() * zufall.length)];
     hist[winner] = w.day;
     w.interruptDoneToday = true;
-    return winner;
+  	return winner;
 };
 
 // Liest aus den Tags der aktuellen Passage das Rücksprungziel
@@ -3398,6 +4466,412 @@ setup.getSuccessThought = function (skill, difficulty) {
     }
 
   	return '<div class="thought-box">' + result + '</div>';
+};
+
+/*==============================================================
+                       SKILL-CHECK
+==============================================================*/
+
+// Wirft d20 + Skill gegen eine Schwierigkeit.
+// Gibt ein Ergebnis-Objekt zurück - kein Text, keine Alerts.
+// skillKey: z.B. "combat", "gossip", "thievery"
+// difficulty: feste Schwierigkeit (AC), z.B. 13
+// modifier: optionaler Auf-/Abschlag auf die Schwierigkeit (z.B. +3 bei Allianz)
+setup.skillCheck = function (skillKey, difficulty, modifier) {
+    const player = State.variables.player;
+    const skill  = player?.knowledge?.[skillKey] || 0;
+    const dc     = difficulty + (modifier || 0);
+
+    const roll  = random(1, 20);            // SugarCubes random, save-sicher
+    const total = roll + skill;
+
+    let outcome;
+    if (roll === 20)      outcome = "crit";       // natürliche 20: immer Erfolg
+    else if (roll === 1)  outcome = "fumble";     // natürliche 1: immer Fehlschlag
+    else if (total >= dc) outcome = "success";
+    else                  outcome = "fail";
+
+    return {
+        outcome: outcome,
+        success: (outcome === "success" || outcome === "crit"),
+        roll: roll,
+        skill: skill,
+        total: total,
+        dc: dc
+    };
+};
+
+// Erfolgswahrscheinlichkeit eines skillChecks in Prozent (0-100)
+setup.checkChance = function (skillKey, difficulty, modifier) {
+    const skill = State.variables.player?.knowledge?.[skillKey] || 0;
+    const dc    = difficulty + (modifier || 0);
+
+    // benötigter Wurf, damit roll + skill >= dc
+    let need = dc - skill;
+
+    // Würfe 2..19 zählen normal; 20 immer Erfolg, 1 immer Fehlschlag
+    // Anzahl der Erfolgsaugen von 1..20:
+    let successFaces = 0;
+    for (let r = 1; r <= 20; r++) {
+        if (r === 20) { successFaces++; continue; }   // Krit: immer
+        if (r === 1)  { continue; }                    // Patzer: nie
+        if (r >= need) successFaces++;
+    }
+
+    return Math.round((successFaces / 20) * 100);
+};
+
+// Prozent -> sprachliches Label
+setup.chanceLabel = function (pct) {
+    if (pct <= 0)   return "aussichtslos";
+    if (pct < 8)    return "Eine schlechte Idee";
+    if (pct < 20)   return "ein echtes Wagnis";
+    if (pct < 35)   return "schlechte Karten";
+    if (pct < 45)   return "eher dagegen";
+    if (pct < 56)   return "ausgeglichen";
+    if (pct < 70)   return "stehen gut";
+    if (pct < 85)   return "gute Karten";
+    if (pct < 95)   return "ziemlich sicher";
+    if (pct < 100)  return "fast schon sicher";
+    return "ein Selbstläufer";
+};
+
+setup.checkHint = function (skillKey, difficulty, modifier) {
+    const skill = State.variables.player?.knowledge?.[skillKey] || 0;
+    const name  = setup.knowledgeNames[skillKey] || skillKey;
+    const pct   = setup.checkChance(skillKey, difficulty, modifier);
+    const label = setup.chanceLabel(pct);
+    return '<span class="check-hint"> Wurf auf ' + name + ' — ' + label + '</span>';
+};
+
+
+
+/*==============================================================
+  STUDIUM / VORLESUNG – Engine
+  Spiegelt das Muster des TrainingsHub (Vault + setup-Funktionen),
+  ergaenzt um ein fortschreitendes Curriculum und eine Pruefung.
+==============================================================*/
+
+setup.studiumVault = setup.studiumVault || null;
+
+setup.loadStudiumVault = function () {
+    if (!setup.studiumVault) {
+        setup.studiumVault = JSON.parse(Story.get("StudiumTexte").text);
+    }
+    return setup.studiumVault;
+};
+
+/* Deutsche Anzeigenamen der Faecher (fuer System-Boxen) */
+setup.studiumFachName = {
+    aloy: "Aloyer Staatskunde",
+    geographie: "Geographie",
+    splitterlande: "Splitterlande-Kunde",
+    diplomatie: "Diplomatie & Recht"
+};
+
+/* --- HUB-TEXTE (Intro / Szenerie / Gedanke / Subtexte) --- */
+setup.getStudiumHubText = function (category, subKey) {
+    var v = setup.loadStudiumVault();
+    if (subKey) {
+        var subPool = v[category] ? v[category][subKey] : null;
+        if (!subPool || subPool.length === 0) return "";
+        return subPool[Math.floor(Math.random() * subPool.length)];
+    }
+    var pool = v[category];
+    if (!pool || pool.length === 0) return "";
+    return pool[Math.floor(Math.random() * pool.length)];
+};
+
+/* Kleiner Fortschritts-Anhang im Hub: "(3/6 gelernt)" bzw. "(abgeschlossen)" */
+setup.studiumProgressTag = function (subjectKey) {
+    var v = setup.loadStudiumVault();
+    var subj = v.subjects[subjectKey];
+    if (!subj) return "";
+    var total = subj.lessons.length;
+    var learned = State.variables.edu ? State.variables.edu.learned : [];
+    var have = subj.lessons.filter(function (ls) { return learned.indexOf(ls.id) !== -1; }).length;
+    if (have >= total) return "<b>(abgeschlossen)</b>";
+    return "<b>(" + have + "/" + total + " gelernt)</b>";
+};
+
+/* --- STATIONS-TEXTE (scenery / intro / thought) --- */
+setup.getStudiumText = function (subjectKey, type) {
+    var v = setup.loadStudiumVault();
+    var subj = v.subjects[subjectKey];
+    if (!subj) return "Fehler: Fach [" + subjectKey + "] nicht gefunden.";
+
+    if (type === "scenery") {
+        var sc = subj.scenery || [];
+        return sc.length ? sc[Math.floor(Math.random() * sc.length)] : "";
+    }
+    if (type === "intro") {
+        var it = subj.intro || [];
+        return it.length ? it[Math.floor(Math.random() * it.length)] : "";
+    }
+    if (type === "thought") {
+        return setup.studiumThought(subjectKey);
+    }
+    return "";
+};
+
+/* Levelabhaengiger Reflexions-Gedanke (analog novice/medium/expert) */
+setup.studiumThought = function (subjectKey) {
+    var lvl = (State.variables.player && State.variables.player.knowledge[subjectKey]) || 0;
+    var v = setup.loadStudiumVault();
+    var total = v.subjects[subjectKey] ? v.subjects[subjectKey].lessons.length : 6;
+
+    if (lvl >= total) {
+        return "Dieses Fach gibt mir nichts Neues mehr. Was hier zu lernen war, habe ich gelernt – jetzt zaehlt nur, dass ich es behalte.";
+    }
+    if (lvl <= 1) {
+        return "Mehr Stoff, als ich erwartet habe. Wenn das so weitergeht, brauche ich einen klaren Kopf – und vielleicht weniger Drill am Morgen.";
+    }
+    if (lvl <= 3) {
+        return "Langsam ergibt es ein Bild. Einzelne Brocken fuegen sich zusammen. Noch ein paar Vorlesungen, dann kann mich der Magister fragen, was er will.";
+    }
+    return "Es sitzt. Fast schon zu gut – ich ertappe mich dabei, die Antworten zu kennen, bevor die Frage zu Ende ist.";
+};
+
+/* --- KERN: eine Lektion lehren (fortschreitendes Curriculum) --- */
+setup.teachLecture = function (subjectKey) {
+    var v = setup.loadStudiumVault();
+    var subj = v.subjects[subjectKey];
+    if (!subj) {
+        return { isNew: false, revisionHTML: '<div class="system-alert status-negative">Fehler: Fach [' + subjectKey + '] fehlt im Vault.</div>' };
+    }
+
+    var edu = State.variables.edu;
+    var p = State.variables.player;
+
+    /* naechste noch nicht gelernte Lektion suchen */
+    var next = null;
+    for (var i = 0; i < subj.lessons.length; i++) {
+        if (edu.learned.indexOf(subj.lessons[i].id) === -1) { next = subj.lessons[i]; break; }
+    }
+
+    /* Alles gelernt -> Wiederholung, keine neue Belohnung */
+    if (!next) {
+        var rv = subj.exhausted && subj.exhausted.length
+            ? subj.exhausted[Math.floor(Math.random() * subj.exhausted.length)]
+            : "Heute nichts Neues.";
+        return { isNew: false, revisionHTML: '<div class="lecture-text">' + rv + '</div>' };
+    }
+
+    /* lernen + Werte vergeben */
+    edu.learned.push(next.id);
+    p.stats.scholarship = (p.stats.scholarship || 0) + 1;
+    p.knowledge[subjectKey] = (p.knowledge[subjectKey] || 0) + 1;
+    p.chosen_activity = subjectKey;                 // fuer Abendappell-Kontext, falls verdrahtet
+    if (State.variables.world) { State.variables.world.wasPracticing = true; }
+
+    var lessonHTML =
+        '<div class="lecture-text">' +
+        '<div class="lecture-topic">' + next.topic + '</div>' +
+        next.teach +
+        '</div>';
+
+    var fachName = setup.studiumFachName[subjectKey] || subj.name || subjectKey;
+    var rewardHTML =
+        '<div class="system-alert status-positive">Gelehrsamkeit erhoeht</div>' +
+        '<div class="system-alert status-positive">Wissen (' + fachName + ') vertieft</div>' +
+        '<div class="system-alert status-info">Ins Notizbuch uebernommen: ' + next.fact + '</div>';
+
+    return { isNew: true, lesson: next, lessonHTML: lessonHTML, rewardHTML: rewardHTML };
+};
+
+/*==============================================================
+  ABSCHLUSSPRUEFUNG (Kapitel 1)
+  Baut sich automatisch aus den TATSAECHLICH gelernten Lektionen.
+==============================================================*/
+
+setup._shuffle = function (arr) {
+    for (var i = arr.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var t = arr[i]; arr[i] = arr[j]; arr[j] = t;
+    }
+    return arr;
+};
+
+/* Antwortoptionen mischen, korrekten Index nachfuehren */
+setup._shuffleOptions = function (options, answerIndex) {
+    var correctText = options[answerIndex];
+    var opts = setup._shuffle(options.slice());
+    return { options: opts, answer: opts.indexOf(correctText) };
+};
+
+setup.buildExam = function (maxQuestions) {
+    var v = setup.loadStudiumVault();
+    var learned = State.variables.edu.learned;
+    var pool = [];
+
+    Object.keys(v.subjects).forEach(function (sk) {
+        var subj = v.subjects[sk];
+        subj.lessons.forEach(function (ls) {
+            if (learned.indexOf(ls.id) !== -1 && ls.quiz) {
+                var sh = setup._shuffleOptions(ls.quiz.options, ls.quiz.answer);
+                pool.push({
+                    id: ls.id,
+                    subject: subj.name,
+                    q: ls.quiz.q,
+                    options: sh.options,
+                    answer: sh.answer
+                });
+            }
+        });
+    });
+
+    setup._shuffle(pool);
+    var q = pool.slice(0, maxQuestions || 6);
+
+    var e = State.variables.edu.exam;
+    e.queue = q;
+    e.pos = 0;
+    e.correct = 0;
+    e.lastAnswer = null;
+    e.done = false;
+    e.total = q.length;
+    e.score = 0;
+
+    return q.length;
+};
+
+setup.answerExam = function (i) {
+    var e = State.variables.edu.exam;
+    if (e.lastAnswer !== null) return;            // nur einmal werten
+    e.lastAnswer = i;
+    if (i === e.queue[e.pos].answer) { e.correct += 1; }
+};
+
+setup.nextExam = function () {
+    var e = State.variables.edu.exam;
+    e.pos += 1;
+    e.lastAnswer = null;
+    if (e.pos >= e.queue.length) {
+        e.done = true;
+        e.score = e.correct;
+    }
+};
+
+setup.examGrade = function () {
+    var e = State.variables.edu.exam;
+    if (!e.total) return { pct: 0, label: "—", correct: 0, total: 0 };
+    var pct = Math.round((100 * e.correct) / e.total);
+    var label =
+        pct >= 90 ? "Mit Auszeichnung bestanden" :
+        pct >= 70 ? "Bestanden" :
+        pct >= 50 ? "Knapp bestanden" :
+                    "Durchgefallen";
+    return { pct: pct, label: label, correct: e.correct, total: e.total };
+};
+
+setup.examVerdict = function (pct) {
+    if (pct >= 90) return "„Sieh an. Einer, der zugehoert hat. Merk dir das Gefuehl, Rekrut – es wird selten.“";
+    if (pct >= 70) return "„Solide. Kein Gelehrter, aber auch kein Idiot mit Spiess. Das reicht fuer den Anfang.“";
+    if (pct >= 50) return "„Gerade so. Du haettest oefter im Hoersaal sitzen sollen statt zu doesen. Aber durch ist durch.“";
+    return "„Das war beschaemend. Wer sein eigenes Land nicht kennt, taugt nicht zum Verteidigen. Nacharbeiten. Sofort.“";
+};
+
+/* Belohnung je nach Ergebnis – einmalig anwenden */
+setup.applyExamRewards = function (pct) {
+    var p = State.variables.player;
+    var e = State.variables.edu.exam;
+    if (e._rewarded) return;                       // doppelte Vergabe verhindern
+    e._rewarded = true;
+
+    if (pct >= 70) {
+        p.stats.scholarship = (p.stats.scholarship || 0) + 3;
+        if (p.reputation && p.reputation.church !== undefined) p.reputation.church += 1;
+    } else if (pct >= 50) {
+        p.stats.scholarship = (p.stats.scholarship || 0) + 1;
+    }
+    /* unter 50: keine Belohnung */
+};
+
+setup.examRewardHTML = function (pct) {
+    if (pct >= 70) {
+        return '<div class="system-alert status-positive">Gelehrsamkeit deutlich erhoeht</div>' +
+               '<div class="system-alert status-positive">Ruf bei der Kirche gestiegen</div>';
+    }
+    if (pct >= 50) {
+        return '<div class="system-alert status-positive">Gelehrsamkeit erhoeht</div>';
+    }
+    return '<div class="system-alert status-negative">Keine Anerkennung – diese Pruefung hat dir nichts eingebracht.</div>';
+};
+
+/*==============================================================
+  STUDIUM – PRUEFUNGSTERMIN-LOGIK & GELEHRSAMKEIT AUSGEBEN
+==============================================================*/
+
+setup.studiumExamConfig = {
+    announceThreshold: 8,   // so viele Lektionen muessen besucht sein, bis der Magister ankuendigt
+    leadDays: 5             // so viele Tage spaeter findet die Pruefung statt
+};
+
+setup.studiumTotalLearned = function () {
+    var edu = State.variables.edu;
+    return edu && edu.learned ? edu.learned.length : 0;
+};
+
+setup.studiumTotalLessons = function () {
+    var v = setup.loadStudiumVault();
+    var n = 0;
+    Object.keys(v.subjects).forEach(function (sk) { n += v.subjects[sk].lessons.length; });
+    return n;
+};
+
+/* Beim Betreten des Hubs aufrufen: kuendigt die Pruefung an, sobald genug gelernt wurde.
+   Gibt true zurueck, wenn sie GERADE JETZT frisch angekuendigt wurde. */
+setup.maybeAnnounceExam = function () {
+    var edu = State.variables.edu;
+    var cfg = setup.studiumExamConfig;
+    if (!edu || edu.exam.announced || edu.exam.passed) return false;
+    if (setup.studiumTotalLearned() >= cfg.announceThreshold) {
+        edu.exam.announced = true;
+        edu.exam.dueDay = (State.variables.world ? State.variables.world.day : 1) + cfg.leadDays;
+        return true;
+    }
+    return false;
+};
+
+setup.examStatus = function () {
+    var edu = State.variables.edu;
+    var cfg = setup.studiumExamConfig;
+    var day = State.variables.world ? State.variables.world.day : 1;
+    var learned = setup.studiumTotalLearned();
+    if (edu.exam.passed)      return { state: "passed" };
+    if (!edu.exam.announced)  return { state: "locked", learned: learned, needed: cfg.announceThreshold };
+    if (day >= edu.exam.dueDay) return { state: "due", dueDay: edu.exam.dueDay };
+    return { state: "announced", dueDay: edu.exam.dueDay, daysLeft: edu.exam.dueDay - day };
+};
+
+setup.examHubHTML = function () {
+    var s = setup.examStatus();
+    if (s.state === "passed") {
+        return '<div class="system-alert status-positive">Pruefung bestanden. Der Magister hat dich vorerst aus der Schusslinie genommen.</div>';
+    }
+    if (s.state === "locked") {
+        return '<div class="thought-box">Noch hat der Magister keine Pruefung angesetzt. „Wer kaum im Hoersaal sass“, pflegt er zu sagen, „den pruefe ich nicht – den schicke ich zurueck auf die Bank.“ (' + s.learned + '/' + s.needed + ' Vorlesungen besucht)</div>';
+    }
+    if (s.state === "announced") {
+        return '<div class="system-alert status-info">Die Pruefung ist angekuendigt: Tag ' + s.dueDay + ' (noch ' + s.daysLeft + ' Tag' + (s.daysLeft === 1 ? '' : 'e') + '). Bis dahin: wiederholen, was sitzen muss.</div>';
+    }
+    return '<div class="system-alert status-negative">Heute ist Pruefungstag. Der Magister wartet bereits.</div>\n[[Zur Pruefung antreten ->Pruefung Start]]';
+};
+
+setup.markExamResult = function (pct) {
+    var e = State.variables.edu.exam;
+    e.attempts += 1;
+    if (pct >= 50) e.passed = true;
+};
+
+/* --- GELEHRSAMKEIT (scholarship) als ausgebbare Ressource --- */
+setup.scholarship    = function () { return (State.variables.player.stats.scholarship || 0); };
+setup.canAfford      = function (cost) { return setup.scholarship() >= cost; };
+setup.spendScholarship = function (cost) {
+    var p = State.variables.player;
+    if ((p.stats.scholarship || 0) < cost) return false;
+    p.stats.scholarship -= cost;
+    return true;
 };
 
 :: StoryStylesheet [stylesheet]
@@ -3768,4 +5242,36 @@ setup.getSuccessThought = function (skill, difficulty) {
 #passages a.link-internal:visited {
     color: #8a7f6e;
     border-left-color: #3d3a34;
+}
+
+.check-hint {
+    display: block;          /* block = eigene Zeile, inline = hinter dem Text */
+    font-size: 0.8em;        /* Größe relativ zum Wahltext */
+    opacity: 0.65;           /* Transparenz: 1 = voll, 0.5 = halb durchscheinend */
+    font-style: italic;      /* italic / normal */
+    margin-top: 0.3em;       /* Abstand zum Wahltext darüber */
+}
+
+.weiter-link a {
+    display: block;
+    background-color: #1a1917;
+    border: 1px solid #2d2b27;
+    border-left: 4px solid #5a564c;
+    padding: 12px 18px;
+    margin-bottom: 0.75em;
+    border-radius: 2px;
+    color: #dfdcd6;
+    font-weight: bold;
+    font-size: 1.05em;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.weiter-link a:hover {
+    background-color: #24221f;
+    border-color: #4a453d;
+    border-left-color: #c5b394;
+    color: #fff;
+    transform: translateX(4px);
+    cursor: pointer;
 }
