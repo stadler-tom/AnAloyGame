@@ -22,7 +22,7 @@ An Aloy Story
     "studium": "yellow",
     "pruefung": "green"
   },
-  "zoom": 0.6
+  "zoom": 0.3
 }
 
 
@@ -474,7 +474,7 @@ Niemand antwortet. Niemand muss.
 }
 
 
-:: Appell: Ausrichten {"position":"700,950","size":"100,100"}
+:: Appell: Ausrichten {"position":"550,650","size":"100,100"}
 <<if $player.chosen_activity eq "zeigt_eigeninitiative">>\
 	@@.beziehung;Dank des unauffälligen Hinweises reagierst du blitzschnell. Noch bevor der Schinder die Augen zusammenkneifen kann, stehst du perfekt in der Formation. Ein kaum merkliches Nicken des Ausbilders zeigt dir, dass du die Situation gerettet hast.@@
 <<elseif $player.chosen_activity eq "ist_befehlstreu">>\
@@ -503,7 +503,8 @@ Die Baracke nimmt euch auf wie jeden Abend — ohne Begrüßung, ohne Wärme.
 Du lässt dich auf deine Pritsche fallen, und der Strohsack, der heute Morgen noch hart und fremd war, fühlt sich jetzt an wie das Weichste auf der Welt. Deine Hände brennen. Deine Schultern brennen. Irgendwo tief in den Oberschenkeln sitzt ein Schmerz, der morgen früh schlimmer sein wird als heute Nacht.
 Das Talglicht flackert.
 Du schließt die Augen, noch bevor jemand es löscht.
-[[Der nächste Tag. ->Kap1_Tagesstart]] 
+
+[[Der nächste Tag. ->Kapitel 1]] 
 
 
 :: Auf Stube {"position":"1925,1750","size":"100,100"}
@@ -552,14 +553,14 @@ Namen und Orte, die dir noch nichts bedeuten.
 Noch nicht.
 Für dich zählen erst einmal die harten Holzböden der Kaserne in Ohm — und der Mann auf dem Hof, den sie den Schinder nennen.
 
-<<set $npc.sergeant.known = true>>
+<<set $npc.sergeant.known = true>>\
 
 [[Befehl befolgen und direkt zum Kasernenhof gehen->Der Kasernenhof]]
 [[Sich heimlich von der Truppe absetzen und die Akademie-Hallen auskundschaften->Hallen erkunden]]
 [[Den Sergeant nach neuen Gerüchten ausfragen->Sergent aushorchen]]
 
 
-:: Das Training: Erster Tag {"position":"475,950","size":"100,100"}
+:: Das Training: Erster Tag {"position":"450,825","size":"100,100"}
 Der Morgen kommt nicht sanft.
 Er kommt mit dem Krachen einer Tür, die jemand mit dem Stiefel aufgestoßen hat, und einer Stimme, die keine Rücksicht auf den Schlaf nimmt, den du dir noch nicht geholt hast.
 „Aufstehen! Raus aus den Federn, ihr Maden! Die Sonne wartet nicht auf Rekruten!"
@@ -667,7 +668,7 @@ Du sagst nichts. Was solltest du auch sagen.
 Irgendwo hinter dir schließt sich das Tor der Akademie mit einem dumpfen, endgültigen Laut.
 Du bist jetzt drin.
 
-[[Beginne deine Ausbildung->Kapitel 1]]
+[[Beginne deine Ausbildung->Kap01_RekrutenKennenlernen]]
 
 
 :: Event_Geschichte {"position":"2400,1675","size":"100,100"}
@@ -970,6 +971,7 @@ Aus einem leicht geöffneten Spalt einer schweren Eichentür dringt das gedämpf
 Die jüngere, kühlere Stimme des Hauptmanns antwortet: "Das ist das Gesetz des Städtebundes, Kurt. Uns geht die Politik nichts an, wir füllen nur die Truppenrollen. Unsere Pflicht gilt der Ausbildung des Corps, um mehr nicht. Also lass das Gerede und bring den Frischlingen da draußen gefälligst bei, wie man überlebt."
 
 Du lehnst dich ein Stück zu weit vor, um mehr zu verstehen – und prompt knarrt eine morsche Holzdiele laut unter deinem Stiefel. Drinnen herrscht schlagartig eisige Stille.
+
 [[Hastig herumwirbeln und zur Treppe am anderen Ende des Flurs sprinten! ->Treppe runterrennen]]
 [[Stehen bleiben und versuchen, sich irgendwie herauszureden. ->Rausreden Versuch]]
 
@@ -1283,7 +1285,7 @@ bast: {
 <<set $world = {
 	
     lastPassage:"",
-    day: 1,
+    day: 0,
     weather: "windig",
     wasPracticing: false,
     needsDiceGame: true,
@@ -1352,7 +1354,7 @@ Was bleibt dir anderes übrig.
 
 ---
 Der Sergeant am hölzernen Tisch blickt von seinen Listen auf und bellt:
-"Na und wer bist du? Was soll ich in die Truppenrolle eintragen?"
+<div class="voice-formal">"Na und wer bist du? Was soll ich in die Truppenrolle eintragen?"</div>
 ---
 
 <<silently>>
@@ -1361,7 +1363,7 @@ Der Sergeant am hölzernen Tisch blickt von seinen Listen auf und bellt:
 [["Ein junger Mann, bereit für die Ausbildung."->Das Erwachen]]
 
 
-:: Kap01_RekrutenKennenlernen {"position":"250,650","size":"100,100"}
+:: Kap01_RekrutenKennenlernen {"position":"325,425","size":"100,100"}
 <<set $npc.karla.known = true, $npc.jarek.known = true>>
 Die schwere Holztür der Baracke fällt hinter dir ins Schloss, und für einen Herzschlag bleibt das Heulen des Windes draußen. Doch was dich drinnen erwartet, ist keine Gemütlichkeit — nur eine andere Art von Kälte.
 Der Raum riecht nach feuchter Wolle, billigem Talgöl und dem herben Schweiß von dreißig Menschen, die heute alle dasselbe an den Toren abgegeben haben. Zwei Reihen hölzerner Doppelstockbetten ziehen sich durch die Stube, die Strohsäcke flach und hart wie das Versprechen, das man dir hier nicht gegeben hat. Das Licht fällt grau und gleichgültig durch die schmalen Fenster.
@@ -1393,7 +1395,7 @@ Vor dir steht ein schlanker, sehniger Rekrut mit wachen, dunklen Augen und dem r
 <</if>>
 
 
-:: Kap1_Der nächste Tag {"position":"1175,1025","size":"100,100"}
+:: Kap1_Der nächste Tag {"position":"1350,850","size":"100,100"}
 
 <<set _interrupt = setup.checkInterrupt()>>\
 <<if _interrupt != null>>\
@@ -1432,7 +1434,7 @@ Vor dir steht ein schlanker, sehniger Rekrut mit wachen, dunklen Augen und dem r
 <</if>>\
 
 
-:: Kap1_Der_naechste_Tag_Texte {"position":"1350,1175","size":"100,100"}
+:: Kap1_Der_naechste_Tag_Texte {"position":"1250,825","size":"100,100"}
 {
   "morgen": [
     {
@@ -1572,7 +1574,7 @@ Vor dir steht ein schlanker, sehniger Rekrut mit wachen, dunklen Augen und dem r
 }
 
 
-:: Kap1_Tagesstart [tagesstart] {"position":"1500,975","size":"100,100"}
+:: Kap1_Tagesstart [tagesstart] {"position":"1475,775","size":"100,100"}
 /* Einstiegspunkt für den Tag */
 <<= setup.renderTagesbericht()>>
 <div class="scenery-text"><<= setup.getNaechsterTagText("morgen")>></div>
@@ -1597,7 +1599,7 @@ Vers. 0.4.3
 </div>
 
 
-:: Kapitel 1 {"position":"200,425","size":"200,200"}
+:: Kapitel 1 {"position":"975,625","size":"200,200"}
 <div class="chapter-screen">
     <div class="chapter-title">KAPITEL 1</div>
     <div class="chapter-time">
@@ -1606,7 +1608,7 @@ Vers. 0.4.3
 
     <div class="center-link">
         <<timed 4500ms>>
-            [[Weiter->Kap01_RekrutenKennenlernen]]
+            [[Weiter->Kap1_Tagesstart]]
         <</timed>>
     </div>
 </div>
@@ -1681,7 +1683,7 @@ Die Schatten hinter den Stallungen
 [[Zurück zum Appellplatz ->Abendappell]]
 
 
-:: Nachtruhe 1 {"position":"325,1200","size":"100,100"}
+:: Nachtruhe 1 {"position":"350,1050","size":"100,100"}
 <<run setup.resetDailyVariables()>>\
 Ein vorbeigehender Korporal löscht das Talglicht mit einem harschen Fluch, als wäre selbst das Licht hier etwas, das Gehorsam schuldet.
 Dunkelheit.
@@ -1717,7 +1719,7 @@ Du schließt die Augen.
 <</if>>
 
 
-:: Pruefung Ergebnis [pruefung] {"position":"1550,675","size":"100,100"}
+:: Pruefung Ergebnis [pruefung] {"position":"1775,700","size":"100,100"}
 <<set _g = setup.examGrade()>>\
 Das Urteil des Magisters
 <div class="scenery-text">Der Magister sammelt die Boegen ein, ohne ein Wort. Dann hebt er den Blick.</div>
@@ -1739,7 +1741,7 @@ Ergebnis: <<= _g.correct>> von <<= _g.total>> richtig (<<= _g.pct>>%) — <<= _g
 
 
 
-:: Pruefung Frage [pruefung] {"position":"1700,675","size":"100,100"}
+:: Pruefung Frage [pruefung] {"position":"1925,700","size":"100,100"}
 <set _e = $edu.exam>>\
 <<set _q = _e.queue[_e.pos]>>\
 <div class="voice-formal">Frage <<= _e.pos + 1>> von <<= _e.queue.length>> · <<= _q.subject>></div>
@@ -1777,7 +1779,7 @@ Ergebnis: <<= _g.correct>> von <<= _g.total>> richtig (<<= _g.pct>>%) — <<= _g
 <</if>>
 
 
-:: Pruefung Start [pruefung] {"position":"1625,500","size":"100,100"}
+:: Pruefung Start [pruefung] {"position":"1850,525","size":"100,100"}
 <<set _anzahl = setup.buildExam(6)>>\
 Abschlusspruefung – Kapitel 1
 <div class="scenery-text">Der Hoersaal ist heute anders. Kein Gemurmel, kein Scharren. Vor jedem Platz liegt ein Bogen Papier, und vorne steht der Magister mit dem Gesicht eines Mannes, der heute keine Ausreden hoeren will. „Ihr habt zugehoert oder ihr habt es nicht“, sagt er. „Gleich wissen wir, was davon stimmt."</div>
@@ -1817,7 +1819,7 @@ Die Treppe. Den Korridor. Keine Rücksicht auf dein Tempo, kein Wort mehr, nur d
 @@.voice-aggressive;"BIN ICH EINE KLATSCHTANTE???"@@.
 @@.voice-aggressive;„Du hast einen Befehl erhalten und der war nicht mit mir zu reden, also sieh zu dass du Land gewinnst sonst schmeiss ich dich in den Turm bevor deine Ausbildung angefangen hat!!!“@@
 
-<<= setup.setNpcAffection("sergeant", -5)>>
+<<= setup.setNpcAffection("sergeant", -5)>>\
 
 [[Befehl befolgen und direkt zum Kasernenhof gehen->Der Kasernenhof]]
 [[Sich heimlich von der Truppe absetzen und die Akademie-Hallen auskundschaften->Hallen erkunden]]
@@ -1971,7 +1973,7 @@ Lars sieht ihn an.
 <<set $npc.weibelLars.known = true>>\
 <<set $npc.weibelLars.affection += 2>>\
 <<set $npc.haddl.known = true>>\
-<<set $npc.haddl.affection += 1>>\
+<<= setup.setNpcAffection("haddl", 1)>>\
 <div class="scenery-text">Das Gespräch findet seinen eigenen Rhythmus. Lars redet wenig aber wenn er redet hat es Gewicht. Haddl füllt die Lücken mit Geschichten die halb gelogen und halb zu gut sind um erfunden zu sein.
 Irgendwann bestellt Lars ohne zu fragen eine neue Runde.</div>
 [[Das Bier annehmen ->Story002_BierAnnehmen]]\
@@ -2052,11 +2054,8 @@ Der Abendappell verläuft ohne Vorfall.
 Das ist, wie du inzwischen verstehst, bereits eine Leistung.
 
 <div class="scenery-text">Der Hauptmann spricht. Du hörst die Worte ohne sie vollständig aufzunehmen. Deine Beine stehen, dein Rücken ist gerade, deine Augen sind geradeaus gerichtet. Das reicht. Das ist heute alles was verlangt wird und alles was du geben kannst.</div>
-
 <<= setup.setPlayerStat('amition', 1)>>\
-
 Dann: entlassen.
-
 ---
 
 Die Stube am Abend ist anders als am Morgen. Leiser. Die Erschöpfung hat die Lautstärke herausgezogen. Jemand putzt seine Stiefel. Jemand anderes liegt bereits auf der Pritsche und schaut an dieselbe Fichtenholzdecke wie du heute früh.
@@ -2066,10 +2065,8 @@ Du setzt dich auf dein Bett.
 Keine Gedanken über morgen. Keine Pläne. Nur das leise Knacken des Holzes, das Atmen von dreißig Menschen, und das langsam nachlassende Pochen in deinen Beinen.
 
 <div class="scenery-text">Draußen ist der Wind noch immer da. Er wird morgen auch noch da sein. Du wirst auch noch da sein.</div>
+<div class="thought-box">Das zählt.</div>---
 
-<div class="thought-box">Das zählt.</div>
-
----
 <<weiterImTag "Das war ein antrengender Tag. Auf die Stube">>
 
 
@@ -2101,7 +2098,6 @@ Nicht mit Licht – das kommt später. Erst mit Geräuschen. Das Knarren einer P
 Du liegst einen Moment still.
 
 <div class="scenery-text">Die Decke über dir ist aus rohem Fichtenholz. Astlöcher, eine alte Verfärbung in der Ecke, ein Riss der sich quer durch zwei Bretter zieht. Du hast sie heute Nacht lange genug angestarrt um zu wissen, dass sich das nicht ändern wird.</div>
-
 Dein Körper meldet sich der Reihe nach. Rücken zuerst. Dann die Schultern. Dann die Beine, mit einem dumpfen Pochen, das sich nicht ganz wie Muskelkater anfühlt und auch nicht ganz wie etwas anderes.
 
 Du atmest.
@@ -2109,10 +2105,7 @@ Du atmest.
 Nur das. Kalt, ein bisschen nach fremdem Schweiß und nassem Holz, aber gleichmäßig. Kein Ziehen in der Brust. Kein Kratzen im Hals das bleibt.
 
 <div class="thought-box">Früher war das nicht selbstverständlich.</div>
-
 Jemand stößt im Vorbeigehen gegen deine Pritsche. Keine Absicht. Einfach zu wenig Platz und zu viel Morgenmüdigkeit.
-
-
 
 [[Du stehst auf.->Story003_Fruehstueck]]
 
@@ -2123,7 +2116,6 @@ Die Kantine riecht nach heißem Fett und gekochtem Kohl.
 Es ist lautes, rohes Essen – eine Schüssel Brei, dazu ein Kanten Brot der sich biegt wenn man ihn hält. Kein schlechtes Essen. Nur keines, bei dem man sich Zeit lässt.
 
 <div class="scenery-text">Die langen Tische sind voll. Stimmen überlagern sich, Holzlöffel kratzen über Ton. Draußen vor den Fenstern ist der Himmel noch grau, und das Licht das hereinkommt ist das blasse, unentschlossene Licht eines Morgens der noch nicht weiß ob er schön wird.</div>
-
 Du isst stehend. Alle essen stehend. Niemand hat das angeordnet – es hat sich einfach so ergeben, aus der kollektiven Nervosität von Menschen die nicht sitzen wollen wenn sie gleich wieder aufspringen müssen.
 
 Du schaust in die Schüssel. Du schaust kurz auf. Du schaust wieder in die Schüssel.
@@ -2143,17 +2135,16 @@ Karla sitzt drei Plätze weiter und isst mit einer Effizienz, die fast respektei
 
 Kein Lächeln. Nur ein kurzes Abschätzen.
 
-„Wabbler."
+„Thomas."
 
 „Karla."
 
 Das war alles. Aber es war genug. Sie schiebt den Brotkorb ein Stück in deine Richtung, ohne etwas dabei zu sagen, und schaut wieder auf ihre Schüssel.
 
 <div class="thought-box">Manche Menschen reden mit Gesten. Du hast gelernt, das zu lesen.</div>
-
 Du nimmst ein Stück Brot.
 
-<<set $npc.karla.affection += 1>>
+<<= setup.setNpcAffection("karla", 1)>>
 
 [[Weiter->Story003_Drill]]
 
@@ -2164,7 +2155,6 @@ Du isst.
 Nicht weil das Essen gut ist. Nicht weil du Hunger hast, genau genommen. Sondern weil es etwas ist, das du tun kannst ohne dabei mit jemandem reden zu müssen.
 
 <div class="scenery-text">Das Geräusch der Kantine läuft an dir ab wie Wasser. Stimmen, Gelächter, das Scharren von Bänken. Du nimmst es wahr ohne darin zu versinken. Eine Fertigkeit, die du irgendwann gelernt hast und nicht mehr weißt wann.</div>
-
 Jemand stellt sich neben dich. Sagt nichts. Isst auch nur.
 
 Du schaust kurz zur Seite.
@@ -2173,7 +2163,7 @@ Jarek. Er hat denselben Ausdruck wie du – nicht unzugänglich, nur abwesend. A
 
 Ihr esst nebeneinander ohne ein Wort. Das ist keine Ablehnung. Das ist, auf seine eigene Art, eine Verständigung.
 
-<<set $npc.jarek.affection += 1>>
+<<= setup.setNpcAffection("jarek", 1)>>
 
 [[Weiter->Story003_Drill]]
 
@@ -2182,12 +2172,10 @@ Ihr esst nebeneinander ohne ein Wort. Das ist keine Ablehnung. Das ist, auf sein
 <div class="scenery-text">Der Morgen ist kaum eine Stunde alt, da steht der Schinder schon mitten in der Formation. Er geht die Reihe ab, langsam, mit der Geduld eines Mannes, der weiß, dass die Zeit auf seiner Seite arbeitet. Vor dir bleibt er stehen. Sieht dich an. Sagt nichts.</div>
 Dann, ohne Vorwarnung, tritt er dir den Stiefel gegen die Ferse, sodass dein Stand für einen Moment bricht.
 
-<div class="voice-formal">„Wackelig, Wabbler. Wie ein Kalb auf Eis. Ich frage mich, ob in dir überhaupt was steckt — oder ob du nur die Suppe wegfrisst, die ein anderer verdient hätte."</div>
+<div class="voice-formal">„Wackelig, Rekrut. Wie ein Kalb auf Eis. Ich frage mich, ob in dir überhaupt was steckt — oder ob du nur die Suppe wegfrisst, die ein anderer verdient hätte."</div>
 Die Reihe um dich herum ist still. Niemand schaut. Alle schauen. Das ist hier dasselbe.
 
-<div class="thought-box">Er will eine Reaktion. Die Frage ist nur, welche.</div>
-
-<span id="schinder-wahl">
+<div class="thought-box">Er will eine Reaktion. Die Frage ist nur, welche.</div><span id="schinder-wahl">
 <<link "Den Blick senken und es schlucken">>\
 <<replace "#schinder-wahl">>\
 Du senkst den Blick. Nicht aus Angst — oder nicht nur. Sondern weil du in den letzten Tagen gelernt hast, dass ein gesenkter Blick hier nichts kostet außer Stolz, und Stolz ist billig, wenn man wenig davon hat.
@@ -2197,8 +2185,8 @@ Der Schinder mustert dich einen Herzschlag zu lang, als hätte er auf mehr gehof
 <div class="thought-box">Er wird mich vergessen, bis morgen. Genau das wollte ich. Wer nicht auffällt, überlebt den Drill. Aber irgendwas an dem gesenkten Blick fühlt sich an wie eine kleine Niederlage, die niemand außer mir gesehen hat.</div>
 <<= setup.setNpcAffection("schinder", 2)>>\
 <<= setup.setPlayerStat("ambition", -2)>>\
-
 ---
+
 <<weiterImTag>>\
 <</replace>>\
 <</link>>\
@@ -2217,8 +2205,8 @@ Dann zwanzig Liegestütze, sofort, im Kies. Deine Arme zittern bei der zwölften
 <<= setup.setPlayerCondition(-8)>>\
 <<= setup.setNpcAffection("schinder", -1)>>\
 <<= setup.setPlayerStat("ambition", 3)>>\
-
 ---
+
 <<weiterImTag>>\
 <</replace>>\
 <</link>>\
@@ -2295,7 +2283,7 @@ Thomas steht zwischen den anderen. Niemand prüft, ob er wirklich betet — aber
 
 
 
-:: Stube: Bei Karla einrichten {"position":"50,800","size":"100,100"}
+:: Stube: Bei Karla einrichten {"position":"75,600","size":"100,100"}
 Du wirfst deine Umhängetasche auf die raue Holzpritsche neben Karla, und der dumpfe Aufschlag ist laut genug, um ein paar Köpfe herumfahren zu lassen. Die Rekruten in der Nähe weichen einen halben Schritt zurück — nicht aus Respekt vor dir, sondern aus dem instinktiven Gespür, dass es klüger ist, Abstand zu halten, wenn jemand eine Entscheidung trifft, ohne dabei zu zögern.
 Karla grinst. Schief und ohne jeden Aufwand, es freundlicher aussehen zu lassen als es ist. Sie lässt sich auf ihre eigene Decke fallen, zieht ein kurzes Messer aus dem Stiefelschaft und beginnt, mit der Ruhe eines Menschen, dem die Meinung anderer seit Jahren gleichgültig ist, den Dreck unter ihren Fingernägeln hervorzukratzen.
 „Gute Wahl, Frischling." Sie schaut dabei nicht auf. „Wer bei mir schläft, hat nachts seine Ruhe vor den Langfingern im Raum."
@@ -2309,7 +2297,7 @@ Du liegst in deiner neuen Welt.
 [[Dich hinlegen und auf den Schlaf warten. ->Stube: Jarek kommt vorbei]]
 
 
-:: Stube: Eigene Pritsche suchen {"position":"250,775","size":"100,100"}
+:: Stube: Eigene Pritsche suchen {"position":"250,575","size":"100,100"}
 Du wendest dich ab und gehst.
 Keine Erklärung. Kein Blick zurück. Nur deine Schritte durch den Mittelgang der Baracke, vorbei an Rekruten, die sich bereits zusammenrotten, Allianzen schließen, Namen austauschen — all die kleinen, hastigen Versuche von Menschen, die plötzlich allein sind und es nicht bleiben wollen.
 Du bleibst allein.
@@ -2327,7 +2315,7 @@ Heute Nacht bist du noch einfach nur müde.
 [[Versuchen, zur Ruhe zu kommen. ->Stube: Jarek kommt vorbei]]
 
 
-:: Stube: Jarek anfreunden {"position":"425,775","size":"100,100"}
+:: Stube: Jarek anfreunden {"position":"400,575","size":"100,100"}
 Du ergreifst Jareks Hand und erwiderst seinen Händedruck fest. „Das obere Bett ist gebucht." Deine Tasche landet mit einem dumpfen Schlag auf dem morschen Holzgestell.
 Jarek lächelt — schmal und ohne Überschwang, das Lächeln eines Menschen, der gelernt hat, sparsam damit umzugehen. Er lehnt sich mit dem Rücken gegen den hölzernen Pfosten und lässt den Blick kurz durch die Stube wandern.
 „Gute Entscheidung. Hier vorne zieht es zwar ordentlich durch die Türritzen — aber du bist am weitesten weg vom ewigen Theater da hinten." Er deutet mit dem Kinn zu Karla, die am Ofen noch immer ihr Revier absteckt wie ein Tier, das seinen Käfig vermisst. „Wir sollten ihr aus dem Weg gehen. Sie ist anstrengend." Eine kurze Pause. „Aber verdammt gut an der Waffe. Man hört sie in den Schenken von Ohm über ihre Kraft reden — und die Leute, die es hören, widersprechen ihr meistens nicht."
@@ -2341,7 +2329,7 @@ Es ist keine Drohung. Keine Prüfung. Nur eine ehrliche Frage von jemandem, der 
 [[Dich einfach wortlos hinlegen und das Gespräch beenden. ->Nachtruhe 1]]
 
 
-:: Stube: Jarek kommt vorbei {"position":"250,925","size":"100,100"}
+:: Stube: Jarek kommt vorbei {"position":"275,725","size":"100,100"}
 
 <<if previous() is "Stube: Bei Karla einrichten">>\
 Du streckst dich auf der harten Pritsche neben Karla aus. Sie hat sich zur Wand gedreht, den Rücken dir zugekehrt wie eine Mauer, und atmet bald tief und gleichmäßig. Das Gemurmel der Stube ebbt ab, die Talglichter sterben eins nach dem anderen, bis nur noch das Heulen des Windes bleibt.
@@ -2365,7 +2353,7 @@ Er macht keine Anstalten zu gehen, und er wartet auch auf nichts. Aber da ist di
 [[Auch schweigen. Zwei, die nichts hermachen aus dem, was sie tragen. ->Stube: Schweigen mit Jarek]]
 
 
-:: Stube: Schweigen mit Jarek {"position":"250,1050","size":"100,100"}
+:: Stube: Schweigen mit Jarek {"position":"275,850","size":"100,100"}
 
 Du sagst nichts. Was sollte es auch ändern.
 
@@ -2380,7 +2368,7 @@ Du liegst noch eine Weile wach und denkst, dass das der erste Mensch hier ist, d
 [[Die Augen schließen. ->Nachtruhe 1]]
 
 
-:: Stube: Thomas erzählt {"position":"25,1075","size":"100,100"}
+:: Stube: Thomas erzählt {"position":"75,850","size":"100,100"}
 
 Du weißt selbst nicht, warum es ausgerechnet jetzt aus dir herauskommt. Vielleicht, weil er nicht gefragt hat.
 
@@ -2395,7 +2383,7 @@ Du schläfst ein, bevor dir auffällt, dass er nie gesagt hat, wer es bei ihm wa
 [[Die Augen schließen. ->Nachtruhe 1]]
 
 
-:: Studium Aloy [nach_stube studium] {"position":"1325,275","size":"100,100"}
+:: Studium Aloy [nach_stube studium] {"position":"1550,300","size":"100,100"}
 <<set _r = setup.teachLecture("aloy")>>\
 Aloyer Staatskunde
 <div class="scenery-text"><<= setup.getStudiumText("aloy", "scenery")>></div>
@@ -2412,7 +2400,7 @@ Aloyer Staatskunde
 <<weiterImTag >>
 
 
-:: Studium Archivzugang [studium] {"position":"1175,50","size":"100,100"}
+:: Studium Archivzugang [studium] {"position":"1400,75","size":"100,100"}
 <div class="scenery-text">Halm mustert dich lange. Dann nickt er, kaum merklich, und schiebt dir ein abgegriffenes Holztäfelchen über das Pult – ein Archivzeichen, abgewetzt von vielen Händen vor dir.</div>
 <div class="voice-formal">„Du trägst Akten von der Schreibstube ins Regal und zurück. Du liest sie nicht. Du sprichst nicht über das, was du siehst. Und du fragst niemanden nach Namen.“ Er hält inne. „Das Archiv kennt keinen Rang. Es kennt nur mich. Vergiss das nicht.“</div>
 <div class="thought-box">Ein Fuß in den Schreibstuben. Militärakten, Prozessrollen, alte Verträge – sogar Abschriften aus dem Gründungsarchiv in Grodaus sollen hier durchlaufen. Wenn jemand etwas Bestimmtes suchen würde ... aber wer sollte das schon.</div>
@@ -2421,7 +2409,7 @@ Aloyer Staatskunde
 <span class="weiter-link">[[Weiter ->Studium Hub]]</span>
 
 
-:: Studium Diplomatie [studium nach_stube] {"position":"1725,275","size":"100,100"}
+:: Studium Diplomatie [studium nach_stube] {"position":"1950,300","size":"100,100"}
 <<set _r = setup.teachLecture("diplomatie")>>\
 Diplomatie & Recht
 <div class="scenery-text"><<= setup.getStudiumText("diplomatie", "scenery")>></div>
@@ -2438,7 +2426,7 @@ Diplomatie & Recht
 <<weiterImTag >>
 
 
-:: Studium Disput [studium] {"position":"1475,125","size":"100,100"}
+:: Studium Disput [studium] {"position":"1700,150","size":"100,100"}
 <div class="scenery-text">Du wagst einen Einwand – und für einen Moment hebt Halm tatsächlich eine Augenbraue. Ihr ringt um einen einzigen Satz aus der Freiheitserklärung, bis er die Hand hebt. „Falsch begründet“, sagt er. „Aber nicht dumm gedacht. Das ist mehr, als ich von den meisten hier sagen kann.“</div>
 <div class="system-alert status-positive">Wissen (Aloyer Staatskunde) vertieft.</div>
 <div class="thought-box">Er streitet gern – solange das Gegenüber etwas zu sagen hat. Das werde ich mir merken.</div>
@@ -2446,7 +2434,7 @@ Diplomatie & Recht
 <span class="weiter-link">[[Zurück ->Studium Magister]]</span>
 
 
-:: Studium Geographie [studium nach_stube] {"position":"1450,275","size":"100,100"}
+:: Studium Geographie [studium nach_stube] {"position":"1675,300","size":"100,100"}
 <<set _r = setup.teachLecture("geographie")>>\
 Geographie & Landeskunde
 <div class="scenery-text"><<= setup.getStudiumText("geographie", "scenery")>></div>
@@ -2463,7 +2451,7 @@ Geographie & Landeskunde
 <<weiterImTag >>
 
 
-:: Studium Hub [studium] {"position":"1200,450","size":"100,100"}
+:: Studium Hub [studium] {"position":"1425,475","size":"100,100"}
 <<if not $npc.magister.known>><<goto "Studium Magister Vorstellung">><</if>>\
 <<set _fresh = setup.maybeAnnounceExam()>>\
 <<if _fresh>><div class="system-alert status-info">Der Magister hat soeben die Abschlusspruefung angekuendigt.</div><</if>>\
@@ -2486,7 +2474,7 @@ An der grossen Wandtafel haengt der Stundenplan. Vier Faecher stehen heute zur W
 
 
 
-:: Studium Magister [studium] {"position":"1300,125","size":"100,100"}
+:: Studium Magister [studium] {"position":"1525,150","size":"100,100"}
 <<set _s = setup.scholarship()>>\
 Beim Magister vorsprechen
 <div class="scenery-text">Du bleibst, bis die Bänke leer sind. Halm ordnet seine Papiere, ohne aufzusehen. „Wer freiwillig bleibt, will entweder etwas wissen oder etwas erbitten“, sagt er. „Beides kostet. Du zahlst mit dem, was zwischen deinen Ohren sitzt – oder du lässt es bleiben.“</div>
@@ -2511,7 +2499,7 @@ Beim Magister vorsprechen
 <span class="weiter-link">[[Zurück in den Hörsaal ->Studium Hub]]</span>
 
 
-:: Studium Magister Vorstellung [studium] {"position":"1100,175","size":"100,100"}
+:: Studium Magister Vorstellung [studium] {"position":"1325,200","size":"100,100"}
 <<set $npc.magister.known = true>>\
 Der Magister
 <div class="scenery-text">Der Mann, der den Hörsaal betritt, ist hager bis an die Grenze des Möglichen, als hätte das viele Lesen ihm das Fleisch von den Knochen gezogen. Tinte sitzt in den Furchen seiner Finger, so tief, dass keine Bürste sie je wieder herausholt. Er setzt sich nicht. Er steht, legt ein abgegriffenes Buch aufs Pult und lässt den Blick über die Bänke wandern, langsam, als zähle er, wie viele von euch die zwei Jahre überstehen werden.</div>
@@ -2530,7 +2518,7 @@ Halm schlägt sein Buch auf. „Genug der Vorrede. Wer etwas wissen will, fragt.
 [[Den Blick senken und einfach mitschreiben. ->Studium Hub]]
 
 
-:: Studium Splitterlande [studium nach_stube] {"position":"1600,275","size":"100,100"}
+:: Studium Splitterlande [studium nach_stube] {"position":"1825,300","size":"100,100"}
 <<set _r = setup.teachLecture("splitterlande")>>\
 Die Splitterlande
 <div class="scenery-text"><<= setup.getStudiumText("splitterlande", "scenery")>></div>
@@ -2547,7 +2535,7 @@ Die Splitterlande
 <<weiterImTag >>
 
 
-:: StudiumTexte {"position":"1100,500","size":"100,100"}
+:: StudiumTexte {"position":"1325,525","size":"100,100"}
 {
   "hubIntros": [
     "Der Hoersaal der Akademie riecht nach Tinte, kaltem Stein und dem Talg der Leuchter. Nach dem Drill draussen fuehlt sich das Sitzen fast wie eine List an – bis der Magister den Raum betritt und klarmacht, dass auch Stille hier eine Form von Anstrengung ist.",
@@ -3219,7 +3207,7 @@ Die Splitterlande
 }
 
 
-:: Treppe runterrennen {"position":"1000,300","size":"100,100"}
+:: Treppe runterrennen {"position":"975,300","size":"100,100"}
 Die Panik schießt dir in die Glieder wie eisiges Wasser, und bevor du einen klaren Gedanken fassen kannst, hast du dich bereits umgeworfen und sprintest den Flur hinunter. Die Stufen der hinteren Treppe nimmst du im freien Fall, die Finger kaum am Geländer, die Stiefel auf dem glatten Stein ohne Halt.
 An der Biegung unten tritt ein Mann aus dem Schatten — und du hast keine Chance mehr zu bremsen.
 Der Aufprall ist hart und ungnädig. Papiere explodieren in alle Richtungen, eine kunstvoll versiegelte Dokumentenrolle entgleitet seinen Fingern und kracht polternd über die Steinstufen. Der Mann taumelt, greift mit beiden Händen nach dem Geländer und fängt sich mit einer Beherrschung, die unter den Umständen fast unheimlich wirkt. Dann richtet er sich auf und sieht dich an — mit einer Mischung aus Bestürzung und einer eisigen Würde, die keinen Zweifel daran lässt, dass er an Situationen gewöhnt ist, die er nicht selbst verschuldet hat.
@@ -3233,7 +3221,7 @@ Mit einer herrischen, absolut unmissverständlichen Geste deutet er auf die schw
 „Und jetzt ab mit dir — bevor ich dem Sergeanten von diesem Vorfall berichte."
 Er sagt es ohne Lautstärke. Als wäre sein Schweigen das Großzügigste, was er dir anbieten kann.
 
-<<set $npc.diplomatHannes.known = true>>
+<<set $npc.diplomatHannes.known = true>>\
 
 [[Befehl befolgen und direkt zum Kasernenhof gehen->Der Kasernenhof]]
 
