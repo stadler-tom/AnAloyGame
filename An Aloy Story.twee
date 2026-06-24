@@ -449,7 +449,6 @@ Er hebt den Zeigefinger an die Lippen. Pst.
 Dann nickt er mit dem Kinn nach vorn. Ein paar Schritte weiter stolziert ein Unteroffizier den Gang entlang — Brust raus, Nase hoch, einer von der Sorte, die ihren eigenen Schritt zählt. Direkt auf eine Stelle des Steinbodens zu, die verdächtig matt glänzt.
 
 <div class="thought-box">Öl oder Fett. Frisch. Und der Kerl steht hier wie im Parkett. Das ist kein Zufall!</div>
-
 „Schau zu", flüstert der Söldner, ohne dich anzusehen. „Oder schau weg. Aber wenn du was sagst, hast du's mir versaut, Bürschchen."
 
 [[Klappe halten und zusehen. ->03_Sidequest_wenzel_Mitspielen]]
@@ -466,7 +465,6 @@ Es ist der Schinder, der dich aus dem Tritt reißt — nicht mit einem Schlag, m
 Du siehst auf den Zettel. Deine eigene Handschrift ist es nicht. Irgendwo steht dein Name — falsch geschrieben, oder gar nicht, das erkennst du auf die Schnelle nicht.
 
 <div class="thought-box">Ein Fehler in einer Liste. Klingt nach nichts. Aber hier ist eine Liste das Einzige, was beweist, dass es mich überhaupt gibt. Besser, ich bring das in Ordnung.</div>
-
 Der Weg zur Schreibstube führt durch die hinteren Gänge der Kaserne, dorthin, wo der Stein nach Tinte und altem Papier riecht und der Lärm des Hofs verstummt.
 
 [[Zur Schreibstube. ->03_Sidequest_wenzel]]
@@ -516,13 +514,14 @@ Er dreht langsam den Kopf. Wütend ist er nicht — das ist das Seltsame. Er sie
 <<include "03_Sidequest_wenzel_finalize">>
 
 
-:: 03_Sidequest_wenzel_finalize [nach_appell] {"position":"700,2950","size":"100,100"}
+:: 03_Sidequest_wenzel_finalize [nach_appell] {"position":"700,2700","size":"100,100"}
 <<set $npc.weibelWenzel.memory.flags.sidequest03Complete = true>>\
 <<set $npc.weibelWenzel.known = true>>\
-Was war das für ein seltsamer Moment?
-Du sinierst noch etwas befor dir auffällt dass du zu spät zum Appell kommst!
 
-<<weiterImTag "Losstürmen!">>
+Was war das für ein seltsamer Moment?
+Du sinierst noch etwas befor dir auffällt dass du zu spät zum Appell kommst und noch zum Sergeanten musst !!!
+
+[[Losstürmen! ->Abendappell]] 
 
 
 :: Abendappell {"position":"850,1925","size":"100,100"}
