@@ -412,6 +412,8 @@ Und etwas passiert im Gesicht der Wand: Es bricht auf. Erst die Augen, dann der 
 <<set $npc.vasil.known = true>>\
 „Tipp." Er sagt das Wort, als würde er es auf Festigkeit prüfen. Dann legt er die Winde aus der Hand und mustert dich von unten herauf — das Gewitter zieht ein Stück weiter, ohne ganz zu verschwinden. „Na gut."
 
+Er tippt sich ans Barett. „Vasil. Vierundachtzigstes Banner. Und du bist der, der gern im Licht steht."
+
 Was dann kommt, hast du nicht erwartet. Griff. Atmung am Anschlag. Der Moment vor dem Abzug, in dem man nichts tut, gar nichts. Für einen Mann, der aussieht wie eine Wand, hat er Hände, die genau wissen, was sie tun — und eine Ruhe, die ansteckt.
 
 Dann, beim Spannen, ganz beiläufig: „Weißt du, was der Unterschied is zwischen 'nem Bolzen und 'nem Rekruten?" Pause. „Der Bolzen geht dahin, wo man hinzielt."
@@ -429,6 +431,8 @@ Du stellst dich neben ihn und sagst nichts. Er schießt. Wieder. Wieder. Die Bol
 Irgendwann, ohne ein Wort, hält er dir eine gespannte Armbrust hin. „Eine. Mal sehn."
 
 Du legst an. Der Schuss geht, wohin er geht — aber er nickt, ein kurzes, brummiges Nicken, das mehr Anerkennung ist, als die meisten hier an einem ganzen Tag bekommen. „Geht scho."
+
+Er tippt sich ans Barett. „Vasil. Vierundachtzigstes Banner. Und du bist der, der gern im Licht steht."
 
 <<= setup.setNpcAffection("vasil", 4)>>\
 <<= setup.setPlayerKnowledge("crossbow", 1)>>\
@@ -522,6 +526,231 @@ Was war das für ein seltsamer Moment?
 Du sinierst noch etwas befor dir auffällt dass du zu spät zum Appell kommst und noch zum Sergeanten musst !!!
 
 [[Losstürmen! ->Abendappell]] 
+
+
+:: 04_Sidequest_diplomaten {"position":"1350,150","size":"100,100"}
+Die Tür der Gästekammer steht einen Spalt offen. Drinnen zwei Stimmen, die du beide nicht zuordnen kannst — eine redet viel, die andere selten, aber wenn, dann fällt das Reden der ersten kurz aus.
+
+„…und ich sag dir, das war nicht der erste, der so sauber hochgeht. Erinnerst du dich an den im Frühjahr, der bei Ohm — nein, weiter nördlich, der mit dem Salz und dem anderen Kram —, der ist auch nicht einfach so. Da sitzt einer, der die Zettel vorher liest, anders kann das gar nicht —"
+
+„Hannes."
+
+„— anders kann das gar nicht laufen, weil keiner zufällig genau da steht, wo —"
+
+„Hannes. Du redest dich im Kreis. Es ist einer von innen. Das wolltest du sagen. Hast du jetzt gesagt."
+
+Eine Pause. Dann, leiser: „…ja. Hab ich."
+
+<div class="thought-box">Zwei vom einem Banner, dem Klang nach. Keine feinen Herren — die reden wie Leute, die zusammen im Dreck gelegen haben. Aber worüber, das krieg ich von hier nicht zusammen. Halbe Sätze, ein Frühjahr, ein Salz, irgendwer der Zettel liest. Brocken ohne Faden.</div>
+In deinen Händen: ein verkorkter Krug und ein versiegelter Brief. Beides muss rein.
+
+<span id="flur-wahl">\
+<div><<link "Eintreten und abliefern">>\
+    <<replace "#flur-wahl">><<goto "04_Sidequest_diplomaten_Eintreten">><</replace>>\
+<</link>></div>
+
+<div>\
+<<set _label to "Am Türspalt bleiben und die Brocken zusammensetzen" + setup.checkHint("thievery", 12)>>\
+<<link _label>>\
+    <<set _r to setup.skillCheck("thievery", 12)>>\
+    <<if _r.outcome is "fail" or _r.outcome is "fumble">>\
+        <<replace "#flur-wahl">><<goto "04_Sidequest_diplomaten_Erwischt">><</replace>>\
+    <<else>>\
+        <<set $world._lauschCrit to (_r.outcome is "crit")>>\
+        <<replace "#flur-wahl">><<goto "04_Sidequest_diplomaten_Lauschen">><</replace>>\
+    <</if>>\
+<</link>>\
+</div>
+
+<div><<link "Die Magd abpassen, die gleich das Essen bringt">>\
+    <<replace "#flur-wahl">><<goto "04_Sidequest_diplomaten_Magd">><</replace>>\
+<</link>></div>
+</span>\
+
+
+:: 04_Sidequest_diplomaten_Auftrag [einmalig interrupt] {"position":"1350,25","size":"100,100"}
+„Rekrut! Hände frei?" Der Sergeant wartet die Antwort nicht ab. Er stellt dir einen verkorkten Tonkrug auf den Tisch und legt einen versiegelten Brief daneben. „Gästekammer, oberer Gang. Zwei Diplomaten, auf Durchreise, irgendwas mit dem Banner und dem Städtebund. Der Krug ist für die, der Brief auch."
+
+Er sieht dich an, und zum ersten Mal liegt so etwas wie eine Warnung in seinem Blick.
+
+„Eins noch. Du stellst es hin, sagst deinen Spruch, kommst zurück. Du lässt dich nicht in ein Gespräch verwickeln. Mit denen redet man nicht — mit denen verschwindet man." Er schnaubt. „Ich hab mal einen Boten reingeschickt. Der kam als anderer Mensch wieder raus. Älter."
+
+<div class="thought-box">Ein Krug, ein Brief, zwei Worte und wieder weg. Klingt einfach. Klingt zu einfach für die Miene, die er gerade macht.</div>
+
+[[Zur Gästekammer. ->04_Sidequest_diplomaten]]
+
+
+:: 04_Sidequest_diplomaten_Eintreten {"position":"1150,350","size":"100,100"}
+Du gehst hinein, stellst den Krug auf den Tisch und legst den Brief daneben. „Vom Sergeanten."
+
+Jetzt siehst du sie ganz: zwei in der rot-weißen Kleidung des Banners, abgetragen, gelebt. Keine Amtsketten, kein Brokat — der eine hat einen roten Bart und eine Dokumentenrolle am Gurt, der andere einen kürzeren, gepflegten, und eine kleine Narbe neben der Nase. Söldner, die reden können. Mehr nicht, und das ist schon viel.
+
+<<set _out to "">>\
+<<if $npc.diplomatHannes.known>>\
+Der mit der Narbe sieht auf — und erkennt dich. „Dich kenn ich. Die Treppe, im Hauptgang." Kein Vorwurf diesmal, eher ein halbes Grinsen. „Lebst also noch. Und trägst inzwischen Krüge durch die Gegend, statt Leute umzurennen." Er deutet auf den Rotbart. „Das ist Bast und mich kennst du ja schon. Wir sind die, die reden, wenn das Vierundachtzigste mal nicht hauen will." Bast hebt drei Finger zum Gruß. „Und?", fragt Hannes. „Wie hält die Ausbildung dich — oder du sie?"
+
+Ihr wechselt ein paar Worte. Es ist nichts Großes. Aber es ist das schön in der Akademie, dass dich jemand fragt, wie es *dir* geht.
+<<else>>\
+Der Rotbart mustert dich, ohne den Faden zu verlieren, den er gerade trägt. „Moment. Der Krug kommt mit Gesicht." Er lehnt sich zurück. „Wer bist du denn?"
+
+Du nennst deinen Namen, deinen Stand — Rekrut, mehr gibt's nicht.
+
+„Bast", sagt er und tippt sich an die Brust. „Der Vielredner da ist Hannes. Wir sind Diplomaten vom Vierundachtzigsten." Hannes nickt dir zu. „Und, Thomas? Hält die Ausbildung dich, oder hältst du sie?" Ein paar Worte hin und her, kameradschaftlich, ohne Herablassung. Sie fragen, wie es läuft. Sie hören sogar zu.
+<</if>>\
+
+<<set _out += setup.setNpcAffection("diplomatHannes", 2)>>\
+<<set _out += setup.setNpcAffection("bast", 2)>>\
+<<set $npc.diplomatHannes.known to true>>\
+<<set $npc.bast.known to true>>\
+
+<div class="outcome-box">
+<div class="outcome-title">Was sich verändert</div>
+<<= _out>>
+</div>
+<div class="scenery-text">Draußen beginnen die Glocken zu läuten, es ist Zeit für den Unterricht</div>
+Dann winkt Hannes ab — freundlich, aber ihr seid fertig. „Geh schon. Bevor der Magister denkt, wir hätten dich behalten."
+
+
+<<include "04_Sidequest_diplomaten_finalize">>
+
+
+:: 04_Sidequest_diplomaten_Erwischt {"position":"1300,275","size":"100,100"}
+<div class="scenery-text">Du beugst dich einen Daumenbreit zu weit in den Spalt — und der Boden unter deinem Stiefel hat eine andere Meinung. Ein Knarren. Winzig. Genug.</div>
+„…einer von innen, anders —" Bast bricht ab.
+
+Zwei Schritte, die Tür fliegt auf. Der mit der Narbe füllt den Rahmen, und das Beiläufige ist weg aus seinem Gesicht.
+
+<div class="thought-box">Einer von innen. Das hab ich noch gehört, bevor die Tür aufging. Mehr nicht. Und jetzt steht der da und schaut mich an, als hätte ich gerade selbst bewiesen, wovon sie geredet haben.</div>
+„Ein Rekrut", sagt er, ohne die Stimme zu heben. „Am Türspalt. Bei genau dem Gespräch." Er sieht über die Schulter zum Rotbart. Der ist schon aufgestanden. „Den nehmen wir mit."
+
+<<set _out to setup.setPlayerSuspicion(3)>>\
+<<set _out += setup.addRumor("Bei den Transportüberfällen könnte es einen Maulwurf geben")>>\
+
+<div class="outcome-box">
+<div class="outcome-title">Das bleibt hängen</div>
+<<= _out>>
+</div>
+
+Eine Hand schließt sich um deinen Oberarm — nicht grob, aber ohne jeden Zweifel daran, dass du jetzt mitkommst. Krug und Brief bleiben stehen, wo sie stehen.
+
+[[Mitgehen ->04_Sidequest_diplomaten_Kurt]]
+
+
+:: 04_Sidequest_diplomaten_Kurt {"position":"1450,275","size":"100,100"}
+Sie bringen dich nicht weit. Eine Tür, ein Gang, und dann stehst du vor Kurt Brasner — grauhaarig, Fähnrich, einer, der schon Rekruten hat kommen und gehen sehen, als deine Eltern noch keine waren.
+
+Der Rotbart erklärt es in drei Sätzen. Kein Drama, keine Anklage. Nur: am Türspalt, beim falschen Gespräch, erwischt.
+
+Kurt sieht dich an. Lange. Dann sagt er nicht, was du erwartest — nichts über Vertrauen, nichts über Anstand.
+
+„Erwischt", sagt er nur, und das Wort fällt wie ein Stein. „Das ist es, was mich stört. Nicht dass du gehorcht hast — neugierig sind sie alle. Sondern dass du so schlecht darin warst, dass dich zwei Männer mitten im Reden gehört haben." Er tritt näher. „Wenn du schon schnüffelst, Rekrut, dann tu's so, dass es keiner merkt. Und wenn du das nicht kannst — und du kannst es offensichtlich nicht —, dann lass die Finger davon, bis du's kannst. Hab ich mich klar genug ausgedrückt, oder soll ich's dir auf dem Hof nochmal erklären, bis dir die Beine wegsacken?"
+
+Du sagst, was man da sagt. Es ist wenig, und es ist das Richtige.
+
+Hinter dir, halb amüsiert, der mit der Narbe: „Hannes, fürs Protokoll. Der Rotbart ist Bast. Wir sind die Diplomaten vom 84. Banner — und du, Rekrut, bist ab heute der, den wir am Türspalt erwischt haben. Glückwunsch zum Eindruck."
+
+<<set _out to "">>\
+<<set _out += setup.setPlayerSuspicion(5)>>\
+<<set _out += setup.setNpcAffection("kurt", -3)>>\
+<<set _out += setup.setNpcAffection("diplomatHannes", -3)>>\
+<<set _out += setup.setNpcAffection("bast", -3)>>\
+<<set _out += setup.pushNpcMemory("kurt", "hat Thomas beim Lauschen erwischt")>>\
+<<set _out += setup.pushNpcMemory("diplomatHannes", "Thomas am Tuerspalt erwischt")>>\
+<<set $npc.diplomatHannes.known to true>>\
+<<set $npc.bast.known to true>>\
+<<set $npc.kurt.known to true>>\
+
+<div class="outcome-box">
+<div class="outcome-title">Was sich verändert</div>
+<<= _out>>
+</div>
+
+<div class="thought-box">Drei Namen reicher, drei Mal schlechter angesehen. Das hab ich ja sauber hinbekommen...</div>
+
+[[Den Tag hinter dich bringen ->Auf Stube]]
+
+
+:: 04_Sidequest_diplomaten_Lauschen {"position":"1200,150","size":"100,100"}
+<div class="scenery-text">Du bleibst stehen, atmest flach und lässt die Brocken nicht mehr einzeln vorbeiziehen, sondern legst sie nebeneinander, bis sie ein Bild ergeben.</div>
+Es geht um Transporte. Zwei, die nicht ankamen. Beide an Stellen, wo kein Räuber zufällig wartet. Und um den Gedanken, den Hannes umkreist und Bast in einen Satz presst: dass keiner von außen so genau weiß, wo ein Transport schwach ist — dass einer die Wege vorher liest, bevor sie gefahren werden.
+
+<<set _wissen to setup.ueberfallWissen()>>\
+<<set _out to "">>\
+<<if _wissen gte 2>>\
+<div class="thought-box">Ich weiß genau, wovon sie reden. Karla hat mir alles erzählt: Edric, das Fieber, der Zeuge der schwieg. Und jetzt sagen es zwei vom Banner mit denselben Worten — von oben, mit Karten und Wegen. Dieselbe Sache von zwei Seiten. Und in der Mitte einer, der die Zettel vorher liest.</div>
+<<set _out += setup.setPlayerKnowledge("scholarship", 1)>>\
+<<set _out += setup.addRumor("Oben und unten dieselbe Geschichte: Die Überfälle saßen zu genau für Zufall — einer liest die Wege vorher, von innen. Und Edric im Turm passt nicht ins Bild.")>>\
+<<elseif _wissen gte 1>>\
+<div class="thought-box">Transportüberfälle — das hab ich unten schon mal aufgeschnappt, damals nur ein Halbsatz. Jetzt sagen zwei vom Banner, es sei einer von innen. Also ist mehr dran, als ich dachte.</div>
+<<set _out += setup.setPlayerKnowledge("gossip", 1)>>\
+<<set _out += setup.addRumor("Zwei Diplomaten vom Banner sind sich sicher: Die Transportüberfälle gehen auf einen Innentäter zurück, der die Wege vorher kennt. Deckt sich mit dem Gerede unten.")>>\
+<<else>>\
+<div class="thought-box">Überfallene Transporte. Einer, der von innen die Wege durchsticht. Davon hab ich noch nie gehört — aber so wie die zwei das sagen, ist da was dran. Das behalte ich.</div>
+<<set _out += setup.setPlayerKnowledge("gossip", 1)>>\
+<<set _out += setup.addRumor("Zwei Diplomaten vom Banner reden leise über die Transportüberfälle — sie glauben, einer von innen liest die Wege vorher aus.")>>\
+<</if>>\
+<<set _out += setup.setPlayerKnowledge("thievery", 1)>>\
+<<if $world._lauschCrit>>\
+<div class="scenery-text">Du bleibst eine Spur länger, als klug ist — und erwischst den Moment, in dem Hannes verstummt und Bast nicht nachsetzt. Kein Wort mehr, nur zwei Männer, die zusammen genug gesehen haben, um zu wissen, was es heißt, wenn der Verrat aus den eigenen Reihen kommt. Es ist die Stille, die dir mehr sagt als alles davor: Die beiden haben keine Angst vor Räubern. Sie haben Angst vor jemandem, den sie kennen.</div>
+<<set _out += setup.pushNpcMemory("diplomatHannes", "Thomas hat ihre Sorge gesehen, ohne erwischt zu werden")>>\
+<</if>>\
+<div class="outcome-box"> \
+<div class="outcome-title">Du nimmst etwas mit</div>
+<<= _out>>
+</div>
+<div class="thought-box">Und ich steh hier immer noch mit Krug und Brief. Die müssen trotzdem rein.</div>
+
+[[Eintreten und abliefern ->04_Sidequest_diplomaten_Eintreten]]
+
+
+:: 04_Sidequest_diplomaten_Magd {"position":"1225,475","size":"100,100"}
+Hinter dir will die Küchenmagd mit einem Tablett herein, und du trittst beiseite, um sie durchzulassen und schließt dich ihr an. Eine Selbstverständlichkeit. Du denkst dir nichts dabei.
+
+Bast schon.
+
+Mitten in dem, was Hannes gerade umkreist, hebt der Rotbart eine Hand — der Vielredner stoppt — und folgt der Magd mit den Augen quer durch den Raum.
+
+„…fürs erste belassen wir es dabei", sagt er schließlich.
+
+Hannes nutzt die Lücke mit der Schnelligkeit eines Mannes, der seit einer halben Stunde auf eine wartet. „Genug für heute. Den Rest morgen." Er klappt die Mappe zu.
+
+Du stellst Krug und Brief ab. 
+Der Rotbart starrt der Magd hinterher, Der andere verstaut seine Utensilien.
+<<set _out to "">>\
+<<if $npc.diplomatHannes.known>>\
+Hannes' Blick bleibt kurz an dir hängen. „Die Treppe", sagt er, halb festgestellt. Dann, fast amüsiert: „Heute wenigstens niemanden umgerannt. Fortschritt!" 
+Er wendet sich an den anderen, der immer noch in Gedanken bei der Magd festhängt.
+"He Bast! Schau mal wer hier ist."
+<<set _out += setup.pushNpcMemory("diplomatHannes", "hat den Treppen-Rekruten wiedererkannt")>>\
+<<else>>\
+und bemerkt dich. "Ein Rekrut der Trinken bringt?! Wie kommst du zu der Ehre?"
+Das reist den Rotbart aus seinem Tagtraum.
+<</if>>
+
+Es entsteht eine kleine illustre Unterhaltung. 
+Wie die Ausbildung läuft, ob die Küche mittlerweile auch was anderes hat als "Allerley". Die Zeit vergeht...
+<<set _out += setup.setNpcAffection("diplomatHannes", 2)>>\
+<<set _out += setup.setNpcAffection("bast", 2)>>\
+
+<div class="outcome-box">
+<div class="outcome-title">Was sich verändert</div>
+<<= _out>>
+</div>
+
+<div class="scenery-text">Draußen beginnen die Glocken zu läuten, es ist Zeit für den Unterricht</div>
+Dann winkt Hannes ab — freundlich, aber ihr seid fertig. „Geh schon. Bevor der Magister denkt, wir hätten dich behalten."
+
+
+<<include "04_Sidequest_diplomaten_finalize">>
+
+
+:: 04_Sidequest_diplomaten_finalize {"position":"1375,450","size":"100,100"}
+<<set $npc.bast.known = true>>\
+<<set $npc.diplomatHannes.known = true>>\
+<<set $npc.bast.memory.flags.sidequest04Complete = true>>\
+<<set $npc.diplomatHannes.memory.flags.sidequest04Complete = true>>\
+[[Die Glocken rufen zum Unterricht->Studium Hub]] 
+
 
 
 :: Abendappell {"position":"850,1925","size":"100,100"}
@@ -1929,7 +2158,7 @@ Du schließt die Augen.
 <</if>>
 
 
-:: Pruefung Ergebnis [pruefung] {"position":"1775,700","size":"100,100"}
+:: Pruefung Ergebnis [pruefung] {"position":"2025,650","size":"100,100"}
 <<set _g = setup.examGrade()>>\
 Das Urteil des Magisters
 <div class="scenery-text">Der Magister sammelt die Boegen ein, ohne ein Wort. Dann hebt er den Blick.</div>
@@ -1951,7 +2180,7 @@ Ergebnis: <<= _g.correct>> von <<= _g.total>> richtig (<<= _g.pct>>%) — <<= _g
 
 
 
-:: Pruefung Frage [pruefung] {"position":"1925,700","size":"100,100"}
+:: Pruefung Frage [pruefung] {"position":"2175,650","size":"100,100"}
 <set _e = $edu.exam>>\
 <<set _q = _e.queue[_e.pos]>>\
 <div class="voice-formal">Frage <<= _e.pos + 1>> von <<= _e.queue.length>> · <<= _q.subject>></div>
@@ -1989,7 +2218,7 @@ Ergebnis: <<= _g.correct>> von <<= _g.total>> richtig (<<= _g.pct>>%) — <<= _g
 <</if>>
 
 
-:: Pruefung Start [pruefung] {"position":"1850,525","size":"100,100"}
+:: Pruefung Start [pruefung] {"position":"2100,475","size":"100,100"}
 <<set _anzahl = setup.buildExam(6)>>\
 Abschlusspruefung – Kapitel 1
 <div class="scenery-text">Der Hoersaal ist heute anders. Kein Gemurmel, kein Scharren. Vor jedem Platz liegt ein Bogen Papier, und vorne steht der Magister mit dem Gesicht eines Mannes, der heute keine Ausreden hoeren will. „Ihr habt zugehoert oder ihr habt es nicht“, sagt er. „Gleich wissen wir, was davon stimmt."</div>
@@ -2593,7 +2822,7 @@ Du schläfst ein, bevor dir auffällt, dass er nie gesagt hat, wer es bei ihm wa
 [[Die Augen schließen. ->Nachtruhe 1]]
 
 
-:: Studium Aloy [nach_stube studium] {"position":"1550,300","size":"100,100"}
+:: Studium Aloy [nach_stube studium] {"position":"1800,250","size":"100,100"}
 <<set _r = setup.teachLecture("aloy")>>\
 Aloyer Staatskunde
 <div class="scenery-text"><<= setup.getStudiumText("aloy", "scenery")>></div>
@@ -2610,7 +2839,7 @@ Aloyer Staatskunde
 <<weiterImTag >>
 
 
-:: Studium Archivzugang [studium] {"position":"1400,75","size":"100,100"}
+:: Studium Archivzugang [studium] {"position":"1650,25","size":"100,100"}
 <div class="scenery-text">Halm mustert dich lange. Dann nickt er, kaum merklich, und schiebt dir ein abgegriffenes Holztäfelchen über das Pult – ein Archivzeichen, abgewetzt von vielen Händen vor dir.</div>
 <div class="voice-formal">„Du trägst Akten von der Schreibstube ins Regal und zurück. Du liest sie nicht. Du sprichst nicht über das, was du siehst. Und du fragst niemanden nach Namen.“ Er hält inne. „Das Archiv kennt keinen Rang. Es kennt nur mich. Vergiss das nicht.“</div>
 <div class="thought-box">Ein Fuß in den Schreibstuben. Militärakten, Prozessrollen, alte Verträge – sogar Abschriften aus dem Gründungsarchiv in Grodaus sollen hier durchlaufen. Wenn jemand etwas Bestimmtes suchen würde ... aber wer sollte das schon.</div>
@@ -2619,7 +2848,7 @@ Aloyer Staatskunde
 <span class="weiter-link">[[Weiter ->Studium Hub]]</span>
 
 
-:: Studium Diplomatie [studium nach_stube] {"position":"1950,300","size":"100,100"}
+:: Studium Diplomatie [studium nach_stube] {"position":"2200,250","size":"100,100"}
 <<set _r = setup.teachLecture("diplomatie")>>\
 Diplomatie & Recht
 <div class="scenery-text"><<= setup.getStudiumText("diplomatie", "scenery")>></div>
@@ -2636,7 +2865,7 @@ Diplomatie & Recht
 <<weiterImTag >>
 
 
-:: Studium Disput [studium] {"position":"1700,150","size":"100,100"}
+:: Studium Disput [studium] {"position":"1950,100","size":"100,100"}
 <div class="scenery-text">Du wagst einen Einwand – und für einen Moment hebt Halm tatsächlich eine Augenbraue. Ihr ringt um einen einzigen Satz aus der Freiheitserklärung, bis er die Hand hebt. „Falsch begründet“, sagt er. „Aber nicht dumm gedacht. Das ist mehr, als ich von den meisten hier sagen kann.“</div>
 <div class="system-alert status-positive">Wissen (Aloyer Staatskunde) vertieft.</div>
 <div class="thought-box">Er streitet gern – solange das Gegenüber etwas zu sagen hat. Das werde ich mir merken.</div>
@@ -2644,7 +2873,7 @@ Diplomatie & Recht
 <span class="weiter-link">[[Zurück ->Studium Magister]]</span>
 
 
-:: Studium Geographie [studium nach_stube] {"position":"1675,300","size":"100,100"}
+:: Studium Geographie [studium nach_stube] {"position":"1925,250","size":"100,100"}
 <<set _r = setup.teachLecture("geographie")>>\
 Geographie & Landeskunde
 <div class="scenery-text"><<= setup.getStudiumText("geographie", "scenery")>></div>
@@ -2661,7 +2890,7 @@ Geographie & Landeskunde
 <<weiterImTag >>
 
 
-:: Studium Hub [studium] {"position":"1425,475","size":"100,100"}
+:: Studium Hub [studium] {"position":"1675,425","size":"100,100"}
 <<if not $npc.magister.known>><<goto "Studium Magister Vorstellung">><</if>>\
 <<set _fresh = setup.maybeAnnounceExam()>>\
 <<if _fresh>><div class="system-alert status-info">Der Magister hat soeben die Abschlusspruefung angekuendigt.</div><</if>>\
@@ -2684,7 +2913,7 @@ An der grossen Wandtafel haengt der Stundenplan. Vier Faecher stehen heute zur W
 
 
 
-:: Studium Magister [studium] {"position":"1525,150","size":"100,100"}
+:: Studium Magister [studium] {"position":"1775,100","size":"100,100"}
 <<set _s = setup.scholarship()>>\
 Beim Magister vorsprechen
 <div class="scenery-text">Du bleibst, bis die Bänke leer sind. Halm ordnet seine Papiere, ohne aufzusehen. „Wer freiwillig bleibt, will entweder etwas wissen oder etwas erbitten“, sagt er. „Beides kostet. Du zahlst mit dem, was zwischen deinen Ohren sitzt – oder du lässt es bleiben.“</div>
@@ -2709,7 +2938,7 @@ Beim Magister vorsprechen
 <span class="weiter-link">[[Zurück in den Hörsaal ->Studium Hub]]</span>
 
 
-:: Studium Magister Vorstellung [studium] {"position":"1325,200","size":"100,100"}
+:: Studium Magister Vorstellung [studium] {"position":"1575,150","size":"100,100"}
 <<set $npc.magister.known = true>>\
 Der Magister
 <div class="scenery-text">Der Mann, der den Hörsaal betritt, ist hager bis an die Grenze des Möglichen, als hätte das viele Lesen ihm das Fleisch von den Knochen gezogen. Tinte sitzt in den Furchen seiner Finger, so tief, dass keine Bürste sie je wieder herausholt. Er setzt sich nicht. Er steht, legt ein abgegriffenes Buch aufs Pult und lässt den Blick über die Bänke wandern, langsam, als zähle er, wie viele von euch die zwei Jahre überstehen werden.</div>
@@ -2728,7 +2957,7 @@ Halm schlägt sein Buch auf. „Genug der Vorrede. Wer etwas wissen will, fragt.
 [[Den Blick senken und einfach mitschreiben. ->Studium Hub]]
 
 
-:: Studium Splitterlande [studium nach_stube] {"position":"1825,300","size":"100,100"}
+:: Studium Splitterlande [studium nach_stube] {"position":"2075,250","size":"100,100"}
 <<set _r = setup.teachLecture("splitterlande")>>\
 Die Splitterlande
 <div class="scenery-text"><<= setup.getStudiumText("splitterlande", "scenery")>></div>
@@ -2745,7 +2974,7 @@ Die Splitterlande
 <<weiterImTag >>
 
 
-:: StudiumTexte {"position":"1325,525","size":"100,100"}
+:: StudiumTexte {"position":"1700,525","size":"100,100"}
 {
   "hubIntros": [
     "Der Hoersaal der Akademie riecht nach Tinte, kaltem Stein und dem Talg der Leuchter. Nach dem Drill draussen fuehlt sich das Sitzen fast wie eine List an – bis der Magister den Raum betritt und klarmacht, dass auch Stille hier eine Form von Anstrengung ist.",
@@ -3623,6 +3852,9 @@ setup.interruptPrio     = {};   // NEU: höher = wird zuerst gefeuert
 setup.interruptCond["Story002_Taverne_mit_Lars_Und_Hadde"] = w => w.day >= 8;
 setup.interruptPrio["Story002_Taverne_mit_Lars_Und_Hadde"] = 60;
 setup.interruptCond["Story003_ErsterMorgen"] = w => w.day == 2;
+setup.interruptCond["04_Sidequest_diplomaten_Auftrag"] = w => w.day >= 20
+    && State.variables.npc.karla.memory.flags.sidequest00Complete === true;
+setup.interruptPrio["04_Sidequest_diplomaten_Auftrag"] = 45;
 
 
 /* ============ SIDEQUEST-REGISTER ============ */
@@ -5071,6 +5303,36 @@ setup.spendScholarship = function (cost) {
     return true;
 };
 
+
+/*==============================================================
+    QUEST - HELPERFUNKTIONEN
+==============================================================*/
+
+
+/* Wieviel weiß Thomas über die Transportüberfälle?
+   0 = nichts | 1 = ein bisschen (Gerücht aufgeschnappt) | 2 = viel (Karla hat erzählt) */
+setup.ueberfallWissen = function () {
+    var npc    = State.variables.npc;
+    var player = State.variables.player;
+
+    // Stufe 2: Karla hat es in ihrer Sidequest ausführlich erzählt
+    if (npc && npc.karla && npc.karla.memory && npc.karla.memory.flags &&
+        npc.karla.memory.flags.erzaehlte_von_ueberfaellen) {
+        return 2;
+    }
+
+    // Stufe 1: nur ein Gerücht aus dem Minigame aufgeschnappt
+    if (player && Array.isArray(player.rumors)) {
+        var hat = player.rumors.some(function (r) {
+            var t = (r || "").toLowerCase();
+            return t.indexOf("transport") !== -1 || t.indexOf("überf") !== -1;
+        });
+        if (hat) return 1;
+    }
+
+    return 0;
+};
+
 :: StoryStylesheet [stylesheet]
 /* STANDARD = NICHT zentriert */
 .passage {
@@ -5471,4 +5733,18 @@ setup.spendScholarship = function (cost) {
     color: #fff;
     transform: translateX(4px);
     cursor: pointer;
+}
+.outcome-box {
+    border-left: 3px solid #8a7a5c;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 0.6em 0.9em;
+    margin: 1em 0;
+    border-radius: 3px;
+}
+.outcome-title {
+    font-variant: small-caps;
+    letter-spacing: 0.08em;
+    opacity: 0.7;
+    font-size: 0.85em;
+    margin-bottom: 0.4em;
 }
