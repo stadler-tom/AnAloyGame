@@ -945,7 +945,6 @@ Du bist jetzt drin.
 :: Event_Schlaegerei {"position":"2725,1600","size":"100,100"}
 <<if $player.knowledge.combat == 0>>
     Es hört sich an als würden zwei Rekruten streiten.
-    [[Versuchen zu schlafen ->Kap1_Tagesstart]]
 <<elseif $player.knowledge.combat == 10>>
     Zwei Rekruten gehen sich an die Gurgel — doch als du dich aufrichtest, verstummen sie. Vor deiner Kampferfahrung haben sie Respekt.
     
@@ -983,11 +982,6 @@ Du bist jetzt drin.
                     <<= setup.setPlayerStat('discipline', -1)>>\
                     [[Zur Pritsche humpeln ->Kap1_Tagesstart]]
                 <</if>>\
-            <</replace>>\
-        <</link>>\
-        <<link 'Sich abwenden und wegschauen.'>>\
-            <<replace "#stubeFightJoice">>\
-                [[Versuchen zu schlafen ->Kap1_Tagesstart]]
             <</replace>>\
         <</link>>\
     </span>
@@ -2489,7 +2483,7 @@ Vers. 0.8.0
 
     <div class="center-link">
         <<timed 4500ms>>
-            [[Weiter||bye]] 
+            [[Weiter|bye]] 
         <</timed>>
     </div>
 </div>
@@ -2562,7 +2556,7 @@ Und dann, als die Zeremonie verklingt, wandern deine Gedanken zu den beiden Mens
 <div class="system-alert status-positive">KAPITEL 1 ABGESCHLOSSEN — Die Grundausbildung ist beendet. Aus dem kranken Jungen ist ein Soldat geworden.</div>
 <<run setup.kapitel1Abschliessen()>>\
 
-[[ "Was kommt, kommt."||Kapitel 2]]
+[[ "Was kommt, kommt."|Kapitel 2]]
 
 
 :: Nachmittag Cannon {"position":"725,1475","size":"100,100"}

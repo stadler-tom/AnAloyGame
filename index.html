@@ -3823,7 +3823,6 @@ Du bist jetzt drin.
 &lt;&lt;set $world.currentGossipStory = null&gt;&gt;\
 [[Schlafen -&gt;Kap1_Tagesstart]]</tw-passagedata><tw-passagedata pid="73" name="Event_Schlaegerei" tags="" position="2725,1600" size="100,100">&lt;&lt;if $player.knowledge.combat == 0&gt;&gt;
     Es hört sich an als würden zwei Rekruten streiten.
-    [[Versuchen zu schlafen -&gt;Kap1_Tagesstart]]
 &lt;&lt;elseif $player.knowledge.combat == 10&gt;&gt;
     Zwei Rekruten gehen sich an die Gurgel — doch als du dich aufrichtest, verstummen sie. Vor deiner Kampferfahrung haben sie Respekt.
     
@@ -3861,11 +3860,6 @@ Du bist jetzt drin.
                     &lt;&lt;= setup.setPlayerStat(&#39;discipline&#39;, -1)&gt;&gt;\
                     [[Zur Pritsche humpeln -&gt;Kap1_Tagesstart]]
                 &lt;&lt;/if&gt;&gt;\
-            &lt;&lt;/replace&gt;&gt;\
-        &lt;&lt;/link&gt;&gt;\
-        &lt;&lt;link &#39;Sich abwenden und wegschauen.&#39;&gt;&gt;\
-            &lt;&lt;replace &quot;#stubeFightJoice&quot;&gt;&gt;\
-                [[Versuchen zu schlafen -&gt;Kap1_Tagesstart]]
             &lt;&lt;/replace&gt;&gt;\
         &lt;&lt;/link&gt;&gt;\
     &lt;/span&gt;
@@ -5841,7 +5835,7 @@ Und dann, als die Zeremonie verklingt, wandern deine Gedanken zu den beiden Mens
 &lt;div class=&quot;system-alert status-positive&quot;&gt;KAPITEL 1 ABGESCHLOSSEN — Die Grundausbildung ist beendet. Aus dem kranken Jungen ist ein Soldat geworden.&lt;/div&gt;
 &lt;&lt;run setup.kapitel1Abschliessen()&gt;&gt;\
 
-[[ &quot;Was kommt, kommt.&quot;||Kapitel 2]]</tw-passagedata><tw-passagedata pid="151" name="StoryInit" tags="" position="0,0" size="100,100">&lt;&lt;include &quot;InitPlayer&quot;&gt;&gt;
+[[ &quot;Was kommt, kommt.&quot;|Kapitel 2]]</tw-passagedata><tw-passagedata pid="151" name="StoryInit" tags="" position="0,0" size="100,100">&lt;&lt;include &quot;InitPlayer&quot;&gt;&gt;
 &lt;&lt;include &quot;InitNPC&quot;&gt;&gt;
 &lt;&lt;include &quot;InitWorld&quot;&gt;&gt;
 &lt;&lt;include &quot;InitStudium&quot;&gt;&gt;
@@ -6866,7 +6860,7 @@ Nicht plötzlich – eher so, als würde die Müdigkeit sich einfach neben dich 
 
     &lt;div class=&quot;center-link&quot;&gt;
         &lt;&lt;timed 4500ms&gt;&gt;
-            [[Weiter||bye]] 
+            [[Weiter|bye]] 
         &lt;&lt;/timed&gt;&gt;
     &lt;/div&gt;
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="179" name="bye" tags="" position="1050,4475" size="100,100">Danke fürs Spielen!
