@@ -1661,68 +1661,6 @@ Der Sergeant am hölzernen Tisch blickt von seinen Listen auf und bellt:
 [["Ein junger Mann, bereit für die Ausbildung."->Das Erwachen]]
 
 
-:: Jarek Tester {"position":"3000,125","size":"100,100"}
-\:: DEBUG_Menu
-<h3>— DEBUG / Quest-Sprungbrett —</h3>
-
-''Jarek-Kette:''
-<<link "Setup S1 (Vorlesung)">>
-  <<set $npc.jarek.memory.flags.s0_done = true>>
-  <<set $npc.magister.known = true>>\
-  <<goto "Jarek_S1_Vorlesung">>
-<</link>>
-<<link "Setup S2 (Test)">>
-  <<set $npc.jarek.memory.flags.s1_seen = true>>
-  <<goto "Jarek_S2_Angebot">>
-<</link>>
-<<link "Setup S3 (Lüge)">>
-  <<set $npc.jarek.memory.flags.s2_done = true>>
-  <<goto "Jarek_S3_Start">>
-<</link>>
-<<link "Setup S4 BEFUGT (mit Zeichen)">>
-  <<set $npc.jarek.memory.flags.s3_zugesagt = true>>
-  <<set $edu.archivzugang = true>>
-  <<goto "Jarek_S4_Archiv">>
-<</link>>
-<<link "Setup S4 UNBEFUGT (ohne Zeichen)">>
-  <<set $npc.jarek.memory.flags.s3_zugesagt = true>>
-  <<set $edu.archivzugang = false>>
-  <<goto "Jarek_S4_Archiv">>
-<</link>>
-''S06 Gestehen — Direktsprung:''
-<<link "Gestehen BEFUGT (sofort)">>
-  <<set $edu.archivzugang = true>>
-  <<set $npc.jarek.memory.flags.spaet_gestanden = false>>
-  <<goto "S06_Gestehen">>
-<</link>>
-<<link "Gestehen UNBEFUGT (sofort)">>
-  <<set $edu.archivzugang = false>>
-  <<set $npc.jarek.memory.flags.spaet_gestanden = false>>
-  <<goto "S06_Gestehen">>
-<</link>>
-<<link "Gestehen BEFUGT (verspätet)">>
-  <<set $edu.archivzugang = true>>
-  <<set $npc.jarek.memory.flags.spaet_gestanden = true>>
-  <<goto "S06_Gestehen">>
-<</link>>
-<<link "Gestehen UNBEFUGT (verspätet)">>
-  <<set $edu.archivzugang = false>>
-  <<set $npc.jarek.memory.flags.spaet_gestanden = true>>
-  <<goto "S06_Gestehen">>
-<</link>>
-
-''Stellschrauben:''
-<<link "aloy = 5 (begreift selbst)">><<set $player.knowledge.aloy = 5>><</link>>
-<<link "aloy = 0 (Jarek erklärt)">><<set $player.knowledge.aloy = 0>><</link>>
-<<link "ahnung an">><<set $npc.jarek.memory.flags.ahnung = true>><</link>>
-<<link "combat = 0 / 10">><<set $player.knowledge.combat = 0>><</link>>
-
-<<link "↻ Flags zurücksetzen">>
-  <<set $npc.jarek.memory.flags = {}>>
-  <<goto "DEBUG_Menu">>
-<</link>>
-
-
 :: Jarek_S1_Vorlesung [interrupt einmalig] {"position":"2800,75","size":"100,100"}
 <<set $npc.jarek.memory.flags.s1_seen = true>>\
 Der Hörsaal ist kalt — die Akademie spart Holz für Räume, in denen gedacht statt gekämpft wird. Die Rekruten sitzen dicht gedrängt auf den Bänken, mehr aus Wärmebedürfnis als aus Wissensdurst, und über allem liegt der trockene Geruch von Staub und altem Papier.
@@ -5063,7 +5001,7 @@ Dann sieht sie dich an, und in ihrem Blick liegt eine Frage, die größer ist al
 <<weiterImTag "Weiter">>
 
 
-:: karla_S4_karla_loest_selbst [interrupt einmalig nach_stube] {"position":"475,3950","size":"100,100"}
+:: karla_S4_karla_loest_selbst [einmalig nach_stube] {"position":"500,3975","size":"100,100"}
 <<set _recht = ($player.knowledge.diplomatie || 0) > 0 and ($player.knowledge.diplomatie || 0) < 3>>\
 <<set _mag = $npc.magister.affection > 2 and $npc.magister.affection < 4>>\
 Karla findet dich, und diesmal wartet sie nicht an der Mauer. Sie kommt direkt auf dich zu, einen gefalteten Zettel in der Hand, und in ihrem Gesicht liegt etwas zwischen Triumph und Vorwurf.
@@ -5657,7 +5595,7 @@ setup.interruptPrio["Kapitel1_Ende"] = 90;
 
 /* ============ SIDEQUEST-REGISTER ============ */
 setup.sidequests = {
-  karla_01: { npc: "karla", threshold: 5, completeFlag: "sidequest00Complete", start: "00_Sidequest_karla", priority: 10 },
+  //karla_01: { npc: "karla", threshold: 5, completeFlag: "sidequest00Complete", start: "00_Sidequest_karla", priority: 10 },
   //jarek_01: { npc: "jarek", threshold: 5, completeFlag: "sidequest01Complete", start: "01_Sidequest_jarek", priority: 10 }
   // neue Quest = einfach eine Zeile mehr
 };
