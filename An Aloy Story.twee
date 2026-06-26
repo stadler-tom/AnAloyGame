@@ -26,331 +26,6 @@ An Aloy Story
 }
 
 
-:: 00_Sidequest_karla {"position":"25,1825","size":"100,100"}
-Die anderen Rekruten verschwinden zwischen den Zelten, und du willst gerade denselben Weg nehmen, als Karlas Stimme dich trifft — nicht laut, aber so, dass sie keinen Widerspruch einkalkuliert.
-
-„Du. Komm mit."
-
-Sie sieht dich nicht dabei an. Dreht sich einfach um und geht davon, als wäre bereits beschlossen, dass du folgst.
-
-<div class="scenery-text">Der Appellplatz liegt fast leer im Abendlicht. Irgendwo tropft Wasser in eine Pfütze. Der Wind riecht nach Rauch und nassem Stein.</div>
-
-Du könntest so tun, als hättest du es nicht gehört.
-
-[[Ihr folgen. ->00_Sidequest_karla_Karla_Privat_Einstieg]]
-[[Einfach weitergehen — als hättest du nichts gehört. ->00_Sidequest_karla_Karla_Ablehnung]]
-
-
-:: 00_Sidequest_karla_Karla_Ablehnung {"position":"225,1750","size":"100,100"}
-Du gehst weiter. Deine Stiefel knirschen auf dem Kies, und du tust so, als wärst du bereits zu weit weg, um noch umzukehren.
-
-Hinter dir: Stille.
-
-Keine zweite Aufforderung. Keine Drohung. Nur das leise Geräusch von jemandem, der sich einfach umdreht und geht.
-
-<div class="thought-box">Vielleicht war es nichts. Vielleicht war es eine Chance. Ich werd es nicht wissen.</div>
-
-<<= setup.setNpcAffection("karla", -2)>>
-<<include "00_Sidequest_karla_finalize">>
-
-
-:: 00_Sidequest_karla_Karla_Ablehnung_Spaet {"position":"225,2075","size":"100,100"}
-Du fängst die Lanze auf — und hältst sie einen Moment lang in den Händen, bevor du sie langsam wieder zum Boden senkst.
-
-„Nicht heute."
-
-Karla sieht dich an. Ihr Gesicht verändert sich nicht.
-
-„Warum."
-
-Kein Fragezeichen. Nur das Wort, hingestellt wie ein Block.
-
-Du nennst deinen Grund — Erschöpfung, ein steifer Nacken, was auch immer dir als erstes kommt. Sie hört zu. Oder sie tut so als ob.
-
-Dann nimmt sie dir die Lanze aus der Hand. Ohne Kommentar. Ohne sie fallen zu lassen.
-
-„Ein anderes Mal vielleicht", sagt sie. Und du weißt nicht, ob das eine Drohung ist oder ein Angebot.
-
-<div class="thought-box">Sie hat nicht widersprochen. Aber sie hat auch nichts vergessen.</div>
-
-<<= setup.setNpcAffection("karla", -1)>>
-<<include "00_Sidequest_karla_finalize">>
-
-
-:: 00_Sidequest_karla_Karla_Ansprechen {"position":"225,1850","size":"100,100"}
-„Von links", sagst du. „Du weichst zurück."
-
-Karla sieht dich an.
-
-Die Stille, die danach kommt, hat eine Textur — sie ist nicht leer, sie ist voll von etwas, das sie gerade in Schach hält.
-
-Dann entspannt sich ihr Kiefer, aber nicht ihr Blick.
-
-„Das hab ich nicht gefragt."
-
-Sie stellt die Lanze gegen den Holzpfosten. Das Training ist vorbei. Du weißt es, noch bevor sie sich umdreht.
-
-„Geh schlafen, Frischling."
-
-Keine Aggression. Nur eine Tür, die sich schließt — ruhig und endgültig.
-
-<div class="thought-box">Ich hab es richtig benannt. Und genau das war falsch. Nicht das Sehen — das Sagen.</div>
-
-<<= setup.setNpcAffection("karla", 1)>>
-<<include "00_Sidequest_karla_finalize">>
-
-
-:: 00_Sidequest_karla_Karla_Privat_Einstieg {"position":"0,2125","size":"100,100"}
-Sie führt dich hinter die Stallungen, an den Wachen vorbei, durch eine Lücke zwischen zwei Planwagen — und dann stehst du auf einem kleinen, abgegrenzten Flecken Erde, den das Lager vergessen hat. Ein paar ausgeblichene Strohballen, ein ramponierter Holzpfosten. Kein Talglicht. Nur das letzte Tageslicht, das von Westen her gegen die Palisaden drückt.
-
-Karla dreht sich um. Ihre Augen wandern einmal über dich — prüfend, kurz, ohne Erklärung.
-
-<div class="thought-box">Sie hat mich nicht hergebracht, um zu reden. Das ist klar. Aber was sie will, ist noch nicht klar.</div>
-
-„Du hast heute auf dem Platz nicht gezuckt", sagt sie. Keine Frage. Keine Schmeichelei. Nur eine Feststellung, die sie offenbar für relevant hält.
-
-Sie hebt eine der abgenutzten Übungslanzen vom Boden auf und wirft sie dir zu. Kein „fang" davor. Einfach werfen.
-
-„Ich brauche jemanden zum Üben. Jetzt. Du redest mit niemanden darüber." Sie dreht die eigene Lanze zwischen den Handflächen, locker und gewohnt. „Fang an."
-
-<div class="thought-box">Kein Bitte. Kein Warum. Einfach eine Tatsache, die sie ausgesprochen hat und die jetzt im Raum steht wie ein Werkzeug, das man entweder anfasst oder lässt.</div>
-
-[[Mit ihr üben — einfach mitmachen, ohne Fragen. ->00_Sidequest_karla_Karla_Training_Passiv]]
-[[Mit ihr üben — und dabei genau beobachten, wie sie kämpft. ->00_Sidequest_karla_Karla_Training_Aktiv]]
-[[Die Lanze auffangen und trotzdem ablehnen. Einen Grund nennen. ->00_Sidequest_karla_Karla_Ablehnung_Spaet]]
-
-
-:: 00_Sidequest_karla_Karla_Schweigen {"position":"225,2175","size":"100,100"}
-Du hebst die Lanze wieder in Position.
-
-Keine Bemerkung. Kein Blick, der zu lange bleibt. Du hast es gesehen — und du lässt es dort, wo es ist.
-
-Karla steht einen Moment lang still. Ihre Augen sind auf dir, und du spürst es, ohne hinzusehen. Dann dreht sie die Lanze langsam in den Händen und greift wieder an.
-
-Das Training geht weiter. Aber es ist jetzt anders — ruhiger, präziser. Als hätte sie beschlossen, dass du es verdient hast, ernst genommen zu werden.
-
-<div class="scenery-text">Irgendwo jenseits der Palisaden ruft eine Nachtwache ihren Posten. Das Licht ist fast weg. Der Abend riecht nach Erde und altem Holz.</div>
-
-Als sie schließlich abbricht, steht sie einen Moment lang mit dem Rücken zu dir und putzt den Schaft mit dem Ärmel ab. Dann, ohne sich umzudrehen:
-
-„Du hast ein gutes Auge."
-
-Kein Dankeschön. Kein Lächeln. Nur diese eine Feststellung — abgegeben wie eine Münze, die man auf einen Tisch legt.
-
-Sie geht.
-
-<div class="thought-box">Ich weiß nicht, was ich ihr gerade gegeben habe. Aber es war etwas. Das hab ich gespürt.</div>
-
-<<= setup.setNpcAffection("karla", 6)>>
-<<= setup.pushNpcMemory("karla", "hat_geschwiegen")>>
-<<include "00_Sidequest_karla_finalize">>
-
-
-:: 00_Sidequest_karla_Karla_Training_Aktiv {"position":"100,1925","size":"100,100"}
-Du fängst die Lanze auf — aber diesmal schaust du nicht auf deine eigenen Hände. Du schaust auf sie.
-
-Karla greift an. Schnell. Direkt. Von rechts, immer von rechts — und du bemerkst es erst beim dritten Mal: Wenn du von links kommst, macht sie einen Schritt zurück. Kein Ausweichen, keine Parade. Einen Schritt zurück. Den Körper leicht weggedreht. Als wäre es eine Gewohnheit.
-
-<div class="thought-box">Sie zieht die Linke nach. Das ist ein Reflex. Und Reflexe dieser Art hat man nicht gelernt — die hat man eingeübt, weil man musste.</div>
-
-Du greifst noch einmal von links an. Langsam diesmal, tiefer, mit mehr Gewicht auf der Klinge.
-
-Karla pariert — aber einen Herzschlag zu spät. Der Schaft streift ihre Schulter. Nicht stark. Nicht schmerzhaft. Aber er trifft.
-
-Sie hält inne.
-
-Ihr Blick sucht deinen. Kalt und aufmerksam wie der einer Frau, die gerade etwas bewertet.
-
-<div class="thought-box">Sie hat bemerkt das ich es gesehen habe. Soll ich sie darauf ansprechen oder nicht?</div>
-
-[[Nichts sagen. Einfach weitermachen, als wäre nichts gewesen. ->00_Sidequest_karla_Karla_Schweigen]]
-[[Ansprechen, was du gesehen hast. ->00_Sidequest_karla_Karla_Ansprechen]]
-
-
-:: 00_Sidequest_karla_Karla_Training_Passiv {"position":"225,1975","size":"100,100"}
-Du fängst die Lanze auf und nimmst die Position ein, die der Schinder euch eingeprügelt hat. Karla greift sofort an — schnell, direkt, ohne Vorwarnung — und du parierst, wie du es gelernt hast. Schlecht, aber instinktiv. Sie setzt nach. Du weichst aus.
-
-Es ist kein Kampf. Es ist auch kein Gespräch. Es ist etwas dazwischen — ein Takt aus Holz und Atem und dem dumpfen Aufschlag zweier Schäfte, die gegeneinander drücken.
-
-<div class="scenery-text">Karla kämpft, als wäre der Gegner schon besiegt — als wäre das Ergebnis bereits entschieden und das Training nur noch die Form, die es annimmt. Ihr Körper ist eine Aussage.</div>
-
-Irgendwann hört sie auf. Kein Signal, kein Wort — sie tritt einfach einen Schritt zurück und lässt die Lanze sinken. Ihr Atem geht gleichmäßig. Deiner nicht.
-
-Sie sieht dich kurz an.
-
-„Morgen wieder", sagt sie. Und geht.
-
-<div class="thought-box">Keine Erklärung. Keine Bewertung. Als wäre das hier eine Selbstverständlichkeit — als hätte sie nie etwas anderes erwartet als dass du mitkommst und mitmachst und den Mund hältst.</div>
-
-<<= setup.setNpcAffection("karla", 3)>>
-<<include "00_Sidequest_karla_finalize">>
-
-
-:: 00_Sidequest_karla_finalize {"position":"400,1975","size":"100,100"}
-<<run setup.completeSidequest("karla_01")>>
-[[in die Stube gehen->Auf Stube]]
-
-
-:: 01_Sidequest_jarek {"position":"300,2325","size":"100,100"}
-<<set $npc.jarek.known = true>>
-Die Reihen lösen sich, Rekruten zerstreuen sich in Richtung Stube. Du bist schon halb im Gehen, als Jarek neben dir auftaucht — nicht plötzlich, nicht eilig. Er ist einfach da, als wäre er die ganze Zeit dort gewesen und du hättest es nur nicht bemerkt.
-
-Er spricht leise, ohne dich anzusehen, den Blick geradeaus auf den leeren Kies gerichtet.
-
-„Der Sergeant sucht zwei Mann für die Schreibstube. Alte Verzeichnisse umräumen, Botengänge. Stumpfe Arbeit." Eine kurze Pause. „Ich hab mich gemeldet. Für zwei. Du fällst nicht auf, du redest nicht viel — das passt."
-
-<div class="thought-box">Er fragt nicht, ob ich will. Er stellt fest, dass ich passe. Wie ein Werkzeug, das die richtige Form hat.</div>
-
-Er bleibt stehen, dreht sich halb zu dir. Im letzten Tageslicht wirken seine dunklen Augen ruhig wie immer — und doch liegt etwas darunter, das du nicht benennen kannst.
-
-„Es ist trocken und warm da drin. Besser als Exerzieren im Schlamm. Kommst du mit?"
-
-[[Mitgehen. Warum nicht. ->01_Sidequest_jarek_Einstieg]]
-[[Ablehnen. Du hast genug für heute. ->01_Sidequest_jarek_Ablehnung]]
-
-
-:: 01_Sidequest_jarek_Ablehnung {"position":"0,2525","size":"100,100"}
-„Nicht heute", sagst du. „Ich bin durch."
-
-Jarek nickt. Kein Vorwurf, keine zweite Frage. Er hatte die Antwort offenbar schon einkalkuliert, bevor er gefragt hat.
-
-„Verständlich." Er sieht dich noch einen Moment an — diesen ruhigen, abwägenden Blick, der nichts preisgibt. „Dann nehm ich jemand anderen."
-
-Er geht. Aufrecht, unauffällig, schon wieder Teil der Kulisse.
-
-<div class="thought-box">Er hat mich nicht gebraucht. Er hat geprüft. Und ich hab eine Tür zugemacht, von der ich nicht mal wusste, dass sie offen stand.</div>
-
-<<= setup.setNpcAffection("jarek", -2)>>
-<<include "01_Sidequest_jarek_finalize">>
-
-
-:: 01_Sidequest_jarek_Ablehnung_Spaet {"position":"325,2575","size":"100,100"}
-Du legst den Folianten zur Seite, den du gerade in den Händen hattest.
-
-„Mein Kopf ist nicht hier", sagst du. „Ich bring euch mehr durcheinander, als ich helfe."
-
-Der Schreiber winkt gleichgültig ab. Jarek sieht dich an — kurz, ruhig, ohne dich aufzuhalten.
-
-„Geh schlafen", sagt er. Keine Spitze, kein Vorwurf. Nur das Wort.
-
-Aber als du dich umdrehst, spürst du seinen Blick noch im Rücken. Wägend. Als hätte er sich gerade eine Antwort notiert, ohne eine Frage gestellt zu haben.
-
-<div class="thought-box">Er hat mir die Tür offen gelassen. Ich bin nur nicht durchgegangen. Das ist nicht dasselbe wie ein Nein — aber es ist auch kein Ja.</div>
-
-<<= setup.setNpcAffection("jarek", -1)>>
-<<include "01_Sidequest_jarek_finalize">>
-
-
-:: 01_Sidequest_jarek_Ansprechen {"position":"225,2575","size":"100,100"}
-„Was ist das für ein Band?", fragst du leise. „Du liest das, als würdest du wissen, was drinsteht."
-
-Jarek erstarrt nicht. Nichts an ihm verändert sich sichtbar — und genau das ist es, was dich erschreckt. Er wird nur einen Hauch zu still, zu glatt, wie Wasser kurz bevor es zufriert.
-
-Der Schreiber ist herangetreten, nimmt den Band wortlos an sich, mustert ihn kurz und legt ihn zurück ins Regal. Der Moment ist vorbei. Was auch immer Jarek vorhatte — es ist ihm gerade aus den Händen geglitten.
-
-„Ich kann ein bisschen lesen", sagt Jarek schließlich. Tonlos. „Mein Vater hat darauf bestanden. Damit man uns in den Verträgen nicht übers Ohr haut."
-
-Es ist eine glatte Antwort. Eine gute Antwort. Und du weißt mit jeder Faser, dass sie nicht stimmt — oder höchstens zur Hälfte.
-
-Er sieht dich an, und der ruhige, freundliche Jarek ist immer noch da. Aber dahinter steht jetzt jemand, der dich neu vermessen hat und zu einem Schluss gekommen ist, der dir nicht gefällt.
-
-„Du beobachtest aufmerksam", sagt er. „Das ist eine seltene Gabe." Ein dünnes Lächeln. „Pass nur auf, dass sie dir keinen Ärger macht."
-
-<div class="thought-box">Ich hab es benannt. Und genau das war der Fehler. Nicht das Sehen — das Aussprechen. Wer Jarek ansieht, soll nichts sehen. Das hab ich gerade vergessen.</div>
-
-<<= setup.setNpcAffection("jarek", 1)>>
-<<= setup.pushNpcMemory("jarek", "hat_zu_genau_hingesehen")>>
-<<include "01_Sidequest_jarek_finalize">>
-
-
-:: 01_Sidequest_jarek_Arbeit_Aktiv {"position":"125,2525","size":"100,100"}
-Du sortierst — aber diesmal schaust du nicht nur auf deine eigenen Hände. Du schaust auf ihn.
-
-Jarek arbeitet schnell und sicher. Zu sicher. Wo du die verblassten Jahreszahlen auf den Rücken der Folianten mühsam entzifferst, greift er, ohne zu zögern. Er liest die Aufschriften wie jemand, der das Lesen nicht in der Kaserne gelernt hat — flüssig, mühelos, auch dort, wo die Schrift alt und verschnörkelt ist und die meisten hier nur Striche sehen würden.
-
-<div class="thought-box">Ein Schustersohn aus der Unterstadt. Der liest verschnörkelte Kanzleischrift schneller als ich gedruckte Lettern. Wo lernt man das?</div>
-
-Dann hält er inne. In seinen Händen liegt ein dünner Band, dunkel und brüchig, das Pergament fleckig vom Alter. Auf dem Rücken ein halb abgeplatztes Siegel und ein Wort, das du nicht entziffern kannst — er aber schon. Seine Augen wandern über die erste Seite, langsam, und für einen Moment verschwindet alles Beiläufige aus seinem Gesicht. Was übrig bleibt, ist Hunger. Konzentriert, still, alt.
-
-Es dauert nur einen Herzschlag. Dann ist es wieder weg, und er legt den Band zur Seite — nicht in die Kiste für das, was zerfällt. Daneben. Ein Fingerbreit abseits.
-
-In diesem Moment hebt der Schreiber den Kopf.
-
-„Was hast du da?"
-
-Jareks Gesicht verrät nichts. Aber seine Hand liegt still auf dem Band, und du spürst, ohne hinzusehen, dass er auf eine Sekunde wartet, die über mehr entscheidet als diese Stube.
-
-<div class="thought-box">Er will, dass dieser Band nicht in die Kiste kommt. Und der Schreiber sieht gleich, dass er nicht zerfallen ist. Sag ich was — oder lass ich es?</div>
-
-[[Den Schreiber ablenken. Irgendetwas sagen, damit sein Blick von Jarek weggeht. ->01_Sidequest_jarek_Schweigen]]
-[[Jarek darauf ansprechen, was du gerade gesehen hast. ->01_Sidequest_jarek_Ansprechen]]
-
-
-:: 01_Sidequest_jarek_Arbeit_Passiv {"position":"250,2450","size":"100,100"}
-Du sortierst. Jahr für Jahr, Stapel für Stapel. Es ist stumpfe, ehrliche Arbeit, und du verlierst dich darin, wie man sich in jeder Arbeit verliert, die keine Gedanken verlangt.
-
-Jarek arbeitet neben dir, schweigend. Hin und wieder hält er einen Folianten einen Atemzug länger in den Händen als nötig — aber du achtest nicht darauf. Du willst nur ins Bett.
-
-Irgendwann nickt der Schreiber euch weg. „Reicht für heute."
-
-Draußen im Gang bleibt Jarek kurz stehen.
-
-„Danke. Das ging schneller zu zweit." Es klingt aufrichtig, aber auch wie etwas, das er sagt, weil man es sagt.
-
-<div class="thought-box">Eine ruhige Stunde, ein bisschen Wärme, ein Danke. Mehr war es nicht. Vielleicht musste es auch nicht mehr sein.</div>
-
-<<= setup.setNpcAffection("jarek", 3)>>
-<<include "01_Sidequest_jarek_finalize">>
-
-
-:: 01_Sidequest_jarek_Einstieg {"position":"475,2425","size":"100,100"}
-Die Schreibstube liegt am Ende eines schmalen Ganges, hinter einer Tür, die zu schwer ist für den Raum dahinter. Drinnen: der Geruch von Wachs, alter Tinte und feuchtem Pergament. Ein einzelner Schreiber sitzt am Pult und kratzt mit der Feder, ohne aufzusehen. An den Wänden Regale, Truhen, Stapel von Verzeichnissen, die seit Jahren niemand mehr angefasst hat.
-
-„Die hier", sagt der Schreiber knapp und deutet auf einen Wust loser Folianten. „Nach Jahr sortieren. Was zerfällt, kommt in die Kiste. Und fasst mir nichts an, das ein Siegel trägt."
-
-Jarek nickt, knapp und folgsam, und macht sich an die Arbeit. Seine Bewegungen sind ruhig und gleichmäßig — dieselben mechanischen Bewegungen, mit denen er an eurem ersten Abend seine Stiefel aufgeknotet hat.
-
-<div class="scenery-text">Draußen ist es längst dunkel. Das Kerzenlicht zieht die Schatten der Regale lang über den Boden. Nur das Kratzen der Feder und das Rascheln von altem Papier füllen den Raum.</div>
-
-Du könntest die Arbeit einfach herunterreißen und an deine Pritsche denken. Oder du könntest darauf achten, was Jarek hier eigentlich tut.
-
-[[Einfach arbeiten. Sortieren, schweigen, fertig werden. ->01_Sidequest_jarek_Arbeit_Passiv]]
-[[Arbeiten — aber genau darauf achten, was Jarek tut. ->01_Sidequest_jarek_Arbeit_Aktiv]]
-[[Doch keine Lust. Einen Vorwand finden und gehen. ->01_Sidequest_jarek_Ablehnung_Spaet]]
-
-
-:: 01_Sidequest_jarek_Schweigen {"position":"100,2650","size":"100,100"}
-Du fragst nicht, was er da hat. Du fragst auch nicht dich selbst.
-
-„Diese Kiste hier", sagst du in Richtung Schreiber und hältst einen halb zerfallenen Stapel hoch, von dem beim Anheben gleich ein paar Fetzen auf den Boden segeln. „Soll das alles raus, oder nur was komplett hinüber ist? Ich will Euch nichts wegwerfen, das Ihr noch braucht."
-
-Der Schreiber seufzt, steht auf, kommt herüber. Während er den Stapel begutachtet, ist sein Rücken Jarek zugewandt — lange genug.
-
-Es ist nicht ganz die Wahrheit. Du brauchst die Antwort nicht. Aber sie zieht den Blick dorthin, wo er hin soll, und weg von dort, wo er nicht hin soll.
-
-<div class="scenery-text">Hinter dem Rücken des Schreibers verschwindet der dunkle Band lautlos — nicht in die Kiste, sondern unter Jareks Kittel, an einer Stelle, an der schon viel zu oft etwas verschwunden ist, um noch ein Zufall zu sein.</div>
-
-Als ihr später durch den dunklen Gang zurückgeht, sagt Jarek lange nichts. Erst an der Tür zur Stube bleibt er stehen.
-
-„Du hast nicht gefragt." Es ist keine Frage. „Die meisten hätten gefragt."
-
-Er sieht dich an, und zum ersten Mal hast du das Gefühl, dass er dich tatsächlich ansieht — nicht abwägt, nicht einschätzt. Ansieht.
-
-„Das merk ich mir." Eine winzige Pause. „Schlaf gut."
-
-<div class="thought-box">Ich weiß nicht, was ich da rausgetragen hab unter seinem Kittel. Und vielleicht ist es besser so. Was ich weiß: Eben hat sich etwas verschoben. Leise. Aber es hat sich verschoben.</div>
-
-<<= setup.setPlayerStat("honesty", -2)>>
-<<= setup.setNpcAffection("jarek", 6)>>
-<<= setup.pushNpcMemory("jarek", "war_diskret")>>
-<<include "01_Sidequest_jarek_finalize">>
-
-
-:: 01_Sidequest_jarek_finalize {"position":"450,2575","size":"100,100"}
-<<run setup.completeSidequest("jarek_01")>>
-[[zurück in die Stube ->Auf Stube]]
-
-
 :: 02_Sidequest_vasil {"position":"200,1150","size":"100,100"}
 Der Armbrust-Stand ist um diese Stunde fast verwaist — bis auf den einen Mann, der breitbeinig vor dem hintersten Schießpfosten steht und mit einer Geduld an einer Ballistenwinde dreht, die so gar nicht zu seiner Statur passt.
 
@@ -380,9 +55,7 @@ Du gehst weiter. Hinter dir dreht sich die Winde unbeirrt weiter. Er ruft dir ni
 
 Große Männer, die Ballisten reparieren, laufen keinem Frischling hinterher.
 
-<<= setup.setNpcAffection("vasil", -1)>>\
 <<include "02_Sidequest_vasil_finalize">>
-
 
 
 :: 02_Sidequest_vasil_Hoeflich {"position":"200,1400","size":"100,100"}
@@ -442,7 +115,7 @@ Er tippt sich ans Barett. „Vasil. Vierundachtzigstes Banner. Und du bist der, 
 
 :: 02_Sidequest_vasil_finalize {"position":"325,1400","size":"100,100"}
 <<set $npc.vasil.memory.flags.sidequest02Complete = true>>\
-[[Zurück zu den Schützen ->Abendappell]] 
+[[Zurück zu den Schützen ->Abendappell]]
 
 
 :: 03_Sidequest_wenzel {"position":"575,2825","size":"100,100"}
@@ -461,7 +134,6 @@ Dann nickt er mit dem Kinn nach vorn. Ein paar Schritte weiter stolziert ein Unt
 
 
 :: 03_Sidequest_wenzel_Auftrag [interrupt einmalig] {"position":"450,2825","size":"100,100"}
-
 Es ist der Schinder, der dich aus dem Tritt reißt — nicht mit einem Schlag, mit einem Blick und einem Zettel.
 
 „Du. Rekrut." Er drückt dir ein Stück Papier in die Hand, an dem ein Stempel klebt. „Schreibstube. Dein Eintrag in der Truppenrolle stimmt nicht. Der Sergeant will dich sehen, bevor's offiziell wird. Und nimm die Beine in die Hand — ich will dich vor dem Appell zurück."
@@ -525,7 +197,7 @@ Er dreht langsam den Kopf. Wütend ist er nicht — das ist das Seltsame. Er sie
 Was war das für ein seltsamer Moment?
 Du sinierst noch etwas befor dir auffällt dass du zu spät zum Appell kommst und noch zum Sergeanten musst !!!
 
-[[Losstürmen! ->Abendappell]] 
+[[Losstürmen! ->Abendappell]]
 
 
 :: 04_Sidequest_diplomaten {"position":"1350,150","size":"100,100"}
@@ -749,8 +421,113 @@ Dann winkt Hannes ab — freundlich, aber ihr seid fertig. „Geh schon. Bevor d
 <<set $npc.diplomatHannes.known = true>>\
 <<set $npc.bast.memory.flags.sidequest04Complete = true>>\
 <<set $npc.diplomatHannes.memory.flags.sidequest04Complete = true>>\
-[[Die Glocken rufen zum Unterricht->Studium Hub]] 
+[[Die Glocken rufen zum Unterricht->Studium Hub]]
 
+
+:: 05_Sidequest_Hansbert {"position":"125,2375","size":"100,100"}
+Am Morgen ruft die Glocke zum Gottesdienst. Im Betsaal der Akademie stehen die Rekruten in Reihen, der Priester der Drei spricht von Limbas Funken, von Mirams Waage, von Hortum, der die Taten der Toten wiegt. Weihrauch hängt schwer in der kalten Luft.
+
+<div class="scenery-text">In der Letzten Reihe sitzt heute eine Gestalt die nicht zu den Rekruten gehört. Trotz dem hängenden Kopf siest du dass sie ein SöldnerBarett Auf dem Kopf Trägt</div> 
+<div class="thought-box">Seltsam, was macht denn ein Söldner hier?</div>
+Dein interesse ist geweckt. 
+
+Setzt du dich zu der Gestalt oder gehst du in die Bänke zu deinen Kammeraden
+
+[[Zu den Kammeraden->05_Sidequest_Hansbert_Abbruch]] 
+[[Setz dich zu dem Fremden->05_Sidequest_Hansbert_Hinsetzen]]
+
+
+:: 05_Sidequest_Hansbert_Abbruch {"position":"250,2500","size":"100,100"}
+Du gehst weiter. Du willst dich am Gottesdienst beteiligen.
+Das ist hier nicht die passende Umgebung für seltsame Begegnungen.
+
+[[Neben den anderen Rekruten Platz nehmen->Story005_Gottesdienst]]
+
+
+:: 05_Sidequest_Hansbert_Barsinger {"position":"100,2775","size":"100,100"}
+<div class="scenery-text">Als du dich neben dem Kerl niederlässt steigt dir eine Fahne in die Nase.</div> 
+"Versteh mich nicht falsch. Die Drei sind schon in Ordnung."Hansbert beobachtet den Prediger."Aber deren Gottesdienste könnten ein wenig mehr Würfelspiele vertragen."
+<div class="thought-box">Du unterdrückst ein Grinsen.</div>
+"Barsinger wird hier einfach nicht genug gewürdigt." Er schüttelt den Kopf. "Im Feld schaut das anders aus."
+
+<div class="voice-formal">Seine Stimme wird etwas lauter.</div>
+"Frag die Söldner. Nach einer gewonnenen Schlacht was machen die dann?"
+
+Er hebt einen Finger.
+"Dann danken sie Barsinger für das Bier."
+Ein zweiter Finger.
+"Und für die Geschichten am Feuer."
+Ein dritter.
+"Und für die Würfel, mit denen sie ihren Sold verspielen."
+
+<div class="scenery-text">Einige Rekruten in den vorderen Reihen drehen sich bereits nach euch um.</div>
+Hansbert interessiert es nicht.
+"Und auf dem Land ist es dasselbe. Die Handwerker, die Bauern, die Fuhrleute. Die verstehen wenigstens noch, dass das Leben mehr ist als Arbeit und Gebet."
+
+<div class="scenery-text">Der Prediger stockt kurz in seiner Predigt.</div>
+Hansbert fährt unbeirrt fort.
+"Und Drachengard erst!In Drachengard wirst du mit offenen Armen empfangen, wenn du Barsinger treu bist."
+Er schlägt sich gegen die Brust.
+"Obwohl es nicht einmal ihr eigener Glaube ist!"
+
+<div class="voice-formal">Seine Stimme hallt inzwischen durch den Betsaal.</div>
+"Die Leute dort wissen Gastfreundschaft noch zu schätzen!"
+
+<div class="scenery-text">Der Prediger räuspert sich demonstrativ.</div>
+"Ja, ja. Einen Augenblick."
+Hansbert winkt ab.
+Dann beugt er sich wieder zu dir.
+"Die Leute vom Imperium frönen Barsinger besser als wir!"
+
+<div class="scenery-text">Mehrere Köpfe drehen sich.</div>
+Er zeigt mit ausgestrecktem Finger auf den Altar.
+"Und hier... HIER geht es nur um Tugend, Pflicht, Opferbereitschaft und noch mehr Tugend!"
+
+<div class="scenery-text">Der Prediger unterbricht seine Predigt.
+Stille breitet sich im Saal aus.</div>
+"WENN IHR DAS BEDÜRFNIS VERSPÜHRT, werter Bruder, eine eigene Predigt zu halten, dürft Ihr dies gern außerhalb des Betsaales tun."
+
+Hansbert öffnet den Mund.
+"Ich wollte lediglich—"
+
+"Außerhalb! Und du ebenfalls, Rekrut. Wer unmittelbar neben einem Barsinger-Geweihten sitzt, trägt Mitschuld an dem, was folgt."
+
+<div class="scenery-text">Vereinzeltes Kichern geht durch die Reihen.</div>
+Hansbert erhebt sich seufzend.
+"Siehst du? Genau diese Art von Intoleranz meine ich."
+Er setzt sein Barett zurecht.
+<div class="voice-aggressive">BARSINGER!</div>
+Hansbert grinst.
+"Nach dir."
+
+<<include "05_Sidequest_Hansbert_finalize">>
+
+
+:: 05_Sidequest_Hansbert_Hinsetzen {"position":"50,2500","size":"100,100"}
+<div class="scenery-text">Als du dich neben dem Kerl niederlässt steigt dir eine Fahne in die Nase.</div> <div class="thought-box">PUHHH! So ein Duft und dass am Morgen, war ne harte Nacht.</div>
+Du schaust den Fremden musternd an. Ein Vogel auf seinem Barrett. 
+<<if setup.isFactionKnown("84. Banner")>>\
+	<div class="scenery-text">Der Haubentaucher!</div>
+    <<set $story002_knownSoeldner = setup.getRandomKnownNpcByFaction("84. Banner")>>\
+    <div class="thought-box">Den habe ich schon bei $story002_knownSoeldner gesehen</div>
+<<else>>\
+//Aber mehr als ein Seltsamer Gedanke kommt nicht hoch.. 
+<</if>>\
+
+Der Fremde hebt den Kopf.
+Seine Augen sind gerötet, sein Bart wirkt als hätte er Bekanntschaft mit mehreren Krügen Bier gemacht. 
+
+Was willst du? Kann man sich hier in den hochheiligen Hallen nicht einmal ganz kurz ausruhen?
+
+[[Entschuldigt. Ich wollte nicht stören.->Hansbert_Hoeflich]]
+[[Ein Söldner beim Gottesdienst? Das sieht man selten.->Hansbert_Neugierig]]
+[[Ihr riecht als hättet Ihr in einem Bierfass geschlafen.->Hansbert_Frech]]
+
+
+:: 05_Sidequest_Hansbert_finalize {"position":"300,2350","size":"100,100"}
+<<set $npc.hansFichtensplitter.memory.flags.sidequest05Complete = true>>\
+<<set $npc.hansFichtensplitter.known = true>>\
+[[Die Kirche verlassen ->Nachmittag Hub]]
 
 
 :: Abendappell {"position":"850,1925","size":"100,100"}
@@ -906,7 +683,7 @@ Du lässt dich auf deine Pritsche fallen, und der Strohsack, der heute Morgen no
 Das Talglicht flackert.
 Du schließt die Augen, noch bevor jemand es löscht.
 
-[[Der nächste Tag. ->Kapitel 1]] 
+[[Der nächste Tag. ->Kapitel 1]]
 
 
 :: Auf Stube {"position":"1925,1750","size":"100,100"}
@@ -1099,7 +876,7 @@ Du bist jetzt drin.
             <<set _probeThought = setup.getProbeThoughtText(_gossipSkill, _gossipDiff)>>\
             <<if _probeThought !== null>>\
                 <div class="thought-box"><<= _probeThought>></div>
-                <<set _label to 'Nachhaken' + setup.checkHint('gossip', _gossipDiff)>>\
+                <<set _label to 'Nachhaken' + setup.checkHint('gossip', _gossipDiff,3)>>\
                 <<link _label>><<goto 'Event_Geschichte_Probe'>><</link>>
             <</if>>\
         <</if>>\
@@ -1130,7 +907,7 @@ Du bist jetzt drin.
 
 :: Event_Geschichte_Probe {"position":"2400,1900","size":"100,100"}
 <<set _gossipStory = $world.currentGossipStory>>\
-<<set _r = setup.skillCheck("gossip", _gossipStory.probe.difficulty)>>\
+<<set _r = setup.skillCheck("gossip", _gossipStory.probe.difficulty,3)>>\
 <<if _r.skill <= 3>>\
     <div class="scenery-text">Du hakst nach, etwas forsch.</div>
 <<elseif _r.skill <= 7>>\
@@ -1155,6 +932,7 @@ Du bist jetzt drin.
     <<else>>\
         <div class="thought-box">Mist. Er hatte noch was zu sagen — das war spürbar.
         Aber jetzt ist die Tür zu.</div>
+        <<= setup.setPlayerSuspicion(2)>>\
     <</if>>\
     <<= _gossipStory.probe.fail>>\
     <<run setup.markGossipSeen(_gossipStory.id, false)>>\
@@ -1332,31 +1110,18 @@ Du wirst vom Tisch weggeschickt.
 
     "knaller": [
       {
-        "id": "kn_001",
-        "minLevel": 7,
-        "maxLevel": 99,
-        "base": "PLATZHALTER – Easteregg / Echter Spieler Hinweis.",
-        "probe": {
-          "minGossip": 7,
-          "success": "PLATZHALTER – Der Knaller der sich entfaltet.",
-          "fail": "PLATZHALTER – Fast – aber nicht ganz."
-        },
-        "rumorText": "PLATZHALTER",
-        "npcKey": "luigi"
-      },
-      {
-        "id": "kn_002",
-        "minLevel": 7,
-        "maxLevel": 99,
-        "base": "PLATZHALTER – Easteregg Lars / Hauptmann Lenz.",
-        "probe": {
-          "minGossip": 8,
-          "success": "PLATZHALTER",
-          "fail": "PLATZHALTER"
-        },
-        "rumorText": "PLATZHALTER",
-        "npcKey": "weibelLars"
-      }
+          "id": "kn_002",
+          "minLevel": 7,
+          "maxLevel": 99,
+          "base": "Es geht ein Tuscheln durch die Höfe, das nicht so recht in die Kaserne passen will. Die Händlergilde hat einen neuen Namen in ihren Büchern — und was für einen. Don Remirez de Volpe. La Familia. Jene Leute aus dem Süden, von denen man sich erzählt, sie seien Händler, wenn die Sonne scheint, und etwas ganz anderes, wenn sie untergeht. Aufgenommen. Offiziell. Mit Siegel und Handschlag. Und Teile seiner Entourage sollen schon in Aloy unterwegs sein.",
+          "probe": {
+            "difficulty": 6,
+            "success": "Allen voran ein Anwalt, heißt es — ein höflicher Mann mit südlichem Zungenschlag, der für die Familie das Geschäftliche ordnet. Was die Leute aber wirklich nicht verstehen: dass ausgerechnet Ignaz Rothschild das zugelassen hat. Rothschild, der seine Gilde hütet wie ein Habicht sein Nest. Einen wie den Don hineinzulassen — das ist entweder ein Fehler, oder Rothschild weiß etwas, das die anderen nicht wissen. Und dann, leiser noch: Der Anwalt sei mit einem aus dem 84. Banner gut bekannt. Mit Wenzel. Man munkelt, die beiden hätten schon zusammen am Tisch gesessen, lange bevor irgendwer von Gilden sprach.",
+            "fail": "Der Typ winkt ab. 'Südländer in der Gilde, na und. Geld stinkt nicht, Junge. Frag nicht zu laut nach solchen Leuten — das endet selten gut.'"
+          },
+          "rumorText": "Der Don von La Familia wurde in Ignaz Rothschilds Händlergilde aufgenommen. Sein Anwalt ist in Aloy — und offenbar mit Wenzel vom 84. bekannt.",
+          "npcKey": null
+        }
     ]
 
   }
@@ -1376,6 +1141,81 @@ Du lehnst dich ein Stück zu weit vor, um mehr zu verstehen – und prompt knarr
 
 [[Hastig herumwirbeln und zur Treppe am anderen Ende des Flurs sprinten! ->Treppe runterrennen]]
 [[Stehen bleiben und versuchen, sich irgendwie herauszureden. ->Rausreden Versuch]]
+
+
+:: Hansbert_Frech {"position":"200,2625","size":"100,100"}
+"Ihr riecht als hättet Ihr in einem Bierfass geschlafen."
+
+Hansbert sieht an sich herunter.
+
+"Dann war es offenbar ein gutes Bierfass."
+
+Er schnuppert an seinem Ärmel.
+
+"Ja."
+
+Kurzes Nicken.
+
+"Definitiv gutes Bier."
+
+Er grinst breit und streckt dir die Hand hin.
+
+"Hansbert."
+
+Sein Händedruck ist fest.
+
+"Barsinger segnet meine Arbeit regelmäßig."
+
+[[Er holt Luft ->05_Sidequest_Hansbert_Barsinger]]
+
+
+:: Hansbert_Hoeflich {"position":"0,2625","size":"100,100"}
+"Hm."
+
+Der Fremde mustert dich kurz.
+
+"Du bist Rekrut. Dann bist du entschuldigt. Die meisten Rekruten haben wenigstens noch Manieren."
+
+Er streckt dir die Hand hin.
+
+"Hansbert."
+
+Sein Händedruck ist fest.
+
+"Barsingers Diener, wenn man den Gerüchten glauben darf."
+
+[[Er holt Luft ->05_Sidequest_Hansbert_Barsinger]]
+
+
+:: Hansbert_Neugierig {"position":"100,2625","size":"100,100"}
+"Ein Söldner beim Gottesdienst? Das sieht man selten...
+Wer sagt denn, dass ich wegen des Gottesdienstes hier bin?"
+
+Er grinst.
+
+"Weißt du wie ruhig es in einer Kapelle am Morgen ist? Nein?! Eben!"
+
+Er lehnt sich zurück.
+
+"Außerdem hat Barsinger nie gesagt, dass man nur in Tavernen beten darf."
+
+Er tippt sich gegen die Brust.
+
+"Hansbert."
+
+[[Er holt Luft ->05_Sidequest_Hansbert_Barsinger]]
+
+
+:: HubWidgets [widget] {"position":"950,1600","size":"100,100"}
+<<widget "hubOption">>\
+<<set _skill to $player.knowledge[_args[0]] || 0>>\
+<<set _sub to setup.getRandomText("hubSubtexts", _args[0])>>\
+<<if _skill >= 10>>\
+<li class="gemeistert">_args[1]<span class="subtext">— Hier gibt es für dich nichts mehr zu lernen. Du beherrschst das.</span></li>
+<<else>>\
+<li>[[_args[1]|_args[2]]]<span class="subtext">_sub</span></li>
+<</if>>\
+<</widget>>
 
 
 :: InitNPC {"position":"0,225","size":"100,100"}
@@ -1616,17 +1456,18 @@ bast: {
     
 
     /* ===========================
-       DER STILLE HINTERGRUND
+       LA FAMILIA
        =========================== */
 
     luigi: {
         name: "Luigi vom Luigi Handelskontor",
-        known: false,
+        known: true,
+        faction: "La Familia",
         affection: 0,
         trust: 0,
         isRealPlayer: true,
         memory: { flags: {}, events: [] },
-        journalEntry: "Ein Name. Ein Handelszeichen. Jemand hat sich um dich gekümmert, einmal – in den Bergen Aloys, als du noch klein und krank warst. Wer das war, weißt du nicht mehr genau."
+        journalEntry: "Ein Name. Ein Handelszeichen. Jemand hat sich um dich gekümmert, einmal – in den Bergen Aloys, als du noch klein und krank warst. Wer das war, weißt du nicht mehr genau. Anwalt mit Lizenz in Aloy."
         /*
             PLOTNOTIZ:
             Luigi ist Thomas' Pate. Er taucht nicht persönlich auf –
@@ -1634,7 +1475,28 @@ bast: {
             Der echte Spieler Luigi soll beim Lesen erkennen:
             Das ist mein Patenkind.
         */
-    }
+    },
+     vincente: {
+        name: "Vincente",
+        known: false,
+        faction: "La Familia",
+        affection: 0,
+        trust: 0,
+        isRealPlayer: true,
+        memory: { flags: {}, events: [] },
+        journalEntry: "Ein Mann fürs grobe. Jemand der nicht nur in de Schatten steht und zuhören kann."
+    },
+     maurice: {
+        name: "Maurice Marie",
+        known: false,
+        faction: "La Familia",
+        affection: 0,
+        trust: 0,
+        isRealPlayer: true,
+        memory: { flags: {}, events: [] },
+        journalEntry: "Ein Bretone. mit einem Hang für Würfelspiele."
+
+    },
 
 } >>
 
@@ -1664,7 +1526,7 @@ bast: {
 
     /* Erlernte Fertigkeiten (Start niedrig, wachsen mit Übung) */
     knowledge: {
-        scholarship: 20,
+        scholarship: 5,
         pike: 0,
         crossbow: 0,
         cannon: 0,
@@ -1702,7 +1564,7 @@ bast: {
 \:: InitStudium {"position":"0,425","size":"100,100"}
 /* Defensiv: legt nur an, was fehlt - sicher beim Merge ins Hauptspiel */
 <<if not $player.knowledge>><<set $player.knowledge = {}>><</if>>\
-<<if $player.stats.scholarship === undefined>><<set $player.stats.scholarship = 20>><</if>>\
+<<if $player.stats.scholarship === undefined>><<set $player.stats.scholarship = 5>><</if>>\
 <<run ["splitterlande","aloy","geographie","diplomatie"].forEach(function(k){
   if (State.variables.player.knowledge[k] === undefined) { State.variables.player.knowledge[k] = 0; }
 })>>\
@@ -1735,6 +1597,10 @@ bast: {
     interruptDoneToday: false,
     interruptHistory: {},
     appliedPassages : {},
+    visitedChurch : false,
+    kapitel1_gesperrt: false,
+    kapitel2_gesperrt: false,
+// usw. nach Bedarf
     
 }>>
 
@@ -1801,6 +1667,569 @@ Der Sergeant am hölzernen Tisch blickt von seinen Listen auf und bellt:
 [["Ein junger Mann, bereit für die Ausbildung."->Das Erwachen]]
 
 
+:: Jarek Tester {"position":"3000,125","size":"100,100"}
+\:: DEBUG_Menu
+<h3>— DEBUG / Quest-Sprungbrett —</h3>
+
+''Jarek-Kette:''
+<<link "Setup S1 (Vorlesung)">>
+  <<set $npc.jarek.memory.flags.s0_done = true>>
+  <<set $npc.magister.known = true>>\
+  <<goto "Jarek_S1_Vorlesung">>
+<</link>>
+<<link "Setup S2 (Test)">>
+  <<set $npc.jarek.memory.flags.s1_seen = true>>
+  <<goto "Jarek_S2_Angebot">>
+<</link>>
+<<link "Setup S3 (Lüge)">>
+  <<set $npc.jarek.memory.flags.s2_done = true>>
+  <<goto "Jarek_S3_Start">>
+<</link>>
+<<link "Setup S4 BEFUGT (mit Zeichen)">>
+  <<set $npc.jarek.memory.flags.s3_zugesagt = true>>
+  <<set $edu.archivzugang = true>>
+  <<goto "Jarek_S4_Archiv">>
+<</link>>
+<<link "Setup S4 UNBEFUGT (ohne Zeichen)">>
+  <<set $npc.jarek.memory.flags.s3_zugesagt = true>>
+  <<set $edu.archivzugang = false>>
+  <<goto "Jarek_S4_Archiv">>
+<</link>>
+''S06 Gestehen — Direktsprung:''
+<<link "Gestehen BEFUGT (sofort)">>
+  <<set $edu.archivzugang = true>>
+  <<set $npc.jarek.memory.flags.spaet_gestanden = false>>
+  <<goto "S06_Gestehen">>
+<</link>>
+<<link "Gestehen UNBEFUGT (sofort)">>
+  <<set $edu.archivzugang = false>>
+  <<set $npc.jarek.memory.flags.spaet_gestanden = false>>
+  <<goto "S06_Gestehen">>
+<</link>>
+<<link "Gestehen BEFUGT (verspätet)">>
+  <<set $edu.archivzugang = true>>
+  <<set $npc.jarek.memory.flags.spaet_gestanden = true>>
+  <<goto "S06_Gestehen">>
+<</link>>
+<<link "Gestehen UNBEFUGT (verspätet)">>
+  <<set $edu.archivzugang = false>>
+  <<set $npc.jarek.memory.flags.spaet_gestanden = true>>
+  <<goto "S06_Gestehen">>
+<</link>>
+
+''Stellschrauben:''
+<<link "aloy = 5 (begreift selbst)">><<set $player.knowledge.aloy = 5>><</link>>
+<<link "aloy = 0 (Jarek erklärt)">><<set $player.knowledge.aloy = 0>><</link>>
+<<link "ahnung an">><<set $npc.jarek.memory.flags.ahnung = true>><</link>>
+<<link "combat = 0 / 10">><<set $player.knowledge.combat = 0>><</link>>
+
+<<link "↻ Flags zurücksetzen">>
+  <<set $npc.jarek.memory.flags = {}>>
+  <<goto "DEBUG_Menu">>
+<</link>>
+
+
+:: Jarek_S1_Vorlesung [interrupt einmalig] {"position":"2800,75","size":"100,100"}
+<<set $npc.jarek.memory.flags.s1_seen = true>>\
+Der Hörsaal ist kalt — die Akademie spart Holz für Räume, in denen gedacht statt gekämpft wird. Die Rekruten sitzen dicht gedrängt auf den Bänken, mehr aus Wärmebedürfnis als aus Wissensdurst, und über allem liegt der trockene Geruch von Staub und altem Papier.
+
+<div class="scenery-text">Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf einem abgegriffenen Bändchen, dessen Rücken du von hier aus nicht entziffern kannst — dessen Titel du aber kennst. Die Freiheitserklärung. Jeder kennt sie. Kaum einer hat sie gelesen.</div>
+
+<div class="voice-formal">„Fünf Namen", sagt Halm, ohne die Stimme zu heben. „Fünf Hände, die vor hundertsechsundzwanzig Jahren ein Stück Pergament unterschrieben und damit eine Krone zerbrachen. Ihr werdet sie auswendig lernen, denn ihr dient nicht einem Mann — ihr dient dem, was diese fünf Hände begonnen haben."</div>
+
+Ein Rekruten-Husten. Hinten döst jemand. Neben dir sitzt Jarek, und er döst nicht. Er sitzt aufrecht, die Hände still im Schoß, den Blick auf Halm — so reglos, dass er aus der Reihe der zappelnden, frierenden Jungen herausfällt wie ein einzelner ruhiger Stein in fließendem Wasser.
+
+<div class="voice-formal">„Und dann", fährt Halm fort, „ist da die sechste."</div>
+
+Er macht eine Pause, die zu lang ist für einen Mann, der sonst kein Wort verschwendet.
+
+<div class="voice-formal">„Unter den fünf Namen steht ein sechstes Zeichen. Keine Hand ist dafür verzeichnet, kein Stand, kein Geschlecht. Die Überlieferung sagt: Es war keine menschliche Hand. Eine höhere Vorsehung habe die Feder geführt und damit besiegelt, dass diese Republik nicht Aufruhr war, sondern Bestimmung." Er klappt das Bändchen zu. „So steht es geschrieben. So wird es gelehrt."</div>
+
+<div class="thought-box">Er sagt es, wie man eine Inventarliste vorliest. Kein Staunen, kein Funke. Als wäre das Wunder für ihn nur ein weiterer Eintrag, den er zu oft abgehakt hat. Aber so sind alte Lehrer wohl, wenn sie dasselbe zum tausendsten Mal sagen.</div>
+
+<<if $player.knowledge.aloy gte 3>>\
+Du hörst Halm zu — und weil du in seinen Stunden gelernt hast, hinzuhören, fällt dir etwas anderes auf. Nicht an Halm. An Jarek.
+
+Bei dem Wort *sechste* hat er sich nicht bewegt. Genau das ist es. Die ganze Reihe atmet, scharrt, verlagert das Gewicht — nur Jarek ist um einen Hauch zu still geworden, so still, wie Wasser still wird, kurz bevor es zufriert.
+
+<div class="thought-box">Es ist nichts. Wirklich nichts — ein Junge, der bei einer alten Geschichte aufmerksam wird. Warum schaue ich überhaupt zu ihm hinüber? Und warum bleibt das Bild hängen, lange nachdem die Vorlesung weitergegangen ist?</div>
+<<set $npc.jarek.memory.flags.ahnung = true>>\
+<<else>>\
+Du verlierst den Faden, irgendwo zwischen den fünf Namen und der Kälte, die durch deine Stiefel kriecht. Als du dich wieder fängst, ist Halm längst bei der Verwaltung der Provinzen, und Jarek sitzt neben dir wie immer — ruhig, aufmerksam, unauffällig.
+
+<div class="thought-box">Ein stiller Kerl, der zuhört, während die halbe Reihe schläft. Mehr ist da nicht. Fast beneide ich ihn um die Ruhe.</div>
+<</if>>\
+
+<<if $world.quest?.karla_01?.active>>\
+<div class="thought-box">Seltsam — erst Karla mit ihrer Familie, jetzt diese alten Namen. Als drehte sich hier alles um Schulden, die einer für einen anderen trägt.</div>
+<</if>>\
+
+Als die Glocke die Stunde beendet, steht Jarek als Letzter auf. Er wartet, bis die Bank sich geleert hat, und sagt im Vorbeigehen nur ein Wort, halb zu dir, halb zu sich:
+
+„Bestimmung." Ein kurzes, schiefes Lächeln. „Schön, wenn man so was glauben kann."
+
+Dann ist er fort, bevor du fragen kannst, wie er das gemeint hat.
+
+[[Die Vorlesung endet. ->Studium Hub]]
+
+
+:: Jarek_S2_Ablehnung {"position":"3450,425","size":"100,100"}
+<<= setup.setNpcAffection("jarek", -2)>>\
+„Nicht heute", sagst du. „Ich hab genug."
+
+Jarek nickt. Kein Vorwurf, keine zweite Frage. Er hatte die Antwort offenbar schon einkalkuliert, bevor er gefragt hat.
+
+„Verständlich." Er sieht dich noch einen Moment an — diesen ruhigen, abwägenden Blick, der nichts preisgibt. „Dann nehm ich jemand anderen."
+
+Er geht. Aufrecht, unauffällig, schon wieder Teil der Kulisse.
+
+<div class="thought-box">Er hat mich nicht gebraucht. Er hat geprüft. Und ich hab eine Tür zugemacht, von der ich nicht mal wusste, dass sie offen stand.</div>
+
+[[zurück in die Stube ->Jarek_S2_finalize]]
+
+
+:: Jarek_S2_Ablehnung_Spaet {"position":"3350,550","size":"100,100"}
+<<= setup.setNpcAffection("jarek", -1)>>\
+Du legst den Folianten zur Seite, den du gerade in den Händen hattest. „Mein Kopf ist nicht hier", sagst du. „Ich bring euch mehr durcheinander, als ich helfe."
+
+Der Schreiber winkt gleichgültig ab. Jarek sieht dich an — kurz, ruhig, ohne dich aufzuhalten. „Geh schlafen", sagt er. Keine Spitze, kein Vorwurf. Nur das Wort.
+
+Aber als du dich umdrehst, spürst du seinen Blick noch im Rücken. Wägend. Als hätte er sich gerade eine Antwort notiert, ohne eine Frage gestellt zu haben.
+
+<div class="thought-box">Er hat mir die Tür offen gelassen. Ich bin nur nicht durchgegangen. Das ist nicht dasselbe wie ein Nein — aber es ist auch kein Ja.</div>
+
+[[zurück in die Stube ->Jarek_S2_finalize]]
+
+
+:: Jarek_S2_Angebot [interrupt] {"position":"3200,75","size":"100,100"}
+Der Morgenappell ist kaum verklungen, die Reihen lösen sich, und du bist schon halb im Gehen, als Jarek neben dir auftaucht — nicht plötzlich, nicht eilig. Er ist einfach da, als wäre er die ganze Zeit dort gewesen und du hättest es nur nicht bemerkt.
+
+Er spricht leise, ohne dich anzusehen, den Blick geradeaus über den Kies gerichtet.
+
+„Der Sergeant sucht zwei Mann für die Schreibstube. Heute Abend. Alte Verzeichnisse umräumen, Botengänge. Stumpfe Arbeit." Eine kurze Pause. „Ich hab uns gemeldet. Für zwei. Du fällst nicht auf, du redest nicht viel — das passt."
+
+<div class="thought-box">Er fragt nicht, ob ich will. Er stellt fest, dass ich passe. Wie ein Werkzeug, das die richtige Form hat.</div>
+
+Du sagst, es sei nett, dass er an dich denkt. Etwas in seinem Gesicht schließt sich, kaum merklich.
+
+„Es ist kein Gefallen", sagt er, fast schroff. „Ich brauch jemanden, der nicht quatscht. Das bist du. Mehr ist es nicht." Dann, ruhiger, als hätte er sich selbst zurückgepfiffen: „Es ist trocken und warm da drin. Besser als Exerzieren im Schlamm. Kommst du mit?"
+
+[[Mitgehen. Warum nicht. ->Jarek_S2_Schreibstube]]
+[[Ablehnen. Du hast genug zu tun. ->Jarek_S2_Ablehnung]]
+
+
+:: Jarek_S2_Ansprechen {"position":"3075,475","size":"100,100"}
+<<set $npc.jarek.memory.flags.gewarnt = true>>\
+<<= setup.setNpcAffection("jarek", 1)>>\
+„Was ist das für ein Band?", fragst du leise. „Du liest das, als würdest du wissen, was drinsteht."
+
+Jarek erstarrt nicht. Nichts an ihm verändert sich sichtbar — und genau das ist es, was dich erschreckt. Er wird nur einen Hauch zu still, zu glatt, wie Wasser kurz bevor es zufriert.
+
+Der Schreiber ist herangetreten, nimmt den Band wortlos an sich, mustert ihn kurz und legt ihn zurück ins Regal. Der Moment ist vorbei. Was auch immer Jarek vorhatte — es ist ihm gerade aus den Händen geglitten.
+
+„Ich kann ein bisschen lesen", sagt Jarek schließlich. Tonlos. „Mein Vater hat darauf bestanden. Damit man uns in den Verträgen nicht übers Ohr haut." Eine glatte Antwort. Eine gute Antwort. Und du weißt mit jeder Faser, dass sie nicht stimmt — oder höchstens zur Hälfte.
+
+Er sieht dich an, und der ruhige, freundliche Jarek ist immer noch da. Aber dahinter steht jetzt jemand, der dich neu vermessen hat und zu einem Schluss gekommen ist, der dir nicht gefällt. „Du beobachtest aufmerksam", sagt er. „Eine seltene Gabe. Pass nur auf, dass sie dir keinen Ärger macht."
+
+<div class="thought-box">Ich hab es benannt. Und genau das war der Fehler. Nicht das Sehen — das Aussprechen. Wer Jarek ansieht, soll nichts sehen. Das hab ich gerade vergessen.</div>
+
+[[zurück in die Stube ->Jarek_S2_finalize]]
+
+
+:: Jarek_S2_Arbeit_Aktiv {"position":"3125,275","size":"100,100"}
+Du sortierst — aber diesmal schaust du nicht nur auf deine eigenen Hände. Du schaust auf ihn.
+
+Jarek arbeitet schnell und sicher. Zu sicher. Wo du die verblassten Jahreszahlen auf den Rücken der Folianten mühsam entzifferst, greift er, ohne zu zögern. Er liest die Aufschriften wie jemand, der das Lesen nicht in der Kaserne gelernt hat — flüssig, mühelos, auch dort, wo die Schrift alt und verschnörkelt ist und die meisten hier nur Striche sehen würden.
+
+<div class="thought-box">Ein Schustersohn aus der Unterstadt. Der liest verschnörkelte Kanzleischrift schneller als ich gedruckte Lettern. Wo lernt man das? Wahrscheinlich hat sein Vater darauf bestanden — Verträge, Schuhe, das passt schon irgendwie zusammen. Oder?</div>
+
+Dann hält er inne. In seinen Händen liegt ein dünner Band, dunkel und brüchig, das Pergament fleckig vom Alter. Auf dem Rücken ein halb abgeplatztes Siegel und ein Wort, das du nicht entziffern kannst — er aber schon. Seine Augen wandern über die erste Seite, langsam, und für einen Moment verschwindet alles Beiläufige aus seinem Gesicht. Was übrig bleibt, ist Hunger. Konzentriert, still, alt.
+
+Es dauert nur einen Herzschlag. Dann ist es wieder weg, und er legt den Band zur Seite — nicht in die Kiste für das, was zerfällt. Daneben. Einen Fingerbreit abseits.
+
+In diesem Moment hebt der Schreiber den Kopf. „Was hast du da?"
+
+Jareks Gesicht verrät nichts. Aber seine Hand liegt still auf dem Band, und du spürst, ohne hinzusehen, dass er auf eine Sekunde wartet, die über mehr entscheidet als diese Stube.
+
+<div class="thought-box">Er will, dass dieser Band nicht in die Kiste kommt. Und der Schreiber sieht gleich, dass er nicht zerfallen ist. Sag ich was — oder lass ich es?</div>
+
+[[Den Schreiber ablenken. Irgendetwas sagen, damit sein Blick von Jarek weggeht. ->Jarek_S2_Schweigen]]
+[[Jarek darauf ansprechen, was du gerade gesehen hast. ->Jarek_S2_Ansprechen]]
+
+
+:: Jarek_S2_Arbeit_Passiv {"position":"2900,550","size":"100,100"}
+<<set $npc.jarek.memory.flags.s2_done = true>>\
+<<set $npc.jarek.trust = ($npc.jarek.trust || 0) + 1>>\
+Du sortierst. Jahr für Jahr, Stapel für Stapel. Es ist stumpfe, ehrliche Arbeit, und du verlierst dich darin, wie man sich in jeder Arbeit verliert, die keine Gedanken verlangt.
+
+Jarek arbeitet neben dir, schweigend. Hin und wieder hält er einen Folianten einen Atemzug länger in den Händen als nötig — aber du achtest nicht darauf. Du willst nur ins Bett.
+
+Irgendwann nickt der Schreiber euch weg. „Reicht für heute."
+
+Draußen im Gang bleibt Jarek kurz stehen. „Danke. Das ging schneller zu zweit." Es klingt aufrichtig, aber auch wie etwas, das er sagt, weil man es sagt.
+
+<div class="thought-box">Eine ruhige Stunde, ein bisschen Wärme, ein Danke. Mehr war es nicht. Vielleicht musste es auch nicht mehr sein.</div>
+
+[[zurück in die Stube ->Jarek_S2_finalize]]
+
+
+:: Jarek_S2_Schreibstube {"position":"2950,400","size":"100,100"}
+Die Schreibstube liegt am Ende eines schmalen Ganges, hinter einer Tür, die zu schwer ist für den Raum dahinter. Drinnen: der Geruch von Wachs, alter Tinte und feuchtem Pergament. Ein einzelner Schreiber sitzt am Pult und kratzt mit der Feder, ohne aufzusehen. An den Wänden Regale, Truhen, Stapel von Verzeichnissen, die seit Jahren niemand mehr angefasst hat.
+
+<div class="scenery-text">Draußen ist es längst dunkel. Das Kerzenlicht zieht die Schatten der Regale lang über den Boden. Nur das Kratzen der Feder und das Rascheln von altem Papier füllen den Raum.</div>
+
+„Die hier", sagt der Schreiber knapp und deutet auf einen Wust loser Folianten. „Nach Jahr sortieren. Was zerfällt, kommt in die Kiste. Und fasst mir nichts an, das ein Siegel trägt."
+
+Jarek nickt, knapp und folgsam, und macht sich an die Arbeit. Seine Bewegungen sind ruhig und gleichmäßig — dieselben mechanischen Bewegungen, mit denen er an eurem ersten Abend seine Stiefel aufgeknotet hat.
+
+Du könntest die Arbeit einfach herunterreißen und an deine Pritsche denken. Oder du könntest darauf achten, was Jarek hier eigentlich tut.
+
+[[Einfach arbeiten. Sortieren, schweigen, fertig werden. ->Jarek_S2_Arbeit_Passiv]]
+[[Arbeiten — aber genau darauf achten, was Jarek tut. ->Jarek_S2_Arbeit_Aktiv]]
+[[Doch keine Lust. Einen Vorwand finden und gehen. ->Jarek_S2_Ablehnung_Spaet]]
+
+
+:: Jarek_S2_Schweigen {"position":"3275,275","size":"100,100"}
+<<set $npc.jarek.memory.flags.s2_done = true>>\
+<<set $npc.jarek.memory.flags.war_diskret = true>>\
+<<set $npc.jarek.trust = ($npc.jarek.trust || 0) + 2>>\
+<<= setup.setNpcAffection("jarek", 6)>>\
+<<= setup.setPlayerStat("honesty", -2)>>\
+Du fragst nicht, was er da hat. Du fragst auch nicht dich selbst.
+
+„Diese Kiste hier", sagst du in Richtung Schreiber und hältst einen halb zerfallenen Stapel hoch, von dem beim Anheben gleich ein paar Fetzen auf den Boden segeln. „Soll das alles raus, oder nur, was komplett hinüber ist? Ich will Euch nichts wegwerfen, das Ihr noch braucht."
+
+Der Schreiber seufzt, steht auf, kommt herüber. Während er den Stapel begutachtet, ist sein Rücken Jarek zugewandt — lange genug.
+
+<div class="scenery-text">Hinter dem Rücken des Schreibers verschwindet der dunkle Band lautlos — nicht in die Kiste, sondern unter Jareks Kittel, an einer Stelle, an der schon zu oft etwas verschwunden ist, um noch ein Zufall zu sein.</div>
+
+Als ihr später durch den dunklen Gang zurückgeht, sagt Jarek lange nichts. Erst an der Tür zur Stube bleibt er stehen.
+
+„Du hast nicht gefragt." Es ist keine Frage. „Die meisten hätten gefragt."
+
+Er sieht dich an, und zum ersten Mal hast du das Gefühl, dass er dich tatsächlich ansieht — nicht abwägt, nicht einschätzt. Ansieht. „Das merk ich mir." Eine winzige Pause. „Schlaf gut."
+
+<div class="thought-box">Ich weiß nicht, was ich da rausgetragen hab unter seinem Kittel. Und vielleicht ist es besser so. Was ich weiß: Eben hat sich etwas verschoben. Leise. Aber es hat sich verschoben.</div>
+
+[[zurück in die Stube ->Jarek_S2_finalize]]
+
+
+:: Jarek_S2_finalize {"position":"3150,725","size":"100,100"}
+[[zurück in die Stube ->Auf Stube]]
+
+
+:: Jarek_S3_Start [interrupt] {"position":"2750,225","size":"100,100"}
+Es sind ein paar Tage vergangen, seit der Schreibstube. Jarek hat dich nicht darauf angesprochen, kein Wort — und genau das hat zwischen euch etwas wachsen lassen, das größer ist als jedes Gespräch: Er weiß, dass du dichthalten kannst.
+
+Heute findet er dich, als die Stube schon halb schläft. Er setzt sich neben dich, nah, die Stimme kaum lauter als das Knistern der letzten Kerze.
+
+„Ich muss dir was sagen. Und ich sag's nur einmal, weil ich's sonst keinem sage."
+
+<div class="thought-box">Jarek, der nie etwas von jemandem will. Der lieber zweimal schuftet, als einmal zu bitten. Und jetzt sitzt er hier und ringt sich etwas ab.</div>
+
+Er sieht auf seine Hände. „Du erinnerst dich an meinen Vater. Die Augen. Den Laden." Ein kurzes Nicken, mehr zu sich selbst. „Was ich dir nicht gesagt hab: Da ist eine alte Schuld. Ein Vertrag, den ein Mann mit unserem Namen vor langer Zeit unterschrieben haben soll. Angeblich. Und solange das in den Akten steht, haftet meine Familie dafür — bis auf den letzten Heller."
+
+Seine Stimme bleibt ruhig, aber die Knöchel treten weiß hervor.
+
+„In der Schreibstube, die wir umgeräumt haben — da liegen alte Verzeichnisse. Und irgendwo darin steht dieser Name. Wenn ich das Blatt finde, sehe ich, ob die Unterschrift überhaupt echt ist. Vielleicht ist sie's nicht. Vielleicht ist meine Familie seit dreißig Jahren für eine Lüge geradegestanden."
+
+Er hebt den Blick. „Ich komm da nicht ran. Nicht allein, nicht ungesehen. Aber du —"
+
+<div class="thought-box">Da ist es. Die erste Bitte, die er je an mich gerichtet hat. Und sie kommt von jemandem, der nie bittet. Das wiegt schwer.</div>
+
+<<if $edu.archivzugang>>\
+„— du gehst in den Schreibstuben ein und aus. Mit deinem Zeichen fällt niemandem auf, wenn du etwas länger zwischen den Regalen stehst." Er legt dir kurz die Hand auf den Arm. „Ich verlang nicht, dass du was stiehlst. Nur dass du suchst. Ein Name, ein Blatt. Das ist alles."
+
+[[Ich schau mich um. Für dich. ->Jarek_S3_Zusage]]
+[[Und wenn ich erwischt werde? ->Jarek_S3_Zweifel]]
+<<else>>\
+„— du bist klug genug, da reinzukommen. Der Magister sucht immer Hände für die Archivarbeit. Wer ihm dient, bekommt ein Zeichen, und mit dem Zeichen die Türen." Eine Pause. „Ich krieg das nie. Einer wie ich nicht. Aber du."
+
+<div class="thought-box">Er meint Magister Halm. Wer sich dort nützlich macht — wer genug Gelehrsamkeit zeigt — dem öffnet er die Schreibstuben. Jarek kommt da nicht rein. Ich vielleicht schon.</div>
+
+[[Ich versuch, an dieses Zeichen zu kommen. ->Jarek_S3_Zusage]]
+[[Und wenn ich erwischt werde? ->Jarek_S3_Zweifel]]
+<</if>>\
+
+
+:: Jarek_S3_Zusage {"position":"2600,425","size":"100,100"}
+<<set $npc.jarek.memory.flags.s3_zugesagt = true>>\
+<<= setup.setNpcAffection("jarek", 3)>>\
+Jarek atmet aus — kaum hörbar, aber du hörst es. Zum ersten Mal sieht er nicht aus wie einer, der die Welt von sich fernhält. Nur müde. Und für einen Wimpernschlag: dankbar.
+
+„Ich schulde dir was", sagt er. Dann, leiser, fast trotzig, als müsse er es sich selbst verbieten: „Ich mag das nicht. Jemandem was schulden."
+
+<div class="thought-box">Er hat „danke" gesagt, ohne es zu sagen. Bei Jarek ist das fast ein Schwur.</div>
+
+<<if $edu.archivzugang>>\
+Du hast das Zeichen. Du brauchst nur noch eine ruhige Stunde zwischen den Regalen.
+<<else>>\
+Zuerst musst du an das Archivzeichen kommen — und das führt über den Magister.
+<</if>>\
+
+[[Schlafen. Morgen ist ein langer Tag. ->Auf Stube]]
+
+
+:: Jarek_S3_Zweifel {"position":"2775,450","size":"100,100"}
+Jarek hält deinem Blick stand. „Dann tu, als hättest du dich verlaufen. Ein Frischling, der nicht weiß, wo er hingehört — das glaubt man dir." Ein dünnes Lächeln, das die Augen nicht erreicht. „Niemand sucht hinter dir etwas, Thomas. Das ist deine beste Eigenschaft."
+
+<div class="thought-box">Das soll beruhigend sein. Warum fühlt es sich dann an wie eine Beschreibung von etwas, das er benutzen kann?</div>
+
+Er wartet. Er drängt nicht. Er weiß, dass die Frage längst entschieden ist — du hast nur noch nicht ja gesagt.
+
+[[Schon gut. Ich mach's. ->Jarek_S3_Zusage]]
+[[Lass mich eine Nacht drüber schlafen. ->Auf Stube]]
+
+
+:: Jarek_S4_Archiv [interrupt einmalig] {"position":"3700,100","size":"100,100"}
+<<set $npc.jarek.memory.flags.s4_done = true>>\
+Die Gelegenheit kommt in dieser Nacht. Der Mond steht hinter Wolken, die Wachablösung ist gerade durch, und für eine knappe Stunde liegt der Gang zu den Schreibstuben so still, wie er nie wieder still sein wird.
+
+Jarek wartet im Schatten der Treppe. Er sagt nichts über seinen Vater, nichts über die Schuld. Er nickt dir nur zu — knapp, ruhig, als wäre das hier eine Botengang-Routine und kein Diebstahl an der eigenen Zukunft.
+
+<div class="thought-box">Er ist so gefasst. Keine Spur Angst. Das beruhigt mich — und ich frage mich nicht, warum es das tut.</div>
+
+<<if $edu.archivzugang>>\
+Du hast das Zeichen des Magisters. Damit darfst du nachts hier sein — niemand wird dich aufhalten. Aber das Zeichen hat eine Kehrseite: Wer es vorzeigt, hinterlässt eine Spur. Halm wüsste, dass *du* hier warst.
+
+<div class="thought-box">Mit dem Zeichen bin ich legal hier — und nachweisbar. Ohne das Zeichen bin ich ein Schatten — und in Gefahr. Was ist mir lieber?</div>
+
+[[Das Zeichen nutzen. Du gehörst hierher. ->Jarek_S4_Befugt]]
+[[Das Zeichen stecken lassen. Lieber ein Schatten als ein Name in einem Buch. ->Jarek_S4_Unbefugt]]
+<<else>>\
+Du hast kein Zeichen. Es gibt nur einen Weg: lautlos rein, lautlos raus, und beten, dass die Stunde reicht.
+
+[[Hinein, solange der Gang leer ist. ->Jarek_S4_Unbefugt]]
+<</if>>\
+
+
+:: Jarek_S4_Befugt {"position":"3600,225","size":"100,100"}
+<<set $player.knowledge.gelehrsamkeitProbe to Math.round(($player.stats.scholarship || 0) / 10)>>\
+<<set _r to setup.skillCheck("gelehrsamkeitProbe", 9)>>\
+<<run delete $player.knowledge.gelehrsamkeitProbe>>\
+Du legst dem Schreiber, der die Nachtwache hat, das Zeichen hin. Er winkt müde durch, ohne aufzusehen — Archivarbeit zu nachtschlafender Zeit ist nichts Ungewöhnliches für die, die dem Magister dienen.
+
+<<if _r.success>>\
+<div class="beziehung">Du bewegst dich, als hättest du jeden Grund, hier zu sein — und genau das hast du ja. </div>
+Ruhig, methodisch arbeitest du dich durch die Verzeichnisse, Jahr um Jahr, ohne dass ein einziger Blick an dir hängen bleibt.
+
+<div class="thought-box">Niemand sieht mich zweimal an. Ich gehöre hierher. So fühlt sich das also an.</div>
+<<else>>\
+<div class="beziehung">Aber irgendwann gräbst du dort, wo ein Botenjunge nichts zu suchen hat — zwischen versiegelten Bänden, die niemand zum Umräumen anfasst.</div>
+Der Schreiber hebt den Kopf. „Was genau suchst du da eigentlich, Junge?"
+
+Dein Herz setzt einen Schlag aus. Du stammelst etwas von einer Liste, die der Magister sehen wolle — eine dünne Lüge, aber das Zeichen in deiner Hand trägt sie. Der Schreiber mustert dich lange. Dann brummt er und wendet sich ab. Aber er hat sich dein Gesicht gemerkt.
+
+<div class="thought-box">Das war zu knapp. Er wird sich erinnern, dass der Frischling mit dem Zeichen dort gewühlt hat, wo er nicht sollte. Solche Dinge sickern nach oben.</div>
+<</if>>\
+
+[[Weitersuchen. ->Jarek_S4_Fund]]
+
+
+:: Jarek_S4_Fund {"position":"3700,350","size":"100,100"}
+Und dann ist er da. Kein Schuldschein, kein Vertrag, wie du ihn dir vorgestellt hast — sondern ein dünner, brüchiger Band, eine frühe Abschrift, und zwischen den Seiten ein loses Beiblatt, das in keiner der Fassungen steht, die man im Wirtshaus kennt.
+
+<div class="scenery-text">Der Name steht da. Lesbar. Eine Hand, die vor hundertsechsundzwanzig Jahren etwas unterschrieben hat — und daneben, in der nüchternen Schrift eines Schreibers, eine Notiz darüber, *unter welchen Umständen* sie es tat.</div>
+
+Du hältst es in den Händen und spürst, dass es schwerer ist, als Papier sein dürfte. Etwas an diesem Blatt stimmt nicht mit der Geschichte überein, die Jarek dir erzählt hat — du kannst noch nicht sagen, was.
+
+<div class="thought-box">Ein Familienname in einer alten Schuld, hat er gesagt. Aber warum liegt dieser Name *hier*, zwischen Pergamenten, die mit Schulden nichts zu tun haben?</div>
+
+[[Jarek das Blatt zeigen. ->Jarek_S5_Begreifen]]
+
+
+:: Jarek_S4_Unbefugt {"position":"3825,225","size":"100,100"}
+<<set _r to setup.skillCheck("thievery", 13)>>\
+Kein Zeichen, kein Recht, hier zu sein. Ihr drückt euch durch die schwere Tür, und sofort ist die Dunkelheit ein anderes Ding — eine, die jeden Laut verstärkt. Jarek bewegt sich, als hätte er das geübt. Du nicht.
+
+<<if _r.success>>\
+<div class="beziehung">Du setzt jeden Schritt zwischen das Knarren der Dielen, atmest, wenn der Wind ans Fenster schlägt. Lautlos arbeitet ihr euch zu den alten Verzeichnissen vor. Niemand hört euch. Niemand kommt.</div>
+
+Ich macht euch leise im Schatten auf die Suche nach dem Dokument weswegen ihr hier seid.
+
+<<= setup.setPlayerKnowledge("thievery", 1)>>\
+<div class="thought-box">Mein Puls dröhnt in den Ohren. Aber es ist still geblieben. Wir sind drin.</div>
+<<else>>\
+<div class="beziehung">Dein Stiefel findet die eine Diele, die unter Last aufschreit wie ein getretenes Tier. Der Laut zerreißt die Stille. Auf dem Gang: Schritte. Eine Wache.</div>
+
+Jarek ist schneller als du denken kannst — eine Hand an deinem Kragen, und ihr presst euch in die Nische zwischen zwei Regalen, reglos, während der Lichtschein einer Laterne über die Wand wandert, innehält — und weiterzieht. Die Schritte entfernen sich. Erst als sie verklungen sind, merkst du, dass du die Luft angehalten hast.
+
+<div class="thought-box">Um ein Haar. Jarek hat nicht gezögert, keine Sekunde — als wäre Sich-Verstecken etwas, das er im Schlaf beherrscht. Daran denke ich jetzt besser nicht.</div>
+Als die Wache wieder abgezogen ist macht ihr euch weiter an die Suche nach dem Dokument weswegen ihr hier seid.
+<</if>>\
+
+[[Suchen, schnell, bevor die nächste Runde kommt. ->Jarek_S4_Fund]]
+
+
+:: Jarek_S5_Begreifen {"position":"3700,475","size":"100,100"}
+<<set $npc.jarek.memory.flags.s5_done = true>>\
+<<set $npc.jarek.maskOff = true>>\
+<<if $player.knowledge.aloy gte 3>>\
+<div class="beziehung">Du hältst Jarek das Blatt hin — und in dem Moment, in dem dein eigener Blick noch einmal darüberstreift, wird dir etwas klar.</div>
+
+Der Name. Die Notiz daneben. Du hast in Halms Stunden genug gelernt, um zu wissen, wo ein solches Blatt seinen Platz hat — und es ist nicht in irgendeiner Schuldenkammer. Es ist *die* Abschrift. Und der Name darunter steht nicht neben einer Schuld. Er steht unter der **sechsten Unterschrift**.
+
+<div class="scenery-text">Du hebst langsam den Kopf. Jarek sieht dich an. Und er sieht, dass du es verstanden hast — du siehst, wie er es sieht.</div>
+
+Und dann tut er etwas, das du noch nie an ihm gesehen hast: Er hört einfach auf. Die Ruhe, das Abwägende, das leicht Müde — all das fällt von ihm ab wie ein Mantel, den man nicht mehr braucht. Was übrig bleibt, ist wach, scharf, und vollkommen unbekannt.
+
+„Du bist schlau geworden hier oben", sagt er. Es ist nicht mehr Jareks Stimme. Es ist dieselbe Stimme, aber niemand steht mehr dahinter, den du kennst.
+<<else>>\
+<div class="beziehung">Du hältst Jarek das Blatt hin ohne zu wissen was es genau ist. „Hier. Der Name. Ist das die Schuld?"</div>
+
+Jarek nimmt es. Er liest nicht lange — er *prüft* nur, ob es das Richtige ist. Dann schließt er kurz die Augen, und als er sie wieder öffnet, ist etwas an ihm anders. Er steckt das Blatt nicht weg wie einer, dem eine Last von den Schultern fällt. Er hält es fest wie einer, der endlich eine Waffe in der Hand hat.
+
+„Es gibt keine Schuld, Thomas", sagt er ruhig. „Hat es nie gegeben."
+
+<div class="thought-box">Was?</div>
+
+„Der Name unter der sechsten Unterschrift. Die, von der euer Magister erzählt, eine höhere Hand habe sie geführt." Ein dünnes Lächeln. „Es war eine Hand. Eine sehr menschliche. Und daneben steht, dass man ihr ein Messer an die Kehle gehalten hat."
+
+Die Ruhe, die du an ihm kanntest, ist immer noch da — aber jetzt erkennst du, dass sie nie Frieden war. Sie war Geduld. Die Geduld von jemandem, der lange auf etwas gewartet hat.
+<</if>>\
+
+<div class="thought-box">Die Schuld. Der blinde Vater. Der Schustersohn, der für seine Familie schuftet. Nichts davon war je echt. Ich habe ihm jedes Wort geglaubt — und ich habe ihn hier reingebracht. Ich war die Hand, die er nicht hatte.</div>
+
+<<if $npc.jarek.memory.flags.ahnung>>\
+<div class="thought-box">Und das Schlimmste: Ein Teil von mir hat es geahnt. Damals im Hörsaal, bei dem einen Wort. Ich habe es gesehen und mir eingeredet, es sei nichts. Ich wollte, dass es nichts ist.</div>
+<<else>>\
+<div class="thought-box">Es trifft mich völlig kalt. Keine Vorahnung, kein Zweifel — ich habe nicht einen Moment lang etwas anderes in ihm gesehen als einen Freund.</div>
+<</if>>\
+
+Du stehst da, das Schweigen zwischen euch so schwer, dass es im Hals sitzt. Der Junge, dem du deine kranke Kindheit anvertraut hast, der dir „Schlaf gut" gesagt hat — den gibt es nicht. Hat es nie gegeben.
+
+[[Warum ich? ->Jarek_S6_Bruch]]
+
+
+:: Jarek_S6_Bruch [nach_stube] {"position":"3675,600","size":"100,100"}
+<<set $npc.jarek.memory.flags.s6_done = true>>\
+<<set $npc.jarek.memory.flags.sidequest01Complete = true>>\
+<<set $world.flags = $world.flags || {}>>\
+<<set $world.flags.freiheitserklaerung_beweis = true>>\
+<<set $npc.jarek.memory.flags.verschwunden = true>>\
+„Warum ich?", bringst du heraus.
+
+Jarek hält das Blatt an die Brust, als wäre es das Einzige im Raum, das zählt. „Weil du niemand bist, Thomas. Kein Name, keine Familie, die nachfragt. Ein Frischling, der nicht auffällt, der nicht quatscht." Es klingt nicht einmal grausam. Es klingt wahr. „Du warst perfekt."
+
+<div class="thought-box">Genau die Worte vom ersten Abend. „Du fällst nicht auf, du redest nicht viel — das passt." Ich dachte, das sei ein Kompliment.</div>
+„Das hier ist kein Schuldschein für einen Schusterladen." Seine Stimme bleibt ruhig, aber jetzt brennt etwas darunter, das hundertsechsundzwanzig Jahre alt ist. „Es ist der Beweis, dass eure Republik auf einem Messer an einer Kehle gebaut ist. Eure Bestimmung. Euer Wunder. Eine Lüge, unterschrieben unter Zwang. Es gibt Leute, die dafür ihr halbes Leben gegeben haben, das schwarz auf weiß zu halten."
+
+„Es ändert nichts", sagst du. „Hundertsechsundzwanzig Jahre, Jarek. Was daraus geworden ist, ist echt. Die Lüge macht es nicht ungeschehen."
+
+„Nein", sagt er leise. „Aber sie macht es *angreifbar*."
+
+Er macht einen Schritt zur Tür. Und du tust das Einzige, was dir bleibt — du stellst dich ihm in den Weg. Nicht um zu kämpfen. Nur um ihn aufzuhalten, eine Sekunde, einen Atemzug lang, irgendetwas.
+
+<div class="scenery-text">Jareks Hand fährt unter den Kittel, und plötzlich liegt Stahl darin — ein schmaler Dolch, den er die ganze Zeit getragen hat, an derselben Stelle, an der schon zu oft etwas verschwunden ist. Sein Gesicht ist nicht hasserfüllt. Es ist *panisch*. Aber die Klinge kommt trotzdem. Geradeweg auf dein Gesicht zu.</div>
+<<set _r to setup.skillCheck("combat", 11)>>\
+<<if _r.success>>\
+<div class="beziehung">Irgendein Instinkt, den die Monate des Drills in dich gehämmert haben, lässt dich zur Seite kippen, bevor dein Kopf begreift, was passiert. Die Klinge zischt an dir vorbei, du knickst weg, schlägst hart gegen das Regal — und liegst am Boden.</div>
+<<run setup.setPlayerKnowledge("combat", 1)>>\
+<<run setup.setPlayerCondition(-15)>>\
+Als du wieder hochkommst, ist die Tür offen und der Gang leer. Jarek ist fort. Du könntest ihm nicht nach, selbst wenn du wolltest — das Bein trägt dich keine drei Schritte.
+<div class="thought-box">Ausgewichen. Um Haaresbreite. Und trotzdem ist er weg, mit dem Blatt, und ich liege hier wie ein Sack.</div>
+
+Du sitzt im Halbdunkel der Schreibstube, allein, mit dem Wissen, das du nie wieder loswirst — und mit der Frage, was du jetzt damit tust. Schritte werden bald kommen. Du hast nur Augenblicke.
+
+[[Alarm schlagen. Sollen sie ihn jagen — und erfahren, was er gestohlen hat. ->Jarek_S6_Gemeldet]]
+[[Schweigen. Du lässt ihn laufen und trägst das allein. ->Jarek_S6_Geschwiegen]]
+<<else>>\
+<div class="beziehung">Du bist zu langsam, dein Training reicht nicht aus dass deine Instinkte schnell genug greifen. Ein heißer, reißender Schmerz über der Augenbraue, und dann läuft dir Blut in die Augen, warm und blendend. Du taumelst gegen das Regal, die Welt verschwimmt rot.</div>
+
+<<run setup.setPlayerCondition(-25)>>\
+<<set $player.flags = $player.flags || {}>>\
+<<set $player.flags.jareknarbe = true>>\
+Durch den roten Schleier siehst du Jarek nur noch als Schatten in der Tür — er hält nicht inne, sieht nicht zurück, prüft nicht, was er angerichtet hat. Dann ist er weg. Du kannst ihm nicht folgen. Du kannst kaum die Augen offen halten.
+
+<div class="thought-box">Er hat nicht einmal nachgesehen. Das ist es, was bleibt — nicht der Schnitt. Dass er nicht zurückgeschaut hat.</div>
+
+[[Schritte im Gang. Sie kommen. ->S06_Gestehen]]
+<</if>>\
+
+
+:: Jarek_S6_DokVermisst [interrupt einmalig] {"position":"3675,900","size":"100,100"}
+<<set $world.flags.dok_vermisst_done = true>>\
+Drei Tage hat die Stille gehalten. Heute ist sie vorbei.
+
+Beim Morgenappell fehlt nicht nur Jareks Name in der Reihe — es fehlt etwas viel Größeres. Aus den Schreibstuben ist ein Aufschrei geworden, der durchs ganze Lager hallt: Ein versiegelter Band ist verschwunden, und mit ihm der Rekrut, der zuletzt dort eingeteilt war.
+
+<div class="scenery-text">Im Hof stehen sie in Trauben zusammen, raunen. Ein Deserteur, sagen die einen. Ein Dieb. Andere wollen wissen, das Gestohlene sei brisanter als jeder Sold — etwas, das man besser nie gefunden hätte.</div>
+
+Niemand sieht zu dir herüber. Noch nicht. Aber du warst mit Jarek in jenen Schreibstuben, und es ist nur eine Frage der Zeit, bis sich jemand daran erinnert.
+
+<div class="thought-box">Ich könnte immer noch schweigen. Vielleicht fällt nie ein Verdacht auf mich. Oder ich gehe jetzt, aus eigenem Antrieb — bevor man mich holt.</div>
+
+[[Weiter schweigen. Sollen sie rätseln. ->Jarek_S6_Endgueltig_Schweigen]]
+[[Zum Sergeant gehen und erzählen, was du weißt. ->S06_Gestehen][$npc.jarek.memory.flags.spaet_gestanden = true]]
+
+
+:: Jarek_S6_Endgueltig_Schweigen {"position":"3525,1025","size":"100,100"}
+Du sagst nichts. Du gehst durch die Tage mit gesenktem Kopf, antwortest auf keine Frage mehr als nötig, und nach einer Woche reden sie über etwas anderes. Jarek wird zu einer Geschichte, die man sich erzählt — der Schustersohn, der verschwand. Was er mitnahm, weiß keiner. Außer dir.
+
+<div class="thought-box">Es ist vorbei. Niemand wird je erfahren, was in jener Nacht geschah, oder was auf dem Blatt stand. Ich trage es allein — den Schnitt, das Schweigen, das Wissen. Vielleicht ist das meine Strafe dafür, dass ich ihm geglaubt habe.</div>
+
+<div class="system-alert status-info">Du hast es endgültig für dich behalten. Das Geheimnis der sechsten Unterschrift ist jetzt deins — und Jareks, irgendwo da draußen.</div>
+<<set $npc.jarek.memory.flags.katastrophe to true>>\
+<<set $world.flags.jarek_ausgang_tag to $world.day>>\
+<<set $world.flags.jarek_ausgang to "schweigen">>\
+[[Den Kopf senken und weitermachen. ->Auf Stube]]
+
+
+:: Jarek_S6_Gemeldet {"position":"3650,725","size":"100,100"}
+<<set $world.flags.jarek_gemeldet = true>>\
+Du schreist, so laut die Lunge es hergibt. Stiefel donnern durch die Gänge, Laternen, Stimmen, Befehle. Du zeigst auf die offene Tür, auf das leere Regal, und die Worte stolpern aus dir heraus — Einbruch, ein Rekrut, ein gestohlenes Dokument.
+
+Was du *nicht* sagst, ist, was auf dem Blatt steht. Das behältst du. Aber Jareks Name ist jetzt in der Welt, und die Akademie ist kein Ort, der einen Dieb vergisst.
+Du musst auch nicht sagen was gestohlen wurde. Magister Halm war in heller aufregung und hat alle seine Bediensteten zur Inventur eingespannt. Mit Erfolg. 
+Halm schrieb nach Grodaus und Grodaus schickte jemanden. Jemanden der seinen Namen nicht nannte, jemanden der dich noch einmal befragte. Nach Jarek, nach allem was du über ihn weißt.
+Und nach dem Abend. Warum er dir in die Arme gelaufen ist. 
+Du Antwortest so gut du es kannst
+<<set _r to setup.skillCheck("thievery", 13)>>\
+<<if _r.success>>\
+	<div class="beziehung">und knallst ihm eine Lüge nach der anderen hin und kommst dabei nichteinmal in verlegenheit</div>
+<<else>>\
+	<div class="beziehung">und wiederholst alles Was du schon einmal erzählt hast und hoffst dass er dir glaubt</div>
+<</if>>\
+Am Ende nickt er. 
+<div class="voice-formal">"Gut, damit hätte ich alles. Meinen Bericht lege ich der Administartion vor. Dir möchte ich für deinen Einsatz schon als erster Danken und ich mahne dich, erzähl die Geschichte nicht herum. Jarek hat dem Druck der Ausbildung nicht standgehalten. Er ist eingebrochen und hat überreagiert. Mehr muss niemand wissen."</div>
+<div class="thought-box">Ich habe ihn ans Messer geliefert — denselben Weg, den er mit mir gegangen ist. Vielleicht ist das gerecht. Vielleicht ist es nur das, was übrig bleibt, wenn das Vertrauen weg ist.</div>
+<<set _out to "">>\
+<<set _out += setup.setPlayerReputation("ohm", 5)>>\
+<<set _out += setup.setNpcAffection("magister", 10)>>\
+<<set _out += setup.setNpcAffection("kurt", 10)>>\
+<<set _out += setup.setNpcAffection("hauptmann", 10)>>\
+<<set _out += setup.setNpcAffection("schinder", 10)>>\
+<<set _out += setup.setPlayerSuspicion(-5)>>\
+<div class="outcome-box">
+<div class="outcome-title">Das Ergebnis:</div>
+<div class="voice-formal">Deine Aussage ist glaubwürdig und die Offiziere erkennen deinen Einsatz an auch wenn du jarek nicht aufhalten konntest.</div>
+<<= _out>>
+</div>
+
+<div class="system-alert status-info">Jarek ist als Dieb gebrandmarkt. Was die Royalisten mit ihrem Beweis tun, wird sich zeigen — aber Man wird sie jagen.</div>
+<<set $npc.jarek.memory.flags.katastrophe to true>>\
+<<set $world.flags.jarek_ausgang_tag to $world.day>>\
+<<set $world.flags.jarek_ausgang to "gemeldet">>\
+[[Den Heiler rufen lassen und den Rest der Nacht überstehen. ->Kap1_Tagesstart]]
+
+
+:: Jarek_S6_Geschwiegen {"position":"3500,725","size":"100,100"}
+<<set $world.flags.jarek_gemeldet = false>>\
+<<set $world.flags.dok_vermisst_armed = true>>\
+<<set $world.flags.dok_vermisst_day = $world.day>>\
+Als die Schritte kommen, sagst du, du seist gestürzt. Im Dunkeln, beim Umräumen, dumm und ungeschickt. Sie glauben es — ein blutender Frischling, der sich schämt, ist nichts Besonderes.
+
+Kein Wort über Jarek. Kein Wort über das Blatt. Du weißt selbst nicht genau, warum — ob es ein letzter Rest von dem ist, was ihr wart, oder ob du einfach nicht der sein willst, der ihn verrät, nachdem er dich verraten hat.
+
+<div class="thought-box">Jetzt trage ich es allein. Den Schnitt, das Geheimnis, den Beweis irgendwo da draußen in seinen Händen. Niemand wird je erfahren, was in dieser Nacht passiert ist. Außer mir. Und ihm.</div>
+
+<div class="system-alert status-info">Du hast geschwiegen. Jarek ist verschwunden, sein Name unbefleckt — und du bist der Einzige, der die Wahrheit kennt.</div>
+<<set $npc.jarek.memory.flags.katastrophe to true>>\
+<<set $world.flags.jarek_ausgang_tag to $world.day>>\
+<<set $world.flags.jarek_ausgang to "geschwiegen">>\
+[[Den Schnitt verbinden und den Rest der Nacht überstehen. ->Kap1_Tagesstart]]
+
+
 :: Kap01_RekrutenKennenlernen {"position":"325,425","size":"100,100"}
 <<set $npc.karla.known = true, $npc.jarek.known = true>>
 Die schwere Holztür der Baracke fällt hinter dir ins Schloss, und für einen Herzschlag bleibt das Heulen des Windes draußen. Doch was dich drinnen erwartet, ist keine Gemütlichkeit — nur eine andere Art von Kälte.
@@ -1834,7 +2263,6 @@ Vor dir steht ein schlanker, sehniger Rekrut mit wachen, dunklen Augen und dem r
 
 
 :: Kap1_Der nächste Tag {"position":"1350,850","size":"100,100"}
-
 <<set _interrupt = setup.checkInterrupt()>>\
 <<if _interrupt != null>>\
     <<goto _interrupt>>\
@@ -2020,11 +2448,11 @@ Vor dir steht ein schlanker, sehniger Rekrut mit wachen, dunklen Augen und dem r
 <div class="thought-box"><<= setup.getNaechsterTagText("gedanke")>></div>
 <<= setup.getNaechsterTagText("luigi_schatten")>>\
 
-[[Sieh was der Tag bringt->Kap1_Der nächste Tag]] 
+[[Sieh was der Tag bringt->Kap1_Der nächste Tag]]
 
 
 :: Kapitel 0 {"position":"225,50","size":"200,200"}
-Vers. 0.4.3
+Vers. 0.8.0
 
 <div class="chapter-screen">
     <div class="fade-trigger">Intro</div>
@@ -2052,6 +2480,91 @@ Vers. 0.4.3
 </div>
 
 
+:: Kapitel 2 {"position":"575,4425","size":"200,200"}
+<div class="chapter-screen">
+    <div class="chapter-title">KAPITEL 2</div>
+    <div class="chapter-time">
+    	$world.day <<if $world.day == 1>>Tag<<else>>Tage<</if>> in der Ausbildung
+	</div>
+
+    <div class="center-link">
+        <<timed 4500ms>>
+            [[Weiter||bye]] 
+        <</timed>>
+    </div>
+</div>
+
+
+:: Kapitel1_Ende [interrupt einmalig] {"position":"200,4500","size":"100,100"}
+<<set $npc.karla.memory.flags.kapitel1_ende_seen to true>>\
+<<set _kampf to setup.hoechsteKampfwerte()>>\
+<<set $world.day to 365>>\
+Es ist soweit. Ein ganzes Jahr — dreihundertfünfundsechzig Tage — und doch fühlt es sich an wie ein einziger langer Tag, der erst jetzt zu Ende geht.
+
+<div class="scenery-text">Auf dem Appellplatz stehen die Rekruten in Reih und Glied, zum letzten Mal als Rekruten. Der Morgen ist klar, die Banner hängen schwer in der windstillen Luft, und vorne, auf der hölzernen Tribüne, haben sich die Ausbilder versammelt. Heute werdet ihr keine Frischlinge mehr sein.</div>
+
+Du denkst zurück. An den Jungen, der hier ankam — kurzatmig, weich, von den Bergen gerade erst notdürftig zusammengeflickt. Und an das, was aus ihm geworden ist.
+
+<div class="thought-box">Ich bin nicht mehr der, der durch dieses Tor kam. Irgendwo zwischen Drill und Nacht, zwischen Schweiß und Schweigen, ist aus dem kranken Jungen etwas anderes geworden. Etwas Härteres. Etwas, das steht.</div>
+
+Der Drill hat dich geformt, Tag um Tag, bis dein Körper vergaß, dass er einmal schwach war. Und unter all den Disziplinen, die sie dir eingeprügelt haben, ist eine, in der du wirklich gewachsen bist:
+
+<<for _i to 0; _i lt _kampf.length; _i++>>\
+<div class="beziehung"><<= setup.kampfwertWuerdigung(_kampf[_i])>></div>
+<</for>>\
+
+Dann treten die Ausbilder vor, einer nach dem anderen, um den Jahrgang zu entlassen.
+
+<div class="voice-formal"><<= setup.ausbilderVermerk("schinder",
+"Der Schinder geht die Reihe ab und bleibt vor dir kaum stehen. Was zwischen euch war, war nie Wärme — und das bleibt es. Ein knappes Nicken, mehr nicht. Du warst für ihn nie mehr als ein Körper, den es zu härten galt.",
+"Der Schinder mustert dich im Vorbeigehen, sachlich, ohne Regung. Du warst weder sein bester noch sein schlechtester Rekrut. Du hast überlebt. Für ihn ist das genug.",
+"Der Schinder bleibt einen Moment vor dir stehen. ‚Du hast nicht aufgegeben‘, sagt er nur. Aus seinem Mund, das weißt du inzwischen, ist das beinahe ein Lob.",
+"Der Schinder bleibt vor dir stehen und sieht dich an, lange. ‚Von hundert‘, sagt er rau, ‚erinnere ich mich an drei. Du bist einer davon.‘ Dann geht er weiter, und du weißt, dass dieser Mann dich nie vergessen wird.") >></div>
+
+<div class="voice-formal"><<= setup.ausbilderVermerk("kurt",
+"Fähnrich Brasner würdigt dich kaum eines Blickes. Was am ersten Tag zwischen euch zerbrach, hat sich nie gekittet. Er entlässt dich, weil er muss — nicht, weil er will.",
+"Fähnrich Brasner nickt dir zu, korrekt und distanziert. Ihr seid nie warm geworden, aber er hat dich auch nie im Stich gelassen. Pflicht, sauber erfüllt, auf beiden Seiten.",
+"Fähnrich Brasner reicht dir die Hand. ‚Du hast dich gemacht, Wabbler‘, sagt er. ‚Ich hatte am Anfang meine Zweifel. Du hast sie widerlegt.‘",
+"Fähnrich Brasner hält deine Hand einen Moment länger als nötig. ‚Wenn du je ein Banner suchst, das dich will‘, sagt er leise, ‚dann komm zu mir. Männer wie dich gibt es selten.‘") >></div>
+
+<div class="voice-formal"><<= setup.ausbilderVermerk("hauptmann",
+"Hauptmann Rindler streift dich nur mit einem kühlen Blick. Für einen Mann seines Ranges bist du ein Name auf einer Liste, mehr nicht — und nach allem vielleicht ein Name, den er lieber vergäße.",
+"Hauptmann Rindler nimmt dich zur Kenntnis, nicht mehr und nicht weniger. Ein Offizier des Corps merkt sich nicht jeden Rekruten. Du hast keinen Anlass gegeben, dich zu merken — im Guten wie im Schlechten.",
+"Hauptmann Rindler hält im Vorbeigehen kurz inne. ‚Man hat von dir gehört‘, sagt er knapp. ‚Nicht nur Schlechtes.‘ Von einem Mann des Corps ist das mehr, als die meisten je hören.",
+"Hauptmann Rindler bleibt vor dir stehen, und für einen Moment liegt etwas wie Interesse in seinem kühlen Blick. ‚Dein Name ist mir untergekommen, Wabbler. Mehr als einmal. Ich behalte ihn im Auge.‘") >></div>
+
+<div class="voice-formal"><<= setup.ausbilderVermerk("magister",
+"Magister Halm sucht deinen Blick nicht. Was immer einmal zwischen euch an Vertrauen war, ist verbraucht. Er entlässt deinen Jahrgang mit einem Satz, in dem für dich nichts Persönliches liegt.",
+"Magister Halm nickt dir aus der Ferne zu, sachlich wie immer. Du warst ein Schüler unter vielen — aufmerksam genug, um nicht aufzufallen, unauffällig genug, um vergessen zu werden.",
+"Magister Halm fängt deinen Blick auf und neigt den Kopf. ‚Du hast zugehört‘, sagt er nur, als ihr aneinander vorbeigeht. ‚Das tun die wenigsten.‘",
+"Magister Halm tritt eigens zu dir. ‚Das Archiv‘, sagt er leise, ‚vergisst niemanden, der wirklich wissen wollte. Du gehörst dazu. Wenn du je zurückkommst — die Tür kennt dich.‘") >></div>
+
+Und dann, als die Zeremonie verklingt, wandern deine Gedanken zu den beiden Menschen, die dieses Jahr für dich mehr geprägt haben als jeder Ausbilder.
+
+<<if $npc.karla.memory.flags.umkehrung_done>>\
+<div class="scenery-text">Karla steht ein paar Reihen weiter. Als sich eure Blicke treffen, nickt sie — kurz, fast unmerklich, aber für euch beide bedeutet es alles. Ihr Onkel wird frei sein, bald. Sie weiß, was du getan hast, und du weißt, dass sie für dich da war, als der Boden unter dir wegbrach. Was zwischen euch ist, hat den Drill überdauert und wird ihn überdauern. Es ist das, was bleibt, wenn alles andere Befehl und Pflicht war: ein Mensch, der bleibt.</div>
+<<else>>\
+<div class="scenery-text">Wo Karla stehen müsste, ist eine Lücke in der Reihe. Sie ist fort — nach Grodaus gebracht, an einem nebligen Morgen, den du nicht vergessen wirst. Du kennst die Wahrheit über ihren Onkel, über den Zeugen, über das Unrecht. Aber du hast im entscheidenden Moment danebengestanden statt an ihrer Seite, und das ist ein Gewicht, das du mit aus diesem Kapitel nimmst. Manche Türen schließt man, ohne es zu merken — bis sie zu sind.</div>
+<</if>>
+
+<<if $world.flags.jarek_ausgang === "schande">>\
+<div class="scenery-text">Und Jarek. Sein Name liegt über diesem Tag wie ein Schatten. Du hast deinen Ruf verloren für etwas, das niemand versteht — und nur du trägst das Wissen, was wirklich geschah, was auf jenem Blatt stand. Sie sehen einen Dieb, einen, der sein Land beschämte. Du weißt es besser. Aber Wissen, das man mit niemandem teilen kann, ist eine einsame Last.</div>
+<<elseif $world.flags.jarek_ausgang === "geschwiegen">>\
+<div class="scenery-text">Und Jarek. Verschwunden, sein Name unbefleckt, weil du geschwiegen hast. Niemand weiß, was in jener Nacht geschah — außer dir und ihm, irgendwo da draußen. Du trägst das Geheimnis der sechsten Unterschrift wie eine Narbe, die niemand sieht. Vielleicht war es Treue. Vielleicht Schwäche. Du wirst es nie ganz wissen.</div>
+<<elseif $world.flags.jarek_ausgang === "gemeldet">>\
+<div class="scenery-text">Und Jarek. Du hast ihn gemeldet — denselben Weg gegangen, den er mit dir ging. Die Offiziere ehren dich dafür, und doch sitzt etwas in deiner Brust, das sich nicht nach Ehre anfühlt. Du hast einen Verräter ausgeliefert und dabei einen Freund verloren. Beides ist wahr. Beides nimmst du mit.</div>
+<<else>>\
+<div class="scenery-text">Und Jarek. Eine Geschichte, die langsam verklingt — der Schustersohn, der verschwand. Nach außen ist nichts geschehen, und genau das hast du gewollt. Aber du trägst, was du weißt, allein, und das Erloschene in dir bemerkt niemand. Niemand außer einer.</div>
+<</if>>
+
+<div class="thought-box">Die Grundausbildung ist vorbei. Was kommt, weiß ich nicht. Aber ich weiß, wer ich geworden bin — und wer mit mir gegangen ist, und wer nicht. Das ist mehr, als ich hatte, als ich kam.</div>
+
+<div class="system-alert status-positive">KAPITEL 1 ABGESCHLOSSEN — Die Grundausbildung ist beendet. Aus dem kranken Jungen ist ein Soldat geworden.</div>
+<<run setup.kapitel1Abschliessen()>>\
+
+[[ "Was kommt, kommt."||Kapitel 2]]
+
+
 :: Nachmittag Cannon {"position":"725,1475","size":"100,100"}
 Die Geschütze der Artillerie
 <div class="scenery-text"><<= setup.executeStationRewards("cannon", "scenery")>></div>
@@ -2074,6 +2587,21 @@ Der Stand der Armbrustschützen
 
 
 :: Nachmittag Hub {"position":"825,1325","size":"100,100"}
+<<= setup.getRandomText("hubIntros")>>
+
+<div class="scenery-text"><<= setup.getRandomText("hubScenery")>></div>
+Ein paar Gelegenheiten fallen dir im Vorbeigehen ins Auge:
+<ul class="sandbox-menu">
+    <<hubOption "pike" "Zu den Waffengestellen der Infanterie" "Nachmittag Pike">>
+    <<hubOption "cannon" "Zu den schweren Geschützen" "Nachmittag Cannon">>
+    <<hubOption "medicine" "Zum Zelt des Feldschers" "Nachmittag Medicine">>
+    <<hubOption "crossbow" "Zu den Armbrustschützen" "Nachmittag Crossbow">>
+    <<hubOption "thievery" "Hinter den Stallungen herumtreiben" "Nachmittag Thievery">>
+</ul>
+<div class="thought-box"> <<= setup.getRandomText("hubThoughts")>></div>
+
+
+:: Nachmittag Hub bak {"position":"825,1325","size":"100,100"}
 <<= setup.getRandomText("hubIntros")>>
 
 <div class="scenery-text"><<= setup.getRandomText("hubScenery")>></div>
@@ -2179,7 +2707,6 @@ Ergebnis: <<= _g.correct>> von <<= _g.total>> richtig (<<= _g.pct>>%) — <<= _g
 <span class="subtext">[Test] [[Zurueck zum Testmenue ->Studium Hub]]</span>
 
 
-
 :: Pruefung Frage [pruefung] {"position":"2175,650","size":"100,100"}
 <set _e = $edu.exam>>\
 <<set _q = _e.queue[_e.pos]>>\
@@ -2234,7 +2761,6 @@ Abschlusspruefung – Kapitel 1
 <span class="subtext">[Test] [[Zurueck zum Testmenue ->Studium Hub]]</span>
 
 
-
 :: Rausreden Versuch {"position":"825,300","size":"100,100"}
 Die Eichentür fliegt mit einem lauten Knall auf. Kurt, der ältere Ausbilder, steht im Rahmen. Seine Augen verengen sich zu Schlitzen, als er dich sieht. 
 
@@ -2252,6 +2778,44 @@ Die Treppe. Den Korridor. Keine Rücksicht auf dein Tempo, kein Wort mehr, nur d
 <<=setup.setNpcAffection("kurt", -10)>><<set $npc.kurt.known = true>>
 <<=setup.setPlayerStat("honesty", -5)>>
 [[Zähneknirschend auf den Hof zerren lassen.->Der Kasernenhof]]
+
+
+:: S06_Gestehen {"position":"3850,1025","size":"100,100"}
+Du stehst vor dem Sergeant, und dann vor mehr als dem Sergeant. Du erzählst, was war: die Schreibstube, die Bitte, die Nacht zwischen den Regalen. Du nennst Jareks Namen. Du verschweigst nichts.
+<<if $edu.archivzugang>>\
+Du hattest das Zeichen des Magisters. Du warst befugt, dort zu sein — und genau das macht es schlimmer. Du hast Vertrauen benutzt, um Vertrauen zu brechen.
+<<else>>\
+Und dann kommt der Teil, den du am liebsten ausließest: dass du **kein** Recht hattest, dort zu sein. Dass ihr euch hineingeschlichen habt. Du gestehst den Einbruch — und sagst, als wäre es eine Entschuldigung, die keine ist: dass du einem Freund helfen wolltest.
+<</if>>\
+<div class="thought-box">Einem Freund. Das Wort schmeckt falsch im Mund. Es gab keinen Freund. Es gab nur mich, der zu gern einen gehabt hätte.</div>
+<<if $npc.jarek.memory.flags.spaet_gestanden>>\
+Und sie fragen, was jeder fragen würde: Warum erst jetzt? Drei Tage hast du geschwiegen, während sie das halbe Lager auf den Kopf stellten. Darauf gibt es keine gute Antwort. Dein Zögern wiegt jetzt fast so schwer wie die Tat.
+Die Strafe fällt noch härter aus.
+<</if>>\
+<<set _out to "">>\
+<<set _out += setup.setPlayerReputation("ohm", $edu.archivzugang ? -10 : -20)>>\
+<<set _out += setup.setNpcAffection("magister", $edu.archivzugang ? -15 : -25)>>\
+<<set _out += setup.setPlayerSuspicion($edu.archivzugang ? 15 : 40)>>\
+<<if $npc.jarek.memory.flags.spaet_gestanden>>\
+<<set _out += setup.setPlayerReputation("ohm", -10)>>\
+<<set _out += setup.setNpcAffection("magister", -10)>>\
+<<set _out += setup.setPlayerSuspicion(10)>>\
+<</if>>\
+<div class="outcome-box">
+<div class="outcome-title">Das Ergebnis:</div>
+<div class="voice-formal">Zu deinem großen Glück fällt das Urteil dahin, dass du manipuliert wurdest und nicht aus freihen Stücken gehandelt hast.</div>
+<<= _out>>
+</div>
+<<if $edu.archivzugang>> <div class="scenery-text">Magister Halm ist es, der am Ende das Wort führt. Er sieht dich nicht zornig an — das wäre leichter zu ertragen. Er sieht dich an wie eine Akte, die er falsch eingeordnet hatte. „Ich sagte dir, du sollst niemanden nach Namen fragen“, sagt er leise. „Du hast nicht gefragt. Du hast genommen.“ Dann wendet er sich ab, und das ist schlimmer als jede Strafe, die sie über dich verhängen.</div> <div class="thought-box">Halm hat mir die Tür geöffnet. Und ich habe ihm dafür ins Gesicht gelogen — ohne es zu wollen, aber das zählt für ihn nicht. Ich schäme mich so unfassbar …</div>
+<<else>> <div class="scenery-text">Magister Halm ist es, der am Ende das Wort führt. Er ist außer sich. „Wie kann es sein, dass in die Militärakademie eingebrochen und das Archiv gestohlen werden konnte? Genau aus diesem Grund hat man das Archiv hierher verlegt.“ Eine Anschuldigung, die schwer im Raum steht und die Militärs noch missmutiger stimmt, als sie ohnehin schon sind.</div> <div class="thought-box">Ich wollte jemandem helfen … seiner Familie … ich wollte Unrecht wiedergutmachen. Jetzt habe ich meinem Land geschadet — ohne es zu wollen, aber das zählt für sie nicht. Ich schäme mich so unfassbar …</div>
+<</if>>\
+<<if $npc.jarek.memory.flags.spaet_gestanden>> <div class="system-alert status-info">Jarek ist über alle Berge. Die Loyalisten haben Munition. Und dank deines Wartens haben sie auch Vorlauf.</div>
+<<else>>\ <div class="system-alert status-info">Jarek ist über alle Berge. Die Loyalisten haben Munition. Wenigstens hat die Administration schnell davon erfahren.</div>
+<</if>>\
+<<set $npc.jarek.memory.flags.katastrophe to true>>\
+<<set $world.flags.jarek_ausgang_tag to $world.day>>\
+<<set $world.flags.jarek_ausgang to "schande">>\
+[[Die Strafe annehmen und tragen. ->Kap1_Der nächste Tag]]
 
 
 :: Sergent aushorchen {"position":"600,300","size":"100,100"}
@@ -2653,6 +3217,7 @@ Dann zwanzig Liegestütze, sofort, im Kies. Deine Arme zittern bei der zwölften
 
 
 :: Story005_Gottesdienst [interrupt nach_hub] {"position":"1100,2450","size":"100,100"}
+<<if not $npc.hansFichtensplitter.memory.flags.sidequest05Complete and $world.visitedChurch>><<goto "05_Sidequest_Hansbert">><</if>>\
 Am Morgen ruft die Glocke zum Gottesdienst. Im Betsaal der Akademie stehen die Rekruten in Reihen, der Priester der Drei spricht von Limbas Funken, von Mirams Waage, von Hortum, der die Taten der Toten wiegt. Weihrauch hängt schwer in der kalten Luft.
 Thomas steht zwischen den anderen. Niemand prüft, ob er wirklich betet — aber jeder sieht, was er tut.
 
@@ -2705,9 +3270,23 @@ Thomas steht zwischen den anderen. Niemand prüft, ob er wirklich betet — aber
 <</link>>\
 </span>\
 
+<<set $world.visitedChurch = true>>
 <span id="gd-weiter" style="display:none">\
 <<weiterImTag "Die Kirche verlassen">>
 </span>\
+
+
+:: Story007_Training mit Karla [interrupt einmalig] {"position":"1100,2700","size":"100,100"}
+Karla will wieder mit dir trianieren. 
+
+
+knowledge wichtign. das höchste wird ausgesucht und da will karla nachhilfe. 
+
+gibt affection und ein bisschen Storry mir Karla
+
+
+:: Story008_Extra Unterricht Magister [interrupt] {"position":"1100,2850","size":"100,100"}
+
 
 
 :: StoryInit {"position":"0,0","size":"100,100"}
@@ -2719,7 +3298,6 @@ Thomas steht zwischen den anderen. Niemand prüft, ob er wirklich betet — aber
 <<run setup.syncPlayerRel()>>
 <<set setup.trainingsHubTextVault to JSON.parse(Story.get("TrainingsHubTexte").text)>>
 <<set setup.abendappellTextVault to JSON.parse(Story.get("AbendappellTexte").text)>>
-
 
 
 :: Stube: Bei Karla einrichten {"position":"75,600","size":"100,100"}
@@ -2755,6 +3333,7 @@ Heute Nacht bist du noch einfach nur müde.
 
 
 :: Stube: Jarek anfreunden {"position":"400,575","size":"100,100"}
+<<set $npc.jarek.memory.flags.s0_done = true>>\
 Du ergreifst Jareks Hand und erwiderst seinen Händedruck fest. „Das obere Bett ist gebucht." Deine Tasche landet mit einem dumpfen Schlag auf dem morschen Holzgestell.
 Jarek lächelt — schmal und ohne Überschwang, das Lächeln eines Menschen, der gelernt hat, sparsam damit umzugehen. Er lehnt sich mit dem Rücken gegen den hölzernen Pfosten und lässt den Blick kurz durch die Stube wandern.
 „Gute Entscheidung. Hier vorne zieht es zwar ordentlich durch die Türritzen — aber du bist am weitesten weg vom ewigen Theater da hinten." Er deutet mit dem Kinn zu Karla, die am Ofen noch immer ihr Revier absteckt wie ein Tier, das seinen Käfig vermisst. „Wir sollten ihr aus dem Weg gehen. Sie ist anstrengend." Eine kurze Pause. „Aber verdammt gut an der Waffe. Man hört sie in den Schenken von Ohm über ihre Kraft reden — und die Leute, die es hören, widersprechen ihr meistens nicht."
@@ -2769,7 +3348,6 @@ Es ist keine Drohung. Keine Prüfung. Nur eine ehrliche Frage von jemandem, der 
 
 
 :: Stube: Jarek kommt vorbei {"position":"275,725","size":"100,100"}
-
 <<if previous() is "Stube: Bei Karla einrichten">>\
 Du streckst dich auf der harten Pritsche neben Karla aus. Sie hat sich zur Wand gedreht, den Rücken dir zugekehrt wie eine Mauer, und atmet bald tief und gleichmäßig. Das Gemurmel der Stube ebbt ab, die Talglichter sterben eins nach dem anderen, bis nur noch das Heulen des Windes bleibt.
 Du bist noch nicht eingeschlafen, als sich ein Schatten neben deine Pritsche schiebt — leise, mit einem kurzen Blick zu Karlas reglosem Rücken, als wolle er sie um keinen Preis wecken. Er geht neben dir in die Hocke. „Schlecht angekommen?", fragt Jarek leise.
@@ -2793,6 +3371,7 @@ Er macht keine Anstalten zu gehen, und er wartet auch auf nichts. Aber da ist di
 
 
 :: Stube: Schweigen mit Jarek {"position":"275,850","size":"100,100"}
+<<set $npc.jarek.memory.flags.s0_done = true>>\
 
 Du sagst nichts. Was sollte es auch ändern.
 
@@ -2808,10 +3387,11 @@ Du liegst noch eine Weile wach und denkst, dass das der erste Mensch hier ist, d
 
 
 :: Stube: Thomas erzählt {"position":"75,850","size":"100,100"}
+<<set $npc.jarek.memory.flags.s0_done = true>>\
 
 Du weißt selbst nicht, warum es ausgerechnet jetzt aus dir herauskommt. Vielleicht, weil er nicht gefragt hat.
 
-„Ich war als Kind oft krank", sagst du leise. „So krank, dass keiner geglaubt hat, ich käme je auf die Beine. Die Luft blieb mir weg, wenn ich rannte. Ein Junge, der die Treppe nicht hochkam, ohne stehenzubleiben." Du starrst an die Decke. „Es gab jemanden, der das nicht hingenommen hat. Der mich in die Berge gebracht hat, Sommer um Sommer, bis der Weg und die Höhe aus mir etwas anderes gemacht haben. Ich weiß heute kaum noch sein Gesicht. Aber ich weiß, dass ich ohne ihn nicht hier läge."
+„Ich war als Kind oft krank", sagst du leise. „So krank, dass keiner geglaubt hat, ich käme je auf die Beine. Die Luft blieb mir weg, wenn ich rannte. Ein Junge, der die Treppe nicht hochkam, ohne stehenzubleiben." Du starrst an die Decke. „Es gab jemanden, der das nicht hingenommen hat. Der mich in die Berge gebracht hat, wo die Luft und die Höhe aus mir etwas anderes gemacht haben. Ich weiß, dass ich ohne ihn nicht hier läge."
 
 Jarek sagt eine Weile nichts. Dann nickt er, einmal, als hätte er etwas verstanden, das über deine Worte hinausgeht. „Dann sind wir beide hier, weil ein anderer es so wollte", sagt er schließlich. Es klingt fast warm. Es klingt wie der Anfang von etwas.
 
@@ -2910,7 +3490,6 @@ An der grossen Wandtafel haengt der Stundenplan. Vier Faecher stehen heute zur W
 
 
 <<= setup.examHubHTML()>>
-
 
 
 :: Studium Magister [studium] {"position":"1775,100","size":"100,100"}
@@ -3818,10 +4397,19 @@ Nicht plötzlich – eher so, als würde die Müdigkeit sich einfach neben dich 
 <</if>>
 
 
+:: bye {"position":"1050,4475","size":"100,100"}
+Danke fürs Spielen!
+
+Das wars fürs erste. 
+
+Mehr Content wird sicher irgendwann kommen.
+
+
 :: journalAnsicht {"position":"700,0","size":"100,100"}
 <div id="passage-journalansicht" class="passage journalansicht">
   <h2>📋 $player.name's Notizbuch</h2>
   Hier sind deine bisherigen Erkenntnisse über die Personen in der Akademie von Ohm festgehalten:
+  <<back "↩️ Zurück zum Dienst">>
   <h3>Inventar und Werte</h3>
   <<print setup.renderPlayerTable()>>
   <h3>Personen in der Militärakademie</h3>
@@ -3832,6 +4420,966 @@ Nicht plötzlich – eher so, als würde die Müdigkeit sich einfach neben dich 
 
 </div>
 <<back "↩️ Zurück zum Dienst">>
+
+
+:: karla_S1 [interrupt einmalig] {"position":"150,3150","size":"100,100"}
+<<set $npc.karla.memory.flags.s1_seen to true>>\
+Der Drill ist vorbei, die Reihe löst sich auf, und du spürst es in den Schultern — diesen dumpfen Schmerz, der erst kommt, wenn man aufhört sich zu bewegen. Du reibst dir die Handflächen, an denen der Schaft der Übungslanze rote Striemen hinterlassen hat.
+
+„Du hältst sie falsch."
+
+Karla. Sie steht ein paar Schritt entfernt, die eigene Lanze lässig über der Schulter, und sieht dir auf die Hände statt ins Gesicht.
+
+<div class="scenery-text">Der Exerzierplatz leert sich. Staub hängt noch in der Nachmittagsluft, und irgendwo bellt der Schinder einen Nachzügler an. Die Sonne steht tief und wirft lange Schatten über den festgetretenen Boden.</div>
+
+„Du klammerst." Sie tritt näher, ohne zu fragen, und legt zwei Finger an deinen Unterarm — kurz, sachlich, korrigierend. „Deshalb zittert die Spitze. Halt sie wie einen Vogel. Fest genug, dass er nicht wegfliegt. Locker genug, dass du ihn nicht zerdrückst."
+
+Sie tritt einen Schritt zurück und mustert dich. Kein Lob, keine Wärme. Nur die nüchterne Prüfung von jemandem, der einschätzt, ob sich Mühe lohnt.
+
+<div class="thought-box">Sie muss das nicht tun. Niemand hier korrigiert einen anderen, ohne etwas dafür zu wollen. Und doch wirkt es nicht, als wolle sie etwas.</div>
+
+[[Es ausprobieren — den Griff lockern. ->karla_S1_annehmen]]
+[[Abwinken — du bist müde, das reicht für heute. ->karla_S1_abwinken]]
+
+
+:: karla_S10 [interrupt einmalig nach_stube] {"position":"1300,3275","size":"100,100"}
+<<set _ausgang = $world.flags.jarek_ausgang>>\
+Karla findet dich. Natürlich findet sie dich — sie hat ein Gespür für die Risse in Menschen, weil sie ihre eigenen so lange verstecken musste.
+
+Du sitzt allein, dort wo dich niemand sucht, und du hast nicht gehört, dass sie kommt. Erst als sie sich neben dich setzt, ohne ein Wort, merkst du, dass du nicht mehr allein bist.
+
+<div class="scenery-text">Die Nacht ist kühl. Über dem Hof steht ein blasser Mond, und die Geräusche des Lagers sind weit weg, gedämpft, als gehörten sie zu einer Welt, die dich gerade nichts angeht.</div>
+
+Sie fragt nicht, was los ist. Sie weiß, dass das die falsche Frage wäre — du hast es ihr beigebracht, in einer Schreibstube, vor langer Zeit. Stattdessen sitzt sie einfach da, neben dir, und wartet.
+
+<<if _ausgang === "schande">>\
+Du brauchst niemandem zu erzählen, was geschehen ist. Das halbe Lager weiß es. Der Frischling, der ins Archiv eingebrochen ist, der sein Land beschämt hat, dem Magister Halm den Rücken gekehrt hat. Sie tuscheln, wenn du vorbeigehst. Sie sehen weg, wenn du sie ansiehst. Du bist zu etwas geworden, das man meidet.
+
+Lange sagt Karla nichts. Dann, leise und mit einer Härte, die nicht dir gilt, sondern allen anderen:
+
+„Ich weiß, was sie über dich sagen. Und es ist mir gleich." Sie sieht dich von der Seite an. „Ich weiß, warum du dort warst. Nicht für dich. Für jemanden, dem du helfen wolltest. Genau wie du es bei mir getan hast." Ihre Stimme wird fest. „Die da draußen sehen einen Dieb. Ich sehe den Einzigen, der je für mich aufgestanden ist, ohne etwas dafür zu wollen. Sollen sie tuscheln. Ich weiß, wer du bist."
+
+<div class="thought-box">Das ganze Lager hat sich von mir abgewandt. Und ausgerechnet sie — die ich kaum dazu bringen konnte, mir am Anfang ein Wort zu gönnen — bleibt sitzen. Als wäre nichts selbstverständlicher.</div>
+
+<<elseif _ausgang === "geschwiegen">>\
+Der Schnitt an deinem Arm hat sich wieder geöffnet — du hast ihn schlecht versorgt, weil dir alles gleichgültig war in diesen Tagen. Karla sieht das Blut, das durch den groben Verband sickert, und ohne zu fragen nimmt sie deinen Arm, löst den Stoff und beginnt, ihn neu zu binden, fest und geübt.
+
+„Du lässt dich gehen", sagt sie, während ihre Hände arbeiten. Kein Vorwurf. Eine Feststellung. „Was auch immer in dieser Nacht passiert ist — du trägst es mit dir herum wie diese Wunde. Schlecht verbunden. Damit es wehtut."
+
+Sie zieht den Knoten fest, vielleicht eine Spur zu fest, und sieht dich dann an.
+
+„Ich frag nicht, was war. Das geht mich nichts an, und du würdest es mir sowieso nicht sagen. Aber ich kann dafür sorgen, dass wenigstens der Arm heilt. Den Rest …" Sie zögert. „Den Rest trägst du nicht mehr allein. Auch wenn ich nicht weiß, was es ist."
+
+<div class="thought-box">Sie versorgt die Wunde, die sie sehen kann, und macht mir damit ein Angebot für die, die sie nicht sehen kann. Genau das hab ich für sie getan. Brauchst du Licht. Jetzt fragt sie mich dasselbe — ohne die Worte.</div>
+
+<<elseif _ausgang === "gemeldet">>\
+Sie alle haben dir auf die Schulter geklopft. Der Schinder, der Hauptmann, sogar der Magister. Du hast einen Dieb gemeldet, hast deine Pflicht getan, hast Anerkennung geerntet. Und nichts davon hat das Gefühl in deiner Brust auch nur berührt.
+
+Karla ist die Einzige, die nicht gratuliert.
+
+„Sie feiern dich", sagt sie nach einer Weile. „Und du sitzt hier, als hättest du etwas verloren." Sie nickt langsam, als verstünde sie etwas, das den anderen entgeht. „Du hast jemanden ausgeliefert. Jemanden, dem du mal vertraut hast. Und jetzt sagen dir alle, du hättest das Richtige getan — und keiner von ihnen versteht, warum es sich anfühlt wie Verrat."
+
+Sie sieht dich an, und in ihrem Blick liegt ein Wiedererkennen.
+
+„Ich kenne das, Thomas. Einen Menschen, der schweigt, wenn er reden müsste. Einen, der dich im Stich lässt. Es zerfrisst dich — egal, ob du am Ende recht hattest." Sie legt eine Hand auf deinen Arm, kurz, fest. „Du hast nicht das Falsche getan. Aber du darfst trotzdem trauern. Das eine schließt das andere nicht aus."
+
+<div class="thought-box">Alle sehen den Mann, der seine Pflicht tat. Sie sieht den Mann, der einen Freund verlor — und der nicht weiß, ob er selbst noch einer von den Guten ist. Niemand sonst hat das gesehen. Nur sie.</div>
+
+<<else>>\
+Nach außen ist nichts geschehen. Jarek ist eine Geschichte geworden, die langsam verklingt — der Schustersohn, der verschwand. Niemand sieht dir an, was du mit dir trägst. Du hast dafür gesorgt, dass niemand es sieht.
+
+Aber Karla sieht es trotzdem.
+
+„Irgendwas in dir ist aus", sagt sie leise. „Seit Tagen. Du gehst durch den Tag wie ein Mann, der ein Licht ausgeblasen hat, und jetzt nicht mehr weiß, wie er im Dunkeln gehen soll."
+
+Sie drängt nicht. Sie rückt nur ein wenig näher, sodass ihr Arm den deinen berührt.
+
+„Was es auch war — ich seh, dass es schwer ist. Und ich seh, dass du allein damit bist." Eine Pause. „Das musst du nicht. Das ist alles, was ich sagen will. Du musst es mir nicht erzählen. Du musst nur wissen, dass da jemand sitzt, der bleibt."
+
+<div class="thought-box">Ich hab es vor allen verborgen. Vor allen außer ihr. Sie sieht das Erloschene, das niemand sonst bemerkt — weil sie gelernt hat, genau da hinzuschauen, wo Menschen ihre Risse verstecken.</div>
+<</if>>
+
+Ihr sitzt eine Weile schweigend nebeneinander. Es löst nichts. Das, was geschehen ist, ist immer noch geschehen, und das Geheimnis, das du trägst, ist immer noch deins allein.
+
+Aber zum ersten Mal seit jener Nacht bist du nicht mehr allein damit, *dass* du etwas trägst. Und das, so merkst du, macht einen Unterschied, den du nicht in Worte fassen könntest.
+
+<div class="thought-box">Ich habe ihr einmal Licht gebracht, als sie im Dunkeln suchte. Ich hätte nie gedacht, dass sie es mir eines Tages zurückgibt. So ist das wohl mit den Menschen, die man nicht im Stich lässt: Irgendwann lassen sie auch dich nicht im Stich.</div>
+
+<<= setup.setNpcAffection("karla", 10)>>\
+<<set $npc.karla.memory.flags.umkehrung_done to true>>\
+
+<div class="system-alert status-positive">Karla war für dich da, so wie du für sie da warst. Was ihr verbindet, hat den Namen Freundschaft längst hinter sich gelassen — es ist etwas, das hält.</div>
+
+<<weiterImTag "Weiter">>
+
+
+:: karla_S1_abwinken [nach_appell] {"position":"300,3275","size":"100,100"}
+„Reicht für heute", sagst du und senkst die Lanze.
+
+Karla zuckt mit einer Schulter. Kein Vorwurf, kein zweiter Versuch. Sie hat dir etwas angeboten, du hast es liegen lassen, und für sie ist das kein Drama — nur eine Information.
+
+„Wie du willst, Frischling."
+
+Sie geht. Und du merkst, während du ihr nachschaust, dass dich der ziehende Schmerz in den Handflächen daran erinnern wird, dass sie recht gehabt hätte.
+
+<div class="thought-box">Vielleicht war das eine vertane Gelegenheit. Vielleicht auch nicht. Bei ihr ist das schwer zu sagen.</div>
+
+<<= setup.setNpcAffection("karla", 1)>>\
+<<weiterImTag "Zum Appell gehen">>
+
+
+:: karla_S1_annehmen [nach_appell] {"position":"150,3275","size":"100,100"}
+Du lockerst den Griff. Hältst sie wie einen Vogel.
+
+Es fühlt sich falsch an — zu lose, als würde sie dir gleich aus der Hand fallen. Dann hebst du sie, stößt einmal in die leere Luft, und die Spitze fährt gerade nach vorn, ohne zu zittern.
+
+Du stutzt.
+
+Karla nickt knapp. Nicht überrascht. Eher so, als hätte sie auf genau diesen Moment gewartet, in dem du selbst merkst, dass sie recht hatte.
+
+„Siehst du."
+
+Mehr sagt sie nicht. Sie dreht sich um und geht, die Lanze wieder über der Schulter, und lässt dich mit der Waffe und einer kleinen, unerwarteten Erkenntnis zurück.
+
+<div class="thought-box">Eine winzige Sache. Aber sie hat sie mir gezeigt, ohne dass ich darum gebeten habe. Das vergisst man nicht so schnell.</div>
+
+<<= setup.setNpcAffection("karla", 3)>>\
+<<= setup.pushNpcMemory("karla", "training_angenommen")>>\
+<<weiterImTag "Zum Appell gehen">>
+
+
+:: karla_S1b [interrupt einmalig nach_hub] {"position":"150,3275","size":"100,100"}
+<<set $npc.karla.memory.flags.s1b_seen to true>>\
+Nach einem Morgen mit leichten Marschübungen bist du auf dem Weg zum Brunnen, als du am Rand des Übungsplatzes hängenbleibst. Karla trainiert. Nicht allein — ihr gegenüber steht Berns, ein breiter Kerl aus dem zweiten Zug, der mehr Kraft hat als Verstand und das auch weiß.
+
+Du bleibst stehen. Irgendetwas an der Art, wie Karla kämpft, hält dich fest.
+
+<div class="scenery-text">Die Vormittagssonne brennt schon. Staub steigt bei jedem Schritt auf, und das harte Klacken der Übungslanzen hallt von der Mauer wider. Ein paar andere schauen zu, gelangweilt, kauend.</div>
+
+Sie ist gut. Schneller als Berns, präziser. Sie treibt ihn vor sich her, Schlag um Schlag, und du siehst förmlich, wie sich seine Miene verfinstert, weil ein Mädchen ihn alt aussehen lässt.
+
+Dann passiert es. Berns, mehr aus Frust als aus Können, bricht aus der Linie aus und greift von links an — tief, von ihrer schwachen Seite.
+
+Und Karla *zuckt*.
+
+Nicht viel. Ein halber Schritt zurück, der Körper weggedreht, die Linke an den Leib gezogen — für einen Wimpernschlag ist die kühle, überlegene Kämpferin verschwunden, und an ihrer Stelle steht etwas anderes. Etwas Älteres. Etwas, das wehtut.
+
+<div class="thought-box">Das war kein technischer Fehler. Das war ein Reflex. So zuckt nur, wer einmal an genau dieser Stelle wirklich verletzt wurde.</div>
+
+Berns lacht. Laut, dumm, triumphierend. „Na, was ist denn da los? Tut das Ärmchen weh?" Er stößt noch einmal nach links nach, halb im Spaß. „Komm schon, was hast'n da? Erzähl doch mal —"
+
+Karla schlägt ihm die Lanze aus der Hand.
+
+Kein Wort. Keine Erklärung. Nur eine einzige, kalte Bewegung, so schnell, dass Berns gar nicht begreift, wie ihm geschieht — und dann steht sie über ihm, die Spitze ihrer Lanze eine Handbreit vor seiner Brust, und ihr Blick ist so leer und so endgültig, dass das Lachen ringsum sofort erstirbt.
+
+<div class="voice-formal">„Frag das nie wieder."</div>
+
+Sie sagt es leise. Das macht es schlimmer.
+
+Dann lässt sie die Lanze sinken, dreht sich um und geht, ohne sich noch einmal umzusehen und Berns bleibt im Staub sitzen.
+
+<div class="thought-box">Was immer mit ihrer linken Seite ist — es schmerzt sie...</div>
+
+<<weiterImTag "Weiter">>
+
+
+:: karla_S2 [interrupt einmalig] {"position":"150,3400","size":"100,100"}
+<<set $npc.karla.memory.flags.s2_done to true>>\
+Der Schinder war heute wieder streng. Du hast dich durchgekämpft, aber die Müdigkeit hängt dir in den Gliedern.
+Langsam formten sich die Rekruten zu einer Einheit. Die Sonne ist schon hinter den Palisaden verschwunden, und die Schatten der Stallungen sind lang.
+
+Nach dem Abendapell willst du gerade zur Stube, als sie aus dem Schatten der Stallungen tritt. Nicht laut. Sie wartet einfach, bis du sie siehst.
+
+„Du. Komm mit."
+
+Sie sieht dich dabei nicht an, dreht sich um und geht, als wäre längst beschlossen, dass du folgst.
+
+<div class="scenery-text">Sie führt dich hinter die Stallungen, an den Wachen vorbei, durch eine Lücke zwischen zwei Planwagen — und dann stehst du auf einem kleinen, vergessenen Flecken Erde. Ein paar ausgeblichene Strohballen, ein ramponierter Holzpfosten. Kein Talglicht. Nur das letzte Tageslicht, das von Westen gegen die Palisaden drückt.</div>
+
+Karla dreht sich um. Ihre Augen wandern einmal über dich — prüfend, kurz.
+
+„Du hast heute auf dem Platz nicht gezuckt", sagt sie. Keine Frage. Keine Schmeichelei. Eine Feststellung, die sie offenbar für relevant hält.
+
+Sie hebt eine abgenutzte Übungslanze vom Boden und wirft sie dir zu. Kein „fang" davor. Einfach werfen.
+
+„Ich brauche jemanden zum Üben. Jetzt. Und du redest mit niemandem darüber." Sie dreht die eigene Lanze zwischen den Handflächen, locker und gewohnt. „Fang an."
+
+<div class="thought-box">Kein Bitte. Kein Warum. Eine Tatsache, die jetzt im Raum steht wie ein Werkzeug, das man entweder anfasst oder liegen lässt.</div>
+
+[[Mitmachen und genau beobachten, wie sie kämpft. ->karla_S2_aktiv]]
+[[Die Lanze auffangen und trotzdem ablehnen. ->karla_S2_ablehnen]]
+
+
+:: karla_S2_ablehnen [nach_stube] {"position":"400,3525","size":"100,100"}
+Du fängst die Lanze auf — und hältst sie einen Moment in den Händen, bevor du sie langsam wieder zum Boden senkst.
+
+„Nicht heute."
+
+Karla sieht dich an. Ihr Gesicht verändert sich nicht.
+
+„Warum."
+
+Kein Fragezeichen. Nur das Wort, hingestellt wie ein Block.
+
+Du nennst deinen Grund — Erschöpfung, ein steifer Nacken, was auch immer dir zuerst kommt. Sie hört zu. Oder sie tut so. Dann nimmt sie dir die Lanze aus der Hand. Ohne Kommentar. Ohne sie fallen zu lassen.
+
+„Ein anderes Mal vielleicht." Und du weißt nicht, ob das eine Drohung ist oder ein Angebot.
+
+<div class="thought-box">Sie hat nicht widersprochen. Aber sie hat auch nichts vergessen.</div>
+
+<<= setup.setNpcAffection("karla", -1)>>\
+<<weiterImTag "Auf die Stube gehen">>
+
+
+:: karla_S2_aktiv {"position":"150,3525","size":"100,100"}
+Du fängst die Lanze auf und nimmst die Position ein, die euch der Schinder eingeprügelt hat.
+<div class="thought-box">Was hat sie vor, warum will sie immer mehr trainieren?</div>
+
+Karla greift an. Schnell. Direkt. Von rechts, immer von rechts — und du bemerkst es erst beim dritten Mal: Wenn du von links kommst, macht sie einen Schritt zurück. Kein Ausweichen, keine Parade. Einen Schritt zurück, den Körper leicht weggedreht. Als wäre es eine Gewohnheit, die tiefer sitzt als jede Technik.
+
+<div class="thought-box">Sie zieht die Linke nach. Das ist ein Reflex. Und Reflexe dieser Art lernt man nicht — die übt man ein, weil man muss.</div>
+
+Du greifst noch einmal von links an. Langsam diesmal, tiefer, mit mehr Gewicht. Karla pariert — einen Herzschlag zu spät. Der Schaft streift ihre Schulter. Nicht stark. Aber er trifft.
+
+Sie hält inne. Ihr Blick sucht deinen, kalt und aufmerksam weil sie bemerkt hat das es dir aufgefallen ist.
+
+<div class="thought-box">Sie hat gemerkt, dass ich es gesehen habe. Spreche ich es an — oder lasse ich es liegen?</div>
+
+[[Komm, alte Gewohnheiten macht stetes üben wett! ->karla_S2_schweigen]]
+[[Woher kommt dein zurückzucken, was ist passiert? ->karla_S2_ansprechen]]
+
+
+:: karla_S2_ansprechen [nach_stube] {"position":"250,3650","size":"100,100"}
+„Von links", sagst du. „Da weichst du zurück. Jedes Mal."
+
+Karla sieht dich an.
+
+Die Stille, die folgt, hat eine Textur — sie ist nicht leer, sie ist voll von etwas, das sie gerade in Schach hält.
+
+Dann entspannt sich ihr Kiefer, aber nicht ihr Blick.
+
+„Das hab ich nicht gefragt."
+
+Sie stellt die Lanze gegen den Holzpfosten. Das Training ist vorbei. Du weißt es, noch bevor sie sich umdreht.
+
+„Geh schlafen, Frischling."
+
+Keine Aggression. Nur eine Tür, die sich schließt — ruhig aber entschlossen.
+
+<div class="thought-box">Ich hab es richtig benannt. Und genau das war der Fehler. Nicht das Sehen — das Sagen.</div>
+
+<<= setup.setNpcAffection("karla", 1)>>\
+<<weiterImTag "Auf die Stube gehen">>
+
+
+:: karla_S2_schweigen [nach_stube] {"position":"100,3650","size":"100,100"}
+Du hebst die Lanze wieder in Position.
+
+Keine weitere Bemerkung. Kein Blick, der zu lange bleibt. Du hast es gesehen — und du lässt es dort, wo es ist.
+
+Karla steht einen Moment still. Ihre Augen sind auf dir, und du spürst es, ohne hinzusehen. Dann dreht sie die Lanze langsam in den Händen und greift wieder an.
+
+Das Training geht weiter. Aber es ist jetzt anders — ruhiger, präziser. Als hätte sie beschlossen, dass du es verdient hast, ernst genommen zu werden.
+
+<div class="scenery-text">Das Licht ist fast weg. Der Abend riecht nach Erde und altem Holz.</div>
+
+Als sie abbricht, steht sie einen Moment mit dem Rücken zu dir und putzt den Schaft mit dem Ärmel ab. Dann, ohne sich umzudrehen:
+
+„Du hast ein gutes Auge." Eine Pause. „Und du weißt, wann man es zumacht. Das ist seltener."
+
+Kein Dank. Kein Lächeln. Nur diese Feststellung, hingelegt wie eine Münze auf einen Tisch.
+
+Sie geht.
+
+<div class="thought-box">Ich weiß nicht genau, was ich ihr gerade gegeben habe. Aber es war etwas. Das hab ich gespürt.</div>
+
+<<= setup.setNpcAffection("karla", 6)>>\
+<<= setup.pushNpcMemory("karla", "hat_geschwiegen")>>\
+<<weiterImTag "Auf die Stube gehen">>
+
+
+:: karla_S3 [interrupt einmalig nach_morgen] {"position":"150,3750","size":"100,100"}
+Du kannst nicht schlafen. Die Pritsche ist hart, die Luft in der Stube steht, und nach einer Stunde des Wälzens gibst du auf und schiebst dich nach draußen — nur ein paar Schritte, nur frische Luft.
+
+Der Hof liegt im Mondlicht. Und im Verwaltungstrakt, dort, wo um diese Zeit niemand sein dürfte, brennt schwach ein Licht.
+
+<div class="scenery-text">Es ist die Stunde, in der die Akademie sich selbst vergisst. Kein Drill, kein Befehl, nur das Knacken von abkühlendem Holz und der ferne Schritt einer Wache, die ihre Runde geht — weit genug weg, um jetzt keine Rolle zu spielen.</div>
+
+Du solltest umkehren. Du weißt es. Stattdessen gehst du näher.
+
+Die Tür zur Schreibstube steht einen Spalt offen. Durch den Spalt: der Schein einer abgeschirmten Kerze, das Rascheln von Papier. Jemand durchsucht die Akten. Schnell, leise, geübt.
+
+Du schiebst die Tür auf.
+
+Karla fährt herum.
+
+Einen Atemzug lang ist alles in der Schwebe — sie mit einem Bündel Dokumente in der Hand, du in der Tür, und zwischen euch die ganze Wucht dessen, was hier gerade passiert. Sie könnte dich anlügen. Du könntest gehen. Jeder von euch wartet darauf, was der andere tut.
+
+<<if $npc.karla.affection >= 8>>\
+Ihr Blick ist hart — aber unter der Härte liegt etwas, das du schon einmal gesehen hast. In ihren Augen ist nicht nur Schreck. Da ist auch die leise, ungläubige Frage, ob ausgerechnet du sie jetzt verrätst. Ihr habt zusammen im Dunkeln geübt. <<if $npc.karla.memory.flags.hat_geschwiegen>>\ Sie weiß, dass du den Mund halten kannst. Die Frage ist nur, ob du es auch *jetzt* tust.<</if>>
+<<else>>\
+Ihr Blick ist hart und abweisend, eine Wand, die im selben Moment hochfährt, in dem sie dich erkennt. Sie schätzt dich nicht als Verbündeten ein. Sie schätzt dich als Risiko ein — und du siehst, wie sie schon abwägt, was sie tun muss, falls du der falsche Mensch bist.
+<</if>>
+
+<div class="thought-box">Was immer sie hier sucht — es ist nichts Kleines. So sucht niemand, der nur neugierig ist. So sucht jemand, der etwas zu verlieren hat.</div>
+
+Du hast die Wahl. Und du hast sie nur einmal.
+
+[[Soll ich aufpassen?|karla_S3_licht]]
+[[Was machst du da?|karla_S3_frage]]
+
+
+:: karla_S3_frage {"position":"300,3875","size":"100,100"}
+„Was machst du da?"
+
+Die Worte sind heraus, bevor du sie zurückhalten kannst. Und im selben Moment, in dem du sie aussprichst, weißt du, dass es falsch war.
+
+Denn Karlas Gesicht schließt sich. Nicht langsam — sofort, vollständig, wie eine Tür, die zugeschlagen wird. Die kurze Verletzlichkeit, das Abwägen, die ungestellte Frage, ob du der Richtige bist: alles weg. Was bleibt, ist die Wand, die du vom Exerzierplatz kennst.
+
+„Akten sortieren", sagt sie tonlos. „Schinder hat mich eingeteilt. Geh schlafen."
+
+Es ist eine Lüge, und beide wisst ihr, dass es eine ist. Aber sie hat sie dir hingestellt wie einen Ausweg — für sich und für dich. Nimm sie, sagt ihr Blick. Nimm sie und vergiss, was du gesehen hast.
+
+<div class="thought-box">Ich hab gefragt, statt zu helfen. Genau wie Berns auf dem Platz. Und genau wie bei Berns ist die Tür jetzt zu.</div>
+
+Du gehst. Es bleibt dir nichts anderes.
+
+<<= setup.setNpcAffection("karla", -2)>>\
+<<set $npc.karla.memory.flags.p2_zweiter_anlauf to true>>\
+<<set $npc.karla.memory.flags.p2_zweiter_anlauf_tag to $world.day>>\
+[[Auf die Stube gehen.|Kap1_Tagesstart]]
+
+
+:: karla_S3_helfen [nach_morgen] {"position":"0,4000","size":"100,100"}
+Du schließt die Tür hinter dir. Leise. Das Klicken der Klinke ist eine Antwort für sich: Ich bin drin. Ich bin auf deiner Seite. Wir machen das zusammen.
+
+Karla sieht dich an, und etwas Unausgesprochenes geht zwischen euch über — kein Dank, dafür ist sie nicht gemacht, aber etwas Schwereres, Dauerhafteres als Dank.
+
+Ihr durchsucht die Akten gemeinsam. Du hältst die Kerze, sie liest. Stunden später, mit brennenden Augen und leeren Händen, gebt ihr für diese Nacht auf — der richtige Aktenstapel ist nicht hier, vielleicht nicht einmal in dieser Stube. Aber das ist nicht das, was zählt.
+
+Was zählt, ist, dass ihr es ab jetzt zu zweit tragt.
+
+<div class="thought-box">Sie hat mir etwas gegeben, das sie noch keinem gegeben hat. Nicht das Geheimnis. Das Vertrauen, es zu kennen.</div>
+
+<<= setup.setNpcAffection("karla", 10)>>\
+<<set $npc.karla.memory.flags.kennt_geheimnis to true>>\
+<<weiterImTag "Die Nacht ist vorbei">>
+
+
+:: karla_S3_licht {"position":"50,3875","size":"100,100"}
+Du fragst nicht, was sie tut. Du fragst nicht, warum. Du siehst die abgeschirmte Kerze, die kaum genug Licht wirft, um die Schrift zu erkennen — und du sagst das Einzige, was zählt.
+
+„Soll ich aufpassen?"
+
+Karla erstarrt.
+
+Es ist nicht das, womit sie gerechnet hat. Nicht die Frage, nicht der Verrat, nicht das Zurückweichen. Sondern ein Angebot. Du stehst in der Tür, hast alles gesehen — und statt zu fragen, was du gerade siehst, fragst du, wie du helfen kannst.
+
+Etwas in ihrem Gesicht gibt nach. Nur ein Stück. Aber bei Karla ist ein Stück sehr viel.
+
+<div class="scenery-text">Die Kerzenflamme zittert im Luftzug der offenen Tür. Draußen, weit weg, der Schritt der Wache. Drinnen nur ihr Atem und deiner.</div>
+
+Lange sagt sie nichts. Dann, leise, ohne dich anzusehen, während sie ein Dokument glatt streicht, das ihre Finger nicht ruhig halten können:
+
+„Mein Onkel. Edric." Eine Pause. „Er sitzt seit zwei Jahren. Für einen Überfall auf einen Militärtransport. Sie sagen, er war der Ortskundige. Der, der die Räuber geführt hat."
+
+Sie schaut endlich auf. Und zum ersten Mal, seit du sie kennst, ist da keine Wand.
+
+„Er lag mit Fieber im Bett, als das passierte. Ich weiß es. Ich war dabei." Sie hält inne. Und dann, zum ersten Mal, hörst du es — wie ihre Stimme an einer Stelle nachgibt, die sie nicht mehr halten kann. „Es gab einen Zeugen. Einen, der das hätte bestätigen können." Sie schluckt. „Aber vor Gericht hat er den Mund gehalten. Kein einziges Wort. Und mein Onkel ist dafür eingefahren."
+
+Sie wischt sich mit dem Handrücken über die Augen — schnell, fast ärgerlich, als wäre sie wütend auf sich selbst dafür, dass sie das vor dir zulässt.
+
+<div class="thought-box">Deshalb ist sie hier. Nicht für den Sold. Nicht fürs Dach überm Kopf. Sondern wegen eines Mannes in einer Zelle und eines Zeugen, der geschwiegen hat.</div>
+
+„Die Akten über den Überfall müssen hier irgendwo sein. Wer ausgesagt hat. Wer geschwiegen hat. *Warum* er geschwiegen hat." Sie sieht dich an, und jetzt liegt eine Frage darin, die sie nicht ausspricht. „Das ist der einzige Plan, den ich hab."
+
+Du könntest jetzt vieles sagen. Aber du spürst, dass die wichtigste Antwort keine Worte braucht.
+
+[[Die Tür hinter dir schließen und ihr beim Suchen helfen. ->karla_S3_helfen]]
+[[Ihr versprechen zu schweigen — aber sie warnen, dass das hier gefährlich ist. ->karla_S3_warnen]]
+
+
+:: karla_S3_warnen [nach_morgen] {"position":"150,4000","size":"100,100"}
+"Ich werde nichts sagen, zu niemandem", sagst du.
+
+Karla nickt knapp.
+
+Du siehst auf die Akten in ihrer Hand, dann zur Tür, durch die jeden Moment eine Wache treten könnte. Sie ist gut in dem, was sie tut — schneller und leiser, als du es je wärst. Aber niemand, der allein arbeitet, kann gleichzeitig suchen und den Gang im Auge behalten.
+
+„Lass mich wenigstens aufpassen", sagst du. „Wenn du das nächste Mal hier rein musst — sag mir Bescheid. Ich steh draußen. Ich huste, wenn jemand kommt."
+
+Einen Moment lang sieht sie dich nur an, als müsste sie neu berechnen, wer du bist. Dann, fast widerwillig, hebt sich ein Mundwinkel.
+
+„Du bist nicht so dumm, wie du auf dem Platz aussiehst, Frischling."
+
+<div class="thought-box">Das ist von ihr beinahe eine Liebeserklärung. Wir teilen jetzt mehr als eine Stube. Wir teilen ein Risiko.</div>
+
+<<= setup.setNpcAffection("karla", 8)>>\
+<<set $npc.karla.memory.flags.kennt_geheimnis to true>>\
+<<weiterImTag "Die Nacht ist vorbei">>
+
+
+:: karla_S3b [interrupt einmalig nach_morgen] {"position":"700,3150","size":"100,100"}
+Seit jener Nacht in der Schreibstube ist etwas zwischen euch. Kein Streit — Karla streitet nicht. Etwas Kühleres. Sie redet mit dir wie mit jedem anderen, knapp und sachlich, und genau das ist es: Du bist wieder jeder andere geworden. Die kurze Tür, die sich damals einen Spalt geöffnet hatte, ist zu.
+
+Du hast nicht vergessen, was du gesehen hast. Sie weiß das. Und sie wartet darauf, dass du es benutzt — oder vergisst.
+
+<div class="scenery-text">Es ist spät. Die Stube schläft, das Talglicht ist fast herabgebrannt. Du liegst wach, als du das leise Knarren der Tür hörst. Eine Gestalt schiebt sich nach draußen — lautlos, geübt. Du kennst diesen Gang inzwischen.</div>
+
+Karla. Wieder unterwegs. Wieder allein.
+
+Du könntest liegen bleiben. Es geht dich nichts an — das hat sie dir in dieser Nacht deutlich gemacht. Aber du weißt auch, was sie dort draußen sucht, und du weißt, dass sie es allein sucht, weil du ihr keinen Grund gegeben hast, es nicht zu tun.
+
+<div class="thought-box">Beim letzten Mal hab ich gefragt, statt zu helfen. Wenn ich aufstehe, muss ich es diesmal richtig machen. Und ich krieg keine dritte Gelegenheit.</div>
+
+[[Aufstehen und ihr nach.|karla_S3b_folgen]]
+[[Liegen bleiben. Sie hat klar gemacht, dass sie dich nicht will.|karla_S3b_bleiben]]
+
+
+:: karla_S3b_bleiben [nach_morgen] {"position":"850,3275","size":"100,100"}
+Du bleibst liegen.
+
+Sie hat klar gemacht, dass sie dich nicht dabei will, und vielleicht ist es nicht an dir, das zu überstimmen. Du hörst, wie ihre Schritte im Gang verklingen. Dann nichts mehr.
+
+<div class="thought-box">Manche Türen öffnet man nicht wieder, wenn man einmal davor stehengeblieben ist. Vielleicht war das meine.</div>
+
+Irgendwann schläfst du ein. Am Morgen ist Karla schon auf dem Platz, als wäre nichts gewesen — und in gewisser Weise ist auch nichts gewesen.
+
+<<set $npc.karla.memory.flags.p2_quest_zu to true>>\
+<<set $npc.karla.memory.flags.p2_quest_zu_tag to $world.day>>\
+<div class="system-alert status-info">Du bist liegen geblieben. Karla trägt die Sache mit ihrem Onkel allein weiter — ohne dich.</div>
+
+<<weiterImTag "Weiter">>
+
+
+:: karla_S3b_folgen {"position":"600,3275","size":"100,100"}
+Du stehst auf. Ziehst die Stiefel an, leise, und folgst ihr in die Nacht.
+
+Sie ist nicht in der Schreibstube. Du findest sie hinter dem Verwaltungstrakt, im Schatten der Mauer, wo sie gerade abwägt, wie sie ungesehen an der Wache vorbeikommt. Als sie deine Schritte hört, fährt sie herum — die Hand schon an dem kurzen Messer im Stiefelschaft, ehe sie dich erkennt.
+
+„Du." Ihre Stimme ist Eis. „Geh wieder rein. Das hier geht dich nichts an."
+
+Du bleibst stehen. Du weißt, dass ein falsches Wort jetzt alles endgültig zumacht. Kein Verhör. Keine Frage. Beim letzten Mal hast du gefragt — das war der Fehler.
+
+[[Ich frag nicht, was du tust. Ich frag, ob du eine zweite Person für die Tür brauchst.|karla_S3b_gelingt]]
+[[Ich weiß, was du suchst. Wegen deinem Onkel, oder?|karla_S3b_misslingt]]
+
+
+:: karla_S3b_gelingt [nach_morgen] {"position":"550,3400","size":"100,100"}
+„Ich frag nicht, was du tust", sagst du leise. „Ich frag, ob du eine zweite Person für die Tür brauchst."
+
+Karla wird ganz still.
+
+Es ist genau das, was du beim ersten Mal hättest sagen sollen — und irgendwie scheint sie zu spüren, dass du das weißt. Dass du seit jener Nacht darüber nachgedacht hast. Dass du gekommen bist, nicht um zu erfahren, sondern um zu helfen.
+
+Die Hand löst sich vom Messer.
+
+<div class="scenery-text">Über euch zieht eine Wolke vom Mond weg, und für einen Moment liegt fahles Licht auf ihrem Gesicht. Die Wand ist noch da. Aber dahinter, das siehst du jetzt, ist jemand, der furchtbar müde davon ist, alles allein zu tragen.</div>
+
+Lange sagt sie nichts. Dann, leise:
+
+„Mein Onkel sitzt im Gefängnis. Edric. Für einen Überfall, bei dem er krank im Bett lag." Sie sieht dich an, und ihre Stimme ist nicht mehr ganz fest. „Es gab einen Zeugen, der das wusste. Vor Gericht hat er geschwiegen. Ich will wissen, warum. Die Akten sind hier irgendwo."
+
+Sie holt Luft. Es kostet sie sichtlich, das Nächste zu sagen.
+
+„Und ja. Ich könnte eine zweite Person für die Tür gebrauchen."
+
+<div class="thought-box">Ich hab eine zweite Chance bekommen, die ich nicht verdient hatte. Und diesmal hab ich sie nicht verspielt.</div>
+
+<<= setup.setNpcAffection("karla", 8)>>\
+<<set $npc.karla.memory.flags.kennt_geheimnis to true>>\
+<<weiterImTag "Weiter">>
+
+
+:: karla_S3b_misslingt [nach_morgen] {"position":"700,3400","size":"100,100"}
+„Ich weiß, was du suchst", sagst du. „Wegen deinem Onkel, oder?"
+
+Im selben Moment, in dem du es aussprichst, siehst du, dass es wieder falsch war.
+
+Denn du hast ihr gezeigt, dass du nachgedacht hast. Dass du Schlüsse gezogen hast. Dass das, was sie für sich behalten wollte, in deinem Kopf herumgeht und sich zu etwas zusammensetzt. Für Karla ist das keine Anteilnahme — das ist eine Bedrohung.
+
+„Was ich suche", sagt sie tonlos, „ist Ruhe vor Leuten, die zu viel denken."
+
+Sie geht an dir vorbei, zurück Richtung Stube, und lässt ihr Vorhaben für heute fallen. An der Ecke bleibt sie kurz stehen, ohne sich umzudrehen.
+
+„Vergiss, was du dir zusammenreimst, Frischling. Zu deinem eigenen Besten."
+
+<div class="thought-box">Zweimal hatte ich die Wahl. Zweimal hab ich geredet, statt einfach da zu sein. Vielleicht bin ich nicht der Mensch, dem sie das hier anvertrauen kann.</div>
+
+<div class="system-alert status-info">Karla hat sich abgewandt. Was immer sie mit den Akten ihres Onkels vorhat — sie wird es ohne dich tun.</div>
+<<= setup.setNpcAffection("karla", -4)>>\
+<<set $npc.karla.memory.flags.p2_quest_zu to true>>\
+<<set $npc.karla.memory.flags.p2_quest_zu_tag to $world.day>>\
+<<weiterImTag "Weiter">>
+
+
+:: karla_S4 [interrupt einmalig nach_stube] {"position":"600,3600","size":"100,100"}
+<<set _archiv = $world.archivzugang === true>>\
+<<set _wissen = ($player.knowledge.diplomatie || 0) >= 3>>\
+<<set _magister = $npc.magister.affection >= 4>>\
+<<set _hatWeg = _archiv or _wissen or _magister>>\
+Karla findet dich nach dem Abendessen, dort wo die Fackeln nicht ganz hinreichen. Sie lehnt an der Mauer, die Arme verschränkt, und kommt ohne Umweg zur Sache.
+
+„Ich komm an die Akten nicht ran." Ihre Stimme ist gedämpft, kontrolliert. „Die Schreibstube ist seit letzter Woche nachts verschlossen. Was auch immer ich versuche — ich steh vor verriegelten Türen."
+
+Sie sieht dich an.
+
+„Du kommst rum. Du redest mit Leuten, mit denen ich nicht rede. Vielleicht fällt dir ein Weg ein, der mir nicht einfällt."
+
+<div class="scenery-text">Über dem Hof steht ein schmaler Mond. Irgendwo klappert Geschirr, eine Tür fällt ins Schloss. Karla wartet — und an der Art, wie sie wartet, siehst du, wie viel diese Bitte sie kostet.</div>
+
+<<if _hatWeg>>\
+<div class="thought-box">Es gibt einen Weg. Vielleicht sogar mehr als einen. Ich muss nur entscheiden, welchen ich gehe.</div>
+
+<<if _archiv>>[[Über mein Archivzeichen — ich komme an die Gerichtsprotokolle.|karla_S4_archiv]]<</if>>
+<<if _wissen>>[[Nicht die Militärakten — die Ladungslisten. Ich weiß, wo die liegen.|karla_S4_wissen]]<</if>>
+<<if _magister>>[[Magister Halm. Er ist Archivar — vielleicht sieht er für mich nach.|karla_S4_magister]]<</if>>
+<<else>>\
+<<set $npc.karla.memory.flags.s4_vertroestet to ($npc.karla.memory.flags.s4_vertroestet || 0) + 1>>\
+<<if $npc.karla.memory.flags.s4_vertroestet >= 4>>\
+<<goto "karla_S4_karla_loest_selbst">>\
+<<else>>\
+<div class="thought-box">Sie hat recht — ich komme rum. Aber im Moment fällt mir kein Weg ein, der nicht sofort auffliegt. Ich brauche etwas, das ich noch nicht habe: einen Zugang, eine Idee, eine Tür, die mir jemand öffnet.</div>
+
+„Ich weiß noch nicht, wie", sagst du. „Aber ich find was. Gib mir Zeit."
+
+Karla nickt langsam. Es ist kein zufriedenes Nicken, aber auch kein enttäuschtes. Eher das Nicken von jemandem, der gelernt hat, dass „ich find was" manchmal das Ehrlichste ist, das man bekommen kann.
+
+„Zeit hab ich", sagt sie. „Edric auch — noch." Sie stößt sich von der Mauer ab. „Aber nicht ewig."
+
+<div class="thought-box">Ich sollte einen Weg in die Akten finden. Das Archiv. Das Recht. Oder jemanden, der die Türen für mich aufmacht. Irgendwo muss der Name dieses Zeugen stehen.</div>
+
+<<weiterImTag "Weiter">>
+<</if>>\
+<</if>>\
+
+
+:: karla_S4_archiv [nach_stube] {"position":"500,3725","size":"100,100"}
+Du trägst seit Wochen Akten von der Schreibstube ins Regal und zurück. Niemand sieht dich mehr an dabei — ein Rekrut mit einem Holztäfelchen, der tut, was ein Magister ihm aufgetragen hat. Genau das macht dich unsichtbar.
+
+Du brauchst drei Versuche, bis du den richtigen Stapel findest. Prozessrollen, nach Jahren geordnet, in einem Regal, das niemand seit Langem angefasst hat. Und dann liegt sie vor dir: die Verhandlung gegen Edric, Fuhrmann aus Umseck. Das Protokoll ist trocken, beamtenhaft, jede Aussage mit Namen und Datum verzeichnet.
+
+Du liest, bis du die Stelle findest. Der geladene Zeuge, der die Krankheit hätte bestätigen können. Sein Name steht da, schwarz auf vergilbtem Papier — und daneben, in der knappen Sprache des Protokolls, der Vermerk: *erschienen, doch zur Sache nichts ausgesagt.*
+
+<div class="thought-box">Da ist er. Der Mann, der mit einem einzigen Satz alles hätte ändern können — und der geschwiegen hat. Jetzt hat er einen Namen.</div>
+
+<<set $npc.karla.memory.flags.zeuge_gefunden to true>>\
+<<include "karla_S4_finalize">>
+
+
+:: karla_S4_finalize {"position":"600,3850","size":"100,100"}
+Du bringst Karla den Namen noch am selben Abend.
+
+Sie liest ihn. Liest ihn ein zweites Mal. Und für einen Moment ist da etwas auf ihrem Gesicht, das du selten siehst — nicht Freude, dafür ist die Sache zu schwer, aber etwas wie ein Halt. Als hätte sie zwei Jahre lang ins Leere gegriffen und endlich etwas Festes in der Hand.
+
+„Das ist er", sagt sie leise. „Der, der geschwiegen hat."
+
+Dann sieht sie dich an, und in ihrem Blick liegt eine Frage, die größer ist als der Zettel in ihrer Hand.
+
+<div class="thought-box">Wir haben einen Namen. Aber ein Name ist nur ein Anfang. Die eigentliche Frage kommt erst noch: Was machen wir damit?</div>
+
+<<= setup.setNpcAffection("karla", 5)>>\
+
+<div class="system-alert status-info">Du kennst den Namen des Zeugen, der gegen Edric schwieg. Doch was nun damit anzufangen ist, weißt du noch nicht.</div>
+
+<<weiterImTag "Weiter">>
+
+
+:: karla_S4_karla_loest_selbst [interrupt einmalig nach_stube] {"position":"475,3950","size":"100,100"}
+<<set _recht = ($player.knowledge.diplomatie || 0) > 0 and ($player.knowledge.diplomatie || 0) < 3>>\
+<<set _mag = $npc.magister.affection > 2 and $npc.magister.affection < 4>>\
+Karla findet dich, und diesmal wartet sie nicht an der Mauer. Sie kommt direkt auf dich zu, einen gefalteten Zettel in der Hand, und in ihrem Gesicht liegt etwas zwischen Triumph und Vorwurf.
+
+„Ich hab's selbst."
+
+Sie hält dir den Zettel hin, nimmt ihn aber wieder weg, bevor du ihn nehmen kannst — als müsste sie erst etwas loswerden.
+
+„Weißt du, wo's am Ende stand? Nicht in den Militärakten. In den *Ladungslisten*. Wer vorgeladen war, schwarz auf weiß, für jeden zugänglich, der weiß, dass es so was gibt."
+
+<<if _recht and _mag>>\
+<<if random(0, 1) === 0>>\
+<<set _variante = "recht">>\
+<<else>>\
+<<set _variante = "magister">>\
+<</if>>\
+<<elseif _recht>>\
+<<set _variante = "recht">>\
+<<elseif _mag>>\
+<<set _variante = "magister">>\
+<<else>>\
+<<set _variante = "neutral">>\
+<</if>>\
+
+<<if _variante === "recht">>\
+Sie sieht dich an, und ihr Blick wird scharf.
+
+„Und das Verrückte ist — *du* hast davon gehört. Im Recht-Unterricht, bei Halm. Ladungslisten, Prozessordnung, der ganze Kram. Ich hab nicht so viel von dem Zeug gelernt wie du. Und trotzdem musste ich selbst draufkommen." Sie schnaubt. „Du hattest die Antwort die ganze Zeit im Kopf, Thomas. Du hast nur nicht hingeschaut."
+<<elseif _variante === "magister">>\
+Sie sieht dich an, und ihr Blick wird scharf.
+
+„Und du — du hättest bloß Halm fragen müssen. Der Mann mag dich. Das sieht doch ein Blinder. Du sitzt in seinem Hörsaal, er nickt dir zu, und es kommt dir nicht in den Sinn, ihn nach einer alten Ladungsliste zu fragen?" Sie schüttelt den Kopf. „Manchmal frag ich mich, ob du nicht siehst, welche Türen dir offenstehen."
+<<else>>\
+Sie sieht dich an, und der Vorwurf in ihrem Blick weicht etwas.
+
+„War nicht leicht. Aber irgendwann fragt man die richtigen Leute die richtigen Dinge, und dann fügt sich's." Sie zuckt mit den Schultern. „Hätt mir gewünscht, ich wär nicht allein draufgekommen. Aber gut. Ist jetzt egal."
+<</if>>
+
+Sie atmet aus, und der Ärger fällt von ihr ab, weil das Eigentliche schwerer wiegt als jeder Vorwurf. Sie reicht dir den Zettel, und diesmal lässt sie ihn los.
+
+Ein Name. Der Zeuge, der schwieg.
+
+<div class="thought-box">Sie hat es allein geschafft. Und ein Teil von mir schämt sich dafür — weil ich den Weg hätte sehen können, wenn ich nur genauer hingeschaut hätte.</div>
+
+Karla setzt sich neben dich, den Blick auf den Namen gerichtet, und sagt das, was eigentlich du hättest denken müssen.
+
+„Wir haben einen Namen. Aber ein Name ist nur ein Anfang. Die eigentliche Frage kommt erst jetzt." Sie sieht dich an. „Was machen wir damit?"
+
+<<set $npc.karla.memory.flags.zeuge_gefunden to true>>\
+<<= setup.setNpcAffection("karla", 2)>>\
+
+<div class="thought-box">Karla hat den Zeugen selbst ausfindig gemacht — über die Ladungslisten. Wir kennen den Namen. Doch was nun damit anzufangen ist, weiß keiner von uns...</div>
+
+<<weiterImTag "Weiter">>
+
+
+:: karla_S4_magister [nach_stube] {"position":"700,3725","size":"100,100"}
+Du wartest, bis der Hörsaal leer ist, und trittst an Halms Pult. Er sieht nicht auf, aber er weiß, dass du da bist.
+
+„Magister. Eine Frage zu einer alten Verhandlung. Ein Transportüberfall, vor etwa zwei Jahren. Ich suche, wer damals als Zeuge geladen war."
+
+Jetzt hebt er den Blick. Lange. Prüfend. Du hast gelernt, diesem Blick standzuhalten, ohne zu erklären — und vielleicht ist genau das der Grund, warum er nach einer Weile nur knapp nickt.
+
+„Neugier ist eine teure Eigenschaft, Rekrut. Manche zahlen mehr dafür, als sie ahnen." Er legt die Feder beiseite. „Aber du hast in meinem Hörsaal gesessen, statt zu dösen. Das wiegt etwas."
+
+Am nächsten Tag liegt ein gefalteter Zettel unter deinem Notizbuch. Keine Erklärung, keine Unterschrift. Nur ein Name und ein Vermerk in Halms knapper Handschrift: *geladen, doch ohne Aussage.*
+
+<div class="thought-box">Er hat nicht gefragt, warum. Vielleicht weiß er es längst. Bei Halm hat man nie das Gefühl, ihm etwas zu verheimlichen — nur das Gefühl, dass er entscheidet, was er sehen will.</div>
+
+<<set $npc.karla.memory.flags.zeuge_gefunden to true>>\
+<<include "karla_S4_finalize">>
+
+
+:: karla_S4_wissen [nach_stube] {"position":"600,3725","size":"100,100"}
+Du brauchst einen Moment, dann fällt es dir wieder ein — etwas, das Magister Halm beiläufig im Recht-Unterricht erwähnt hat. Die eigentlichen Militärakten zum Überfall sind unter Verschluss, klar. Aber jedes Gericht führt eine *Ladungsliste*: wer vorgeladen wurde, wann, in welcher Sache. Diese Listen gelten als Verwaltungskram, nicht als Geheimsache. Sie liegen offener.
+
+Du musst nicht einbrechen. Du musst nur wissen, wonach du fragst — und das tust du.
+
+Es dauert ein paar Tage, ein paar beiläufige Fragen an den richtigen Stellen. Aber dann hast du sie: die Ladungsliste zur Verhandlung gegen den Fuhrmann aus Umseck. Geladene Zeugen, säuberlich aufgeführt. Einer davon, ein Nachbar, geladen „zur Frage des Aufenthalts des Angeklagten zur Tatzeit".
+
+Der, der hätte bestätigen können, dass Edric krank im Bett lag. Sein Name steht da, klar und unverschlüsselt.
+
+<div class="thought-box">Kein Einbruch, kein Risiko. Nur Wissen, am richtigen Ort eingesetzt. Manchmal ist der Kopf die bessere Brechstange.</div>
+
+<<set $npc.karla.memory.flags.zeuge_gefunden to true>>\
+<<include "karla_S4_finalize">>
+
+
+:: karla_S5 [interrupt einmalig nach_morgen] {"position":"850,3600","size":"100,100"}
+Ihr sitzt hinter der Schmiede, dort wo das Lager euch in Ruhe lässt. Zwischen euch auf einem umgedrehten Eimer liegt der Zettel mit dem Namen. Ihr habt ihn beide schon zu oft angesehen.
+
+Karla redet. Nicht viel — aber für ihre Verhältnisse ist es ein Wasserfall, und das allein zeigt dir, wie aufgewühlt sie ist.
+
+„Wir wissen, wer es ist. Wir wissen, dass er geladen war. Wir wissen, dass er geschwiegen hat." Sie zählt es an den Fingern ab, hart, fast wütend. „Und jetzt? Was machen wir damit?"
+
+<div class="scenery-text">Das Schmiedefeuer ist längst erloschen, aber das Eisen gibt noch Wärme ab. Über euch ein paar Sterne, dazwischen Wolkenfetzen. Vom Hof her das gedämpfte Geräusch der Nachtwache, die ihre Runde geht.</div>
+
+Du hast keine Antwort. Und das Schlimmste ist, dass du anfängst zu begreifen, warum nicht.
+
+„Wir gehen damit zu wem?", fragt sie, und beantwortet es gleich selbst. „Zum Hauptmann? Der lacht uns aus. Zwei Rekruten, die mit einem gestohlenen Namen ankommen und behaupten, ein zwei Jahre altes Urteil sei falsch. Wir hätten die Akten gar nicht sehen dürfen. Allein dafür sperren sie uns ein."
+
+Sie lacht, aber es ist kein Lachen.
+
+„Und selbst wenn uns einer glaubt — was dann? Der Zeuge hat geschwiegen, weil ihn jemand dazu gebracht hat. Jemand mit mehr Macht als ein Fuhrmann aus Umseck. Mehr Macht als wir. Viel mehr." Sie schüttelt den Kopf. „Wir haben keinen Namen für die Hintermänner. Kein Geld. Keinen Titel. Niemanden, der für uns spricht. Wir haben einen Zettel — und sonst nichts."
+
+<div class="thought-box">Sie hat recht. Das ist es, was mir die ganze Zeit gefehlt hat zu verstehen: Die Wahrheit zu kennen ist nicht dasselbe wie sie durchsetzen zu können. Wir sind zwei Niemande mit einem Stück Papier.</div>
+
+Karla zieht die Knie an und legt die Arme darauf. Zum ersten Mal, seit du sie kennst, sieht sie nicht hart aus. Sie sieht müde aus. Erschöpft von zwei Jahren, in denen sie einen Plan verfolgt hat, der sie genau hierher gebracht hat — an einen Punkt, an dem der Plan zu Ende ist und nichts dahinter liegt.
+
+„Ich dachte, wenn ich den Namen erst hab, dann …" Sie bricht ab. „Ich weiß nicht, was ich dachte. Dass sich der Rest von selbst löst, schätze ich. Dumm."
+
+Eine lange Stille. Das Eisen knackt beim Abkühlen.
+
+„Geh schlafen, Thomas." Sie sagt es leise, ohne Schärfe. „Es bringt nichts, hier zu sitzen. Ich muss nachdenken. Allein."
+
+Du stehst auf. Du weißt, dass es nichts gibt, das du jetzt sagen könntest, das die Lage besser macht. Also sagst du nichts — das hast du von ihr gelernt.
+
+Aber auf dem Weg zur Stube lässt dich ein Gedanke nicht los. Ein Name aus einer anderen Zeit, aus den Bergen, von einem Mann, der einmal alles für dich möglich gemacht hat, als nichts mehr möglich schien.
+
+<div class="thought-box">Wir kennen niemanden, der für uns sprechen kann. Wir nicht. Aber vielleicht … kenne ich jemanden. Von früher. Einen, der immer einen Weg gefunden hat.</div>
+
+In der Stube schläft alles. Du hörst das schwere Atmen der anderen, das Knarren des Holzes, irgendwo ein Husten, das wieder verebbt. Du liegst wach — und irgendwann gibst du es auf.
+
+Du holst, was du in den letzten Tagen unbewusst schon zusammengetragen hast: ein Stück Papier, halb so groß wie deine Hand, geglättet und wieder geglättet. Einen Stummel Kohle, weil du dir keine Tinte leisten konntest. Und beim schwachen Schein des heruntergebrannten Talglichts beginnst du zu schreiben.
+
+<div class="scenery-text">Das Licht reicht kaum für die Zeilen. Du schreibst klein, gedrängt, jedes Wort abgewogen — denn Platz ist knapp und das, was du sagen musst, ist nicht leicht zu sagen. Draußen zieht der Wind um die Baracke. Sonst nichts.</div>
+
+Du schreibst, streichst durch, schreibst neu. Was man jemandem schreibt, dem man seit Jahren nicht geschrieben hat. Wie man um etwas bittet, ohne zu betteln. Wie man eine Hoffnung in Worte fasst, an die man selbst kaum glaubt.
+
+Es dauert lange. Aber irgendwann liegt es da, fertig, in deiner ungelenken Handschrift. Du faltest das Papier klein genug, um es zu verbergen. Morgen findest du einen Weg, es auf die Reise zu schicken — über einen Händler, einen Boten, eine der Adressen, die durch das Lager gehen.
+
+<div class="thought-box">Karla sage ich nichts davon. Wenn nichts daraus wird, soll sie nicht auch noch das verlieren. Eine Hoffnung, die man gar nicht erst hatte, kann einen nicht enttäuschen. Das trage ich allein.</div>
+
+Als du fertig bist fällt dir auf, dass der Tag anbricht.
+
+<<set $npc.karla.memory.flags.dilemma_done to true>>\
+<<set $npc.karla.memory.flags.brief_gesendet to true>>\
+<<set $npc.karla.memory.flags.brief_tag to $world.day>>\
+
+<<weiterImTag "Weiter">>
+
+
+:: karla_S7 [interrupt einmalig nach_stube] {"position":"1175,3150","size":"100,100"}
+Sechs Tage. Du hast aufgehört zu zählen, ehrlich gesagt — der Brief unter deinem Strohlager ist längst fort, einem Händler mitgegeben, und mit jedem Tag ohne Antwort ist die Hoffnung kleiner geworden, bis sie sich anfühlte wie etwas, das du dir nur eingebildet hast. Du hast den Drill, das Studium, den Alltag. Du hast fast vergessen, dass du je geschrieben hast.
+
+Bis zu diesem Nachmittag.
+
+Du kommst vom Exerzierplatz, der Nacken steif, die Hände wund, den Kopf noch beim letzten Kommando des Schinders — und biegst um die Ecke zum Verwaltungstrakt.
+
+Und bleibst stehen.
+
+<div class="scenery-text">Im Hof stehen vier Männer, die nicht hierhergehören. Keine Rekruten, keine Ausbilder. Reisende, dem Staub auf ihren Stiefeln nach, aber gut gekleidet — zu gut für diese Gegend. Ein Pferd und ein beladener Karren warten am Tor. Ein paar Rekruten haben sich in sicherem Abstand aufgebaut und gaffen.</div>
+
+<<if $npc.weibelWenzel.known>>\ 
+  Einen der vier kennst du. Weibel Wenzel vom 84. Banner — das rote Barett, die Pluderhose, die laute Art, mit der er gerade auf einen der Fremden einredet und dabei lacht. Du hast ihn schon einmal im Lager gesehen.
+  Die anderen drei nicht.
+  <<else>>\
+  Drei in Zivil und einer in Söldnertracht. 
+  Du erkennst niemanden von ihnen. 
+<</if>>\
+
+Ein hagerer Mann mit wachen Augen steht etwas abseits und lässt den Blick langsam über den Hof wandern — über die Mauern, die Ausgänge, die gaffenden Rekruten —, als zähle er etwas, das nur er sehen kann. Er sagt nichts. Er muss nichts sagen.
+
+Daneben ein zweiter, jünger, lebhafter, der mit den Händen redet und den Weibel offenbar an alte Zeiten erinnert, denn er schlägt ihm gerade lachend auf die Schulter.
+
+Und der vierte —
+
+Der vierte sieht bereits in deine Richtung. Als hätte er gewusst, an welcher Ecke du auftauchen würdest. Als hätte er gewartet.
+
+<div class="thought-box">Ein Mann in den besten Jahren, normale Statur, ein kurzer Vollbart, ein freundliches, wettergegerbtes Gesicht. Ich kenne ihn nicht — und doch zieht sich etwas in meiner Brust zusammen, als wäre ein Teil von mir schneller als mein Kopf.</div>
+
+[[Näher treten.|karla_S7_erkennung]]
+
+
+:: karla_S7_erkennung {"position":"1175,3275","size":"100,100"}
+Du gehst näher.
+<<if $npc.weibelWenzel.known>>\
+Wenzel bemerkt dich zuerst. Er bricht mitten im Satz ab, mustert dich kurz, und etwas in seinem Gesicht arbeitet, als gliche er ab, was er sieht, mit dem, was er weiß.
+
+„Da bist du ja", sagt er. 
+<<else>>\
+Der farbenfrohe Weibel bemerkt dich zuerst — rotes Barett, offener Gambeson, eine Erscheinung, die so gar nicht in die graue Ordnung der Akademie passt. Er bricht mitten im Satz ab, mustert dich kurz, und etwas in seinem Gesicht arbeitet, als gliche er ab, was er sieht, mit dem, was er weiß.
+
+„Du bist der Wabbler-Junge", sagt er. Keine Frage. „Thomas Wabbler."
+
+Du nickst, ohne zu verstehen, woher ein fremder Weibel des 84. deinen Namen kennt.
+<</if>>\
+
+Er wendet sich zu dem Mann mit dem kurzen Vollbart, der die ganze Zeit in deine Richtung gesehen hat. „Da ist er. Wie bestellt." Dann, zu dir, mit einer ausladenden Geste: „Junge, das hier ist Luigi. Luigi vom Handelskontor. Dein Pate — der Mann, der dich all die Jahre unterstützt hat."
+
+Die Worte treffen dich wie aus großer Entfernung.
+
+<div class="scenery-text">Luigi. Der Name allein wirft dich um Jahre zurück. Eine Unterschrift am Fuß von Briefen, die immer pünktlich kamen. Ein ferner Wohltäter, den du dir als Kind tausendmal ausgemalt und nie zu Gesicht bekommen hast. Der Mann, der dich von der Straße holte, dein Asthma, deine Berge, dein ganzes Leben danach bezahlte — ohne je vor dir zu stehen.</div>
+
+Und jetzt steht er vor dir. Aus Fleisch und Blut, normale Statur, ein gepflegter Bart, ruhige Augen, ein schwerer Ring an der Hand. Kleiner, als der Mann in deiner Vorstellung war. Und unendlich viel wirklicher.
+
+<div class="thought-box">All die Jahre war Luigi ein Wort. Eine Unterschrift. Eine Schuld, die ich nie begleichen konnte, weil ich nicht einmal wusste, wem ich sie schulde. Und jetzt hat das Wort ein Gesicht.</div>
+
+Luigi tritt einen Schritt vor. Er mustert dich, langsam, und etwas in seinem Blick wird weich.
+
+„Thomaso Wabbler", sagt er. Er legt die Betonung auf eine Art, die du noch nie gehört hast — das gerollte, weiche Ende deines Namens, südländisch, warm. „Buongiorno. Es iste gute, dich endlich zu sehen mite eigene Augen, eh? Endlich. Nach so viele, viele Briefe."
+„Du haste geschrieben", sagt er leise, nur für dich. „Und Luigi — Luigi komme. Immer." Er hebt eine Hand, deutet beiläufig auf die drei hinter sich. „Aber non heute allein, eh? Heute habe ich ... wie sagt man ... compagnia mitgebracht. Gesellschaft."
+
+[[Weiter|karla_S7_gespraech]]
+
+
+:: karla_S7_gespraech [nach_stube] {"position":"1175,3400","size":"100,100"}
+Luigi tritt neben dich und dreht dich mit einer Hand an der Schulter sanft ein Stück zur Seite, weg von den gaffenden Rekruten, sodass ihr für einen Moment fast unter euch seid.
+
+„Lass mich sehen die Junge." Er mustert dich mit einem Schmunzeln, von Kopf bis Fuß. „Die Briefe, die du mir geschrieben haste, als du klein warst — immer dieselbe Schrift, immer dasselbe: ‚Die Lufte hier iste besser.‘" Er lacht leise. „Und ich habe nie gewusste, iste wahr oder iste der Junge nur höflich, eh? Aber jetze sehe ich mite eigene Augen. Iste wahr. Guarda — schau dich an. Schultern wie ein Soldato."
+
+Du willst etwas sagen — Dank, eine Frage, irgendetwas. Wie dankt man einem Mann für ein ganzes Leben? Aber er hebt die Hand, als hätte er die Frage kommen sehen.
+
+„No jetzt. Nicht hier." Sein Ton bleibt leicht, aber die Augen werden ernst. „Ich habe gelesen deinen letzte Brief, Thomaso. Den von vor ein paare Tage. Jedes Worte, eh." Er wird leiser. „Und ich sage dir nur das eine, una cosa: Du hast richtig getan, dass du haste geschrieben. So wie früher. Nur dass diesmal nicht heißte ‚mir gehte gut‘ — diesmal heißte, jemand brauchte Hilfe."
+
+Er tippt sich mit dem Finger an die Schläfe.
+
+„Diese Sache — der Onkel von deine Freundin, das Urteil, der Mann, der hate geschwiegen — die kenne ich jetzte, eh. Und es gibte da Dinge, die ein Rekrut non kann regeln." Ein Lächeln, das du nicht deuten kannst, weil du den Mann dahinter nicht kennst — noch nicht. „Aber Luigi ... Luigi iste kein Rekrut."
+
+<div class="scenery-text">Hinter ihm wechselt Wenzel ein paar Worte mit einem lebhaften Mann, der mit den Händen redet; ein zweiter, hagerer Begleiter lässt unterdessen den Blick langsam über den Hof gehen, über Mauern und Ausgänge, als zähle er etwas. Niemand drängt. Es ist, als hätten diese Männer Zeit mitgebracht, so viel sie brauchen.</div>
+
+„Wir reden", sagt Luigi und drückt noch einmal deine Schulter. „Presto. Bald. Wenn ich habe geordnet, was zu ordnen iste. Du machste jetze deinen Dienst, als wäre nichts — capisci? Niemand musse wissen, warum vier fremde Männer stehen am Tor. Schon gar nicht deine Freundin." Ein kurzes Zwinkern. „Lass dem Luigi seine ... wie sagt man ... seine Überraschung, eh?"
+
+<div class="thought-box">Ich habe ihm als Kind Briefe geschrieben, ohne je sein Gesicht zu kennen. Und jetzt steht er hier, weil ich wieder geschrieben habe — aus reiner Verzweiflung, ohne zu glauben, dass es etwas ändert. Ich verstehe noch nicht, wie er helfen will. Aber zum ersten Mal seit der Schmiede ist da etwas, das sich anfühlt wie Boden unter den Füßen.</div>
+
+Dann nickt er dir zu, einmal, fast verschwörerisch, und wendet sich zurück zu den anderen. Du gehst weiter — den Dienst tun, als wäre nichts, mit einem Geheimnis mehr in der Brust und einer Hoffnung, die du Karla nicht zeigen darfst.
+
+<<set $npc.karla.memory.flags.luigi_done to true>>\
+<<set $npc.karla.memory.flags.luigi_aufgetaucht to true>>\
+
+<<weiterImTag "Zurück auf die Stube">>
+
+
+:: karla_S8 [interrupt einmalig nach_hub] {"position":"1175,3550","size":"100,100"}
+Ein paar Tage sind vergangen, und du hast dich beinahe damit abgefunden, dass das Treffen im Hof alles war — ein Versprechen, das vielleicht im Sand verläuft, wie so viele Versprechen.
+
+Dann stehen sie wieder da.
+
+<div class="scenery-text">Diesmal kein Wenzel an ihrer Seite. Diesmal gehen die drei Männer durch das Tor, als gehörten sie hierher — und der Wachposten lässt sie passieren, mit einem knappen Blick auf ein gesiegeltes Papier, das Luigi ihm beiläufig entgegenhält.</div>
+
+Luigi sieht dich, hebt die Hand zum Gruß und kommt herüber. Hinter ihm die beiden anderen — der lebhafte Jüngere mit dem wachen Lächeln, der schweigsame Hagere, der wie beim ersten Mal den Hof abtastet.
+
+„Thomaso." Luigi klingt zufrieden. „Diesmal brauche ich keinen Weibel, der mich hereinbringt, eh. Wir habene jetzte ein eigenes Papier — von einem Diplomaten Hannes. Ein höflicher Mann." Er klopft sich auf die Brusttasche. „Luigi findete immer einen Weg. Mal so, mal so."
+
+<div class="thought-box">Erst Wenzel, jetzt ein Diplomat des Städtebunds. Dieser Mann zieht an Fäden, von denen ich nicht einmal wusste, dass es sie gibt.</div>
+
+[[Was gibt es Neues?|karla_S8_bericht]]
+
+
+:: karla_S8_bericht {"position":"1175,3675","size":"100,100"}
+Luigi wird ernst, und die Leichtigkeit weicht aus seinem Gesicht — nicht ganz, aber genug, dass du merkst: Jetzt kommt das Eigentliche.
+
+„Ich habe nicht geredet in den letzten Tage, Thomaso. Ich habe gearbeitet." Er senkt die Stimme. „Der Fall von Edric — der Onkel deiner Freundin — er iste wieder offen. Ich habe erwirkt, dass man den Prozess neu aufnimmte. Das alleine iste schon ... molto schwierig. Zwei Jahre altes Urteil. Aber es iste geschehen."
+
+Er macht eine Pause, lässt es wirken.
+
+„Und das Wichtigste: Der Zeuge. Der Mann, der damals hate geschwiegen." Ein dünnes Lächeln. „Er hate geredet. Diesmal hate er geredet. Alles. Dass Edric krank im Bette lag, dass er es wusste, dass er es immer wusste — und warum er den Mund hate gehalten."
+
+<div class="thought-box">Er hat geredet. Nach zwei Jahren des Schweigens. Einfach so?</div>
+
+Du musst die Frage nicht aussprechen. Luigi sieht sie dir an, und etwas Verschmitztes legt sich in seine Miene.
+
+„Du fragste dich, warum ein Mann plötzlich redete, der zwei Jahre lang nichts gesagt hate." Er dreht sich halb um, zu den beiden hinter ihm. „Das ... das erzählene dir besser meine Freunde. Sie warene dabei."
+
+[[Weiter|karla_S8_zeugen]]
+
+
+:: karla_S8_prognose [nach_hub] {"position":"1175,3925","size":"100,100"}
+Luigi legt dir wieder die Hand auf die Schulter.
+
+„Ich sage dir, wie es weitergehte, Thomaso, damite du keine falsche Hoffnung hast — und keine falsche Angst." Sein Blick ist offen, ehrlich. „Ein Gericht iste langsam. Sehr langsam. Es werden Wochen vergehen, vielleicht Monate, bis alles iste geregelt, bis die Tinte trocken iste und Edric durche das Tor geht in die Freiheit. Diese Mühlen mahlene nicht schnell."
+
+Er drückt fester zu.
+
+„Aber höre mir zu, und höre gut: Es iste sicher. Capisci? Sicher. Der Zeuge hate ausgesagt, das Urteil hate keinen Boden mehr, und ich ..." ein kurzes, warmes Lächeln, „... ich lasse nichte locker, bis er frei iste. Das iste kein Vielleicht. Das iste ein Wann."
+
+<div class="thought-box">Sicher. Er sagt es, als gäbe es kein anderes Ergebnis. Und so, wie dieser Mann redet, wie er handelt, wie er Türen öffnet, die für andere verschlossen sind — ich glaube ihm. Ich glaube ihm jedes Wort.</div>
+
+Luigi mustert dich noch einmal, und das Geschäftliche fällt von ihm ab. Was bleibt, ist etwas Wärmeres.
+
+„Du haste das gut gemacht, Junge. Du haste geschrieben, als du nicht mehr weiter wusstest. Das iste keine Schwäche — das iste Klugheit. Ein Mann muss wissen, wann er um Hilfe bittete." Er lächelt.
+
+Dann wird er wieder geschäftig, nickt den beiden zu. „Wir gehene. Es iste noch viel zu tun in Grodaus. Aber wir sehene uns wieder, Thomaso — und das nächste Mal mite besseren Nachrichten, eh?"
+
+<div class="scenery-text">Du siehst ihnen nach, wie sie durch das Tor verschwinden, der gesiegelte Passierschein noch in Luigis Hand. Drei Männer, die gekommen sind, weil ein Junge einen Brief geschrieben hat. Dann ist der Hof wieder leer, als wäre nichts gewesen.</div>
+
+<<set $npc.karla.memory.flags.aufloesung_done to true>>\
+
+<<weiterImTag "Ihnen noch eine Weile nachsehen bevor du dich wieder an den Dienst machst.">>
+
+
+:: karla_S8_zeugen {"position":"1175,3800","size":"100,100"}
+Der lebhafte tritt vor, und zum ersten Mal hörst du ihn richtig sprechen — eine andere Färbung als Luigi, weicher, näselnder, mit gerolltem Tonfall, der die Worte tänzeln lässt.
+
+„Maurice", stellt er sich vor und legt eine Hand aufs Herz, als wäre das Wort schon eine Höflichkeit. „Mon ami, die Sache war ... wie sagt man ... eine Frage des Gespräches. Wir habn den Monsieur Zeugen besucht. Ein nervöser Mann, sehr nervös. Lebt allein, schlechte Schlaf, eh? Man sieht so etwas."
+
+Er lächelt, und das Lächeln ist charmant und kalt zugleich.
+
+„Wir habn uns gesetzt. Wir habn geredet. Über das Wetter, über die Ernte, über die Sorgen, die ein Mann so hat in diese unsichere Zeiten. Und irgendwann — ganz natürlisch — sind wir gekommen auf die Frage, wer ihm eigentlisch mehr Angst macht, hm? Die Männer von früher, die ihm habn gedroht ..." Maurice breitet die Hände aus. „... oder die Männer, die jetzt in seine Stube sitzen."
+
+<div class="scenery-text">Hinter ihm, ohne ein Wort, tritt der Hagere einen halben Schritt ins Licht. Er sagt nichts. Er sieht dich nur an, mit dem ruhigen, gleichgültigen Blick eines Mannes, für den Gewalt keine Drohung ist, sondern bloß ein Werkzeug, das man selten in die Hand nehmen muss, weil seine bloße Anwesenheit genügt.</div>
+
+„Vincente redete nicht viel", sagt Maurice fast zärtlich. „Aber er hat eine ... présence. Eine Wirkung. Der Monsieur Zeuge hat sehr schnell verstanden, dass die alten Drohungen ihn nicht mehr schützen. Dass es jetzt klüger iste, die Wahrheit zu sagen, als sie weiter zu verstecken." Er zwinkert. „Wir habn ihm nur geholfen, die rischtige Wahl zu treffen, eh? Ganz ohne ... Unannehmlichkeiten."
+
+<div class="thought-box">Sie haben ihm nichts getan. Das ist das Unheimliche daran. Sie mussten nichts tun. Sie sind einfach gekommen, haben sich hingesetzt — und der Mann hat begriffen, dass die Loyalisten nicht mehr die Gefährlichsten in seinem Leben sind. Das ist eine Welt, von der ich nichts wusste. Und sie steht hinter meinem Paten.</div>
+
+Vincente tritt wieder zurück in den Schatten, lautlos, wie er gekommen ist. Maurice verbeugt sich knapp, das Lächeln nie ganz weg.
+
+[[Weiter|karla_S8_prognose]]
+
+
+:: karla_S9 [interrupt einmalig nach_stube] {"position":"1300,3150","size":"100,100"}
+Du findest Karla nach dem Abendappell hinter der Schmiede — an demselben Ort, an dem sie damals zusammengebrochen ist vor der Wand aus Ohnmacht, an dem sie sagte: *Was machen wir damit?* Sie sitzt auf dem umgedrehten Eimer, die Arme um die Knie, und sieht auf, als sie deine Schritte hört.
+
+„Du wolltest mich sprechen." Misstrauisch. Sie ist Gutes nicht gewohnt. „Was ist los, Thomas?"
+
+Du setzt dich. Und dann — du, der du sonst mit Gesten redest, mit Schweigen, mit allem außer Worten — fängst du an zu erzählen.
+
+<div class="thought-box">Wo fange ich an? Beim Brief? Bei den Bergen? Bei einem Mann, den ich nie gesehen hatte und der trotzdem mein ganzes Leben bezahlt hat? Ich fange einfach an. Und dann kann ich nicht mehr aufhören.</div>
+
+Du erzählst ihr von Luigi. Von der Patenschaft, die ein Fremder für ein verstoßenes Kind übernahm. Von den Briefen, die du als Junge schriebst, ohne je ein Gesicht zu kennen. Du erzählst ihr von jener Nacht nach der Schmiede, als du nicht schlafen konntest und aus reiner Verzweiflung schriebst — an die einzige Adresse, die dir einfiel, ohne zu glauben, dass je eine Antwort käme.
+
+Karla sagt nichts. Aber ihr Gesicht beginnt sich zu verändern, langsam, während sie begreift, wovon du redest.
+
+Du erzählst ihr, dass er gekommen ist. Dass er ihren Onkel kennt, ihren Fall, den Namen des Zeugen. Dass er Anwalt ist — und mehr als das. Dass der Prozess wieder offen ist. Dass der Zeuge geredet hat.
+
+Und dann sagst du den Satz, für den du das alles getragen hast.
+
+„Edric kommt frei, Karla. Es wird dauern. Wochen, Monate vielleicht. Aber er kommt frei. Das ist sicher."
+
+<div class="scenery-text">Lange ist es still. Das Eisen der Schmiede ist kalt, die Nacht legt sich über den Hof, und irgendwo ruft eine Wache ihren Posten. Karla sitzt vollkommen reglos, und du siehst, wie das, was du gesagt hast, durch sie hindurchgeht, Schicht um Schicht, bis es ganz unten ankommt.</div>
+
+Dann bricht sie.
+
+Nicht laut. Karla würde nie laut weinen. Aber ihre Schultern beginnen zu zittern, und sie presst eine Hand vor den Mund, und über ihren Handrücken laufen Tränen, die sie nicht mehr zurückhält — zwei Jahre Tränen, aufgespart, weil Weinen ein Luxus war, den sie sich nie erlauben konnte, solange sie kämpfen musste.
+
+„Warum", bringt sie schließlich heraus, mit erstickter Stimme. „Warum hast du mir nichts gesagt? Die ganze Zeit —"
+
+„Weil ich nicht wusste, ob es klappt", sagst du leise. „Und ich wollte dir keine Hoffnung machen, die vielleicht zerbricht. Du hattest schon genug zerbrochene Hoffnung."
+
+Sie sieht dich an, das Gesicht nass, und in ihrem Blick liegt etwas, das du noch nie darin gesehen hast — als sähe sie dich zum ersten Mal wirklich, ganz, ohne Wand.
+
+„Du hast das für mich getan." Es ist keine Frage. „Heimlich. Ohne ein Wort. Du hast den einen Menschen um Hilfe gebeten, der dir je geholfen hat — für meinen Onkel. Für mich."
+
+<div class="thought-box">Ich weiß nicht, was ich darauf sagen soll. Also sage ich nichts. Manche Dinge sind zu groß für Worte — das habe ich von ihr gelernt.</div>
+
+Sie lehnt sich zu dir herüber, langsam, und legt für einen Moment die Stirn an deine Schulter. Keine Umarmung — dafür ist sie nicht gemacht, und das musst du auch nicht. Nur dieser eine Moment, in dem die Stärkste, die du kennst, sich erlaubt, sich kurz an jemanden zu lehnen.
+
+„Danke", flüstert sie. Nur das eine Wort. Aber von Karla wiegt es so schwer wie alles, was je ein Mensch zu dir gesagt hat.
+
+<<= setup.setNpcAffection("karla", 35)>>\
+<<set $npc.karla.trust to true>>\
+<<set $npc.karla.memory.flags.karla_erfahren to true>>\
+
+<div class="system-alert status-positive">Karla weiß nun alles — vom Brief, von Luigi, von der Wahrheit über ihren Onkel. Was zwischen euch ist, hat sich für immer verändert.</div>
+
+<<weiterImTag "Weiter">>
+
+
+:: karla_S_Verhaftung [interrupt einmalig nach_hub] {"position":"1025,3150","size":"100,100"}
+<<set $npc.karla.memory.flags.verhaftung_seen to true>>\
+Es ist ein Morgen wie jeder andere, bis er es nicht mehr ist.
+
+Auf dem Appellplatz steht ein Wagen, der nicht hierhergehört — schwer, vergittert, mit dem Wappen des Landgerichts zu Grodaus an der Seite. Daneben zwei Gardisten in fremder Montur und der Hauptmann, dessen Miene nichts verrät. Die Reihen sind angetreten, aber niemand hat zum Drill gerufen. Etwas anderes liegt in der Luft.
+
+<div class="scenery-text">Der Morgennebel hängt noch tief über dem Hof. Niemand redet. Hundert Rekruten stehen still, und das Einzige, was man hört, ist das Schnauben der Pferde vor dem Gefangenenwagen und das Klirren von Ketten, irgendwo, noch nicht zu sehen.</div>
+
+Dann führen sie Karla heraus.
+
+Ihre Hände sind gefesselt. Sie geht aufrecht — natürlich geht sie aufrecht, sie würde diesen Leuten niemals den Gefallen tun, gebeugt zu gehen — aber an ihrer Schläfe ist eine verkrustete Wunde, und ihr Blick ist leer auf eine Art, die du noch nie an ihr gesehen hast.
+
+Ein Schreiber verliest die Anklage, und seine Stimme trägt über den ganzen stillen Platz.
+
+<div class="voice-formal">„Unbefugtes Eindringen in die Schreibstuben der Akademie. Entwendung versiegelter Militärakten. Der Verdacht der Spionage wider die Republik. Die Beschuldigte wird zur Verhandlung nach Grodaus überstellt."</div>
+
+Spionage. Das Wort fällt wie ein Stein in stilles Wasser, und du spürst, wie es durch die Reihen geht — ein Raunen, ein Zurückweichen, als könnte allein die Nähe zu so einer Anklage abfärben.
+
+Sie wissen nichts von Edric. Sie wissen nichts von einem kranken Onkel, von einem Zeugen, der schwieg, von einer Frau, die nur die Wahrheit über ein Unrecht suchte. Sie sehen eine Rekrutin, die nachts versiegelte Akten gestohlen hat, und sie haben sich daraus ihre eigene, viel größere Geschichte gemacht.
+
+Als sie sie zum Wagen führen, geht ihr Blick einmal über die Reihen.
+
+<<if $npc.karla.affection >= 5>>\
+Für den Bruchteil eines Augenblicks bleibt er an dir hängen. Kein Vorwurf liegt darin. Keine Bitte. Nur ein müdes, fast sanftes Erkennen — als wollte sie sagen: Es ist nicht deine Schuld. Und gerade weil sie das sagen würde, fühlt es sich an wie deine.
+<<else>>\
+Er gleitet über dich hinweg wie über jeden anderen. Für sie warst du nie mehr als einer von hundert Gesichtern in der Reihe. Vielleicht hätte es anders sein können. Jetzt wirst du es nie erfahren.
+<</if>>
+
+Dann schließt sich die Gittertür. Der Wagen setzt sich in Bewegung, rumpelt durch das Tor, und ist fort.
+
+<div class="thought-box">Sie hat es allein versucht. Bis zum Schluss allein. Und irgendwo zwischen jener Nacht und diesem Morgen gab es einen Moment, in dem ich an ihrer Seite hätte stehen können — und es nicht tat.</div>
+
+<div class="system-alert status-info">Karla wurde verhaftet und nach Grodaus überstellt. Ihr Weg und deiner trennen sich hier. Was aus ihr und ihrem Onkel wird, liegt nicht mehr in deiner Hand.</div>
+
+<<weiterImTag "Weiter">>
 
 
 :: StoryScript [script]
@@ -3847,6 +5395,7 @@ CONTITIONAL INTERRUPTS
 setup.interruptCond     = {};   // optional: "Name" -> w => boolean
 setup.interruptCooldown = {};   // optional: "Name" -> Tage (sonst Default 3)
 setup.interruptPrio     = {};   // NEU: höher = wird zuerst gefeuert
+setup.interruptKapitel  = {}; 
 
 /*ab hier Prios und conditions eintragen*/
 setup.interruptCond["Story002_Taverne_mit_Lars_Und_Hadde"] = w => w.day >= 8;
@@ -3857,10 +5406,181 @@ setup.interruptCond["04_Sidequest_diplomaten_Auftrag"] = w => w.day >= 20
 setup.interruptPrio["04_Sidequest_diplomaten_Auftrag"] = 45;
 
 
+/* ===== JAREK-QUESTKETTE (S1–S4, geflaggt + über interruptHistory getaktet) ===== */
+setup.interruptCond["Jarek_S1_Vorlesung"] = w => {
+  var f = State.variables.npc.jarek.memory.flags;
+  return f.s0_done === true && f.s1_seen !== true && w.day >= 8;
+};
+setup.interruptPrio["Jarek_S1_Vorlesung"] = 50;
+
+setup.interruptCond["Jarek_S2_Angebot"] = w => {
+  var f = State.variables.npc.jarek.memory.flags, h = w.interruptHistory;
+  return f.s1_seen === true && f.s2_done !== true
+      && w.day >= (h["Jarek_S1_Vorlesung"] || 0) + 5;
+};
+setup.interruptPrio["Jarek_S2_Angebot"] = 50;
+
+setup.interruptCond["Jarek_S3_Start"] = w => {
+  var f = State.variables.npc.jarek.memory.flags, h = w.interruptHistory;
+  return f.s2_done === true && f.s3_zugesagt !== true
+      && w.day >= (h["Jarek_S2_Angebot"] || 0) + 5;
+};
+setup.interruptPrio["Jarek_S3_Start"] = 50;
+
+setup.interruptCond["Jarek_S4_Archiv"] = w => {
+  var f = State.variables.npc.jarek.memory.flags, h = w.interruptHistory;
+  return f.s3_zugesagt === true && f.s4_done !== true
+      && w.day >= (h["Jarek_S3_Start"] || 0) + 4;
+};
+setup.interruptPrio["Jarek_S4_Archiv"] = 55;
+
+setup.interruptCond["Jarek_S6_DokVermisst"] = w =>
+     w.flags && w.flags.dok_vermisst_armed === true
+  && w.flags.dok_vermisst_done !== true
+  && w.day >= (w.flags.dok_vermisst_day || 0) + 3;
+setup.interruptPrio["Jarek_S6_DokVermisst"] = 60;
+/* ===== JAREK-QUESTKETTE ENDE (S1–S4, geflaggt + über interruptHistory getaktet) ===== */
+
+/* ===== KARLA-QUESTKETTE (Phase 1–7, geflaggt + getaktet) ===== */
+
+/* --- karla_S1: erste Trainings-Annäherung (Einstieg, Phase 1) --- */
+setup.interruptCond["karla_S1"] = w => {
+  var f = State.variables.npc.karla.memory.flags;
+  return f.s1_seen !== true && w.day >= 4;
+};
+setup.interruptPrio["karla_S1"] = 50;
+
+/* --- karla_S1b: Vorbote – Karlas linke Schwäche (Hinweis für S2) --- */
+setup.interruptCond["karla_S1b"] = w => {
+  var f = State.variables.npc.karla.memory.flags, h = w.interruptHistory;
+  return f.s1_seen === true
+      && f.s1b_seen !== true
+      && f.s2_done !== true
+      && w.day >= (h["karla_S1"] || 0) + 2;
+};
+setup.interruptPrio["karla_S1b"] = 50;
+
+/* --- karla_S2: vertieftes Training (an s1b_seen gekoppelt) --- */
+setup.interruptCond["karla_S2"] = w => {
+  var f = State.variables.npc.karla.memory.flags, h = w.interruptHistory;
+  return f.s1b_seen === true && f.s2_done !== true
+      && w.day >= (h["karla_S1b"] || 0) + 2;
+};
+setup.interruptPrio["karla_S2"] = 50;
+
+/* --- karla_S3: Dokumente-Nacht (Phase 2, Wendepunkt) --- */
+setup.interruptCond["karla_S3"] = w => {
+  var k = State.variables.npc.karla, f = k.memory.flags, h = w.interruptHistory;
+  return f.s2_done === true
+      && f.kennt_geheimnis !== true
+      && f.p2_zweiter_anlauf !== true
+      && k.affection >= 3
+      && w.day >= (h["karla_S2"] || 0) + 3;
+};
+setup.interruptPrio["karla_S3"] = 55;
+
+/* --- karla_S3b: zweiter Anlauf (nach Frage-Pfad in S3) --- */
+setup.interruptCond["karla_S3b"] = w => {
+  var f = State.variables.npc.karla.memory.flags, h = w.interruptHistory;
+  return f.p2_zweiter_anlauf === true
+      && f.kennt_geheimnis !== true
+      && f.p2_quest_zu !== true
+      && w.day >= (h["karla_S3"] || 0) + 3;
+};
+setup.interruptPrio["karla_S3b"] = 55;
+
+/* --- karla_S_Verhaftung: Konsequenz, wenn Quest verpatzt wurde --- */
+setup.interruptCond["karla_S_Verhaftung"] = w => {
+  var f = State.variables.npc.karla.memory.flags;
+  return f.p2_quest_zu === true
+      && f.verhaftung_seen !== true
+      && w.day >= (f.p2_quest_zu_tag || 0) + 8;
+};
+setup.interruptPrio["karla_S_Verhaftung"] = 60;
+
+/* --- karla_S4: die Suche nach dem Zeugennamen (Phase 3) --- */
+setup.interruptCond["karla_S4"] = w => {
+  var f = State.variables.npc.karla.memory.flags, h = w.interruptHistory;
+  return f.kennt_geheimnis === true
+      && f.zeuge_gefunden !== true
+      && w.day >= (h["karla_S3"] || h["karla_S3b"] || 0) + 2;
+};
+setup.interruptPrio["karla_S4"] = 55;
+
+/* karla_S4_karla_loest_selbst: KEINE Condition – wird per <<goto>> aus karla_S4 aufgerufen */
+
+/* --- karla_S5: Dilemma + Brief (Phase 3.5 / 4) --- */
+setup.interruptCond["karla_S5"] = w => {
+  var f = State.variables.npc.karla.memory.flags, h = w.interruptHistory;
+  return f.zeuge_gefunden === true
+      && f.dilemma_done !== true
+      && w.day >= (h["karla_S4"] || h["karla_S4_karla_loest_selbst"] || 0) + 2;
+};
+setup.interruptPrio["karla_S5"] = 60;
+
+/* --- karla_S7: Luigis Ankunft (Phase 5) --- */
+setup.interruptCond["karla_S7"] = w => {
+  var f = State.variables.npc.karla.memory.flags;
+  return f.brief_gesendet === true
+      && f.luigi_done !== true
+      && w.day >= (f.brief_tag || 0) + 6;
+};
+setup.interruptPrio["karla_S7"] = 70;
+
+/* --- karla_S8: Rückkehr & Auflösung (Phase 6) --- */
+setup.interruptCond["karla_S8"] = w => {
+  var f = State.variables.npc.karla.memory.flags, h = w.interruptHistory;
+  return f.luigi_done === true
+      && f.aufloesung_done !== true
+      && w.day >= (h["karla_S7"] || 0) + 4;
+};
+setup.interruptPrio["karla_S8"] = 70;
+
+/* --- karla_S9: Thomas berichtet Karla (Phase 6, Abschluss) --- */
+setup.interruptCond["karla_S9"] = w => {
+  var f = State.variables.npc.karla.memory.flags, h = w.interruptHistory;
+  return f.aufloesung_done === true
+      && f.karla_erfahren !== true
+      && w.day >= (h["karla_S8"] || 0) + 1;
+};
+setup.interruptPrio["karla_S9"] = 70;
+
+/* --- karla_S10: die Umkehrung (Phase 7) --- */
+setup.interruptCond["karla_S10"] = w => {
+  var fj = State.variables.npc.jarek.memory.flags;
+  var k  = State.variables.npc.karla;
+  return fj.katastrophe === true
+      && k.trust === true
+      && k.memory.flags.umkehrung_done !== true
+      && w.day >= (w.flags && w.flags.jarek_ausgang_tag ? w.flags.jarek_ausgang_tag : 0) + 2;
+};
+setup.interruptPrio["karla_S10"] = 65;
+/* ===== KARLA-QUESTKETTE ENDE ===== */
+
+
+/* --- Kapitel1_Ende: feuert, wenn Jarek durch UND Karla in finalem Endzustand --- */
+setup.interruptCond["Kapitel1_Ende"] = w => {
+  var k = State.variables.npc.karla.memory.flags;
+  var j = State.variables.npc.jarek.memory.flags;
+  if (k.kapitel1_ende_seen === true) return false;
+  // Pfad 1: voller Durchlauf (Umkehrung impliziert Jarek-Katastrophe)
+  if (k.umkehrung_done === true) return true;
+  // Pfad 2: Karla-Strang verpatzt UND Verhaftung gesehen UND Jarek durch
+  if (k.p2_quest_zu === true && k.verhaftung_seen === true && j.katastrophe === true) return true;
+  return false;
+};
+setup.interruptPrio["Kapitel1_Ende"] = 90;
+
+["karla_S1","karla_S1b","karla_S2","karla_S3","karla_S3b","karla_S_Verhaftung",
+ "karla_S4","karla_S5","karla_S7","karla_S8","karla_S9","karla_S10",
+ "Jarek_S1_Vorlesung","Jarek_S2_Angebot","Jarek_S3_Start","Jarek_S4_Archiv",
+ "Jarek_S6_DokVermisst","Kapitel1_Ende"
+].forEach(n => setup.interruptKapitel[n] = 1);
+
 /* ============ SIDEQUEST-REGISTER ============ */
 setup.sidequests = {
-  karla_01: { npc: "karla", threshold: 5, completeFlag: "sidequest00Complete", start: "Karla Archiv Start",  priority: 10 },
-  jarek_01: { npc: "jarek", threshold: 5, completeFlag: "sidequest01Complete", start: "Jarek Archiv Start",  priority: 10 }
+  karla_01: { npc: "karla", threshold: 5, completeFlag: "sidequest00Complete", start: "00_Sidequest_karla", priority: 10 },
+  //jarek_01: { npc: "jarek", threshold: 5, completeFlag: "sidequest01Complete", start: "01_Sidequest_jarek", priority: 10 }
   // neue Quest = einfach eine Zeile mehr
 };
 
@@ -4087,7 +5807,7 @@ setup.renderJournal = function () {
     for (let key in State.variables.npc) {
         let npc = State.variables.npc[key];
 
-        if (npc.known === true) {
+        if (npc.known === true && npc.isRealPlayer !== true) {
             found = true;
             output += `
                 <div class="npc-entry">
@@ -4468,7 +6188,9 @@ setup.setPlayerKnowledge = function (knowledgeKey, modifier) {
     if (!player) { console.warn("Player nicht gefunden"); return ""; }
     if (!player.knowledge?.hasOwnProperty(knowledgeKey)) { console.warn("Fähigkeit existiert nicht:", knowledgeKey); return ""; }
 
-    player.knowledge[knowledgeKey] = setup.clamp(player.knowledge[knowledgeKey] + modifier, 0, 100);
+    // scholarship bleibt ungedeckelt (0–100), alle echten Skills bei 10
+    const max = (knowledgeKey === "scholarship") ? 100 : 10;
+    player.knowledge[knowledgeKey] = setup.clamp(player.knowledge[knowledgeKey] + modifier, 0, max);
 
     const name = setup.knowledgeNames[knowledgeKey] || knowledgeKey;
     return setup.statusAlert(name + (modifier < 0 ? " verringert" : " verbessert"), modifier);
@@ -4576,23 +6298,26 @@ setup.weatherConditions = [
 setup.resetDailyVariables = function () {
     const world  = State.variables.world;
     const player = State.variables.player;
-
     world.weather = setup.weatherConditions[Math.floor(Math.random() * setup.weatherConditions.length)];
     world.wasPracticing = false;
     world.day += 1;
-
     // Werte VOR der Änderung merken
     const condBefore = player.condition;
     const suspBefore = player.suspicion;
-
     const konditionDelta = player.hasSlept ? 10 : -10;
     player.condition = setup.clamp(player.condition + konditionDelta, 0, 100);
-
     const karla = State.variables.npc?.karla;
     const jarek = State.variables.npc?.jarek;
     setup.tickSidequestDruck();
 
-    player.suspicion = setup.clamp(player.suspicion - 2, 0, 100);
+    // Suspicion nur abbauen, wenn sie heute NICHT gestiegen ist
+    const startOfDay = (world.suspicionDayStart !== undefined) ? world.suspicionDayStart : suspBefore;
+    const roseToday  = player.suspicion > startOfDay;
+    if (!roseToday) {
+        player.suspicion = setup.clamp(player.suspicion - 2, 0, 100);
+    }
+    // Startwert für den neuen Tag festhalten
+    world.suspicionDayStart = player.suspicion;
 
     // Tagesbericht ablegen: echte Differenzen (nach dem Clampen)
     world.tagesbericht = {
@@ -4600,7 +6325,6 @@ setup.resetDailyVariables = function () {
         suspicion: player.suspicion - suspBefore,
         hasSlept:  player.hasSlept
     };
-
     world.interruptDoneToday = false;
 };
 
@@ -4646,15 +6370,23 @@ setup.routeTags = {
 /*==============================================================
   INTERRUPTS
 ==============================================================*/
+setup.kapitel1Abschliessen = function () {
+    State.variables.world.kapitel1_gesperrt = true;
+};
+
 setup.checkInterrupt = function () {
     const w = State.variables.world;
     if (w.interruptDoneToday) return null;
     const hist = w.interruptHistory;
 
+    setup.interruptKapitel = setup.interruptKapitel || {};
+
     // Eignung: nicht auf Cooldown, nicht verbrauchter Einmaliger
     const eligible = name => {
         const passage = Story.get(name);
         if (!passage) return false;
+        const kap = setup.interruptKapitel[name];
+        if (kap !== undefined && w["kapitel" + kap + "_gesperrt"] === true) return false;
         if (passage.tags.includes("einmalig") && hist[name]) return false;
         const cd = setup.interruptCooldown[name] || 3;
         if (hist[name] && (w.day - hist[name]) < cd) return false;
@@ -4714,6 +6446,8 @@ setup.routeFromTags = function (tagList) {
     player.hasSlept = true;
     return "Nachmittag Hub";
 };
+
+
 
 // ========================
 // GOSSIP SYSTEM
@@ -5089,7 +6823,7 @@ setup.teachLecture = function (subjectKey) {
     /* lernen + Werte vergeben */
     edu.learned.push(next.id);
     p.stats.scholarship = (p.stats.scholarship || 0) + 1;
-    p.knowledge[subjectKey] = (p.knowledge[subjectKey] || 0) + 1;
+    p.knowledge[subjectKey] = Math.min((p.knowledge[subjectKey] || 0) + 1, 10);
     p.chosen_activity = subjectKey;                 // fuer Abendappell-Kontext, falls verdrahtet
     if (State.variables.world) { State.variables.world.wasPracticing = true; }
 
@@ -5331,6 +7065,40 @@ setup.ueberfallWissen = function () {
     }
 
     return 0;
+};
+
+/* Höchste(r) Kampfwert(e) aus den fünf Ausbildungsdisziplinen */
+setup.hoechsteKampfwerte = function () {
+    var p = State.variables.player;
+    var keys = ["pike", "crossbow", "cannon", "medicine", "thievery"];
+    var max = -1;
+    keys.forEach(function (k) {
+        var v = p.knowledge[k] || 0;
+        if (v > max) max = v;
+    });
+    return keys.filter(function (k) { return (p.knowledge[k] || 0) === max; });
+};
+
+/* Würdigungstext pro Disziplin (Prosa, kein Zahlwert) */
+setup.kampfwertWuerdigung = function (key) {
+    var texte = {
+        pike:     "Mit Pike und Hellebarde hast du dich hervorgetan — wo andere noch den Schaft umklammerten, hieltest du die Linie. Der Schinder hat es gesehen, auch wenn er es nie zugäbe.",
+        crossbow: "An der Armbrust wurdest du zu einer ruhigen Hand. Wo andere zappelten, lagst du still und triffst, was du anvisierst. Eine Kunst, die im Feld Leben rettet.",
+        cannon:   "Die schweren Geschütze haben dir ihr Geheimnis preisgegeben. Pulver, Winkel, Geduld — du verstehst die Sprache der Artillerie, und das verstehen nur wenige.",
+        medicine: "Du hast gelernt, zu flicken statt zu zerstören. Die Feldscherkunst macht dich zu jemandem, den das Banner nicht verlieren will — denn ein Heiler ist mehr wert als zehn Klingen.",
+        thievery: "In den Schatten hinter den Stallungen hast du eine Kunst gelernt, die in keinem Ausbildungsplan steht. Flinke Finger, leise Schritte, ein Blick für das, was andere übersehen."
+    };
+    return texte[key] || "";
+};
+
+/* Affektions-Vermerk in vier Stufen */
+setup.ausbilderVermerk = function (npcKey, satzKuehl, satzNeutral, satzModerat, satzEuphorisch) {
+    var npc = State.variables.npc[npcKey];
+    var a = npc ? npc.affection : 0;
+    if (a < 0)  return satzKuehl;
+    if (a === 0) return satzNeutral;
+    if (a < 10) return satzModerat;
+    return satzEuphorisch;
 };
 
 :: StoryStylesheet [stylesheet]
