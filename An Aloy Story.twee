@@ -3276,7 +3276,7 @@ Thomas steht zwischen den anderen. Niemand prüft, ob er wirklich betet — aber
 </span>\
 
 
-:: Story007_Training mit Karla [interrupt einmalig] {"position":"1100,2700","size":"100,100"}
+:: Story007_Training mit Karla {"position":"1100,2700","size":"100,100"}
 Karla will wieder mit dir trianieren. 
 
 
@@ -3285,7 +3285,7 @@ knowledge wichtign. das höchste wird ausgesucht und da will karla nachhilfe.
 gibt affection und ein bisschen Storry mir Karla
 
 
-:: Story008_Extra Unterricht Magister [interrupt] {"position":"1100,2850","size":"100,100"}
+:: Story008_Extra Unterricht Magister {"position":"1125,2825","size":"100,100"}
 
 
 
@@ -4242,6 +4242,90 @@ Er sagt es ohne Lautstärke. Als wäre sein Schweigen das Großzügigste, was er
 <<set $npc.diplomatHannes.known = true>>\
 
 [[Befehl befolgen und direkt zum Kasernenhof gehen->Der Kasernenhof]]
+
+
+:: Unbenannter Abschnitt {"position":"200,4350","size":"100,100"}
+
+<div class="system-alert">DEBUG CONTROL ROOM – Kapitel 1</div>
+
+<h2>PLAYER</h2>
+
+Gossip (0–20):
+<<textbox "$player.knowledge.gossip" 0>>
+
+Scholarship (0–20):
+<<textbox "$player.knowledge.scholarship" 0>>
+
+Discipline (0–100):
+<<textbox "$player.stats.discipline" 50>>
+
+Faith (0–100):
+<<textbox "$player.stats.faith" 50>>
+
+Condition (0–100):
+<<textbox "$player.condition" 100>>
+
+
+<hr>
+
+<h2>WORLD</h2>
+
+Day:
+<<textbox "$world.day" 1>>
+
+
+<br>
+
+Karla Route:
+<<checkbox "$npc.karla.memory.flags.umkehrung_done" false true autocheck>>
+ Karla Umkehrung aktiv
+
+
+<hr>
+
+<h2>QUICK PRESETS</h2>
+
+<<button "💥 FULL END TEST">>
+
+	/* Player */
+	<<set $player.knowledge.gossip = 12>>
+	<<set $player.knowledge.scholarship = 10>>
+	<<set $player.stats.discipline = 85>>
+	<<set $player.stats.faith = 60>>
+	<<set $player.condition = 90>>
+
+	/* World */
+	<<set $world.day = 365>>
+	<<set $world.flags = {}>>
+	<<set $world.flags.jarek_ausgang = "gemeldet">>
+
+	/* NPC */
+	<<set $npc.karla.memory.flags.umkehrung_done = true>>
+
+	<<goto "Kapitel1_Ende">>
+
+<</button>>
+
+
+<br>
+
+<<button "⚠ RESET TEST">>
+
+	<<set $player.knowledge.gossip = 0>>
+	<<set $player.knowledge.scholarship = 0>>
+	<<set $player.stats.discipline = 10>>
+	<<set $player.stats.faith = 10>>
+	<<set $player.condition = 50>>
+
+	<<set $world.day = 1>>
+	<<set $world.flags.jarek_ausgang = "geschwiegen">>
+	<<set $npc.karla.memory.flags.umkehrung_done = false>>
+
+<</button>>
+
+<br><br>
+
+[[➡ Direkt zum Kapitelende testen ->Kapitel1_Ende]]
 
 
 :: Wuerfel_AllIn {"position":"2700,2500","size":"100,100"}
