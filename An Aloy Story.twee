@@ -5090,7 +5090,7 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 <<weiterImTag "Weiter">>
 
 
-:: karla_S4 [interrupt einmalig nach_stube kapitel-opener] {"position":"600,3600","size":"100,100"}
+:: karla_S4 [interrupt nach_stube kapitel-opener] {"position":"600,3600","size":"100,100"}
 <<set _archiv = $world.archivzugang === true>>
 <<set _wissen = ($player.knowledge.diplomatie || 0) >= 3>>
 <<set _magister = $npc.magister.affection >= 4>>
@@ -5113,6 +5113,7 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 <<if _magister>>[[Magister Halm. Er ist Archivar — vielleicht sieht er für mich nach.|karla_S4_magister]]<</if>>
 <<else>>
 <<set $npc.karla.memory.flags.s4_vertroestet to ($npc.karla.memory.flags.s4_vertroestet || 0) + 1>>
+<<set $world.karla_druck to 0>>
 <<if $npc.karla.memory.flags.s4_vertroestet >= 4>>
 <<goto "karla_S4_karla_loest_selbst">>
 <<else>>
@@ -5583,10 +5584,23 @@ setup.interruptCond["04_Sidequest_diplomaten_Auftrag"] = w => w.day >= 20
 setup.interruptPrio["04_Sidequest_diplomaten_Auftrag"] = 45;
 
 
+/* --- EE_Tross_Intro: Schinder-Besorgung führt in den Tross (Easter Egg, spät in Kap 1) --- */
+setup.interruptCond["EE_Tross_Intro"] = w => {
+  var f = State.variables.npc.schinder.memory.flags;
+  var h = w.interruptHistory;
+  return f.tross_seen !== true
+      && w.day >= 22
+      && (h["Storry006_DrillMitSchinder"] || 0) > 0
+      && w.day >= (h["Storry006_DrillMitSchinder"] || 0) + 2;
+};
+setup.interruptPrio["EE_Tross_Intro"] = 20;
+setup.interruptPrio["EE_Tross_Intro"] = 20;
+
+
 /* ===== JAREK-QUESTKETTE (S1–S4, geflaggt + über interruptHistory getaktet) ===== */
 setup.interruptCond["Jarek_S1_Vorlesung"] = w => {
   var f = State.variables.npc.jarek.memory.flags;
-  return f.s0_done === true && f.s1_seen !== true && w.day >= 8;
+  return f.s0_done === true && f.s1_seen !== true && w.day >= 23;
 };
 setup.interruptPrio["Jarek_S1_Vorlesung"] = 50;
 
@@ -5735,16 +5749,21 @@ setup.interruptPrio["karla_S10"] = 65;
 /* ===== KARLA-QUESTKETTE ENDE ===== */
 
 
-/* --- Kapitel1_Ende: feuert, wenn Jarek durch UND Karla in finalem Endzustand --- */
+/* --- Kapitel1_Ende: Jarek-Katastrophe IST der Abschluss; ein paar Tage Stille davor --- */
 setup.interruptCond["Kapitel1_Ende"] = w => {
-  var k = State.variables.npc.karla.memory.flags;
-  var j = State.variables.npc.jarek.memory.flags;
+  var npc = State.variables.npc || {};
+  var k = ((npc.karla && npc.karla.memory) || {}).flags || {};
+  var j = ((npc.jarek && npc.jarek.memory) || {}).flags || {};
+  var f = w.flags || {};
+
   if (k.kapitel1_ende_seen === true) return false;
-  // Pfad 1: voller Durchlauf (Umkehrung impliziert Jarek-Katastrophe)
+
+  // Voller Durchlauf (Umkehrung impliziert Jarek-Katastrophe) – ohne Extra-Wartezeit
   if (k.umkehrung_done === true) return true;
-  // Pfad 2: Karla-Strang verpatzt UND Verhaftung gesehen UND Jarek durch
-  if (k.p2_quest_zu === true && k.verhaftung_seen === true && j.katastrophe === true) return true;
-  return false;
+
+  // Sonst: Jarek-Katastrophe durch + Schamfrist, egal in welchem Zustand Karla ist
+  return j.katastrophe === true
+      && w.day >= (f.jarek_ausgang_tag || 0) + 4;
 };
 setup.interruptPrio["Kapitel1_Ende"] = 90;
 
@@ -5759,6 +5778,34 @@ setup.sidequests = {
   karla_01: { npc: "karla", threshold: 5, completeFlag: "sidequest00Complete", start: "00_Sidequest_karla", priority: 10 },
   //jarek_01: { npc: "jarek", threshold: 5, completeFlag: "sidequest01Complete", start: "01_Sidequest_jarek", priority: 10 }
   // neue Quest = einfach eine Zeile mehr
+};
+
+/* karla_druck: steigt, solange der Strang offen ist und der Spieler nichts tut.
+   Am Maximum kippt er in p2_quest_zu -> löst die bestehende Verhaftungs-Kette aus. */
+setup.KARLA_DRUCK_MAX = 12;
+
+setup.tickKarlaDruck = function () {
+  var w = State.variables.world;
+  var k = State.variables.npc && State.variables.npc.karla;
+  if (!k) return;
+  var f = k.memory.flags;
+
+  // Strang muss offen sein: Geheimnis bekannt, aber noch kein Fortschritt/Ausgang
+  var offen = f.kennt_geheimnis === true
+           && f.zeuge_gefunden !== true
+           && f.brief_gesendet !== true
+           && f.p2_quest_zu   !== true
+           && f.verhaftung_seen !== true;
+
+  if (!offen) return;
+
+  w.karla_druck = (w.karla_druck || 0) + 1;
+
+  // Maximum erreicht -> aktive-Absage-Flag setzen, Verhaftungs-Kette übernimmt
+  if (w.karla_druck >= setup.KARLA_DRUCK_MAX) {
+    f.p2_quest_zu = true;
+    f.p2_quest_zu_tag = w.day;
+  }
 };
 
 /* Druck/Status liegt generisch in $world.quest[id] – lazy angelegt, save-sicher */
@@ -6555,6 +6602,7 @@ setup.resetDailyVariables = function () {
         hasSlept:  player.hasSlept
     };
     world.interruptDoneToday = false;
+    setup.tickKarlaDruck();
 };
 
 setup.tickSidequestDruck = function () {
