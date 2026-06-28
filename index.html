@@ -692,16 +692,21 @@ setup.interruptPrio["karla_S10"] = 65;
 /* ===== KARLA-QUESTKETTE ENDE ===== */
 
 
-/* --- Kapitel1_Ende: feuert, wenn Jarek durch UND Karla in finalem Endzustand --- */
+/* --- Kapitel1_Ende: Jarek-Katastrophe IST der Abschluss; ein paar Tage Stille davor --- */
 setup.interruptCond["Kapitel1_Ende"] = w => {
-  var k = State.variables.npc.karla.memory.flags;
-  var j = State.variables.npc.jarek.memory.flags;
+  var npc = State.variables.npc || {};
+  var k = ((npc.karla && npc.karla.memory) || {}).flags || {};
+  var j = ((npc.jarek && npc.jarek.memory) || {}).flags || {};
+  var f = w.flags || {};
+
   if (k.kapitel1_ende_seen === true) return false;
-  // Pfad 1: voller Durchlauf (Umkehrung impliziert Jarek-Katastrophe)
+
+  // Voller Durchlauf (Umkehrung impliziert Jarek-Katastrophe) – ohne Extra-Wartezeit
   if (k.umkehrung_done === true) return true;
-  // Pfad 2: Karla-Strang verpatzt UND Verhaftung gesehen UND Jarek durch
-  if (k.p2_quest_zu === true && k.verhaftung_seen === true && j.katastrophe === true) return true;
-  return false;
+
+  // Sonst: Jarek-Katastrophe durch + Schamfrist, egal in welchem Zustand Karla ist
+  return j.katastrophe === true
+      && w.day >= (f.jarek_ausgang_tag || 0) + 4;
 };
 setup.interruptPrio["Kapitel1_Ende"] = 90;
 
@@ -4477,8 +4482,7 @@ Ergebnis: &lt;&lt;= _g.correct&gt;&gt; von &lt;&lt;= _g.total&gt;&gt; richtig (&
 &lt;&lt;= setup.examRewardHTML(_g.pct)&gt;&gt;
 &lt;&lt;/if&gt;&gt;\
 
-&lt;&lt;weiterImTag &quot;Den Prüfungssaal verlassen&quot;&gt;&gt;
-</tw-passagedata><tw-passagedata pid="93" name="Pruefung Frage" tags="pruefung" position="2175,650" size="100,100">&lt;&lt;set _e = $edu.exam&gt;&gt;\
+&lt;&lt;weiterImTag &quot;Den Prüfungssaal verlassen&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="93" name="Pruefung Frage" tags="pruefung" position="2175,650" size="100,100">&lt;&lt;set _e = $edu.exam&gt;&gt;\
 &lt;&lt;set _q = _e.queue[_e.pos]&gt;&gt;\
 &lt;div class=&quot;voice-formal&quot;&gt;Frage &lt;&lt;= _e.pos + 1&gt;&gt; von &lt;&lt;= _e.queue.length&gt;&gt; · &lt;&lt;= _q.subject&gt;&gt;&lt;/div&gt;
 &lt;div class=&quot;lecture-text&quot;&gt;&lt;&lt;= _q.q&gt;&gt;&lt;/div&gt;
@@ -4522,8 +4526,7 @@ Abschlusspruefung – Kapitel 1
 &lt;&lt;else&gt;&gt;\
 &lt;div class=&quot;thought-box&quot;&gt;Sechs Fragen. Oder so viele, wie ich mir ueberhaupt gemerkt habe. Atmen. Was ich weiss, das weiss ich.&lt;/div&gt;
 [[Die Pruefung beginnen -&gt;Pruefung Frage]]
-&lt;&lt;/if&gt;&gt;\
-</tw-passagedata><tw-passagedata pid="95" name="Rausreden Versuch" tags="" position="825,300" size="100,100">Die Eichentür fliegt mit einem lauten Knall auf. Kurt, der ältere Ausbilder, steht im Rahmen. Seine Augen verengen sich zu Schlitzen, als er dich sieht. 
+&lt;&lt;/if&gt;&gt;\</tw-passagedata><tw-passagedata pid="95" name="Rausreden Versuch" tags="" position="825,300" size="100,100">Die Eichentür fliegt mit einem lauten Knall auf. Kurt, der ältere Ausbilder, steht im Rahmen. Seine Augen verengen sich zu Schlitzen, als er dich sieht. 
 
 @@.voice-aggressive;&quot;Ein Frischling!&quot;, speit er aus. &quot;Spionierst uns nach, noch bevor du überhaupt den ersten Staub gefressen hast?!&quot;@@
 
