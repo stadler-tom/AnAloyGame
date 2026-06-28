@@ -4435,6 +4435,9 @@ Mehr Content wird sicher irgendwann kommen.
 </div>
 <<back "↩️ Zurück zum Dienst">>
 
+Notfall ausstieg, falls Story hängt kann man hier wieder in die stube springen
+[[Notfallsprung|Auf Stube]]
+
 
 :: karla_S1 [interrupt einmalig] {"position":"150,3150","size":"100,100"}
 <<set $npc.karla.memory.flags.s1_seen to true>>\
