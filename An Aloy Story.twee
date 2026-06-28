@@ -2638,7 +2638,6 @@ Ergebnis: <<= _g.correct>> von <<= _g.total>> richtig (<<= _g.pct>>%) — <<= _g
 <<weiterImTag "Den Prüfungssaal verlassen">>
 
 
-
 :: Pruefung Frage [pruefung] {"position":"2175,650","size":"100,100"}
 <<set _e = $edu.exam>>\
 <<set _q = _e.queue[_e.pos]>>\
@@ -2689,7 +2688,6 @@ Abschlusspruefung – Kapitel 1
 <div class="thought-box">Sechs Fragen. Oder so viele, wie ich mir ueberhaupt gemerkt habe. Atmen. Was ich weiss, das weiss ich.</div>
 [[Die Pruefung beginnen ->Pruefung Frage]]
 <</if>>\
-
 
 
 :: Rausreden Versuch {"position":"825,300","size":"100,100"}
@@ -5575,16 +5573,21 @@ setup.interruptPrio["karla_S10"] = 65;
 /* ===== KARLA-QUESTKETTE ENDE ===== */
 
 
-/* --- Kapitel1_Ende: feuert, wenn Jarek durch UND Karla in finalem Endzustand --- */
+/* --- Kapitel1_Ende: Jarek-Katastrophe IST der Abschluss; ein paar Tage Stille davor --- */
 setup.interruptCond["Kapitel1_Ende"] = w => {
-  var k = State.variables.npc.karla.memory.flags;
-  var j = State.variables.npc.jarek.memory.flags;
+  var npc = State.variables.npc || {};
+  var k = ((npc.karla && npc.karla.memory) || {}).flags || {};
+  var j = ((npc.jarek && npc.jarek.memory) || {}).flags || {};
+  var f = w.flags || {};
+
   if (k.kapitel1_ende_seen === true) return false;
-  // Pfad 1: voller Durchlauf (Umkehrung impliziert Jarek-Katastrophe)
+
+  // Voller Durchlauf (Umkehrung impliziert Jarek-Katastrophe) – ohne Extra-Wartezeit
   if (k.umkehrung_done === true) return true;
-  // Pfad 2: Karla-Strang verpatzt UND Verhaftung gesehen UND Jarek durch
-  if (k.p2_quest_zu === true && k.verhaftung_seen === true && j.katastrophe === true) return true;
-  return false;
+
+  // Sonst: Jarek-Katastrophe durch + Schamfrist, egal in welchem Zustand Karla ist
+  return j.katastrophe === true
+      && w.day >= (f.jarek_ausgang_tag || 0) + 4;
 };
 setup.interruptPrio["Kapitel1_Ende"] = 90;
 
