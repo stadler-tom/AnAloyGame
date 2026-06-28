@@ -705,10 +705,10 @@ Ein dritter.<br>
 <<else>>
 	<<if random(1,100) <= 40>>
 
-        <<set _event = either(
-<div class="dialog">"Event_Wuerfelspiel",</div>
-<div class="dialog">"Event_Schlaegerei"</div>
-<p>)>></p>
+<<set _event = either(
+	<div class="dialog">"Event_Wuerfelspiel",</div>
+	<div class="dialog">"Event_Schlaegerei"</div>
+	)>>
     <<include _event>>
     <</if>>
 	
@@ -2515,7 +2515,7 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 
 
 :: Kapitel 0 {"position":"225,50","size":"200,200"}
-<p>Vers. 0.8.3</p>
+<p>Vers. 0.8.4</p>
 
 <div class="chapter-screen">
     <div class="fade-trigger">Intro</div>
@@ -5775,7 +5775,7 @@ setup.interruptPrio["Kapitel1_Ende"] = 90;
 
 /* ============ SIDEQUEST-REGISTER ============ */
 setup.sidequests = {
-  karla_01: { npc: "karla", threshold: 5, completeFlag: "sidequest00Complete", start: "00_Sidequest_karla", priority: 10 },
+  //karla_01: { npc: "karla", threshold: 5, completeFlag: "sidequest00Complete", start: "00_Sidequest_karla", priority: 10 },
   //jarek_01: { npc: "jarek", threshold: 5, completeFlag: "sidequest01Complete", start: "01_Sidequest_jarek", priority: 10 }
   // neue Quest = einfach eine Zeile mehr
 };
