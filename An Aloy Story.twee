@@ -2618,7 +2618,7 @@ Du schließt die Augen.
 <</if>>
 
 
-:: Pruefung Ergebnis [pruefung] {"position":"2025,650","size":"100,100"}
+:: Pruefung Ergebnis [pruefung nach_hub] {"position":"2025,650","size":"100,100"}
 <<set _g = setup.examGrade()>>\
 Das Urteil des Magisters
 <div class="scenery-text">Der Magister sammelt die Boegen ein, ohne ein Wort. Dann hebt er den Blick.</div>
@@ -2635,12 +2635,12 @@ Ergebnis: <<= _g.correct>> von <<= _g.total>> richtig (<<= _g.pct>>%) — <<= _g
 <<= setup.examRewardHTML(_g.pct)>>
 <</if>>\
 
+<<weiterImTag "Den Prüfungssaal verlassen">>
 
-<span class="subtext">[Test] [[Zurueck zum Testmenue ->Studium Hub]]</span>
 
 
 :: Pruefung Frage [pruefung] {"position":"2175,650","size":"100,100"}
-<set _e = $edu.exam>>\
+<<set _e = $edu.exam>>\
 <<set _q = _e.queue[_e.pos]>>\
 <div class="voice-formal">Frage <<= _e.pos + 1>> von <<= _e.queue.length>> · <<= _q.subject>></div>
 <div class="lecture-text"><<= _q.q>></div>
@@ -2690,7 +2690,6 @@ Abschlusspruefung – Kapitel 1
 [[Die Pruefung beginnen ->Pruefung Frage]]
 <</if>>\
 
-<span class="subtext">[Test] [[Zurueck zum Testmenue ->Studium Hub]]</span>
 
 
 :: Rausreden Versuch {"position":"825,300","size":"100,100"}
@@ -4177,7 +4176,6 @@ Er sagt es ohne Lautstärke. Als wäre sein Schweigen das Großzügigste, was er
 
 
 :: Unbenannter Abschnitt {"position":"200,4350","size":"100,100"}
-
 <div class="system-alert">DEBUG CONTROL ROOM – Kapitel 1</div>
 
 <h2>PLAYER</h2>
