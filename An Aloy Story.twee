@@ -7,7 +7,7 @@ An Aloy Story
   "ifid": "C7096067-F133-4DE2-AACD-2D383E8BB71A",
   "format": "SugarCube",
   "format-version": "2.37.3",
-  "start": "Kapitel 0",
+  "start": "karla_S_Verhaftung",
   "tag-colors": {
     "header": "blue",
     "script": "purple",
@@ -22,10 +22,81 @@ An Aloy Story
     "studium": "yellow",
     "pruefung": "green",
     "kapitel-opener": "red",
-    "layout": "green"
+    "layout": "green",
+    "journal": "orange"
   },
   "zoom": 0.6
 }
+
+
+:: \ Auf Stube {"position":"575,500","size":"100,100"}
+
+
+
+:: \ Kampf Test {"position":"75,5125","size":"100,100"}
+
+
+
+:: \ Kapitel 2: Rekrutenhof {"position":"950,4825","size":"100,100"}
+<<scene>>Der Hof liegt im schrägen Licht des späten Nachmittags. Der Drill ist vorbei, der Platz noch nicht leer — überall sitzen Waffenträger im Staub, reiben sich Schultern, prüfen blaue Flecken, sagen wenig. Irgendwo schabt jemand Dreck von einer Übungsklinge.<</scene>>
+
+<p>Du sitzt mit dem Rücken an der kühlen Bohlenwand und siehst deine Hände an.</p>
+
+<p>Es sind dieselben Hände wie gestern. Gestern haben sie sich gut angefühlt. Geübt. Sicher.<br>
+Heute haben sie im Staub gelegen, während ein Älterer dasselbe besser tat, langsamer, ohne Mühe.</p>
+
+<<gedanke>>Ich dachte, ich kann etwas.<br>
+Ich kann nichts. Ich kann nur weniger schlecht als der, der gestern angefangen hat.<br>
+Ein Jahr. Und das ist alles, was davon übrig ist, wenn jemand mit echtem Können danebensteht.<</gedanke>>
+
+<p>Es ist kein lautes Gefühl. Eher etwas, das sich setzt — wie Staub, der sich nach dem Sturz langsam wieder auf den Boden legt und dort liegen bleibt.</p>
+
+<<if $npc.karla.memory.flags.verhaftung_seen>>
+<<beziehung>>Es gibt niemanden, dem du das sagen könntest. Früher hätte da jemand neben dir gesessen, breitschultrig, mit einem groben Spruch, der das Gewicht für einen Moment kleiner gemacht hätte. Jetzt ist da nur die Wand und der Staub und du.<</beziehung>>
+<<else>>
+<p>Ein Schatten fällt neben dich. Karla lässt sich ohne ein Wort daneben in den Staub fallen, die Unterarme auf den Knien.</p>
+<<dialog>>„Du hast länger durchgehalten als ich es hätte", sagt sie, ohne dich anzusehen. „Liegt am Boden. Wird man gut drin."<</dialog>>
+<<beziehung>>Sie spielt es klein, und genau das hilft. Nicht der Trost — der trockene Spott, der so tut, als wäre nichts Besonderes geschehen. Als wärst du nicht allein damit.<</beziehung>>
+<</if>>
+
+<hr class="trenner-raute">
+
+<p>Die Glocke ruft die Waffenträger noch einmal zusammen, ein letztes Mal an diesem Tag. Kurt steht vor der Reihe, die Hände hinter dem Rücken, und wartet, bis das Scharren verstummt.</p>
+
+<<dialog>>„Bis heute habt ihr von allem ein bisschen gelernt. Pike, Bolzen, Pulver, Verband. Genug, um zu wissen, was ihr nicht könnt."<</dialog>>
+
+<p>Ein paar Blicke gehen zu dir. Du erwiderst keinen.</p>
+
+<<dialog>>„Damit ist Schluss. Das zweite Jahr fragt nicht mehr, was ihr alles ein bisschen könnt. Es fragt, worin ihr gut werdet. Eine Gattung. Eure."<</dialog>>
+
+<p>Er lässt den Satz im Hof stehen, bis er schwer wird.</p>
+
+<<dialog>>„Pike und Hellebarde. Armbrust. Geschütz. Feldscher. Morgen früh tretet ihr an und nennt mir jeder seine Wahl. Heute Nacht denkt ihr darüber nach — gründlich. Wer sich morgen nicht entscheidet, für den entscheide ich. Und ihr wollt nicht, dass ich das tue."<</dialog>>
+
+<<formal>>Er sagt es nicht als Drohung.<br>
+Er sagt es, als hätte er es schon zu oft erlebt.<</formal>>
+
+<hr class="trenner-raute">
+
+<p>Später, auf der Pritsche, liegt die Frage über dir wie die niedrige Decke der Baracke.</p>
+
+<p>Vier Wege. Du gehst sie im Kopf ab, einen nach dem anderen.</p>
+
+<<gedanke>>Die Pike. Der Schaft in der Hand, das Gewicht, das man durch den Raum trägt. Nah. Hart. Du weißt, wie sich der Boden anfühlt, wenn man verliert.<br>
+<br>
+Die Armbrust. Stille. Geduld. Der eine Schuss, der zählt, statt der zehn, die danebengehen. Etwas in dir wehrt sich gegen das Warten — und etwas anderes sehnt sich danach.<br>
+<br>
+Das Geschütz. Pulver, Maße, Handgriffe in der richtigen Reihenfolge. Kein Zweikampf, ein Handwerk. Wer schnell und richtig lädt, schlägt den, der nur stark ist.<br>
+<br>
+Der Feldscher. Keine Waffe. Hände, die heilen statt schlagen. Der Gedanke fühlt sich seltsam an — und bleibt trotzdem hängen.<</gedanke>>
+
+<p>Keiner der vier Gedanken schließt sich zu einer Gewissheit. Sie liegen alle nebeneinander, gleich schwer, gleich offen.</p>
+
+<p>Du weißt nur eines, klarer als alles andere: Diesmal willst du nicht der sein, der im Staub liegt, während ein anderer es besser macht.</p>
+
+<p>Irgendwann schläfst du ein, ohne entschieden zu haben.</p>
+
+[[Der Morgen kommt. ->Kap2_Waffenwahl]]
 
 
 :: 02_Sidequest_vasil [layout] {"position":"200,1150","size":"100,100"}
@@ -705,12 +776,9 @@ Ein dritter.<br>
 <<else>>
 	<<if random(1,100) <= 40>>
 
-<<set _event = either(
-	<div class="dialog">"Event_Wuerfelspiel",</div>
-	<div class="dialog">"Event_Schlaegerei"</div>
-	)>>
-    <<include _event>>
-    <</if>>
+<<set _event = either("Event_Wuerfelspiel", "Event_Schlaegerei")>>
+<<include _event>>
+ <</if>>
 	
     [[Zuhören, was geredet wird ->Event_Geschichte]]
     [[Schlafen->Kap1_Tagesstart]]
@@ -1205,7 +1273,6 @@ Die dritte sagt nichts. Aber das ist auch eine Antwort.</p>
 
 <p>Du wirst vom Tisch weggeschickt.</p>
 
-[[Weggehen->Kap1_Tagesstart]]
 <<else>>
 
 [[Mitspielen->Wuerfel_Start]] 
@@ -1642,7 +1709,7 @@ tilly: {
         isRealPlayer: false,
         memory: { flags: {}, events: [] },
         /* Sichtbares Profil – kein Hinweis auf das Geheimnis */
-        journalEntry: "Breitschultrig, direkt, laut. Hat sich am ersten Abend den Platz am Ofen gesichert und dafür jemanden von seiner Pritsche geworfen. Wirkt wie jemand der fürs Soldatenleben gemacht wurde."
+        journalEntry: "Rote Haare, breitschultrig, direkt, laut. Hat sich am ersten Abend den Platz am Ofen gesichert und dafür jemanden von seiner Pritsche geworfen. Wirkt wie jemand der fürs Soldatenleben gemacht wurde."
         /*
             GEHEIMNIS (nicht im Journal – für interne Plotlogik):
             Ihr Onkel Edric, ein Fuhrmann aus Umseck, sitzt seit zwei Jahren
@@ -1690,7 +1757,7 @@ tilly: {
         name: "Luigi vom Luigi Handelskontor",
         known: false,
         faction: "La Familia",
-        affection: 0,
+        affection: 4,
         trust: 0,
         isRealPlayer: true,
         memory: { flags: {}, events: [] },
@@ -1735,12 +1802,19 @@ tilly: {
     rank: "Zivilist",
     chosen_activity: "",
     hasSlept: true,
+    combatXp: 0,
 
     money: {
         copper: 2
     },
 
-    inventory: [],
+    inventory: {
+    items: [],
+    weapons: ["unarmed", "training_pike"]
+},
+equipment: {
+    weapon: "training_pike"
+},
 
     /* Charakter & Haltung (0–100, 50 = neutral) */
     stats: {
@@ -1762,6 +1836,15 @@ tilly: {
         gossip: 0,
         combat: 0         /* Kampferfahrung: echte Gefechte, nicht Training */
     },
+    
+    fightStats: {
+    	hp: 12,
+        maxHp: 12,
+        attack: 4,
+        damage: 8,
+        armor: 15,
+        proficiency: 1
+        },
 
     reputation: {
         land: 0,
@@ -1821,16 +1904,15 @@ tilly: {
     needsDiceGame: true,
     seenGossip: {},
     currentGossipStory: "",
-    /* kondition: 70 — 0 = Zusammenbruch, 100 = Bestform */
-    karla_druck: 0,       /* steigt automatisch -> Sidequest wird dringlich */
+    karla_druck: 0,       
     jarek_druck: 0,
     interruptDoneToday: false,
     interruptHistory: {},
     appliedPassages : {},
     visitedChurch : false,
     kapitel1_gesperrt: false,
-    kapitel2_gesperrt: false
-    /* usw. nach Bedarf */
+    kapitel2_gesperrt: false,
+    decisionLog : []
 
 }>>
 
@@ -2351,10 +2433,10 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 <div class="thought-box">Ich habe ihn ans Messer geliefert — denselben Weg, den er mit mir gegangen ist. Vielleicht ist das gerecht. Vielleicht ist es nur das, was übrig bleibt, wenn das Vertrauen weg ist.</div>
 <<set _out to "">>
 <<set _out += setup.setPlayerReputation("ohm", 5)>>
-<<set _out += setup.setNpcAffection("magister", 10)>>
-<<set _out += setup.setNpcAffection("kurt", 10)>>
-<<set _out += setup.setNpcAffection("hauptmann", 10)>>
-<<set _out += setup.setNpcAffection("schinder", 10)>>
+<<set _out += setup.setNpcAffection("magister", 4)>>
+<<set _out += setup.setNpcAffection("kurt", 4)>>
+<<set _out += setup.setNpcAffection("hauptmann", 4)>>
+<<set _out += setup.setNpcAffection("schinder", 4)>>
 <<set _out += setup.setPlayerSuspicion(-5)>>
 <div class="outcome-box">
 <div class="outcome-title">Das Ergebnis:</div>
@@ -2384,6 +2466,17 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 <<set $world.flags.jarek_ausgang_tag to $world.day>>
 <<set $world.flags.jarek_ausgang to "geschwiegen">>
 [[Den Schnitt verbinden und den Rest der Nacht überstehen. ->Kap1_Tagesstart]]
+
+
+:: Kampf Test {"position":"75,5000","size":"100,100"}
+
+<<if not $combat>>
+    <<set $combat = setup.startCombat(["mercenary"])>>
+<</if>>
+
+<<combat>>
+
+[[Kampf neu starten -> Kampf Test][$combat to null]]
 
 
 :: Kap01_RekrutenKennenlernen [layout] {"position":"325,425","size":"100,100"}
@@ -2514,6 +2607,372 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 [[Sieh was der Tag bringt->Kap1_Der nächste Tag]]
 
 
+:: Kap2_Ausbildung {"position":"700,5025","size":"100,100"}
+
+
+
+:: Kap2_Die_Probe {"position":"725,4825","size":"100,100"}
+<<run setup.rebuildKnowledgeForChapter2()>>
+<<set _peakKeys = setup.getPeakKnowledgeAfterKapOne()>>
+<<set _peakKey = _peakKeys.random()>>
+
+<p>Du trittst vor.</p>
+
+<p>Die Reihe hinter dir bleibt still. Nicht aus Respekt. Eher aus jener vorsichtigen Freude, die Rekruten empfinden, wenn es ausnahmsweise jemand anderen trifft.</p>
+
+<<dialog>>„Also Rekrut, mit welcher Waffengattung bist du nach einem Jahr m besten vertraut?“<</dialog>>
+
+<<gedanke>>
+Meine besten Erfahrungen habe ich mit 
+<<if _peakKeys.length === 1>>
+    <<=_chosenKey = _peakKeys.random()>>
+<<elseif _peakKeys.length === 0>>
+	Dingen, die mir hier jetzt nicht weiterhelfen 
+<<else>>
+    <<for _i to 0; _i < _peakKeys.length; _i++>>
+        <<print _peakKeys[_i]>>
+
+        <<if _i < _peakKeys.length - 2>>
+            , 
+        <<elseif _i == _peakKeys.length - 2>>
+            und 
+        <</if>>
+    <</for>>
+<</if>>
+gemacht...<br>
+<<if _peakKeys.length > 1>>
+	Ich entscheide mich für: <<=_chosenKey = _peakKeys.random()>>
+<<elseif _peakKeys.length === 0>>
+	Ich entscheide mich für: <<=_chosenKey = "Pike & Hellebarde">> da hatte ich immerhin die Drills beim Schinder.
+<</if>>
+<</gedanke>>
+
+<<dialog>>„<<print _chosenKey>>“ erwiederst du Kurt stolz.<</dialog>>
+
+<p>Kurt hebt nur zwei Finger.</p>
+
+<p>Aus der Reihe der älteren löst sich ein Rekrut. Größer als Thomas, nicht viel breiter, aber mit der ruhigen Haltung eines Menschen, der schon oft genug gefallen ist, um keine Angst mehr vor dem Boden zu haben.</p>
+
+<<dialog>>„<<print _chosenKey>> also.“, sagt Kurt.<</dialog>>
+
+<<formal>>Er sagt es nicht wie ein Lob.<br>
+Er sagt es wie eine Falle.<</formal>>
+
+<hr class="trenner-raute">
+
+<<if _chosenKey eq "Pike & Hellebarde">>
+<p>Man drückt dir eine Übungsstange in die Hand.<br>
+Sie ist leichter als eine echte Hellebarde, stumpf an den Enden, aber lang genug, um jeden Fehler sichtbar zu machen.</p>
+
+<p>Der ältere Rekrut grüßt knapp.<br>
+Dann beginnt es.</p>
+
+<p>Du setzt zum Stoß an, wie du es gelernt hast. Der andere ist schon nicht mehr dort. Ein Schlag gegen den Schaft, ein kurzer Schritt, ein Haken hinter dein Bein — und der Himmel kippt.</p>
+
+<p>Der Aufprall treibt dir den Atem aus der Brust.</p>
+
+<p>Gelächter geht durch die Reihe, kurz und hässlich, bis Kurt den Kopf dreht.<br>
+Stille.</p>
+
+<p>Du kommt wieder hoch.<br>
+Diesmal hältst du länger durch. Drei Atemzüge. Vielleicht vier.<br>
+Dannliegst du  wieder im Staub.</p>
+
+
+
+<<elseif _chosenKey eq "Artillerie">>
+<p>Kurt führt euch zu den Geschützen</p>
+
+<p>Wie gehwohnt liegen die Stationen gut sortiert vor euch.<br>
+Darauf liegen Ladestange, Wischer, Keile, Pulvermaße, Lappen, Zündzeug und eine kleine Holzkiste mit Kreidestrichen auf dem Deckel.</p>
+
+<<dialog>>„Laden!“, sagt Kurt.<</dialog>>
+
+<p>Mehr nicht.</p>
+
+<p>Du beginnst.<br>
+Du kennst die Namen. Du den Ablauf. Deine Hände greifen nicht völlig falsch.</p>
+
+<p>Neben dir arbeitet der ältere Rekrut.</p>
+
+<p>Er ist nicht hastig.<br>
+Das macht es schlimmer.</p>
+
+<p>Wischen: Reste von Pulver, Papier oder Glut entfernen<br>
+Pulverladung einbringen: Stoffbeutel in das Rohr, Mit der Ladestange fest nach hinten schieben<br>
+Geschoss laden: Steinkugel in das Rohr, Nein! Wattierung zuerst. Wieder mit der Ladestange schieben.<br>
+Stopfung einbringen: Heu oder Stroh, das ganze gut verdichten... </p>
+
+<<formal>>„Fertig!“<</formal>>
+
+<p>Der ältere steht neben seiner Kannone am Zünloch und ist abschussbereit.</p>
+
+<<gedanke>>„Bei den Dreyn! War das schnell!“<</gedanke>>
+
+<p>Kurt tritt näher. Er Schaut sich das Zündloch bei den Nachbarkannone an. </p>
+
+<<dialog>>„Sehr schön!“<br>
+„So werden unsere Kanonen geladen!“<</dialog>>
+
+<p>Der ältere Rekrut sagt nichts.<br>
+Das ist schlimmer als Spott.</p>
+
+
+<<elseif _chosenKey eq "Armbrust">>
+<p>Man gibt dir eine Armbrust.<br>
+Das Holz liegt sehr vertraut genug in deinen Händen.</p>
+
+<p>Fuß in den Bügel.<br>
+Sehne spannen.<br>
+Bolzen auflegen.</p>
+
+<p>Du atmest aus und zielst.</p>
+
+<p>Dein erster Schuss trifft die Scheibe.<br>
+Nicht mittig, aber sauber genug.</p>
+
+<p>Ein paar Rekruten murmeln.</p>
+
+<p>Dann hebt der ältere seine Armbrust.</p>
+
+<p>Er spannt langsam.<br>
+Legt den Bolzen ein.<br>
+Wartet.</p>
+
+<<gedanke>>Zu lange, denkst du.<</gedanke>>
+
+<p>Dann löst er.</p>
+
+<p>Der Bolzen schlägt näher an der Mitte ein als deiner.</p>
+
+<p>Wieder.</p>
+
+<p>Und wieder.</p>
+
+<p>Kein großer Auftritt. Kein Lächeln. Kein Stolz.<br>
+Nur ein Schuss nach dem anderen, ruhig wie ein Uhrwerk.</p>
+
+<p>Du schießt schneller.<br>
+Dann zu schnell.</p>
+
+<p>Ein Bolzen sitzt zu hoch.<br>
+Der nächste kratzt nur den Rand.</p>
+
+<p>Kurt steht hinter dir.</p>
+
+<<dialog>>„Du triffst, wenn es leicht ist“, sagt er.<br>
+„Er trifft, wenn es zählt.“<</dialog>>
+
+<p>Deine Finger tun vom Spannen weh.<br>
+Aber Demühtigung ist schlimmer.</p>
+
+
+<<elseif _chosenKey eq "Heilkunde">>
+<p>Man führt dich nicht ins Feldscherzelt.<br>
+Kurt lässt einen Tisch auf den Platz tragen.</p>
+
+<p>Darauf liegen Verbände, Schienen, Nadeln, Tücher, Essigwasser und ein Stück Fleisch, in das jemand eine tiefe Wunde geschnitten hat.</p>
+
+<p>Einige Rekruten lachen leise.</p>
+
+<p>Kurt sieht sie über die Schulter an.<br>
+Sie verstummen sofort.</p>
+
+<<dialog>>„Versorgen“, sagt er.<</dialog>>
+
+<p>Du trittst vor.</p>
+
+<p>Der Geruch von Essig steigt dir in die Nase.<br>
+Du reinigst die Wunde. Du greifst nach dem Verband. Du erinnerst dich an die ruhigen Hände des Feldschers.</p>
+
+<p>Es ist nicht falsch.</p>
+
+<p>Der ältere Rekrut arbeitet neben dir.</p>
+
+<p>Seine Hände sind schneller, aber nicht hektisch.<br>
+Er verschwendet keine Bewegung. Kein Tuch liegt dort, wo es nicht hingehört. Kein Knoten sitzt zu locker.</p>
+
+<p>Du bindest deinen Verband fest.</p>
+
+<p>Zu fest.</p>
+
+<p>Kurt prüft erst seine Arbeit.<br>
+Dann deine.</p>
+
+<p>Er zieht an deinem Verband.</p>
+
+<p>Er verrutscht.</p>
+
+<<dialog>>„Ein Mann marschiert damit keine Stunde“, sagt Kurt.<</dialog>>
+
+<p>Er zieht noch einmal.<br>
+Diesmal löst sich der Rand des Stoffes.</p>
+
+<p>Einige in der Reihe atmen hörbar aus.</p>
+
+<p>Du sagst nichts.<br>
+Du hast plötzlich sehr viel Verständnis für Männer, die bei Wunden wegsehen.</p>
+<</if>>
+
+<hr class="trenner-raute">
+
+<p>Als die Probe vorbei ist, stehst du wieder in der Reihe.</p>
+
+<p>Staub klebt an deiner Kleidung.<br>
+Oder Schweiß.<br>
+Oder Scham.</p>
+
+<p>Vielleicht alles zusammen.</p>
+
+<p>Kurt geht vor dir auf und ab.</p>
+
+<<dialog>>„Das erste Jahr“, sagt er, „bringt euch bei, nicht sofort zu sterben.“<</dialog>>
+
+<p>Er lässt den Satz hängen.</p>
+
+<p>Niemand lacht jetzt.</p>
+
+<<dialog>>„Das zweite“, sagt Kurt, „bringt euch bei, warum das noch lange nicht reicht.“<</dialog>>
+
+<p>Du senkst den Blick nicht.</p>
+
+<p>Aber zum ersten Mal seit langer Zeit fühlt sich dein Können kleiner an, als es sich gestern noch angefühlt hat.</p>
+
+<p>Nicht verschwunden.</p>
+
+<p>Nur neu vermessen.</p>
+
+[[Weiter -> Kapitel 2: Rekrutenhof]]
+
+
+:: Kap2_Intro {"position":"525,4825","size":"100,100"}
+<<= setup.setPlayerKnowledge("pike", 10)>>
+<<= setup.setPlayerKnowledge("cannon", 8)>>
+<<= setup.setPlayerKnowledge("medicine", 6)>>
+<<= setup.setPlayerKnowledge("crossbow", 4)>>
+<<= setup.setPlayerKnowledge("combat", 1)>>
+<<set $player.rank = "Waffenträger">>
+
+<<set $npc.karla.memory.flags.verhaftung_seen to false>>
+
+
+
+Das Lager ist dasselbe geblieben, und doch ist es ein anderer Ort.
+
+<<scene>> Die Zelte stehen noch immer in ihren Reihen. Der Exerzierplatz trägt noch immer dieselben Narben aus Schlamm, Kies und festgetretenem Staub. Am Morgen riecht es nach Rauch, dünner Suppe und nassem Leder.<</scene>>
+
+<p>Du erkennst jetzt den Unterscherschied bei den Auszubildenden.</p>
+<p>Die Neuen ducken sich noch vor jedem Ruf. Die Alten lachen leiser. Und die Waffenträger des zweiten Jahres — Thomas jetzt unter ihnen — bewegen sich mit jener vorsichtigen Freiheit, die nicht geschenkt, sondern geduldet wird.</p>
+
+<p>Man wird nicht mehr überall hingeschoben. Man wird nicht mehr bei jeder Kleinigkeit angebrüllt.<br>
+Das macht es nicht leichter<br>
+Es bedeutet nur, dass man jetzt selbst wissen soll, wohin man gehört.</p>
+
+<<if $npc.karla.memory.flags.verhaftung_seen>>
+<<beziehung>>Manchmal, wenn eine rote Strähne im Gedränge aufblitzt oder jemand Karlas Namen nur ähnlich ausspricht, zieht sich etwas in dir zusammen.<br>
+Dann falckert die Erinnerung auf an das Mädchen, dass du hast alleine gelassen.
+Die nach der Wahrheit gesucht hat oder zumindest für das was ihr als die Wahrheit erschien.
+Das Mädchen das einen Freund hätte gebrauchen können. Oder zumindest jemanden der ihr Deckung gegeben hätte.<</beziehung>>
+
+<<gedanke>>Nicht jetzt....
+Nicht daran denken.
+Der Drill ist einfacher. Der Drill fragt nicht, wen man verloren hat.<</gedanke>>
+
+<<else>>
+<<beziehung>>Aber ganz auf dich selbst bist du nicht gestellt. Du hast Karla. Im letzten Jahr habt ihr euch erst kennen und dann vertrauen gelernt. Ihr ward beide füreinander da als der jeweils andere jemadnen brauchte. Diese Rückendeckung nimmt euch keiner und es macht den Alltag sehr viel einfacher, wenn man weis, dass es hier drinnen zumindest einen Menschen gibt, der auf deiner Seite steht.<</beziehung>>
+<</if>>
+
+<p>Am dritten Morgen des neuen Ausbildungsjahres lässt Kurt die Waffenträger auf dem Platz antreten.</p>
+
+<p>Er geht die Reihe entlang, langsam genug, dass jeder seine Stiefel im Kies hören kann.</p>
+
+<<dialog>>„Ihr habt das erste Jahr hinter euch gebracht. Ihr habt die Grundausbildung hinter euch gebracht. Ihr habt fleißig trainiert. Ihr habt fleißg gelernt. Ihr habt euch das Recht erworben euch Waffenträger zu nennen. Ihr denkt ihr seit jetzt Soldaten.“ <</dialog>>
+
+<p>Er bleibt stehen.</p>
+
+<<dialog>>„Ihr irrt euch!“<</dialog>>
+
+<p>Sein Blick schneidet durch die Reihe und bleibt an dir hängen.</p>
+
+<<dialog>>„Du.“<</dialog>>
+
+<p>Thomas richtet sich auf.</p>
+
+<<dialog>>„Vortreten.“<</dialog>>
+
+[[Vortreten ->Kap2_Die_Probe]]
+
+
+:: Kap2_Waffenwahl {"position":"1200,4825","size":"100,100"}
+<<scene>>Der Morgen ist grau und kalt. Reif liegt dünn auf dem Kies, und der Atem der Waffenträger steht in kleinen Wolken über der Reihe. Niemand spricht. Jeder trägt die Nacht im Gesicht, in der er nicht geschlafen hat.<</scene>>
+
+<p>Kurt steht vor euch, eine Liste in der Hand, einen stumpfen Kohlestift dahinter.</p>
+
+<<dialog>>„Keine Reden mehr. Ihr tretet vor, ihr nennt mir eure Gattung, ihr tretet zurück. Wer zögert, dem helfe ich nach."<</dialog>>
+
+<p>Die Reihe rückt vor, einer nach dem anderen. Namen fallen, der Stift kratzt, Männer treten zurück. Dann steht niemand mehr vor dir.</p>
+
+<<dialog>>„Wabbler."<</dialog>>
+
+<p>Du trittst vor. Der Kies knirscht zu laut in der Stille. Kurt sieht dich an, den Stift bereit, und wartet.</p>
+
+<<gedanke>>Diesmal liege ich nicht im Staub. Diesmal entscheide ich, wo ich stehe.<</gedanke>>
+
+<ul class="sandbox-menu">
+<li><<link "Pike und Hellebarde">><<set $player.spezialisierung to "pike">><<goto "Kap2_Waffenwahl_Reaktion">><</link>><span class="subtext">Nah am Feind. Der Schaft, das Gewicht, der Boden unter den Füßen.</span></li>
+<li><<link "Armbrust">><<set $player.spezialisierung to "crossbow">><<goto "Kap2_Waffenwahl_Reaktion">><</link>><span class="subtext">Stille und Geduld. Der eine Schuss, der zählt.</span></li>
+<li><<link "Geschütz">><<set $player.spezialisierung to "cannon">><<goto "Kap2_Waffenwahl_Reaktion">><</link>><span class="subtext">Pulver, Maße, Handgriffe. Ein Handwerk, kein Zweikampf.</span></li>
+<li><<link "Feldscher">><<set $player.spezialisierung to "medicine">><<goto "Kap2_Waffenwahl_Reaktion">><</link>><span class="subtext">Keine Waffe. Hände, die heilen statt schlagen.</span></li>
+</ul>
+
+
+
+
+:: Kap2_Waffenwahl_Reaktion {"position":"1150,4925","size":"100,100"}
+<<switch $player.spezialisierung>>
+<<case "pike">>
+<<dialog>>„Pike." Kurt notiert es, ohne aufzusehen. „Der Weg für die, die nichts haben, hinter dem sie sich verstecken. Kein Abstand. Kein Versteck. Du stehst, oder du fällst."<</dialog>>
+<p>Er hebt den Blick.</p>
+<<dialog>>„Gestern bist du gefallen. Das ist kein Hindernis. Das ist die Voraussetzung."<</dialog>>
+
+<<case "crossbow">>
+<<dialog>>„Armbrust." Der Stift kratzt. „Die Gattung für ruhige Hände und kalte Köpfe. Du hast gestern getroffen, als es leicht war." Eine Pause. „Du hast danebengeschossen, als du es eilig hattest."<</dialog>>
+<p>Er sieht dich an, lange genug, dass es unangenehm wird.</p>
+<<dialog>>„Wenn du das verstehst, taugst du was. Wenn nicht, verschwendest du Bolzen."<</dialog>>
+
+<<case "cannon">>
+<<dialog>>„Geschütz." Kurt nickt knapp. „Ein Handwerk. Kein Platz für Stolz, kein Platz für Tempo um des Tempos willen. Ein Fehler in der Reihenfolge, und du nimmst deine eigene Bedienung mit."<</dialog>>
+<p>Er mustert dich.</p>
+<<dialog>>„Wer schnell und richtig lädt, schlägt den, der nur stark ist. Mal sehen, ob deine Hände das lernen."<</dialog>>
+
+<<case "medicine">>
+<<dialog>>„Feldscher." Kurt hält im Schreiben inne, nur einen Moment. „Die wenigsten wählen das. Keine Beute, kein Ruhm, und du siehst Dinge, die andere nie sehen müssen."<</dialog>>
+<p>Etwas in seinem Tonfall hat sich verschoben — nicht weicher, aber anders.</p>
+<<dialog>>„Wer Wunden schließt, entscheidet, wer wieder läuft. Das ist mehr Macht, als eine Klinge je hat. Vertu sie nicht."<</dialog>>
+<</switch>>
+
+<p>Er macht ein letztes Zeichen auf der Liste und winkt dich zurück in die Reihe.</p>
+
+<<formal>>Es ist entschieden.<br>
+Kein Zurück mehr — die Liste vergisst nichts.<</formal>>
+
+<hr class="trenner-raute">
+
+<p>Während du zurücktrittst, fällt dein Blick auf den Rand des Hofes.</p>
+
+<p>Dort, im Schatten des Stabsgebäudes, steht Hauptmann Rindler. Vornehmer als Kurt, ruhiger, die Hände im Rücken. Du kennst das Gesicht aus dem ersten Jahr — aus der Ferne meist, ein Offizier des Corps, der selten sprach und immer zu sehen schien, was um ihn herum geschah.</p>
+
+<p>Er beobachtet nicht die Reihe. Er beobachtet die Entscheidungen — und für einen Moment, kurz nur, ruht sein Blick auf dir. Dann notiert er sich etwas. Oder es sieht nur so aus.</p>
+
+<<gedanke>>Rindler.<br>
+Im ersten Jahr war er einer von vielen über mir. Jetzt steht er da und schaut, als ginge ihn meine Wahl etwas an.<br>
+Warum habe ich das Gefühl, dass er sich gemerkt hat, was ich gewählt habe?<</gedanke>>
+
+<p>Dann ist der Moment vorbei. Die Reihe löst sich auf, der Tag beginnt, und mit ihm das zweite Jahr — diesmal mit einem Weg, den du selbst gewählt hast.</p>
+
+[[Weiter ->Kap2_Ausbildung]]
+
+
 :: Kapitel 0 {"position":"225,50","size":"200,200"}
 <p>Vers. 0.8.4</p>
 
@@ -2578,29 +3037,33 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 
 <p>Dann treten die Ausbilder vor, einer nach dem anderen, um den Jahrgang zu entlassen.</p>
 
-<div class="voice-formal"><<= setup.ausbilderVermerk("schinder",
-<div class="dialog">"Der Schinder geht die Reihe ab und bleibt vor dir kaum stehen. Was zwischen euch war, war nie Wärme — und das bleibt es. Ein knappes Nicken, mehr nicht. Du warst für ihn nie mehr als ein Körper, den es zu härten galt.",</div>
-<div class="dialog">"Der Schinder mustert dich im Vorbeigehen, sachlich, ohne Regung. Du warst weder sein bester noch sein schlechtester Rekrut. Du hast überlebt. Für ihn ist das genug.",</div>
-<div class="dialog">"Der Schinder bleibt einen Moment vor dir stehen. ‚Du hast nicht aufgegeben‘, sagt er nur. Aus seinem Mund, das weißt du inzwischen, ist das beinahe ein Lob.",</div>
-<div class="dialog">"Der Schinder bleibt vor dir stehen und sieht dich an, lange. ‚Von hundert‘, sagt er rau, ‚erinnere ich mich an drei. Du bist einer davon.‘ Dann geht er weiter, und du weißt, dass dieser Mann dich nie vergessen wird.") >></div></div>
+<div class="voice-formal"><<dialog>><<= setup.ausbilderVermerk("schinder",
+"Der Schinder geht die Reihe ab und bleibt vor dir kaum stehen. Was zwischen euch war, war nie Wärme — und das bleibt es. Ein knappes Nicken, mehr nicht. Du warst für ihn nie mehr als ein Körper, den es zu härten galt.",
+"Der Schinder mustert dich im Vorbeigehen, sachlich, ohne Regung. Du warst weder sein bester noch sein schlechtester Rekrut. Du hast überlebt. Für ihn ist das genug.",
+"Der Schinder bleibt einen Moment vor dir stehen. „Du hast nicht aufgegeben“, sagt er nur. Aus seinem Mund, das weißt du inzwischen, ist das beinahe ein Lob.",
+"Der Schinder bleibt vor dir stehen und sieht dich an, lange. „Von hundert“, sagt er rau, „erinnere ich mich an drei. Du bist einer davon.“ Dann geht er weiter, und du weißt, dass dieser Mann dich nie vergessen wird."
+) >><</dialog>></div>
 
-<div class="voice-formal"><<= setup.ausbilderVermerk("kurt",
-<div class="dialog">"Fähnrich Brasner würdigt dich kaum eines Blickes. Was am ersten Tag zwischen euch zerbrach, hat sich nie gekittet. Er entlässt dich, weil er muss — nicht, weil er will.",</div>
-<div class="dialog">"Fähnrich Brasner nickt dir zu, korrekt und distanziert. Ihr seid nie warm geworden, aber er hat dich auch nie im Stich gelassen. Pflicht, sauber erfüllt, auf beiden Seiten.",</div>
-<div class="dialog">"Fähnrich Brasner reicht dir die Hand. ‚Du hast dich gemacht, Wabbler‘, sagt er. ‚Ich hatte am Anfang meine Zweifel. Du hast sie widerlegt.‘",</div>
-<div class="dialog">"Fähnrich Brasner hält deine Hand einen Moment länger als nötig. ‚Wenn du je ein Banner suchst, das dich will‘, sagt er leise, ‚dann komm zu mir. Männer wie dich gibt es selten.‘") >></div></div>
+<div class="voice-formal"><<dialog>><<= setup.ausbilderVermerk("kurt",
+"Fähnrich Brasner würdigt dich kaum eines Blickes. Was am ersten Tag zwischen euch zerbrach, hat sich nie gekittet. Er entlässt dich, weil er muss — nicht, weil er will.",
+"Fähnrich Brasner nickt dir zu, korrekt und distanziert. Ihr seid nie warm geworden, aber er hat dich auch nie im Stich gelassen. Pflicht, sauber erfüllt, auf beiden Seiten.",
+"Fähnrich Brasner reicht dir die Hand. „Du hast dich gemacht, Wabbler“, sagt er. „Ich hatte am Anfang meine Zweifel. Du hast sie widerlegt.“",
+"Fähnrich Brasner hält deine Hand einen Moment länger als nötig. „Wenn du je ein Banner suchst, das dich will“, sagt er leise, „dann komm zu mir. Männer wie dich gibt es selten.“"
+) >><</dialog>></div>
 
-<div class="voice-formal"><<= setup.ausbilderVermerk("hauptmann",
-<div class="dialog">"Hauptmann Rindler streift dich nur mit einem kühlen Blick. Für einen Mann seines Ranges bist du ein Name auf einer Liste, mehr nicht — und nach allem vielleicht ein Name, den er lieber vergäße.",</div>
-<div class="dialog">"Hauptmann Rindler nimmt dich zur Kenntnis, nicht mehr und nicht weniger. Ein Offizier des Corps merkt sich nicht jeden Rekruten. Du hast keinen Anlass gegeben, dich zu merken — im Guten wie im Schlechten.",</div>
-<div class="dialog">"Hauptmann Rindler hält im Vorbeigehen kurz inne. ‚Man hat von dir gehört‘, sagt er knapp. ‚Nicht nur Schlechtes.‘ Von einem Mann des Corps ist das mehr, als die meisten je hören.",</div>
-<div class="dialog">"Hauptmann Rindler bleibt vor dir stehen, und für einen Moment liegt etwas wie Interesse in seinem kühlen Blick. ‚Dein Name ist mir untergekommen, Wabbler. Mehr als einmal. Ich behalte ihn im Auge.‘") >></div></div>
+<div class="voice-formal"><<dialog>><<= setup.ausbilderVermerk("hauptmann",
+"Hauptmann Rindler streift dich nur mit einem kühlen Blick. Für einen Mann seines Ranges bist du ein Name auf einer Liste, mehr nicht — und nach allem vielleicht ein Name, den er lieber vergäße.",
+"Hauptmann Rindler nimmt dich zur Kenntnis, nicht mehr und nicht weniger. Ein Offizier des Corps merkt sich nicht jeden Rekruten. Du hast keinen Anlass gegeben, dich zu merken — im Guten wie im Schlechten.",
+"Hauptmann Rindler hält im Vorbeigehen kurz inne. „Man hat von dir gehört“, sagt er knapp. „Nicht nur Schlechtes.“ Von einem Mann des Corps ist das mehr, als die meisten je hören.",
+"Hauptmann Rindler bleibt vor dir stehen, und für einen Moment liegt etwas wie Interesse in seinem kühlen Blick. „Dein Name ist mir untergekommen, Wabbler. Mehr als einmal. Ich behalte ihn im Auge.“"
+) >><</dialog>></div>
 
-<div class="voice-formal"><<= setup.ausbilderVermerk("magister",
-<div class="dialog">"Magister Halm sucht deinen Blick nicht. Was immer einmal zwischen euch an Vertrauen war, ist verbraucht. Er entlässt deinen Jahrgang mit einem Satz, in dem für dich nichts Persönliches liegt.",</div>
-<div class="dialog">"Magister Halm nickt dir aus der Ferne zu, sachlich wie immer. Du warst ein Schüler unter vielen — aufmerksam genug, um nicht aufzufallen, unauffällig genug, um vergessen zu werden.",</div>
-<div class="dialog">"Magister Halm fängt deinen Blick auf und neigt den Kopf. ‚Du hast zugehört‘, sagt er nur, als ihr aneinander vorbeigeht. ‚Das tun die wenigsten.‘",</div>
-<div class="dialog">"Magister Halm tritt eigens zu dir. ‚Das Archiv‘, sagt er leise, ‚vergisst niemanden, der wirklich wissen wollte. Du gehörst dazu. Wenn du je zurückkommst — die Tür kennt dich.‘") >></div></div>
+<div class="voice-formal"><<dialog>><<= setup.ausbilderVermerk("magister",
+"Magister Halm sucht deinen Blick nicht. Was immer einmal zwischen euch an Vertrauen war, ist verbraucht. Er entlässt deinen Jahrgang mit einem Satz, in dem für dich nichts Persönliches liegt.",
+"Magister Halm nickt dir aus der Ferne zu, sachlich wie immer. Du warst ein Schüler unter vielen — aufmerksam genug, um nicht aufzufallen, unauffällig genug, um vergessen zu werden.",
+"Magister Halm fängt deinen Blick auf und neigt den Kopf. „Du hast zugehört“, sagt er nur, als ihr aneinander vorbeigeht. „Das tun die wenigsten.“",
+"Magister Halm tritt eigens zu dir. „Das Archiv“, sagt er leise, „vergisst niemanden, der wirklich wissen wollte. Du gehörst dazu. Wenn du je zurückkommst — die Tür kennt dich.“"
+) >><</dialog>></div>
 
 <p>Und dann, als die Zeremonie verklingt, wandern deine Gedanken zu den beiden Menschen, die dieses Jahr für dich mehr geprägt haben als jeder Ausbilder.</p>
 
@@ -2622,10 +3085,11 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 
 <div class="thought-box">Die Grundausbildung ist vorbei. Was kommt, weiß ich nicht. Aber ich weiß, wer ich geworden bin — und wer mit mir gegangen ist, und wer nicht. Das ist mehr, als ich hatte, als ich kam.</div>
 
-<div class="system-alert status-positive">KAPITEL 1 ABGESCHLOSSEN — Die Grundausbildung ist beendet. Aus dem kranken Jungen ist ein Soldat geworden.</div>
+<div class="system-alert status-positive">KAPITEL 1 ABGESCHLOSSEN — Die Grundausbildung ist beendet. Aus dem kranken Jungen in den Bergen ist ein Soldat geworden.</div>
 <<run setup.kapitel1Abschliessen()>>
 
 [[ "Was kommt, kommt."|Kapitel 2]]
+
 
 
 :: Nachmittag Cannon {"position":"725,1475","size":"100,100"}
@@ -2732,19 +3196,33 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 <div id="hud-bar">
     <div class="hud-left">
         <span class="hud-item hud-day">⚔ Tag <<= $world.day >></span>
+
         <span class="hud-item hud-money">
-💰<<set _m = setup.getMoney($player.money.copper)>>
-            <<= _m.gold >> G&nbsp; <<= _m.silver >> S &nbsp;<<= _m.copper >> K
+            💰
+            <<set _m = setup.getMoney($player.money.copper)>>
+            <<= _m.gold >> G&nbsp; <<= _m.silver >> S&nbsp; <<= _m.copper >> K
         </span>
-        <span class="hud-item hud-kondition"><<= setup.getKonditionLabel($player.condition) >></span>
+
+        <span class="hud-item hud-kondition">
+            <<= setup.getKonditionLabel($player.condition) >>
+        </span>
+
         <<if $world.weather>>
-        <span class="hud-item hud-weather"><<= $world.weather >></span>
+            <span class="hud-item hud-weather"><<= $world.weather >></span>
         <</if>>
     </div>
+
     <div class="hud-right">
-        [[📖 Notizbuch|journalAnsicht]]
+        <<if passage() neq "journalAnsicht">>
+            <<link "📖 Notizbuch" "journalAnsicht">>
+                <<set $journal_return = passage()>>
+            <</link>>
+        <<else>>
+            <span class="hud-item">📖 Notizbuch</span>
+        <</if>>
     </div>
 </div>
+
 <hr class="hud-divider">
 <</if>>
 
@@ -2853,7 +3331,7 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 <</if>>
 <<set _out to "">>
 <<set _out += setup.setPlayerReputation("ohm", $edu.archivzugang ? -10 : -20)>>
-<<set _out += setup.setNpcAffection("magister", $edu.archivzugang ? -15 : -25)>>
+<<set _out += setup.setNpcAffection("magister", $edu.archivzugang ? -6 : -10)>>
 <<set _out += setup.setPlayerSuspicion($edu.archivzugang ? 15 : 40)>>
 <<if $npc.jarek.memory.flags.spaet_gestanden>>
 <<set _out += setup.setPlayerReputation("ohm", -10)>>
@@ -3037,7 +3515,7 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 <<set $npc.haddl.known = true>>
 <<= setup.setNpcAffection("haddl", 1)>>
 <div class="scenery-text">Das Gespräch findet seinen eigenen Rhythmus. Lars redet wenig aber wenn er redet hat es Gewicht. Haddl füllt die Lücken mit Geschichten die halb gelogen und halb zu gut sind um erfunden zu sein.
-<p>Irgendwann bestellt Lars ohne zu fragen eine neue Runde.</div></p>
+<p>Irgendwann bestellt Lars ohne zu fragen eine neue Runde.</p></div>
 [[Das Bier annehmen ->Story002_BierAnnehmen]]
 
 
@@ -3357,9 +3835,10 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 <<run setup.syncPlayerRel()>>
 <<set setup.trainingsHubTextVault to JSON.parse(Story.get("TrainingsHubTexte").text)>>
 <<set setup.abendappellTextVault to JSON.parse(Story.get("AbendappellTexte").text)>>
+<<include "initEnemy">>
 
 
-:: Stube: Bei Karla einrichten [layout] {"position":"75,600","size":"100,100"}
+:: Stube: Bei Karla einrichten [layout] {"position":"125,625","size":"100,100"}
 <p>Du wirfst deine Umhängetasche auf die raue Holzpritsche neben Karla, und der dumpfe Aufschlag ist laut genug, um ein paar Köpfe herumfahren zu lassen. Die Rekruten in der Nähe weichen einen halben Schritt zurück — nicht aus Respekt vor dir, sondern aus dem instinktiven Gespür, dass es klüger ist, Abstand zu halten, wenn jemand eine Entscheidung trifft, ohne dabei zu zögern.</p>
 <p>Karla grinst. Schief und ohne jeden Aufwand, es freundlicher aussehen zu lassen als es ist. Sie lässt sich auf ihre eigene Decke fallen, zieht ein kurzes Messer aus dem Stiefelschaft und beginnt, mit der Ruhe eines Menschen, dem die Meinung anderer seit Jahren gleichgültig ist, den Dreck unter ihren Fingernägeln hervorzukratzen.</p>
 <div class="dialog">„Gute Wahl, Frischling." Sie schaut dabei nicht auf. „Wer bei mir schläft, hat nachts seine Ruhe vor den Langfingern im Raum."</div>
@@ -4554,6 +5033,272 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 <p>Mehr Content wird sicher irgendwann kommen.</p>
 
 
+:: combatWidgets [widget] {"position":"75,4825","size":"100,100"}
+<<widget "combat">>
+<div id="combat-wrapper">
+    <<combatPanel>>
+</div>
+<</widget>>
+
+
+<<widget "combatPanel">>
+<<if not $combat>>
+    <div class="combat">
+        <p><strong>Kein Kampf aktiv.</strong></p>
+    </div>
+<<else>>
+    <div class="combat">
+
+        <div class="combat-header">
+            <h3>Kampf</h3>
+
+            <<if $combat.xpReward>>
+                <div class="combat-xp">
+                    Mögliche Belohnung: <<= $combat.xpReward >> XP
+                </div>
+            <</if>>
+        </div>
+
+        <div class="combat-row enemy-row">
+            <<if $combat.attackers and $combat.attackers.length > 0>>
+                <<for _enemy range $combat.attackers>>
+                    <<combatCard _enemy "enemy">>
+                <</for>>
+            <<else>>
+                <p>Keine Gegner mehr.</p>
+            <</if>>
+        </div>
+
+        <hr>
+
+        <div class="combat-row ally-row">
+            <<combatCard $combat.player "ally">>
+
+            <<if $combat.defenders and $combat.defenders.length > 0>>
+                <<for _ally range $combat.defenders>>
+                    <<combatCard _ally "ally">>
+                <</for>>
+            <</if>>
+        </div>
+
+        <<combatPlayerWeapons>>
+
+        <<combatLog>>
+
+        <<if $combat.victory>>
+            <div class="combat-result victory">
+                <p><strong>Der Kampf ist gewonnen.</strong></p>
+            </div>
+        <<elseif $combat.defeat>>
+            <div class="combat-result defeat">
+                <p><strong>Du wurdest besiegt.</strong></p>
+            </div>
+        <</if>>
+
+    </div>
+<</if>>
+<</widget>>
+
+
+<<widget "combatCard">>
+<<set _unit = $args[0]>>
+<<set _side = $args[1]>>
+
+<<if not _unit or not _unit.fightStats>>
+    <div class="combat-card error">
+        <div class="combat-name">Fehlerhafte Einheit</div>
+    </div>
+<<else>>
+
+    <<set _hp = _unit.fightStats.hp>>
+    <<set _max = _unit.fightStats.maxHp>>
+
+    <<if _max > 0>>
+        <<set _hpPercent = Math.round((_hp / _max) * 100)>>
+    <<else>>
+        <<set _hpPercent = 0>>
+    <</if>>
+
+    <<set _hpPercent = Math.max(0, Math.min(100, _hpPercent))>>
+
+    <div class="combat-card <<= _side >>">
+
+        <div class="combat-name">
+            <<= _unit.name >>
+        </div>
+
+        <<if _unit.type>>
+            <div class="combat-type">
+                <<= _unit.type >>
+            </div>
+        <</if>>
+
+        <div class="combat-hp-bar">
+            <div class="combat-hp-fill" style="width: <<= _hpPercent >>%;"></div>
+        </div>
+
+        <div class="combat-hp-text">
+            <<= _hp >> / <<= _max >> HP
+        </div>
+
+        <<if _side == "enemy" and _hp > 0 and $combat.active>>
+            <<set _enemyId = _unit.id>>
+
+            <<capture _enemyId>>
+                <div class="combat-actions">
+                    <<link "Angreifen">>
+                        <<run setup.combatAttackEnemy(_enemyId)>>
+                        <<replace "#combat-wrapper">>
+                            <<combatPanel>>
+                        <</replace>>
+                    <</link>>
+                </div>
+            <</capture>>
+        <</if>>
+
+    </div>
+
+<</if>>
+<</widget>>
+
+
+<<widget "combatWeaponDisplay">>
+<<set _unit = $args[0]>>
+<<set _weapon = setup.getEquippedWeapon(_unit)>>
+
+<<if _weapon>>
+    <div class="combat-weapon">
+
+        <div class="combat-weapon-name">
+            Waffe: <strong><<= _weapon.name >></strong>
+        </div>
+
+        <<if _weapon.damage>>
+            <div class="combat-weapon-damage">
+                Schaden:
+                <<= _weapon.damage.count || 1 >>W<<= _weapon.damage.sides || 1 >>
+
+                <<if _weapon.damageBonus and _weapon.damageBonus > 0>>
+                    + <<= _weapon.damageBonus >>
+                <</if>>
+            </div>
+        <</if>>
+
+        <<if _weapon.attackBonus>>
+            <div class="combat-weapon-bonus">
+                Trefferbonus:
+                <<if _weapon.attackBonus > 0>>
+                    +<<= _weapon.attackBonus >>
+                <<else>>
+                    <<= _weapon.attackBonus >>
+                <</if>>
+            </div>
+        <</if>>
+
+        <<if _weapon.skill>>
+            <div class="combat-weapon-skill">
+                Stil: <<= _weapon.skill >>
+            </div>
+        <</if>>
+
+    </div>
+<</if>>
+<</widget>>
+
+
+<<widget "combatPlayerWeapons">>
+<<run setup.ensurePlayerCombatData()>>
+
+<<if $combat and $combat.active and $player and $player.inventory and $player.inventory.weapons>>
+    <div class="combat-player-weapons">
+
+        <h4>Waffen</h4>
+
+        <div class="weapon-list">
+
+            <<for _weaponId range $player.inventory.weapons>>
+                <<set _weapon = setup.weaponTemplates[_weaponId]>>
+
+                <<if _weapon>>
+                    <<set _isEquipped = $player.equipment and $player.equipment.weapon == _weaponId>>
+
+                    <div class="weapon-entry <<if _isEquipped>>equipped<</if>>">
+
+                        <span class="weapon-name">
+                            <<= _weapon.name >>
+                        </span>
+
+                        <<if _weapon.damage>>
+                            <span class="weapon-damage">
+                                <<= _weapon.damage.count || 1 >>W<<= _weapon.damage.sides || 1 >>
+                            </span>
+                        <</if>>
+
+                        <<if _weapon.attackBonus>>
+                            <span class="weapon-attack">
+                                Treffer:
+                                <<if _weapon.attackBonus > 0>>
+                                    +<<= _weapon.attackBonus >>
+                                <<else>>
+                                    <<= _weapon.attackBonus >>
+                                <</if>>
+                            </span>
+                        <</if>>
+
+                        <<if _weapon.skill>>
+                            <span class="weapon-skill">
+                                <<= _weapon.skill >>
+                            </span>
+                        <</if>>
+
+                        <<if _isEquipped>>
+                            <span class="weapon-equipped">
+                                ausgerüstet
+                            </span>
+                        <<else>>
+                            <<set _equipId = _weaponId>>
+
+                            <<capture _equipId>>
+                                <span class="weapon-equip-action">
+                                    <<link "ausrüsten">>
+                                        <<run setup.equipWeapon(_equipId)>>
+                                        <<replace "#combat-wrapper">>
+                                            <<combatPanel>>
+                                        <</replace>>
+                                    <</link>>
+                                </span>
+                            <</capture>>
+                        <</if>>
+
+                    </div>
+                <</if>>
+            <</for>>
+
+        </div>
+    </div>
+<</if>>
+<</widget>>
+
+
+<<widget "combatLog">>
+<div class="combat-log">
+
+    <<if $combat and $combat.log and $combat.log.length > 0>>
+        <<for _entry range $combat.log>>
+            <div class="combat-log-entry">
+                <<= _entry >>
+            </div>
+        <</for>>
+    <<else>>
+        <div class="combat-log-entry">
+            Der Kampf hat noch nicht begonnen.
+        </div>
+    <</if>>
+
+</div>
+<</widget>>
+
+
 :: gedankeWidget [widget] {"position":"0,1700","size":"100,100"}
 <<widget "gedanke" container>>\
 <div class="thought-box"><<= _contents>></div>\
@@ -4567,36 +5312,119 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 <div class="voice-formal"><<= _contents>></div>\
 <</widget>>
 
+<<widget "beziehung" container>>\
+<div class="beziehung"><<= _contents>></div>\
+<</widget>>
 
-:: journalAnsicht {"position":"700,0","size":"100,100"}
+<<widget "dialog" container>>\
+<div class="dialog"><<= _contents>></div>\
+<</widget>>
+
+
+:: initEnemy {"position":"0,525","size":"100,100"}
+<<set $enemy = {
+    mercenary: {
+        name: "Söldner",
+        type: "fighter",
+        weakness: "pike",
+        xp: 50,
+        weapon: "sabre",
+        fightStats: {
+            hp: 11,
+            maxHp: 11,
+            attack: 1,
+            armor: 13,
+            proficiency: 2
+        }
+    },
+
+    shooter: {
+        name: "Armbrustschütze",
+        type: "archer",
+        weakness: "crossbow",
+        xp: 50,
+        weapon: "light_crossbow",
+        fightStats: {
+            hp: 8,
+            maxHp: 8,
+            attack: 1,
+            armor: 12,
+            proficiency: 2
+        }
+    },
+
+    cannonier: {
+        name: "Kanonier",
+        type: "artillery",
+        weakness: "cannon",
+        xp: 25,
+        weapon: "field_knife",
+        fightStats: {
+            hp: 10,
+            maxHp: 10,
+            attack: 0,
+            armor: 10,
+            proficiency: 2
+        }
+    }
+}>>
+
+
+:: journalAnsicht [journal] {"position":"700,0","size":"100,100"}
 <div id="passage-journalansicht" class="passage journalansicht">
-  <h2>📋 $player.name's Notizbuch</h2>
-  <p>Hier sind deine bisherigen Erkenntnisse über die Personen in der Akademie von Ohm festgehalten:</p>
 
-  <<back "↩️ Zurück zum Dienst">>
+    <h2>📋 $player.name's Notizbuch</h2>
 
-  <details class="journal-section" open>
-    <summary>Inventar &amp; Werte</summary>
-    <<print setup.renderPlayerTable()>>
-  </details>
+    <p>Hier sind deine bisherigen Erkenntnisse über die Personen in der Akademie von Ohm festgehalten:</p>
 
-  <details class="journal-section" open>
-    <summary>Personen in der Militärakademie</summary>
-    <<print setup.renderJournal()>>
-  </details>
+    <<set _returnPassage = $journal_return || "Auf Stube">>
 
-  <details class="journal-section" open>
-    <summary>Kameraden &amp; Bekannte</summary>
-    <<print setup.renderRealPlayers()>>
-  </details>
+    <p class="weiter-link">
+        <<if _returnPassage neq "journalAnsicht">>
+            <<link "↩️ Zurück zum Dienst" _returnPassage>>
+            <</link>>
+        <<else>>
+            [[↩️ Zurück zum Dienst -> Auf Stube]]
+        <</if>>
+    </p>
 
-  <details class="journal-section" open>
-    <summary>Gerüchte</summary>
-    <<print setup.renderRumors()>>
-  </details>
+    <details class="journal-section" open>
+        <summary>Inventar &amp; Werte</summary>
+
+        <div id="player-table">
+            <<= setup.renderPlayerTable() >>
+        </div>
+    </details>
+
+    <details class="journal-section" open>
+        <summary>Personen in der Militärakademie</summary>
+        <<= setup.renderJournal() >>
+    </details>
+
+    <details class="journal-section" open>
+        <summary>Kameraden &amp; Bekannte</summary>
+        <<= setup.renderRealPlayers() >>
+    </details>
+
+    <details class="journal-section" open>
+        <summary>Gerüchte</summary>
+        <<= setup.renderRumors() >>
+    </details>
+
+    <p class="weiter-link">
+        <<if _returnPassage neq "journalAnsicht">>
+            <<link "↩️ Zurück zum Dienst" _returnPassage>>
+            <</link>>
+        <<else>>
+            [[↩️ Zurück zum Dienst -> Auf Stube]]
+        <</if>>
+    </p>
+
+    <span class="weiter-link">
+        [[🛏️ Zurück auf die Stube -> Auf Stube]]
+    </span>
+
 </div>
-<<back "↩️ Zurück zum Dienst">>
-<span class="weiter-link">[[🛏️ Zurück auf die Stube ->Auf Stube]]</span>
 
 
 :: karla_S1 [interrupt einmalig kapitel-opener] {"position":"150,3150","size":"100,100"}
@@ -5514,7 +6342,7 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 
 <div class="dialog">„Danke", flüstert sie. Nur das eine Wort. Aber von Karla wiegt es so schwer wie alles, was je ein Mensch zu dir gesagt hat.</div>
 
-<<= setup.setNpcAffection("karla", 35)>>
+<<= setup.setNpcAffection("karla", 10)>>
 <<set $npc.karla.trust to true>>
 <<set $npc.karla.memory.flags.karla_erfahren to true>>
 
@@ -5579,8 +6407,7 @@ setup.interruptKapitel  = {};
 setup.interruptCond["Story002_Taverne_mit_Lars_Und_Hadde"] = w => w.day >= 8;
 setup.interruptPrio["Story002_Taverne_mit_Lars_Und_Hadde"] = 60;
 setup.interruptCond["Story003_ErsterMorgen"] = w => w.day == 2;
-setup.interruptCond["04_Sidequest_diplomaten_Auftrag"] = w => w.day >= 20
-    && State.variables.npc.karla.memory.flags.sidequest00Complete === true;
+setup.interruptCond["04_Sidequest_diplomaten_Auftrag"] = w => w.day >= 18
 setup.interruptPrio["04_Sidequest_diplomaten_Auftrag"] = 45;
 
 
@@ -5589,9 +6416,7 @@ setup.interruptCond["EE_Tross_Intro"] = w => {
   var f = State.variables.npc.schinder.memory.flags;
   var h = w.interruptHistory;
   return f.tross_seen !== true
-      && w.day >= 22
-      && (h["Storry006_DrillMitSchinder"] || 0) > 0
-      && w.day >= (h["Storry006_DrillMitSchinder"] || 0) + 2;
+      && w.day >= 17
 };
 setup.interruptPrio["EE_Tross_Intro"] = 20;
 setup.interruptPrio["EE_Tross_Intro"] = 20;
@@ -5600,9 +6425,9 @@ setup.interruptPrio["EE_Tross_Intro"] = 20;
 /* ===== JAREK-QUESTKETTE (S1–S4, geflaggt + über interruptHistory getaktet) ===== */
 setup.interruptCond["Jarek_S1_Vorlesung"] = w => {
   var f = State.variables.npc.jarek.memory.flags;
-  return f.s0_done === true && f.s1_seen !== true && w.day >= 23;
+  return f.s0_done === true && f.s1_seen !== true && w.day >= 20;
 };
-setup.interruptPrio["Jarek_S1_Vorlesung"] = 50;
+setup.interruptPrio["Jarek_S1_Vorlesung"] = 90;
 
 setup.interruptCond["Jarek_S2_Angebot"] = w => {
   var f = State.variables.npc.jarek.memory.flags, h = w.interruptHistory;
@@ -5957,12 +6782,13 @@ setup.getReputationLabel = function (r) {
 
 setup.getAffectionLabel = function (a) {
     a = Number(a) || 0;
-    if (a >= 8)  return "❤️ Enge Bindung";
-    if (a >= 5)  return "💛 Vertraut";
-    if (a >= 2)  return "🙂 Wohlgesonnen";
+    if (a >= 16) return "❤️ Enge Bindung";
+    if (a >= 10) return "💛 Vertraut";
+    if (a >= 5)  return "🙂 Wohlgesonnen";
     if (a >= 1)  return "🔹 Bekannt";
-    if (a <= -5) return "💢 Feindselig";
-    if (a <= -1) return "❄️ Distanziert";
+    if (a <= -10) return "💢 Feindselig";
+    if (a <= -5)  return "😠 Ablehnend";
+    if (a <= -1)  return "❄️ Distanziert";
     return "➖ Neutral";
 };
 
@@ -5985,7 +6811,7 @@ setup.resolveJournalEntry = function (npc) {
 
 /* ---------- Spielerwerte ---------- */
 
-setup.renderPlayerTable = function () {
+setup.renderPlayerTableBak = function () {
     const p  = State.variables.player;
     const mx = setup.meterMax;
     const money = setup.getMoney(p.money.copper);
@@ -6102,6 +6928,489 @@ setup.renderRealPlayers = function () {
     return setup.renderPersonList(list, "Noch bist du keinem dieser Namen begegnet.");
 };
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================================================
+   PLAYER TABLE / CHARACTER SHEET RENDER
+   Ohne:
+   - Fullname
+   - Kampfwerte-Block
+   - Ausgerüstete-Waffe-Block
+
+   Mit:
+   - Waffenliste
+   - Radio-Button zum Ausrüsten
+   - Kein inline onchange
+========================================================= */
+
+
+/* =========================================================
+   DISPLAY HELPERS
+========================================================= */
+
+setup.escapeHtml = function (value) {
+    return String(value ?? "").replace(/[&<>"']/g, function (ch) {
+        return {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#039;"
+        }[ch];
+    });
+};
+
+
+setup.formatSignedBonus = function (value) {
+    value = Number(value || 0);
+
+    if (value > 0) {
+        return "+" + value;
+    }
+
+    return String(value);
+};
+
+
+setup.formatWeaponDamage = function (weapon) {
+    if (!weapon || !weapon.damage) {
+        return "—";
+    }
+
+    const count = weapon.damage.count || 1;
+    const sides = weapon.damage.sides || 1;
+    const bonus = weapon.damageBonus || 0;
+
+    let text = count + "W" + sides;
+
+    if (bonus > 0) {
+        text += " + " + bonus;
+    }
+    else if (bonus < 0) {
+        text += " - " + Math.abs(bonus);
+    }
+
+    return text;
+};
+
+
+setup.getInventoryItems = function (player) {
+    if (!player || !player.inventory) {
+        return [];
+    }
+
+    /*
+       Altes Format:
+       inventory: ["Apfel", "Seil"]
+
+       Neues Format:
+       inventory: {
+           items: [],
+           weapons: []
+       }
+    */
+    if (Array.isArray(player.inventory)) {
+        return player.inventory;
+    }
+
+    return player.inventory.items || [];
+};
+
+
+setup.getInventoryWeapons = function (player) {
+    if (!player || !player.inventory) {
+        return [];
+    }
+
+    if (Array.isArray(player.inventory)) {
+        return [];
+    }
+
+    return player.inventory.weapons || [];
+};
+
+
+setup.refreshPlayerTable = function () {
+    const el = document.getElementById("player-table");
+
+    if (el) {
+        el.innerHTML = setup.renderPlayerTable();
+    }
+};
+
+setup.getCombatXpProgress = function (player) {
+    if (!player) {
+        return {
+            combat: 0,
+            xp: 0,
+            currentThreshold: 0,
+            nextThreshold: 100,
+            xpIntoLevel: 0,
+            xpNeeded: 100,
+            percent: 0,
+            isMax: false
+        };
+    }
+
+    const xp = player.combatXp || 0;
+    const combat = setup.getCombatFromXp
+        ? setup.getCombatFromXp(xp)
+        : (player.knowledge?.combat || 0);
+
+    const thresholds = setup.combatXpThresholds || [
+        0, 100, 250, 500, 900, 1400, 2100, 3000, 4200, 5600, 7500
+    ];
+
+    const isMax = combat >= 10;
+
+    if (isMax) {
+        return {
+            combat: 10,
+            xp: xp,
+            currentThreshold: thresholds[10],
+            nextThreshold: thresholds[10],
+            xpIntoLevel: 0,
+            xpNeeded: 0,
+            percent: 100,
+            isMax: true
+        };
+    }
+
+    const currentThreshold = thresholds[combat] || 0;
+    const nextThreshold = thresholds[combat + 1] || currentThreshold;
+    const xpIntoLevel = Math.max(0, xp - currentThreshold);
+    const xpNeeded = Math.max(1, nextThreshold - currentThreshold);
+
+    const percent = Math.max(
+        0,
+        Math.min(100, Math.round((xpIntoLevel / xpNeeded) * 100))
+    );
+
+    return {
+        combat: combat,
+        xp: xp,
+        currentThreshold: currentThreshold,
+        nextThreshold: nextThreshold,
+        xpIntoLevel: xpIntoLevel,
+        xpNeeded: xpNeeded,
+        percent: percent,
+        isMax: false
+    };
+};
+
+
+setup.renderCombatXpBar = function (player) {
+    const progress = setup.getCombatXpProgress(player);
+
+    if (progress.isMax) {
+        return `
+            <div class="combat-xp-display">
+                <div class="combat-xp-bar">
+                    <div class="combat-xp-fill" style="width: 100%;"></div>
+                </div>
+                <span class="combat-xp-text">
+                    Maximum
+                </span>
+            </div>
+        `;
+    }
+
+    return `
+        <div class="combat-xp-display">
+            <div class="combat-xp-bar">
+                <div class="combat-xp-fill" style="width: ${progress.percent}%;"></div>
+            </div>
+            <span class="combat-xp-text">
+                ${progress.xpIntoLevel}/${progress.xpNeeded} XP · ${progress.percent}%
+            </span>
+        </div>
+    `;
+};
+
+/* =========================================================
+   PLAYER TABLE EVENTS
+   Wichtig:
+   Kein inline onchange im HTML benutzen.
+========================================================= */
+
+setup.bindPlayerTableEvents = function () {
+    if (setup._playerTableEventsBound) {
+        return;
+    }
+
+    setup._playerTableEventsBound = true;
+
+    document.addEventListener("change", function (ev) {
+        const input = ev.target.closest?.(".js-equip-weapon");
+
+        if (!input) {
+            return;
+        }
+
+        const weaponId = input.value;
+
+        if (setup.equipWeapon && setup.equipWeapon(weaponId)) {
+            setup.refreshPlayerTable();
+        }
+        else {
+            console.warn("Waffe konnte nicht ausgerüstet werden:", weaponId);
+            setup.refreshPlayerTable();
+        }
+    });
+};
+
+setup.bindPlayerTableEvents();
+
+
+/* =========================================================
+   PLAYER TABLE RENDER
+========================================================= */
+
+setup.renderPlayerTable = function () {
+    const p = State.variables.player;
+
+    if (!p) {
+        return `
+            <div class="stat-section">
+                <div class="stat-section-title">Spieler</div>
+                <div class="stat-row stat-empty">Kein Spieler gefunden.</div>
+            </div>
+        `;
+    }
+
+    /*
+       Combat-Daten absichern und Kampfwerte neu berechnen.
+       Die Werte werden NICHT angezeigt, aber intern aktuell gehalten.
+    */
+    if (setup.ensurePlayerCombatData) {
+        setup.ensurePlayerCombatData();
+    }
+
+    if (setup.recalculatePlayerFightStats) {
+        setup.recalculatePlayerFightStats();
+    }
+
+    const esc = setup.escapeHtml;
+
+    const mx = setup.meterMax || {
+        stat: 100,
+        knowledge: 10
+    };
+
+    const stats = p.stats || {};
+    const knowledge = p.knowledge || {};
+    const reputation = p.reputation || {};
+    const moneyObj = p.money || { copper: 0 };
+
+    const money = setup.getMoney
+        ? setup.getMoney(moneyObj.copper || 0)
+        : { gold: 0, silver: 0, copper: moneyObj.copper || 0 };
+
+    const row = function (label, value) {
+        return `
+            <div class="stat-row">
+                <span class="stat-label">${label}</span>
+                <span class="stat-val">${value}</span>
+            </div>
+        `;
+    };
+
+    const meterRow = function (label, value, max) {
+        value = value || 0;
+        max = max || 10;
+
+        const meter = setup.meter
+            ? setup.meter(value, max)
+            : "";
+
+        return row(
+            label,
+            `${meter} <span class="stat-num">${value}</span>`
+        );
+    };
+
+    const repRow = function (label, value) {
+        value = value || 0;
+
+        const repLabel = setup.getReputationLabel
+            ? setup.getReputationLabel(value)
+            : String(value);
+
+        return row(
+            label,
+            `${repLabel} <span class="stat-num">(${value})</span>`
+        );
+    };
+
+    const konditionLabel = setup.getKonditionLabel
+        ? setup.getKonditionLabel(p.condition || 0)
+        : String(p.condition || 0);
+
+    const items = setup.getInventoryItems(p);
+    const weapons = setup.getInventoryWeapons(p);
+
+    const equippedWeaponId = p.equipment?.weapon || "unarmed";
+
+    const inventoryHTML = items.length === 0
+        ? `<div class="stat-row stat-empty">Inventar ist leer</div>`
+        : items.map(function (it) {
+            return `
+                <div class="stat-row stat-item">
+                    <span class="stat-label">${esc(it)}</span>
+                    <span class="stat-val"></span>
+                </div>
+            `;
+        }).join("");
+
+    const weaponInventoryHTML = weapons.length === 0
+        ? `<div class="stat-row stat-empty">Keine Waffen im Inventar</div>`
+        : weapons.map(function (weaponId) {
+            const weapon = setup.weaponTemplates?.[weaponId];
+
+            if (!weapon) {
+                return `
+                    <div class="stat-row stat-weapon stat-error">
+                        <span class="stat-label">${esc(weaponId)}</span>
+                        <span class="stat-val">Unbekannte Waffe</span>
+                    </div>
+                `;
+            }
+
+            const isEquipped = equippedWeaponId === weaponId;
+            const checked = isEquipped ? "checked" : "";
+            const equippedClass = isEquipped ? " equipped" : "";
+
+            const damageText = setup.formatWeaponDamage(weapon);
+            const attackBonusText = setup.formatSignedBonus(weapon.attackBonus || 0);
+            const skillText = weapon.skill ? esc(weapon.skill) : "—";
+
+            return `
+                <div class="stat-row stat-weapon${equippedClass}">
+                    <span class="stat-label">
+                        <input
+                            type="radio"
+                            class="js-equip-weapon"
+                            name="player-equipped-weapon"
+                            value="${esc(weaponId)}"
+                            ${checked}
+                        >
+                        ${esc(weapon.name)}
+                    </span>
+
+                    <span class="stat-val">
+                        Schaden ${damageText}
+                        · Treffer ${attackBonusText}
+                        · Stil ${skillText}
+                        ${isEquipped ? `· <b>ausgerüstet</b>` : ""}
+                    </span>
+                </div>
+            `;
+        }).join("");
+
+    return `
+        <div class="stat-section">
+         <div class="stat-section-title">Persönliches</div>
+            ${row("Name", esc(p.name))}
+            ${row("Rang", esc(p.rank))}
+            ${row("Kampferfahrung", setup.renderCombatXpBar(p))}
+      	</div>
+
+        <div class="stat-section">
+            <div class="stat-section-title">Zustand</div>
+            ${row("Kondition", `${konditionLabel} <span class="stat-num">(${p.condition || 0})</span>`)}
+            ${row("Verdacht", esc(p.suspicion || 0))}
+        </div>
+
+        <div class="stat-section">
+            <div class="stat-section-title">Charaktereigenschaften</div>
+            ${meterRow("Gnade", stats.mercy, mx.stat)}
+            ${meterRow("Ehrgeiz", stats.ambition, mx.stat)}
+            ${meterRow("Ehrlichkeit", stats.honesty, mx.stat)}
+            ${meterRow("Disziplin", stats.discipline, mx.stat)}
+            ${meterRow("Glaube", stats.faith, mx.stat)}
+        </div>
+
+        <div class="stat-section">
+            <div class="stat-section-title">Wissen</div>
+            ${meterRow("Pike &amp; Hellebarde", knowledge.pike, mx.knowledge)}
+            ${meterRow("Artillerie-Wissen", knowledge.cannon, mx.knowledge)}
+            ${meterRow("Armbrust-Präzision", knowledge.crossbow, mx.knowledge)}
+            ${meterRow("Heilkunde", knowledge.medicine, mx.knowledge)}
+            ${meterRow("Schattenarbeit", knowledge.thievery, mx.knowledge)}
+            ${meterRow("Gerüchteküche", knowledge.gossip, mx.knowledge)}
+            ${meterRow("Kampferfahrung", knowledge.combat, 10)}
+            ${row("Gelehrsamkeit", `<b>${stats.scholarship || 0}</b>`)}
+        </div>
+
+        <div class="stat-section">
+            <div class="stat-section-title">Reputation</div>
+            ${repRow("Land", reputation.land)}
+            ${repRow("Ohm", reputation.ohm)}
+            ${repRow("Kirche", reputation.church)}
+        </div>
+
+        <div class="stat-section">
+            <div class="stat-section-title">Finanzen</div>
+            ${row("Vermögen", `${money.gold} Gold · ${money.silver} Silber · ${money.copper} Kupfer`)}
+        </div>
+
+        <div class="stat-section">
+            <div class="stat-section-title">Waffen</div>
+            ${weaponInventoryHTML}
+        </div>
+
+        <div class="stat-section">
+            <div class="stat-section-title">Inventar</div>
+            ${inventoryHTML}
+        </div>
+    `;
+};
+
+/* =========================================================
+   PLAYER TABLE EVENTS
+   Bindet Radiobuttons für Waffenwechsel.
+   Wichtig: Kein inline onchange verwenden.
+========================================================= */
+
+setup.bindPlayerTableEvents = function () {
+    if (setup._playerTableEventsBound) {
+        return;
+    }
+
+    setup._playerTableEventsBound = true;
+
+    document.addEventListener("change", function (ev) {
+        const input = ev.target.closest?.(".js-equip-weapon");
+
+        if (!input) {
+            return;
+        }
+
+        const weaponId = input.value;
+
+        if (setup.equipWeapon(weaponId)) {
+            setup.refreshPlayerTable();
+        }
+        else {
+            console.warn("Waffe konnte nicht ausgerüstet werden:", weaponId);
+            setup.refreshPlayerTable();
+        }
+    });
+};
+
+setup.bindPlayerTableEvents();
 
 /*==============================================================
 Textbuilding Section & Single Point of Truth
@@ -6340,7 +7649,7 @@ setup.setNpcAffection = function (npcKey, modifier) {
     const npc = State.variables.npc?.[npcKey];
     if (!npc) { console.warn("NPC nicht gefunden:", npcKey); return ""; }
 
-    npc.affection = setup.clamp(npc.affection + modifier, -100, 100);
+    npc.affection = setup.clamp(npc.affection + modifier, -20, 20);
 
     return setup.statusAlert("Zuneigung von " + npc.name + (modifier < 0 ? " verringert" : " erhöht"), modifier);
 };
@@ -6392,8 +7701,8 @@ setup.statNames = {
 setup.knowledgeNames = {
     scholarship: "Gelehrsamkeit",
     pike: "Pike & Hellebarde",
-    crossbow: "Armbrust-Präzision",
-    cannon: "Artillerie-Wissen",
+    crossbow: "Armbrust",
+    cannon: "Artillerie",
     medicine: "Heilkunde",
     thievery: "Schattenarbeit",
     gossip: "Gerüchteküche",
@@ -7378,6 +8687,983 @@ setup.ausbilderVermerk = function (npcKey, satzKuehl, satzNeutral, satzModerat, 
     return satzEuphorisch;
 };
 
+setup.rebuildKnowledgeForChapter2 = function () {
+    const player = State.variables.player;
+    const keys = ["scholarship", "pike", "crossbow", "cannon", "medicine", "thievery", "gossip", "combat"];
+    
+    for (const key of keys) {
+        player.knowledge[key] = Math.ceil(Math.sqrt(player.knowledge[key] || 0));
+    }  
+};
+
+
+setup.getPeakKnowledgeAfterKapOne = function () {
+    const ignore = ["thievery", "gossip", "combat"];
+    const knowledge = State?.variables?.player?.knowledge;
+
+    if (!knowledge || typeof knowledge !== "object") return [];
+
+    const filteredEntries = Object.entries(knowledge)
+        .filter(([key, value]) =>
+            !ignore.includes(key) && typeof value === "number" && value > 0
+        );
+
+    if (filteredEntries.length === 0) return [];
+
+    const maxValue = Math.max(...filteredEntries.map(([, value]) => value));
+
+    return filteredEntries
+        .filter(([, value]) => value === maxValue)
+        .map(([key]) => setup.knowledgeNames[key] || key);
+};
+
+
+/* =========================================================
+   PLAYER COMBAT DATA
+   Schema:
+   $player.combatXp          = rohe Kampf-XP
+   $player.knowledge.combat  = Kampfwert 0–10
+   $player.fightStats        = berechnete Kampfwerte
+   $player.inventory.weapons = Waffeninventar
+   $player.equipment.weapon  = ausgerüstete Waffe
+========================================================= */
+
+
+/* =========================================================
+   XP CURVE: combatXp -> knowledge.combat 0..10
+========================================================= */
+
+setup.combatXpThresholds = [
+    0,      // combat 0
+    100,    // combat 1
+    250,    // combat 2
+    500,    // combat 3
+    900,    // combat 4
+    1400,   // combat 5
+    2100,   // combat 6
+    3000,   // combat 7
+    4200,   // combat 8
+    5600,   // combat 9
+    7500    // combat 10
+];
+
+setup.getCombatFromXp = function (xp) {
+    const thresholds = setup.combatXpThresholds;
+    let combat = 0;
+
+    xp = xp || 0;
+
+    for (let i = 0; i < thresholds.length; i++) {
+        if (xp >= thresholds[i]) {
+            combat = i;
+        }
+    }
+
+    return Math.min(combat, 10);
+};
+
+
+/* =========================================================
+   BASIC HELPERS
+========================================================= */
+
+setup.clone = function (obj) {
+    return JSON.parse(JSON.stringify(obj));
+};
+
+setup.rollDice = function (count, sides) {
+    let total = 0;
+
+    count = count || 1;
+    sides = sides || 1;
+
+    for (let i = 0; i < count; i++) {
+        total += random(1, sides);
+    }
+
+    return total;
+};
+
+setup.getFightStats = function (unit) {
+    if (!unit || !unit.fightStats) {
+        console.warn("Einheit ohne fightStats:", unit);
+        return null;
+    }
+
+    return unit.fightStats;
+};
+
+setup.isDead = function (unit) {
+    const fs = setup.getFightStats(unit);
+    return !fs || fs.hp <= 0;
+};
+
+
+/* =========================================================
+   WEAPON TEMPLATES
+========================================================= */
+
+setup.weaponTemplates = {
+    unarmed: {
+        id: "unarmed",
+        name: "Fäuste",
+        skill: null,
+        attackBonus: 0,
+        damage: {
+            count: 1,
+            sides: 2
+        },
+        damageBonus: 0
+    },
+
+    dagger: {
+        id: "dagger",
+        name: "Dolch",
+        skill: "thievery",
+        attackBonus: 1,
+        damage: {
+            count: 1,
+            sides: 4
+        },
+        damageBonus: 0
+    },
+
+    field_knife: {
+        id: "field_knife",
+        name: "Feldmesser",
+        skill: "medicine",
+        attackBonus: 0,
+        damage: {
+            count: 1,
+            sides: 4
+        },
+        damageBonus: 1
+    },
+
+    training_pike: {
+        id: "training_pike",
+        name: "Übungspike",
+        skill: "pike",
+        attackBonus: 0,
+        damage: {
+            count: 1,
+            sides: 6
+        },
+        damageBonus: 0
+    },
+
+    pike: {
+        id: "pike",
+        name: "Pike",
+        skill: "pike",
+        attackBonus: 0,
+        damage: {
+            count: 1,
+            sides: 8
+        },
+        damageBonus: 0
+    },
+
+    sabre: {
+        id: "sabre",
+        name: "Säbel",
+        skill: "pike",
+        attackBonus: 1,
+        damage: {
+            count: 1,
+            sides: 6
+        },
+        damageBonus: 0
+    },
+
+    light_crossbow: {
+        id: "light_crossbow",
+        name: "Leichte Armbrust",
+        skill: "crossbow",
+        attackBonus: 1,
+        damage: {
+            count: 1,
+            sides: 6
+        },
+        damageBonus: 0
+    },
+
+    crossbow: {
+        id: "crossbow",
+        name: "Armbrust",
+        skill: "crossbow",
+        attackBonus: 1,
+        damage: {
+            count: 1,
+            sides: 8
+        },
+        damageBonus: 0
+    },
+
+    hand_cannon: {
+        id: "hand_cannon",
+        name: "Handrohr",
+        skill: "cannon",
+        attackBonus: -1,
+        damage: {
+            count: 1,
+            sides: 10
+        },
+        damageBonus: 0
+    }
+};
+
+
+/* =========================================================
+   PLAYER DATA / INVENTORY / EQUIPMENT
+========================================================= */
+
+setup.ensurePlayerCombatData = function () {
+    const player = State.variables.player;
+
+    if (!player) {
+        console.warn("Kein Spieler gefunden.");
+        return null;
+    }
+
+    if (player.combatXp == null) {
+        player.combatXp = 0;
+    }
+
+    if (!player.knowledge) {
+        player.knowledge = {};
+    }
+
+    if (player.knowledge.combat == null) {
+        player.knowledge.combat = setup.getCombatFromXp(player.combatXp);
+    }
+
+    if (!player.fightStats) {
+        player.fightStats = {};
+    }
+
+    if (!player.inventory) {
+        player.inventory = {
+            items: [],
+            weapons: ["unarmed"]
+        };
+    }
+
+    if (!Array.isArray(player.inventory.items)) {
+        player.inventory.items = [];
+    }
+
+    if (!Array.isArray(player.inventory.weapons)) {
+        player.inventory.weapons = ["unarmed"];
+    }
+
+    if (!player.inventory.weapons.includes("unarmed")) {
+        player.inventory.weapons.unshift("unarmed");
+    }
+
+    if (!player.equipment) {
+        player.equipment = {};
+    }
+
+    if (!player.equipment.weapon) {
+        player.equipment.weapon = "unarmed";
+    }
+
+    return player;
+};
+
+setup.addWeaponToInventory = function (weaponId) {
+    const player = setup.ensurePlayerCombatData();
+
+    if (!player) {
+        return false;
+    }
+
+    if (!setup.weaponTemplates[weaponId]) {
+        console.warn("Waffen-Template nicht gefunden:", weaponId);
+        return false;
+    }
+
+    if (!player.inventory.weapons.includes(weaponId)) {
+        player.inventory.weapons.push(weaponId);
+    }
+
+    return true;
+};
+
+setup.equipWeapon = function (weaponId) {
+    const player = setup.ensurePlayerCombatData();
+
+    if (!player) {
+        return false;
+    }
+
+    if (!setup.weaponTemplates[weaponId]) {
+        console.warn("Waffen-Template nicht gefunden:", weaponId);
+        return false;
+    }
+
+    if (!player.inventory.weapons.includes(weaponId)) {
+        console.warn("Waffe nicht im Inventar:", weaponId);
+        return false;
+    }
+
+    player.equipment.weapon = weaponId;
+
+    return true;
+};
+
+setup.getEquippedWeapon = function (unit) {
+    const player = State.variables.player;
+
+    let weaponRef = null;
+
+    if (unit === player) {
+        setup.ensurePlayerCombatData();
+        weaponRef = player.equipment?.weapon;
+    }
+    else {
+        weaponRef = unit?.weapon || unit?.equipment?.weapon;
+    }
+
+    if (typeof weaponRef === "string") {
+        return setup.weaponTemplates[weaponRef] || setup.weaponTemplates.unarmed;
+    }
+
+    if (weaponRef && typeof weaponRef === "object") {
+        return weaponRef;
+    }
+
+    return setup.weaponTemplates.unarmed;
+};
+
+
+/* =========================================================
+   PLAYER SCALING
+========================================================= */
+
+setup.recalculatePlayerFightStats = function () {
+    const player = setup.ensurePlayerCombatData();
+
+    if (!player) {
+        return;
+    }
+
+    const combatXp = player.combatXp || 0;
+    const combat = setup.getCombatFromXp(combatXp);
+
+    player.knowledge.combat = combat;
+
+    const oldMaxHp = player.fightStats.maxHp || 12;
+    const oldHp = player.fightStats.hp ?? oldMaxHp;
+    const hpRatio = oldMaxHp > 0 ? oldHp / oldMaxHp : 1;
+
+    const proficiency = 2 + Math.floor(combat / 4);
+    const attack = Math.floor(combat / 3);
+    const maxHp = 12 + combat * 2;
+    const armor = 10 + Math.floor(combat / 4);
+
+    player.fightStats.maxHp = maxHp;
+
+    if (oldHp <= 0) {
+        player.fightStats.hp = 0;
+    }
+    else {
+        player.fightStats.hp = Math.max(1, Math.round(maxHp * hpRatio));
+    }
+
+    player.fightStats.attack = attack;
+    player.fightStats.armor = armor;
+    player.fightStats.proficiency = proficiency;
+};
+
+setup.gainCombatXp = function (amount) {
+    const player = setup.ensurePlayerCombatData();
+
+    if (!player) {
+        return null;
+    }
+
+    amount = amount || 0;
+
+    const oldXp = player.combatXp || 0;
+    const oldCombat = player.knowledge.combat || 0;
+
+    const newXp = Math.max(0, oldXp + amount);
+    const newCombat = setup.getCombatFromXp(newXp);
+
+    player.combatXp = newXp;
+    player.knowledge.combat = newCombat;
+
+    setup.recalculatePlayerFightStats();
+
+    return {
+        xpGained: amount,
+        oldXp: oldXp,
+        newXp: newXp,
+        oldCombat: oldCombat,
+        newCombat: newCombat,
+        combatIncreased: newCombat > oldCombat
+    };
+};
+
+
+/* =========================================================
+   WEAKNESS
+========================================================= */
+
+setup.weaponHitsWeakness = function (attacker, defender) {
+    const weapon = setup.getEquippedWeapon(attacker);
+
+    if (!weapon || !weapon.skill) {
+        return false;
+    }
+
+    return !!(defender && defender.weakness && defender.weakness === weapon.skill);
+};
+
+
+/* =========================================================
+   COMBAT START
+   Usage:
+   <<set $combat = setup.startCombat(["mercenary"])>>
+   <<set $combat = setup.startCombat(["mercenary", "shooter"])>>
+========================================================= */
+
+setup.startCombat = function (types) {
+    setup.recalculatePlayerFightStats();
+
+    if (!Array.isArray(types)) {
+        console.warn("startCombat erwartet ein Array, z.B. ['mercenary']");
+        return null;
+    }
+
+    const attackers = [];
+    let xpReward = 0;
+
+    for (let i = 0; i < types.length; i++) {
+        const type = types[i];
+        const template = State.variables.enemy[type];
+
+        if (!template) {
+            console.warn("Enemy template not found:", type);
+            continue;
+        }
+
+        const enemyInstance = setup.clone(template);
+
+        enemyInstance.id = type + "_" + i + "_" + random(1000, 9999);
+
+        xpReward += enemyInstance.xp || 0;
+
+        attackers.push(enemyInstance);
+    }
+
+    if (attackers.length === 0) {
+        console.warn("Keine gültigen Gegner für diesen Kampf gefunden:", types);
+        return null;
+    }
+
+    return {
+        player: State.variables.player,
+        attackers: attackers,
+        defenders: [],
+        log: [
+            attackers.length > 1
+                ? "Mehrere Gegner erscheinen!"
+                : "Ein Gegner erscheint!"
+        ],
+        xpReward: xpReward,
+        rewardsGiven: false,
+        active: true,
+        victory: false,
+        defeat: false
+    };
+};
+
+
+/* =========================================================
+   HIT ROLL
+========================================================= */
+
+setup.combatHitRoll = function (attacker, defender) {
+    const atk = setup.getFightStats(attacker);
+    const def = setup.getFightStats(defender);
+    const weapon = setup.getEquippedWeapon(attacker);
+
+    if (!atk || !def) {
+        return {
+            roll: 0,
+            bonus: 0,
+            total: 0,
+            armor: 0,
+            outcome: "miss"
+        };
+    }
+
+    const roll = random(1, 20);
+    const bonus =
+        (atk.attack || 0) +
+        (atk.proficiency || 0) +
+        (weapon.attackBonus || 0);
+
+    const total = roll + bonus;
+    const armor = def.armor || 10;
+
+    if (roll === 20) {
+        return {
+            roll: roll,
+            bonus: bonus,
+            total: total,
+            armor: armor,
+            outcome: "crit"
+        };
+    }
+
+    if (roll === 1) {
+        return {
+            roll: roll,
+            bonus: bonus,
+            total: total,
+            armor: armor,
+            outcome: "miss"
+        };
+    }
+
+    return {
+        roll: roll,
+        bonus: bonus,
+        total: total,
+        armor: armor,
+        outcome: total >= armor ? "hit" : "miss"
+    };
+};
+
+
+/* =========================================================
+   DAMAGE ROLL
+========================================================= */
+
+setup.damageRoll = function (attacker, defender, hitRoll) {
+    const weapon = setup.getEquippedWeapon(attacker);
+
+    if (!weapon || !weapon.damage) {
+        return 0;
+    }
+
+    if (hitRoll.outcome !== "hit" && hitRoll.outcome !== "crit") {
+        return 0;
+    }
+
+    const count = weapon.damage.count || 1;
+    const sides = weapon.damage.sides || 1;
+    const damageBonus = weapon.damageBonus || 0;
+
+    let diceCount = count;
+
+    if (hitRoll.outcome === "crit") {
+        diceCount *= 2;
+    }
+
+    let damage = setup.rollDice(diceCount, sides) + damageBonus;
+
+    if (setup.weaponHitsWeakness(attacker, defender)) {
+        damage += 2;
+    }
+
+    return Math.max(0, damage);
+};
+
+
+/* =========================================================
+   ATTACK RESOLUTION
+========================================================= */
+
+setup.attack = function (attacker, defender) {
+    const def = setup.getFightStats(defender);
+    const weapon = setup.getEquippedWeapon(attacker);
+
+    if (!def) {
+        return {
+            roll: 0,
+            bonus: 0,
+            total: 0,
+            armor: 0,
+            outcome: "miss",
+            damage: 0,
+            targetDead: false,
+            weapon: weapon,
+            weaknessHit: false
+        };
+    }
+
+    const hitRoll = setup.combatHitRoll(attacker, defender);
+    const damage = setup.damageRoll(attacker, defender, hitRoll);
+    const weaknessHit = setup.weaponHitsWeakness(attacker, defender);
+
+    if (damage > 0) {
+        def.hp = Math.max(0, def.hp - damage);
+    }
+
+    return {
+        roll: hitRoll.roll,
+        bonus: hitRoll.bonus,
+        total: hitRoll.total,
+        armor: hitRoll.armor,
+        outcome: hitRoll.outcome,
+        damage: damage,
+        targetDead: def.hp <= 0,
+        weapon: weapon,
+        weaknessHit: weaknessHit
+    };
+};
+
+
+/* =========================================================
+   PLAYER ATTACK
+========================================================= */
+
+setup.combatAttackEnemy = function (enemyId) {
+    const combat = State.variables.combat;
+    const player = State.variables.player;
+
+    if (!combat) {
+        console.warn("Kein Kampf aktiv.");
+        return;
+    }
+
+    if (!combat.active) {
+        return;
+    }
+
+    if (!player) {
+        console.warn("Spieler nicht gefunden.");
+        return;
+    }
+
+    const enemy = combat.attackers.find(e => e.id === enemyId);
+
+    if (!enemy) {
+        console.warn("Gegner nicht gefunden:", enemyId);
+        return;
+    }
+
+    if (setup.isDead(enemy)) {
+        combat.log.push(enemy.name + " ist bereits besiegt.");
+        setup.trimCombatLog();
+        return;
+    }
+
+    const result = setup.attack(player, enemy);
+
+    if (result.outcome === "crit") {
+        combat.log.push(
+            "Kritischer Treffer mit " + result.weapon.name + " gegen " +
+            enemy.name + "! (" + result.damage + " Schaden)"
+        );
+    }
+    else if (result.outcome === "hit") {
+        combat.log.push(
+            "Treffer mit " + result.weapon.name + " gegen " +
+            enemy.name + ". (" + result.damage + " Schaden)"
+        );
+    }
+    else {
+        combat.log.push(
+            "Du verfehlst " + enemy.name + " mit " + result.weapon.name + "."
+        );
+    }
+
+    if (result.weaknessHit && result.damage > 0) {
+        combat.log.push(enemy.name + " ist gegen diese Waffe verwundbar!");
+    }
+
+    if (result.targetDead) {
+        combat.log.push(enemy.name + " wurde besiegt!");
+        combat.attackers = combat.attackers.filter(e => !setup.isDead(e));
+    }
+
+    if (combat.attackers.length === 0) {
+        combat.active = false;
+        combat.victory = true;
+        combat.log.push("Der Kampf ist gewonnen.");
+
+        setup.awardCombatRewards();
+
+        setup.trimCombatLog();
+        return;
+    }
+
+    setup.combatEnemyTurn();
+
+    setup.trimCombatLog();
+};
+
+
+/* =========================================================
+   ENEMY TURN
+========================================================= */
+
+setup.combatEnemyTurn = function () {
+    const combat = State.variables.combat;
+    const player = State.variables.player;
+
+    if (!combat || !combat.active) {
+        return;
+    }
+
+    if (!player || !player.fightStats) {
+        console.warn("Spieler oder player.fightStats fehlt.");
+        return;
+    }
+
+    if (setup.isDead(player)) {
+        combat.active = false;
+        combat.defeat = true;
+        combat.log.push("Du gehst zu Boden.");
+        return;
+    }
+
+    const livingEnemies = combat.attackers.filter(e => e && !setup.isDead(e));
+
+    /*
+       Balance:
+       1 = ein Gegner greift pro Gegenzug an
+       2 = maximal zwei Gegner greifen an
+       Infinity = alle Gegner greifen an
+    */
+    const maxEnemyAttacks = 1;
+
+    for (let i = 0; i < livingEnemies.length && i < maxEnemyAttacks; i++) {
+        const enemy = livingEnemies[i];
+        const result = setup.attack(enemy, player);
+
+        if (result.outcome === "crit") {
+            combat.log.push(
+                enemy.name + " trifft dich kritisch mit " +
+                result.weapon.name + "! (" + result.damage + " Schaden)"
+            );
+        }
+        else if (result.outcome === "hit") {
+            combat.log.push(
+                enemy.name + " trifft dich mit " +
+                result.weapon.name + ". (" + result.damage + " Schaden)"
+            );
+        }
+        else {
+            combat.log.push(
+                enemy.name + " verfehlt dich mit " + result.weapon.name + "."
+            );
+        }
+
+        if (result.targetDead) {
+            combat.active = false;
+            combat.defeat = true;
+            combat.log.push("Du gehst zu Boden.");
+            return;
+        }
+    }
+};
+
+
+/* =========================================================
+   REWARDS
+========================================================= */
+
+setup.awardCombatRewards = function () {
+    const combat = State.variables.combat;
+
+    if (!combat || combat.rewardsGiven) {
+        return;
+    }
+
+    combat.rewardsGiven = true;
+
+    const xp = combat.xpReward || 0;
+
+    if (xp <= 0) {
+        return;
+    }
+
+    const result = setup.gainCombatXp(xp);
+
+    combat.log.push("Du erhältst " + xp + " Kampferfahrung.");
+
+    if (result && result.combatIncreased) {
+        combat.log.push(
+            "Dein Kampfwert steigt auf " + result.newCombat + "."
+        );
+    }
+};
+
+
+/* =========================================================
+   LOG
+========================================================= */
+
+setup.trimCombatLog = function () {
+    const combat = State.variables.combat;
+
+    if (!combat || !combat.log) {
+        return;
+    }
+
+    const maxEntries = 8;
+
+    if (combat.log.length > maxEntries) {
+        combat.log = combat.log.slice(combat.log.length - maxEntries);
+    }
+};
+
+/*==============================================================
+DEBUG TRACKING (vollautomatisch)
+- Loggt JEDEN Passagenbesuch automatisch
+- Loggt JEDEN Klick auf einen Story-Link (SugarCube [[...]] / <<link>>) automatisch
+- Kein manueller Eingriff in bestehenden Passagen-Code nötig
+- Speichert in $world.decisionLog (persistiert im Save)
+- Unbegrenztes Wachstum, kein Auto-Cleanup (bewusst, siehe Vorgabe)
+==============================================================*/
+
+/* --- Sicherstellen, dass das Log existiert --- */
+setup.ensureDecisionLog = function () {
+  if (!Array.isArray(State.variables.world.decisionLog)) {
+    State.variables.world.decisionLog = [];
+  }
+};
+
+/* --- Internen Log-Eintrag schreiben --- */
+setup.pushLogEntry = function (entry) {
+  setup.ensureDecisionLog();
+  entry.day = State.variables.world.day;
+  entry.timestamp = new Date().toISOString();
+  State.variables.world.decisionLog.push(entry);
+};
+
+/*--------------------------------------------------------------
+  1) AUTOMATISCHES PASSAGEN-TRACKING
+     Feuert bei jedem Passagenwechsel, unabhängig davon wie
+     man dort hingekommen ist (Link, <<goto>>, <<include>> zählt NICHT
+     als Passagenwechsel, nur "harte" Passage-Navigation).
+---------------------------------------------------------------*/
+$(document).on(":passagestart", function (ev) {
+  setup.pushLogEntry({
+    type: "visit",
+    passage: ev.passage.title,
+    choice: null
+  });
+});
+
+/*--------------------------------------------------------------
+  2) AUTOMATISCHES KLICK-TRACKING
+     Fängt jeden Klick auf einen Story-internen Link ab, BEVOR
+     SugarCube die Navigation/das Replace ausführt.
+     Betrifft sowohl [[Text->Ziel]] als auch <<link "Text">>...<</link>>,
+     da SugarCube beide als <a class="link-internal"> rendert.
+---------------------------------------------------------------*/
+$(document).on("click", "a.link-internal", function (ev) {
+  var $el = $(this);
+  var label = $el.text().trim();
+
+  // Zielpassage ermitteln, falls vorhanden (bei <<link>> ohne Ziel oft leer/undefined)
+  var target = $el.attr("data-passage") || null;
+
+  setup.pushLogEntry({
+    type: "click",
+    passage: State.passage,   // Passage, IN der geklickt wurde
+    target: target,           // Zielpassage, falls bekannt (kann null sein bei reinen <<link>> Logik-Buttons)
+    choice: label || "(ohne Text)"
+  });
+});
+
+/*--------------------------------------------------------------
+  3) KONSOLEN-AUSGABE
+---------------------------------------------------------------*/
+
+setup.printDecisionLog = function (filterDay) {
+  setup.ensureDecisionLog();
+  var log = State.variables.world.decisionLog;
+  var data = filterDay != null ? log.filter(e => e.day === filterDay) : log;
+
+  if (data.length === 0) {
+    console.log("Kein Log vorhanden" + (filterDay != null ? " für Tag " + filterDay : "") + ".");
+    return;
+  }
+
+  console.table(data.map(function (e, i) {
+    return {
+      "#": i,
+      Tag: e.day,
+      Typ: e.type,
+      Passage: e.passage,
+      Ziel: e.target || "",
+      Entscheidung: e.choice || "",
+      Zeit: e.timestamp
+    };
+  }));
+};
+
+setup.printClicksOnly = function (filterDay) {
+  setup.ensureDecisionLog();
+  var log = State.variables.world.decisionLog.filter(e => e.type === "click");
+  var data = filterDay != null ? log.filter(e => e.day === filterDay) : log;
+
+  if (data.length === 0) {
+    console.log("Keine Klicks geloggt" + (filterDay != null ? " für Tag " + filterDay : "") + ".");
+    return;
+  }
+
+  console.table(data.map(function (e, i) {
+    return { "#": i, Tag: e.day, Passage: e.passage, Ziel: e.target || "", Entscheidung: e.choice, Zeit: e.timestamp };
+  }));
+};
+
+setup.printVisitsOnly = function (filterDay) {
+  setup.ensureDecisionLog();
+  var log = State.variables.world.decisionLog.filter(e => e.type === "visit");
+  var data = filterDay != null ? log.filter(e => e.day === filterDay) : log;
+
+  if (data.length === 0) {
+    console.log("Keine Besuche geloggt" + (filterDay != null ? " für Tag " + filterDay : "") + ".");
+    return;
+  }
+
+  console.table(data.map(function (e, i) {
+    return { "#": i, Tag: e.day, Passage: e.passage, Zeit: e.timestamp };
+  }));
+};
+
+setup.printLogForPassagePrefix = function (prefix) {
+  setup.ensureDecisionLog();
+  var log = State.variables.world.decisionLog.filter(e => e.passage && e.passage.indexOf(prefix) === 0);
+
+  if (log.length === 0) {
+    console.log("Keine Einträge für Passagen-Präfix '" + prefix + "'.");
+    return;
+  }
+
+  console.table(log.map(function (e, i) {
+    return {
+      "#": i,
+      Tag: e.day,
+      Typ: e.type,
+      Passage: e.passage,
+      Ziel: e.target || "",
+      Entscheidung: e.choice || "",
+      Zeit: e.timestamp
+    };
+  }));
+};
+
+setup.dumpDecisionLog = function () {
+  setup.ensureDecisionLog();
+  console.log(JSON.stringify(State.variables.world.decisionLog, null, 2));
+};
+
+setup.clearDecisionLog = function () {
+  State.variables.world.decisionLog = [];
+  console.log("Decision-Log geleert.");
+};
+
 :: StoryStylesheet [stylesheet]
 /* ===================================================================
    AN ALOY STORY — Stylesheet
@@ -7694,4 +9980,285 @@ setup.ausbilderVermerk = function (npcKey, satzKuehl, satzNeutral, satzModerat, 
 .kapitel-opener p:first-of-type::first-letter {
     font-size: 3.2em; float: left; line-height: 0.8;
     padding: 0.05em 0.1em 0 0; color: var(--accent-gold);
+}
+
+
+
+/* =========================
+   COMBAT LAYOUT
+========================= */
+
+.combat {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px;
+}
+
+/* Reihen */
+.combat-row {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+/* =========================
+   COMBAT CARD
+========================= */
+
+.combat-card {
+    width: 160px;
+    padding: 10px;
+
+    border: 2px solid #444;
+    border-radius: 10px;
+
+    background: #1e1e1e;
+    color: #f0f0f0;
+
+    cursor: pointer;
+
+    transition: transform 0.1s ease, border-color 0.2s ease;
+}
+
+.combat-card:hover {
+    transform: scale(1.03);
+    border-color: #888;
+}
+
+/* optional side styling */
+.combat-card.enemy {
+    border-color: #7a2b2b;
+}
+
+.combat-card.ally {
+    border-color: #2b4b7a;
+}
+
+/* =========================
+   NAME
+========================= */
+
+.combat-name {
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+/* =========================
+   HP BAR
+========================= */
+
+.combat-hp-bar {
+    width: 100%;
+    height: 12px;
+
+    background: #333;
+    border-radius: 6px;
+
+    overflow: hidden;
+
+    margin-bottom: 5px;
+}
+
+.combat-hp-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #b33, #e44);
+    width: 100%;
+
+    transition: width 0.3s ease;
+}
+
+/* HP TEXT */
+.combat-hp-text {
+    text-align: center;
+    font-size: 12px;
+    color: #ccc;
+}
+
+/* =========================
+   TYPE / INFO
+========================= */
+
+.combat-type {
+    font-size: 11px;
+    text-align: center;
+    margin-top: 4px;
+    color: #aaa;
+}
+
+.combat-weakness {
+    font-size: 11px;
+    text-align: center;
+    margin-top: 2px;
+    color: #d9a84f;
+}
+
+/* =========================
+   LOG
+========================= */
+
+.combat-log {
+    margin-top: 10px;
+    padding: 10px;
+
+    background: #111;
+    border: 1px solid #333;
+
+    font-size: 13px;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.combat-log-entry {
+    margin-bottom: 4px;
+    color: #ddd;
+}
+
+/* =========================================================
+   WAFFEN-INVENTAR / RADIOBUTTONS
+========================================================= */
+
+.stat-weapon {
+    padding: .28rem 0;
+    border-bottom: 1px solid rgba(197, 179, 148, 0.12);
+}
+
+.stat-weapon:last-child {
+    border-bottom: 0;
+}
+
+.stat-weapon.equipped {
+    color: var(--accent-gold);
+}
+
+.stat-weapon.equipped .stat-label {
+    color: var(--accent-gold);
+    opacity: 1;
+}
+
+.stat-weapon.equipped .stat-val {
+    color: var(--text-parchment);
+}
+
+/* Radio selbst */
+.js-equip-weapon {
+    appearance: none;
+    -webkit-appearance: none;
+
+    width: 14px;
+    height: 14px;
+    margin: 0 .45rem 0 0;
+
+    border: 1px solid var(--accent-brass);
+    border-radius: 50%;
+    background: var(--panel-bg);
+
+    display: inline-grid;
+    place-content: center;
+
+    vertical-align: -2px;
+    cursor: pointer;
+
+    transition:
+        border-color .18s ease,
+        background-color .18s ease,
+        box-shadow .18s ease;
+}
+
+/* innerer Punkt */
+.js-equip-weapon::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+
+    transform: scale(0);
+    transition: transform .14s ease;
+
+    background: var(--accent-gold);
+    box-shadow: 0 0 6px rgba(201, 168, 76, 0.45);
+}
+
+.js-equip-weapon:checked::before {
+    transform: scale(1);
+}
+
+.js-equip-weapon:hover {
+    border-color: var(--accent-gold);
+    background: var(--panel-bg-hover);
+}
+
+.js-equip-weapon:focus-visible {
+    outline: 2px solid var(--accent-gold);
+    outline-offset: 3px;
+}
+
+/* Waffenname klickiger wirken lassen */
+.stat-weapon .stat-label {
+    display: inline-flex;
+    align-items: center;
+    gap: .15rem;
+    cursor: pointer;
+}
+
+/* Werte rechts etwas dezenter */
+.stat-weapon .stat-val {
+    font-size: .9em;
+    color: var(--text-dust);
+}
+
+/* Ausgerüstet-Marker */
+.stat-weapon.equipped .stat-val b {
+    color: var(--accent-gold);
+    font-weight: 600;
+}
+
+/* Fehlerhafte Waffen */
+.stat-weapon.stat-error {
+    color: #e57373;
+}
+
+.stat-weapon.stat-error .stat-val {
+    color: #e57373;
+}
+
+/* =========================================================
+   COMBAT-XP-BAR IN PLAYER TABLE
+========================================================= */
+
+.combat-xp-display {
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    min-width: 220px;
+}
+
+.combat-xp-bar {
+    width: 90px;
+    height: 8px;
+    background: var(--panel-bg);
+    border: 1px solid var(--accent-iron);
+    border-radius: 999px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.combat-xp-fill {
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        var(--accent-brass),
+        var(--accent-gold)
+    );
+    box-shadow: 0 0 6px rgba(201, 168, 76, 0.35);
+    transition: width .25s ease;
+}
+
+.combat-xp-text {
+    font-size: .82em;
+    color: var(--text-dust);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
 }
