@@ -5443,6 +5443,8 @@ Warum habe ich das Gefühl, dass er sich gemerkt hat, was ich gewählt habe?<</g
 
 <div class="thought-box">Sie muss das nicht tun. Niemand hier korrigiert einen anderen, ohne etwas dafür zu wollen. Und doch wirkt es nicht, als wolle sie etwas.</div>
 
+<<set $npc.karla.memory.flags.s1_done to true>>
+
 [[Es ausprobieren — den Griff lockern. ->karla_S1_annehmen]]
 [[Abwinken — du bist müde, das reicht für heute. ->karla_S1_abwinken]]
 
@@ -5512,6 +5514,7 @@ Warum habe ich das Gefühl, dass er sich gemerkt hat, was ich gewählt habe?<</g
 
 <<= setup.setNpcAffection("karla", 10)>>
 <<set $npc.karla.memory.flags.umkehrung_done to true>>
+<<set $npc.karla.memory.flags.s10_done to true>>
 
 <div class="system-alert status-positive">Karla war für dich da, so wie du für sie da warst. Was ihr verbindet, hat den Namen Freundschaft längst hinter sich gelassen — es ist etwas, das hält.</div>
 
@@ -5553,8 +5556,7 @@ Warum habe ich das Gefühl, dass er sich gemerkt hat, was ich gewählt habe?<</g
 <<weiterImTag "Zum Appell gehen">>
 
 
-:: karla_S1b [interrupt einmalig nach_hub] {"position":"150,3275","size":"100,100"}
-<<set $npc.karla.memory.flags.s1b_seen to true>>
+:: karla_S1b [interrupt einmalig nach_hub] {"position":"25,3275","size":"100,100"}
 <p>Nach einem Morgen mit leichten Marschübungen bist du auf dem Weg zum Brunnen, als du am Rand des Übungsplatzes hängenbleibst. Karla trainiert. Nicht allein — ihr gegenüber steht Berns, ein breiter Kerl aus dem zweiten Zug, der mehr Kraft hat als Verstand und das auch weiß.</p>
 
 <p>Du bleibst stehen. Irgendetwas an der Art, wie Karla kämpft, hält dich fest.</p>
@@ -5585,11 +5587,12 @@ Warum habe ich das Gefühl, dass er sich gemerkt hat, was ich gewählt habe?<</g
 
 <div class="thought-box">Was immer mit ihrer linken Seite ist — es schmerzt sie...</div>
 
+<<set $npc.karla.memory.flags.s1b_seen to true>>
+<<set $npc.karla.memory.flags.s1b_done to true>>
 <<weiterImTag "Weiter">>
 
 
 :: karla_S2 [interrupt einmalig] {"position":"150,3400","size":"100,100"}
-<<set $npc.karla.memory.flags.s2_done to true>>
 <p>Der Schinder war heute wieder streng. Du hast dich durchgekämpft, aber die Müdigkeit hängt dir in den Gliedern.</p>
 <p>Langsam formten sich die Rekruten zu einer Einheit. Die Sonne ist schon hinter den Palisaden verschwunden, und die Schatten der Stallungen sind lang.</p>
 
@@ -5610,6 +5613,7 @@ Warum habe ich das Gefühl, dass er sich gemerkt hat, was ich gewählt habe?<</g
 <div class="dialog">„Ich brauche jemanden zum Üben. Jetzt. Und du redest mit niemandem darüber." Sie dreht die eigene Lanze zwischen den Handflächen, locker und gewohnt. „Fang an."</div>
 
 <div class="thought-box">Kein Bitte. Kein Warum. Eine Tatsache, die jetzt im Raum steht wie ein Werkzeug, das man entweder anfasst oder liegen lässt.</div>
+<<set $npc.karla.memory.flags.s2_done to true>>
 
 [[Mitmachen und genau beobachten, wie sie kämpft. ->karla_S2_aktiv]]
 [[Die Lanze auffangen und trotzdem ablehnen. ->karla_S2_ablehnen]]
@@ -5799,6 +5803,7 @@ Warum habe ich das Gefühl, dass er sich gemerkt hat, was ich gewählt habe?<</g
 <div class="dialog">„Die Akten über den Überfall müssen hier irgendwo sein. Wer ausgesagt hat. Wer geschwiegen hat. *Warum* er geschwiegen hat." Sie sieht dich an, und jetzt liegt eine Frage darin, die sie nicht ausspricht. „Das ist der einzige Plan, den ich hab."</div>
 
 <p>Du könntest jetzt vieles sagen. Aber du spürst, dass die wichtigste Antwort keine Worte braucht.</p>
+<<set $npc.karla.memory.flags.s3_done to true>>
 
 [[Die Tür hinter dir schließen und ihr beim Suchen helfen. ->karla_S3_helfen]]
 [[Ihr versprechen zu schweigen — aber sie warnen, dass das hier gefährlich ist. ->karla_S3_warnen]]
@@ -5892,6 +5897,7 @@ Warum habe ich das Gefühl, dass er sich gemerkt hat, was ich gewählt habe?<</g
 <div class="thought-box">Ich hab eine zweite Chance bekommen, die ich nicht verdient hatte. Und diesmal hab ich sie nicht verspielt.</div>
 
 <<= setup.setNpcAffection("karla", 8)>>
+<<set $npc.karla.memory.flags.s3_done to true>>
 <<set $npc.karla.memory.flags.kennt_geheimnis to true>>
 <<weiterImTag "Weiter">>
 
@@ -5969,7 +5975,6 @@ Warum habe ich das Gefühl, dass er sich gemerkt hat, was ich gewählt habe?<</g
 
 <div class="thought-box">Da ist er. Der Mann, der mit einem einzigen Satz alles hätte ändern können — und der geschwiegen hat. Jetzt hat er einen Namen.</div>
 
-<<set $npc.karla.memory.flags.zeuge_gefunden to true>>
 <<include "karla_S4_finalize">>
 
 
@@ -5988,10 +5993,12 @@ Warum habe ich das Gefühl, dass er sich gemerkt hat, was ich gewählt habe?<</g
 
 <div class="system-alert status-info">Du kennst den Namen des Zeugen, der gegen Edric schwieg. Doch was nun damit anzufangen ist, weißt du noch nicht.</div>
 
+<<set $npc.karla.memory.flags.s4_done to true>>
+<<set $npc.karla.memory.flags.zeuge_gefunden to true>>
 <<weiterImTag "Weiter">>
 
 
-:: karla_S4_karla_loest_selbst [interrupt einmalig nach_stube kapitel-opener] {"position":"475,3950","size":"100,100"}
+:: karla_S4_karla_loest_selbst [einmalig nach_stube kapitel-opener] {"position":"475,3950","size":"100,100"}
 <<set _recht = ($player.knowledge.diplomatie || 0) > 0 and ($player.knowledge.diplomatie || 0) < 3>>
 <<set _mag = $npc.magister.affection > 2 and $npc.magister.affection < 4>>
 <p>Karla findet dich, und diesmal wartet sie nicht an der Mauer. Sie kommt direkt auf dich zu, einen gefalteten Zettel in der Hand, und in ihrem Gesicht liegt etwas zwischen Triumph und Vorwurf.</p>
@@ -6040,10 +6047,11 @@ Warum habe ich das Gefühl, dass er sich gemerkt hat, was ich gewählt habe?<</g
 
 <div class="dialog">„Wir haben einen Namen. Aber ein Name ist nur ein Anfang. Die eigentliche Frage kommt erst jetzt." Sie sieht dich an. „Was machen wir damit?"</div>
 
-<<set $npc.karla.memory.flags.zeuge_gefunden to true>>
-<<= setup.setNpcAffection("karla", 2)>>
-
 <div class="thought-box">Karla hat den Zeugen selbst ausfindig gemacht — über die Ladungslisten. Wir kennen den Namen. Doch was nun damit anzufangen ist, weiß keiner von uns...</div>
+
+<<set $npc.karla.memory.flags.zeuge_gefunden to true>>
+<<set $npc.karla.memory.flags.s4_done to true>>
+<<= setup.setNpcAffection("karla", 2)>>
 
 <<weiterImTag "Weiter">>
 
@@ -6061,7 +6069,6 @@ Warum habe ich das Gefühl, dass er sich gemerkt hat, was ich gewählt habe?<</g
 
 <div class="thought-box">Er hat nicht gefragt, warum. Vielleicht weiß er es längst. Bei Halm hat man nie das Gefühl, ihm etwas zu verheimlichen — nur das Gefühl, dass er entscheidet, was er sehen will.</div>
 
-<<set $npc.karla.memory.flags.zeuge_gefunden to true>>
 <<include "karla_S4_finalize">>
 
 
@@ -6076,7 +6083,6 @@ Warum habe ich das Gefühl, dass er sich gemerkt hat, was ich gewählt habe?<</g
 
 <div class="thought-box">Kein Einbruch, kein Risiko. Nur Wissen, am richtigen Ort eingesetzt. Manchmal ist der Kopf die bessere Brechstange.</div>
 
-<<set $npc.karla.memory.flags.zeuge_gefunden to true>>
 <<include "karla_S4_finalize">>
 
 
@@ -6221,6 +6227,7 @@ Warum habe ich das Gefühl, dass er sich gemerkt hat, was ich gewählt habe?<</g
 
 <<set $npc.karla.memory.flags.luigi_done to true>>
 <<set $npc.karla.memory.flags.luigi_aufgetaucht to true>>
+<<set $npc.karla.memory.flags.s7_done to true>>
 
 <<weiterImTag "Zurück auf die Stube">>
 
@@ -6279,6 +6286,7 @@ Warum habe ich das Gefühl, dass er sich gemerkt hat, was ich gewählt habe?<</g
 <div class="scenery-text">Du siehst ihnen nach, wie sie durch das Tor verschwinden, der gesiegelte Passierschein noch in Luigis Hand. Drei Männer, die gekommen sind, weil ein Junge einen Brief geschrieben hat. Dann ist der Hof wieder leer, als wäre nichts gewesen.</div>
 
 <<set $npc.karla.memory.flags.aufloesung_done to true>>
+<<set $npc.karla.memory.flags.s8_done to true>>
 
 <<weiterImTag "Ihnen noch eine Weile nachsehen bevor du dich wieder an den Dienst machst.">>
 
@@ -6345,6 +6353,7 @@ Warum habe ich das Gefühl, dass er sich gemerkt hat, was ich gewählt habe?<</g
 <<= setup.setNpcAffection("karla", 10)>>
 <<set $npc.karla.trust to true>>
 <<set $npc.karla.memory.flags.karla_erfahren to true>>
+<<set $npc.karla.memory.flags.s9_done to true>>
 
 <div class="system-alert status-positive">Karla weiß nun alles — vom Brief, von Luigi, von der Wahrheit über ihren Onkel. Was zwischen euch ist, hat sich für immer verändert.</div>
 
@@ -6457,6 +6466,7 @@ setup.interruptCond["Jarek_S6_DokVermisst"] = w =>
 setup.interruptPrio["Jarek_S6_DokVermisst"] = 60;
 /* ===== JAREK-QUESTKETTE ENDE (S1–S4, geflaggt + über interruptHistory getaktet) ===== */
 
+
 /* ===== KARLA-QUESTKETTE (Phase 1–7, geflaggt + getaktet) ===== */
 
 /* --- karla_S1: erste Trainings-Annäherung (Einstieg, Phase 1) --- */
@@ -6470,6 +6480,7 @@ setup.interruptPrio["karla_S1"] = 50;
 setup.interruptCond["karla_S1b"] = w => {
   var f = State.variables.npc.karla.memory.flags, h = w.interruptHistory;
   return f.s1_seen === true
+  	  && f.s1_done === true	
       && f.s1b_seen !== true
       && f.s2_done !== true
       && w.day >= (h["karla_S1"] || 0) + 2;
@@ -6479,7 +6490,9 @@ setup.interruptPrio["karla_S1b"] = 50;
 /* --- karla_S2: vertieftes Training (an s1b_seen gekoppelt) --- */
 setup.interruptCond["karla_S2"] = w => {
   var f = State.variables.npc.karla.memory.flags, h = w.interruptHistory;
-  return f.s1b_seen === true && f.s2_done !== true
+  return f.s1b_seen === true 
+      && f.s1b_done === true	
+      && f.s2_done !== true
       && w.day >= (h["karla_S1b"] || 0) + 2;
 };
 setup.interruptPrio["karla_S2"] = 50;
@@ -6518,6 +6531,7 @@ setup.interruptPrio["karla_S_Verhaftung"] = 60;
 setup.interruptCond["karla_S4"] = w => {
   var f = State.variables.npc.karla.memory.flags, h = w.interruptHistory;
   return f.kennt_geheimnis === true
+      && f.s3_done === true	
       && f.zeuge_gefunden !== true
       && w.day >= (h["karla_S3"] || h["karla_S3b"] || 0) + 2;
 };
@@ -6529,6 +6543,7 @@ setup.interruptPrio["karla_S4"] = 55;
 setup.interruptCond["karla_S5"] = w => {
   var f = State.variables.npc.karla.memory.flags, h = w.interruptHistory;
   return f.zeuge_gefunden === true
+      && f.s4_done === true  
       && f.dilemma_done !== true
       && w.day >= (h["karla_S4"] || h["karla_S4_karla_loest_selbst"] || 0) + 2;
 };
@@ -6538,6 +6553,7 @@ setup.interruptPrio["karla_S5"] = 60;
 setup.interruptCond["karla_S7"] = w => {
   var f = State.variables.npc.karla.memory.flags;
   return f.brief_gesendet === true
+      && f.s5_done === true  
       && f.luigi_done !== true
       && w.day >= (f.brief_tag || 0) + 6;
 };
@@ -6547,6 +6563,7 @@ setup.interruptPrio["karla_S7"] = 70;
 setup.interruptCond["karla_S8"] = w => {
   var f = State.variables.npc.karla.memory.flags, h = w.interruptHistory;
   return f.luigi_done === true
+	  && f.s7_done === true  
       && f.aufloesung_done !== true
       && w.day >= (h["karla_S7"] || 0) + 4;
 };
@@ -6556,6 +6573,7 @@ setup.interruptPrio["karla_S8"] = 70;
 setup.interruptCond["karla_S9"] = w => {
   var f = State.variables.npc.karla.memory.flags, h = w.interruptHistory;
   return f.aufloesung_done === true
+      && f.s8_done === true
       && f.karla_erfahren !== true
       && w.day >= (h["karla_S8"] || 0) + 1;
 };

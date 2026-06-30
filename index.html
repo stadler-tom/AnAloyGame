@@ -768,6 +768,7 @@ setup.interruptCond["Jarek_S6_DokVermisst"] = w =>
 setup.interruptPrio["Jarek_S6_DokVermisst"] = 60;
 /* ===== JAREK-QUESTKETTE ENDE (S1–S4, geflaggt + über interruptHistory getaktet) ===== */
 
+
 /* ===== KARLA-QUESTKETTE (Phase 1–7, geflaggt + getaktet) ===== */
 
 /* --- karla_S1: erste Trainings-Annäherung (Einstieg, Phase 1) --- */
@@ -781,6 +782,7 @@ setup.interruptPrio["karla_S1"] = 50;
 setup.interruptCond["karla_S1b"] = w => {
   var f = State.variables.npc.karla.memory.flags, h = w.interruptHistory;
   return f.s1_seen === true
+  	  && f.s1_done === true	
       && f.s1b_seen !== true
       && f.s2_done !== true
       && w.day >= (h["karla_S1"] || 0) + 2;
@@ -790,7 +792,9 @@ setup.interruptPrio["karla_S1b"] = 50;
 /* --- karla_S2: vertieftes Training (an s1b_seen gekoppelt) --- */
 setup.interruptCond["karla_S2"] = w => {
   var f = State.variables.npc.karla.memory.flags, h = w.interruptHistory;
-  return f.s1b_seen === true && f.s2_done !== true
+  return f.s1b_seen === true 
+      && f.s1b_done === true	
+      && f.s2_done !== true
       && w.day >= (h["karla_S1b"] || 0) + 2;
 };
 setup.interruptPrio["karla_S2"] = 50;
@@ -829,6 +833,7 @@ setup.interruptPrio["karla_S_Verhaftung"] = 60;
 setup.interruptCond["karla_S4"] = w => {
   var f = State.variables.npc.karla.memory.flags, h = w.interruptHistory;
   return f.kennt_geheimnis === true
+      && f.s3_done === true	
       && f.zeuge_gefunden !== true
       && w.day >= (h["karla_S3"] || h["karla_S3b"] || 0) + 2;
 };
@@ -840,6 +845,7 @@ setup.interruptPrio["karla_S4"] = 55;
 setup.interruptCond["karla_S5"] = w => {
   var f = State.variables.npc.karla.memory.flags, h = w.interruptHistory;
   return f.zeuge_gefunden === true
+      && f.s4_done === true  
       && f.dilemma_done !== true
       && w.day >= (h["karla_S4"] || h["karla_S4_karla_loest_selbst"] || 0) + 2;
 };
@@ -849,6 +855,7 @@ setup.interruptPrio["karla_S5"] = 60;
 setup.interruptCond["karla_S7"] = w => {
   var f = State.variables.npc.karla.memory.flags;
   return f.brief_gesendet === true
+      && f.s5_done === true  
       && f.luigi_done !== true
       && w.day >= (f.brief_tag || 0) + 6;
 };
@@ -858,6 +865,7 @@ setup.interruptPrio["karla_S7"] = 70;
 setup.interruptCond["karla_S8"] = w => {
   var f = State.variables.npc.karla.memory.flags, h = w.interruptHistory;
   return f.luigi_done === true
+	  && f.s7_done === true  
       && f.aufloesung_done !== true
       && w.day >= (h["karla_S7"] || 0) + 4;
 };
@@ -867,6 +875,7 @@ setup.interruptPrio["karla_S8"] = 70;
 setup.interruptCond["karla_S9"] = w => {
   var f = State.variables.npc.karla.memory.flags, h = w.interruptHistory;
   return f.aufloesung_done === true
+      && f.s8_done === true
       && f.karla_erfahren !== true
       && w.day >= (h["karla_S8"] || 0) + 1;
 };
@@ -7998,6 +8007,8 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 
 &lt;div class=&quot;thought-box&quot;&gt;Sie muss das nicht tun. Niemand hier korrigiert einen anderen, ohne etwas dafür zu wollen. Und doch wirkt es nicht, als wolle sie etwas.&lt;/div&gt;
 
+&lt;&lt;set $npc.karla.memory.flags.s1_done to true&gt;&gt;
+
 [[Es ausprobieren — den Griff lockern. -&gt;karla_S1_annehmen]]
 [[Abwinken — du bist müde, das reicht für heute. -&gt;karla_S1_abwinken]]</tw-passagedata><tw-passagedata pid="153" name="karla_S10" tags="interrupt einmalig nach_stube" position="1300,3275" size="100,100">&lt;&lt;set _ausgang = $world.flags.jarek_ausgang&gt;&gt;
 &lt;p&gt;Karla findet dich. Natürlich findet sie dich — sie hat ein Gespür für die Risse in Menschen, weil sie ihre eigenen so lange verstecken musste.&lt;/p&gt;
@@ -8063,6 +8074,7 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 
 &lt;&lt;= setup.setNpcAffection(&quot;karla&quot;, 10)&gt;&gt;
 &lt;&lt;set $npc.karla.memory.flags.umkehrung_done to true&gt;&gt;
+&lt;&lt;set $npc.karla.memory.flags.s10_done to true&gt;&gt;
 
 &lt;div class=&quot;system-alert status-positive&quot;&gt;Karla war für dich da, so wie du für sie da warst. Was ihr verbindet, hat den Namen Freundschaft längst hinter sich gelassen — es ist etwas, das hält.&lt;/div&gt;
 
@@ -8093,8 +8105,7 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 
 &lt;&lt;= setup.setNpcAffection(&quot;karla&quot;, 3)&gt;&gt;
 &lt;&lt;= setup.pushNpcMemory(&quot;karla&quot;, &quot;training_angenommen&quot;)&gt;&gt;
-&lt;&lt;weiterImTag &quot;Zum Appell gehen&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="156" name="karla_S1b" tags="interrupt einmalig nach_hub" position="150,3275" size="100,100">&lt;&lt;set $npc.karla.memory.flags.s1b_seen to true&gt;&gt;
-&lt;p&gt;Nach einem Morgen mit leichten Marschübungen bist du auf dem Weg zum Brunnen, als du am Rand des Übungsplatzes hängenbleibst. Karla trainiert. Nicht allein — ihr gegenüber steht Berns, ein breiter Kerl aus dem zweiten Zug, der mehr Kraft hat als Verstand und das auch weiß.&lt;/p&gt;
+&lt;&lt;weiterImTag &quot;Zum Appell gehen&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="156" name="karla_S1b" tags="interrupt einmalig nach_hub" position="25,3275" size="100,100">&lt;p&gt;Nach einem Morgen mit leichten Marschübungen bist du auf dem Weg zum Brunnen, als du am Rand des Übungsplatzes hängenbleibst. Karla trainiert. Nicht allein — ihr gegenüber steht Berns, ein breiter Kerl aus dem zweiten Zug, der mehr Kraft hat als Verstand und das auch weiß.&lt;/p&gt;
 
 &lt;p&gt;Du bleibst stehen. Irgendetwas an der Art, wie Karla kämpft, hält dich fest.&lt;/p&gt;
 
@@ -8124,8 +8135,9 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 
 &lt;div class=&quot;thought-box&quot;&gt;Was immer mit ihrer linken Seite ist — es schmerzt sie...&lt;/div&gt;
 
-&lt;&lt;weiterImTag &quot;Weiter&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="157" name="karla_S2" tags="interrupt einmalig" position="150,3400" size="100,100">&lt;&lt;set $npc.karla.memory.flags.s2_done to true&gt;&gt;
-&lt;p&gt;Der Schinder war heute wieder streng. Du hast dich durchgekämpft, aber die Müdigkeit hängt dir in den Gliedern.&lt;/p&gt;
+&lt;&lt;set $npc.karla.memory.flags.s1b_seen to true&gt;&gt;
+&lt;&lt;set $npc.karla.memory.flags.s1b_done to true&gt;&gt;
+&lt;&lt;weiterImTag &quot;Weiter&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="157" name="karla_S2" tags="interrupt einmalig" position="150,3400" size="100,100">&lt;p&gt;Der Schinder war heute wieder streng. Du hast dich durchgekämpft, aber die Müdigkeit hängt dir in den Gliedern.&lt;/p&gt;
 &lt;p&gt;Langsam formten sich die Rekruten zu einer Einheit. Die Sonne ist schon hinter den Palisaden verschwunden, und die Schatten der Stallungen sind lang.&lt;/p&gt;
 
 &lt;p&gt;Nach dem Abendapell willst du gerade zur Stube, als sie aus dem Schatten der Stallungen tritt. Nicht laut. Sie wartet einfach, bis du sie siehst.&lt;/p&gt;
@@ -8145,6 +8157,7 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 &lt;div class=&quot;dialog&quot;&gt;„Ich brauche jemanden zum Üben. Jetzt. Und du redest mit niemandem darüber.&quot; Sie dreht die eigene Lanze zwischen den Handflächen, locker und gewohnt. „Fang an.&quot;&lt;/div&gt;
 
 &lt;div class=&quot;thought-box&quot;&gt;Kein Bitte. Kein Warum. Eine Tatsache, die jetzt im Raum steht wie ein Werkzeug, das man entweder anfasst oder liegen lässt.&lt;/div&gt;
+&lt;&lt;set $npc.karla.memory.flags.s2_done to true&gt;&gt;
 
 [[Mitmachen und genau beobachten, wie sie kämpft. -&gt;karla_S2_aktiv]]
 [[Die Lanze auffangen und trotzdem ablehnen. -&gt;karla_S2_ablehnen]]</tw-passagedata><tw-passagedata pid="158" name="karla_S2_ablehnen" tags="nach_stube" position="400,3525" size="100,100">&lt;p&gt;Du fängst die Lanze auf — und hältst sie einen Moment in den Händen, bevor du sie langsam wieder zum Boden senkst.&lt;/p&gt;
@@ -8302,6 +8315,7 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 &lt;div class=&quot;dialog&quot;&gt;„Die Akten über den Überfall müssen hier irgendwo sein. Wer ausgesagt hat. Wer geschwiegen hat. *Warum* er geschwiegen hat.&quot; Sie sieht dich an, und jetzt liegt eine Frage darin, die sie nicht ausspricht. „Das ist der einzige Plan, den ich hab.&quot;&lt;/div&gt;
 
 &lt;p&gt;Du könntest jetzt vieles sagen. Aber du spürst, dass die wichtigste Antwort keine Worte braucht.&lt;/p&gt;
+&lt;&lt;set $npc.karla.memory.flags.s3_done to true&gt;&gt;
 
 [[Die Tür hinter dir schließen und ihr beim Suchen helfen. -&gt;karla_S3_helfen]]
 [[Ihr versprechen zu schweigen — aber sie warnen, dass das hier gefährlich ist. -&gt;karla_S3_warnen]]</tw-passagedata><tw-passagedata pid="166" name="karla_S3_warnen" tags="nach_morgen" position="150,4000" size="100,100">&lt;div class=&quot;dialog&quot;&gt;&quot;Ich werde nichts sagen, zu niemandem&quot;, sagst du.&lt;/div&gt;
@@ -8375,6 +8389,7 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 &lt;div class=&quot;thought-box&quot;&gt;Ich hab eine zweite Chance bekommen, die ich nicht verdient hatte. Und diesmal hab ich sie nicht verspielt.&lt;/div&gt;
 
 &lt;&lt;= setup.setNpcAffection(&quot;karla&quot;, 8)&gt;&gt;
+&lt;&lt;set $npc.karla.memory.flags.s3_done to true&gt;&gt;
 &lt;&lt;set $npc.karla.memory.flags.kennt_geheimnis to true&gt;&gt;
 &lt;&lt;weiterImTag &quot;Weiter&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="171" name="karla_S3b_misslingt" tags="nach_morgen" position="700,3400" size="100,100">&lt;div class=&quot;dialog&quot;&gt;„Ich weiß, was du suchst&quot;, sagst du. „Wegen deinem Onkel, oder?&quot;&lt;/div&gt;
 
@@ -8440,7 +8455,6 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 
 &lt;div class=&quot;thought-box&quot;&gt;Da ist er. Der Mann, der mit einem einzigen Satz alles hätte ändern können — und der geschwiegen hat. Jetzt hat er einen Namen.&lt;/div&gt;
 
-&lt;&lt;set $npc.karla.memory.flags.zeuge_gefunden to true&gt;&gt;
 &lt;&lt;include &quot;karla_S4_finalize&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="174" name="karla_S4_finalize" tags="" position="600,3850" size="100,100">&lt;p&gt;Du bringst Karla den Namen noch am selben Abend.&lt;/p&gt;
 
 &lt;p&gt;Sie liest ihn. Liest ihn ein zweites Mal. Und für einen Moment ist da etwas auf ihrem Gesicht, das du selten siehst — nicht Freude, dafür ist die Sache zu schwer, aber etwas wie ein Halt. Als hätte sie zwei Jahre lang ins Leere gegriffen und endlich etwas Festes in der Hand.&lt;/p&gt;
@@ -8455,7 +8469,9 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 
 &lt;div class=&quot;system-alert status-info&quot;&gt;Du kennst den Namen des Zeugen, der gegen Edric schwieg. Doch was nun damit anzufangen ist, weißt du noch nicht.&lt;/div&gt;
 
-&lt;&lt;weiterImTag &quot;Weiter&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="175" name="karla_S4_karla_loest_selbst" tags="interrupt einmalig nach_stube kapitel-opener" position="475,3950" size="100,100">&lt;&lt;set _recht = ($player.knowledge.diplomatie || 0) &gt; 0 and ($player.knowledge.diplomatie || 0) &lt; 3&gt;&gt;
+&lt;&lt;set $npc.karla.memory.flags.s4_done to true&gt;&gt;
+&lt;&lt;set $npc.karla.memory.flags.zeuge_gefunden to true&gt;&gt;
+&lt;&lt;weiterImTag &quot;Weiter&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="175" name="karla_S4_karla_loest_selbst" tags="einmalig nach_stube kapitel-opener" position="475,3950" size="100,100">&lt;&lt;set _recht = ($player.knowledge.diplomatie || 0) &gt; 0 and ($player.knowledge.diplomatie || 0) &lt; 3&gt;&gt;
 &lt;&lt;set _mag = $npc.magister.affection &gt; 2 and $npc.magister.affection &lt; 4&gt;&gt;
 &lt;p&gt;Karla findet dich, und diesmal wartet sie nicht an der Mauer. Sie kommt direkt auf dich zu, einen gefalteten Zettel in der Hand, und in ihrem Gesicht liegt etwas zwischen Triumph und Vorwurf.&lt;/p&gt;
 
@@ -8503,10 +8519,11 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 
 &lt;div class=&quot;dialog&quot;&gt;„Wir haben einen Namen. Aber ein Name ist nur ein Anfang. Die eigentliche Frage kommt erst jetzt.&quot; Sie sieht dich an. „Was machen wir damit?&quot;&lt;/div&gt;
 
-&lt;&lt;set $npc.karla.memory.flags.zeuge_gefunden to true&gt;&gt;
-&lt;&lt;= setup.setNpcAffection(&quot;karla&quot;, 2)&gt;&gt;
-
 &lt;div class=&quot;thought-box&quot;&gt;Karla hat den Zeugen selbst ausfindig gemacht — über die Ladungslisten. Wir kennen den Namen. Doch was nun damit anzufangen ist, weiß keiner von uns...&lt;/div&gt;
+
+&lt;&lt;set $npc.karla.memory.flags.zeuge_gefunden to true&gt;&gt;
+&lt;&lt;set $npc.karla.memory.flags.s4_done to true&gt;&gt;
+&lt;&lt;= setup.setNpcAffection(&quot;karla&quot;, 2)&gt;&gt;
 
 &lt;&lt;weiterImTag &quot;Weiter&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="176" name="karla_S4_magister" tags="nach_stube" position="700,3725" size="100,100">&lt;p&gt;Du wartest, bis der Hörsaal leer ist, und trittst an Halms Pult. Er sieht nicht auf, aber er weiß, dass du da bist.&lt;/p&gt;
 
@@ -8520,7 +8537,6 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 
 &lt;div class=&quot;thought-box&quot;&gt;Er hat nicht gefragt, warum. Vielleicht weiß er es längst. Bei Halm hat man nie das Gefühl, ihm etwas zu verheimlichen — nur das Gefühl, dass er entscheidet, was er sehen will.&lt;/div&gt;
 
-&lt;&lt;set $npc.karla.memory.flags.zeuge_gefunden to true&gt;&gt;
 &lt;&lt;include &quot;karla_S4_finalize&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="177" name="karla_S4_wissen" tags="nach_stube" position="600,3725" size="100,100">&lt;p&gt;Du brauchst einen Moment, dann fällt es dir wieder ein — etwas, das Magister Halm beiläufig im Recht-Unterricht erwähnt hat. Die eigentlichen Militärakten zum Überfall sind unter Verschluss, klar. Aber jedes Gericht führt eine *Ladungsliste*: wer vorgeladen wurde, wann, in welcher Sache. Diese Listen gelten als Verwaltungskram, nicht als Geheimsache. Sie liegen offener.&lt;/p&gt;
 
 &lt;p&gt;Du musst nicht einbrechen. Du musst nur wissen, wonach du fragst — und das tust du.&lt;/p&gt;
@@ -8531,7 +8547,6 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 
 &lt;div class=&quot;thought-box&quot;&gt;Kein Einbruch, kein Risiko. Nur Wissen, am richtigen Ort eingesetzt. Manchmal ist der Kopf die bessere Brechstange.&lt;/div&gt;
 
-&lt;&lt;set $npc.karla.memory.flags.zeuge_gefunden to true&gt;&gt;
 &lt;&lt;include &quot;karla_S4_finalize&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="178" name="karla_S5" tags="interrupt einmalig nach_morgen kapitel-opener" position="850,3600" size="100,100">&lt;p&gt;Ihr sitzt hinter der Schmiede, dort wo das Lager euch in Ruhe lässt. Zwischen euch auf einem umgedrehten Eimer liegt der Zettel mit dem Namen. Ihr habt ihn beide schon zu oft angesehen.&lt;/p&gt;
 
 &lt;p&gt;Karla redet. Nicht viel — aber für ihre Verhältnisse ist es ein Wasserfall, und das allein zeigt dir, wie aufgewühlt sie ist.&lt;/p&gt;
@@ -8660,6 +8675,7 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 
 &lt;&lt;set $npc.karla.memory.flags.luigi_done to true&gt;&gt;
 &lt;&lt;set $npc.karla.memory.flags.luigi_aufgetaucht to true&gt;&gt;
+&lt;&lt;set $npc.karla.memory.flags.s7_done to true&gt;&gt;
 
 &lt;&lt;weiterImTag &quot;Zurück auf die Stube&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="182" name="karla_S8" tags="interrupt einmalig nach_hub" position="1175,3550" size="100,100">&lt;p&gt;Ein paar Tage sind vergangen, und du hast dich beinahe damit abgefunden, dass das Treffen im Hof alles war — ein Versprechen, das vielleicht im Sand verläuft, wie so viele Versprechen.&lt;/p&gt;
 
@@ -8706,6 +8722,7 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 &lt;div class=&quot;scenery-text&quot;&gt;Du siehst ihnen nach, wie sie durch das Tor verschwinden, der gesiegelte Passierschein noch in Luigis Hand. Drei Männer, die gekommen sind, weil ein Junge einen Brief geschrieben hat. Dann ist der Hof wieder leer, als wäre nichts gewesen.&lt;/div&gt;
 
 &lt;&lt;set $npc.karla.memory.flags.aufloesung_done to true&gt;&gt;
+&lt;&lt;set $npc.karla.memory.flags.s8_done to true&gt;&gt;
 
 &lt;&lt;weiterImTag &quot;Ihnen noch eine Weile nachsehen bevor du dich wieder an den Dienst machst.&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="185" name="karla_S8_zeugen" tags="" position="1175,3800" size="100,100">&lt;p&gt;Der lebhafte tritt vor, und zum ersten Mal hörst du ihn richtig sprechen — eine andere Färbung als Luigi, weicher, näselnder, mit gerolltem Tonfall, der die Worte tänzeln lässt.&lt;/p&gt;
 
@@ -8764,6 +8781,7 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 &lt;&lt;= setup.setNpcAffection(&quot;karla&quot;, 10)&gt;&gt;
 &lt;&lt;set $npc.karla.trust to true&gt;&gt;
 &lt;&lt;set $npc.karla.memory.flags.karla_erfahren to true&gt;&gt;
+&lt;&lt;set $npc.karla.memory.flags.s9_done to true&gt;&gt;
 
 &lt;div class=&quot;system-alert status-positive&quot;&gt;Karla weiß nun alles — vom Brief, von Luigi, von der Wahrheit über ihren Onkel. Was zwischen euch ist, hat sich für immer verändert.&lt;/div&gt;
 
