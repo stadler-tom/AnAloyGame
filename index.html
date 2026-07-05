@@ -732,21 +732,16 @@ var LZString=function(){var r=String.fromCharCode,o="ABCDEFGHIJKLMNOPQRSTUVWXYZa
 .menu { list-style: none; padding-left: 0; margin: 2em 0; }
 .menu li { margin-bottom: 0.75em; }
 
-#story-title { margin: 0; }
-
-#story-title .story-title-box {
-    width: 160px;
-    height: 90px;
+#ui-bar .story-title-box {
+    width: 90%;
     margin: 0 auto;
     overflow: hidden;
-    border-radius: 6px;
 }
-
-#story-title .story-title-box img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+#ui-bar .story-title-box img {
     display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
 }
 
 .npc-row-compact {
@@ -12846,6 +12841,10 @@ Ermittlung frühestens Tag: &lt;b&gt;&lt;&lt;= $world.ermittlung.fruehestens_tag
 [[Zurück in die Stadt|Tageshub_Stadt]]</tw-passagedata><tw-passagedata pid="273" name="StorySubtitle" tags="" position="250,275" size="100,100">&lt;&lt;if $player.flags.jareknarbe === undefined&gt;&gt;
     &lt;&lt;set $player.flags.jareknarbe = false&gt;&gt;
 &lt;&lt;/if&gt;&gt;
+
+
+
+
 &lt;&lt;if $showLogo&gt;&gt;
     &lt;&lt;if $world.kapitel1_gesperrt === false&gt;&gt;
 
@@ -12861,6 +12860,8 @@ Ermittlung frühestens Tag: &lt;b&gt;&lt;&lt;= $world.ermittlung.fruehestens_tag
             &lt;div class=&#39;story-title-box&#39;&gt;&lt;img src=&#39;Thomas_Kap2.png&#39; alt=&#39;An Aloy Story&#39;&gt;&lt;/div&gt;
         &lt;&lt;/if&gt;&gt;      
     &lt;&lt;/if&gt;&gt;
+&lt;&lt;else&gt;&gt;
+&lt;div class=&#39;story-title-box&#39;&gt;&lt;img src=&#39;Thomas_Kap0.png&#39; alt=&#39;An Aloy Story&#39;&gt;&lt;/div&gt;
 &lt;&lt;/if&gt;&gt;
 
 		&lt;span class=&quot;hud-item hud-money&quot;&gt;
@@ -12970,48 +12971,29 @@ Ermittlung frühestens Tag: &lt;b&gt;&lt;&lt;= $world.ermittlung.fruehestens_tag
 &lt;&lt;/if&gt;&gt;
 
 &lt;&lt;set $world.tagesAktionen += 1&gt;&gt;
-&lt;&lt;weiterImTag &quot;Zurück in den Tag&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="278" name="StoryMenu" tags="" position="400,275" size="100,100">        &lt;&lt;if passage() neq &quot;journalAnsicht&quot;&gt;&gt;
-            &lt;&lt;link &quot;📖 Notizbuch&quot; &quot;journalAnsicht&quot;&gt;&gt;
-                &lt;&lt;set $journal_return = passage()&gt;&gt;
-            &lt;&lt;/link&gt;&gt;
-        &lt;&lt;else&gt;&gt;
-            &lt;span class=&quot;hud-item&quot;&gt;📖 Notizbuch&lt;/span&gt;
-        &lt;&lt;/if&gt;&gt;
-        
-                &lt;&lt;if passage() neq &quot;journalAnsicht&quot;&gt;&gt;
-            &lt;&lt;link &quot;📖 Personen&quot; &quot;Notizbuch_Personen&quot;&gt;&gt;
-                &lt;&lt;set $journal_return = passage()&gt;&gt;
-            &lt;&lt;/link&gt;&gt;
-        &lt;&lt;else&gt;&gt;
-            &lt;span class=&quot;hud-item&quot;&gt;📖 Notizbuch&lt;/span&gt;
-        &lt;&lt;/if&gt;&gt;
-        
-                &lt;&lt;if passage() neq &quot;journalAnsicht&quot;&gt;&gt;
-            &lt;&lt;link &quot;📖 Kameraden&quot; &quot;Notizbuch_Kameraden&quot;&gt;&gt;
-                &lt;&lt;set $journal_return = passage()&gt;&gt;
-            &lt;&lt;/link&gt;&gt;
-        &lt;&lt;else&gt;&gt;
-            &lt;span class=&quot;hud-item&quot;&gt;📖 Notizbuch&lt;/span&gt;
-        &lt;&lt;/if&gt;&gt;
-        
-                &lt;&lt;if passage() neq &quot;journalAnsicht&quot;&gt;&gt;
-            &lt;&lt;link &quot;📖 Gerüchte&quot; &quot;Notizbuch_Geruechte&quot;&gt;&gt;
-                &lt;&lt;set $journal_return = passage()&gt;&gt;
-            &lt;&lt;/link&gt;&gt;
-        &lt;&lt;else&gt;&gt;
-            &lt;span class=&quot;hud-item&quot;&gt;📖 Notizbuch&lt;/span&gt;
-        &lt;&lt;/if&gt;&gt;
+&lt;&lt;weiterImTag &quot;Zurück in den Tag&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="278" name="StoryMenu" tags="" position="400,275" size="100,100">&lt;&lt;set _journalPages = [&quot;journalAnsicht&quot;, &quot;Notizbuch_Personen&quot;, &quot;Notizbuch_Kameraden&quot;, &quot;Notizbuch_Geruechte&quot;, &quot;Notizbuch_Ermittlung&quot;]&gt;&gt;
 
-&lt;if $world.kapitel1_gesperrt === true&gt;&gt;
-                &lt;&lt;if passage() neq &quot;journalAnsicht&quot;&gt;&gt;
-            &lt;&lt;link &quot;📖 Ermittlungsstand&quot; &quot;Notizbuch_Ermittlung&quot;&gt;&gt;
-                &lt;&lt;set $journal_return = passage()&gt;&gt;
-            &lt;&lt;/link&gt;&gt;
-        &lt;&lt;else&gt;&gt;
-            &lt;span class=&quot;hud-item&quot;&gt;📖 Notizbuch&lt;/span&gt;
-        &lt;&lt;/if&gt;&gt;
-&lt;&lt;/&gt;&gt;
-</tw-passagedata><tw-passagedata pid="279" name="Notizbuch_Personen" tags="" position="825,0" size="100,100">&lt;h2&gt;📖 Personen — im Detail&lt;/h2&gt;
+&lt;&lt;if not _journalPages.includes(passage())&gt;&gt;
+	/* Überall sonst: nur der Einstieg, sofern erlaubt */
+	&lt;&lt;if not setup.isJournalBlocked()&gt;&gt;
+		&lt;&lt;link &quot;📖 Notizbuch&quot; &quot;journalAnsicht&quot;&gt;&gt;&lt;&lt;set $journal_return = passage()&gt;&gt;&lt;&lt;/link&gt;&gt;
+        &lt;&lt;link &quot;📖 Personen&quot; &quot;Notizbuch_Personen&quot;&gt;&gt;&lt;&lt;set $journal_return = passage()&gt;&gt;&lt;&lt;/link&gt;&gt;
+                &lt;&lt;link &quot;📖 Kameraden&quot; &quot;Notizbuch_Kameraden&quot;&gt;&gt;&lt;&lt;set $journal_return = passage()&gt;&gt;&lt;&lt;/link&gt;&gt;
+                        &lt;&lt;link &quot;📖 Gerüchte&quot; &quot;Notizbuch_Geruechte&quot;&gt;&gt;&lt;&lt;set $journal_return = passage()&gt;&gt;&lt;&lt;/link&gt;&gt;
+                        &lt;&lt;if $world.kapitel1_gesperrt === true and setup.ermittlungBekannt()&gt;&gt;
+                        &lt;&lt;link &quot;📖 Ermittlungsstand&quot; &quot;Notizbuch_Ermittlung&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
+                        	&lt;&lt;/if&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
+&lt;&lt;else&gt;&gt;
+	/* Auf einer Notizbuch-Seite: die Rubriken — OHNE $journal_return zu überschreiben */
+	&lt;&lt;link &quot;📖 Übersicht&quot; &quot;journalAnsicht&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
+	&lt;&lt;link &quot;📖 Personen&quot; &quot;Notizbuch_Personen&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
+	&lt;&lt;link &quot;📖 Kameraden&quot; &quot;Notizbuch_Kameraden&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
+	&lt;&lt;link &quot;📖 Gerüchte&quot; &quot;Notizbuch_Geruechte&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
+	&lt;&lt;if $world.kapitel1_gesperrt === true and setup.ermittlungBekannt()&gt;&gt;
+		&lt;&lt;link &quot;📖 Ermittlungsstand&quot; &quot;Notizbuch_Ermittlung&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="279" name="Notizbuch_Personen" tags="" position="825,0" size="100,100">&lt;h2&gt;📖 Personen — im Detail&lt;/h2&gt;
 &lt;&lt;set _returnPassage = $journal_return || &quot;Auf Stube&quot;&gt;&gt;
 
     &lt;p class=&quot;weiter-link&quot;&gt;

@@ -6452,54 +6452,39 @@ Der Feldscher. Keine Waffe. Hände, die heilen statt schlagen. Der Gedanke fühl
 
 
 :: StoryMenu {"position":"400,275","size":"100,100"}
-        <<if passage() neq "journalAnsicht">>
-            <<link "📖 Notizbuch" "journalAnsicht">>
-                <<set $journal_return = passage()>>
-            <</link>>
-        <<else>>
-            <span class="hud-item">📖 Notizbuch</span>
-        <</if>>
-        
-                <<if passage() neq "journalAnsicht">>
-            <<link "📖 Personen" "Notizbuch_Personen">>
-                <<set $journal_return = passage()>>
-            <</link>>
-        <<else>>
-            <span class="hud-item">📖 Notizbuch</span>
-        <</if>>
-        
-                <<if passage() neq "journalAnsicht">>
-            <<link "📖 Kameraden" "Notizbuch_Kameraden">>
-                <<set $journal_return = passage()>>
-            <</link>>
-        <<else>>
-            <span class="hud-item">📖 Notizbuch</span>
-        <</if>>
-        
-                <<if passage() neq "journalAnsicht">>
-            <<link "📖 Gerüchte" "Notizbuch_Geruechte">>
-                <<set $journal_return = passage()>>
-            <</link>>
-        <<else>>
-            <span class="hud-item">📖 Notizbuch</span>
-        <</if>>
+<<set _journalPages = ["journalAnsicht", "Notizbuch_Personen", "Notizbuch_Kameraden", "Notizbuch_Geruechte", "Notizbuch_Ermittlung"]>>
 
-<if $world.kapitel1_gesperrt === true>>
-                <<if passage() neq "journalAnsicht">>
-            <<link "📖 Ermittlungsstand" "Notizbuch_Ermittlung">>
-                <<set $journal_return = passage()>>
-            <</link>>
-        <<else>>
-            <span class="hud-item">📖 Notizbuch</span>
-        <</if>>
-<</>>
-
+<<if not _journalPages.includes(passage())>>
+	/* Überall sonst: nur der Einstieg, sofern erlaubt */
+	<<if not setup.isJournalBlocked()>>
+		<<link "📖 Notizbuch" "journalAnsicht">><<set $journal_return = passage()>><</link>>
+        <<link "📖 Personen" "Notizbuch_Personen">><<set $journal_return = passage()>><</link>>
+                <<link "📖 Kameraden" "Notizbuch_Kameraden">><<set $journal_return = passage()>><</link>>
+                        <<link "📖 Gerüchte" "Notizbuch_Geruechte">><<set $journal_return = passage()>><</link>>
+                        <<if $world.kapitel1_gesperrt === true and setup.ermittlungBekannt()>>
+                        <<link "📖 Ermittlungsstand" "Notizbuch_Ermittlung">><</link>>
+                        	<</if>>
+	<</if>>
+<<else>>
+	/* Auf einer Notizbuch-Seite: die Rubriken — OHNE $journal_return zu überschreiben */
+	<<link "📖 Übersicht" "journalAnsicht">><</link>>
+	<<link "📖 Personen" "Notizbuch_Personen">><</link>>
+	<<link "📖 Kameraden" "Notizbuch_Kameraden">><</link>>
+	<<link "📖 Gerüchte" "Notizbuch_Geruechte">><</link>>
+	<<if $world.kapitel1_gesperrt === true and setup.ermittlungBekannt()>>
+		<<link "📖 Ermittlungsstand" "Notizbuch_Ermittlung">><</link>>
+	<</if>>
+<</if>>
 
 
 :: StorySubtitle {"position":"250,275","size":"100,100"}
 <<if $player.flags.jareknarbe === undefined>>
     <<set $player.flags.jareknarbe = false>>
 <</if>>
+
+
+
+
 <<if $showLogo>>
     <<if $world.kapitel1_gesperrt === false>>
 
@@ -6515,6 +6500,8 @@ Der Feldscher. Keine Waffe. Hände, die heilen statt schlagen. Der Gedanke fühl
             <div class='story-title-box'><img src='Thomas_Kap2.png' alt='An Aloy Story'></div>
         <</if>>      
     <</if>>
+<<else>>
+<div class='story-title-box'><img src='Thomas_Kap0.png' alt='An Aloy Story'></div>
 <</if>>
 
 		<span class="hud-item hud-money">
@@ -14085,21 +14072,16 @@ setup.datumAnzeige = function () {
 .menu { list-style: none; padding-left: 0; margin: 2em 0; }
 .menu li { margin-bottom: 0.75em; }
 
-#story-title { margin: 0; }
-
-#story-title .story-title-box {
-    width: 160px;
-    height: 90px;
+#ui-bar .story-title-box {
+    width: 90%;
     margin: 0 auto;
     overflow: hidden;
-    border-radius: 6px;
 }
-
-#story-title .story-title-box img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+#ui-bar .story-title-box img {
     display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
 }
 
 .npc-row-compact {
