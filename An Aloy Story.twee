@@ -723,6 +723,309 @@ Ein dritter.<br>
 <</if>>
 
 
+:: BiwagWidgets [widget] {"position":"3025,4500","size":"100,100"}
+<<widget "biwagCheck">>
+    <<if setup.biwagReady()>>
+        <<replace "#biwag-depart">><span class="weiter-link">[[Der Biwak beginnt->Biwag_Aufbruch]]</span><</replace>>
+    <</if>>
+<</widget>>
+
+
+:: Biwag_Aufbruch {"position":"3075,4650","size":"100,100"}
+yoloswag
+
+
+:: Biwag_Drill {"position":"2900,4650","size":"100,100"}
+<<if $world.biwagEquipment is undefined>>
+	<<set $world.biwagEquipment to { rations: 0, ammunition: 0, shelter: 0, medicine: 0, tools: 0, mobility: 0 }>>
+<</if>>
+
+<<scene>>
+<p>Rindler teilt die Kompanie mit dem knappen Finger eines Mannes ein, der solche Entscheidungen im Schlaf trifft. Vier Spießer, zwei Kannoniere, zwei Armbruster, ein Feldscher — und du. Ein Biwak in kleiner Mannstärke, eine Woche im Feld, fernab der Mauern von Ohm. Keine Küche, keine Kammer, kein Weibel, der euch das Denken abnimmt. „Selbstversorger“, sagt Rindler, und in dem einen Wort liegt die ganze Prüfung. „Wer im Feld nicht für sich sorgen kann, sorgt auch im Gefecht für niemanden.“</p>
+<</scene>>
+
+<<gedanke>>
+<p>Eine Woche. Sieben Tage ohne den Drill, ohne die Stube — und ohne Karla. Der Gedanke sitzt tiefer, als er sollte, und du schiebst ihn beiseite, ehe ihn jemand in deinem Gesicht liest.</p>
+<</gedanke>>
+
+<p>Kaum ist Rindler fort, beginnt das Feilschen. Neun Männer, neun Meinungen, und keiner, der befiehlt. Es dauert nicht lange, bis einer nach Stöckchen ruft — die älteste Art, einen Streit zu beenden, ohne ihn auszufechten. Ihr zieht. Das kürzeste bleibt in deiner Faust.</p>
+
+<<dialog>>
+<p>„Dann bist du der Biwakweibel“, sagt der älteste der Spießer, halb spöttisch, halb erleichtert, es nicht selbst zu sein. „Deins ist das letzte Wort. Und deins der Kopf, wenn's schiefgeht.“</p>
+<</dialog>>
+
+<<switch $player.spezialisierung>>
+<<case "pike">>
+<<gedanke>><p>Als Spießer weißt du, was ein Marsch aus einem Mann macht. Ein Satter hält die Linie. Ein Hungriger bricht sie.</p><</gedanke>>
+<<case "cannon">>
+<<gedanke>><p>Als Geschützmann denkst du zuerst ans Pulver. Ohne Munition ist der stärkste Arm nur ein Knüppel.</p><</gedanke>>
+<<case "crossbow">>
+<<gedanke>><p>Als Armbruster zählst du im Kopf schon die Bolzen. Wer im Feld ausschießt, ist blind.</p><</gedanke>>
+<<case "medicine">>
+<<gedanke>><p>Als Feldscher siehst du die Wunden, die noch keiner hat. Verbände wiegen wenig — und im rechten Moment mehr als alles andere.</p><</gedanke>>
+<<default>>
+<<gedanke>><p>Neun Männer, sieben Tage, ein Karren voll Entscheidungen. Und alle Augen liegen auf dir.</p><</gedanke>>
+<</switch>>
+
+<p>Der Karren fasst nur so viel. Was ihr mitnehmt, müsst ihr tragen — und was ihr zurücklasst, fehlt euch draußen. Drei Fragen bleiben, und an dir ist das letzte Wort.</p>
+
+<h3>1 · Der Proviant</h3>
+<div id="biwag-dec1">
+<<if $world.biwagEquipment.rations gt 0>>
+	<p class="scenery-text"><<if $world.biwagEquipment.rations gte 2>>Volle Rationen sind verladen.<<else>>Ihr reist leicht — unterwegs wird gejagt und gesammelt.<</if>></p>
+<<else>>
+<ul>
+<li><<link "Volle Rationen für die ganze Woche">>
+	<<set $world.biwagEquipment.rations to 2>>
+	<<replace "#biwag-dec1">><p class="scenery-text">Ihr ladet Brot, Pökelfleisch und Erbsen für sieben Tage — schwer, aber niemand steht mit knurrendem Magen Wache.</p><</replace>>
+	<<biwagCheck>>
+<</link>></li>
+<li><<link "Knapp packen, unterwegs jagen und sammeln">>
+	<<set $world.biwagEquipment.rations to 1>><<set $world.biwagEquipment.mobility to 1>>
+	<<replace "#biwag-dec1">><p class="scenery-text">Der Karren bleibt leicht — doch der Bauch der Truppe hängt fortan an ruhiger Hand und gutem Auge.</p><</replace>>
+	<<biwagCheck>>
+<</link>></li>
+</ul>
+<</if>>
+</div>
+
+<h3>2 · Munition oder Unterkunft</h3>
+<div id="biwag-dec2">
+<<if $world.biwagEquipment.ammunition gt 0 or $world.biwagEquipment.shelter gt 0>>
+	<p class="scenery-text"><<if $world.biwagEquipment.ammunition gte 2>>Ihr seid bewaffnet bis unter die Plane, schlaft aber unter offenem Himmel.<<else>>Ihr habt Zelte und trockenes Stroh — auf Kosten von Pulver und Bolzen.<</if>></p>
+<<else>>
+<ul>
+<li><<link "Volle Pulver- und Bolzenvorräte">>
+	<<set $world.biwagEquipment.ammunition to 2>><<set $world.biwagEquipment.shelter to 0>>
+	<<replace "#biwag-dec2">><p class="scenery-text">Pulver, Blei und Bolzen bis unter die Plane. Wird es draußen ernst, seid ihr bereit — doch die Nächte verbringt ihr unter offenem Himmel.</p><</replace>>
+	<<biwagCheck>>
+<</link>></li>
+<li><<link "Ordentliche Zelte für die Woche">>
+	<<set $world.biwagEquipment.shelter to 2>><<set $world.biwagEquipment.ammunition to 1>>
+	<<replace "#biwag-dec2">><p class="scenery-text">Zelte, Planen, trockenes Stroh. Die Truppe wird ausgeruht und warm sein — auf Kosten dessen, was in Läufen und Sehnen steckt.</p><</replace>>
+	<<biwagCheck>>
+<</link>></li>
+</ul>
+<</if>>
+</div>
+
+<h3>3 · Der letzte Platz auf dem Karren</h3>
+<div id="biwag-dec3">
+<<if $world.biwagEquipment.medicine gt 0 or $world.biwagEquipment.tools gt 0>>
+	<p class="scenery-text"><<if $world.biwagEquipment.medicine gte 2>>Der Feldscher ist voll ausgestattet.<<else>>Ihr habt Schanzzeug und Werkzeug an Bord.<</if>></p>
+<<else>>
+<ul>
+<li><<link "Den Feldscher voll ausstatten (Verbände, Kräuter, Branntwein)">>
+	<<set $world.biwagEquipment.medicine to 2>>
+	<<replace "#biwag-dec3">><p class="scenery-text">Der Feldscher nickt euch dankbar zu. Was er trägt, wünscht sich keiner zu brauchen — und jeder ist froh, wenn es da ist.</p><</replace>>
+	<<biwagCheck>>
+<</link>></li>
+<li><<link "Schanzzeug und Werkzeug (Spaten, Beil, Seil)">>
+	<<set $world.biwagEquipment.tools to 2>>
+	<<replace "#biwag-dec3">><p class="scenery-text">Spaten, Beile, Seilwerk. Ein Lager, das sich eingräbt und befestigt, schläft ruhiger — und arbeitet härter.</p><</replace>>
+	<<biwagCheck>>
+<</link>></li>
+</ul>
+<</if>>
+</div>
+
+<div id="biwag-depart">
+<<if setup.biwagReady()>>
+	<span class="weiter-link">[[Der Biwak beginnt->Biwag_Aufbruch]]</span>
+<<else>>
+	<p class="hinweis">Triff alle drei Entscheidungen, ehe ihr aufbrecht.</p>
+<</if>>
+</div>
+
+
+:: Biwag_Tag2 {"position":"3450,4025","size":"100,100"}
+<<if setup.biwagBeatOnce("tag2_start")>>
+	<<= setup.biwagMoral(-2)>>
+	<<= setup.biwagProviant(-1)>>
+<</if>>
+
+<<scene>>
+<p>Der zweite Morgen schmeckt nach kaltem Rauch und feuchtem Gras. Die Männer haben abgebaut, der Karren ist beladen, und als du dich umwendest, liegen neun Augenpaare auf dir — nicht fordernd, nur wartend. Vor euch teilt sich das Land: Ein Fluss zieht silbern nach Norden, gesäumt von Erlen und weichem Grund. Rechts davon steigen die Hügel an, kahl und windig, aber trocken.</p>
+<</scene>>
+
+<<gedanke>>
+<p>Zwei Wege, ein Ziel. Der Fluss ist bequem und führt zu Wasser — aber weicher Boden frisst Zeit. Die Höhen sind mühsam, doch von oben sieht man, was kommt. Deins ist die Wahl.</p>
+<</gedanke>>
+
+<ul>
+<li>[[Am Fluss entlang->Biwag_Tag2_Fluss]]</li>
+<li>[[Den Hügeln folgen->Biwag_Tag2_Huegel]]</li>
+</ul>
+
+
+:: Biwag_Tag2_Fluss {"position":"3400,4150","size":"100,100"}
+<<scene>>
+<p>Ihr folgt dem Wasser. Der Boden gibt unter den Stiefeln nach, Mücken hängen in der Luft, doch der Fluss plaudert freundlich vor sich hin, und die Männer werden leichter im Schritt. An einer Furt, wo der Schlamm die Geschichten der Nacht bewahrt hat, hältst du inne.</p>
+<</scene>>
+
+<<if setup.biwagBeatOnce("tag2_tierfaehrte")>>
+	<<set _r to setup.skillCheckXp("perception", 13)>>
+	<<set $world.biwagTierfaehrte to _r.success>>
+	<<= setup.skillCheckAlert(_r)>>
+	<<if _r.success>>
+		<p>Im weichen Ufer stehen sie klar: die gespaltenen Abdrücke von Rotwild, kaum einen halben Tag alt, allesamt flussaufwärts gerichtet. Wo Wild zur Tränke zieht, lässt sich Fleisch machen.</p>
+	<<else>>
+		<p>Der Grund ist zertreten von euren eigenen Stiefeln und dem Karren, und was an Spuren da sein mag, verliert sich im Gewirr. Du liest nichts heraus, das dir nützt.</p>
+	<</if>>
+<<else>>
+	<p><<if $world.biwagTierfaehrte>>Die Wildfährte am Ufer hast du bereits gelesen.<<else>>Am zertretenen Ufer war keine brauchbare Fährte zu finden.<</if>></p>
+<</if>>
+
+<<gedanke>>
+<p>Etwas glänzt im flachen Wasser, wo die Strömung eine Kiesbank aufgeworfen hat. Es lohnt vielleicht einen kurzen Halt — oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand ab.</p>
+<</gedanke>>
+
+<ul>
+<li>[[Das Flussbett absuchen->Biwag_Tag2_Fluss_Flussbett]]</li>
+<li>[[Lieber den Waldrand absuchen->Biwag_Tag2_Fluss_Waldrand]]</li>
+</ul>
+
+
+:: Biwag_Tag2_Fluss_Flussbett {"position":"3325,4275","size":"100,100"}
+<<scene>>
+<p>Du watest ein paar Schritte in die Untiefe und hebst das glänzende Ding aus dem Kies. Es ist eine Muschel — aber keine, wie du sie kennst: spiralig gewunden, von einem matten Perlmuttglanz, und auf der Innenseite läuft eine Rille, zu regelmäßig, um vom Wasser zu stammen. Du steckst sie ein, ohne recht zu wissen, warum.</p>
+<</scene>>
+
+<<if setup.biwagBeatOnce("tag2_fund_muschel")>>
+	<<set $world.biwagFund_muschel to true>>
+	<<= setup.addItem("seltsam geformte Muschel")>>
+<</if>>
+
+<span class="weiter-link">[[Weiter, ehe die Sonne steigt->Biwag_Tag2_Jagd]]</span>
+\:: Biwag_Tag2_Fluss_Waldrand [layout]
+<<scene>>
+<p>Du lässt das Glitzern Glitzern sein und führst die Männer den festeren Waldrand entlang. Ein trockener Streifen, gut zu gehen — aber außer einem verlassenen Vogelnest und altem Reisig gibt der Saum nichts her. Zeit gespart, nichts gewonnen.</p>
+<</scene>>
+
+<span class="weiter-link">[[Weiter, ehe die Sonne steigt->Biwag_Tag2_Jagd]]</span>
+
+
+:: Biwag_Tag2_Fluss_Waldrand {"position":"3450,4275","size":"100,100"}
+<<scene>>
+<p>Du lässt das Glitzern Glitzern sein und führst die Männer den festeren Waldrand entlang. Ein trockener Streifen, gut zu gehen — aber außer einem verlassenen Vogelnest und altem Reisig gibt der Saum nichts her. Zeit gespart, nichts gewonnen.</p>
+<</scene>>
+
+<span class="weiter-link">[[Weiter, ehe die Sonne steigt->Biwag_Tag2_Jagd]]</span>
+
+
+:: Biwag_Tag2_Huegel {"position":"3525,4150","size":"100,100"}
+<<scene>>
+<p>Ihr nehmt die Höhen. Der Aufstieg zerrt an Waden und Atem, der Karren muss geschoben werden, und einer der Männer flucht leise vor sich hin. Doch oben öffnet sich das Land bis zum Horizont, klar und weit, und für einen Atemzug fühlt ihr euch weniger verloren in der Wildnis. Am Grat, wo der Wind das Gras flach drückt, geht dein Blick über den Boden.</p>
+<</scene>>
+
+<<if setup.biwagBeatOnce("tag2_tierfaehrte")>>
+	<<set _r to setup.skillCheckXp("perception", 13)>>
+	<<set $world.biwagTierfaehrte to _r.success>>
+	<<= setup.skillCheckAlert(_r)>>
+	<<if _r.success>>
+		<p>Zwischen den Steinen findest du Losung, noch frisch, und die geknickten Halme einer Wechselspur. Wild zieht hier über den Kamm — und du weißt jetzt, wohin.</p>
+	<<else>>
+		<p>Der harte Grund oben nimmt keine Spuren an, und der Wind hat verwischt, was der Fels nicht festhielt. Du findest nichts, dem sich folgen ließe.</p>
+	<</if>>
+<<else>>
+	<p><<if $world.biwagTierfaehrte>>Die Wechselspur am Grat hast du bereits gelesen.<<else>>Der harte Grat gab keine Fährte her.<</if>></p>
+<</if>>
+
+<<gedanke>>
+<p>Unter dem Grat duckt sich ein Dickicht, dicht und dunkel — dort verkriecht sich oft, was der Höhe ausweicht. Oder du bleibst auf dem Kamm und suchst den offenen Grat ab, ehe die Männer zu murren beginnen.</p>
+<</gedanke>>
+
+<ul>
+<li>[[Das Dickicht durchsuchen->Biwag_Tag2_Huegel_Dickicht]]</li>
+<li>[[Den offenen Grat absuchen->Biwag_Tag2_Huegel_Grat]]</li>
+</ul>
+
+
+:: Biwag_Tag2_Huegel_Dickicht {"position":"3575,4275","size":"100,100"}
+<<scene>>
+<p>Du zwängst dich ins Unterholz. Dornen zerren an den Ärmeln, und schon willst du umkehren, als dein Fuß gegen etwas Hartes stößt: eine abgeworfene Geweihstange, schwer und weißgebleicht, mit sechs Enden. Kein Fleisch, aber gutes Bein für Griffe und Werkzeug — und ein kleiner Triumph, den die Männer dir hoch anrechnen.</p>
+<</scene>>
+
+<<if setup.biwagBeatOnce("tag2_fund_geweih")>>
+	<<set $world.biwagFund_geweih to true>>
+	<<= setup.addItem("abgeworfene Geweihstange")>>
+<</if>>
+
+<span class="weiter-link">[[Weiter, ehe die Sonne steigt->Biwag_Tag2_Jagd]]</span>
+
+
+:: Biwag_Tag2_Huegel_Grat {"position":"3700,4275","size":"100,100"}
+<<scene>>
+<p>Du bleibst auf dem Kamm und lässt den Blick über den offenen Grat wandern. Weite, Wind, ein kreisender Bussard — schön anzusehen, aber der Fels gibt nichts her als Fels. Ihr geht weiter, die Hände leer.</p>
+<</scene>>
+
+<span class="weiter-link">[[Weiter, ehe die Sonne steigt->Biwag_Tag2_Jagd]]</span>
+
+
+:: Biwag_Tag2_Jagd {"position":"3500,4425","size":"100,100"}
+<<scene>>
+<p>Gegen Mittag führen Fluss und Höhe wieder zusammen, wo ein Wäldchen die Ebene säumt. Hier entscheidet sich, ob heute Abend Fleisch über dem Feuer hängt.</p>
+<</scene>>
+
+<<if $world.biwagTierfaehrte>>
+	<p>Du hast eine Fährte — jetzt gilt es, sie in Beute zu verwandeln. Zwei der ruhigsten Männer nimmst du mit, den Wind im Gesicht.</p>
+	<<if setup.biwagBeatOnce("tag2_jagd")>>
+		<<set _r to setup.skillCheckXp("combat", 13, setup.biwagAngel())>>
+		<<= setup.skillCheckAlert(_r)>>
+		<<if _r.success>>
+			<p>Der Bolzen sitzt. Ein Stück Rotwild bricht im Unterholz zusammen, sauber erlegt. Am Abend wird gebraten — und ein satter Bauch redet freundlicher als jeder Befehl.</p>
+			<<= setup.biwagProviant(1)>>
+		<<else>>
+			<p>Das Wild wittert euch, ehe ihr in Reichweite seid, und bricht mit einem Satz davon. Zurück bleibt nur der bittere Nachgeschmack vertaner Mühe — und Männer, die auf Fleisch gehofft hatten.</p>
+			<<= setup.biwagMoral(-2)>>
+		<</if>>
+	<</if>>
+<<else>>
+	<p>Ohne Fährte bleibt die Jagd ein Ratespiel, und du willst die Truppe nicht für nichts durchs Dickicht treiben. Ihr zieht weiter — heute Abend wird aus den Rationen gegessen, wie sie sind.</p>
+<</if>>
+
+<span class="weiter-link">[[Das Lager aufschlagen->Biwag_Tag2_Lager]]</span>
+
+
+:: Biwag_Tag2_Lager {"position":"3350,4450","size":"100,100"}
+<<scene>>
+<p>Als die Sonne sinkt, schlagt ihr das Lager an einem windgeschützten Hang auf. Feuer, Wachen, das übliche Murren — und dann, wie jeden Abend, wo Männer eng beieinander hocken, ein Funke, der zum Brand werden will: Rasch und Domm, über eine Handvoll Kupfer und ein Kartenspiel, das keiner mehr genau erinnert.</p>
+<</scene>>
+
+<<if not $world.biwagBeatsDone or not $world.biwagBeatsDone["tag2_reiberei"]>>
+<ul>
+<li><<link "Gütlich schlichten — beide anhören">>
+	<<if setup.biwagBeatOnce("tag2_reiberei")>>
+		<<set _r to setup.skillCheckXp("gossip", 13)>>
+		<<set $world.biwagReiberei to (_r.success ? "gelöst" : "gär")>>
+	<</if>>
+	<<goto "Biwag_Tag2_Lager">>
+<</link>></li>
+<li><<link "Ein Machtwort — Ruhe, sofort">>
+	<<if setup.biwagBeatOnce("tag2_reiberei")>>
+		<<= setup.biwagMoral(-1)>>
+		<<set $world.biwagReiberei to "erstickt">>
+	<</if>>
+	<<goto "Biwag_Tag2_Lager">>
+<</link>></li>
+</ul>
+<<else>>
+	<<if $world.biwagReiberei eq "gär">><<= setup.skillCheckAlert({outcome:"fail"})>><</if>>
+	<<switch $world.biwagReiberei>>
+	<<case "gelöst">><p>Du lässt beide reden, bis der Streit sich selbst als lächerlich entlarvt. Ein Lachen, ein Handschlag, und das Feuer knistert wieder friedlich. So hält eine Truppe zusammen.</p>
+	<<case "gär">><p>Du versuchst es mit Worten, doch keiner will nachgeben, und am Ende trennst du sie nur mürrisch. Der Groll schwelt weiter unter der Asche.</p><<= setup.biwagMoral(-1)>>
+	<<case "erstickt">><p>Zwei Worte, ein Blick — und die beiden verstummen. Ruhe ist eingekehrt, doch es ist die Ruhe der Furcht, nicht der Eintracht. So etwas merkt sich eine Truppe.</p>
+	<</switch>>
+
+	<p>Die erste Wache wird eingeteilt, das Feuer heruntergebrannt. Ein Tag ist vorüber.</p>
+	<span class="weiter-link">[[Der dritte Tag bricht an->Biwag_Tag3]]</span>
+<</if>>
+
+
+:: Biwag_Tag3 {"position":"3475,4575","size":"100,100"}
+
+
+
 :: DEBUG_Kap2_Setup {"position":"1400,4550","size":"100,100"}
 <<run setup.ermInit()>>
 <<if not $world.flags>><<set $world.flags = {}>><</if>>
@@ -1938,7 +2241,7 @@ genug, dass er wackelt, nicht genug, dass es wie mutwillige Beschädigung aussie
 [[Den Fund mit Karla besprechen|Ermittlung_S3_Erkenntnis]]
 
 
-:: Ermittlung_S3_Beobachtung [nach_Kap2_abend] {"position":"675,6050","size":"100,100"}
+:: Ermittlung_S3_Beobachtung [nach_Kap2_abend] {"position":"775,5950","size":"100,100"}
 <<scene>>
 <p>Karla nimmt die Nachricht von Halms Abweisung auf, wie sie alles aufnimmt, was sich ihr in den Weg stellt: mit einem kurzen, harten Nicken, als hätte sie nie etwas anderes erwartet. „Dann fragen wir niemanden mehr“, sagt sie. „Fragen hinterlassen Spuren. Augen nicht.“</p>
 <</scene>>
@@ -1955,34 +2258,68 @@ genug, dass er wackelt, nicht genug, dass es wie mutwillige Beschädigung aussie
 
 <p>Der Fuhrmann tränkt seine Pferde am Brunnen vor dem Tor, ehe er auflädt. Ein Mann, der wartet, ist ein Mann, mit dem man reden kann — wenn man die richtige Art hat, nichts Besonderes zu fragen.</p>
 
-<<beziehung>>
+
 <<if $player.spezialisierung === "cannon">>
+	<<beziehung>>
 	<p>Du schlenderst hin und hilfst ungefragt mit dem zweiten Eimer. Der Blick des Fuhrmanns streift deine Ärmel — die Pulverflecken, die kein Waschen der Welt mehr herauskriegt — und sein Gesicht klappt auf wie ein Scheunentor.</p>
 
 	<<dialog>>
-	<p>„Ah! Sieh an, einer von die Feuerwerkers!“ Er schlägt dir auf die Schulter, dass der Eimer schwappt. „Hab zwei Jahre für die Stückmeisterei gefahren, Junge — Pulverfässer, Kugeln, das ganze schöne Zeug. Ihr seid die Einzigen hier, die wissen, was eine Achse aushält, bevor se bricht. Die mit die Spieße laden dir den Karren, als wär Eisen aus Stroh.“</p>
+	<p>„Ah! Sieh an, einer von die Feuerwerkers!“ Er schlägt dir auf die Schulter, dass der Eimer schwappt. „Hab zwei Jahre für die Stückmeisterei gefahren, Junge — Pulverfässer, Kugeln, das ganze schöne Zeug. Ihr seid die Einzigen hier, wo wissen, was ne Achse auhalten tut, bevor se brechen tut. Die mit die Spieße tun den Karren voll, als wär Eisen aus Stroh.“</p>
 	<</dialog>>
 
 	<p>Von da an redet er von selbst, und du musst nur noch die Zügel halten. Die Fuhre? Winkt ab.</p>
 
 	<<dialog>>
-	<p>„Schadeisen, wie immer. Raus nach Westhof, zur Esse vom Krebs — Schadeisen hin, Geflicktes zurück, seit Jahren dieselbe Tour.“ Er beugt sich näher, vertraulich unter Fachleuten. „Und der da drin“ — ein Nicken zur Waffenausgabe — „zählt dir jeden Nagel dreimal, eh er ihn hergibt. Zeichnet jede Kiste selber ab, mit die eigenen Finger. Bei die Stückmeisterei damals hat das der Verwalter gemacht, und keinen hat's gejuckt.“</p>
+	<p>„Schadeisen, wie immer. Raus nach Westhof, zur Esse vom Krebs — Schadeisen hin, Geflicktes zurück, seit Jahren dieselbe Tour.“ Er beugt sich näher, vertraulich unter Fachleuten. „Und der da drin“ — ein Nicken zur Waffenausgabe — „tut dir jeden Nagel dreimal zählen, eh er ihn hergeben tut. Tut jede Kiste selber abzeichnen, mit die eigenen Fingers. Bei die Stückmeisterei damals hat das der Verwalter gemacht, und keinen hat's gejuckt.“</p>
 	<</dialog>>
 
 	<<gedanke>>
 	<p>Pulverflecken als Losungswort. Er hat mir mehr erzählt, als ich zu fragen gewagt hätte — und nebenbei etwas, das hängen bleibt: Oren zeichnet jede Kiste persönlich. Kein Verwalter, kein Geselle. Er allein.</p>
 	<</gedanke>>
+	<</beziehung>>
 <<else>>
-  <<set _r to setup.skillCheck("gossip", 12)>>
-  <<= setup.skillCheckAlert(_r)>>
-  <<if _r.success>>
-      <p>Du schlenderst hin, hilfst ungefragt mit dem zweiten Eimer, sagst etwas über das Wetter und die Straßen. Der Fuhrmann ist ein Redseliger, wie die meisten, die den halben Tag allein auf einem Bock sitzen. Binnen weniger Atemzüge weißt du mehr, als du zu fragen gewagt hättest: Er fährt die Nordstraße, seit Jahren schon, immer dieselbe Fuhre — „raus nach Westhof, zur Esse vom Krebs. Schadeisen hin, Geflicktes zurück. Und der da drin“ — ein Nicken zur Waffenausgabe — „zählt dir jeden Nagel dreimal, eh er ihn hergibt.“</p>
-  <<else>>
-      <p>Du versuchst es beiläufig, aber die Beiläufigkeit will dir heute nicht gelingen — die Fragen kommen zu schnell hintereinander, und der Fuhrmann wird wortkarg, wie Männer wortkarg werden, wenn ein Fremder sich zu sehr für ihre Ladung interessiert. „Westhof“, sagt er nur noch, „wie immer“, und wendet dir die Schulter zu. Immerhin: Als der Verwalter von der Rampe herüberruft, wohin der Geleitschein solle, fällt der Name, den du brauchst — „für den Krebs, wie sonst“. Aber der Fuhrmann hat sich dein Gesicht gemerkt, und Fuhrleute reden mit vielen Leuten.</p>
-      <<= setup.setPlayerSuspicion(2)>>
-  <</if>>  
+
+
+<div id="sandbox-menu">
+
+<ul class="sandbox-menu">
+    <li>
+        <<link "Den Fuhrmann befragen">>
+            <<replace "#sandbox-menu">>
+                <<include "Ermittlung_S3_Beobachtung_Ausfragen">>
+            <</replace>>
+        <</link>>
+
+        <span class="subtext">
+            <<set _checkOn = "gossip">>
+            — Frage den Fuhrmann aus.
+            <<= setup.getKnowledgeLabel(_checkOn)>>
+            <<= setup.getPlayerKnowledge(_checkOn)>>
+        </span>
+    </li>
+
+    <li>
+        <<link "Die Rampe ausspähen">>
+            <<replace "#sandbox-menu">>
+                <<include "Ermittlung_S3_Beobachtung_Ausspaehen">>
+            <</replace>>
+        <</link>>
+
+        <span class="subtext">
+            <<set _checkOn = "perception">>
+            — Spähe die Rampe aus.
+            <<= setup.getKnowledgeLabel(_checkOn)>>
+            <<= setup.getPlayerKnowledge(_checkOn)>>
+        </span>
+    </li>
+</ul>
+
+</div>
+
+
 <</if>>
-<</beziehung>>
+
+
 
 <<= setup.ermFund("westhof_krebs", "Übungsbestand C = Schadeisen, verlässt die Akademie kistenweise über die Verladerampe der Waffenausgabe. Ziel der Fuhren: die Schmiede Westhof an der Nordstraße, geführt von einem Mann namens Krebs.")>>
 
@@ -2000,6 +2337,48 @@ genug, dass er wackelt, nicht genug, dass es wie mutwillige Beschädigung aussie
 <</gedanke>>
 
 <<weiterImTag "Weiter">>
+
+
+:: Ermittlung_S3_Beobachtung_Ausfragen {"position":"700,6050","size":"100,100"}
+<<beziehung>>  
+<<set _r to setup.skillCheckXp("gossip", 12)>>
+  <<= setup.skillCheckAlert(_r)>>
+  <<if _r.success>>
+      <p>Du schlenderst hin, hilfst ungefragt mit dem zweiten Eimer, sagst etwas über das Wetter und die Straßen. Der Fuhrmann ist ein Redseliger, wie die meisten, die den halben Tag allein auf einem Bock sitzen. Binnen weniger Atemzüge weißt du mehr, als du zu fragen gewagt hättest: Er fährt die Nordstraße, seit Jahren schon, immer dieselbe Fuhre — „raus nach Westhof, zur Esse vom Krebs. Schadeisen hin, Geflicktes zurück. Und der da drin“ — ein Nicken zur Waffenausgabe — „zählt dir jeden Nagel dreimal, eh er ihn hergibt.“</p>
+      <<= setup.ermFund("westhof_ladung", "Oren zeichnet jede Kiste die nach Westhof geht persönlich ab.")>>
+  <<else>>
+      <p>Du versuchst es beiläufig, aber die Beiläufigkeit will dir heute nicht gelingen — die Fragen kommen zu schnell hintereinander, und der Fuhrmann wird wortkarg, wie Männer wortkarg werden, wenn ein Fremder sich zu sehr für ihre Ladung interessiert. „Westhof“, sagt er nur noch, „wie immer“, und wendet dir die Schulter zu. Immerhin: Als der Verwalter von der Rampe herüberruft, wohin der Geleitschein solle, fällt der Name, den du brauchst — „für den Krebs, wie sonst“. Aber der Fuhrmann hat sich dein Gesicht gemerkt, und Fuhrleute reden mit vielen Leuten.</p>
+      <<= setup.setPlayerSuspicion(5)>>
+  <</if>>
+<</beziehung>>  
+
+
+:: Ermittlung_S3_Beobachtung_Ausspaehen {"position":"800,6050","size":"100,100"}
+<<set _r to setup.skillCheck("perception", 12)>>
+<<= setup.skillCheckAlert(_r)>>
+
+<<if _r.success>>
+
+<p>Du hältst dich im Schatten des Brunnens, tust, als würdest du auf jemanden warten, und lässt den Blick immer wieder zur Verladerampe wandern. Bald fällt dir auf, dass Oren jeden einzelnen Handgriff überwacht. Keine Kiste verlässt das Lager, bevor er den Kreidestrich auf dem Deckel geprüft und den Geleitschein eigenhändig abgezeichnet hat. Als der Fuhrmann die Pferde tränkt, bleibt eine Kiste einen Augenblick unbeaufsichtigt. Das Kreidezeichen darauf ist deutlich zu erkennen: ein einzelnes C. Wenig später hörst du, wie einer der Knechte fragt, ob „die Fuhre nach Westhof“ vollständig sei. Oren nickt nur knapp und gibt das Zeichen zum Verladen.</p>
+
+<<gedanke>>
+<p>Also doch. Übungsbestand C geht nach Westhof – und Oren kontrolliert jede einzelne Kiste persönlich.</p>
+<<= setup.ermFund("westhof_ladung", "Oren zeichnet jede Kiste die nach Westhof geht persönlich ab.")>>
+<</gedanke>>
+
+<<else>>
+
+<p>Du versuchst, die Rampe unauffällig im Auge zu behalten, doch ständig versperren Knechte, Pferde oder vorbeiziehende Rekruten die Sicht. Als endlich eine Kiste frei zu erkennen wäre, schlägt der Fuhrmann die Plane darüber, bevor du das Kreidezeichen lesen kannst. Immerhin hörst du noch, wie Oren den Geleitschein einem Knecht zurückgibt und knapp befiehlt: „Nach Westhof. Wie immer.“ In derm Moment schaut der Fuhrmann zu dir herüber und bemerkt wie du zu glotzen scheinst.</p>
+<<dialog>>„Gefall ich dir so gut, Bürschlein, oder sinds die Pferde die dir gefallen tun?!“<</dialog>>
+<p>Du schreckst auf als dich der Fuhrmann anpflaumt. Du lächelst ihn dümmlich an und machst auf dem Absatz kehrt.</p>
+
+<<gedanke>>
+<p>Der Bestimmungsort ist bestätigt, aber die Einzelheiten bleiben verborgen.</p>
+<</gedanke>>
+
+<<= setup.setPlayerSuspicion(5)>>
+
+<</if>>
 
 
 :: Ermittlung_S3_Erkenntnis [nach_Kap2_abend] {"position":"1150,5575","size":"100,100"}
@@ -3089,6 +3468,7 @@ Wer sagt denn, dass ich wegen des Gottesdienstes hier bin?"</div>
 
     sergeant: {
         name: "Sergeant",
+        image: "Sergeant.png",
         known: false,
         affection: 0,
         trust: false,
@@ -3099,6 +3479,7 @@ Wer sagt denn, dass ich wegen des Gottesdienstes hier bin?"</div>
 
     kurt: {
         name: "Kurt Brasner",
+        image: "Kurt.png",
         known: false,
         affection: 0,
         trust: false,
@@ -3109,6 +3490,7 @@ Wer sagt denn, dass ich wegen des Gottesdienstes hier bin?"</div>
 
     schinder: {
         name: "Schinder",
+        image: "Schinder.png",
         known: false,
         affection: 0,
         trust: false,
@@ -3119,6 +3501,7 @@ Wer sagt denn, dass ich wegen des Gottesdienstes hier bin?"</div>
 
     hauptmann: {
         name: "Konrad Rindler",
+        image: "Hauptmann.png",
         known: false,
         affection: 0,
         trust: false,
@@ -3128,6 +3511,7 @@ Wer sagt denn, dass ich wegen des Gottesdienstes hier bin?"</div>
     },
     magister: {
         name: "Magister Cornelius Halm",
+        image: "Magister.png",
         known: false,
         affection: 0,
         trust: false,
@@ -3169,7 +3553,7 @@ Wer sagt denn, dass ich wegen des Gottesdienstes hier bin?"</div>
         known: false,
         faction: "84. Banner",
         affection: 0,
-        trust: 0,
+        trust: false,
         isRealPlayer: true,
         memory: { flags: {}, events: [] },
         journalEntry: "Führer des unkonventionellen 84. Banners im 33. Regiment. Ein Mann der seine eigenen Wege geht – und manchmal die seiner Leute auch."
@@ -3177,10 +3561,11 @@ Wer sagt denn, dass ich wegen des Gottesdienstes hier bin?"</div>
 
     weibelWenzel: {
         name: "Weibel Wenzel",
+         image: "Wenzel.jpg",
         known: false,
         faction: "84. Banner",
         affection: 0,
-        trust: 0,
+        trust: false,
         isRealPlayer: true,
         memory: { flags: {}, events: [] },
        journalEntry: "Feldweibel aus Umseck, farbenfrohster Söldner im 84. Banner. Offener Gambeson, Pluderhose, rotes Barett. Knüppel und Dolch immer am Mann. Direkt, vorlaut, gut mit Leuten. Organisiert den Haufen — und schaut gerne zu wenn jemand auf ein Missgeschick zusteuert."
@@ -3207,17 +3592,18 @@ weibelLars: {
     known: false,
     faction: "84. Banner",
     affection: 0,
-    trust: 0,
+    trust: false,
     isRealPlayer: true,
     memory: { flags: {}, events: [] },
     journalEntry: "Wachweibl des 84. Banners, einer der drei GWALT-Sprecher im Heer. Roter Mantel, schwarzer Arm, Widder-Dolchscheide — Andenken an die Tiafunter Rammböcke. Groß, gewissenhaft, direkt wenn man ihn reizt. Reibt sich den Nasenrücken wenn das Banner wieder Blödsinn macht — also oft."
 },
 vasil: {
         name: "Vasil Schütze",
+         image: "Vasil.jpg",
         known: false,
         faction: "84. Banner",
         affection: 0,
-        trust: 0,
+        trust: false,
         isRealPlayer: true,
         memory: { flags: {}, events: [] },
         journalEntry: "Armbruster und Ballistenschütze im 84. Banner. Groß und breit wie eine versehentlich verbaute Türöffnung, schaut grantiger als er ist — außer er ist grantig. Rot-weiße Söldnerkleidung, Barett, immer Werkzeug am Gurt. Simpel, geradeaus, loyal. Schießt und baut, als wären seine Hände dafür geboren. Reißt entsetzliche Witze und hält sie für ausgezeichnet."
@@ -3238,7 +3624,7 @@ haddl: {
     known: false,
     faction: "84. Banner",
     affection: 0,
-    trust: 0,
+    trust: false,
     isRealPlayer: true,
     memory: { flags: {}, events: [] },
     journalEntry: "Armbruster und Fahnenträger des 84. Banners, Gebirgsmarine-Ausbildung. Kein Bart, lange Haare, große Klappe. Zitiert pausenlos seinen Opa. Trinkt mehr als gut ist und wird dabei nie laut. "
@@ -3246,10 +3632,11 @@ haddl: {
 
 diplomatHannes: {
     name: "Hannes Böttcher",
+     image: "Hannes.jpg",
     known: false,
     faction: "84. Banner",
     affection: 0,
-    trust: 0,
+    trust: false,
     isRealPlayer: true,
     memory: { flags: {}, events: [] },
     journalEntry: "Aloyer Diplomat aus Grodaus. Kurzer gepflegter Bart, kleine Narbe rechts neben der Nase. Diplomatenmantel und Amtskette im Dienst, sonst Söldner-Ausgehkleidung. Ruhig und besonnen — erst denken, dann reden, aber dann weit ausholend. Prinzipientreu bis er nicht mehr merkt dass Diplomatie längst keine Option mehr ist."
@@ -3257,10 +3644,11 @@ diplomatHannes: {
 
 bast: {
     name: "Bast Lercher",
+     image: "Bast.jpg",
     known: false,
     faction: "84. Banner",
     affection: 0,
-    trust: 0,
+    trust: false,
     isRealPlayer: true,
     memory: { flags: {}, events: [] },
     journalEntry: "Diplomat und Offizier aus Vormberg. Roter Bart, rotes Barett, Dokumentenrolle am Gurt. Redet viel, sagt wenig mehr als er will. Pragmatisch, loyal — außer wenn Frauen im Spiel sind."
@@ -3271,7 +3659,7 @@ bast: {
         known: false,
         faction: "84. Banner",
         affection: 0,
-        trust: 0,
+        trust: false,
         isRealPlayer: true,
         memory: { flags: {}, events: [] },
         journalEntry: "Ein Name der fällt. Ein Gesicht das auftaucht. Was Hans Fichtensplitter hier zu suchen hat – das weißt du noch nicht."
@@ -3281,7 +3669,7 @@ bast: {
     known: false,
     faction: "84. Banner",
     affection: 0,
-    trust: 0,
+    trust: false,
     isRealPlayer: true,
     memory: { flags: {}, events: [] },
     journalEntry: "Hurenweibel des 84. Banners. Aus Tiafunt, Hafenviertel — die Andelsmänner, ein altes Handelshaus mit noch älterem Standesdünkel, den Clausz selbst verachtet. Gut gekleidet, besser als ein Söldner es sollte. Am Gürtel: Dolch, Lagerbuch, eine Rollenkapsel, Nierentasche, Schnapsbecher. Hat immer Rauchkraut und weiß immer wo was ist — außer wo die Zeit für den Morgenappell bleibt. Mag eingelegtes Obst in Mengen, die man eigentlich nicht mag."
@@ -3292,7 +3680,7 @@ rosi: {
     known: false,
     faction: "84. Banner",
     affection: 0,
-    trust: 0,
+    trust: false,
     isRealPlayer: true,
     memory: { flags: {}, events: [] },
     journalEntry: "Feldscher des 84. Banners. Rosi aus Tiafunt, Adoptivtochter von Mutti Kreisch, vorher Bedienung im Bumsda. Das Hirnbisla am Barett ist nicht zu übersehen. Fürsorglich bis zur Erschöpfung, redet im Dialekt und pausenlos, haut sich gegen die Stirn wenn's hakt. Hat einmal einen Ritter zum Schmied geschickt weil er über eine Delle in seiner Rüstung gejammert hat. Er war beleidigt. Sie war beschäftigt."
@@ -3303,7 +3691,7 @@ tilly: {
     known: false,
     faction: "84. Banner",
     affection: 0,
-    trust: 0,
+    trust: false,
     isRealPlayer: true,
     memory: { flags: {}, events: [] },
     journalEntry: "Söldnerin des 84. Banners — offiziell. In der Praxis findet man sie fast immer im Tross. Kein Vorwurf, sagen die vom Tross. Eher ein Kompliment."
@@ -3316,6 +3704,8 @@ tilly: {
 
     karla: {
         name: "Karla",
+        image: "Karla_Kap1.png",
+        imageKap2: "Karla_Kap2.png",
         known: false,
         affection: 0,
         trust: false,
@@ -3337,6 +3727,7 @@ tilly: {
 
     jarek: {
         name: "Jarek",
+        image: "Jarek.png",
         known: false,
         affection: 0,
         trust: false,
@@ -3371,7 +3762,7 @@ tilly: {
         known: false,
         faction: "La Familia",
         affection: 4,
-        trust: 0,
+        trust: false,
         isRealPlayer: true,
         memory: { flags: {}, events: [] },
         journalEntry: "Ein Name. Ein Handelszeichen. Jemand hat sich um dich gekümmert, einmal – in den Bergen Aloys, als du noch klein und krank warst. Wer das war, weißt du nicht mehr genau. Anwalt mit Lizenz in Aloy."
@@ -3388,7 +3779,7 @@ tilly: {
         known: false,
         faction: "La Familia",
         affection: 0,
-        trust: 0,
+        trust: false,
         isRealPlayer: true,
         memory: { flags: {}, events: [] },
         journalEntry: "Ein Mann fürs grobe. Jemand der nicht nur in de Schatten steht und zuhören kann."
@@ -3398,7 +3789,7 @@ tilly: {
         known: false,
         faction: "La Familia",
         affection: 0,
-        trust: 0,
+        trust: false,
         isRealPlayer: true,
         memory: { flags: {}, events: [] },
         journalEntry: "Ein Bretone. mit einem Hang für Würfelspiele."
@@ -3450,7 +3841,8 @@ equipment: {
         medicine: 0,
         thievery: 0,
         gossip: 0,
-        combat: 0         /* Kampferfahrung: echte Gefechte, nicht Training */
+        combat: 0,
+        perception: 0,
     },
     
     fightStats: {
@@ -4725,10 +5117,20 @@ Der Drill ist einfacher. Der Drill fragt nicht, wen man verloren hat.<</gedanke>
 
 :: Kap2_Pool_Stadt_Encounter {"position":"2100,5475","size":"100,100"}
 [
-  { "text": "Ein Bettler zupft an deinem Ärmel, mehr aus Gewohnheit als Hoffnung. Du gehst weiter, ohne ihm etwas zu geben.", "outcome": null },
-  { "text": "Ein Marktschreier preist billiges Zinnwerk an, so laut, dass dir für einen Moment die Ohren dröhnen. Nichts, das dich betrifft.", "outcome": null },
-  { "text": "Ein Karren mit Fässern kippt vor dir um, und für einen Augenblick herrscht Chaos aus fluchenden Fuhrleuten und rollendem Holz. Du weichst rechtzeitig aus.", "outcome": null },
- { "text": "Eine flinke Hand streift deinen Gürtel, ehe du reagieren kannst. Als du nachsiehst, fehlen dir ein paar Münzen — der Dieb ist längst in der Menge verschwunden.", "outcome": { "npc": null, "fields": [ { "field": "moneyLoss", "value": 8, "chance": 100 } ] } },
+	{	"text": "Ein Bettler zupft an deinem Ärmel, mehr aus Gewohnheit als Hoffnung. Du gehst weiter, ohne ihm etwas zu geben.", 
+		"outcome": null,
+		"checkOn": null
+	},
+	{	"text": "Ein Marktschreier preist billiges Zinnwerk an, so laut, dass dir für einen Moment die Ohren dröhnen. Nichts, das dich betrifft.",
+		"outcome": null,
+		"checkOn": null
+	},
+  { "text": "Ein Karren mit Fässern kippt vor dir um, und für einen Augenblick herrscht Chaos aus fluchenden Fuhrleuten und rollendem Holz. Du weichst rechtzeitig aus.", "outcome": null,
+		"checkOn": null },
+	{	"text": "Eine flinke Hand streift deinen Gürtel, ehe du reagieren kannst. Als du nachsiehst, fehlen dir ein paar Münzen — der Dieb ist längst in der Menge verschwunden.", 
+		"outcome": { "npc": null, "fields": [ { "field": "moneyLoss", "value": 8, "chance": 100 } ] },
+		"checkOn": "perception",
+		"checkSuccessText": "Eine flinke Hand streift deinen Gürtel, du bemerkst sie und schlägst sie weg. Also du dich umsiehst ist der Dieb schon wieder in der Menge verschwunden."},
   { "text": "Ein alter Landsknecht, dem ein Bein fehlt, erzählt dir gegen ein kleines Almosen von seinen Feldzügen. Du hörst zu, länger, als du wolltest, und gibst ihm am Ende mehr, als du eigentlich vorhattest.", "outcome": { "npc": null, "fields": [ { "field": "money", "value": -3, "chance": 100 }, { "field": "condition", "value": 2, "chance": 50 } ] } },
   { "text": "Ein Kaufmann, dessen Karren im Schlamm feststeckt, bittet dich um eine kräftige Schulter. Du hilfst, und er drückt dir zum Dank ein paar Münzen in die Hand.", "outcome": { "npc": null, "fields": [ { "field": "money", "value": 5, "chance": 70 }, { "field": "condition", "value": -3, "chance": 100 } ] } },
   { "text": "Zwei Weiber am Brunnen tuscheln über einen Schreiber der Akademie, der neuerdings so nervös sei wie ein Dieb kurz vor der Tat. Du gehst weiter, als hättest du nichts gehört — doch die Worte bleiben in dir hängen.", "outcome": { "npc": "oren", "fields": [ { "field": "verdacht", "value": 0, "chance": 0 } ] } },
@@ -4865,7 +5267,7 @@ Warum habe ich das Gefühl, dass er sich gemerkt hat, was ich gewählt habe?<</g
 
 
 :: Kapitel 0 {"position":"225,50","size":"200,200"}
-<p>Vers. 0.8.4</p>
+<p>Vers. 0.8.7</p>
 
 <div class="chapter-screen">
     <div class="fade-trigger">Intro</div>
@@ -6455,22 +6857,12 @@ Der Feldscher. Keine Waffe. Hände, die heilen statt schlagen. Der Gedanke fühl
 <<set _journalPages = ["journalAnsicht", "Notizbuch_Personen", "Notizbuch_Kameraden", "Notizbuch_Geruechte", "Notizbuch_Ermittlung"]>>
 
 <<if not _journalPages.includes(passage())>>
-	/* Überall sonst: nur der Einstieg, sofern erlaubt */
-	<<if not setup.isJournalBlocked()>>
-		<<link "📖 Notizbuch" "journalAnsicht">><<set $journal_return = passage()>><</link>>
-        <<link "📖 Personen" "Notizbuch_Personen">><<set $journal_return = passage()>><</link>>
-                <<link "📖 Kameraden" "Notizbuch_Kameraden">><<set $journal_return = passage()>><</link>>
-                        <<link "📖 Gerüchte" "Notizbuch_Geruechte">><<set $journal_return = passage()>><</link>>
-                        <<if $world.kapitel1_gesperrt === true and setup.ermittlungBekannt()>>
+
+            <<if $world.kapitel1_gesperrt === true and setup.ermittlungBekannt()>>
                         <<link "📖 Ermittlungsstand" "Notizbuch_Ermittlung">><</link>>
-                        	<</if>>
-	<</if>>
+             <</if>>
+	
 <<else>>
-	/* Auf einer Notizbuch-Seite: die Rubriken — OHNE $journal_return zu überschreiben */
-	<<link "📖 Übersicht" "journalAnsicht">><</link>>
-	<<link "📖 Personen" "Notizbuch_Personen">><</link>>
-	<<link "📖 Kameraden" "Notizbuch_Kameraden">><</link>>
-	<<link "📖 Gerüchte" "Notizbuch_Geruechte">><</link>>
 	<<if $world.kapitel1_gesperrt === true and setup.ermittlungBekannt()>>
 		<<link "📖 Ermittlungsstand" "Notizbuch_Ermittlung">><</link>>
 	<</if>>
@@ -9548,10 +9940,10 @@ Config.passages.nobr = true;
    SECTION 02  INTERRUPT-ENGINE
    ================================================================ */
 
-setup.interruptCond     = {};   // optional: "Name" -> w => boolean
+setup.interruptCond = {};   // optional: "Name" -> w => boolean
 setup.interruptCooldown = {};   // optional: "Name" -> Tage (sonst Default 3)
-setup.interruptPrio     = {};   // höher = wird zuerst gefeuert
-setup.interruptKapitel  = {};   // "Name" -> Kapitelnummer (gesperrt via $world.kapitelN_gesperrt)
+setup.interruptPrio = {};   // höher = wird zuerst gefeuert
+setup.interruptKapitel = {};   // "Name" -> Kapitelnummer (gesperrt via $world.kapitelN_gesperrt)
 
 setup.kapitel1Abschliessen = function () {
     State.variables.world.kapitel1_gesperrt = true;
@@ -9579,7 +9971,7 @@ setup.checkInterrupt = function () {
 
     // --- NUR Passagen mit dem Tag "interrupt" kommen in den Pool ---
     const pool = Story.lookupWith(p => p.tags.includes("interrupt"))
-                      .map(p => p.title);
+        .map(p => p.title);
 
     console.log('[Interrupt] Tag ' + w.day + ' | Pool:', pool);
 
@@ -9617,13 +10009,13 @@ setup.checkInterrupt = function () {
 
 /* Rücksprungziele nach Interrupts (Kapitel 1) */
 setup.routeTags = {
-    nach_hub:    "Nachmittag Hub",
+    nach_hub: "Nachmittag Hub",
     nach_appell: "Abendappell",
-    nach_stube:  "Auf Stube",
+    nach_stube: "Auf Stube",
     nach_morgen: "Kap1_Tagesstart",
-  	nach_Kap2_tag: "Kap2_Tageshub",
+    nach_Kap2_tag: "Kap2_Tageshub",
     nach_Kap2_abend: "Kap2_Abend",
-  	nach_Kap2_morgen: "Kap2_Tagesstart"
+    nach_Kap2_morgen: "Kap2_Tagesstart"
 };
 
 // Liest aus den Tags der aktuellen Passage das Rücksprungziel
@@ -9702,7 +10094,7 @@ setup.interruptCond["Jarek_S4_Archiv"] = w => {
 setup.interruptPrio["Jarek_S4_Archiv"] = 55;
 
 setup.interruptCond["Jarek_S6_DokVermisst"] = w =>
-       w.flags && w.flags.dok_vermisst_armed === true
+    w.flags && w.flags.dok_vermisst_armed === true
     && w.flags.dok_vermisst_done !== true
     && w.day >= (w.flags.dok_vermisst_day || 0) + 3;
 setup.interruptPrio["Jarek_S6_DokVermisst"] = 60;
@@ -9822,7 +10214,7 @@ setup.interruptPrio["karla_S9"] = 70;
 /* --- karla_S10: die Umkehrung (Phase 7) --- */
 setup.interruptCond["karla_S10"] = w => {
     var fj = State.variables.npc.jarek.memory.flags;
-    var k  = State.variables.npc.karla;
+    var k = State.variables.npc.karla;
     return fj.katastrophe === true
         && k.trust === true
         && k.memory.flags.umkehrung_done !== true
@@ -9850,9 +10242,9 @@ setup.interruptCond["Kapitel1_Ende"] = w => {
 setup.interruptPrio["Kapitel1_Ende"] = 90;
 
 ["karla_S1", "karla_S1b", "karla_S2", "karla_S3", "karla_S3b", "karla_S_Verhaftung",
- "karla_S4", "karla_S5", "karla_S7", "karla_S8", "karla_S9", "karla_S10",
- "Jarek_S1_Vorlesung", "Jarek_S2_Angebot", "Jarek_S3_Start", "Jarek_S4_Archiv",
- "Jarek_S6_DokVermisst", "Kapitel1_Ende"
+    "karla_S4", "karla_S5", "karla_S7", "karla_S8", "karla_S9", "karla_S10",
+    "Jarek_S1_Vorlesung", "Jarek_S2_Angebot", "Jarek_S3_Start", "Jarek_S4_Archiv",
+    "Jarek_S6_DokVermisst", "Kapitel1_Ende"
 ].forEach(n => setup.interruptKapitel[n] = 1);
 
 
@@ -9884,7 +10276,7 @@ setup.interruptCooldown["Suspicion_Spinddurchsuchung"] = 7;
 setup.interruptCond["Halm_S1_Ruft_Thomas"] = w => {
     /* BUGFIX: defensiv — die Condition läuft auch in Kapitel 1 mit,
        wenn $world.ermittlung / $world.flags noch nicht existieren */
-    const e  = w.ermittlung;
+    const e = w.ermittlung;
     const wf = w.flags;
     if (!e || !wf) return false;
     const verdachtOren = (e.verdacht && e.verdacht.orenmalk) || 0;
@@ -9902,7 +10294,7 @@ setup.interruptPrio["Halm_S1_Ruft_Thomas"] = 90;
 setup.interruptCond["Ermittlung_S0_Auftakt"] = w => {
     var je = State.variables.npc.jarek.memory.flags;
     var ke = State.variables.npc.karla.memory.flags;
-    var e  = w.ermittlung || { flags: {} };
+    var e = w.ermittlung || { flags: {} };
     return je.katastrophe === true
         && ke.verhaftung_seen !== true
         && e.gesperrt !== true
@@ -9919,9 +10311,9 @@ setup.interruptPrio["Ermittlung_S1_Intro_in_Waffenstube"] = 58;
 
 /* S2: nur der in S1 gewählte Weg feuert, 3 Tage Vorbereitung */
 setup.ermS2Passage = {
-    einbruch:  "Ermittlung_S2_Einbruch",
+    einbruch: "Ermittlung_S2_Einbruch",
     hauptmann: "Ermittlung_S2_Hauptmann",
-    trick:     "Ermittlung_S2_Verwaltungstrick"
+    trick: "Ermittlung_S2_Verwaltungstrick"
 };
 Object.keys(setup.ermS2Passage).forEach(function (weg) {
     var name = setup.ermS2Passage[weg];
@@ -9957,8 +10349,8 @@ setup.interruptPrio["Ermittlung_S5_Westhof"] = 58;
 /* S7: nur der in S6 gewählte Weg feuert, 3 Tage Vorbereitung */
 setup.ermS7Passage = {
     protokolle: "Ermittlung_S7_Wachprotokolle",
-    posten:     "Ermittlung_S7_Wachposten_Befragung",
-    route:      "Ermittlung_S7_Route_Ablaufen"
+    posten: "Ermittlung_S7_Wachposten_Befragung",
+    route: "Ermittlung_S7_Route_Ablaufen"
 };
 Object.keys(setup.ermS7Passage).forEach(function (weg) {
     var name = setup.ermS7Passage[weg];
@@ -10050,10 +10442,10 @@ setup.tickKarlaDruck = function () {
 
     // Strang muss offen sein: Geheimnis bekannt, aber noch kein Fortschritt/Ausgang
     var offen = f.kennt_geheimnis === true
-             && f.zeuge_gefunden !== true
-             && f.brief_gesendet !== true
-             && f.p2_quest_zu   !== true
-             && f.verhaftung_seen !== true;
+        && f.zeuge_gefunden !== true
+        && f.brief_gesendet !== true
+        && f.p2_quest_zu !== true
+        && f.verhaftung_seen !== true;
 
     if (!offen) return;
 
@@ -10096,9 +10488,9 @@ setup.completeSidequest = function (id) {
 setup.tickSidequestDruck = function () {
     var npc = State.variables.npc;
     Object.keys(setup.sidequests).forEach(function (id) {
-        var q  = setup.sidequests[id];
+        var q = setup.sidequests[id];
         var st = setup.questState(id);
-        var n  = npc[q.npc];
+        var n = npc[q.npc];
         if (st.done || (n && n.memory.flags[q.completeFlag])) { st.done = true; return; }
         st.druck += 1;
     });
@@ -10117,7 +10509,7 @@ setup.weatherConditions = [
 ];
 
 setup.resetDailyVariables = function () {
-    const world  = State.variables.world;
+    const world = State.variables.world;
     const player = State.variables.player;
     world.weather = setup.weatherConditions[Math.floor(Math.random() * setup.weatherConditions.length)];
     world.wasPracticing = false;
@@ -10133,7 +10525,7 @@ setup.resetDailyVariables = function () {
 
     // Suspicion nur abbauen, wenn sie heute NICHT gestiegen ist
     const startOfDay = (world.suspicionDayStart !== undefined) ? world.suspicionDayStart : suspBefore;
-    const roseToday  = player.suspicion > startOfDay;
+    const roseToday = player.suspicion > startOfDay;
     if (!roseToday) {
         player.suspicion = setup.clamp(player.suspicion - 2, 0, 100);
     }
@@ -10144,7 +10536,7 @@ setup.resetDailyVariables = function () {
     world.tagesbericht = {
         condition: player.condition - condBefore,
         suspicion: player.suspicion - suspBefore,
-        hasSlept:  player.hasSlept
+        hasSlept: player.hasSlept
     };
     world.interruptDoneToday = false;
     world.tagesAktionen = 0;    /* Kap2: zwei freie Unternehmungen pro Tag */
@@ -10302,7 +10694,7 @@ setup.removeMoney = function (copperAmount) {
 };
 
 /* Geld verlieren (nur was da ist, ohne Vorwurf) */
-setup.loseMoney = function (copperAmount) {
+setup.loseMoneyBak = function (copperAmount) {
     const player = State.variables.player;
     if (!player || !player.money || typeof player.money.copper !== "number") {
         console.warn("player.money.copper nicht gefunden");
@@ -10325,6 +10717,33 @@ setup.loseMoney = function (copperAmount) {
     if (m.copper > 0 || parts.length === 0) parts.push(m.copper + " Kupfer");
 
     return '<div class="system-alert status-negative">' + parts.join(", ") + " verloren</div>";
+};
+
+setup.loseMoney = function (copperAmount) {
+    const player = State.variables.player;
+
+    if (!player?.money || typeof player.money.copper !== "number") {
+        console.warn("player.money.copper nicht gefunden");
+        return "";
+    }
+
+    const amount = Math.abs(copperAmount);
+    const actuallyLost = Math.min(amount, player.money.copper);
+
+    console.log
+
+    player.money.copper -= actuallyLost;
+
+    if (actuallyLost <= 0) return "";
+
+    const m = setup.getMoney(actuallyLost);
+
+    const parts = [];
+    if (m.gold > 0) parts.push(m.gold + " Gold");
+    if (m.silver > 0) parts.push(m.silver + " Silber");
+    if (m.copper > 0 || parts.length === 0) parts.push(m.copper + " Kupfer");
+
+    return `<div class="system-alert status-negative">${parts.join(", ")} verloren</div>`;
 };
 
 
@@ -10360,7 +10779,8 @@ setup.knowledgeNames = {
     thievery: "Schattenarbeit",
     gossip: "Gerüchteküche",
     combat: "Kampferfahrung",
-    gelehrsamkeitProbe: "Gelehrsamkeit"   /* temporäre Probe (Jarek_S4_Befugt) — nur Anzeigename */
+    gelehrsamkeitProbe: "Gelehrsamkeit",   /* temporäre Probe (Jarek_S4_Befugt) — nur Anzeigename */
+    perception: "Wahrnehmung"
 };
 
 setup.reputationNames = {
@@ -10368,6 +10788,12 @@ setup.reputationNames = {
     ohm: "Ruf in Ohm",
     church: "Ruf bei der Kirche"
 };
+
+
+setup.getKnowledgeLabel = function (knowledgeKey) {
+    return setup.knowledgeNames[knowledgeKey] ?? knowledgeKey;
+};
+
 
 setup.setPlayerStat = function (statKey, modifier) {
     const player = State.variables.player;
@@ -10393,6 +10819,15 @@ setup.setPlayerKnowledge = function (knowledgeKey, modifier) {
     return setup.statusAlert(name + (modifier < 0 ? " verringert" : " verbessert"), modifier);
 };
 
+setup.getPlayerKnowledge = function (knowledgeKey) {
+    const player = State.variables.player;
+    if (!player) { console.warn("Player nicht gefunden"); return ""; }
+    if (!player.knowledge?.hasOwnProperty(knowledgeKey)) { console.warn("Fähigkeit existiert nicht:", knowledgeKey); return ""; }
+
+    return player.knowledge[knowledgeKey];
+
+}
+
 setup.setPlayerReputation = function (repKey, modifier) {
     const player = State.variables.player;
     if (!player) { console.warn("Player nicht gefunden"); return ""; }
@@ -10410,7 +10845,7 @@ setup.setPlayerCondition = function (modifier) {
 
     player.condition = setup.clamp(player.condition + modifier, 0, 100);
 
-    const verb  = modifier < 0 ? "verschlechtert" : "verbessert";
+    const verb = modifier < 0 ? "verschlechtert" : "verbessert";
     const label = setup.getKonditionLabel(player.condition);
     return setup.statusAlert("Kondition " + verb + " (" + label + ")", modifier);
 };
@@ -10435,7 +10870,7 @@ setup.setPlayerRel = function (npcKey, modifier) {
 
     player.rel[npcKey] = setup.clamp(player.rel[npcKey] + modifier, -100, 100);
 
-    const npc  = State.variables.npc?.[npcKey];
+    const npc = State.variables.npc?.[npcKey];
     const name = (npc && npc.name) ? npc.name : npcKey;
     return setup.statusAlert("Verhältnis zu " + name + (modifier < 0 ? " verschlechtert" : " verbessert"), modifier);
 };
@@ -10446,7 +10881,7 @@ setup.syncPlayerRel = function () {
     if (!V.player) return;
     if (!V.player.rel) V.player.rel = {};
 
-    var rel  = V.player.rel;
+    var rel = V.player.rel;
     var npcs = V.npc || {};   // dein initNPC füllt $npc – ggf. Namen anpassen
 
     Object.keys(npcs).forEach(function (key) {
@@ -10526,9 +10961,9 @@ setup.getKonditionLabel = function (k) {
 
 setup.getReputationLabel = function (r) {
     r = Number(r) || 0;
-    if (r >= 8)  return "★ Hochgeschätzt";
-    if (r >= 4)  return "✦ Angesehen";
-    if (r >= 1)  return "✚ Wohlgelitten";
+    if (r >= 8) return "★ Hochgeschätzt";
+    if (r >= 4) return "✦ Angesehen";
+    if (r >= 1) return "✚ Wohlgelitten";
     if (r <= -8) return "✖ Verfemt";
     if (r <= -1) return "▽ Beargwöhnt";
     return "○ Unbeschrieben";
@@ -10538,11 +10973,11 @@ setup.getAffectionLabel = function (a) {
     a = Number(a) || 0;
     if (a >= 16) return "❤️ Enge Bindung";
     if (a >= 10) return "💛 Vertraut";
-    if (a >= 5)  return "🙂 Wohlgesonnen";
-    if (a >= 1)  return "🔹 Bekannt";
+    if (a >= 5) return "🙂 Wohlgesonnen";
+    if (a >= 1) return "🔹 Bekannt";
     if (a <= -10) return "💢 Feindselig";
-    if (a <= -5)  return "😠 Ablehnend";
-    if (a <= -1)  return "❄️ Distanziert";
+    if (a <= -5) return "😠 Ablehnend";
+    if (a <= -1) return "❄️ Distanziert";
     return "➖ Neutral";
 };
 
@@ -10625,17 +11060,17 @@ setup.getRandomKnownNpcByFaction = function (factionString) {
 // modifier: optionaler Auf-/Abschlag auf die Schwierigkeit (z.B. +3 erschwert, -2 erleichtert)
 setup.skillCheck = function (skillKey, difficulty, modifier) {
     const player = State.variables.player;
-    const skill  = player?.knowledge?.[skillKey] || 0;
-    const dc     = difficulty + (modifier || 0);
+    const skill = player?.knowledge?.[skillKey] || 0;
+    const dc = difficulty + (modifier || 0);
 
-    const roll  = random(1, 20);            // SugarCubes random, save-sicher
+    const roll = random(1, 20);            // SugarCubes random, save-sicher
     const total = roll + skill;
 
     let outcome;
-    if (roll === 20)      outcome = "crit";       // natürliche 20: immer Erfolg
-    else if (roll === 1)  outcome = "fumble";     // natürliche 1: immer Fehlschlag
+    if (roll === 20) outcome = "crit";       // natürliche 20: immer Erfolg
+    else if (roll === 1) outcome = "fumble";     // natürliche 1: immer Fehlschlag
     else if (total >= dc) outcome = "success";
-    else                  outcome = "fail";
+    else outcome = "fail";
 
     return {
         outcome: outcome,
@@ -10675,7 +11110,7 @@ setup.skillCheckAlert = function (r) {
    Kein stumpfes +1 pro Erfolg — jede Probe zahlt Übung in einen Pool,
    der Skill steigt erst, wenn die Lernkosten der Stufe gedeckt sind. */
 
-setup.skillLernbar = ["pike", "crossbow", "cannon", "medicine", "thievery", "gossip", "combat"];
+setup.skillLernbar = ["pike", "crossbow", "cannon", "medicine", "thievery", "gossip", "combat", "perception"];
 
 /* Lernkosten für den Schritt von Stufe -> Stufe+1 */
 setup.skillLernkosten = function (stufe) {
@@ -10716,8 +11151,8 @@ setup.gainSkillXp = function (skillKey, xp) {
 setup.skillCheckXp = function (skillKey, difficulty, modifier) {
     var r = setup.skillCheck(skillKey, difficulty, modifier);
     var xp = 0;
-    if (r.outcome === "crit")      xp = Math.max(4, r.dc - 6);
-    else if (r.success)            xp = Math.max(2, r.dc - 8);
+    if (r.outcome === "crit") xp = Math.max(4, r.dc - 6);
+    else if (r.success) xp = Math.max(2, r.dc - 8);
     else if (r.outcome === "fail") xp = 2;   /* aus Fehlern lernt man — ein wenig */
     /* fumble: 0 — Patzer lehren nur Demut */
 
@@ -10731,7 +11166,7 @@ setup.skillCheckXp = function (skillKey, difficulty, modifier) {
 // Erfolgswahrscheinlichkeit eines skillChecks in Prozent (0-100)
 setup.checkChance = function (skillKey, difficulty, modifier) {
     const skill = State.variables.player?.knowledge?.[skillKey] || 0;
-    const dc    = difficulty + (modifier || 0);
+    const dc = difficulty + (modifier || 0);
 
     // benötigter Wurf, damit roll + skill >= dc
     let need = dc - skill;
@@ -10740,7 +11175,7 @@ setup.checkChance = function (skillKey, difficulty, modifier) {
     let successFaces = 0;
     for (let r = 1; r <= 20; r++) {
         if (r === 20) { successFaces++; continue; }   // Krit: immer
-        if (r === 1)  { continue; }                    // Patzer: nie
+        if (r === 1) { continue; }                    // Patzer: nie
         if (r >= need) successFaces++;
     }
 
@@ -10749,23 +11184,23 @@ setup.checkChance = function (skillKey, difficulty, modifier) {
 
 // Prozent -> sprachliches Label
 setup.chanceLabel = function (pct) {
-    if (pct <= 0)   return "aussichtslos";
-    if (pct < 8)    return "Eine schlechte Idee";
-    if (pct < 20)   return "ein echtes Wagnis";
-    if (pct < 35)   return "schlechte Karten";
-    if (pct < 45)   return "eher dagegen";
-    if (pct < 56)   return "ausgeglichen";
-    if (pct < 70)   return "stehen gut";
-    if (pct < 85)   return "gute Karten";
-    if (pct < 95)   return "ziemlich sicher";
-    if (pct < 100)  return "fast schon sicher";
+    if (pct <= 0) return "aussichtslos";
+    if (pct < 8) return "Eine schlechte Idee";
+    if (pct < 20) return "ein echtes Wagnis";
+    if (pct < 35) return "schlechte Karten";
+    if (pct < 45) return "eher dagegen";
+    if (pct < 56) return "ausgeglichen";
+    if (pct < 70) return "stehen gut";
+    if (pct < 85) return "gute Karten";
+    if (pct < 95) return "ziemlich sicher";
+    if (pct < 100) return "fast schon sicher";
     return "ein Selbstläufer";
 };
 
 setup.checkHint = function (skillKey, difficulty, modifier) {
     const skill = State.variables.player?.knowledge?.[skillKey] || 0;
-    const name  = setup.knowledgeNames[skillKey] || skillKey;
-    const pct   = setup.checkChance(skillKey, difficulty, modifier);
+    const name = setup.knowledgeNames[skillKey] || skillKey;
+    const pct = setup.checkChance(skillKey, difficulty, modifier);
     const label = setup.chanceLabel(pct);
     return '<span class="check-hint"> Wurf auf ' + name + ' — ' + label + '</span>';
 };
@@ -10897,7 +11332,7 @@ setup.getAbendappellText = function (category) {
         return "Fehler: Abendappell-Kategorie [" + category + "] nicht gefunden.";
     }
 
-    var day      = State.variables.world ? State.variables.world.day : 1;
+    var day = State.variables.world ? State.variables.world.day : 1;
     var activity = State.variables.player ? State.variables.player.chosen_activity : "";
 
     var pool = vault[category];
@@ -10942,8 +11377,8 @@ setup.getNaechsterTagText = function (category) {
         return "";
     }
 
-    var day      = State.variables.world ? State.variables.world.day : 1;
-    var weather  = State.variables.world ? State.variables.world.weather : "";
+    var day = State.variables.world ? State.variables.world.day : 1;
+    var weather = State.variables.world ? State.variables.world.weather : "";
     var activity = State.variables.player ? State.variables.player.chosen_activity : "";
 
     var pool = vault[category];
@@ -11369,8 +11804,8 @@ setup.examGrade = function () {
     var pct = Math.round((100 * e.correct) / e.total);
     var label =
         pct >= 90 ? "Mit Auszeichnung bestanden" :
-        pct >= 70 ? "Bestanden" :
-        pct >= 50 ? "Knapp bestanden" :
+            pct >= 70 ? "Bestanden" :
+                pct >= 50 ? "Knapp bestanden" :
                     "Durchgefallen";
     return { pct: pct, label: label, correct: e.correct, total: e.total };
 };
@@ -11401,7 +11836,7 @@ setup.applyExamRewards = function (pct) {
 setup.examRewardHTML = function (pct) {
     if (pct >= 70) {
         return '<div class="system-alert status-positive">Gelehrsamkeit deutlich erhoeht</div>' +
-               '<div class="system-alert status-positive">Ruf bei der Kirche gestiegen</div>';
+            '<div class="system-alert status-positive">Ruf bei der Kirche gestiegen</div>';
     }
     if (pct >= 50) {
         return '<div class="system-alert status-positive">Gelehrsamkeit erhoeht</div>';
@@ -11446,8 +11881,8 @@ setup.examStatus = function () {
     var cfg = setup.studiumExamConfig;
     var day = State.variables.world ? State.variables.world.day : 1;
     var learned = setup.studiumTotalLearned();
-    if (edu.exam.passed)      return { state: "passed" };
-    if (!edu.exam.announced)  return { state: "locked", learned: learned, needed: cfg.announceThreshold };
+    if (edu.exam.passed) return { state: "passed" };
+    if (!edu.exam.announced) return { state: "locked", learned: learned, needed: cfg.announceThreshold };
     if (day >= edu.exam.dueDay) return { state: "due", dueDay: edu.exam.dueDay };
     return { state: "announced", dueDay: edu.exam.dueDay, daysLeft: edu.exam.dueDay - day };
 };
@@ -11474,8 +11909,8 @@ setup.markExamResult = function (pct) {
 };
 
 /* --- GELEHRSAMKEIT (scholarship) als ausgebbare Ressource --- */
-setup.scholarship      = function () { return (State.variables.player.stats.scholarship || 0); };
-setup.canAfford        = function (cost) { return setup.scholarship() >= cost; };
+setup.scholarship = function () { return (State.variables.player.stats.scholarship || 0); };
+setup.canAfford = function (cost) { return setup.scholarship() >= cost; };
 setup.spendScholarship = function (cost) {
     var p = State.variables.player;
     if ((p.stats.scholarship || 0) < cost) return false;
@@ -11491,7 +11926,7 @@ setup.spendScholarship = function (cost) {
 /* Wieviel weiß Thomas über die Transportüberfälle?
    0 = nichts | 1 = ein bisschen (Gerücht aufgeschnappt) | 2 = viel (Karla hat erzählt) */
 setup.ueberfallWissen = function () {
-    var npc    = State.variables.npc;
+    var npc = State.variables.npc;
     var player = State.variables.player;
 
     // Stufe 2: Karla hat es in ihrer Sidequest ausführlich erzählt
@@ -11527,9 +11962,9 @@ setup.hoechsteKampfwerte = function () {
 /* Würdigungstext pro Disziplin (Prosa, kein Zahlwert) */
 setup.kampfwertWuerdigung = function (key) {
     var texte = {
-        pike:     "Mit Pike und Hellebarde hast du dich hervorgetan — wo andere noch den Schaft umklammerten, hieltest du die Linie. Der Schinder hat es gesehen, auch wenn er es nie zugäbe.",
+        pike: "Mit Pike und Hellebarde hast du dich hervorgetan — wo andere noch den Schaft umklammerten, hieltest du die Linie. Der Schinder hat es gesehen, auch wenn er es nie zugäbe.",
         crossbow: "An der Armbrust wurdest du zu einer ruhigen Hand. Wo andere zappelten, lagst du still und triffst, was du anvisierst. Eine Kunst, die im Feld Leben rettet.",
-        cannon:   "Die schweren Geschütze haben dir ihr Geheimnis preisgegeben. Pulver, Winkel, Geduld — du verstehst die Sprache der Artillerie, und das verstehen nur wenige.",
+        cannon: "Die schweren Geschütze haben dir ihr Geheimnis preisgegeben. Pulver, Winkel, Geduld — du verstehst die Sprache der Artillerie, und das verstehen nur wenige.",
         medicine: "Du hast gelernt, zu flicken statt zu zerstören. Die Feldscherkunst macht dich zu jemandem, den das Banner nicht verlieren will — denn ein Heiler ist mehr wert als zehn Klingen.",
         thievery: "In den Schatten hinter den Stallungen hast du eine Kunst gelernt, die in keinem Ausbildungsplan steht. Flinke Finger, leise Schritte, ein Blick für das, was andere übersehen."
     };
@@ -11540,7 +11975,7 @@ setup.kampfwertWuerdigung = function (key) {
 setup.ausbilderVermerk = function (npcKey, satzKuehl, satzNeutral, satzModerat, satzEuphorisch) {
     var npc = State.variables.npc[npcKey];
     var a = npc ? npc.affection : 0;
-    if (a < 0)  return satzKuehl;
+    if (a < 0) return satzKuehl;
     if (a === 0) return satzNeutral;
     if (a < 10) return satzModerat;
     return satzEuphorisch;
@@ -12378,9 +12813,9 @@ setup.refreshPlayerTable = function () {
 /* --- Pip-Leiste --- */
 setup.meter = function (value, max, pips) {
     const total = Math.max(1, pips || 10);
-    const cap   = Math.max(1, Number(max) || 100);
-    const v     = Math.max(0, Math.min(cap, Number(value) || 0));
-    const full  = Math.round((v / cap) * total);
+    const cap = Math.max(1, Number(max) || 100);
+    const v = Math.max(0, Math.min(cap, Number(value) || 0));
+    const full = Math.round((v / cap) * total);
     let out = "";
     for (let i = 0; i < total; i++) {
         out += `<span class="pip ${i < full ? "pip-full" : "pip-empty"}"></span>`;
@@ -12650,8 +13085,8 @@ setup.renderPlayerTable = function () {
             `${meter} <span class="stat-num">${value}</span>`
         );
     };
-  
-  const knowledgeRow = function (label, key) {
+
+    const knowledgeRow = function (label, key) {
         const value = knowledge[key] || 0;
         const meter = setup.meter ? setup.meter(value, mx.knowledge) : "";
         return `
@@ -12772,6 +13207,7 @@ setup.renderPlayerTable = function () {
             ${knowledgeRow("Schattenarbeit", "thievery")}
             ${knowledgeRow("Gerüchteküche", "gossip")}
             ${knowledgeRow("Kampferfahrung", "combat")}
+            ${knowledgeRow("Wahrnehmung", "perception")}
             ${row("Gelehrsamkeit", `<b>${stats.scholarship || 0}</b>`)}
         </div>
 
@@ -12834,7 +13270,7 @@ setup.resolveJournalEntry = function (npc) {
     if (Array.isArray(je)) {
         let text = (je[0] && je[0].text) || "";
         je.forEach(stage => {
-            const minOk  = (stage.min == null) || (npc.affection >= stage.min);
+            const minOk = (stage.min == null) || (npc.affection >= stage.min);
             const flagOk = (!stage.flag) || !!(npc.memory && npc.memory.flags && npc.memory.flags[stage.flag]);
             if (minOk && flagOk) text = stage.text;
         });
@@ -12848,16 +13284,14 @@ setup.renderPersonList = function (list, emptyMsg) {
     if (!list || list.length === 0) {
         return `<p class="journal-empty">${emptyMsg || "Noch kenne ich niemanden näher."}</p>`;
     }
-
+    const esc = setup.escapeHtml;
     const groups = {};
     list.forEach(n => {
         const f = n.faction || "Akademie zu Ohm";
         (groups[f] = groups[f] || []).push(n);
     });
-
     const byAffThenName = (a, b) =>
         (b.affection - a.affection) || a.name.localeCompare(b.name, "de");
-
     let out = "";
     Object.keys(groups).sort((a, b) => a.localeCompare(b, "de")).forEach(faction => {
         out += `<div class="journal-group"><div class="journal-group-title">${faction}</div>`;
@@ -12865,18 +13299,32 @@ setup.renderPersonList = function (list, emptyMsg) {
             const aff = setup.getAffectionLabel(n.affection);
             const trust = (n.trust === true || (typeof n.trust === "number" && n.trust > 0))
                 ? `<span class="npc-trust">🤝 Vertrauen</span>` : "";
+            const src = setup.resolveNpcImage(n);
+            const portrait = src
+                ? `<img class="npc-portrait" src="${esc(src)}" alt="${esc(n.name)}" onerror="this.style.display='none'">`
+                : "";
             out += `
                 <div class="npc-card">
-                    <div class="npc-card-head">
-                        <span class="npc-name">${n.name}</span>${trust}
+                    ${portrait}
+                    <div class="npc-card-body">
+                        <div class="npc-card-head">
+                            <span class="npc-name">${n.name}</span>${trust}
+                        </div>
+                        <div class="npc-entry-text">${setup.resolveJournalEntry(n)}</div>
+                        <div class="npc-meta">${aff} <span class="npc-affection-val">(${n.affection})</span></div>
                     </div>
-                    <div class="npc-entry-text">${setup.resolveJournalEntry(n)}</div>
-                    <div class="npc-meta">${aff} <span class="npc-affection-val">(${n.affection})</span></div>
                 </div>`;
         });
         out += `</div>`;
     });
     return out;
+};
+
+setup.resolveNpcImage = function (n) {
+    if (!n) return "";
+    var kap2 = State.variables.world.kapitel1_gesperrt === true;
+    if (kap2 && n.imageKap2) return n.imageKap2;
+    return n.image || "";
 };
 
 /* Akademie-Personen (keine echten Spieler) */
@@ -13058,7 +13506,7 @@ setup.applyOutcome = function (outcome) {
         if (!f.chance) return;
         const roll = Math.floor(Math.random() * 100) + 1;
         if (roll > f.chance) return;
-
+        console.log("applyOutcome", JSON.stringify(outcome));
         switch (f.field) {
             case "affection":
                 out += setup.setNpcAffection(outcome.npc, f.value);
@@ -13107,7 +13555,26 @@ setup.getNpcInteraction = function (poolName) {
 
     const chosen = eligible[Math.floor(Math.random() * eligible.length)];
     let out = "<p>" + chosen.text + "</p>";
-    if (chosen.outcome) out += setup.applyOutcome(chosen.outcome);
+
+    if (chosen.checkOn != null) {
+        var result = setup.skillCheckXp(chosen.checkOn, 15, 0);
+
+        out += result.lernHTML;
+        out += '\n'
+        if (result.outcome === "success" || result.outcome === "crit") {
+            out += setup.applyOutcome(chosen.checkSuccessText); 
+        }
+        else {
+            if (chosen.outcome) out += setup.applyOutcome(chosen.outcome);
+        }
+
+
+    } else {
+        if (chosen.outcome) out += setup.applyOutcome(chosen.outcome);
+    }
+
+    
+
     return out;
 };
 
@@ -13131,16 +13598,16 @@ setup.checkRequirement = function (req) {
    ================================================================ */
 
 setup.spezialisierungsWaffe = {
-    pike:     "pike",
+    pike: "pike",
     crossbow: "crossbow",
-    cannon:   "hand_cannon",
+    cannon: "hand_cannon",
     medicine: "field_knife"
 };
 
 setup.spezialisierungsName = {
-    pike:     "Pike & Hellebarde",
+    pike: "Pike & Hellebarde",
     crossbow: "Armbrust",
-    cannon:   "Geschütz",
+    cannon: "Geschütz",
     medicine: "Feldscher"
 };
 
@@ -13221,8 +13688,8 @@ setup.setRomanze = function (mod) {
 setup.romanzeStufe = function () {
     var r = setup.romanzeInit().romanze;
     if (r >= 12) return 3;
-    if (r >= 8)  return 2;
-    if (r >= 4)  return 1;
+    if (r >= 8) return 2;
+    if (r >= 4) return 1;
     return 0;
 };
 
@@ -13231,10 +13698,10 @@ setup.romanzeStufeLabel = ["Kameradschaft", "Mehr als Kameradschaft", "Vertrauth
 /* ---------- Geschenke ---------- */
 
 setup.karlaGeschenke = {
-    mandeln:   { item: "Gebrannte Mandeln", preis: 4 },
-    wetzstein: { item: "Feiner Wetzstein",  preis: 12 },
-    haarband:  { item: "Rotes Haarband",    preis: 9 },
-    salbe:     { item: "Wallwurz-Salbe",    preis: 7 }
+    mandeln: { item: "Gebrannte Mandeln", preis: 4 },
+    wetzstein: { item: "Feiner Wetzstein", preis: 12 },
+    haarband: { item: "Rotes Haarband", preis: 9 },
+    salbe: { item: "Wallwurz-Salbe", preis: 7 }
 };
 
 setup.hatKarlaGeschenk = function () {
@@ -14134,3 +14601,16 @@ setup.datumAnzeige = function () {
     opacity: 0.6;
     font-style: italic;
 }
+.npc-card {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+}
+.npc-portrait {
+    width: 96px;
+    height: 96px;
+    object-fit: cover;
+    border-radius: 6px;
+    flex-shrink: 0;
+}
+.npc-card-body { flex: 1; }
