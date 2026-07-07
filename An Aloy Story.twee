@@ -986,6 +986,7 @@ Schonen wir uns, kommen wir spät und anders müde an. Der erste Tag setzt den T
 	<</switch>>
 
 	<p>Nach und nach rollen sich die Männer in ihre Decken. Der erste Tag im Feld ist vorüber.</p>
+  <<= setup.biwagTagEnde()>>
 	<span class="weiter-link">[[Der zweite Tag bricht an->Biwag_Tag2]]</span>
 <</if>>
 
@@ -997,16 +998,14 @@ Schonen wir uns, kommen wir spät und anders müde an. Der erste Tag setzt den T
 <</scene>>
 
 <<if setup.biwagBeatOnce("tag1_marsch")>>
-	<<set _r to setup.skillCheckXp("combat", 13, setup.biwagItemMod("schanzzeug"))>>
+	<<set _r to setup.biwagCheck("combat", 13, setup.biwagItemMod("schanzzeug"))>>
 	<<= setup.skillCheckAlert(_r)>>
 	<<if _r.success>>
 		<p>Mit einem letzten, geschlossenen Ruck reißt ihr den Karren über die Kante. Die Männer keuchen, aber sie grinsen — ein früher, 
     kleiner Sieg, und sie merken sich, dass du mit anpackst, statt nur zu befehlen.</p>
-		<<= setup.biwagMoral(1)>>
 	<<else>>
 		<p>Das Rad bricht seitlich weg, ein Mann stürzt, ein anderer klemmt sich die Hand. Ihr kommt voran, aber teurer, 
     als es hätte sein müssen — und die ersten Blicke messen dich, ob du das Tempo wert warst.</p>
-		<<= setup.biwagMoral(-1)>>
 	<</if>>
 <</if>>
 
@@ -1020,7 +1019,7 @@ Schonen wir uns, kommen wir spät und anders müde an. Der erste Tag setzt den T
 <</scene>>
 
 <<if setup.biwagBeatOnce("tag1_lager")>>
-	<<set _r to setup.skillCheckXp("perception", _lagerDC)>>
+	<<set _r to setup.biwagCheck("perception", _lagerDC)>>
 	<<= setup.skillCheckAlert(_r)>>
 	<<if _r.success>>
 		<p>Du wählst den Windschatten, prüfst den Boden auf Staunässe, lässt den Karren so stellen, 
@@ -1028,7 +1027,6 @@ Schonen wir uns, kommen wir spät und anders müde an. Der erste Tag setzt den T
 	<<else>>
 		<p>Du entscheidest dich für die Senke, und erst als der Nachtwind aufkommt und der Bach kalt heraufzieht, 
     merkst du den Fehler. Kein Unglück, aber eine ungemütliche Nacht — und die Truppe weiß, wer den Platz gewählt hat.</p>
-		<<= setup.biwagMoral(-2)>>
 	<</if>>
 <</if>>
 
@@ -1058,7 +1056,7 @@ Doch als ihr endlich haltet, hat die Sonne den Horizont schon halb geschluckt.</
 <</scene>>
 
 <<if setup.biwagBeatOnce("tag1_schonen")>>
-	<<= setup.biwagMoral(1)>>
+  <<= setup.biwagRast()>>
 <</if>>
 
 <span class="weiter-link">[[Ein Lager suchen, ehe es dunkel wird->Biwag_Tag1_Lager]]</span>
@@ -1093,7 +1091,7 @@ An einer Furt, wo der Schlamm die Geschichten der Nacht bewahrt hat, hältst du 
 <</scene>>
 
 <<if setup.biwagBeatOnce("tag2_tierfaehrte")>>
-	<<set _r to setup.skillCheckXp("perception", 13)>>
+	<<set _r to setup.biwagCheck("perception", 13)>>
 	<<set $world.biwagTierfaehrte to _r.success>>
 	<<= setup.skillCheckAlert(_r)>>
 	<<if _r.success>>
@@ -1136,7 +1134,6 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 <span class="weiter-link">[[Weiter, ehe die Sonne steigt->Biwag_Tag2_Jagd]]</span>
 
 
-
 :: Biwag_Tag2_Fluss_Waldrand {"position":"4025,4325","size":"100,100"}
 <<scene>>
 <p>Du lässt das Glitzern Glitzern sein und führst die Männer den festeren Waldrand entlang. Ein trockener Streifen, gut zu gehen — aber außer einem verlassenen Vogelnest und altem Reisig gibt der Saum nichts her. Zeit gespart, nichts gewonnen.</p>
@@ -1151,7 +1148,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 <</scene>>
 
 <<if setup.biwagBeatOnce("tag2_tierfaehrte")>>
-	<<set _r to setup.skillCheckXp("perception", 13)>>
+	<<set _r to setup.biwagCheck("perception", 13)>>
 	<<set $world.biwagTierfaehrte to _r.success>>
 	<<= setup.skillCheckAlert(_r)>>
 	<<if _r.success>>
@@ -1202,14 +1199,13 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 <<if $world.biwagTierfaehrte>>
 	<p>Du hast eine Fährte — jetzt gilt es, sie in Beute zu verwandeln. Zwei der ruhigsten Männer nimmst du mit, den Wind im Gesicht.</p>
 	<<if setup.biwagBeatOnce("tag2_jagd")>>
-		<<set _r to setup.skillCheckXp("combat", 13, setup.biwagAngel())>>
+		<<set _r to setup.biwagCheck("combat", 13, setup.biwagAngel())>>
 		<<= setup.skillCheckAlert(_r)>>
 		<<if _r.success>>
 			<p>Der Bolzen sitzt. Ein Stück Rotwild bricht im Unterholz zusammen, sauber erlegt. Am Abend wird gebraten — und ein satter Bauch redet freundlicher als jeder Befehl.</p>
-			<<= setup.biwagProviant(1)>>
+      <<= setup.biwagProviant(2)>>
 		<<else>>
-			<p>Das Wild wittert euch, ehe ihr in Reichweite seid, und bricht mit einem Satz davon. Zurück bleibt nur der bittere Nachgeschmack vertaner Mühe — und Männer, die auf Fleisch gehofft hatten.</p>
-			<<= setup.biwagMoral(-2)>>
+			<p>Das Wild wittert euch, ehe ihr in Reichweite seid, und bricht mit einem Satz davon. Zurück bleibt nur der bittere Nachgeschmack vertaner Mühe — und Männer, die auf Fleisch gehofft hatten.</p>			
 		<</if>>
 	<</if>>
 <<else>>
@@ -1228,14 +1224,13 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 <ul>
 <li><<link "Gütlich schlichten — beide anhören">>
 	<<if setup.biwagBeatOnce("tag2_reiberei")>>
-		<<set _r to setup.skillCheckXp("gossip", 13)>>
+		<<set _r to setup.biwagCheck("gossip", 13)>>
 		<<set $world.biwagReiberei to (_r.success ? "gelöst" : "gär")>>
 	<</if>>
 	<<goto "Biwag_Tag2_Lager">>
 <</link>></li>
 <li><<link "Ein Machtwort — Ruhe, sofort">>
 	<<if setup.biwagBeatOnce("tag2_reiberei")>>
-		<<= setup.biwagMoral(-1)>>
 		<<set $world.biwagReiberei to "erstickt">>
 	<</if>>
 	<<goto "Biwag_Tag2_Lager">>
@@ -1250,6 +1245,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 	<</switch>>
 
 	<p>Die erste Wache wird eingeteilt, das Feuer heruntergebrannt. Ein Tag ist vorüber.</p>
+  <<= setup.biwagTagEnde()>>
 	<span class="weiter-link">[[Der dritte Tag bricht an->Biwag_Tag3]]</span>
 <</if>>
 
@@ -1269,16 +1265,15 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 <p>Gegen Morgen hustet einer der Männer schwer, ein anderer fiebert leicht. Die Nässe hat ihren Tribut gefordert, und es liegt an dir<<if $player.spezialisation eq "medicine">> — dem Feldscher der Truppe —<</if>>, dass aus einer feuchten Nacht keine kranke Woche wird.</p>
 <</scene>>
 <<if setup.biwagBeatOnce("tag3_gesund")>>
-	<<set _r to setup.skillCheckXp("medicine", 13, setup.biwagItemMod("feldscher"))>>
+	<<set _r to setup.biwagCheck("medicine", 13, setup.biwagItemMod("feldscher"))>>
 	<<= setup.skillCheckAlert(_r)>>
 	<<if _r.success>>
 		<p>Du sorgst für trockene Kleider, heißen Sud und Ruhe, wo es geht. Am Ende steht jeder wieder auf den Beinen — geschwächt, aber gesund.</p>
-		<<= setup.biwagMoral(1)>>
 	<<else>>
 		<p>Was du auch versuchst, das Fieber greift um sich, und zwei Männer schleppen sich fortan kränklich durch die Tage. Es drückt auf die ganze Truppe.</p>
-		<<= setup.biwagMoral(-1)>>
 	<</if>>
 <</if>>
+<<= setup.biwagTagEnde()>>
 [[Der vierte Tag|Biwag_Tag4]]
 
 
@@ -1305,7 +1300,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 <p>Du lässt halten und die Truppe unter die Bäume rücken. Es ist die vernünftige Wahl — doch ein verlorener Tag bleibt ein verlorener Tag, und das Murren mischt sich bald ins Trommeln des Regens.</p>
 <</scene>>
 <<if setup.biwagBeatOnce("tag3_rast")>>
-	<<= setup.biwagMoral(-1)>>
+  <<= setup.biwagRast()>>
 <</if>>
 [[Ein Lager schlagen|Biwag_Tag3_Lager]]
 
@@ -1325,14 +1320,12 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 <p>Ihr stemmt euch gegen Regen und Schlamm. Das Karrenrad sinkt bis zur Nabe, und jeder Schritt will erkämpft sein — doch stillzustehen wäre schlimmer.</p>
 <</scene>>
 <<if setup.biwagBeatOnce("tag3_marsch")>>
-	<<set _r to setup.skillCheckXp("combat", 13, setup.biwagItemMod("schanzzeug"))>>
+	<<set _r to setup.biwagCheck("combat", 13, setup.biwagItemMod("schanzzeug"))>>
 	<<= setup.skillCheckAlert(_r)>>
 	<<if _r.success>>
 		<p>Mit vereinten Kräften haltet ihr den Karren in der Spur und macht guten Weg. Nass, aber vorangekommen — und niemand ist im Matsch liegengeblieben.</p>
-		<<= setup.biwagMoral(1)>>
 	<<else>>
 		<p>Der Karren bricht aus, kippt fast, und ihr verliert eine Stunde damit, ihn wieder freizubekommen. Am Ende seid ihr durchnässt, erschöpft und kaum weiter als am Morgen.</p>
-		<<= setup.biwagMoral(-1)>>
 	<</if>>
 <</if>>
 [[Ein Lager schlagen|Biwag_Tag3_Lager]]
@@ -1354,14 +1347,13 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 <p>Deine erste eigene Wache. Die Nacht ist klar und kalt, jedes Knacken im Unterholz zwingt dich, genau hinzuhören — wach zu bleiben, wenn der Schlaf an dir zerrt.</p>
 <</scene>>
 <<if setup.biwagBeatOnce("tag4_nachtwache")>>
-	<<set _r to setup.skillCheckXp("perception", 13, setup.biwagItemMod("laterne"))>>
+	<<set _r to setup.biwagCheck("perception", 13, setup.biwagItemMod("laterne"))>>
 	<<= setup.skillCheckAlert(_r)>>
 	<<if _r.success>>
 		<p>Du hältst die Augen offen, gehst die Runde, prüfst die Posten. Ein ruhiger Wächter gibt der ganzen Truppe Schlaf — und dir ihren Respekt.</p>
-		<<= setup.biwagMoral(2)>>
 	<<else>>
 		<p>Für einen Moment nickst du ein, und in diesem Moment schnürt ein Fuchs die Vorräte auf. Nur eine Ration — aber ein Zeichen, dass der Weibel geschlafen hat.</p>
-		<<= setup.biwagProviant(-1)>>
+    <<= setup.biwagProviant(-1)>>
 	<</if>>
 <</if>>
 [[Der fünfte Tag|Biwag_Tag5]]
@@ -1372,12 +1364,11 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 <p>Du setzt dich zu ihm, ohne Vorwurf, und lässt ihn reden. Von zu Hause, von der Angst, zu versagen, von der Nacht, die noch so lang scheint.</p>
 <</scene>>
 <<if setup.biwagBeatOnce("tag4_wenzel")>>
-	<<set _r to setup.skillCheckXp("gossip", 13, ($world.biwagStil eq "kumpel" ? -2 : 0))>>
+	<<set _r to setup.biwagCheck("gossip", 13, ($world.biwagStil eq "kumpel" ? -2 : 0))>>
 	<<= setup.skillCheckAlert(_r)>>
 	<<if _r.success>>
 		<p>Am Ende nickt er, wischt sich übers Gesicht und lächelt schief. Du hast keinen Soldaten aus ihm gemacht — aber einen, der weiß, dass ihn jemand sieht.</p>
 		<<set $world.biwagBond_wenzel to true>>
-		<<= setup.biwagMoral(1)>>
 	<<else>>
 		<p>Er hört dich an, doch die Worte prallen ab; was in ihm nagt, sitzt tiefer, als ein Gespräch am Feuer es erreicht. Er zieht sich in sein Schweigen zurück.</p>
 	<</if>>
@@ -1409,14 +1400,13 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 <p>Du nimmst zwei ruhige Männer, den Wind im Gesicht, und schlägst dich ins Unterholz. <<if $player.spezialisation eq "crossbow">>Als Armbruster ist dies deine Stunde.<<elseif $player.spezialisation eq "pike">>Mit der Pike ist Jagd eine ungewohnte Kunst.<</if>></p>
 <</scene>>
 <<if setup.biwagBeatOnce("tag4_jagd")>>
-	<<set _r to setup.skillCheckXp($player.spezialisation, 13, setup.biwagAngel())>>
+	<<set _r to setup.biwagCheck($player.spezialisation, 13, setup.biwagAngel())>>
 	<<= setup.skillCheckAlert(_r)>>
 	<<if _r.success>>
 		<p>Ein sauberer Schuss, ein kurzer Kampf, und ihr kehrt mit Beute ins Lager zurück. Heute Abend riecht es nach Braten.</p>
-		<<= setup.biwagProviant(2)>>
+    <<= setup.biwagProviant(2)>>
 	<<else>>
 		<p>Das Wild entwischt euch immer wieder, und nach Stunden kehrt ihr mit leeren Händen zurück — Zeit und Kraft vertan.</p>
-		<<= setup.biwagMoral(-2)>>
 	<</if>>
 <</if>>
 [[Zurück ins Lager|Biwag_Tag4_Wenzel]]
@@ -1427,7 +1417,8 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 <p>Du ordnest halbe Rationen an. Es ist vernünftig — und unbeliebt. Die Männer essen schweigend und mit leeren Augen, und die Stimmung sinkt mit dem Pegel im Kessel.</p>
 <</scene>>
 <<if setup.biwagBeatOnce("tag4_strecken")>>
-	<<= setup.biwagMoral(-1)>>
+	<<= setup.biwagProviant(1)>>   /* gestreckt: die heutige Ration reicht länger */
+	<<= setup.biwagMoral(-2)>>
 <</if>>
 [[Zurück ins Lager|Biwag_Tag4_Wenzel]]
 
@@ -1458,6 +1449,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 <<scene>>
 <p>Mit der Nacht kriecht eine klare, beißende Kälte heran. <<if $world.biwagEquipment.zelte or $world.biwagEquipment.decken>>Ihr habt, womit ihr euch wärmt.<<else>>Ihr habt nichts als das Feuer und die eigene Wärme — es wird eine harte Nacht.<</if>> Du kannst die Männer noch ans Feuer holen oder sie früh in den Schlaf schicken.</p>
 <</scene>>
+
 [[Am Feuer bleiben|Biwag_Tag5_Feuer]]
 [[Früh schlafen schicken|Biwag_Tag5_Frueh]]
 
@@ -1474,15 +1466,15 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 <p>Du bleibst mit ihnen am Feuer, und irgendwann fällt der Blick auf dich: eine Geschichte, ein Wort, das die Kälte kleiner macht.</p>
 <</scene>>
 <<if setup.biwagBeatOnce("tag5_feuer")>>
-	<<set _r to setup.skillCheckXp("gossip", 13)>>
+	<<set _r to setup.biwagCheck("gossip", 13)>>
 	<<= setup.skillCheckAlert(_r)>>
 	<<if _r.success>>
 		<p>Du triffst den Ton, und bald lachen sie oder lauschen still. Als das Feuer niederbrennt, sind sie einander näher als am Morgen.</p>
-		<<= setup.biwagMoral(2)>>
 	<<else>>
 		<p>Deine Worte verpuffen im Knistern, und einer nach dem anderen rollt sich fröstelnd weg. Kein Schaden — aber auch kein Trost.</p>
 	<</if>>
 <</if>>
+<<= setup.biwagTagEnde()>>
 [[Der sechste Tag|Biwag_Tag6]]
 
 
@@ -1491,21 +1483,21 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 <p>Du schickst sie früh in die Decken. Kein Feuerzauber, keine Geschichten — aber ausgeruhte Männer, wenn der Morgen kommt.</p>
 <</scene>>
 <<if setup.biwagBeatOnce("tag5_frueh")>>
-	<<= setup.biwagMoral(1)>>
+	<<= setup.biwagRast()>>
 <</if>>
+<<= setup.biwagTagEnde()>>
 [[Der sechste Tag|Biwag_Tag6]]
 
 
 :: Biwag_Tag5_Reparatur [layout] {"position":"5250,4575","size":"100,100"}
 <<if setup.biwagBeatOnce("tag5_reparatur")>>
-	<<set _r to setup.skillCheckXp($player.spezialisation, 13, setup.biwagItemMod("waffenpflege"))>>
+	<<set _r to setup.biwagCheck($player.spezialisation, 13, setup.biwagItemMod("waffenpflege"))>>
 	<<= setup.skillCheckAlert(_r)>>
 	<<if _r.success>>
 		<p>Mit ruhiger Hand bringst du das Gerät wieder in Ordnung, und die Männer sehen, dass ihr Weibel sein Handwerk versteht. Das zählt mehr als jeder Drill.</p>
-		<<= setup.biwagMoral(1)>>
 	<<else>>
 		<p>Was du auch versuchst, die Sache bleibt Flickwerk, und einer der Männer murrt, man vertraue ihm besser nicht mehr im Ernstfall. Der Riss bleibt — im Gerät wie in der Stimmung.</p>
-		<<= setup.biwagMoral(-1)>>
+
 	<</if>>
 <</if>>
 [[Der Abend naht|Biwag_Tag5_Abend]]
@@ -1516,8 +1508,9 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 <p>Du gibst den Tag frei. Die Männer flicken Kleider, dösen in der Sonne, lachen wieder — es tut ihnen gut. Ob es sie weicher macht, wird sich zeigen.</p>
 <</scene>>
 <<if setup.biwagBeatOnce("tag5_ruhe")>>
-	<<= setup.biwagMoral(1)>>
+	<<= setup.biwagRast()>>
 <</if>>
+
 [[Der Abend naht|Biwag_Tag5_Abend]]
 
 
@@ -1535,15 +1528,15 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 <p>Die Stimmung ist am Tiefpunkt: nass, müde, und ein Platz am Feuer bleibt leer<<if not $world.biwagWenzelWeg>> — oder wäre leer geblieben, hättest du nicht gehandelt<</if>>. Wenn je ein Wort der Führung gebraucht wurde, dann jetzt.</p>
 <</scene>>
 <<if setup.biwagBeatOnce("tag6_moralrede")>>
-	<<set _r to setup.skillCheckXp("gossip", 13)>>
+	<<set _r to setup.biwagCheck("gossip", 13)>>
 	<<= setup.skillCheckAlert(_r)>>
 	<<if _r.success>>
 		<p>Du sprichst nicht viel, aber richtig — von Heimkehr, von durchgehalten, von morgen. Es genügt. Die Rücken richten sich ein wenig auf.</p>
-		<<= setup.biwagMoral(2)>>
 	<<else>>
 		<p>Deine Worte finden keinen Halt in der Erschöpfung; sie hören zu, aber nichts erreicht sie. Die Nacht bleibt schwer.</p>
 	<</if>>
 <</if>>
+<<= setup.biwagTagEnde()>>
 [[Der siebte Tag|Biwag_Tag7]]
 
 
@@ -1558,14 +1551,12 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 
 :: Biwag_Tag6_Gewalt [layout] {"position":"5775,4050","size":"100,100"}
 <<if setup.biwagBeatOnce("tag6_ausgang")>>
-	<<set _r to setup.skillCheckXp("combat", 13)>>
+	<<set _r to setup.biwagCheck("combat", 13)>>
 	<<= setup.skillCheckAlert(_r)>>
 	<<if _r.success>>
 		<p>Du packst ihn und zerrst ihn zurück ins Lager. Er bleibt — mit hängenden Schultern und einem Blick, der dir nie wieder ganz traut. Die anderen sehen zu und schweigen.</p>
-		<<= setup.biwagMoral(-1)>>
 	<<else>>
 		<p>Er wehrt sich verzweifelt, ihr geht beide zu Boden, und im Handgemenge entkommt er doch. Zurück bleibt nur dein zerschundenes Ansehen.</p>
-		<<= setup.biwagMoral(-2)>>
 		<<= setup.biwagProviant(-1)>>
 	<</if>>
 <</if>>
@@ -1580,24 +1571,23 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 <p>Ein nasses, freudloses Lager. <<if $player.spezialisation eq "medicine">>Als Feldscher gehst du von Mann zu Mann,<</if>> und wieder gilt es, die Kränkelnden über die Nacht zu bringen.</p>
 <</scene>>
 <<if setup.biwagBeatOnce("tag6_gesund")>>
-	<<set _r to setup.skillCheckXp("medicine", 13, setup.biwagItemMod("feldscher"))>>
+	<<set _r to setup.biwagCheck("medicine", 13, setup.biwagItemMod("feldscher"))>>
 	<<= setup.skillCheckAlert(_r)>>
-	<<if _r.success>><p>Du hältst die Truppe beisammen; keiner bricht zusammen, keiner gibt auf.</p><<= setup.biwagMoral(1)>>
-	<<else>><p>Das Elend frisst sich tiefer; zwei Männer taugen kaum noch zu mehr als sich selbst zu tragen.</p><<= setup.biwagMoral(-1)>><</if>>
+	<<if _r.success>><p>Du hältst die Truppe beisammen; keiner bricht zusammen, keiner gibt auf.</p>
+	<<else>><p>Das Elend frisst sich tiefer; zwei Männer taugen kaum noch zu mehr als sich selbst zu tragen.</p><</if>>
 <</if>>
+
 [[Die Nachtwache|Biwag_Tag6_Wache]]
 
 
 :: Biwag_Tag6_Marsch [layout] {"position":"6000,4025","size":"100,100"}
 <<if setup.biwagBeatOnce("tag6_marsch")>>
-	<<set _r to setup.skillCheckXp("combat", 13, setup.biwagItemMod("schanzzeug"))>>
+	<<set _r to setup.biwagCheck("combat", 13, setup.biwagItemMod("schanzzeug"))>>
 	<<= setup.skillCheckAlert(_r)>>
 	<<if _r.success>>
 		<p>Ihr kämpft euch durch, Schulter an Schulter, und haltet den Karren in der Spur. Erschöpft, aber ungebrochen erreicht ihr das Nachtlager.</p>
-		<<= setup.biwagMoral(1)>>
 	<<else>>
 		<p>Der Weg zerrt euch nieder; zweimal bleibt der Karren stecken, und als ihr endlich haltet, ist die Truppe am Rand ihrer Kräfte.</p>
-		<<= setup.biwagMoral(-1)>>
 	<</if>>
 <</if>>
 [[Das Lager schlagen|Biwag_Tag6_Lager]]
@@ -1620,7 +1610,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 <p>Tief in der Nacht, als der Regen zum Nieseln wird, ist da ein Geräusch am Rand des Lagers — leise, vorsichtig, das Geräusch eines Mannes, der nicht gehört werden will.</p>
 <</scene>>
 <<if setup.biwagBeatOnce("tag6_wache")>>
-	<<set _r to setup.skillCheckXp("perception", ($world.biwagWenzelHart ? 15 : 13), setup.biwagItemMod("laterne"))>>
+	<<set _r to setup.biwagCheck("perception", ($world.biwagWenzelHart ? 15 : 13), setup.biwagItemMod("laterne"))>>
 	<<= setup.skillCheckAlert(_r)>>
 	<<set $world.biwagWacheBemerkt to _r.success>>
 <</if>>
@@ -1647,14 +1637,14 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 
 :: Biwag_Tag6_Zurueck [layout] {"position":"5850,4250","size":"100,100"}
 <<if setup.biwagBeatOnce("tag6_ausgang")>>
-	<<set _r to setup.skillCheckXp("gossip", ($world.biwagBond_wenzel ? 11 : 13))>>
+	<<set _r to setup.biwagCheck("gossip", ($world.biwagBond_wenzel ? 11 : 13))>>
 	<<= setup.skillCheckAlert(_r)>>
 	<<if _r.success>>
 		<p>Du redest ruhig, ohne Drohung — <<if $world.biwagBond_wenzel>>und findest die Worte, die schon am Feuer zwischen euch standen.<</if>> Nach langem Schweigen legt er das Bündel ab und geht mit dir zurück. Niemand sonst wird je davon erfahren.</p>
-		<<= setup.biwagMoral(1)>>
+
 	<<else>>
 		<p>Du findest die Worte nicht; er schüttelt den Kopf, weicht zurück, und ehe du greifen kannst, ist er im Dunkel verschwunden. Am Morgen fehlt ein Mann.</p>
-		<<= setup.biwagMoral(-2)>>
+
 		<<= setup.biwagProviant(-1)>>
 	<</if>>
 <</if>>
@@ -1693,76 +1683,18 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 <p>Du lässt sie in Ordnung marschieren, Schritt und Haltung, so müde sie auch sind. Als das Nordtor in Sicht kommt, richten sie sich von selbst auf — sie wollen als Soldaten heimkehren, nicht als Häuflein.</p>
 <</scene>>
 <<if setup.biwagBeatOnce("tag7_schluss")>>
-	<<set _r to setup.skillCheckXp("gossip", 13)>>
+	<<set _r to setup.biwagCheck("gossip", 13)>>
 	<<= setup.skillCheckAlert(_r)>>
-	<<if _r.success>><p>Dein Wort trägt sie durch die letzten Meilen; ihr zieht geschlossen durchs Tor, und der Stolz steht ihnen ins Gesicht geschrieben.</p><<= setup.biwagMoral(2)>>
-	<<else>><p>Die Erschöpfung ist stärker als jeder Vorsatz; ihr kommt an, aber ohne den Glanz, den du erhofft hattest.</p><</if>>
+	<<if _r.success>>
+    <p>Dein Wort trägt sie durch die letzten Meilen; ihr zieht geschlossen durchs Tor, und der Stolz steht ihnen ins Gesicht geschrieben.</p>
+	<<else>>
+    <p>Die Erschöpfung ist stärker als jeder Vorsatz; ihr kommt an, aber ohne den Glanz, den du erhofft hattest.</p>
+    <</if>>
 <</if>>
 [[Ankunft in Ohm|Biwag_Tag7_Ankunft]]
 
 
-:: DEBUG_Menu {"position":"100,300","size":"100,100"}
-<h3>— DEBUG / Quest-Sprungbrett —</h3>
-
-''Jarek-Kette:''
-<<link "Setup S1 (Vorlesung)">>
-  <<set $npc.jarek.memory.flags.s0_done = true>>
-  <<set $npc.magister.known = true>>
-  <<goto "Jarek_S1_Vorlesung">>
-<</link>>
-<<link "Setup S2 (Test)">>
-  <<set $npc.jarek.memory.flags.s1_seen = true>>
-  <<goto "Jarek_S2_Angebot">>
-<</link>>
-<<link "Setup S3 (Lüge)">>
-  <<set $npc.jarek.memory.flags.s2_done = true>>
-  <<goto "Jarek_S3_Start">>
-<</link>>
-<<link "Setup S4 BEFUGT (mit Zeichen)">>
-  <<set $npc.jarek.memory.flags.s3_zugesagt = true>>
-  <<set $edu.archivzugang = true>>
-  <<goto "Jarek_S4_Archiv">>
-<</link>>
-<<link "Setup S4 UNBEFUGT (ohne Zeichen)">>
-  <<set $npc.jarek.memory.flags.s3_zugesagt = true>>
-  <<set $edu.archivzugang = false>>
-  <<goto "Jarek_S4_Archiv">>
-<</link>>
-''S06 Gestehen — Direktsprung:''
-<<link "Gestehen BEFUGT (sofort)">>
-  <<set $edu.archivzugang = true>>
-  <<set $npc.jarek.memory.flags.spaet_gestanden = false>>
-  <<goto "S06_Gestehen">>
-<</link>>
-<<link "Gestehen UNBEFUGT (sofort)">>
-  <<set $edu.archivzugang = false>>
-  <<set $npc.jarek.memory.flags.spaet_gestanden = false>>
-  <<goto "S06_Gestehen">>
-<</link>>
-<<link "Gestehen BEFUGT (verspätet)">>
-  <<set $edu.archivzugang = true>>
-  <<set $npc.jarek.memory.flags.spaet_gestanden = true>>
-  <<goto "S06_Gestehen">>
-<</link>>
-<<link "Gestehen UNBEFUGT (verspätet)">>
-  <<set $edu.archivzugang = false>>
-  <<set $npc.jarek.memory.flags.spaet_gestanden = true>>
-  <<goto "S06_Gestehen">>
-<</link>>
-
-''Stellschrauben:''
-<<link "aloy = 5 (begreift selbst)">><<set $player.knowledge.aloy = 5>><</link>>
-<<link "aloy = 0 (Jarek erklärt)">><<set $player.knowledge.aloy = 0>><</link>>
-<<link "ahnung an">><<set $npc.jarek.memory.flags.ahnung = true>><</link>>
-<<link "combat = 0 / 10">><<set $player.knowledge.combat = 0>><</link>>
-
-<<link "↻ Flags zurücksetzen">>
-  <<set $npc.jarek.memory.flags = {}>>
-  <<goto "DEBUG_Menu">>
-<</link>>
-
-
-:: DEV {"position":"1375,4250","size":"100,100"}
+:: DEBUG_Kap2_Setup {"position":"1375,4250","size":"100,100"}
 <<run setup.ermInit()>>
 <<if not $world.flags>><<set $world.flags = {}>><</if>>
 
@@ -1856,7 +1788,68 @@ Ermittlung frühestens Tag: <b><<= $world.ermittlung.fruehestens_tag>></b> · Lu
 <h4>Starten</h4>
 [[Regulär: Kapitel-2-Intro (mit Probe & Waffenwahl)|Kap2_Intro]]
 [[Direkt in den Tagesloop (Spezialisierung oben wählen!)|Kap2_Tagesstart]]
-[[Biwag|Biwag_Drill]] 
+[[Biwag|Biwag_Drill]]
+
+
+:: DEBUG_Menu {"position":"100,300","size":"100,100"}
+<h3>— DEBUG / Quest-Sprungbrett —</h3>
+
+''Jarek-Kette:''
+<<link "Setup S1 (Vorlesung)">>
+  <<set $npc.jarek.memory.flags.s0_done = true>>
+  <<set $npc.magister.known = true>>
+  <<goto "Jarek_S1_Vorlesung">>
+<</link>>
+<<link "Setup S2 (Test)">>
+  <<set $npc.jarek.memory.flags.s1_seen = true>>
+  <<goto "Jarek_S2_Angebot">>
+<</link>>
+<<link "Setup S3 (Lüge)">>
+  <<set $npc.jarek.memory.flags.s2_done = true>>
+  <<goto "Jarek_S3_Start">>
+<</link>>
+<<link "Setup S4 BEFUGT (mit Zeichen)">>
+  <<set $npc.jarek.memory.flags.s3_zugesagt = true>>
+  <<set $edu.archivzugang = true>>
+  <<goto "Jarek_S4_Archiv">>
+<</link>>
+<<link "Setup S4 UNBEFUGT (ohne Zeichen)">>
+  <<set $npc.jarek.memory.flags.s3_zugesagt = true>>
+  <<set $edu.archivzugang = false>>
+  <<goto "Jarek_S4_Archiv">>
+<</link>>
+''S06 Gestehen — Direktsprung:''
+<<link "Gestehen BEFUGT (sofort)">>
+  <<set $edu.archivzugang = true>>
+  <<set $npc.jarek.memory.flags.spaet_gestanden = false>>
+  <<goto "S06_Gestehen">>
+<</link>>
+<<link "Gestehen UNBEFUGT (sofort)">>
+  <<set $edu.archivzugang = false>>
+  <<set $npc.jarek.memory.flags.spaet_gestanden = false>>
+  <<goto "S06_Gestehen">>
+<</link>>
+<<link "Gestehen BEFUGT (verspätet)">>
+  <<set $edu.archivzugang = true>>
+  <<set $npc.jarek.memory.flags.spaet_gestanden = true>>
+  <<goto "S06_Gestehen">>
+<</link>>
+<<link "Gestehen UNBEFUGT (verspätet)">>
+  <<set $edu.archivzugang = false>>
+  <<set $npc.jarek.memory.flags.spaet_gestanden = true>>
+  <<goto "S06_Gestehen">>
+<</link>>
+
+''Stellschrauben:''
+<<link "aloy = 5 (begreift selbst)">><<set $player.knowledge.aloy = 5>><</link>>
+<<link "aloy = 0 (Jarek erklärt)">><<set $player.knowledge.aloy = 0>><</link>>
+<<link "ahnung an">><<set $npc.jarek.memory.flags.ahnung = true>><</link>>
+<<link "combat = 0 / 10">><<set $player.knowledge.combat = 0>><</link>>
+
+<<link "↻ Flags zurücksetzen">>
+  <<set $npc.jarek.memory.flags = {}>>
+  <<goto "DEBUG_Menu">>
+<</link>>
 
 
 :: Das Erwachen [layout] {"position":"675,150","size":"100,100"}
@@ -2114,7 +2107,7 @@ Nur ein Mann, dem der Krieg etwas genommen hat — und der trotzdem noch hier st
 <<button "Login">>
 	<<run (
 		$("#devpw").val() === "fleischens"
-			? Engine.play("DEV")
+			? Engine.play("DEBUG_Kap2_Setup")
 			: alert("Falsches Passwort.")
 	)>>
 <</button>>
@@ -2244,7 +2237,6 @@ Der Blick eines Menschen der gelernt hat Körper zu lesen wie andere Leute Wette
 <<= setup.setNpcAffection("tilly", 1)>>
 
 [[Weiter|EE_Tross_Rosi]]
-
 
 
 :: EE_Tross_Intro [kap1] {"position":"725,750","size":"100,100"}
@@ -4278,7 +4270,6 @@ genug, dass er wackelt, nicht genug, dass es wie mutwillige Beschädigung aussie
 <</if>>
 
 
-
 :: Ermittlung_S9_Nah {"position":"725,6450","size":"100,100"}
 <<scene>>
 <p>Du löst dich aus dem Schatten und arbeitest dich an der Mauer entlang, Schritt um Schritt, bis du nah genug bist, um den Geleitschein zu lesen, der am Karren hängt, und die Plombe zu erkennen, die die Kisten verschließt. Was deine Ausbildung dich gelehrt hat, hilft dir jetzt, das Wesentliche vom Beiwerk zu trennen — und schnell zu sein.</p>
@@ -4358,7 +4349,7 @@ genug, dass er wackelt, nicht genug, dass es wie mutwillige Beschädigung aussie
 
 :: Event_Geschichte_Probe {"position":"2400,1900","size":"100,100"}
 <<set _gossipStory = $world.currentGossipStory>>
-<<set _r = setup.skillCheck("gossip", _gossipStory.probe.difficulty,3)>>
+<<set _r = setup.skillCheckXp("gossip", _gossipStory.probe.difficulty,3)>>
 <<if _r.skill <= 3>>
     <div class="scenery-text">Du hakst nach, etwas forsch.</div>
 <<elseif _r.skill <= 7>>
@@ -4373,7 +4364,7 @@ genug, dass er wackelt, nicht genug, dass es wie mutwillige Beschädigung aussie
         <div class="thought-box">Und noch mehr — er redet sich in Fahrt, du erfährst Dinge, nach denen du nie gefragt hättest.</div>
     <</if>>
     <<= _gossipStory.probe.success>><br>
-    <<= setup.setPlayerKnowledge("gossip", 1)>>
+    <<= _r.lernHTML>>
     <<= setup.addRumor(_gossipStory.rumorText)>>
     <<run setup.markGossipSeen(_gossipStory.id, true)>>
 <<else>>
@@ -4465,37 +4456,33 @@ genug, dass er wackelt, nicht genug, dass es wie mutwillige Beschädigung aussie
 :: GossipTexte {"position":"2575,1800","size":"100,100"}
 {
   "stories": {
-
     "lagerklatsch": [
       {
-	  "id": "lk_001",
-	    "minLevel": 0,
+        "id": "lk_001",
+        "minLevel": 0,
         "maxLevel": 2,
-	
-	  "base": "Ich hab gehört, dass es damals im Lager vorm Steigler Wald vor Grodaus einen Drill vom 84sten gab. Nichts Ungewöhnliches, eher Routine. Ausgerechnet in dem Moment, als einige der Söldner im Wald waren, um kurz abzuwässern, sollen Banditen aufgetaucht sein. Wie genau das ablief, sagt jeder anders, aber die Geschichte endet immer gleich: Das Lager habe den Angriff überstanden.",
-
-	  "probe": {
-		"difficulty": 0,
-		"success": "Später kamen der Shek und Snori de Alba ins Lager. Snori stellte sich vor, wie man es von ihm erwartet – laut und selbstsicher. Darauf soll jemand aus dem 84. Banner gesagt haben: ‚In Aloy sind alle Ritter.‘ Ob das wirklich so fiel, weiß keiner genau, aber Snorri hat es angeblich nicht gut aufgenommen. Heute ist der Spruch im 84. ein halber Insider geworden, den man nur hinter vorgehaltener Hand benutzt.",
-		"fail": "Andere winken nur ab und sagen, es sei nichts Besonderes gewesen – Banditen, wie sie eben öfter vorkommen, mehr nicht."
-	  },
-
-	  "rumorText": "Snori de Alba nimmt es nicht gut auf wenn man den Ritterstand herabwürdigt."
-	},
-      {
-      "id": "lk_002",
-      "minLevel": 0,
-      "maxLevel": 2,
-      "base": "Jemand vom älteren Jahrgang hat mal erzählt, der Schinder soll früher im Söldnerdienst gewesen sein — nicht als Ausbilder, sondern als Offizier. Irgendwo draußen, weit weg von Aloy. Was genau passiert ist, weiß keiner so genau. Aber danach war er hier. Und seine Hand war weg.",
-      "probe": {
-        "difficulty": 1,
-        "success": "Der Typ, der's erzählt hat, kannte angeblich jemanden aus dem alten 12. Banner. Die sagen, der Schinder hat damals einer ganzen Lanze das Leben gerettet — durch einen Befehl, den er hätte nicht geben dürfen. Er hat es getan. Die Lanze kam heim. Er kam auch heim, aber vor ein Kriegsgericht. Verurteilt wurde er nicht. Warum, weiß keiner. Aber Offizier war er danach keiner mehr.",
-        "fail": "Du hakst nach, aber der Typ zuckt nur mit den Schultern. 'Ich hab's halt irgendwo aufgeschnappt. Vielleicht ist's auch Quatsch.'"
+        "base": "Ich hab gehört, dass es damals im Lager vorm Steigler Wald vor Grodaus einen Drill vom 84sten gab. Nichts Ungewöhnliches, eher Routine. Ausgerechnet in dem Moment, als einige der Söldner im Wald waren, um kurz abzuwässern, sollen Banditen aufgetaucht sein. Wie genau das ablief, sagt jeder anders, aber die Geschichte endet immer gleich: Das Lager habe den Angriff überstanden.",
+        "probe": {
+          "difficulty": 0,
+          "success": "Später kamen der Shek und Snori de Alba ins Lager. Snori stellte sich vor, wie man es von ihm erwartet – laut und selbstsicher. Darauf soll jemand aus dem 84. Banner gesagt haben: ‚In Aloy sind alle Ritter.‘ Ob das wirklich so fiel, weiß keiner genau, aber Snorri hat es angeblich nicht gut aufgenommen. Heute ist der Spruch im 84. ein halber Insider geworden, den man nur hinter vorgehaltener Hand benutzt.",
+          "fail": "Andere winken nur ab und sagen, es sei nichts Besonderes gewesen – Banditen, wie sie eben öfter vorkommen, mehr nicht."
+        },
+        "rumorText": "Snori de Alba nimmt es nicht gut auf wenn man den Ritterstand herabwürdigt."
       },
-      "rumorText": "Der Schinder war früher Offizier. Was ihn hierher gebracht hat, erzählt er nicht.",
-      "npcKey": "schinder"
-    },
-            {
+      {
+        "id": "lk_002",
+        "minLevel": 0,
+        "maxLevel": 2,
+        "base": "Jemand vom älteren Jahrgang hat mal erzählt, der Schinder soll früher im Söldnerdienst gewesen sein — nicht als Ausbilder, sondern als Offizier. Irgendwo draußen, weit weg von Aloy. Was genau passiert ist, weiß keiner so genau. Aber danach war er hier. Und seine Hand war weg.",
+        "probe": {
+          "difficulty": 1,
+          "success": "Der Typ, der's erzählt hat, kannte angeblich jemanden aus dem alten 12. Banner. Die sagen, der Schinder hat damals einer ganzen Lanze das Leben gerettet — durch einen Befehl, den er hätte nicht geben dürfen. Er hat es getan. Die Lanze kam heim. Er kam auch heim, aber vor ein Kriegsgericht. Verurteilt wurde er nicht. Warum, weiß keiner. Aber Offizier war er danach keiner mehr.",
+          "fail": "Du hakst nach, aber der Typ zuckt nur mit den Schultern. 'Ich hab's halt irgendwo aufgeschnappt. Vielleicht ist's auch Quatsch.'"
+        },
+        "rumorText": "Der Schinder war früher Offizier. Was ihn hierher gebracht hat, erzählt er nicht.",
+        "npcKey": "schinder"
+      },
+      {
         "id": "lk_003",
         "minLevel": 0,
         "maxLevel": 2,
@@ -4507,11 +4494,127 @@ genug, dass er wackelt, nicht genug, dass es wie mutwillige Beschädigung aussie
         },
         "rumorText": "Weibel Lars soll stiller Teilhaber eines Freudenhauses in Tiafunt sein. Er redet nicht darüber.",
         "npcKey": "weibelLars"
+      },
+      {
+        "id": "lk_004",
+        "minLevel": 0,
+        "maxLevel": 2,
+        "base": "Ist dir aufgefallen, dass sich die vom 84. Banner immer öfter mit diesem Grimmerthaner sehen lassen? Ein Ritter, noch dazu aus der Kronmark. Früher hätte man für so was schiefe Blicke geerntet. Ritter und Aloy – das passt doch eigentlich nicht zusammen.",
+        "probe": {
+          "difficulty": 1,
+          "success": "Manche tuscheln schon, das 84. werde langsam weich oder spiele mit den Loyalisten. Andere lachen darüber. Der Grimmerthaner soll zwar ein Ritter sein, aber einer, der mehr Zeit mit Söldnern verbringt als mit Hofschranzen. Einer aus dem 84. meinte nur trocken: 'Der Mann hält sein Wort. Das reicht.' Trotzdem bleiben viele misstrauisch. Ritter ist Ritter.",
+          "fail": "Der Kerl schnaubt nur. 'Vielleicht trinken sie einfach gern zusammen. Nicht hinter jeder Kanne Bier steckt gleich eine Verschwörung.'"
+        },
+        "rumorText": "Das 84. Banner soll sich auffallend gut mit einem Ritter aus der Kronmark verstehen. Manche wittern bereits Loyalisten.",
+        "npcKey": null
+      },
+      {
+        "id": "lk_005",
+        "minLevel": 0,
+        "maxLevel": 2,
+        "base": "Auf einem vergangenen Freiheitsfest soll es einen Wettbewerb gegeben haben: 'Wo geht's denn da zum Krieg?' Ein Spiel für alle, die zeigen wollten, wie viel Mut und Geschick sie haben. Die de Alba selbst konnte natürlich nicht antreten — Stand und Anstand verbieten sowas. Aber sie soll sich köstlich darüber amüsiert haben, wie die großen Kämpfer sich dabei langmachten, und ihr Gefolge angewiesen haben, Aloys Ehre zu vertreten.",
+        "probe": {
+          "difficulty": 2,
+          "success": "Zwei von der de Alba sollen tatsächlich angetreten sein. Zusammen mit drei Aloyern. Viel Eindruck machten sie allerdings nicht. Keiner der Teilnehmer soll weiter als drei Meter gekommen sein. Am meisten erzählt wird aber von einem Weibel, der angeblich so viele Serpentinen gelaufen ist, dass man dachte, er hätte den Weg mit einem Betrunkenen geteilt. Die vom 84. erzählen die Geschichte natürlich besonders gerne.",
+          "fail": "Der Erzähler winkt ab. 'Ach, so ein Fest eben. Die Hälfte davon ist erfunden, die andere Hälfte war noch lustiger.'"
+        },
+        "rumorText": "Beim Freiheitsfest blamierten sich angeblich einige aus dem Gefolge der de Alba bei einem Kriegsspiel. Ein Weibel soll dabei besonders kurvenreich gelaufen sein.",
+        "npcKey": "deAlba"
+      },
+      {
+        "id": "lk_006",
+        "minLevel": 0,
+        "maxLevel": 2,
+        "base": "Die Feldscherin vom 84. Banner soll auf der Taverne zum Fuchsbau einen Auftritt gehabt haben, über den heute noch gelacht wird. Als die Aloyer Söldner dort angegriffen wurden, sollen sie sich mit Unterstützung anderer Menschen ordentlich geschlagen haben. Während vorne gekämpft wurde, hatte die Feldscherin alle Hände voll damit zu tun, die Verwundeten zu versorgen.",
+        "probe": {
+          "difficulty": 1,
+          "success": "Irgendwann wurde ihr ein Mann gebracht, der trotz schwererem Aussehen vor allem über eines klagte: eine Delle in seiner Brustrüstung. Die Feldscherin, mitten zwischen verletzten Kameraden und unter enormem Druck, soll ihn nur angesehen haben und meinte sinngemäß, er solle zum Schmied gehen und sich die Delle aus der Rüstung klopfen lassen, bevor er wieder ihre Zeit verschwende. Der Mann soll sprachlos gewesen sein und beleidigt abgezogen haben. Erst später erfuhr sie, dass der 'Mann mit der Delle' tatsächlich ein Ritter gewesen war.",
+          "fail": "Die meisten lachen nur. 'Ob Ritter oder Knecht, wenn du beim Feldscher ankommst, bist du erstmal nur ein weiterer Verwundeter.' Mehr weiß angeblich niemand."
+        },
+        "rumorText": "Die Feldscherin des 84. schickte einen Ritter wegen einer Rüstungsdelle zum Schmied, während sie seine Kameraden versorgte.",
+        "npcKey": "feldscherin84"
+      },
+      {
+        "id": "lk_007",
+        "minLevel": 4,
+        "maxLevel": 7,
+        "base": "Es gibt Geschichten, die werden in Tiafunt besonders gerne erzählt. Eine davon handelt von einer kleinen Ratssitzung, die angeblich nicht in einem Saal oder einem Amtshaus stattgefunden haben soll, sondern in einem der Hurenzelte der Bumsburg. Die Beteiligung soll überschaubar gewesen sein — was vermutlich der Grund ist, warum sich bis heute jeder daran erinnert.",
+        "probe": {
+          "difficulty": 2,
+          "success": "Angeblich tobte draußen das Wetter, während drinnen der Ofen auf Anschlag lief. Die Herrschaften sollen sich bei Wein und allerlei Verkostungen beraten haben, während der Regen gegen die Zeltwände schlug. Ob es wirklich eine offizielle Sitzung war oder nur ein Treffen, bei dem man zufällig wichtige Dinge besprach — darüber streiten sich die Leute bis heute. Sicher ist nur: Manche Entscheidungen sollen schon an deutlich unbequemeren Orten gefallen sein.",
+          "fail": "Der Wirt lacht nur. 'Wenn du glaubst, der Rat hätte noch nie an seltsameren Orten getagt, kennst du die Leute schlecht.' Mehr will er dazu nicht sagen."
+        },
+        "rumorText": "Eine kleine Ratssitzung soll einst in einem Zelt der Bumsburg stattgefunden haben — bei Ofenwärme, Wein und zweifelhafter Gesellschaft.",
+        "npcKey": null
+      },
+      {
+        "id": "lk_008",
+        "minLevel": 0,
+        "maxLevel": 2,
+        "base": "Beim Heinrichsfest im Jahr 119 nBA soll es einen Zwischenfall gegeben haben, über den heute noch gesprochen wird. Eine Zeichnerin sollte verhaftet werden, weil sie angeblich immer wieder Nackte zeichnete und damit einigen Leuten zu weit ging. Als die KgH schließlich anrückte, um sie abzuführen, wurde aus einer einfachen Festnahme ein ziemlicher Aufruhr.",
+        "probe": {
+          "difficulty": 2,
+          "success": "Angeblich waren einige Aloyer zur Stelle und behaupteten, sie hätten einen Termin mit der Zeichnerin. Ob das stimmte oder nicht, weiß keiner mehr. Aber plötzlich standen Wachen, Söldner und Festbesucher durcheinander, jeder wollte wissen, wer hier eigentlich wen festnimmt. Im Gedränge gingen die Befehle unter, die Reihen brachen auseinander — und als wieder Ordnung herrschte, war die Zeichnerin verschwunden. Manche sagen, sie sei einfach durch die Menge spaziert, während alle noch gestritten haben.",
+          "fail": "Der Erzähler winkt ab. 'Fest, Alkohol und zu viele Leute mit zu viel Meinung. Am Ende weiß keiner mehr, wer wen gesucht hat.'"
+        },
+        "rumorText": "Beim Heinrichsfest 119 nBA entkam eine Zeichnerin der KgH, nachdem Aloyer mit einem angeblichen Termin für Chaos sorgten.",
+        "npcKey": null
+      },
+      {
+        "id": "lk_009",
+        "minLevel": 0,
+        "maxLevel": 2,
+        "base": "Man erzählt sich, dass Weibel Wenzel einmal einen besonders schlechten Scherz auf Kosten von Snori de Alba gemacht haben soll. Angeblich ließ er heimlich ein Einhorn auf den Stuhl von Snori setzen. Wer Snori kennt, weiß: Einhörner gehören zu den wenigen Dingen, die ihn wirklich aus der Fassung bringen.",
+        "probe": {
+          "difficulty": 2,
+          "success": "Der Scherz soll schnell aufgeflogen sein, aber nicht für alle ohne Folgen. Snori soll Erasmus von Than die Schuld gegeben haben, weil dieser nicht aufmerksam genug gewesen sei und so etwas zugelassen habe. Der arme Erasmus soll dafür eine ordentliche Abreibung kassiert haben und dabei sogar einen Zahn verloren haben. Wenzel selbst? Der soll sich bis heute nicht entschuldigt haben. Im 84. wird deshalb gemunkelt, dass man bei Wenzels Streichen besser nicht in der Nähe steht — schon gar nicht, wenn Snori beteiligt ist.",
+          "fail": "Der Erzähler grinst nur. 'Ob es wirklich so war? Keine Ahnung. Aber Erasmus schaut seitdem angeblich sehr genau hin, bevor er sich irgendwo hinsetzt.'"
+        },
+        "rumorText": "Weibel Wenzel soll Snori de Alba mit einem Einhornstreich hereingelegt haben. Erasmus von Than bekam dafür die Schuld und verlor einen Zahn.",
+        "npcKey": "weibelWenzel"
+      },
+      {
+        "id": "lk_010",
+        "minLevel": 0,
+        "maxLevel": 2,
+        "base": "Man erzählt sich, dass Hauptmann Lenz vom 84. Banner auf den vergangenen Heinrichsfesten auffallend viel Zeit in der Gesellschaft einer Adeligen aus dem Norden verbracht haben soll. Wer sie genau war, darüber gehen die Geschichten auseinander. Die einen sagen, es sei nur höfliche Gesellschaft gewesen. Andere meinen, da sei deutlich mehr gewesen.",
+        "probe": {
+          "difficulty": 2,
+          "success": "Beim letzten Heinrichsfest soll Lenz dann plötzlich gefehlt haben — krankheitsbedingt, wie es offiziell hieß. Natürlich dauerte es nicht lange, bis die Gerüchteküche anfing. Einige behaupten, er habe sich den harten Schanker eingefangen. Beweise dafür gibt es keine, aber im Lager wird die Geschichte natürlich besonders gerne erzählt, weil sie so gar nicht zum Bild des ehrenwerten Hauptmanns passen will. Diejenigen, die Lenz kennen, winken meist nur ab und sagen: 'Eine Krankheit macht noch keinen Skandal.'",
+          "fail": "Der Erzähler hebt die Hände. 'Er war krank. Mehr weiß ich nicht. Alles andere ist Gerede von Leuten, die lieber über andere reden als über sich selbst.'"
+        },
+        "rumorText": "Hauptmann Lenz soll auf Heinrichsfesten viel Zeit mit einer Adeligen verbracht haben. Nach seiner Abwesenheit kursieren Gerüchte über eine Krankheit.",
+        "npcKey": "hauptmannLenz"
+      },
+      {
+        "id": "lk_011",
+        "minLevel": 0,
+        "maxLevel": 2,
+        "base": "Vom vergangenen Heinrichsfest erzählt man sich eine Geschichte über einen Mann aus dem 84. Banner, der den Wein wohl etwas zu ernst genommen hat. Anfangs soll alles noch im Rahmen gewesen sein, aber irgendwann war deutlich mehr im Becher als im Kopf. Selbst ein heißer Zuber soll keine Besserung gebracht haben — vor allem, weil der gute Mann danach offenbar vergessen hatte, sich ordentlich abzutrocknen.",
+        "probe": {
+          "difficulty": 1,
+          "success": "Später soll er völlig verloren über das Fest gewankt sein, auf der Suche nach einem Kameraden, dessen Namen er angeblich selbst kaum noch wusste. Schließlich habe er an einem Gebüsch Halt gemacht, um den überschüssigen Wein wieder loszuwerden. Das eigentlich Bemerkenswerte: Währenddessen soll er lautstark immer wieder seinen eigenen Namen gerufen haben, als müsse er sich selbst daran erinnern, wer er war. Seitdem gibt es im 84. den einen oder anderen Spruch über 'die große Suche nach sich selbst'.",
+          "fail": "Der Erzähler winkt ab. 'War halt ein Fest. Wenn jeder erzählen würde, was er da gemacht hat, gäbe es keine Geheimnisse mehr.'"
+        },
+        "rumorText": "Ein Soldat des 84. soll auf dem Heinrichsfest völlig betrunken gewesen sein und laut seinen eigenen Namen gerufen haben, während er den Wein wieder loswurde.",
+        "npcKey": null
+      },
+      {
+        "id": "lk_012",
+        "minLevel": 0,
+        "maxLevel": 2,
+        "base": "Selbst im Hohen Rat geht es wohl nicht immer so würdevoll zu, wie die Leute draußen glauben. Man erzählt sich, dass Hohepriester Kraut einmal die Dekanin Wenkheim während einer Sitzung falsch angesprochen haben soll. Nur ein falscher Name, könnte man meinen — aber bei Leuten, die sonst ganze Reden über Etikette und Anstand halten, reicht so etwas offenbar schon für eine peinliche Angelegenheit.",
+        "probe": {
+          "difficulty": 1,
+          "success": "Der Fehler soll noch schlimmer gewesen sein, als die meisten erzählen. Angeblich hat Kraut nicht nur den Namen verwechselt, sondern eine Anrede benutzt, die einer ganz anderen Person galt. Die Sitzung soll kurz still geworden sein, bevor jemand versuchte, die Situation zu retten. Kraut selbst soll danach so getan haben, als wäre nichts passiert — was natürlich nur dazu führte, dass sich die Geschichte noch schneller verbreitete.",
+          "fail": "Der Erzähler zuckt mit den Schultern. 'Ein falscher Name? Das passiert jedem. Nur bei den hohen Leuten wird aus einem Versprecher gleich eine Staatsaffäre.'"
+        },
+        "rumorText": "Hohepriester Kraut soll Dekanin Wenkheim in einer Ratssitzung falsch benannt haben. Die Peinlichkeit verfolgt ihn bis heute.",
+        "npcKey": null
       }
     ],
-
     "landesinfos": [
-            {
+      {
         "id": "li_001",
         "minLevel": 3,
         "maxLevel": 6,
@@ -4525,49 +4628,125 @@ genug, dass er wackelt, nicht genug, dass es wie mutwillige Beschädigung aussie
         "npcKey": "karla"
       },
       {
-            "id": "li_002",
-            "minLevel": 3,
-            "maxLevel": 6,
-            "base": "Es soll Leute geben, die finden, die Republik war von Anfang an ein Fehler. Nicht laut — nicht hier, nicht in der Kaserne. Aber man hört's. In Wirtshäusern. In Kellern. Leute, die glauben, irgendwas an der Gründungsgeschichte stimmt nicht. Dass da eine Lüge drin steckt, tief unten, seit dem ersten Tag.",
-            "probe": {
-              "difficulty": 5,
-              "success": "Die Geschichte geht so: Die Freiheitserklärung — das Original, das im Grodauser Wirtshaus verfasst wurde — hat sechs Unterschriften. Fünf kennt jeder. Die sechste ist unleserlich. Offizielle Lesart: Barsinger höchstselbst, der Spielmanngott. Aber es gibt welche, die sagen, da hat ein Adeliger unterschrieben. Unter Androhung. Als Feigenblatt für Legitimität. Wenn das stimmte — wenn der Name lesbar würde — wäre die Gründung keine Befreiung mehr. Sondern Nötigung.",
-              "fail": "Der Typ schüttelt den Kopf. 'Das ist Wirtshausklatsch von Leuten, die zu viel getrunken haben. Hör nicht drauf.'"
-            },
-            "rumorText": "Manche glauben, die sechste Unterschrift der Freiheitserklärung stammt nicht von einem Gott — sondern von einem Adeligen, der unter Zwang unterschrieb.",
-            "npcKey": "jarek"
-          },
-               {
-            "id": "li_003",
-            "minLevel": 3,
-            "maxLevel": 6,
-            "base": "Die Verlegungen gehen weiter. Regimenter, die seit Jahren an denselben Posten standen, werden auf einmal abgezogen und woanders hingeschickt. Keiner erklärt warum. Oben redet man von Umstrukturierung. Unten sagt man, da braut sich was zusammen — man weiß nur noch nicht wo.",
-            "probe": {
-              "difficulty": 3,
-              "success": "Einer aus dem alten Jahrgang meint, er hat den Namen Alfaltermark aufgeschnappt — im Flur, zwischen zwei Offizieren, die nicht wussten dass jemand zuhört. Alfaltermark ist der einzige Landweg rein nach Aloy. Wenn da was passiert, gibt's keinen Puffer mehr. Ob die Verlegungen damit zusammenhängen — keine Ahnung. Aber die Richtung stimmt.",
-              "fail": "Der Typ lehnt sich zurück. 'Ich weiß nur, dass das 14. verlegt wurde. Mehr hab ich nicht. Und mehr will ich auch nicht wissen.'"
-            },
-            "rumorText": "Die Truppenverlegungen könnten mit Alfaltermark zusammenhängen — dem einzigen Landweg nach Aloy.",
-            "npcKey": null
-          }
+        "id": "li_002",
+        "minLevel": 3,
+        "maxLevel": 6,
+        "base": "Es soll Leute geben, die finden, die Republik war von Anfang an ein Fehler. Nicht laut — nicht hier, nicht in der Kaserne. Aber man hört's. In Wirtshäusern. In Kellern. Leute, die glauben, irgendwas an der Gründungsgeschichte stimmt nicht. Dass da eine Lüge drin steckt, tief unten, seit dem ersten Tag.",
+        "probe": {
+          "difficulty": 5,
+          "success": "Die Geschichte geht so: Die Freiheitserklärung — das Original, das im Grodauser Wirtshaus verfasst wurde — hat sechs Unterschriften. Fünf kennt jeder. Die sechste ist unleserlich. Offizielle Lesart: Barsinger höchstselbst, der Spielmanngott. Aber es gibt welche, die sagen, da hat ein Adeliger unterschrieben. Unter Androhung. Als Feigenblatt für Legitimität. Wenn das stimmte — wenn der Name lesbar würde — wäre die Gründung keine Befreiung mehr. Sondern Nötigung.",
+          "fail": "Der Typ schüttelt den Kopf. 'Das ist Wirtshausklatsch von Leuten, die zu viel getrunken haben. Hör nicht drauf.'"
+        },
+        "rumorText": "Manche glauben, die sechste Unterschrift der Freiheitserklärung stammt nicht von einem Gott — sondern von einem Adeligen, der unter Zwang unterschrieb.",
+        "npcKey": "jarek"
+      },
+      {
+        "id": "li_003",
+        "minLevel": 3,
+        "maxLevel": 6,
+        "base": "Die Verlegungen gehen weiter. Regimenter, die seit Jahren an denselben Posten standen, werden auf einmal abgezogen und woanders hingeschickt. Keiner erklärt warum. Oben redet man von Umstrukturierung. Unten sagt man, da braut sich was zusammen — man weiß nur noch nicht wo.",
+        "probe": {
+          "difficulty": 3,
+          "success": "Einer aus dem alten Jahrgang meint, er hat den Namen Alfaltermark aufgeschnappt — im Flur, zwischen zwei Offizieren, die nicht wussten dass jemand zuhört. Alfaltermark ist der einzige Landweg rein nach Aloy. Wenn da was passiert, gibt's keinen Puffer mehr. Ob die Verlegungen damit zusammenhängen — keine Ahnung. Aber die Richtung stimmt.",
+          "fail": "Der Typ lehnt sich zurück. 'Ich weiß nur, dass das 14. verlegt wurde. Mehr hab ich nicht. Und mehr will ich auch nicht wissen.'"
+        },
+        "rumorText": "Die Truppenverlegungen könnten mit Alfaltermark zusammenhängen — dem einzigen Landweg nach Aloy.",
+        "npcKey": null
+      },
+      {
+        "id": "li_004",
+        "minLevel": 3,
+        "maxLevel": 6,
+        "base": "Beim Hirtenfest in Bofeld soll es vor einigen Jahren richtig übel geworden sein. Barbaren aus den Otzlanden haben eine junge Maid als Geisel genommen und sich später mit ihr auf einem Hügel verschanzt. Angeblich wollten sie Bedingungen stellen und auf Augenhöhe verhandeln. Dass sie überhaupt glaubten, Aloy würde mit Geiselnehmern reden, finden heute viele schon den ersten Fehler.",
+        "probe": {
+          "difficulty": 4,
+          "success": "Als schließlich alles still wurde und der Sprecher der Barbaren mit seiner Forderung beginnen wollte, soll einer vom 84. Banner bereits im Anschlag gelegen haben. Noch bevor der Mann den zweiten Satz beenden konnte, traf ihn ein Armbrustbolzen sauber zwischen die Augen. Der Schütze hatte den Redner so präzise anvisiert, dass die dahinter stehende Geisel ebenfalls tödlich getroffen wurde. Seitdem erzählt man sich den Satz: 'Aloy verhandelt nicht.' Manche sagen sogar, genau dafür werde das 84. ausgebildet.",
+          "fail": "Der Alte zuckt mit den Schultern. 'Was genau passiert ist, weiß ich nicht. Aber die Barbaren haben seitdem jedenfalls keine Geiseln mehr nach Bofeld verschleppt.'"
+        },
+        "rumorText": "Beim Hirtenfest von Bofeld erschoss ein Schütze des 84. den Geiselnehmer – und mit ihm die Geisel. Aloy verhandelt nicht.",
+        "npcKey": null
+      },
+      {
+        "id": "li_005",
+        "minLevel": 3,
+        "maxLevel": 6,
+        "base": "Seit einiger Zeit gibt es Streit um eine Kleinigkeit, die für manche gar nicht so klein ist: die Farben Rot-Weiß. Sowohl Aloy als auch die Grimmerthaner aus der Kronmark erheben Anspruch darauf, die echten Rot-Weißen zu sein. Die einen sagen, ihre Farben seien älter und stünden für die Freiheit. Die anderen behaupten, die Zeichen der Kronmark würden ihnen zustehen und Aloy habe sich etwas angeeignet.",
+        "probe": {
+          "difficulty": 4,
+          "success": "Angeblich gibt es ein altes Dokument, versehen mit dem Siegel der Magnifizenz Lexus von Rallersquell. Darin soll eindeutig festgehalten sein: Aloy führt Rot-Weiß, während der Kronmarker Anspruch auf Weiß-Rot erhebt. Für manche ist damit die Sache erledigt. Andere behaupten, ein Siegel mache aus einer Behauptung noch keine Wahrheit. Besonders die Grimmerthaner sollen wenig begeistert davon sein, dass ein einzelnes Stück Pergament ihren Anspruch entscheiden soll.",
+          "fail": "Der Erzähler winkt ab. 'Farben, Streifen, Reihenfolge. Am Ende prügeln sich Leute wegen Stoffstücken, während die Feinde vor der Tür stehen.'"
+        },
+        "rumorText": "Aloy und die Kronmark streiten um die Farben. Ein Dokument von Lexus von Rallersquell soll Aloy Rot-Weiß und der Kronmark Weiß-Rot zusprechen.",
+        "npcKey": null
+      },
+      {
+        "id": "li_006",
+        "minLevel": 3,
+        "maxLevel": 6,
+        "base": "Man hört, dass der Rat zunehmend nervös wegen der sinkenden Geburtenzahlen ist. Angeblich sollen die hohen Herren bereits über Maßnahmen nachdenken, die man lieber nicht laut auf dem Marktplatz erwähnt. Von Strafen für Paare ohne Kinder ist die Rede. Andere behaupten, man habe sogar darüber gesprochen, den Verkauf von Tierdärmen einzuschränken, weil irgendjemand darin eine Lösung für die Geburtenfrage gesehen haben soll. Wer auch immer solche Vorschläge macht, verbringt vermutlich zu viel Zeit im Staatskunst-Institut.",
+        "probe": {
+          "difficulty": 4,
+          "success": "Die Sache mit den Tierdärmen soll tatsächlich aus einer Sitzung stammen — allerdings nicht als fertiger Plan, sondern als völlig missverstandener Vorschlag eines Ratsgelehrten. Der eigentliche Streit ging darum, ob bestimmte Materialien und Handwerke stärker reguliert werden müssten, weil junge Familien angeblich durch Luxus und Bequemlichkeit vom Kinderkriegen abgehalten würden. Am Ende blieb vor allem hängen, dass der Rat überlegt hat, wie man Menschen zum Gebären bringen könnte. Und seitdem macht jeder Witze darüber.",
+          "fail": "Der Erzähler winkt ab. 'Der Rat redet ständig über irgendwelche Maßnahmen. Heute sind es Geburten, morgen Brotpreise und übermorgen die Länge von Laternenpfählen. Am Ende passiert meistens weniger, als alle behaupten.'"
+        },
+        "rumorText": "Der Rat soll wegen sinkender Geburtenzahlen über absurde Maßnahmen nachdenken – von Kinderstrafen bis zum Verbot von Tierdärmen.",
+        "npcKey": null
+      },
+      {
+        "id": "li_007",
+        "minLevel": 3,
+        "maxLevel": 6,
+        "base": "In Vormberg soll etwas passiert sein, über das man in den Werkstätten und Kasernen lieber nicht zu laut spricht. Angeblich sind aus den Arsenalen der Stadt rund 450 Schwerter verschwunden. Die Schmiedezunft soll außer sich sein, nicht nur wegen des Verlusts, sondern wegen der Frage, wo diese Waffen jetzt sind. Einige behaupten, sie könnten bei Gegnern des alten Adels gelandet sein. Vielleicht erklärt das auch, warum in letzter Zeit plötzlich jede Klinge gezählt und jedes Lagerbuch doppelt geprüft wird.",
+        "probe": {
+          "difficulty": 4,
+          "success": "Die Geschichte soll einen wahren Kern haben. Tatsächlich fehlten bei einer Bestandsprüfung mehrere hundert Waffen — allerdings ist unklar, ob sie gestohlen wurden, falsch eingetragen waren oder schon lange vorher an andere Stellen ausgegeben wurden. Verdächtig ist nur, dass ausgerechnet in den Monaten davor mehrere Gruppen nach alten Waffenbeständen gefragt haben. Die Schmiedezunft vermutet Absicht. Der Rat spricht von einem Verwaltungsfehler. Niemand glaubt so recht daran.",
+          "fail": "Der Erzähler schaut sich kurz um. 'In jeder Stadt verschwinden Dinge aus Lagern. Manchmal sind es Schwerter, manchmal Getreidesäcke. Der Unterschied ist nur, dass Schwerter zurückschlagen können.'"
+        },
+        "rumorText": "In Vormberg sollen 450 Schwerter aus den Arsenalen verschwunden sein. Manche fürchten, sie seien bei Feinden des alten Adels gelandet.",
+        "npcKey": null
+      },
+      {
+        "id": "li_008",
+        "minLevel": 3,
+        "maxLevel": 6,
+        "base": "Man hört, dass das 84. Banner im Rat inzwischen genauer beobachtet wird, als man öffentlich zugibt. Besonders die Frage, welche Befugnisse Sera de Alba eigentlich besitzt, soll immer wieder für Diskussionen sorgen. Einige Ratsleute sollen befürchten, dass die Grenzen zwischen Verbündeten, Auftraggebern und eigenen Interessen langsam verschwimmen. Dazu kommt das Misstrauen gegenüber Hauptmann Lenz: Manche fragen sich, ob er in den Verhandlungen mit Komarn wirklich noch neutral handeln kann oder längst zu nah an bestimmten Kreisen steht.",
+        "probe": {
+          "difficulty": 4,
+          "success": "Ein Schreiber aus dem Umfeld des Rates soll gehört haben, dass es weniger um Lenz persönlich geht als um die wachsende Bedeutung des 84. Banners. Sera de Alba erhält offenbar mehr Spielraum, als viele erwartet hatten, und einige Ratsmitglieder fürchten, dass eine Söldnertruppe mit zu viel Einfluss irgendwann eigene Regeln aufstellt. Lenz selbst soll darauf nur erwidert haben, dass man einem Verbündeten nicht gleichzeitig vertrauen und ständig die Hände fesseln könne. Ob das beruhigt hat, weiß niemand.",
+          "fail": "Der Erzähler zieht die Augenbrauen hoch. 'Der Rat misstraut jedem, der nicht im Rat sitzt. Heute sind es die Söldner, morgen die Händler und übermorgen die eigenen Nachbarn.' Mehr weiß er angeblich nicht."
+        },
+        "rumorText": "Der Rat beobachtet das 84. Banner und zweifelt an Sera de Albas Befugnissen sowie an Hauptmann Lenz' Neutralität bei den Verhandlungen mit Komarn.",
+        "npcKey": "hauptmannLenz"
+      },
+      {
+        "id": "li_009",
+        "minLevel": 3,
+        "maxLevel": 6,
+        "base": "Wer den Rat nach Alfalter fragt, bekommt inzwischen auffällig wenig Antworten. Angeblich wurden sämtliche Beschlüsse dazu zur Verschlusssache erklärt. Offiziell heißt es, man müsse erst prüfen und beraten. Inoffiziell erzählen die Leute, der Rat plane dort etwas Größeres: Landnahme, neue Grenzen, vielleicht sogar eine Annexion. Genau weil niemand darüber sprechen darf, wachsen die Geschichten jeden Tag weiter. Für Gerüchtemacher ist Alfalter inzwischen ein Geschenk.",
+        "probe": {
+          "difficulty": 5,
+          "success": "Ein Schreiber aus dem Umfeld des Rates soll verraten haben, dass die Geheimhaltung weniger mit einem fertigen Plan zu tun hat, sondern damit, dass noch mehrere Parteien um Einfluss ringen. Es gibt tatsächlich Karten, Gespräche und Entwürfe — aber nichts davon ist beschlossen. Besonders auffällig: Einige Vertreter aus der Region Alfalter wurden nicht eingeladen, obwohl es eigentlich üblich wäre. Ob das Absicht war oder nur schlechte Verwaltung, darüber streiten sich die Leute.",
+          "fail": "Der Erzähler senkt die Stimme. 'Wenn der Rat etwas geheim hält, heißt das meistens nur, dass er selbst noch nicht weiß, was er tut. Aber erzähl das keinem Ratsmitglied.'"
+        },
+        "rumorText": "Die Beschlüsse zu Alfalter sollen geheim sein. Viele vermuten, der Rat plane dort eine Annexion oder eine neue Grenzregelung.",
+        "npcKey": null
+      }
     ],
-
     "knaller": [
       {
-          "id": "kn_002",
-          "minLevel": 7,
-          "maxLevel": 99,
-          "base": "Es geht ein Tuscheln durch die Höfe, das nicht so recht in die Kaserne passen will. Die Händlergilde hat einen neuen Namen in ihren Büchern — und was für einen. Don Remirez de Volpe. La Familia. Jene Leute aus dem Süden, von denen man sich erzählt, sie seien Händler, wenn die Sonne scheint, und etwas ganz anderes, wenn sie untergeht. Aufgenommen. Offiziell. Mit Siegel und Handschlag. Und Teile seiner Entourage sollen schon in Aloy unterwegs sein.",
-          "probe": {
-            "difficulty": 6,
-            "success": "Allen voran ein Anwalt, heißt es — ein höflicher Mann mit südlichem Zungenschlag, der für die Familie das Geschäftliche ordnet. Was die Leute aber wirklich nicht verstehen: dass ausgerechnet Ignaz Rothschild das zugelassen hat. Rothschild, der seine Gilde hütet wie ein Habicht sein Nest. Einen wie den Don hineinzulassen — das ist entweder ein Fehler, oder Rothschild weiß etwas, das die anderen nicht wissen. Und dann, leiser noch: Der Anwalt sei mit einem aus dem 84. Banner gut bekannt. Mit Wenzel. Man munkelt, die beiden hätten schon zusammen am Tisch gesessen, lange bevor irgendwer von Gilden sprach.",
-            "fail": "Der Typ winkt ab. 'Südländer in der Gilde, na und. Geld stinkt nicht, Junge. Frag nicht zu laut nach solchen Leuten — das endet selten gut.'"
-          },
-          "rumorText": "Der Don von La Familia wurde in Ignaz Rothschilds Händlergilde aufgenommen. Sein Anwalt ist in Aloy — und offenbar mit Wenzel vom 84. bekannt.",
-          "npcKey": null
-        }
+        "id": "kn_002",
+        "minLevel": 7,
+        "maxLevel": 99,
+        "base": "Es geht ein Tuscheln durch die Höfe, das nicht so recht in die Kaserne passen will. Die Händlergilde hat einen neuen Namen in ihren Büchern — und was für einen. Don Remirez de Volpe. La Familia. Jene Leute aus dem Süden, von denen man sich erzählt, sie seien Händler, wenn die Sonne scheint, und etwas ganz anderes, wenn sie untergeht. Aufgenommen. Offiziell. Mit Siegel und Handschlag. Und Teile seiner Entourage sollen schon in Aloy unterwegs sein.",
+        "probe": {
+          "difficulty": 6,
+          "success": "Allen voran ein Anwalt, heißt es — ein höflicher Mann mit südlichem Zungenschlag, der für die Familie das Geschäftliche ordnet. Was die Leute aber wirklich nicht verstehen: dass ausgerechnet Ignaz Rothschild das zugelassen hat. Rothschild, der seine Gilde hütet wie ein Habicht sein Nest. Einen wie den Don hineinzulassen — das ist entweder ein Fehler, oder Rothschild weiß etwas, das die anderen nicht wissen. Und dann, leiser noch: Der Anwalt sei mit einem aus dem 84. Banner gut bekannt. Mit Wenzel. Man munkelt, die beiden hätten schon zusammen am Tisch gesessen, lange bevor irgendwer von Gilden sprach.",
+          "fail": "Der Typ winkt ab. 'Südländer in der Gilde, na und. Geld stinkt nicht, Junge. Frag nicht zu laut nach solchen Leuten — das endet selten gut.'"
+        },
+        "rumorText": "Der Don von La Familia wurde in Ignaz Rothschilds Händlergilde aufgenommen. Sein Anwalt ist in Aloy — und offenbar mit Wenzel vom 84. bekannt.",
+        "npcKey": null
+      }
     ]
-
   }
 }
 
@@ -4978,7 +5157,7 @@ tilly: {
     karla: {
         name: "Karla",
         image: "Karla_Kap1.png",
-        imageKap2: "Karla_Kap2.png",
+        imageKap2: "Karla_Kap2.jpg",
         known: false,
         affection: 0,
         trust: false,
@@ -6733,7 +6912,6 @@ Der Feldscher. Keine Waffe. Hände, die heilen statt schlagen. Der Gedanke fühl
 <</if>>
 
 
-
 :: Karla_Paar_Moment [nach_Kap2_tag] {"position":"4100,5100","size":"100,100"}
 <<scene>>
 <p>Es fällt kein Wort darüber. Keines von euch würde es aussprechen, und gerade darin liegt die ganze Wahrheit. Das rote Band sitzt um ihr linkes Handgelenk, fest verknotet, dort, wo sie sonst niemanden hinsehen lässt — und dass sie es dort trägt und nicht im Haar, ist keine Laune. Es ist eine Antwort auf eine Frage, die du nie gestellt hast.</p>
@@ -7348,7 +7526,6 @@ Der Feldscher. Keine Waffe. Hände, die heilen statt schlagen. Der Gedanke fühl
 
 
 :: Stadt_Fuhrmannsviertel {"position":"2600,5500","size":"100,100"}
-\:: Stadt_Fuhrmannsviertel
 <<scene>>
 <p>Hier riecht es nach Pferdemist, Teer und nassem Sackleinen. Karren stehen aufgereiht, ihre Achsen von tausend Meilen glattgeschliffen, und zwischen ihnen sitzen Fuhrleute an kleinen Feuern, rauchen, würfeln, erzählen sich Geschichten von Straßen, die kein Rekrut je zu Gesicht bekommt.</p>
 <</scene>>
@@ -7394,8 +7571,8 @@ Der Feldscher. Keine Waffe. Hände, die heilen statt schlagen. Der Gedanke fühl
 
 	<<if _story.probe>>
 		<<set _stadtModifier = 3>>
-		<<set _erfolg = setup.rollGossipProbe($player.knowledge.gossip, _story.probe.difficulty + _stadtModifier)>>
-		<<if _erfolg>>      
+		<<set _erfolg = setup.skillCheckXp("gossip", _story.probe.difficulty + _stadtModifier)>>
+		<<if _erfolg.success>>      
         	<<dialog>>
               <p>„Was sagen sie?“, flüstert Karla.</p>
               <p>„Moment! Da ist noch was!.“</p>
@@ -7479,7 +7656,6 @@ Der Feldscher. Keine Waffe. Hände, die heilen statt schlagen. Der Gedanke fühl
 
 
 :: Stadt_Markt {"position":"2425,5750","size":"100,100"}
-<<run setup.addMoney(90)>>
 <<scene>>
 <p>Zwischen den Ständen drängen sich Käufer und Verkäufer, feilschende Stimmen, das Klappern von Tonkrügen, der metallische Klang, wenn ein Händler eine Klinge gegen einen Amboss schlägt, um ihre Güte zu beweisen. Hier gibt es alles, was ein Rekrut mit Kupfer in der Tasche brauchen könnte — und vieles, das er sich nur ansehen kann.</p>
 <</scene>>
@@ -8980,7 +9156,6 @@ Der Feldscher. Keine Waffe. Hände, die heilen statt schlagen. Der Gedanke fühl
 
 
 :: Tageshub_Rindler {"position":"1750,5300","size":"100,100"}
-\:: Tageshub_Rindler
 <<scene>>
 <p>Das Quartier der Hauptleute liegt im steinernen Flügel der Akademie, dort, wo die Mauern dicker sind und die Kälte anders riecht — nach Wachs, nach frisch geöltem Riemenzeug, nach der stillen Schwere von Papier, das Befehle trägt. Der Posten mustert dich, ehe er dich mit einem knappen Nicken einlässt.</p>
 <</scene>>
