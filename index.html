@@ -6449,7 +6449,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 &lt;&lt;dialog&gt;&gt;&lt;p&gt;„Das“, sagt Rindler leise, „war ein Versagen. Zermürbte Männer, verlorene Ordnung. Im Feld hätte Euch das Köpfe gekostet — nicht nur Euren.“&lt;/p&gt;&lt;&lt;/dialog&gt;&gt;
 &lt;&lt;/switch&gt;&gt;
 &lt;&lt;gedanke&gt;&gt;&lt;p&gt;Was auch immer sie in ihre Akten schreiben — diese Woche wirst du nicht vergessen. Und sie dich nicht.&lt;/p&gt;&lt;&lt;/gedanke&gt;&gt;
-[[Auf die Stube gehen|Kap2_Abend]]</tw-passagedata><tw-passagedata pid="90" name="DEV" tags="" position="1375,4250" size="100,100">&lt;&lt;run setup.ermInit()&gt;&gt;
+[[Auf die Stube gehen|Kap2_Abend]]</tw-passagedata><tw-passagedata pid="90" name="DEBUG_Kap2_Setup" tags="" position="1375,4250" size="100,100">&lt;&lt;run setup.ermInit()&gt;&gt;
 &lt;&lt;if not $world.flags&gt;&gt;&lt;&lt;set $world.flags = {}&gt;&gt;&lt;&lt;/if&gt;&gt;
 
 
@@ -14835,7 +14835,7 @@ Der Feldscher. Keine Waffe. Hände, die heilen statt schlagen. Der Gedanke fühl
 &lt;&lt;button &quot;Login&quot;&gt;&gt;
 	&lt;&lt;run (
 		$(&quot;#devpw&quot;).val() === &quot;fleischens&quot;
-			? Engine.play(&quot;DEV&quot;)
+			? Engine.play(&quot;DEBUG_Kap2_Setup&quot;)
 			: alert(&quot;Falsches Passwort.&quot;)
 	)&gt;&gt;
 &lt;&lt;/button&gt;&gt;</tw-passagedata></tw-storydata>
