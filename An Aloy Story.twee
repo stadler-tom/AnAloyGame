@@ -723,7 +723,7 @@ Ein dritter.<br>
 <</if>>
 
 
-:: BiwagWidgets [widget] {"position":"3025,4500","size":"100,100"}
+:: BiwagWidgets [widget] {"position":"2975,4275","size":"100,100"}
 <<widget "biwagCheck">>
     <<if setup.biwagReady()>>
         <<replace "#biwag-depart">><span class="weiter-link">[[Der Biwak beginnt->Biwag_Aufbruch]]</span><</replace>>
@@ -731,125 +731,359 @@ Ein dritter.<br>
 <</widget>>
 
 
-:: Biwag_Aufbruch {"position":"3075,4650","size":"100,100"}
-yoloswag
-
-
-:: Biwag_Drill {"position":"2900,4650","size":"100,100"}
-<<if $world.biwagEquipment is undefined>>
-	<<set $world.biwagEquipment to { rations: 0, ammunition: 0, shelter: 0, medicine: 0, tools: 0, mobility: 0 }>>
+:: Biwag_Aufbruch {"position":"3125,4400","size":"100,100"}
+<<if $world.biwagMoral is undefined>>
+	<<set $world.biwagMoral to 100>>
+	<<set $world.biwagProviant to ($world.biwagEquipment.rationen ? 7 : 3)>>
+	<<set $world.biwagTag to 1>>
 <</if>>
 
 <<scene>>
-<p>Rindler teilt die Kompanie mit dem knappen Finger eines Mannes ein, der solche Entscheidungen im Schlaf trifft. Vier Spießer, zwei Kannoniere, zwei Armbruster, ein Feldscher — und du. Ein Biwak in kleiner Mannstärke, eine Woche im Feld, fernab der Mauern von Ohm. Keine Küche, keine Kammer, kein Weibel, der euch das Denken abnimmt. „Selbstversorger“, sagt Rindler, und in dem einen Wort liegt die ganze Prüfung. „Wer im Feld nicht für sich sorgen kann, sorgt auch im Gefecht für niemanden.“</p>
+<p>Bei Tagesanbruch rollt der Karren durchs Nordtor, neun Männer und du dahinter, das Lager von Ohm im Rücken. Was ihr habt, habt ihr. Was ihr vergessen habt, werdet ihr draußen vermissen.</p>
+<</scene>>
+
+<span class="weiter-link">[[Der erste Tag->Biwag_Tag1]]</span>
+
+
+:: Biwag_Debrief [layout] {"position":"4325,3600","size":"100,100"}
+<<scene>>
+<p>„Nun, Biwakweibel“, sagt Rindler. „Erzählt. Und bedenkt: Ich sehe Eure Männer, ehe ich Euren Worten glaube.“</p>
+<</scene>>
+[[Ehrlich berichten|Biwag_Debrief_Ehrlich]]
+[[Die Woche beschönigen|Biwag_Debrief_Beschoenigen]]
+
+
+:: Biwag_Debrief_Beschoenigen [layout] {"position":"4200,3450","size":"100,100"}
+<<scene>>
+<p>Du malst die Woche in helleren Farben, als sie war.<<if $world.biwagWenzelWeg or ($world.biwagMoral lt 55)>> Doch Rindlers Blick wandert über die müden, mürrischen Gesichter deiner Truppe, und ein leises Lächeln, das keines ist, sagt dir: Er sieht durch dich hindurch.<<else>> Deine Männer stehen ordentlich genug, dass die Geschichte trägt.<</if>></p>
+<</scene>>
+[[Das Urteil|Biwag_Ergebnis]]
+
+
+:: Biwag_Debrief_Ehrlich [layout] {"position":"4375,3425","size":"100,100"}
+<<scene>>
+<p>Du berichtest, wie es war — die Pannen wie die Erfolge, ohne Beschönigung. Rindler nickt knapp; ein Mann, der die Wahrheit hört, auch wenn sie unbequem ist, verdient sich wenigstens Vertrauen.</p>
+<</scene>>
+[[Das Urteil|Biwag_Ergebnis]]
+
+
+:: Biwag_Drill {"position":"2900,4425","size":"100,100"}
+<<scene>>
+<p>Rindler steht vor der angetretenen Reihe, die Hände auf dem Rücken verschränkt,
+ und lässt seinen Blick einmal über die Gesichter wandern, als wöge er jedes einzeln auf einer unsichtbaren Waage.
+  Niemand rührt sich. Irgendwo hinter der Palisade schlägt eine Axt gleichmäßig und gedankenlos gegen Holz. 
+  Für einen Moment ist es das einzige Geräusch in der ganzen Welt.</p>
+<</scene>>
+
+<p>„Vier Spießer.“ Der Finger fährt die Reihe entlang, ohne zu zögern oder auch nur ein einziges Mal innezuhalten. 
+„Zwei Kanoniere. Zwei Armbruster. Ein Feldscher.“ 
+Eine Pause, kurz genug, um sie für Zufall zu halten, aber lang genug, um es nicht zu sein. „Und du.“</p>
+
+<p>Der Finger bleibt auf dir stehen und für einen Augenblick ist es, als hätte Rindler die ganze Kompanie vergessen und würde nur noch zu dir sprechen.</p>
+
+<<dialog>>
+<p>„Ein Biwak, kleine Mannstärke. Eine Woche im Feld, fernab der Mauern.“ Rindlers Stimme bleibt flach, 
+beiläufig fast, aber seine Augen tun das Gegenteil. „Selbstversorger.“</p>
+<p>„Das Biwag steht an!“ Rindlers Stimme bleibt flach, beiläufig fast, aber seine Augen tun das Gegenteil.
+„Ihr habt sieben Tage Zeit um sieben Stationen zu absolvieren. Ihr werdet euch eindecken mit dem was ihr denkt was ihr braucht.
+Ihr werdet eure Waffen mitführen und eure Drills abhalten. Versucht erst gar nicht euch das zu sparen und uns zu erzählen ihr hättet
+euren Drill babgehalten. Ihr seid nicht die ersten die wir ausbilden!“ Dabei wandert sein Blick scharf über die Reihen.„Ausserdem.“ sagt er und macht 
+den Eindruck eines Raubtiers auf Pirsch „seid ihr für die Tage Selbsversorger!“ </p>
+<</dialog>>
+
+<p>Ein Wort nur, aber es setzt sich fest wie ein Splitter unter der Haut. 
+Kein Nachschub, keine Feldküche, kein Rückweg, den einer für dich freihält.
+ Was du nicht mitbringst, wird draußen fehlen — und was draußen fehlt, wird man an dir messen.</p>
+
+<p>Ohne ein weiteres Wort dreht er sich um und geht, den Rücken so gerade wie eine Lanze, 
+und lässt neun Männer zurück, die sich plötzlich alle gleichzeitig ansehen.</p>
+
+
+<p>Das Schweigen hält, solange Rindler in Hörweite ist. Kaum ist er um die Ecke der Waffenkammer verschwunden, bricht es wie ein Damm. 
+Stimmen übereinander, Hände, die auf Brustkörbe zeigen, ein Lachen, das zu laut ist, um ehrlich zu sein. 
+Neun Männer, neun Meinungen, und jede lauter als die letzte, bis einer — der Älteste der Spießer, 
+mit Narben an den Knöcheln, die von mehr als einer Übung erzählen — die Stimme hebt und Ruhe fordert, 
+indem er einfach lauter wird als alle zusammen.</p>
+
+<p>„Stöckchen“, sagt er, und es klingt wie ein Befehl, kein Vorschlag. 
+Aus dem Ärmel zieht er ein Bündel dünner Zweige, ungleich gekürzt, die Enden in der Faust verborgen.
+ Reihum greift jeder zu, ohne recht hinzusehen, als könnte ein zu langer Blick das Ergebnis verderben. 
+ Als du an der Reihe bist, ist deine Hand einen Herzschlag zu langsam, und genau in diesem Herzschlag weißt du bereits,
+  bevor du hinsiehst, was du gezogen hast.</p>
+
+<p>Das kürzeste Stück liegt in deiner Faust wie ein Urteil.</p>
+
+<<dialog>>
+<p>„Dann bist du der Biwakweibel.“ Der Alte grinst, aber es ist ein Grinsen, das die Augen nicht erreicht 
+— halb Spott, halb Erleichterung, dass es nicht ihn getroffen hat. „Deins ist das letzte Wort, Junge. Und deiner der Kopf, wenn's schiefgeht.“</p>
+<</dialog>>
+
+<p>Ein anderer, einer der Kanoniere, spuckt zur Seite und sagt nichts, 
+aber sein Blick bleibt an dir hängen, prüfend, abwartend, als würde er bereits Wetten gegen dich abschließen. 
+<<if $player.spezialisation neq "medicine">>
+  Der Feldscher allein nickt dir kurz zu, ein knappes, fast freundliches Zeichen, das mehr wiegt als alle Worte der anderen zusammen.
+<</if>>
+</p>
+
+<<switch $player.spezialisation>>
+<<case "pike">><<gedanke>><p>Ein Marsch macht aus einem Mann entweder einen Soldaten oder einen Krüppel, 
+  das hat man dich am Spieß gelehrt. Es kommt darauf an, wer die Linie hält, wenn die Beine schon längst nicht mehr wollen. 
+  Diesmal bist du es, der dafür sorgen muss, dass sie hält.</p><</gedanke>>
+<<case "cannon">><<gedanke>><p>Du denkst zuerst an Pulver, an trockene Lunten, an das Gewicht von Eisen — Reflexe,
+   die dir das Geschütz eingebrannt hat. Aber hier draußen zählt zuerst der Bauch, und ein hungriger Mann trägt kein Rohr weit.</p><</gedanke>>
+<<case "crossbow">><<gedanke>><p>Im Kopf zählst du bereits die Bolzen, wie du es immer tust, bevor du überhaupt weißt, wofür.
+   Aber Bolzen füllen keinen Magen und wärmen keine Nacht, und neun Mägen wollen mehr als eine Woche lang gefüllt sein.</p><</gedanke>>
+<<case "medicine">><<gedanke>><p>Du siehst die Wunden, die noch keiner von ihnen hat — die aufgeriebenen Fersen, 
+  die Fieber, die aus schlechtem Wasser wachsen, die Finger, die sich am kalten Morgen versteifen. Draußen bist du der Einzige, 
+  der weiß, wie schnell aus Unbequemlichkeit Verhängnis wird.</p><</gedanke>>
+<<default>><<gedanke>><p>Neun Männer, sieben Tage, ein Karren voll Entscheidungen, 
+  die alle auf dich zurückfallen werden. Du hast dir das nicht gewünscht — aber gewünscht hat sich hier ohnehin niemand etwas.</p><</gedanke>>
+<</switch>>
+
+<p>Der Karren steht schon bereit, die Deichsel schräg in den Morgenhimmel gestemmt, 
+sein Bett noch leer bis auf ein paar Seile und einen losen Sack Nägel. Er wird nicht mehr fassen, als er fasst — 
+was ihr nicht hineinlegt, müsst ihr tragen, Meile um Meile, und was ihr weder hineinlegt noch tragt, wird euch draußen fehlen, 
+wenn es am wenigsten passt.</p>
+
+<p>Die anderen acht warten. Sie warten auf dich.</p>
+
+<span class="weiter-link">[[Den Karren beladen->Biwag_Loadout]]</span>
+
+
+:: Biwag_Ergebnis [layout] {"position":"4275,3275","size":"100,100"}
+<<set _stufe to setup.biwagVerdikt()>>
+<<scene>>
+<p>Rindler wechselt einen Blick mit Kurt, ehe er das Urteil spricht.</p>
+<</scene>>
+<<switch _stufe>>
+<<case "ausgezeichnet">>
+<<dialog>><p>„Eine geschlossene, disziplinierte Truppe, sauber heimgeführt“, sagt Rindler. „Das ist mehr, als die meisten in ihrer ersten Woche zustande bringen. Gut gemacht, Waffenträger.“</p><</dialog>>
+<<case "bestanden">>
+<<dialog>><p>„Ordentlich“, sagt Rindler nach kurzem Bedenken. „Nicht ohne Fehler, aber Ihr habt sie heimgebracht, und keiner ist zerbrochen. Das genügt — fürs Erste.“</p><</dialog>>
+<<case "knapp">>
+<<dialog>><p>„Ihr seid davongekommen“, sagt Rindler kühl. „Knapp. Eine Truppe am Rand, ein Weibel, der Glück nötiger hatte als Können. Lernt daraus, ehe es ernst wird.“</p><</dialog>>
+<<default>>
+<<dialog>><p>„Das“, sagt Rindler leise, „war ein Versagen. Zermürbte Männer, verlorene Ordnung. Im Feld hätte Euch das Köpfe gekostet — nicht nur Euren.“</p><</dialog>>
+<</switch>>
+<<gedanke>><p>Was auch immer sie in ihre Akten schreiben — diese Woche wirst du nicht vergessen. Und sie dich nicht.</p><</gedanke>>
+[[Auf die Stube gehen|Kap2_Abend]]
+
+
+:: Biwag_Loadout {"position":"3025,4525","size":"100,100"}
+<<if $world.biwagEquipment is undefined>>
+	<<set $world.biwagEquipment to {
+		rationen:false, zelte:false, kessel:false, futter:false,
+		feldscher:false, schanzzeug:false, waffenpflege:false, laterne:false,
+		angelzeug:false, branntwein:false, hygiene:false, decken:false
+	}>>
+	<<set $world.biwagLast to 7>>
+<</if>>
+
+<p class="hinweis">Freie Traglast: <b>$world.biwagLast</b> / 7</p>
+
+<h3>Überleben</h3>
+<<for _it range setup.biwagKatalog>>
+<<if _it.gruppe eq "ueberleben">>
+<<capture _it>>
+<div class="biwag-item">
+	<<if $world.biwagEquipment[_it.key]>>
+		<<link `"✓ " + _it.label + " (Last " + _it.last + ") — entfernen"`>>
+			<<set $world.biwagEquipment[_it.key] to false>>
+			<<set $world.biwagLast += _it.last>>
+			<<goto "Biwag_Loadout">>
+		<</link>>
+	<<elseif $world.biwagLast gte _it.last>>
+		<<link `_it.label + " (Last " + _it.last + ")"`>>
+			<<set $world.biwagEquipment[_it.key] to true>>
+			<<set $world.biwagLast -= _it.last>>
+			<<goto "Biwag_Loadout">>
+		<</link>>
+	<<else>>
+		<span class="biwag-item-disabled"><<= _it.label>> (Last <<= _it.last>>) — kein Platz</span>
+	<</if>>
+	<div class="biwag-item-text"><<= _it.text>></div>
+</div>
+<</capture>>
+<</if>>
+<</for>>
+
+<h3>Helfer</h3>
+<<for _it range setup.biwagKatalog>>
+<<if _it.gruppe eq "helfer">>
+<<capture _it>>
+<div class="biwag-item">
+	<<if $world.biwagEquipment[_it.key]>>
+		<<link `"✓ " + _it.label + " (Last " + _it.last + ") — entfernen"`>>
+			<<set $world.biwagEquipment[_it.key] to false>>
+			<<set $world.biwagLast += _it.last>>
+			<<goto "Biwag_Loadout">>
+		<</link>>
+	<<elseif $world.biwagLast gte _it.last>>
+		<<link `_it.label + " (Last " + _it.last + ")"`>>
+			<<set $world.biwagEquipment[_it.key] to true>>
+			<<set $world.biwagLast -= _it.last>>
+			<<goto "Biwag_Loadout">>
+		<</link>>
+	<<else>>
+		<span class="biwag-item-disabled"><<= _it.label>> (Last <<= _it.last>>) — kein Platz</span>
+	<</if>>
+	<div class="biwag-item-text"><<= _it.text>></div>
+</div>
+<</capture>>
+<</if>>
+<</for>>
+
+<hr>
+<<if $world.biwagLast gt 0>>
+	<p class="hinweis">Der Karren hat noch Platz für $world.biwagLast Last.</p>
+<</if>>
+<p class="weiter-link">[[Aufbrechen — der Biwak beginnt->Biwag_Aufbruch]]</p>
+
+
+:: Biwag_Tag1 {"position":"3425,4075","size":"100,100"}
+<<if setup.biwagBeatOnce("tag1_start")>>
+	<<= setup.biwagMoral(-2)>>
+	<<= setup.biwagProviant(-1)>>
+	<<if not $world.biwagEquipment.futter>><<= setup.biwagMoral(-2)>><</if>>
+<</if>>
+
+<<scene>>
+<p>Das Nordtor fällt hinter euch ins Schloss, und mit dem ersten Schritt ins offene Land wird aus einem Haufen Rekruten deine Verantwortung. 
+Der Weg zieht sich durch Stoppelfelder und über einen Höhenrücken, der Karren knarrt, der Ochse zieht schwer. 
+Vor euch liegt ein langer erster Tag — und die Männer warten darauf, in welchem Tempo du ihn ihnen abverlangst.</p>
 <</scene>>
 
 <<gedanke>>
-<p>Eine Woche. Sieben Tage ohne den Drill, ohne die Stube — und ohne Karla. Der Gedanke sitzt tiefer, als er sollte, und du schiebst ihn beiseite, ehe ihn jemand in deinem Gesicht liest.</p>
+<p>Hart marschieren bringt uns weit und lässt uns bei Tageslicht ein gutes Lager finden — aber es zehrt. 
+Schonen wir uns, kommen wir spät und anders müde an. Der erste Tag setzt den Ton für die ganze Woche.</p>
 <</gedanke>>
 
-<p>Kaum ist Rindler fort, beginnt das Feilschen. Neun Männer, neun Meinungen, und keiner, der befiehlt. Es dauert nicht lange, bis einer nach Stöckchen ruft — die älteste Art, einen Streit zu beenden, ohne ihn auszufechten. Ihr zieht. Das kürzeste bleibt in deiner Faust.</p>
-
-<<dialog>>
-<p>„Dann bist du der Biwakweibel“, sagt der älteste der Spießer, halb spöttisch, halb erleichtert, es nicht selbst zu sein. „Deins ist das letzte Wort. Und deins der Kopf, wenn's schiefgeht.“</p>
-<</dialog>>
-
-<<switch $player.spezialisierung>>
-<<case "pike">>
-<<gedanke>><p>Als Spießer weißt du, was ein Marsch aus einem Mann macht. Ein Satter hält die Linie. Ein Hungriger bricht sie.</p><</gedanke>>
-<<case "cannon">>
-<<gedanke>><p>Als Geschützmann denkst du zuerst ans Pulver. Ohne Munition ist der stärkste Arm nur ein Knüppel.</p><</gedanke>>
-<<case "crossbow">>
-<<gedanke>><p>Als Armbruster zählst du im Kopf schon die Bolzen. Wer im Feld ausschießt, ist blind.</p><</gedanke>>
-<<case "medicine">>
-<<gedanke>><p>Als Feldscher siehst du die Wunden, die noch keiner hat. Verbände wiegen wenig — und im rechten Moment mehr als alles andere.</p><</gedanke>>
-<<default>>
-<<gedanke>><p>Neun Männer, sieben Tage, ein Karren voll Entscheidungen. Und alle Augen liegen auf dir.</p><</gedanke>>
-<</switch>>
-
-<p>Der Karren fasst nur so viel. Was ihr mitnehmt, müsst ihr tragen — und was ihr zurücklasst, fehlt euch draußen. Drei Fragen bleiben, und an dir ist das letzte Wort.</p>
-
-<h3>1 · Der Proviant</h3>
-<div id="biwag-dec1">
-<<if $world.biwagEquipment.rations gt 0>>
-	<p class="scenery-text"><<if $world.biwagEquipment.rations gte 2>>Volle Rationen sind verladen.<<else>>Ihr reist leicht — unterwegs wird gejagt und gesammelt.<</if>></p>
-<<else>>
 <ul>
-<li><<link "Volle Rationen für die ganze Woche">>
-	<<set $world.biwagEquipment.rations to 2>>
-	<<replace "#biwag-dec1">><p class="scenery-text">Ihr ladet Brot, Pökelfleisch und Erbsen für sieben Tage — schwer, aber niemand steht mit knurrendem Magen Wache.</p><</replace>>
-	<<biwagCheck>>
+<li>[[Hart durchziehen — Strecke machen, ehe die Sonne fällt->Biwag_Tag1_Hart]]</li>
+<li>[[Das Tempo schonen — die Kräfte für die Woche sparen->Biwag_Tag1_Schonen]]</li>
+</ul>
+
+
+:: Biwag_Tag1_Abend {"position":"3575,4475","size":"100,100"}
+<<scene>>
+<p>Das Feuer brennt nieder, die erste Wache ist eingeteilt. Die Männer hocken im Halbkreis, und du spürst, wie sie auf ein Zeichen warten, wer du ihnen diese Woche sein wirst. Am Rand sitzt der Jüngste — Wenzel, kaum dem Bartflaum entwachsen — und starrt zurück in die Richtung, aus der ihr gekommen seid, dorthin, wo Ohm liegt und, dahinter, sein Zuhause.</p>
+<</scene>>
+
+<<if $world.biwagStil is undefined>>
+<<gedanke>>
+<p>Wie trete ich ihnen gegenüber? Streng und klar — dann weiß jeder, woran er ist. Oder offen und kameradschaftlich — dann tauen sie auf, aber die Zügel sitzen lockerer.</p>
+<</gedanke>>
+<ul>
+<li><<link "Streng und klar — Disziplin von der ersten Nacht an">>
+	<<set $world.biwagStil to "streng">>
+	<<goto "Biwag_Tag1_Abend">>
 <</link>></li>
-<li><<link "Knapp packen, unterwegs jagen und sammeln">>
-	<<set $world.biwagEquipment.rations to 1>><<set $world.biwagEquipment.mobility to 1>>
-	<<replace "#biwag-dec1">><p class="scenery-text">Der Karren bleibt leicht — doch der Bauch der Truppe hängt fortan an ruhiger Hand und gutem Auge.</p><</replace>>
-	<<biwagCheck>>
+<li><<link "Kameradschaftlich — dich zu ihnen ans Feuer setzen">>
+	<<set $world.biwagStil to "kumpel">>
+	<<goto "Biwag_Tag1_Abend">>
 <</link>></li>
 </ul>
-<</if>>
-</div>
-
-<h3>2 · Munition oder Unterkunft</h3>
-<div id="biwag-dec2">
-<<if $world.biwagEquipment.ammunition gt 0 or $world.biwagEquipment.shelter gt 0>>
-	<p class="scenery-text"><<if $world.biwagEquipment.ammunition gte 2>>Ihr seid bewaffnet bis unter die Plane, schlaft aber unter offenem Himmel.<<else>>Ihr habt Zelte und trockenes Stroh — auf Kosten von Pulver und Bolzen.<</if>></p>
 <<else>>
+	<<switch $world.biwagStil>>
+	<<case "streng">><p>Du bleibst stehen, während sie sitzen, gibst die Wachordnung knapp und klar und lässt keinen Zweifel, wer das letzte Wort hat. Der Alte nickt anerkennend; die Jüngeren schweigen und ordnen sich. Kein warmer Abend — aber ein geordneter.</p>
+	<<case "kumpel">><p>Du setzt dich zu ihnen ans Feuer, nimmst den Becher, der herumgeht, hörst zu. Das Lachen kommt zögernd, dann leichter. Auch Wenzel hebt einmal kurz den Blick. Der Alte mustert dich, ob Nähe nicht Schwäche sei.</p>
+	<</switch>>
+
+	<p>Nach und nach rollen sich die Männer in ihre Decken. Der erste Tag im Feld ist vorüber.</p>
+	<span class="weiter-link">[[Der zweite Tag bricht an->Biwag_Tag2]]</span>
+<</if>>
+
+
+:: Biwag_Tag1_Hart {"position":"3362.5,4200","size":"100,100"}
+<<set $world.biwagTag1Tempo to "hart">>
+<<scene>>
+<p>Du treibst die Truppe an. Wo der Weg über loses Geröll steigt, gräbt sich das Rad des Karrens fest, und ihr müsst mit Schultern und Stangen nachhelfen, fluchend, schwitzend, bis die Achse endlich frei kommt.</p>
+<</scene>>
+
+<<if setup.biwagBeatOnce("tag1_marsch")>>
+	<<set _r to setup.skillCheckXp("combat", 13, setup.biwagItemMod("schanzzeug"))>>
+	<<= setup.skillCheckAlert(_r)>>
+	<<if _r.success>>
+		<p>Mit einem letzten, geschlossenen Ruck reißt ihr den Karren über die Kante. Die Männer keuchen, aber sie grinsen — ein früher, 
+    kleiner Sieg, und sie merken sich, dass du mit anpackst, statt nur zu befehlen.</p>
+		<<= setup.biwagMoral(1)>>
+	<<else>>
+		<p>Das Rad bricht seitlich weg, ein Mann stürzt, ein anderer klemmt sich die Hand. Ihr kommt voran, aber teurer, 
+    als es hätte sein müssen — und die ersten Blicke messen dich, ob du das Tempo wert warst.</p>
+		<<= setup.biwagMoral(-1)>>
+	<</if>>
+<</if>>
+
+<span class="weiter-link">[[Weiter, bis die Sonne tief steht->Biwag_Tag1_Lager]]</span>
+
+
+:: Biwag_Tag1_Lager {"position":"3425,4350","size":"100,100"}
+<<set _lagerDC to ($world.biwagTag1Tempo eq "schonen" ? 15 : 13)>>
+<<scene>>
+<p>Das Land bietet zwei Möglichkeiten: eine Senke am Bachlauf, nah am Wasser, aber offen dem Wind — und ein Windschatten unter einer Baumgruppe, trocken, doch ein Stück vom Wasser entfernt. Welcher Grund die Nacht besser trägt, entscheidet ein geübtes Auge<<if $world.biwagTag1Tempo eq "schonen">> — und in der Dämmerung ist es schwerer zu lesen<</if>>.</p>
+<</scene>>
+
+<<if setup.biwagBeatOnce("tag1_lager")>>
+	<<set _r to setup.skillCheckXp("perception", _lagerDC)>>
+	<<= setup.skillCheckAlert(_r)>>
+	<<if _r.success>>
+		<p>Du wählst den Windschatten, prüfst den Boden auf Staunässe, lässt den Karren so stellen, 
+    dass er die Wache deckt. Ein gutes Lager — die Männer legen sich zufrieden nieder.</p>
+	<<else>>
+		<p>Du entscheidest dich für die Senke, und erst als der Nachtwind aufkommt und der Bach kalt heraufzieht, 
+    merkst du den Fehler. Kein Unglück, aber eine ungemütliche Nacht — und die Truppe weiß, wer den Platz gewählt hat.</p>
+		<<= setup.biwagMoral(-2)>>
+	<</if>>
+<</if>>
+
+<<gedanke>>
+<p>Beim Abladen fällt dir ein Sack Proviant auf, der schwerer riecht als die anderen — 
+säuerlich, kaum merklich. Vielleicht nichts. Vielleicht der Anfang von etwas, das in ein paar Tagen zum Problem wird.</p>
+<</gedanke>>
+
 <ul>
-<li><<link "Volle Pulver- und Bolzenvorräte">>
-	<<set $world.biwagEquipment.ammunition to 2>><<set $world.biwagEquipment.shelter to 0>>
-	<<replace "#biwag-dec2">><p class="scenery-text">Pulver, Blei und Bolzen bis unter die Plane. Wird es draußen ernst, seid ihr bereit — doch die Nächte verbringt ihr unter offenem Himmel.</p><</replace>>
-	<<biwagCheck>>
+<li><<link "Die Vorräte gründlich durchsehen">>
+	<<set $world.biwagProviantGeprueft to true>>
+	<<goto "Biwag_Tag1_Abend">>
 <</link>></li>
-<li><<link "Ordentliche Zelte für die Woche">>
-	<<set $world.biwagEquipment.shelter to 2>><<set $world.biwagEquipment.ammunition to 1>>
-	<<replace "#biwag-dec2">><p class="scenery-text">Zelte, Planen, trockenes Stroh. Die Truppe wird ausgeruht und warm sein — auf Kosten dessen, was in Läufen und Sehnen steckt.</p><</replace>>
-	<<biwagCheck>>
+<li><<link "Es dabei belassen — die Männer sind müde">>
+	<<goto "Biwag_Tag1_Abend">>
 <</link>></li>
 </ul>
+
+
+:: Biwag_Tag1_Schonen {"position":"3487.5,4200","size":"100,100"}
+<<set $world.biwagTag1Tempo to "schonen">>
+<<scene>>
+<p>Du hältst das Tempo niedrig, lässt Pausen zu, gehst neben dem Karren statt vor ihm. Die Männer reden unterwegs, 
+halblaut, wie Männer reden, die einander noch abtasten — 
+und du hörst mehr über deine neun in diesen Stunden als in einer Woche Drill. 
+Doch als ihr endlich haltet, hat die Sonne den Horizont schon halb geschluckt.</p>
+<</scene>>
+
+<<if setup.biwagBeatOnce("tag1_schonen")>>
+	<<= setup.biwagMoral(1)>>
 <</if>>
-</div>
 
-<h3>3 · Der letzte Platz auf dem Karren</h3>
-<div id="biwag-dec3">
-<<if $world.biwagEquipment.medicine gt 0 or $world.biwagEquipment.tools gt 0>>
-	<p class="scenery-text"><<if $world.biwagEquipment.medicine gte 2>>Der Feldscher ist voll ausgestattet.<<else>>Ihr habt Schanzzeug und Werkzeug an Bord.<</if>></p>
-<<else>>
-<ul>
-<li><<link "Den Feldscher voll ausstatten (Verbände, Kräuter, Branntwein)">>
-	<<set $world.biwagEquipment.medicine to 2>>
-	<<replace "#biwag-dec3">><p class="scenery-text">Der Feldscher nickt euch dankbar zu. Was er trägt, wünscht sich keiner zu brauchen — und jeder ist froh, wenn es da ist.</p><</replace>>
-	<<biwagCheck>>
-<</link>></li>
-<li><<link "Schanzzeug und Werkzeug (Spaten, Beil, Seil)">>
-	<<set $world.biwagEquipment.tools to 2>>
-	<<replace "#biwag-dec3">><p class="scenery-text">Spaten, Beile, Seilwerk. Ein Lager, das sich eingräbt und befestigt, schläft ruhiger — und arbeitet härter.</p><</replace>>
-	<<biwagCheck>>
-<</link>></li>
-</ul>
-<</if>>
-</div>
-
-<div id="biwag-depart">
-<<if setup.biwagReady()>>
-	<span class="weiter-link">[[Der Biwak beginnt->Biwag_Aufbruch]]</span>
-<<else>>
-	<p class="hinweis">Triff alle drei Entscheidungen, ehe ihr aufbrecht.</p>
-<</if>>
-</div>
+<span class="weiter-link">[[Ein Lager suchen, ehe es dunkel wird->Biwag_Tag1_Lager]]</span>
 
 
-:: Biwag_Tag2 {"position":"3450,4025","size":"100,100"}
+:: Biwag_Tag2 {"position":"4025,4075","size":"100,100"}
 <<if setup.biwagBeatOnce("tag2_start")>>
 	<<= setup.biwagMoral(-2)>>
 	<<= setup.biwagProviant(-1)>>
 <</if>>
 
 <<scene>>
-<p>Der zweite Morgen schmeckt nach kaltem Rauch und feuchtem Gras. Die Männer haben abgebaut, der Karren ist beladen, und als du dich umwendest, liegen neun Augenpaare auf dir — nicht fordernd, nur wartend. Vor euch teilt sich das Land: Ein Fluss zieht silbern nach Norden, gesäumt von Erlen und weichem Grund. Rechts davon steigen die Hügel an, kahl und windig, aber trocken.</p>
+<p>Der zweite Morgen schmeckt nach kaltem Rauch und feuchtem Gras. 
+Die Männer haben abgebaut, der Karren ist beladen, und als du dich umwendest, 
+liegen neun Augenpaare auf dir — nicht fordernd, nur wartend. Vor euch teilt sich das Land: Ein Fluss zieht silbern nach Norden, 
+gesäumt von Erlen und weichem Grund. Rechts davon steigen die Hügel an, kahl und windig, aber trocken.</p>
 <</scene>>
 
 <<gedanke>>
-<p>Zwei Wege, ein Ziel. Der Fluss ist bequem und führt zu Wasser — aber weicher Boden frisst Zeit. Die Höhen sind mühsam, doch von oben sieht man, was kommt. Deins ist die Wahl.</p>
+<p>Zwei Wege, ein Ziel. Der Fluss ist bequem und führt zu Wasser — aber weicher Boden frisst Zeit. 
+Die Höhen sind mühsam, doch von oben sieht man, was kommt. Deins ist die Wahl.</p>
 <</gedanke>>
 
 <ul>
@@ -858,9 +1092,11 @@ yoloswag
 </ul>
 
 
-:: Biwag_Tag2_Fluss {"position":"3400,4150","size":"100,100"}
+:: Biwag_Tag2_Fluss {"position":"3975,4200","size":"100,100"}
 <<scene>>
-<p>Ihr folgt dem Wasser. Der Boden gibt unter den Stiefeln nach, Mücken hängen in der Luft, doch der Fluss plaudert freundlich vor sich hin, und die Männer werden leichter im Schritt. An einer Furt, wo der Schlamm die Geschichten der Nacht bewahrt hat, hältst du inne.</p>
+<p>Ihr folgt dem Wasser. Der Boden gibt unter den Stiefeln nach, Mücken hängen in der Luft, 
+doch der Fluss plaudert freundlich vor sich hin, und die Männer werden leichter im Schritt. 
+An einer Furt, wo der Schlamm die Geschichten der Nacht bewahrt hat, hältst du inne.</p>
 <</scene>>
 
 <<if setup.biwagBeatOnce("tag2_tierfaehrte")>>
@@ -868,16 +1104,24 @@ yoloswag
 	<<set $world.biwagTierfaehrte to _r.success>>
 	<<= setup.skillCheckAlert(_r)>>
 	<<if _r.success>>
-		<p>Im weichen Ufer stehen sie klar: die gespaltenen Abdrücke von Rotwild, kaum einen halben Tag alt, allesamt flussaufwärts gerichtet. Wo Wild zur Tränke zieht, lässt sich Fleisch machen.</p>
+		<p>Im weichen Ufer stehen sie klar: die gespaltenen Abdrücke von Rotwild, 
+    kaum einen halben Tag alt, allesamt flussaufwärts gerichtet. Wo Wild zur Tränke zieht, lässt sich Fleisch machen.</p>
 	<<else>>
-		<p>Der Grund ist zertreten von euren eigenen Stiefeln und dem Karren, und was an Spuren da sein mag, verliert sich im Gewirr. Du liest nichts heraus, das dir nützt.</p>
+		<p>Der Grund ist zertreten von euren eigenen Stiefeln und dem Karren, und was an Spuren da sein mag, verliert sich im Gewirr.
+     Du liest nichts heraus, das dir nützt.</p>
 	<</if>>
 <<else>>
-	<p><<if $world.biwagTierfaehrte>>Die Wildfährte am Ufer hast du bereits gelesen.<<else>>Am zertretenen Ufer war keine brauchbare Fährte zu finden.<</if>></p>
+	<p><<if $world.biwagTierfaehrte>>
+      Die Wildfährte am Ufer hast du bereits gelesen.
+    <<else>>
+      Am zertretenen Ufer war keine brauchbare Fährte zu finden.
+    <</if>>
+  </p>
 <</if>>
 
 <<gedanke>>
-<p>Etwas glänzt im flachen Wasser, wo die Strömung eine Kiesbank aufgeworfen hat. Es lohnt vielleicht einen kurzen Halt — oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand ab.</p>
+<p>Etwas glänzt im flachen Wasser, wo die Strömung eine Kiesbank aufgeworfen hat. Es lohnt vielleicht einen kurzen Halt — 
+oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand ab.</p>
 <</gedanke>>
 
 <ul>
@@ -886,7 +1130,7 @@ yoloswag
 </ul>
 
 
-:: Biwag_Tag2_Fluss_Flussbett {"position":"3325,4275","size":"100,100"}
+:: Biwag_Tag2_Fluss_Flussbett {"position":"3900,4325","size":"100,100"}
 <<scene>>
 <p>Du watest ein paar Schritte in die Untiefe und hebst das glänzende Ding aus dem Kies. Es ist eine Muschel — aber keine, wie du sie kennst: spiralig gewunden, von einem matten Perlmuttglanz, und auf der Innenseite läuft eine Rille, zu regelmäßig, um vom Wasser zu stammen. Du steckst sie ein, ohne recht zu wissen, warum.</p>
 <</scene>>
@@ -897,7 +1141,10 @@ yoloswag
 <</if>>
 
 <span class="weiter-link">[[Weiter, ehe die Sonne steigt->Biwag_Tag2_Jagd]]</span>
-\:: Biwag_Tag2_Fluss_Waldrand [layout]
+
+
+
+:: Biwag_Tag2_Fluss_Waldrand {"position":"4025,4325","size":"100,100"}
 <<scene>>
 <p>Du lässt das Glitzern Glitzern sein und führst die Männer den festeren Waldrand entlang. Ein trockener Streifen, gut zu gehen — aber außer einem verlassenen Vogelnest und altem Reisig gibt der Saum nichts her. Zeit gespart, nichts gewonnen.</p>
 <</scene>>
@@ -905,15 +1152,7 @@ yoloswag
 <span class="weiter-link">[[Weiter, ehe die Sonne steigt->Biwag_Tag2_Jagd]]</span>
 
 
-:: Biwag_Tag2_Fluss_Waldrand {"position":"3450,4275","size":"100,100"}
-<<scene>>
-<p>Du lässt das Glitzern Glitzern sein und führst die Männer den festeren Waldrand entlang. Ein trockener Streifen, gut zu gehen — aber außer einem verlassenen Vogelnest und altem Reisig gibt der Saum nichts her. Zeit gespart, nichts gewonnen.</p>
-<</scene>>
-
-<span class="weiter-link">[[Weiter, ehe die Sonne steigt->Biwag_Tag2_Jagd]]</span>
-
-
-:: Biwag_Tag2_Huegel {"position":"3525,4150","size":"100,100"}
+:: Biwag_Tag2_Huegel {"position":"4100,4200","size":"100,100"}
 <<scene>>
 <p>Ihr nehmt die Höhen. Der Aufstieg zerrt an Waden und Atem, der Karren muss geschoben werden, und einer der Männer flucht leise vor sich hin. Doch oben öffnet sich das Land bis zum Horizont, klar und weit, und für einen Atemzug fühlt ihr euch weniger verloren in der Wildnis. Am Grat, wo der Wind das Gras flach drückt, geht dein Blick über den Boden.</p>
 <</scene>>
@@ -941,7 +1180,7 @@ yoloswag
 </ul>
 
 
-:: Biwag_Tag2_Huegel_Dickicht {"position":"3575,4275","size":"100,100"}
+:: Biwag_Tag2_Huegel_Dickicht {"position":"4150,4325","size":"100,100"}
 <<scene>>
 <p>Du zwängst dich ins Unterholz. Dornen zerren an den Ärmeln, und schon willst du umkehren, als dein Fuß gegen etwas Hartes stößt: eine abgeworfene Geweihstange, schwer und weißgebleicht, mit sechs Enden. Kein Fleisch, aber gutes Bein für Griffe und Werkzeug — und ein kleiner Triumph, den die Männer dir hoch anrechnen.</p>
 <</scene>>
@@ -954,7 +1193,7 @@ yoloswag
 <span class="weiter-link">[[Weiter, ehe die Sonne steigt->Biwag_Tag2_Jagd]]</span>
 
 
-:: Biwag_Tag2_Huegel_Grat {"position":"3700,4275","size":"100,100"}
+:: Biwag_Tag2_Huegel_Grat {"position":"4275,4325","size":"100,100"}
 <<scene>>
 <p>Du bleibst auf dem Kamm und lässt den Blick über den offenen Grat wandern. Weite, Wind, ein kreisender Bussard — schön anzusehen, aber der Fels gibt nichts her als Fels. Ihr geht weiter, die Hände leer.</p>
 <</scene>>
@@ -962,7 +1201,7 @@ yoloswag
 <span class="weiter-link">[[Weiter, ehe die Sonne steigt->Biwag_Tag2_Jagd]]</span>
 
 
-:: Biwag_Tag2_Jagd {"position":"3500,4425","size":"100,100"}
+:: Biwag_Tag2_Jagd {"position":"4075,4475","size":"100,100"}
 <<scene>>
 <p>Gegen Mittag führen Fluss und Höhe wieder zusammen, wo ein Wäldchen die Ebene säumt. Hier entscheidet sich, ob heute Abend Fleisch über dem Feuer hängt.</p>
 <</scene>>
@@ -987,7 +1226,7 @@ yoloswag
 <span class="weiter-link">[[Das Lager aufschlagen->Biwag_Tag2_Lager]]</span>
 
 
-:: Biwag_Tag2_Lager {"position":"3350,4450","size":"100,100"}
+:: Biwag_Tag2_Lager {"position":"4325,4475","size":"100,100"}
 <<scene>>
 <p>Als die Sonne sinkt, schlagt ihr das Lager an einem windgeschützten Hang auf. Feuer, Wachen, das übliche Murren — und dann, wie jeden Abend, wo Männer eng beieinander hocken, ein Funke, der zum Brand werden will: Rasch und Domm, über eine Handvoll Kupfer und ein Kartenspiel, das keiner mehr genau erinnert.</p>
 <</scene>>
@@ -1022,13 +1261,468 @@ yoloswag
 <</if>>
 
 
-:: Biwag_Tag3 {"position":"3475,4575","size":"100,100"}
+:: Biwag_Tag3 [layout] {"position":"4625,3575","size":"100,100"}
+<<if setup.biwagBeatOnce("tag3_start")>>
+	<<= setup.biwagMoral(-2)>>
+	<<= setup.biwagProviant(-1)>>
+<</if>>
+<<scene>>
+<p>Der dritte Morgen bricht grau und nass an. Kein Sturm, aber ein zäher, kalter Regen, der von oben und von den Ästen zugleich kommt und den Weg vor euch in einen braunen Brei verwandelt. Der Karren steht schon halb im Schlamm, und die Männer sehen dich an: durchziehen oder das Wetter aussitzen?</p>
+<</scene>>
+[[Weiterziehen — Strecke machen, ehe der Weg unpassierbar wird|Biwag_Tag3_Weiterziehen]]
+[[Rasten — das Ärgste vorüberziehen lassen|Biwag_Tag3_Rasten]]
 
+
+:: Biwag_Tag3_Abend [layout] {"position":"4625,3575","size":"100,100"}
+<<scene>>
+<p>Gegen Morgen hustet einer der Männer schwer, ein anderer fiebert leicht. Die Nässe hat ihren Tribut gefordert, und es liegt an dir<<if $player.spezialisation eq "medicine">> — dem Feldscher der Truppe —<</if>>, dass aus einer feuchten Nacht keine kranke Woche wird.</p>
+<</scene>>
+<<if setup.biwagBeatOnce("tag3_gesund")>>
+	<<set _r to setup.skillCheckXp("medicine", 13, setup.biwagItemMod("feldscher"))>>
+	<<= setup.skillCheckAlert(_r)>>
+	<<if _r.success>>
+		<p>Du sorgst für trockene Kleider, heißen Sud und Ruhe, wo es geht. Am Ende steht jeder wieder auf den Beinen — geschwächt, aber gesund.</p>
+		<<= setup.biwagMoral(1)>>
+	<<else>>
+		<p>Was du auch versuchst, das Fieber greift um sich, und zwei Männer schleppen sich fortan kränklich durch die Tage. Es drückt auf die ganze Truppe.</p>
+		<<= setup.biwagMoral(-1)>>
+	<</if>>
+<</if>>
+[[Der vierte Tag|Biwag_Tag4]]
+
+
+:: Biwag_Tag3_Enge [layout] {"position":"4625,3575","size":"100,100"}
+<<scene>>
+<p>Ihr rückt zusammen, Rücken an Rücken unter den Planen, die ihr habt. <<if $world.biwagEquipment.zelte>>Die Zelte halten dicht — es geht.<<elseif $world.biwagEquipment.decken>>Die Wolldecken halten wenigstens die Wärme.<<else>>Es hilft wenig; ehe die Nacht vorüber ist, ist jeder bis auf die Haut durchnässt.<</if>></p>
+<</scene>>
+<<if setup.biwagBeatOnce("tag3_wetter")>>
+	<<= setup.biwagMoral(setup.biwagWetterMalus(false))>>
+<</if>>
+[[Die Nacht überstehen|Biwag_Tag3_Abend]]
+
+
+:: Biwag_Tag3_Lager [layout] {"position":"4625,3575","size":"100,100"}
+<<scene>>
+<p>Als ihr haltet, steht die Frage im Raum, wie ihr die nasse Nacht übersteht. Ein ordentlicher Unterstand kostet Mühe und braucht Gerät — oder ihr rückt einfach eng zusammen und hofft, dass der Regen nachlässt.</p>
+<</scene>>
+[[Einen Unterstand bauen|Biwag_Tag3_Unterstand]]
+[[Zusammenrücken|Biwag_Tag3_Enge]]
+
+
+:: Biwag_Tag3_Rasten [layout] {"position":"4625,3575","size":"100,100"}
+<<scene>>
+<p>Du lässt halten und die Truppe unter die Bäume rücken. Es ist die vernünftige Wahl — doch ein verlorener Tag bleibt ein verlorener Tag, und das Murren mischt sich bald ins Trommeln des Regens.</p>
+<</scene>>
+<<if setup.biwagBeatOnce("tag3_rast")>>
+	<<= setup.biwagMoral(-1)>>
+<</if>>
+[[Ein Lager schlagen|Biwag_Tag3_Lager]]
+
+
+:: Biwag_Tag3_Unterstand [layout] {"position":"4625,3575","size":"100,100"}
+<<scene>>
+<p><<if $world.biwagEquipment.zelte>>Ihr spannt die Zelte und Planen, und binnen kurzem sitzt die Truppe im Trockenen.<<elseif $world.biwagEquipment.schanzzeug>>Mit Spaten, Beil und Seil zimmert ihr aus Ästen und Planen einen brauchbaren Unterstand — nicht bequem, aber trocken genug.<<else>>Ohne rechtes Gerät bleibt euer Unterstand Stückwerk; der Regen findet jede Lücke.<</if>></p>
+<</scene>>
+<<if setup.biwagBeatOnce("tag3_wetter")>>
+	<<= setup.biwagMoral(setup.biwagWetterMalus(true))>>
+<</if>>
+[[Die Nacht überstehen|Biwag_Tag3_Abend]]
+
+
+:: Biwag_Tag3_Weiterziehen [layout] {"position":"4625,3575","size":"100,100"}
+<<scene>>
+<p>Ihr stemmt euch gegen Regen und Schlamm. Das Karrenrad sinkt bis zur Nabe, und jeder Schritt will erkämpft sein — doch stillzustehen wäre schlimmer.</p>
+<</scene>>
+<<if setup.biwagBeatOnce("tag3_marsch")>>
+	<<set _r to setup.skillCheckXp("combat", 13, setup.biwagItemMod("schanzzeug"))>>
+	<<= setup.skillCheckAlert(_r)>>
+	<<if _r.success>>
+		<p>Mit vereinten Kräften haltet ihr den Karren in der Spur und macht guten Weg. Nass, aber vorangekommen — und niemand ist im Matsch liegengeblieben.</p>
+		<<= setup.biwagMoral(1)>>
+	<<else>>
+		<p>Der Karren bricht aus, kippt fast, und ihr verliert eine Stunde damit, ihn wieder freizubekommen. Am Ende seid ihr durchnässt, erschöpft und kaum weiter als am Morgen.</p>
+		<<= setup.biwagMoral(-1)>>
+	<</if>>
+<</if>>
+[[Ein Lager schlagen|Biwag_Tag3_Lager]]
+
+
+:: Biwag_Tag4 [layout] {"position":"4625,3575","size":"100,100"}
+<<if setup.biwagBeatOnce("tag4_start")>>
+	<<= setup.biwagMoral(-2)>>
+	<<= setup.biwagProviant(-1)>>
+<</if>>
+<<scene>>
+<p>Der vierte Tag bringt die Sonne zurück, doch beim Blick in die Vorratskiste wird dir mulmig<<if $world.biwagProviant lte 3>> — es reicht nicht mehr lange<</if>>. Entweder ihr macht Fleisch, oder ihr lernt zu hungern.</p>
+<</scene>>
+<p>Vorrat: <b>$world.biwagProviant</b> Tagesrationen</p>
+[[Auf die Jagd gehen|Biwag_Tag4_Jagd]]
+[[Die Rationen strecken|Biwag_Tag4_Strecken]]
+
+
+:: Biwag_Tag4_Abend [layout] {"position":"4825,4875","size":"100,100"}
+<<scene>>
+<p>Deine erste eigene Wache. Die Nacht ist klar und kalt, jedes Knacken im Unterholz zwingt dich, genau hinzuhören — wach zu bleiben, wenn der Schlaf an dir zerrt.</p>
+<</scene>>
+<<if setup.biwagBeatOnce("tag4_nachtwache")>>
+	<<set _r to setup.skillCheckXp("perception", 13, setup.biwagItemMod("laterne"))>>
+	<<= setup.skillCheckAlert(_r)>>
+	<<if _r.success>>
+		<p>Du hältst die Augen offen, gehst die Runde, prüfst die Posten. Ein ruhiger Wächter gibt der ganzen Truppe Schlaf — und dir ihren Respekt.</p>
+		<<= setup.biwagMoral(2)>>
+	<<else>>
+		<p>Für einen Moment nickst du ein, und in diesem Moment schnürt ein Fuchs die Vorräte auf. Nur eine Ration — aber ein Zeichen, dass der Weibel geschlafen hat.</p>
+		<<= setup.biwagProviant(-1)>>
+	<</if>>
+<</if>>
+[[Der fünfte Tag|Biwag_Tag5]]
+
+
+:: Biwag_Tag4_Ansprechen [layout] {"position":"4700,4600","size":"100,100"}
+<<scene>>
+<p>Du setzt dich zu ihm, ohne Vorwurf, und lässt ihn reden. Von zu Hause, von der Angst, zu versagen, von der Nacht, die noch so lang scheint.</p>
+<</scene>>
+<<if setup.biwagBeatOnce("tag4_wenzel")>>
+	<<set _r to setup.skillCheckXp("gossip", 13, ($world.biwagStil eq "kumpel" ? -2 : 0))>>
+	<<= setup.skillCheckAlert(_r)>>
+	<<if _r.success>>
+		<p>Am Ende nickt er, wischt sich übers Gesicht und lächelt schief. Du hast keinen Soldaten aus ihm gemacht — aber einen, der weiß, dass ihn jemand sieht.</p>
+		<<set $world.biwagBond_wenzel to true>>
+		<<= setup.biwagMoral(1)>>
+	<<else>>
+		<p>Er hört dich an, doch die Worte prallen ab; was in ihm nagt, sitzt tiefer, als ein Gespräch am Feuer es erreicht. Er zieht sich in sein Schweigen zurück.</p>
+	<</if>>
+<</if>>
+[[Zur Nachtruhe|Biwag_Tag4_Abend]]
+
+
+:: Biwag_Tag4_Hart [layout] {"position":"4925,4625","size":"100,100"}
+<<scene>>
+<p>Du fährst ihn an: kein Platz für Heimweh im Feld, er solle sich zusammenreißen wie ein Mann. Er zuckt zusammen, verstummt — und etwas in seinem Blick schließt sich, das sich so leicht nicht wieder öffnet.</p>
+<</scene>>
+<<if setup.biwagBeatOnce("tag4_wenzel")>>
+	<<set $world.biwagWenzelHart to true>>
+	<<= setup.biwagMoral(-1)>>
+<</if>>
+[[Zur Nachtruhe|Biwag_Tag4_Abend]]
+
+
+:: Biwag_Tag4_Ignorieren [layout] {"position":"4800,4675","size":"100,100"}
+<<scene>>
+<p>Du lässt ihn sitzen. Vielleicht braucht er nur Zeit; vielleicht ist es nicht deine Sache. Der Junge bleibt allein mit dem, was ihn drückt.</p>
+<</scene>>
+<<run setup.biwagBeatOnce("tag4_wenzel")>>
+[[Zur Nachtruhe|Biwag_Tag4_Abend]]
+
+
+:: Biwag_Tag4_Jagd [layout] {"position":"4725,4350","size":"100,100"}
+<<scene>>
+<p>Du nimmst zwei ruhige Männer, den Wind im Gesicht, und schlägst dich ins Unterholz. <<if $player.spezialisation eq "crossbow">>Als Armbruster ist dies deine Stunde.<<elseif $player.spezialisation eq "pike">>Mit der Pike ist Jagd eine ungewohnte Kunst.<</if>></p>
+<</scene>>
+<<if setup.biwagBeatOnce("tag4_jagd")>>
+	<<set _r to setup.skillCheckXp($player.spezialisation, 13, setup.biwagAngel())>>
+	<<= setup.skillCheckAlert(_r)>>
+	<<if _r.success>>
+		<p>Ein sauberer Schuss, ein kurzer Kampf, und ihr kehrt mit Beute ins Lager zurück. Heute Abend riecht es nach Braten.</p>
+		<<= setup.biwagProviant(2)>>
+	<<else>>
+		<p>Das Wild entwischt euch immer wieder, und nach Stunden kehrt ihr mit leeren Händen zurück — Zeit und Kraft vertan.</p>
+		<<= setup.biwagMoral(-2)>>
+	<</if>>
+<</if>>
+[[Zurück ins Lager|Biwag_Tag4_Wenzel]]
+
+
+:: Biwag_Tag4_Strecken [layout] {"position":"4950,4350","size":"100,100"}
+<<scene>>
+<p>Du ordnest halbe Rationen an. Es ist vernünftig — und unbeliebt. Die Männer essen schweigend und mit leeren Augen, und die Stimmung sinkt mit dem Pegel im Kessel.</p>
+<</scene>>
+<<if setup.biwagBeatOnce("tag4_strecken")>>
+	<<= setup.biwagMoral(-1)>>
+<</if>>
+[[Zurück ins Lager|Biwag_Tag4_Wenzel]]
+
+
+:: Biwag_Tag4_Wenzel [layout] {"position":"4800,4450","size":"100,100"}
+<<scene>>
+<p>Am Abend findest du Wenzel abseits des Feuers, das Gesicht in Richtung Heimat gewandt. Der Junge hat rote Augen, und du weißt, dass eine falsche Behandlung jetzt in ein paar Nächten zum Problem werden kann.</p>
+<</scene>>
+[[Ihn ansprechen|Biwag_Tag4_Ansprechen]]
+[[Hart rangehen|Biwag_Tag4_Hart]]
+[[Ihn in Ruhe lassen|Biwag_Tag4_Ignorieren]]
+
+
+:: Biwag_Tag5 [layout] {"position":"5100,4600","size":"100,100"}
+<<if setup.biwagBeatOnce("tag5_start")>>
+	<<= setup.biwagMoral(-2)>>
+	<<= setup.biwagProviant(-1)>>
+<</if>>
+<<scene>>
+<p>Zur Wochenmitte wird die Truppe stumpf — vier Tage Marsch schleifen die Schärfe ab. Du kannst sie fordern, um sie wach zu halten, oder ihnen die Rast gönnen, die sie sich wünschen.</p>
+<</scene>>
+[[Die Männer drillen|Biwag_Tag5_Drill]]
+[[Ruhen lassen|Biwag_Tag5_Ruhe]]
+
+
+:: Biwag_Tag5_Abend [layout] {"position":"5125,4375","size":"100,100"}
+<<if setup.biwagBeatOnce("tag5_kaelte")>>
+	<<= setup.biwagMoral(setup.biwagKaelteMalus())>>
+<</if>>
+<<scene>>
+<p>Mit der Nacht kriecht eine klare, beißende Kälte heran. <<if $world.biwagEquipment.zelte or $world.biwagEquipment.decken>>Ihr habt, womit ihr euch wärmt.<<else>>Ihr habt nichts als das Feuer und die eigene Wärme — es wird eine harte Nacht.<</if>> Du kannst die Männer noch ans Feuer holen oder sie früh in den Schlaf schicken.</p>
+<</scene>>
+[[Am Feuer bleiben|Biwag_Tag5_Feuer]]
+[[Früh schlafen schicken|Biwag_Tag5_Frueh]]
+
+
+:: Biwag_Tag5_Drill [layout] {"position":"5425,4575","size":"100,100"}
+<<scene>>
+<p>Du lässt antreten und die Handgriffe üben, bis sie sitzen. Mitten in der Übung splittert etwas — <<if $player.spezialisation eq "pike">>ein Pikenschaft bricht<<elseif $player.spezialisation eq "crossbow">>eine Armbrustsehne reißt<<elseif $player.spezialisation eq "cannon">>ein Zündeisen versagt<<else>>ein Riemenzeug reißt<</if>>, und plötzlich geht es nicht mehr ums Üben, sondern ums Flicken.</p>
+<</scene>>
+[[Das Gerät instand setzen|Biwag_Tag5_Reparatur]]
+
+
+:: Biwag_Tag5_Feuer [layout] {"position":"5300,4375","size":"100,100"}
+<<scene>>
+<p>Du bleibst mit ihnen am Feuer, und irgendwann fällt der Blick auf dich: eine Geschichte, ein Wort, das die Kälte kleiner macht.</p>
+<</scene>>
+<<if setup.biwagBeatOnce("tag5_feuer")>>
+	<<set _r to setup.skillCheckXp("gossip", 13)>>
+	<<= setup.skillCheckAlert(_r)>>
+	<<if _r.success>>
+		<p>Du triffst den Ton, und bald lachen sie oder lauschen still. Als das Feuer niederbrennt, sind sie einander näher als am Morgen.</p>
+		<<= setup.biwagMoral(2)>>
+	<<else>>
+		<p>Deine Worte verpuffen im Knistern, und einer nach dem anderen rollt sich fröstelnd weg. Kein Schaden — aber auch kein Trost.</p>
+	<</if>>
+<</if>>
+[[Der sechste Tag|Biwag_Tag6]]
+
+
+:: Biwag_Tag5_Frueh [layout] {"position":"5225,4100","size":"100,100"}
+<<scene>>
+<p>Du schickst sie früh in die Decken. Kein Feuerzauber, keine Geschichten — aber ausgeruhte Männer, wenn der Morgen kommt.</p>
+<</scene>>
+<<if setup.biwagBeatOnce("tag5_frueh")>>
+	<<= setup.biwagMoral(1)>>
+<</if>>
+[[Der sechste Tag|Biwag_Tag6]]
+
+
+:: Biwag_Tag5_Reparatur [layout] {"position":"5250,4575","size":"100,100"}
+<<if setup.biwagBeatOnce("tag5_reparatur")>>
+	<<set _r to setup.skillCheckXp($player.spezialisation, 13, setup.biwagItemMod("waffenpflege"))>>
+	<<= setup.skillCheckAlert(_r)>>
+	<<if _r.success>>
+		<p>Mit ruhiger Hand bringst du das Gerät wieder in Ordnung, und die Männer sehen, dass ihr Weibel sein Handwerk versteht. Das zählt mehr als jeder Drill.</p>
+		<<= setup.biwagMoral(1)>>
+	<<else>>
+		<p>Was du auch versuchst, die Sache bleibt Flickwerk, und einer der Männer murrt, man vertraue ihm besser nicht mehr im Ernstfall. Der Riss bleibt — im Gerät wie in der Stimmung.</p>
+		<<= setup.biwagMoral(-1)>>
+	<</if>>
+<</if>>
+[[Der Abend naht|Biwag_Tag5_Abend]]
+
+
+:: Biwag_Tag5_Ruhe [layout] {"position":"5250,4225","size":"100,100"}
+<<scene>>
+<p>Du gibst den Tag frei. Die Männer flicken Kleider, dösen in der Sonne, lachen wieder — es tut ihnen gut. Ob es sie weicher macht, wird sich zeigen.</p>
+<</scene>>
+<<if setup.biwagBeatOnce("tag5_ruhe")>>
+	<<= setup.biwagMoral(1)>>
+<</if>>
+[[Der Abend naht|Biwag_Tag5_Abend]]
+
+
+:: Biwag_Tag6 [layout] {"position":"5625,3750","size":"100,100"}
+<<if setup.biwagBeatOnce("tag6_start")>>
+	<<= setup.biwagMoral(-2)>>
+	<<= setup.biwagProviant(-1)>>
+<</if>>
+<<scene>>
+<p>Der sechste Tag kommt wieder mit Regen — härter als beim ersten Mal, und die Männer sind müder, dünnhäutiger. Es gibt keine Wahl als weiter: Der Weg zurück nach Ohm führt durch den Matsch.</p>
+<</scene>>
+[[Weiter durch den Regen|Biwag_Tag6_Marsch]]
+
+
+:: Biwag_Tag6_Abend [layout] {"position":"5600,4100","size":"100,100"}
+<<scene>>
+<p>Die Stimmung ist am Tiefpunkt: nass, müde, und ein Platz am Feuer bleibt leer<<if not $world.biwagWenzelWeg>> — oder wäre leer geblieben, hättest du nicht gehandelt<</if>>. Wenn je ein Wort der Führung gebraucht wurde, dann jetzt.</p>
+<</scene>>
+<<if setup.biwagBeatOnce("tag6_moralrede")>>
+	<<set _r to setup.skillCheckXp("gossip", 13)>>
+	<<= setup.skillCheckAlert(_r)>>
+	<<if _r.success>>
+		<p>Du sprichst nicht viel, aber richtig — von Heimkehr, von durchgehalten, von morgen. Es genügt. Die Rücken richten sich ein wenig auf.</p>
+		<<= setup.biwagMoral(2)>>
+	<<else>>
+		<p>Deine Worte finden keinen Halt in der Erschöpfung; sie hören zu, aber nichts erreicht sie. Die Nacht bleibt schwer.</p>
+	<</if>>
+<</if>>
+[[Der siebte Tag|Biwag_Tag7]]
+
+
+:: Biwag_Tag6_Desertion [layout] {"position":"5750,4375","size":"100,100"}
+<<scene>>
+<p>Du stellst ihn am Waldrand. Wenzel dreht sich um, das Gesicht nass von Regen und mehr — ein Junge, gefangen zwischen Furcht und Fahnenflucht. Was jetzt geschieht, liegt bei dir.</p>
+<</scene>>
+[[Ihn mit Worten zurückholen|Biwag_Tag6_Zurueck]]
+[[Ihn mit Gewalt zurückbringen|Biwag_Tag6_Gewalt]]
+[[Ihn ziehen lassen|Biwag_Tag6_Ziehen]]
+
+
+:: Biwag_Tag6_Gewalt [layout] {"position":"5775,4050","size":"100,100"}
+<<if setup.biwagBeatOnce("tag6_ausgang")>>
+	<<set _r to setup.skillCheckXp("combat", 13)>>
+	<<= setup.skillCheckAlert(_r)>>
+	<<if _r.success>>
+		<p>Du packst ihn und zerrst ihn zurück ins Lager. Er bleibt — mit hängenden Schultern und einem Blick, der dir nie wieder ganz traut. Die anderen sehen zu und schweigen.</p>
+		<<= setup.biwagMoral(-1)>>
+	<<else>>
+		<p>Er wehrt sich verzweifelt, ihr geht beide zu Boden, und im Handgemenge entkommt er doch. Zurück bleibt nur dein zerschundenes Ansehen.</p>
+		<<= setup.biwagMoral(-2)>>
+		<<= setup.biwagProviant(-1)>>
+	<</if>>
+<</if>>
+[[Zurück ins Lager|Biwag_Tag6_Abend]]
+
+
+:: Biwag_Tag6_Lager [layout] {"position":"5675,3925","size":"100,100"}
+<<if setup.biwagBeatOnce("tag6_wetter")>>
+	<<= setup.biwagMoral(setup.biwagWetterMalus(false))>>
+<</if>>
+<<scene>>
+<p>Ein nasses, freudloses Lager. <<if $player.spezialisation eq "medicine">>Als Feldscher gehst du von Mann zu Mann,<</if>> und wieder gilt es, die Kränkelnden über die Nacht zu bringen.</p>
+<</scene>>
+<<if setup.biwagBeatOnce("tag6_gesund")>>
+	<<set _r to setup.skillCheckXp("medicine", 13, setup.biwagItemMod("feldscher"))>>
+	<<= setup.skillCheckAlert(_r)>>
+	<<if _r.success>><p>Du hältst die Truppe beisammen; keiner bricht zusammen, keiner gibt auf.</p><<= setup.biwagMoral(1)>>
+	<<else>><p>Das Elend frisst sich tiefer; zwei Männer taugen kaum noch zu mehr als sich selbst zu tragen.</p><<= setup.biwagMoral(-1)>><</if>>
+<</if>>
+[[Die Nachtwache|Biwag_Tag6_Wache]]
+
+
+:: Biwag_Tag6_Marsch [layout] {"position":"6000,4025","size":"100,100"}
+<<if setup.biwagBeatOnce("tag6_marsch")>>
+	<<set _r to setup.skillCheckXp("combat", 13, setup.biwagItemMod("schanzzeug"))>>
+	<<= setup.skillCheckAlert(_r)>>
+	<<if _r.success>>
+		<p>Ihr kämpft euch durch, Schulter an Schulter, und haltet den Karren in der Spur. Erschöpft, aber ungebrochen erreicht ihr das Nachtlager.</p>
+		<<= setup.biwagMoral(1)>>
+	<<else>>
+		<p>Der Weg zerrt euch nieder; zweimal bleibt der Karren stecken, und als ihr endlich haltet, ist die Truppe am Rand ihrer Kräfte.</p>
+		<<= setup.biwagMoral(-1)>>
+	<</if>>
+<</if>>
+[[Das Lager schlagen|Biwag_Tag6_Lager]]
+
+
+:: Biwag_Tag6_Verschlafen [layout] {"position":"5525,4225","size":"100,100"}
+<<scene>>
+<p>Am Morgen ist eine Decke leer und kalt. Wenzel ist fort, mit seinem Bündel und einem Teil der Vorräte, und niemand hat ihn gehen sehen. Ein Deserteur unter deiner Wache — das wiegt schwer.</p>
+<</scene>>
+<<if setup.biwagBeatOnce("tag6_ausgang")>>
+	<<set $world.biwagWenzelWeg to true>>
+	<<= setup.biwagMoral(-3)>>
+	<<= setup.biwagProviant(-1)>>
+<</if>>
+[[Weiter|Biwag_Tag6_Abend]]
+
+
+:: Biwag_Tag6_Wache [layout] {"position":"5600,4375","size":"100,100"}
+<<scene>>
+<p>Tief in der Nacht, als der Regen zum Nieseln wird, ist da ein Geräusch am Rand des Lagers — leise, vorsichtig, das Geräusch eines Mannes, der nicht gehört werden will.</p>
+<</scene>>
+<<if setup.biwagBeatOnce("tag6_wache")>>
+	<<set _r to setup.skillCheckXp("perception", ($world.biwagWenzelHart ? 15 : 13), setup.biwagItemMod("laterne"))>>
+	<<= setup.skillCheckAlert(_r)>>
+	<<set $world.biwagWacheBemerkt to _r.success>>
+<</if>>
+<<if $world.biwagWacheBemerkt>>
+	<p>Du bist sofort wach. Eine Gestalt löst sich aus dem Schatten der Bäume, Bündel geschultert — Wenzel, auf dem Weg nach Hause.</p>
+	[[Ihm nachgehen|Biwag_Tag6_Desertion]]
+<<else>>
+	<p>Deine Lider sind schwer, das Geräusch verliert sich, und du sinkst zurück in den Halbschlaf. Erst der Morgen zeigt dir, was du verpasst hast.</p>
+	[[Der Morgen|Biwag_Tag6_Verschlafen]]
+<</if>>
+
+
+:: Biwag_Tag6_Ziehen [layout] {"position":"5725,4200","size":"100,100"}
+<<scene>>
+<p>Du trittst zur Seite. Vielleicht ist es Gnade, vielleicht Schwäche — aber du lässt ihn gehen, hinein in den Regen, nach Hause. Am Morgen wird die Truppe wissen, dass ihr Weibel einen Deserteur ziehen ließ.</p>
+<</scene>>
+<<if setup.biwagBeatOnce("tag6_ausgang")>>
+	<<set $world.biwagWenzelWeg to true>>
+	<<= setup.biwagMoral(-3)>>
+	<<= setup.biwagProviant(-1)>>
+<</if>>
+[[Zurück ins Lager|Biwag_Tag6_Abend]]
+
+
+:: Biwag_Tag6_Zurueck [layout] {"position":"5850,4250","size":"100,100"}
+<<if setup.biwagBeatOnce("tag6_ausgang")>>
+	<<set _r to setup.skillCheckXp("gossip", ($world.biwagBond_wenzel ? 11 : 13))>>
+	<<= setup.skillCheckAlert(_r)>>
+	<<if _r.success>>
+		<p>Du redest ruhig, ohne Drohung — <<if $world.biwagBond_wenzel>>und findest die Worte, die schon am Feuer zwischen euch standen.<</if>> Nach langem Schweigen legt er das Bündel ab und geht mit dir zurück. Niemand sonst wird je davon erfahren.</p>
+		<<= setup.biwagMoral(1)>>
+	<<else>>
+		<p>Du findest die Worte nicht; er schüttelt den Kopf, weicht zurück, und ehe du greifen kannst, ist er im Dunkel verschwunden. Am Morgen fehlt ein Mann.</p>
+		<<= setup.biwagMoral(-2)>>
+		<<= setup.biwagProviant(-1)>>
+	<</if>>
+<</if>>
+[[Zurück ins Lager|Biwag_Tag6_Abend]]
+
+
+:: Biwag_Tag7 [layout] {"position":"4725,3850","size":"100,100"}
+<<if setup.biwagBeatOnce("tag7_start")>>
+	<<= setup.biwagMoral(-2)>>
+	<<= setup.biwagProviant(-1)>>
+	<<if not $world.biwagEquipment.futter>><<= setup.biwagMoral(-2)>><</if>>
+<</if>>
+<<scene>>
+<p>Der letzte Tag. Vor euch liegt der Heimweg nach Ohm, und mit ihm die Frage, wie ihr ankommt: gehetzt und erschöpft, aber früh — oder aufrecht und geschlossen, wie eine Truppe, die etwas hinter sich gebracht hat.</p>
+<</scene>>
+[[Den Marsch forcieren|Biwag_Tag7_Forcieren]]
+[[Würdevoll heimführen|Biwag_Tag7_Wuerdig]]
+
+
+:: Biwag_Tag7_Ankunft [layout] {"position":"4825,3675","size":"100,100"}
+<<scene>>
+<p>Im Hof erwarten euch Hauptmann Rindler und Kurt, die Hände im Rücken, die Blicke prüfend. Sie mustern die Truppe, die du zurückbringst — und dann dich.</p>
+<</scene>>
+[[Bericht erstatten|Biwag_Debrief]]
+
+
+:: Biwag_Tag7_Forcieren [layout] {"position":"5000,3650","size":"100,100"}
+<<scene>>
+<p>Du treibst zur Eile. Ihr erreicht Ohm noch vor der Dämmerung — doch die letzten Meilen brechen den Männern das Kreuz, und sie schleppen sich mehr, als dass sie marschieren.</p>
+<</scene>>
+<<if setup.biwagBeatOnce("tag7_schluss")>>
+	<<= setup.biwagMoral(-1)>>
+<</if>>
+[[Ankunft in Ohm|Biwag_Tag7_Ankunft]]
+
+
+:: Biwag_Tag7_Wuerdig [layout] {"position":"4475,3575","size":"100,100"}
+<<scene>>
+<p>Du lässt sie in Ordnung marschieren, Schritt und Haltung, so müde sie auch sind. Als das Nordtor in Sicht kommt, richten sie sich von selbst auf — sie wollen als Soldaten heimkehren, nicht als Häuflein.</p>
+<</scene>>
+<<if setup.biwagBeatOnce("tag7_schluss")>>
+	<<set _r to setup.skillCheckXp("gossip", 13)>>
+	<<= setup.skillCheckAlert(_r)>>
+	<<if _r.success>><p>Dein Wort trägt sie durch die letzten Meilen; ihr zieht geschlossen durchs Tor, und der Stolz steht ihnen ins Gesicht geschrieben.</p><<= setup.biwagMoral(2)>>
+	<<else>><p>Die Erschöpfung ist stärker als jeder Vorsatz; ihr kommt an, aber ohne den Glanz, den du erhofft hattest.</p><</if>>
+<</if>>
+[[Ankunft in Ohm|Biwag_Tag7_Ankunft]]
 
 
 :: DEBUG_Kap2_Setup {"position":"1400,4550","size":"100,100"}
 <<run setup.ermInit()>>
 <<if not $world.flags>><<set $world.flags = {}>><</if>>
+
 
 <<if not $world._dbgKap2>>
 <<silently>>
@@ -1046,6 +1740,7 @@ yoloswag
 <<set $npc.karla.memory.flags.kapitel1_ende_seen to true>>
 <<run ["pike","crossbow","cannon","medicine","thievery","gossip","combat"].forEach(function(k){ State.variables.player.knowledge[k] = 2; })>>
 <<set $player.stats.scholarship to 8>>
+<<run setup.kapitel1Abschliessen()>>
 <</silently>>
 <</if>>
 
@@ -1118,9 +1813,10 @@ Ermittlung frühestens Tag: <b><<= $world.ermittlung.fruehestens_tag>></b> · Lu
 <h4>Starten</h4>
 [[Regulär: Kapitel-2-Intro (mit Probe & Waffenwahl)|Kap2_Intro]]
 [[Direkt in den Tagesloop (Spezialisierung oben wählen!)|Kap2_Tagesstart]]
+[[Biwag|Biwag_Drill]] 
 
 
-:: DEBUG_Menu {"position":"0,0","size":"100,100"}
+:: DEBUG_Menu {"position":"100,300","size":"100,100"}
 <h3>— DEBUG / Quest-Sprungbrett —</h3>
 
 ''Jarek-Kette:''
@@ -1431,7 +2127,10 @@ Nur ein Mann, dem der Krieg etwas genommen hat — und der trotzdem noch hier st
 :: EE_Tross {"position":"725,875","size":"100,100"}
 <p>Du hörst sie bevor du sie siehst.</p>
 
-<div class="scenery-text">Eine Frauenstimme — Dialekt, warm, schnell — erklärt gerade jemandem mit großer Sachkenntnis und wenig Geduld, dass eine Wunde die man selbst aufkratzt keine Wunde mehr ist sondern eine Dummheit. Ein zweites Wort, tiefer, männlich, antwortet mit der Gelassenheit eines Mannes dem die Welt gerade genau so gefällt wie sie ist. Eine dritte Stimme — weiblich, knapper — sagt nur: „Stimmt."</div>
+<div class="scenery-text">Eine Frauenstimme — Dialekt, warm, schnell — erklärt gerade jemandem mit großer Sachkenntnis und wenig Geduld, 
+dass eine Wunde die man selbst aufkratzt keine Wunde mehr ist sondern eine Dummheit. 
+Ein zweites Wort, tiefer, männlich, antwortet mit der Gelassenheit eines Mannes dem die Welt gerade genau so gefällt wie sie ist. 
+Eine dritte Stimme — weiblich, knapper — sagt nur: „Stimmt."</div>
 
 <p>Du biegst um die Ecke.</p>
 
@@ -1439,14 +2138,18 @@ Nur ein Mann, dem der Krieg etwas genommen hat — und der trotzdem noch hier st
 
 <p>Der Mann am Tisch hat ein Barett und einen Gürtel der allein schon mehr kostet als deine Jahresration. Er hält das Mundstück der Wasserpfeife locker in der Hand und schaut dich an mit der Ruhe von jemandem dem Eile grundsätzlich fremd ist.</p>
 
-<p>Die Frau neben ihm trägt ein kleines Hirnbisla auf dem Barett wie einen Orden und näht ohne aufzusehen. Auf einer umgedrehten Kiste daneben sitzt eine dritte Person, Beine ausgestreckt, Augen halb geschlossen.</p>
+<p>Die Frau neben ihm trägt ein kleines Hirnbisla auf dem Barett wie einen Orden und näht ohne aufzusehen. 
+Auf einer umgedrehten Kiste daneben lehnt eine dritte Gestalt, die Beine lang von sich gestreckt. 
+Zwei geflochtene Zöpfe mit ausgeblichenen Schleifen hängen ihr über die Schultern.
+Ihre Augen sind halb geschlossen, als koste es Kraft, sie überhaupt offen zu halten.</p>
 
 <div class="dialog">"Der Mann hebt das Kinn. „Rekrut. Setz dich kurz."</div>
 
 <p>Keine Frage. Kein Angebot. Einfach so.
 Du sitzt.</p>
 
-<p>Er greift nach dem Krug, schenkt einen Becher ein und stellt ihn vor dich — alles in einer Bewegung, ohne dich dabei anzusehen. Dann erst schaut er dich an.</p>
+<p>Er greift nach dem Krug, schenkt einen Becher ein und stellt ihn vor dich — alles in einer Bewegung, 
+ohne dich dabei anzusehen. Dann erst schaut er dich an.</p>
 
 <div class="dialog">„Was brauchst?"</div>
 
@@ -1461,7 +2164,13 @@ Du sitzt.</p>
 
 Die Frau antwortet: „Stimmt, fei."
 
-Die dritte sagt nichts. Aber das ist auch eine Antwort.</p>
+Und dann, eine Idee zu laut, wie um sicherzugehen, dass du es auch noch hörst: 
+„Sehr guter Rekrut! Fand ich auch!" 
+Eine kurze Pause. „Ich fand's zumindest sehr souverän, wie ich das vorhin rübergebracht hab." Niemand widerspricht ihr. Niemand bestätigt es auch.</p>
+
+<<set $npc.klausz.known to true>>
+<<set $npc.tilly.known to true>>
+<<set $npc.rosi.known to true>>
 
 <<weiterImTag "Zurück zum Tagesgeschehen">>
 
@@ -1475,9 +2184,10 @@ Die dritte sagt nichts. Aber das ist auch eine Antwort.</p>
 
 <p>Du nimmst an oder nicht. Er wartet so oder so.</p>
 
-<div class="dialog">„Die Gasse stimmt. Das Haus nicht. Der Färber ist vor drei Wochen zwei Straßen weiter gezogen." Er zeigt mit dem Mundstück in die ungefähre Richtung. „Geradeaus, dann links wo's nach Lavendel riecht. Zweites Haus, blaue Tür."</div>
+<div class="dialog">„Die Gasse stimmt. Das Haus nicht. Der Färber ist vor drei Wochen zwei Straßen weiter gezogen." 
+Er zeigt mit dem Mundstück in die ungefähre Richtung. „Geradeaus, dann links wo's nach Lavendel riecht. Zweites Haus, blaue Tür."</div>
 
-<div class="dialog">„Fei, blaue Tür stimmt, fei", sagt die Frau ohne aufzusehen. „Aber klopf laut, der ist schwerhörig."</div>
+<div class="dialog">„Blaue Tür stimmt", sagt die Frau ohne aufzusehen. „Aber klopf fei laut, der ist schwerhörig."</div>
 
 <div class="dialog">Die Person auf der Kiste öffnet ein Auge. „Sehr schwerhörig."</div>
 
@@ -1485,9 +2195,21 @@ Die dritte sagt nichts. Aber das ist auch eine Antwort.</p>
 
 <div class="dialog">„Sehr."</div>
 
+<p>Die Gestalt auf der Kiste richtet sich ein Stück auf, offenbar bemüht, den Eindruck zu erwecken, sie hätte die ganze Zeit aufmerksam zugehört. 
+„Ich bin übrigens Tilly", sagt sie und versucht dabei einen Tonfall, der nach Offizier klingen soll und eher nach jemandem klingt, 
+der das Wort zum ersten Mal ausprobiert. „Söldnerin. Vierundachtzigstes Banner. Offiziell." 
+Sie hält kurz inne, als müsste sie selbst erst überlegen, was als Nächstes kommt, und wechselt dann, ohne Übergang, in einen Ton, 
+der eher zur Markthändlerin passt als zur Söldnerin: „Und wenn du eh grad in der Gasse bist — 
+der mit der blauen Tür kauft dir auch gebrauchte Stiefel ab, falls du mal welche über hast." 
+Die Feldscherin nickt.
+„Fei a Guter Preis!" 
+Beim Aufstehen, um sich zu strecken, tritt sie gegen den Klapptisch, und der Krug wackelt bedenklich, 
+bevor Clausz ihn ohne hinzusehen mit einer Hand auffängt.</p>
+
 <p>Du willst aufstehen. Clausz macht eine kleine, beiläufige Handbewegung. Bleib kurz.</p>
 
-<p>Und dann schaut die Frau von ihrer Nadel auf — nicht ins Gesicht, tiefer, sachlicher. Der Blick eines Menschen der gelernt hat Körper zu lesen wie andere Leute Wetterfahnen lesen.</p>
+<p>Und dann schaut die Frau von ihrer Nadel auf — nicht ins Gesicht, tiefer, sachlicher. 
+Der Blick eines Menschen der gelernt hat Körper zu lesen wie andere Leute Wetterfahnen lesen.</p>
 
 <div class="dialog">„Das da." Sie zeigt ohne Umschweife auf die Stelle die du seit Tagen ignorierst. „Zeig das mal her."</div>
 
@@ -1508,9 +2230,17 @@ Die dritte sagt nichts. Aber das ist auch eine Antwort.</p>
 
 <p>Du nimmst an oder nicht. Er wartet so oder so.</p>
 
-<p>Es wird nicht viel geredet. Er schreibt ins Lagerbuch — diesmal wirklich. Die Frau näht. Die Person auf der Kiste schläft möglicherweise. Der Rauch der Wasserpfeife steigt träge in den Nachmittag.</p>
+<p>Es wird nicht viel geredet. Er schreibt ins Lagerbuch — diesmal wirklich. 
+Die Frau näht. Auf der Kiste rührt sich die dritte Gestalt, blinzelt einmal in deine Richtung und scheint zu dem Schluss zu kommen, 
+dass ehrliche Rekruten es verdient haben, wenigstens kurz begrüßt zu werden. 
+„Tilly", sagt sie, mit einem Nicken, das sie erkennbar für würdevoll hält. 
+„Söldnerin. Vierundachtzigstes Banner." Dann, nach einer Pause, die vermutlich als bedeutungsschwer gemeint ist: „Offiziell." 
+Sie klingt einen Moment lang tatsächlich wie jemand, der weiß, wovon er redet — 
+bis sie beim Zurücklehnen mit dem Ellbogen den Tintentopf des Lagerbuchs streift und ihn gerade noch mit der freien Hand auffängt, 
+ohne den Blick von dir zu nehmen, als wäre nichts gewesen. Der Rauch der Wasserpfeife steigt derweil träge in den Nachmittag.</p>
 
-<p>Nach einer Weile schaut die Frau von ihrer Nadel auf — nicht ins Gesicht, tiefer, sachlicher. Der Blick eines Menschen der gelernt hat Körper zu lesen wie andere Leute Wetterfahnen lesen.</p>
+<p>Nach einer Weile schaut die Frau von ihrer Nadel auf — nicht ins Gesicht, tiefer, sachlicher. 
+Der Blick eines Menschen der gelernt hat Körper zu lesen wie andere Leute Wetterfahnen lesen.</p>
 
 <div class="dialog">„Das da." Sie zeigt ohne Umschweife auf die Stelle die du seit Tagen ignorierst. „Zeig mal her."</div>
 
@@ -1518,6 +2248,7 @@ Die dritte sagt nichts. Aber das ist auch eine Antwort.</p>
 <<= setup.setNpcAffection("tilly", 1)>>
 
 [[Weiter|EE_Tross_Rosi]]
+
 
 
 :: EE_Tross_Intro [kap1] {"position":"725,750","size":"100,100"}
@@ -1541,7 +2272,9 @@ Die dritte sagt nichts. Aber das ist auch eine Antwort.</p>
 
 <div class="dialog">„Setz dich da hin. Fei, ich schau's mir an."</div>
 
-<div class="scenery-text">Was dann folgt ist eine ruhige, gründliche Angelegenheit. Sie reinigt, prüft, versorgt — und erklärt dabei jeden Schritt mit einer Selbstverständlichkeit als wärst du ein Lehrling und nicht zufällig vorbeigelaufen. Warum sie so reinigt und nicht anders. Was sie dabei sucht. Wie man erkennt ob es sich entzündet. Was man dann tut und was man auf keinen Fall tut.</div>
+<div class="scenery-text">Was dann folgt ist eine ruhige, gründliche Angelegenheit. 
+Sie reinigt, prüft, versorgt — und erklärt dabei jeden Schritt mit einer Selbstverständlichkeit als wärst du ein Lehrling und nicht zufällig vorbeigelaufen.
+ Warum sie so reinigt und nicht anders. Was sie dabei sucht. Wie man erkennt ob es sich entzündet. Was man dann tut und was man auf keinen Fall tut.</div>
 
 <p>Clausz schenkt ihr nebenbei einen Becher ein ohne zu fragen. Sie nimmt ihn ohne aufzusehen.</p>
 
@@ -1559,9 +2292,21 @@ Die dritte sagt nichts. Aber das ist auch eine Antwort.</p>
 
 <div class="dialog">"Deswegen kann ich fei trotzdem keine Dellen nähen, schmieren, oder sonst wie heilen!"</div>
 
+<p>Tilly, die bislang mit dem Rücken gegen die Häuserwand gelehnt hatte, 
+kommt herüber, offenbar der Meinung, ihre Hilfe sei jetzt gefragt. 
+„Ich kann assistieren", verkündet sie mit einem Ernst, der besser zu einem Feldscher-Lehrmeister passen würde als zu jemandem,
+ der im selben Moment eine Rolle Verbandszeug fallen lässt, sich danach bückt, sich dabei den Kopf am Tisch stößt und sich mit einem Lächeln wieder aufrichtet, 
+ als sei genau das der Plan gewesen. Rosi nimmt ihr das Verbandszeug wortlos aus der Hand, ohne aufzuschauen. 
+ „Setz dich, Tilly." — „Ich sitz eh schon fast", antwortet Tilly und setzt sich, diesmal tatsächlich, 
+ auf die Kiste zurück, wo sie mit einer Selbstverständlichkeit weiterredet, als hätte ihr Beitrag gerade den Unterschied gemacht: 
+ „Mein Vater war übrigens auch mal beim Militär. Ein Adliger, aus dem Ausland. Hat mal die Bumsburg besucht, ganz sicher." 
+ Rosi verdreht die Augen, ohne dabei den Faden zu verlieren. Clausz sagt gar nichts, was bei ihm ungefähr einem Kommentar gleichkommt.</p>
+
+<<= setup.pushNpcMemory("tilly", "hat sich als Feldscher-Assistenz angeboten (erfolglos)")>>
 <<= setup.setNpcAffection("rosi", 3)>>
 <<= setup.setPlayerKnowledge("medicine", 1)>>
 <<= setup.pushNpcMemory("rosi", "hat Thomas versorgt")>>
+<<run setup.addRumor("Tillys Vater war Adliger, aus dem Ausland. Hat mal die Bumsburg besucht.")>>
 
 [[Weiter. ->EE_Tross_Abgang]]
 
@@ -1595,6 +2340,49 @@ Die dritte sagt nichts. Aber das ist auch eine Antwort.</p>
 <p>Du faltest das Papier wieder zusammen. *Schau in dein eigenes Haus.* Die Spur führt nicht hinaus in die Welt. Sie führt zurück, hinter die Palisade, an einen Tisch, an ein Gestell, an ein Gesicht, das du jeden Tag siehst.</p>
 
 <<weiterImTag>>
+
+
+:: Ermittlung_Nachspiel_Grodaus [nach_Kap2_tag] {"position":"550,6800","size":"100,100"}
+<<run setup.ermInit()>>
+<<scene>>
+<p>Drei Tage vergehen, in denen niemand ein Wort verliert. Oren wurde „versetzt“, sagt man in der Stube, mit dem Achselzucken, das Männer für Dinge haben, die sie nichts angehen. Keine Zeremonie, kein Vermerk, kein Dank. Die Akademie schluckt, was geschehen ist, und tut, als wäre es nie geschehen — denn eine Republik, die von ihrer Freiheit singt, gibt nicht zu, dass ein Königstreuer ein Jahr lang ihr Tor gehütet hat.</p>
+<</scene>>
+
+<p>Am dritten Abend fängt euch jemand am Brunnen ab. Grau gekleidet, unauffällig, ein Gesicht, das man in einer Menge sofort wieder verliert — und doch kennst du es. Der Mann aus Grodaus, der nie einen Namen nannte.</p>
+
+<<dialog>>
+<p>„Ich habe wenig Zeit“, sagt er ohne Begrüßung, „also hört gut zu. Was ihr getan habt, ist nicht ungesehen geblieben — nicht von denen, für die ich spreche. In Grodaus kennt man eure Namen nun. Ihr steht auf einer Liste.“ Ein dünnes Lächeln. „Keine Sorge. Auf der richtigen.“</p>
+<</dialog>>
+
+<<dialog>>
+<p>„Ihr habt gegen die Loyalisten ermittelt“, fährt er fort, „und dabei etwas bewiesen, das seltener ist, als ihr glaubt. Ihr habt gegraben, ohne dass der Feind es merkte. Ohne dass das Opfer es merkte. Ohne dass euer eigener Hauptmann euch auf die Schliche kam, ehe ihr fertig wart. Das“ — er mustert euch beide — „ist eine Gabe. Und Gaben sollte man nicht vergeuden.“</p>
+<</dialog>>
+
+<p>Er reicht jedem von euch etwas. Zwei Ringe, schlicht, aus mattem Metall, wie man sie an keinem Finger zweimal ansehen würde. Ein Siegelring, das Wappen Aloys eingeprägt — und doch stimmt etwas nicht daran. Du drehst ihn im Licht, suchst den Fehler und findest ihn nicht; es ist keiner, den man benennen kann, nur das Gefühl, dass das vertraute Wappen hier ein anderes ist, um ein Haar verschoben, um einen Gedanken falsch.</p>
+
+<<dialog>>
+<p>„Wenig wert, nicht wahr“, sagt der Namenlose, und in seinen Augen blitzt etwas Belustigtes. „Behaltet ihn trotzdem. Er öffnet Türen, von denen ihr nicht wisst, dass es sie gibt. Zeigt ihn dem Rechten, und man lässt euch ein, wo man andere fortschickt. Fragt nicht, wo. Ihr werdet es erfahren, wenn es so weit ist.“</p>
+<</dialog>>
+
+<<gedanke>>
+<p>Ein Wappen, das nicht ganz das Wappen ist. Wie eine Unterschrift, die nicht ganz echt ist. Ich habe gelernt, solchen kleinen Falschheiten zu misstrauen — und halte doch die Hand auf, weil ich weiß, wer hinter dieser Tür steht: die, die genau das jagen, was wir gerade gefasst haben.</p>
+<</gedanke>>
+
+<<if not $world.ermittlung.flags.nachspiel_done>>
+	<<print setup.addItem("unscheinbarer Siegelring")>>
+	<<= setup.setPlayerReputation("ohm", 15)>>
+	<<= setup.setPlayerReputation("land", 10)>>
+	<<= setup.setPlayerReputation("grodaus", 20)>>
+	<<set $world.flags.geheimpolizei_einladung to true>>
+	<<set $world.flags.taverne_frei_ohm to true>>
+	<<set $world.ermittlung.flags.nachspiel_done to true>>
+<</if>>
+
+<<dialog>>
+<p>Er wendet sich zum Gehen, hält dann inne, und über sein graues Gesicht huscht etwas, das man bei einem anderen ein Lächeln nennen würde. „Und weil ich kein Unmensch bin“ — ein Augenzwinkern — „das Wichtigste zuletzt. Heute Abend, in der Schenke zu Ohm, gehört euch beiden alles. Speis und Trank, so viel ihr wollt. Die Wirtsleute sind unterrichtet, die Zeche ist gezahlt. Ein einziger Abend ohne Sold und ohne Sorge. Nutzt ihn.“ Dann ist er fort, als hätte ihn die Dämmerung nie hergetragen.</p>
+<</dialog>>
+
+<<weiterImTag "Weiter">>
 
 
 :: Ermittlung_S0_Auftakt [einmalig interrupt] {"position":"625,4975","size":"100,100"}
@@ -1747,6 +2535,159 @@ Die dritte sagt nichts. Aber das ist auch eine Antwort.</p>
 
 <<set $world.tagesAktionen += 1>>
 <<weiterImTag "Weiter">>
+
+
+:: Ermittlung_S10_Koda {"position":"1225,6525","size":"100,100"}
+<<scene>>
+<p>Sie holen Oren mitten am Tag, ohne Aufhebens, wie man einen Mann holt, von dem man keinen Widerstand erwartet. Er leistet keinen. Er legt die Feder beiseite, richtet die Bolzen in ihren Fächern, als sei Ordnung noch immer seine Pflicht, und geht zwischen den beiden Weibeln hinaus, das kranke Bein nachziehend, den Rücken gerade.</p>
+<</scene>>
+
+<<dialog>>
+<p>Man befragt ihn — Rindler selbst, Stunde um Stunde. Oren gesteht nichts. Nennt keinen Namen, gibt keine Zahl preis, bittet um keine Gnade. Auf jede Frage antwortet er mit der ruhigen Höflichkeit eines Mannes, der längst mit sich im Reinen ist.</p>
+<</dialog>>
+
+<<gedanke>>
+<p>Als sie ihn abführen, sucht sein Blick mich — nur für einen Augenblick. Kein Hass darin, kein Vorwurf. Dasselbe kalte, klare Licht, das ich einmal in anderen Augen gesehen habe, in einer Nacht in der Schreibstube. Oren sieht mich an wie Jarek mich ansah: als hätte ich etwas berührt, das größer ist als ich, und als wüsste er, dass ich es nie ganz begreifen werde.</p>
+<p>Halm hat sich geirrt. Es war nie Angst. Angst gesteht, wenn die Zange sich schließt. Das hier war Disziplin — und Disziplin schweigt bis zuletzt.</p>
+<</gedanke>>
+
+<<formal>>
+<p>In der beschlagnahmten Fracht der letzten Fuhren findet sich, unter falschen Namen und gefälschten Geleitscheinen, ein einzelnes Zeichen — ein Siegel, klein und ohne Prunk, das in keinem Register der Akademie verzeichnet ist und auf keine Behörde Aloys weist. Wer immer den Kanal befehligt, sitzt nicht in Ohm, und nicht in der Akademie. Und während man Oren Malk in Ketten legt, verschwindet dieser Kopf, den niemand kennt, ein wenig tiefer in den Schatten, aus denen er nie hervorgetreten ist.</p>
+<</formal>>
+
+<<dialog>>
+<p>„Wir haben ihn“, sagt Karla leise, als ihr am Abend am Holzstapel steht, ein letztes Mal. „Und trotzdem fühlt es sich nicht an wie gewonnen.“</p>
+<p>„Weil es nicht das Ende ist“, sagst du. „Es ist eine Tür. Und dahinter ist es dunkler, als wir gedacht haben.“</p>
+<</dialog>>
+
+<<if not $world.ermittlung.flags.s10_done>>
+	<<= setup.ermFund("kopf_entkommt", "Im beschlagnahmten Frachtgut lag ein unbekanntes Siegel — der eigentliche Kopf des Kanals sitzt außerhalb der Akademie und ist entkommen.")>>
+	<<set $world.ermittlung.flags.s10_done to true>>
+	<<set $world.ermittlung.flags.abgeschlossen to true>>
+	<<set $world.ermittlung.active to false>>
+	<<set $world.flags.kap3_saat to true>>
+<</if>>
+
+[[Später, am Holzstapel|Ermittlung_S10_Rueckblick]]
+
+
+:: Ermittlung_S10_Rindler {"position":"1200,6225","size":"100,100"}
+<<set _burned to ($world.ermittlung.flags.s2_weg eq "hauptmann")>>
+<<set _tuer to (State.variables.npc.magister.affection gte 5) or ($world.flags.jarek_ausgang eq "gemeldet")>>
+<<scene>>
+<p>Der kahle Raum neben der Wachstube, in dem sonst Verhöre und Verweise stattfinden — diesmal seid ihr es, die kommen, nicht die man holt. Karla neben dir, das Kinn hoch, und auf dem rohen Tisch das, was ihr in Wochen zusammengetragen habt: Krebs' Gegenbuch aus Westhof, das zeigt, was ankam; die Aufzeichnung dessen, was das Ausgabebuch verschickte — und dazwischen die Lücke, die keine Nachprüfung füllt.</p>
+<</scene>>
+
+<<if $world.ermittlung.flags.beweis_stark>>
+<<gedanke>>
+<p>Wir haben mehr als Papier. Wir haben die Fuhre selbst — gesehen, gemessen, in dieser Nacht. Zwei Bücher, die einander widersprechen, und ein Karren, der die Lüge in Holz und Eisen fährt. Wenn das nicht reicht, reicht nichts.</p>
+<</gedanke>>
+<<else>>
+<<gedanke>>
+<p>Es ist dünner, als ich es mir gewünscht hätte. Oren hat die Fuhre gestrichen, die Seiten getilgt — geblieben ist Krebs' Gegenbuch allein. Ein Wort aus Westhof gegen Orens Ordnung. Es muss reichen. Es muss.</p>
+<</gedanke>>
+<</if>>
+
+<<dialog>>
+<p>Rindler hört zu, ohne ein einziges Mal zu unterbrechen, die Hände auf dem Rücken, das Gesicht so unbewegt wie immer. Als du endest, tritt eine Stille ein, die länger dauert, als du ertragen möchtest.</p>
+<</dialog>>
+
+<<if _burned and not _tuer>>
+<<dialog>>
+<p>„Ihr“, sagt Rindler schließlich, und in dem einen Wort liegt die ganze Geschichte eurer letzten Begegnung. „Ihr kommt schon wieder mit Vermutungen zu mir, nachdem Ihr mir das letzte Mal meine Zeit gestohlen habt. Zwei Rekruten, ein fremdes Buch, eine Geschichte, die zu groß ist für Euren Rang. Warum sollte ich Euch ein zweites Mal glauben?“</p>
+<</dialog>>
+<<gedanke>>
+<p>Er hört mich nicht — nicht mir allein. Was in Westhof geschah, hat die Tür zwischen uns zugeschlagen, und ich brauche jemanden, dessen Wort schwerer wiegt als meines, um sie wieder zu öffnen.</p>
+<</gedanke>>
+[[Einen Fürsprecher suchen|Ermittlung_S10_Tuersteher]]
+<<else>>
+<<if _burned>>
+<<dialog>>
+<p>„Nach dem, was zwischen uns steht, würde ich Euch fortschicken“, sagt Rindler langsam. „Doch Ihr kommt nicht allein — und der, der für Euch bürgt, ist keiner, den ich leichthin übergehe.“</p>
+<</dialog>>
+<</if>>
+[[Rindler prüft die Beweise|Ermittlung_S10_Zugriff]]
+<</if>>
+
+
+
+:: Ermittlung_S10_Rueckblick {"position":"1225,6650","size":"100,100"}
+:<<run setup.ermInit()>>
+<<scene>>
+<p>Später, als der Hof sich geleert hat und die Akademie in ihr gewohntes Abendrauschen zurückgefallen ist, findet ihr euch wieder am Holzstapel ein, ohne es verabredet zu haben. Es ist der Ort, an dem alles zusammengekommen ist, Nacht für Nacht — es scheint richtig, dass es hier auch enden soll.</p>
+<</scene>>
+
+<<dialog>>
+<p>„Fang von vorn an“, sagt Karla und zieht die Knie an die Brust. „Ich will es einmal ganz hören. Damit ich weiß, dass es wirklich war und ich es mir nicht ausgedacht habe.“</p>
+<</dialog>>
+
+<p>Und du erzählst es der Reihe nach, wie man ein Garn aufwickelt, das sich über Monate verwirrt hat. Ein Eintrag über einen Dolch, der nicht stimmte — der erste lose Faden. Ein Kamerad, der nicht floh, sondern gefahren wurde, in einer Kiste, verplombt wie Schadeisen. Ein Buch voller Westhof-Fuhren, die nie zurückkamen, alle in einer ruhigen, sicheren Hand.</p>
+
+<<dialog>>
+<p>„Oren“, sagt Karla, und das Wort schmeckt ihr bitter. „Die ganze Zeit unter unseren Augen. Kein Ungeheuer, kein Verschwörer mit irrem Blick. Ein Schreiber mit lahmem Bein, der jeden Nagel dreimal zählte.“</p>
+<p>„Deshalb hat ihn niemand gesehen“, sagst du. „Weil er nicht aussah wie das, was man sucht. Halm dachte, es sei Angst. Aber ein Ängstlicher wäre gerannt. Oren hat aufgeräumt und geschwiegen. Das war Überzeugung.“</p>
+<</dialog>>
+
+<<gedanke>>
+<p>Und das ist es, was mir nachhängt, während wir hier sitzen: Wir haben eine Hand gefasst. Aber die Hand gehört zu einem Arm, und der Arm zu einem Körper, den wir nie gesehen haben. Das Siegel in der Fracht, das auf nichts in Aloy weist. Wir haben ein Loch gestopft in einem Damm, von dem wir nicht wissen, wie breit er ist.</p>
+<</gedanke>>
+
+<<dialog>>
+<p>Ihr schweigt eine Weile. Dann sagt Karla leise, ohne dich anzusehen: „Wir sind die Einzigen, die alles wissen, Tom. Das war schon vor dem Zugriff keine gute Stelle. Jetzt ist es eine gefährliche.“</p>
+<p>„Ich weiß“, sagst du. „Aber wir stehen hier zu zweit. Das ist mehr, als die meisten haben, die zu viel wissen.“</p>
+<p>Sie sieht dich lange an, und das harte Lächeln, das sonst nur den Spott kennt, wird für einen Atemzug zu etwas anderem. „Ja“, sagt sie. „Das ist es.“</p>
+<</dialog>>
+
+<<if not $world.ermittlung.flags.rueckblick_done>>
+	<<run setup.romanzeInit()>>
+	<<set $npc.karla.romanze += 1>>
+    <<set $player.rel.karla += 1>>
+	<<set $world.ermittlung.flags.rueckblick_done to true>>
+<</if>>
+
+<<weiterImTag "Zurück in den Dienst">>
+
+
+:: Ermittlung_S10_Tuersteher {"position":"1125,6375","size":"100,100"}
+<<if State.variables.npc.magister.affection gte 5>>
+<<scene>>
+<p>Es gibt nur einen Mann in Ohm, dessen Wort Rindler nicht abtut, und der euch nicht gänzlich verschlossen ist: Magister Halm. Du suchst ihn in seiner Schreibstube auf, legst ihm vor, was du hast, und wartest, während er liest — langsam, gründlich, mit dem prüfenden Blick eines Mannes, der Muster erkennt, ehe sie sich vollenden.</p>
+<</scene>>
+<<dialog>>
+<p>„Ich sagte Euch, Ihr solltet behutsamer vorgehen“, sagt Halm, ohne aufzusehen. „Ihr habt nicht gehört. Und doch — was hier liegt, ist kein Kinderspiel mehr.“ Er legt das Blatt beiseite und steht auf. „Ich komme mit Euch zu Rindler. Nicht Euretwegen. Um dessentwillen, was Ihr aufgedeckt habt.“</p>
+<</dialog>>
+<<else>>
+<<scene>>
+<p>Karla findet den Weg, den du nicht kennst. „Aus Grodaus“, sagt sie nur, „hat mir jemand einmal gesagt, ich solle mich melden, wenn es je um mehr geht als um uns.“ Der Mann, der euch am Abend am Tor erwartet, nennt keinen Namen — grau gekleidet, unauffällig, mit den ruhigen Augen eines, der zuhört und nichts vergisst. Er liest, was ihr habt, und nickt einmal.</p>
+<</scene>>
+<<dialog>>
+<p>„Das gehört nicht mehr euch“, sagt der Namenlose leise. „Aber ihr habt es gefunden, und das rechne ich euch an. Ich rede mit dem Hauptmann. Er wird mir zuhören.“</p>
+<</dialog>>
+<</if>>
+<<set $world.ermittlung.flags.tueroeffner_genutzt to true>>
+[[Zurück zu Rindler|Ermittlung_S10_Zugriff]]
+
+
+:: Ermittlung_S10_Zugriff {"position":"1275,6375","size":"100,100"}
+<<scene>>
+<p>Rindler blättert selbst — dem richtigen Buch, denn er ist kein Mann, den man mit einem falschen Band abspeist. Er findet die Daten, legt Krebs' Gegenbuch daneben, folgt der Lücke mit dem Finger, Zeile um Zeile, Monat um Monat. Seine Miene verändert sich mit keiner Regung, und doch spürst du den Augenblick, in dem aus einer Vermutung eine Gewissheit wird.</p>
+<</scene>>
+
+<<if $world.ermittlung.flags.beweis_stark>>
+<<dialog>>
+<p>„Das ist kein Verdacht mehr“, sagt Rindler, und seine Stimme trägt eine Kälte, die nicht euch gilt. „Das ist ein Kanal. Und er läuft durch meine Waffenausgabe.“ Er sieht auf, und zum ersten Mal liegt in seinem Blick etwas, das euch beide meint. „Ihr hättet es mir früher bringen sollen. Aber Ihr habt es gebracht.“</p>
+<</dialog>>
+<<else>>
+<<dialog>>
+<p>„Es fehlt das Handfeste“, sagt Rindler. „Die Fuhre selbst ist mir durch die Finger gegangen — jemand war schneller als Ihr.“ Ein kurzes Schweigen. „Aber zwei Bücher, die einander widersprechen, lassen sich nicht beide fälschen. Es reicht, um eine Frage zu stellen, die nicht mehr weggeht. Es reicht, um ihn zu holen.“</p>
+<</dialog>>
+<</if>>
+
+<<gedanke>>
+<p>Am folgenden Tag lässt Rindler nach Oren Malk schicken.</p>
+<</gedanke>>
+
+[[Der Zugriff|Ermittlung_S10_Koda]]
 
 
 :: Ermittlung_S1_Beschluss [nach_Kap2_abend] {"position":"1075,5075","size":"100,100"}
@@ -2350,7 +3291,7 @@ genug, dass er wackelt, nicht genug, dass es wie mutwillige Beschädigung aussie
       <p>Du versuchst es beiläufig, aber die Beiläufigkeit will dir heute nicht gelingen — die Fragen kommen zu schnell hintereinander, und der Fuhrmann wird wortkarg, wie Männer wortkarg werden, wenn ein Fremder sich zu sehr für ihre Ladung interessiert. „Westhof“, sagt er nur noch, „wie immer“, und wendet dir die Schulter zu. Immerhin: Als der Verwalter von der Rampe herüberruft, wohin der Geleitschein solle, fällt der Name, den du brauchst — „für den Krebs, wie sonst“. Aber der Fuhrmann hat sich dein Gesicht gemerkt, und Fuhrleute reden mit vielen Leuten.</p>
       <<= setup.setPlayerSuspicion(5)>>
   <</if>>
-<</beziehung>>  
+<</beziehung>>
 
 
 :: Ermittlung_S3_Beobachtung_Ausspaehen {"position":"800,6050","size":"100,100"}
@@ -2747,7 +3688,7 @@ genug, dass er wackelt, nicht genug, dass es wie mutwillige Beschädigung aussie
 <</gedanke>>
 
 <<beziehung>>
-<<if $world.ermittlung.verdacht.oren >= 3>>
+<<if $world.ermittlung.verdacht.orenmalk >= 3>>
 	<p>Was schwerer wiegt: Oren weiß inzwischen, dass ihr sucht. Das habt ihr selbst dafür bezahlt, mit jedem Blick, jeder Frage, jedem Weg, den ihr gegangen seid, um an sein Buch zu kommen. Ein Mann, der weiß, dass man ihn beobachtet, wird vorsichtiger — und ein vorsichtiger Lügner ist ungleich schwerer zu fassen als ein sorgloser.</p>
 <<else>>
 	<p>Immerhin — Oren scheint noch nichts zu ahnen. Was auch immer ihr als Nächstes unternehmt, ihr habt noch den Vorteil, dass er sich sicher wähnt.</p>
@@ -3030,6 +3971,255 @@ genug, dass er wackelt, nicht genug, dass es wie mutwillige Beschädigung aussie
 <</gedanke>>
 
 [[Karla davon erzählen|Ermittlung_S7_Erkenntnis]]
+
+
+:: Ermittlung_S8_Karla {"position":"50,6500","size":"100,100"}
+<<scene>>
+<p>Ein Blick genügt — mehr braucht ihr nicht mehr, nach all den Nächten am Holzstapel. Karla legt den Riemen beiseite, steht auf, streckt sich, als langweile sie der Dienst, und schlendert hinaus, ohne Eile, ohne dass irgendetwas an ihr verriete, dass sie gerade in einen Plan tritt. Du zwingst dich, ihr nicht nachzusehen.</p>
+<p>Es dauert nicht lange. Von draußen, aus Richtung des Hofes, zerbricht etwas mit hellem Krachen, und darauf folgen Stimmen — Karlas, hart und laut, und die eines Mannes, der sich ungerecht behandelt glaubt. Ein Streit, der nach Aufsicht verlangt, nach jemandem, der Ordnung schafft, ehe aus Worten Fäuste werden.</p>
+<</scene>>
+<<if not $world.ermittlung.flags.s8_zugang_done>>
+	<<set _dc to 13 + ($world.ermittlung.flags.s2_weg eq "einbruch" ? 2 : 0)>>
+	<<set _r to setup.skillCheckXp("gossip", _dc)>>
+	<<= setup.skillCheckAlert(_r)>>
+	<<if _r.success>>
+		<p>Oren hält inne, den Kopf schräg gelegt, und für einen Herzschlag glaubst du, er durchschaue alles. Dann siegt die Pflicht über den Argwohn — ein Weibel der Waffenausgabe duldet keinen lärmenden Streit vor seiner Tür. Er erhebt sich schwerfällig, das steife Bein nachziehend, und humpelt hinaus, um Ruhe zu stiften.</p>
+		<p>Die Tür fällt zu, und mit ihr fällt eine Last von dir. Du hast deine Minuten — und du nutzt jede einzelne, die Finger flink über die Seiten, die Lippen lautlos zählend, während dein Herz die Zeit misst, die dir bleibt.</p>
+		<<= setup.ermVerdacht("orenmalk", 1)>>
+	<<else>>
+		<p>Oren geht — aber er geht als ein Mann, der zählt, wie lange er fort ist. Zu früh kehrt er zurück, viel zu früh, und in dem Augenblick, da er die Tür öffnet, sind seine Augen schon bei dir. Sie wandern von deinem Gesicht zum offenen Buch, vom Buch zur Tür, hinter der Karla noch immer zu laut, zu eifrig ihren Streit spielt.</p>
+		<p>Du hast fast alles. Fast. Doch was Oren in diesem Moment begreift, wiegt schwerer als die paar Zeilen, die dir fehlen: dass hier zwei Hände am Werk waren, abgestimmt, geplant. Er sagt kein Wort. Er muss es nicht. Von dieser Stunde an seid ihr beide in seinem Blick.</p>
+		<<= setup.ermVerdacht("orenmalk", 3)>>
+		<<set $world.ermittlung.flags.karla_auffaellig to true>>
+	<</if>>
+	<<set $world.ermittlung.flags.s8_zugang_done to true>>
+<</if>>
+[[Was das Buch verrät|Ermittlung_S8_Muster]]
+
+
+:: Ermittlung_S8_Muster [nach_Kap2_abend] {"position":"275,6675","size":"100,100"}
+<<scene>>
+<p>Und da ist es, schwarz auf vergilbtem Papier, so unscheinbar, dass ein flüchtiges Auge tausendmal darüber hinweggehen würde. „Übungsbestand C zur Nachprüfung Westhof.“ Einmal im Monat. Manchmal öfter. Zurück, so weit die Seiten reichen, über ein Jahr und länger. Und neben keiner einzigen dieser Zeilen — du prüfst es zweimal, dreimal, weil du es kaum glauben willst — steht ein Rückvermerk.</p>
+<p>Nichts kam je zurück. Kein Stück Schadeisen wurde je „nachgeprüft“ und heimgeführt. Es war nie eine Nachprüfung. Es war, Monat um Monat, immer nur ein Hinausbringen — in Kisten, die lang genug sind für einen Mann, verplombt und abgezeichnet von einer Hand, die keine Zeile zittern lässt.</p>
+<</scene>>
+
+<<gedanke>>
+<p>Der Dolch war nie das Rätsel. Er war ein Blick durch einen Türspalt, und die ganze Zeit habe ich auf die Tür gestarrt, statt zu begreifen, dass dahinter ein Weg liegt — breit getreten, seit Jahren begangen, mitten durch eine bewachte Akademie und wieder hinaus. Jarek war keine Ausnahme. Jarek war Fracht.</p>
+<</gedanke>>
+
+<<dialog>>
+<p>„Sag es“, verlangt Karla am Abend, am Holzstapel, wo die Pechfackeln denselben Kreis aus Licht werfen wie immer. „Laut. Ich will hören, ob es hält.“</p>
+<p>„Es ist kein Fehler, den er vertuscht hat“, sagst du. „Es ist seine Aufgabe. Über ein Jahr, in seiner Handschrift, jede Fuhre. Oren ist kein Schreiber mit Angst. Er ist der Mann, der das Tor öffnet.“</p>
+<p>Karla schweigt lange. Dann, leiser: „Und wir sind die Einzigen, die es wissen. Das ist keine gute Stelle, Tom, an der wir da stehen.“</p>
+<</dialog>>
+
+<<if not $world.ermittlung.flags.s8_done>>
+	<<= setup.ermFund("fuhren_muster", "Das Ausgabebuch zeigt über ein Jahr verteilt zahllose 'Übungsbestand C zur Nachprüfung Westhof'-Fuhren — keine mit Rückvermerk, alle in Oren Malks Hand. Aus dem Einzelfall wird ein stehender Kanal.")>>
+	<<set $world.ermittlung.flags.s8_done to true>>
+	<<set $world.ermittlung.flags.naechste_fuhre_tag to $world.day + 6>>
+<</if>>
+
+<<gedanke>>
+<p>Doch im Takt der Einträge steht noch etwas: Die Fuhren gehen in gleichem Abstand, und rechnet man vom letzten Datum weiter, ist die nächste in wenigen Tagen fällig. Ein Buch ist nur ein Wort gegen sein Wort. Eine Fuhre aber, die wir mit eigenen Augen sehen, dokumentieren und mit Krebs' Gegenbuch aus Westhof zusammenlegen — die kann keine ruhige Hand mehr wegwischen.</p>
+<</gedanke>>
+
+<<weiterImTag "Weiter">>
+
+
+:: Ermittlung_S8_Vorwand {"position":"225,6500","size":"100,100"}
+<<scene>>
+<p>Du brauchst keinen zweiten Mann, nur einen Grund, den Oren nicht übergehen kann, ohne die eigene Pflicht zu verraten. Deine Augen suchen den Raum ab — und finden ihn: die Kammer, in der die scharfen Bolzen lagern, hinter einem Riegel, der ohnehin schwergängig läuft. Ein Handgriff im Vorbeigehen, kaum zu sehen, und der Riegel sitzt fest wie festgeschmiedet.</p>
+<p>„Der Riegel klemmt“, sagst du, halb über die Schulter, mit dem beiläufigen Ärger eines Mannes, der bloß seine Arbeit tun will. „Bekomme ihn nicht auf.“ Es ist eine kleine Sache. Aber scharfe Bolzen hinter einem Riegel, der nicht öffnet, sind für einen Waffenwart keine kleine Sache.</p>
+<</scene>>
+<<if not $world.ermittlung.flags.s8_zugang_done>>
+	<<set _dc to 13 + ($world.ermittlung.flags.s2_weg eq "einbruch" ? 2 : 0)>>
+	<<set _r to setup.skillCheckXp("thievery", _dc)>>
+	<<= setup.skillCheckAlert(_r)>>
+	<<if _r.success>>
+		<p>Oren flucht leise, ein Fluch, der mehr dem Eisen gilt als dir, und macht sich an der Kammer zu schaffen. Das kranke Bein zwingt ihn, sich umständlich hinzuknien, den Rücken dir zugewandt, beide Hände am widerspenstigen Riegel. Genug. Mehr als genug. Du zählst, so schnell die Augen die Zeilen fassen, und schreibst dir das Jahr ins Gedächtnis, ehe er sich wieder aufrichtet.</p>
+		<<= setup.ermVerdacht("orenmalk", 1)>>
+	<<else>>
+		<p>Er löst den Riegel in der halben Zeit, die du erhofft hast — die Hände eines Mannes, der dieses Eisen jeden Tag anfasst —, und dreht sich um, ehe du fertig bist. In seinem Blick liegt kein Ärger über den klemmenden Riegel. Da liegt etwas Kälteres, Wägenderes, das langsam von der Kammer zu dir und zum offenen Buch wandert und dort verweilt.</p>
+		<p>Die Zahlen hast du beisammen. Seinen Argwohn hast du dir dazu erkauft. Er hat den Riegel geöffnet und dabei genau gesehen, wer ihn hat klemmen lassen.</p>
+		<<= setup.ermVerdacht("orenmalk", 3)>>
+	<</if>>
+	<<set $world.ermittlung.flags.s8_zugang_done to true>>
+<</if>>
+[[Was das Buch verrät|Ermittlung_S8_Muster]]
+
+
+:: Ermittlung_S8_Zaehlen {"position":"425,6500","size":"100,100"}
+<<scene>>
+<p>Kein Trick, keine Ablenkung, kein zweiter Mann. Nur du, das Buch und ein Mann, der dich beobachtet — und die kalte Kunst, dir nichts anmerken zu lassen. Du schlägst das Ausgabebuch auf, als gälte es der Pflege, prüfst eine Seriennummer, die dich nicht kümmert, und liest dabei die Zeile darüber, und die darüber, und suchst zwischen den echten Handgriffen die Minuten, die du brauchst.</p>
+<p>Es wird ein Tanz aus Blicken. Lesen, wenn Oren zu seinen Bolzen sieht. Innehalten, den Kopf heben, ein gleichgültiges Gesicht machen, wenn er herüberschaut. Deine Finger dürfen nicht zittern, deine Augen nicht hetzen, und dein Puls, der in den Ohren hämmert, geht niemanden etwas an als dich.</p>
+<</scene>>
+<<beziehung>>
+<<if not $world.ermittlung.flags.s8_zugang_done>>
+	<<set _dc to 13 + ($world.ermittlung.flags.s2_weg eq "einbruch" ? 2 : 0)>>
+	<<set _r to setup.skillCheckXp("perception", _dc)>>
+	<<= setup.skillCheckAlert(_r)>>
+	<<if _r.success>>
+		<p>Du findest den Takt, und einmal gefunden, trägt er dich. Lesen, aufsehen, weiterlesen — Seite um Seite fügt sich das Jahr zusammen, ohne dass eine Miene dich verrät. Als die Stunde um ist und du das Buch schließt, als wäre nichts gewesen, hast du alles, wonach du gekommen bist, und Oren hat nichts gesehen als einen Waffenträger bei der Arbeit.</p>
+		<<= setup.ermVerdacht("orenmalk", 1)>>
+	<<else>>
+		<p>Es ist eine Zeile zu viel. Dein Blick bleibt an ihr hängen — „Westhof“, wieder und wieder —, und für einen Herzschlag zu lang vergisst du das gleichgültige Gesicht. Als du aufsiehst, sieht Oren nicht mehr auf seine Bolzen. Er sieht dich an. Nicht das Buch. Dich.</p>
+		<p>Du bringst deine Zahlen zu Ende, mit steinernem Gesicht, und niemand könnte beweisen, dass etwas geschehen ist. Aber du weißt es, und er weiß es: In diesem einen Herzschlag hat er gesehen, welches Wort auf dieser Seite dich mehr angeht als jede Seriennummer.</p>
+		<<= setup.ermVerdacht("orenmalk", 4)>>
+	<</if>>
+	<<set $world.ermittlung.flags.s8_zugang_done to true>>
+<</if>>
+<</beziehung>>
+[[Was das Buch verrät|Ermittlung_S8_Muster]]
+
+
+:: Ermittlung_S8_Zugang {"position":"250,6300","size":"100,100"}
+<<scene>>
+<p>Die Waffenpflege ist ein guter Vorwand, weil sie ein wahrer ist: Riemenzeug will geölt, Klingen wollen gewetzt, und niemand hebt eine Braue, wenn ein Waffenträger eine Stunde in der Ausgabestube verbringt. Es riecht nach Leinöl und kaltem Eisen, nach dem Staub alter Register, und in dem schmalen Licht, das durch die hohen Fenster fällt, liegt das Ausgabebuch offen auf dem Pult, als hätte es nur auf dich gewartet.</p>
+<p>Nur ist da ein Haken, mit dem du nicht gerechnet hast. Um diese Stunde ist Oren Malk sonst an der Esse, wo die Zahlen des Tages gemacht werden. Heute nicht. Heute sitzt er am anderen Ende des Raums, das kranke Bein steif von sich gestreckt, und sortiert Bolzen in Fächer, die längst sortiert sind — eine Arbeit, die keine ist, verrichtet von einem Mann, der nur einen Grund sucht, um zu bleiben.</p>
+<</scene>>
+
+<<gedanke>>
+<p>Beim ersten Mal war es die Sache von Augenblicken — ein Datum finden, eine Zeile, dann hinaus. Diesmal ist es anders. Diesmal muss ich ein ganzes Jahr zählen, jede Westhof-Zeile, jede Fuhre, die hinausging und nie zurückkam, und das dauert nicht Augenblicke, sondern Minuten, viele davon. Und Oren gibt mir keine, solange er im Raum ist.</p>
+<p>Halm hat ihn einen Schreiber genannt, der aus Angst eine Lücke vertuscht. Aber ich sehe keine Angst in dieser Stille. Ein ängstlicher Mann zappelt, redet zu viel, sucht Blicke. Oren tut nichts von alldem. Er sitzt und wartet, ruhig wie einer, der weiß, dass die Zeit für ihn arbeitet — und das jagt mir mehr Furcht ein, als jedes Zittern es könnte.</p>
+<</gedanke>>
+
+<<dialog>>
+<p>„Er geht nicht von selbst“, murmelt Karla neben dir, ohne von dem Riemen aufzusehen, den sie ölt; ihre Stimme kaum lauter als das Kratzen des Lappens über das Leder. „Also verschaff ich dir die Zeit — oder du findest selbst einen Weg, ihn aus dem Raum zu kriegen. Was dir lieber ist, Weibel. Aber entscheide dich schnell. Je länger wir hier sitzen und nichts tun, desto länger sieht er uns dabei zu.“</p>
+<</dialog>>
+
+<ul>
+<li>[[Karla einen Zwischenfall inszenieren lassen|Ermittlung_S8_Karla]]</li>
+<li>[[Selbst einen Vorwand schaffen, der ihn hinauszwingt|Ermittlung_S8_Vorwand]]</li>
+<li>[[Unter seinen Augen zählen|Ermittlung_S8_Zaehlen]]</li>
+</ul>
+
+
+:: Ermittlung_S9_Aufgeraeumt {"position":"600,6350","size":"100,100"}
+<<scene>>
+<p>Am nächsten Tag suchst du unter einem Vorwand die Ausgabestube auf, und was du findest, bestätigt, was die leere Rampe dir schon gesagt hat. Die jüngsten Seiten des Ausgabebuchs sind fort — herausgetrennt, sauber, als hätte es sie nie gegeben —, und Oren begegnet dir mit derselben höflichen Ruhe wie immer, nur dass in seinen Augen jetzt das Wissen liegt, dass er zuerst gehandelt hat.</p>
+<</scene>>
+<<gedanke>>
+<p>Er hat nicht gezögert, nicht gezittert, nicht einen Fehler gemacht. Er hat die Fuhre gestrichen und die Spuren getilgt, ruhig und gründlich, wie ein Mann, der so etwas nicht zum ersten Mal tut. Halm hat sich geirrt: Das ist keine Angst. Angst macht hastig. Das hier war Disziplin.</p>
+<</gedanke>>
+<<dialog>>
+<p>„Dann ist das Buch tot“, sagt Karla am Abend, und schlägt mit der flachen Hand auf den Holzstapel. „Alles umsonst.“</p>
+<p>„Nicht alles“, sagst du. „Krebs' Gegenbuch in Westhof hat er nicht. Es zeigt, was ankam — und dass nie ankam, was das Ausgabebuch verschickte. Zwei Bücher, die einander widersprechen. Nur haben wir jetzt statt drei Beweisen einen. Und der liegt eine Tagesreise entfernt in fremder Hand.“</p>
+<</dialog>>
+<<if not $world.ermittlung.flags.s9_done>>
+	<<= setup.ermFund("fuhre_gestrichen", "Oren hat die Nachtfuhre gestrichen und die jüngsten Buchseiten getilgt, ehe ihr zugreifen konntet. Der Buchweg ist verbrannt — es bleibt allein Krebs' Gegenbuch aus Westhof.")>>
+	<<set $world.ermittlung.flags.fuhre_gestrichen to true>>
+	<<set $world.ermittlung.flags.beweis_stark to false>>
+	<<set $world.ermittlung.flags.s9_done to true>>
+	<<set $world.ermittlung.flags.s9_tag to $world.day>>
+<</if>>
+<<weiterImTag "Weiter">>
+
+
+:: Ermittlung_S9_Deckung {"position":"925,6450","size":"100,100"}
+<<scene>>
+<p>Du bleibst, wo du bist, im sicheren Dunkel, und machst das, was oft mehr wert ist als Kühnheit: Du siehst genau hin. Jede Bewegung, jede Kiste, jeder Blick der beiden Männer — dein geübtes Auge sammelt, was ein flüchtiger Beobachter übersähe, und dein Gedächtnis hält es fest.</p>
+<</scene>>
+<<if not $world.ermittlung.flags.s9_zugang_done>>
+	<<set _r to setup.skillCheckXp("perception", 13, -2)>>
+	<<= setup.skillCheckAlert(_r)>>
+	<<if _r.success>>
+		<p>Du liest die Szene wie eine Seite: wie sie die Kisten heben, welche schwer sind und welche leicht, wie der Wachmann nicht zum Fuhrmann spricht, als kennten sie einander nicht — und doch handeln sie im selben eingeübten Takt. Am Ende hast du ein Bild, so klar, dass keiner es dir ausreden kann.</p>
+		<<set $world.ermittlung.flags.s9_gut to true>>
+		<<= setup.ermVerdacht("orenmalk", 1)>>
+	<<else>>
+		<p>Die Entfernung frisst die Einzelheiten; im blendenverhangenen Licht verschwimmt, was du gerne genau wüsstest, und ein Teil des Ablaufs bleibt dir verborgen. Du hast das Gerüst — die Fuhre, die Kisten, die Stunde —, aber nicht die feinen Nägel, die einen Zweifler überzeugen.</p>
+		<<set $world.ermittlung.flags.s9_gut to false>>
+	<</if>>
+	<<set $world.ermittlung.flags.s9_zugang_done to true>>
+<</if>>
+[[Was ihr gesehen habt|Ermittlung_S9_Ergebnis]]
+
+
+:: Ermittlung_S9_Ergebnis [nach_Kap2_morgen] {"position":"825,6600","size":"100,100"}
+<<scene>>
+<p>Zurück im Schatten des Holzstapels legt ihr zusammen, was ihr habt. Der Karren, die Kisten, die Stunde, die Handschrift — und ein Detail, das nur dir aufgefallen ist, weil du bist, was du bist.</p>
+<</scene>>
+
+<<switch $player.spezialisation>>
+<<case "cannon">>
+<<gedanke>><p>Die Fuhre bog nicht zum Fluss ab, sondern nahm den Weg zur Esse. Als Geschützmann kenne ich diesen Weg — und den Hof hinter der Esse, wo Wagen stehen, nach denen niemand fragt. Ich weiß jetzt nicht nur, dass etwas hinausgeht. Ich weiß, wohin.</p><</gedanke>>
+<<set _detail to "Die C-Fuhre nimmt den Weg zur Esse, nicht zum Fluss — Ziel ist der Hof hinter der Schmelze, den nur Artilleristen kennen.">>
+<<case "medicine">>
+<<gedanke>><p>Auf dem Bock saß nicht der alte Fuhrmann von den Tagfuhren. Ein Fremder, jünger, mit Händen, die nie einen Zügel führten, ehe man sie ihm gab. Als Feldscher lese ich Hände wie andere Gesichter — dieser Mann ist kein Fuhrmann. Er ist ein Bote, den man verkleidet hat.</p><</gedanke>>
+<<set _detail to "Auf dem Bock der Nachtfuhre saß ein fremder, ungeübter Fuhrmann — nicht der übliche Mann. Die Fahrer werden gestellt, nicht angeheuert.">>
+<<case "pike">>
+<<gedanke>><p>Mein Tordienst gibt mir, was kein Späher bekäme: das Torprotokoll. Und dort steht die Fuhre, verzeichnet mit einer Stunde, die kein Ausbesserungsgut je führt. Ein zweites Buch, das dasselbe sagt wie das erste — und das Oren nicht in der Hand hat.</p><</gedanke>>
+<<set _detail to "Das Torprotokoll verzeichnet die Nachtfuhre mit Uhrzeit — ein Zweitbeleg außerhalb von Orens Reichweite.">>
+<<case "crossbow">>
+<<gedanke>><p>Vom Schießstand aus, meinem Posten, sah ich, was die Rampe verbarg: wie sie die Kisten hoben, welche schwer waren und welche leicht, und welche man trug, als läge darin etwas, das man nicht schütteln darf. Ein Armbruster misst Abstände im Schlaf. Ich habe jede Kiste vermessen.</p><</gedanke>>
+<<set _detail to "Vom Schießstand aus beobachtet: eine der Kisten wurde getragen, als dürfe ihr Inhalt nicht erschüttert werden — kein Schadeisen liegt so.">>
+<<default>>
+<<gedanke>><p>Kein besonderes Handwerk gab mir einen Vorteil — nur die eigenen Augen und eine Nacht, in der ich sie offen hielt. Aber das genügt: Ich habe die Fuhre gesehen, und was ich gesehen habe, lässt sich nicht mehr leugnen.</p><</gedanke>>
+<<set _detail to "">>
+<</switch>>
+
+<<if not $world.ermittlung.flags.s9_done>>
+	<<= setup.ermFund("fuhre_dokumentiert", "Die nächtliche C-Fuhre wurde mit eigenen Augen gesehen und festgehalten — Karren, verzurrte Kisten, gefälschter Geleitschein, mitten in der Nacht aus dem Seitentor.")>>
+	<<if _detail neq "">><<= setup.ermFund("fuhre_detail", _detail)>><</if>>
+	<<set $world.ermittlung.flags.beweis_stark to ($world.ermittlung.flags.s9_gut === true)>>
+	<<set $world.ermittlung.flags.s9_done to true>>
+	<<set $world.ermittlung.flags.s9_tag to $world.day>>
+<</if>>
+
+<<dialog>>
+<p>„Wir haben ihn“, sagt Karla, und zum ersten Mal seit Wochen liegt etwas wie Hoffnung in ihrer rauen Stimme. „Nicht auf Papier allein. Wir haben ihn *gesehen*.“</p>
+<p>„Wir haben die Fuhre“, sagst du leise. „Ihn haben wir, wenn Rindler uns glaubt. Und das ist eine andere Nacht.“</p>
+<</dialog>>
+
+<<weiterImTag "Weiter">>
+
+
+:: Ermittlung_S9_Nachtfuhre {"position":"775,6275","size":"100,100"}
+<<if ($world.ermittlung.verdacht.orenmalk || 0) gte 8>>
+<<scene>>
+<p>Ihr liegt im Schatten des Holzstapels gegenüber der Waffenausgabe, Karla und du, und wartet auf eine Fuhre, die nicht kommt. Die Stunde, die das Buch euch verraten hat, verstreicht. Dann die nächste. Die Rampe bleibt dunkel, das Tor geschlossen, und je länger ihr wartet, desto sicherer wisst ihr, was das Schweigen bedeutet.</p>
+<</scene>>
+<<gedanke>>
+<p>Er hat es gemerkt. Natürlich hat er es gemerkt — ich habe zu oft im Buch gewühlt, zu deutlich, und ein Mann wie Oren zählt nicht nur Bolzen, er zählt Blicke. Es gibt heute keine Fuhre. Vielleicht für lange keine. Er hat den Kanal geschlossen, ehe wir ihn schließen konnten.</p>
+<</gedanke>>
+[[Was uns bleibt|Ermittlung_S9_Aufgeraeumt]]
+<<else>>
+<<scene>>
+<p>Die Nacht ist mondlos und kalt, und ihr liegt im Schatten des Holzstapels gegenüber der Waffenausgabe, Karla und du, die Blicke auf die Rampe geheftet. Das Buch hat die Stunde verraten, und das Buch hat nicht gelogen: Als die Akademie längst schläft, öffnet sich das Seitentor, und ein Karren rollt heraus, das Rad in Lumpen gewickelt, damit es leiser läuft. Ein Fuhrmann auf dem Bock, ein Wachmann mit einer Blende vor der Laterne, und auf der Ladefläche Kisten — lange Kisten, sorgsam verzurrt.</p>
+<</scene>>
+<<gedanke>>
+<p>Da ist sie. Kein Gerücht mehr, kein Eintrag auf Papier, sondern Holz und Eisen und ein Mann, der etwas hinausfährt, das bei Tag niemand hinausfahren würde. Ein Wort gegen Orens Wort ist nichts. Aber das hier — gesehen, festgehalten, mit Krebs' Gegenbuch zusammengelegt — das ist etwas, das er nicht mehr wegschreiben kann. Wenn ich nah genug herankomme.</p>
+<</gedanke>>
+<<dialog>>
+<p>„Geleitschein und Plombe“, flüstert Karla, „oder wir beobachten aus der Deckung und schreiben mit, was wir sehen. Nah bringt mehr — und kostet mehr, wenn sie dich fassen.“</p>
+<</dialog>>
+<ul>
+<li>[[Nah an die Rampe schleichen|Ermittlung_S9_Nah]]</li>
+<li>[[Aus der Deckung beobachten und mitschreiben|Ermittlung_S9_Deckung]]</li>
+</ul>
+<</if>>
+
+
+
+:: Ermittlung_S9_Nah {"position":"725,6450","size":"100,100"}
+<<scene>>
+<p>Du löst dich aus dem Schatten und arbeitest dich an der Mauer entlang, Schritt um Schritt, bis du nah genug bist, um den Geleitschein zu lesen, der am Karren hängt, und die Plombe zu erkennen, die die Kisten verschließt. Was deine Ausbildung dich gelehrt hat, hilft dir jetzt, das Wesentliche vom Beiwerk zu trennen — und schnell zu sein.</p>
+<</scene>>
+<<if not $world.ermittlung.flags.s9_zugang_done>>
+	<<set _r to setup.skillCheckXp("thievery", 13, -2)>>
+	<<= setup.skillCheckAlert(_r)>>
+	<<if _r.success>>
+		<p>Du bekommst alles: die Nummer des Geleitscheins, das Siegel, die Aufschrift „Übungsbestand C" in Orens Hand, sogar den Namen des Zielhofs. Lautlos ziehst du dich zurück, und in deinem Kopf trägst du einen Beweis, der keine Lücke lässt.</p>
+		<<set $world.ermittlung.flags.s9_gut to true>>
+		<<= setup.ermVerdacht("orenmalk", 1)>>
+	<<else>>
+		<p>Dein Stiefel findet einen losen Stein, der Wachmann fährt herum, die Laterne reißt auf — und für einen Wimpernschlag steht die Nacht in Flammen aus Licht. Du wirfst dich zurück in den Schatten, das Herz im Hals, und kommst mit dem Wesentlichen davon. Aber sie haben etwas gesehen. Nicht dein Gesicht, doch genug, um zu wissen, dass jemand zu nah war.</p>
+		<<set $world.ermittlung.flags.s9_gut to false>>
+		<<= setup.ermVerdacht("orenmalk", 3)>>
+	<</if>>
+	<<set $world.ermittlung.flags.s9_zugang_done to true>>
+<</if>>
+[[Was ihr gesehen habt|Ermittlung_S9_Ergebnis]]
 
 
 :: Event_Geschichte {"position":"2400,1675","size":"100,100"}
@@ -3459,7 +4649,7 @@ Wer sagt denn, dass ich wegen des Gottesdienstes hier bin?"</div>
 <</widget>>
 
 
-:: InitNPC {"position":"0,225","size":"100,100"}
+:: InitNPC {"position":"0,425","size":"100,100"}
 <<set $npc = {
 
     /* ===========================
@@ -3501,7 +4691,7 @@ Wer sagt denn, dass ich wegen des Gottesdienstes hier bin?"</div>
 
     hauptmann: {
         name: "Konrad Rindler",
-        image: "Hauptmann.png",
+        head-and-shoulders portrait,retro RPG character portrait style. Simple medieval background or subtle neutral backdrop, strong readable silhouette, charming stylized character design. 64x64 pixel art style 
         known: false,
         affection: 0,
         trust: false,
@@ -3550,6 +4740,7 @@ Wer sagt denn, dass ich wegen des Gottesdienstes hier bin?"</div>
 
     hauptmannLenz: {
         name: "Hauptmann Lenz",
+        image: "Lenz.png",
         known: false,
         faction: "84. Banner",
         affection: 0,
@@ -3656,6 +4847,7 @@ bast: {
 },
     hansFichtensplitter: {
         name: "Hans Fichtensplitter",
+        image: "Hansbert.jpg",
         known: false,
         faction: "84. Banner",
         affection: 0,
@@ -3666,6 +4858,7 @@ bast: {
     },
     clausz: {
     name: "Clausz Andelsmann",
+    image: "Clausz.jpg",
     known: false,
     faction: "84. Banner",
     affection: 0,
@@ -3688,13 +4881,14 @@ rosi: {
 
 tilly: {
     name: "Tilly",
+    image: "Sergeant.png",
     known: false,
     faction: "84. Banner",
     affection: 0,
     trust: false,
     isRealPlayer: true,
     memory: { flags: {}, events: [] },
-    journalEntry: "Söldnerin des 84. Banners — offiziell. In der Praxis findet man sie fast immer im Tross. Kein Vorwurf, sagen die vom Tross. Eher ein Kompliment."
+    journalEntry: "Söldnerin des 84. Banners — offiziell, mit M-Vermerk. Aus Tiafunt. In der Praxis findet man sie fast immer im Tross. Kein Vorwurf, sagen die vom Tross. Eher ein Kompliment. Zwei Zöpfe und viel zu ehrgeizige Stickereien auf der Uniform"
 },
 
 
@@ -3799,7 +4993,7 @@ tilly: {
 } >>
 
 
-:: InitPlayer {"position":"0,125","size":"100,100"}
+:: InitPlayer {"position":"0,325","size":"100,100"}
 <<set $player = {
     name: "Thomas",
     fullname: "Thomaso Wabbler",
@@ -3878,11 +5072,11 @@ equipment: {
 }>>
 
 
-:: InitStudium {"position":"0,425","size":"100,100"}
+:: InitStudium {"position":"0,625","size":"100,100"}
 
 
 
-:: InitStudium {"position":"0,425","size":"100,100"}
+:: InitStudium {"position":"0,625","size":"100,100"}
 /* Defensiv: legt nur an, was fehlt - sicher beim Merge ins Hauptspiel */
 <<if not $player.knowledge>><<set $player.knowledge = {}>><</if>>
 <<if $player.stats.scholarship === undefined>><<set $player.stats.scholarship = 5>><</if>>
@@ -3902,7 +5096,7 @@ equipment: {
 }>>
 
 
-:: InitWorld {"position":"0,325","size":"100,100"}
+:: InitWorld {"position":"0,525","size":"100,100"}
 <<set $world = {
 
     lastPassage:"",
@@ -4676,12 +5870,6 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 [[Leise erzählen — vom Tag, von früher.|Kap2_Abend_Karla_Reden]]
 
 
-
-
-
-
-
-
 :: Kap2_Abend_Karla_Reden {"position":"2875,3600","size":"100,100"}
 <p>Du erzählst leise — vom Drill, von den Bergen, von dem, was der Tag übrig gelassen hat. Karla hört zu, den Blick bei den Sternen, und wirft nur hin und wieder einen trockenen Satz dazwischen, der genau an der richtigen Stelle sitzt.</p>
 
@@ -5151,7 +6339,6 @@ Der Drill ist einfacher. Der Drill fragt nicht, wen man verloren hat.<</gedanke>
 
 
 :: Kap2_Tageshub {"position":"2150,5200","size":"100,100"}
-
 <<if $world.tagesAktionen === undefined>><<set $world.tagesAktionen to 0>><</if>>
 
 <<set _interrupt = setup.checkInterrupt()>>
@@ -5505,9 +6692,6 @@ Der Feldscher. Keine Waffe. Hände, die heilen statt schlagen. Der Gedanke fühl
 [[Zurück auf den Hof|Kap2_Tageshub]]
 
 
-
-
-
 :: Karla_Zeit_Mauer_Reden {"position":"3400,5475","size":"100,100"}
 <p>Du erzählst. Von den Bergen, vom Käse, vom langen Gesundwerden — Dinge, die du sonst niemandem erzählst. Karla hört zu, den Blick auf dem Horizont, und unterbricht dich kein einziges Mal.</p>
 <div class="dialog">„Du warst krank“, sagt sie schließlich. „Und jetzt sitzt du hier oben im Wind und frierst freiwillig.“ Sie schüttelt den Kopf, aber es ist kein Vorwurf. „Zäher, als du aussiehst, Wabbler.“</div>
@@ -5523,8 +6707,6 @@ Der Feldscher. Keine Waffe. Hände, die heilen statt schlagen. Der Gedanke fühl
 <<= setup.setRomanze(2)>>
 <<= setup.setPlayerRel("karla", 1)>>
 [[Zurück auf den Hof|Kap2_Tageshub]]
-
-
 
 
 :: Karla_Zeit_Stadtgang {"position":"3800,5475","size":"100,100"}
@@ -5780,8 +6962,6 @@ Der Feldscher. Keine Waffe. Hände, die heilen statt schlagen. Der Gedanke fühl
     </p>
 
 <<set _returnPassage = $journal_return || "Auf Stube">>
-
-
 
 
 :: PassageHeader [header] {"position":"550,0","size":"100,100"}
@@ -6048,10 +7228,6 @@ Der Feldscher. Keine Waffe. Hände, die heilen statt schlagen. Der Gedanke fühl
 <</if>>
 
 
-
-
-
-
 :: Stadt_Fuhrmannsviertel {"position":"2600,5500","size":"100,100"}
 \:: Stadt_Fuhrmannsviertel
 <<scene>>
@@ -6173,7 +7349,6 @@ Der Feldscher. Keine Waffe. Hände, die heilen statt schlagen. Der Gedanke fühl
 </ul>
 
 [[Zurück in die Stadt|Tageshub_Stadt]]
-
 
 
 :: Stadt_Kirche_Ende {"position":"2575,5275","size":"100,100"}
@@ -6840,7 +8015,7 @@ Der Feldscher. Keine Waffe. Hände, die heilen statt schlagen. Der Gedanke fühl
 
 
 
-:: StoryInit {"position":"0,0","size":"100,100"}
+:: StoryInit {"position":"0,225","size":"100,100"}
 <<include "InitPlayer">>
 <<include "InitNPC">>
 <<include "InitWorld">>
@@ -8375,8 +9550,6 @@ Der Feldscher. Keine Waffe. Hände, die heilen statt schlagen. Der Gedanke fühl
 <p>Mehr Content wird sicher irgendwann kommen.</p>
 
 
-
-
 :: combatWidgets [widget] {"position":"75,4825","size":"100,100"}
 <<widget "combat">>
 <div id="combat-wrapper">
@@ -8665,7 +9838,7 @@ Der Feldscher. Keine Waffe. Hände, die heilen statt schlagen. Der Gedanke fühl
 <</widget>>
 
 
-:: initEnemy {"position":"0,525","size":"100,100"}
+:: initEnemy {"position":"0,725","size":"100,100"}
 <<set $enemy = {
     mercenary: {
         name: "Söldner",
@@ -8913,7 +10086,6 @@ Der Feldscher. Keine Waffe. Hände, die heilen statt schlagen. Der Gedanke fühl
       "context": {}
     }
   ]
-
 
 
 :: karla_S1 [interrupt einmalig kapitel-opener kap1] {"position":"150,3150","size":"100,100"}
@@ -10371,11 +11543,20 @@ setup.interruptCond["Ermittlung_Familia_Antwort"] = w => {
     var e = w.ermittlung || { flags: {} };
     var f = e.flags || {};
     return State.variables.npc.luigi.known === true   /* Linie zu Luigi muss bestehen */
-        && f.familia_kontaktiert === true
+        && f.sendLetterToLuigi === true
         && f.familia_antwort !== true
         && w.day >= (f.familia_kontakt_tag || 0) + 5;
 };
 setup.interruptPrio["Ermittlung_Familia_Antwort"] = 56;
+
+setup.interruptCond["Ermittlung_Nachspiel_Grodaus"] = w => {
+    var e = w.ermittlung;
+    if (!e || !e.flags) return false;
+    return e.flags.abgeschlossen === true
+        && e.flags.nachspiel_done !== true
+        && w.day >= (e.flags.s10_tag || 0) + 3;
+};
+setup.interruptPrio["Ermittlung_Nachspiel_Grodaus"] = 88;
 
 
 /* ================================================================
@@ -13437,14 +14618,14 @@ setup.kap2Storylets = [
     {
         id: "buch_pruefen",
         text: "Das Ausgabebuch der Waffenstube erneut prüfen",
-        target: "Ermittlung_S3b_Zweite_Suche",
+        target: "Ermittlung_S8_Zugang",
         available: function () {
-            /* BUGFIX: $world.ermittlung existiert erst ab Ermittlung_S0 */
             var e = State.variables.world.ermittlung;
             if (!e) return false;
             return e.spuren.includes("nachtfuhre")
+                && !e.flags.s8_done
                 && ((e.verdacht && e.verdacht.orenmalk) || 0) < 6;
-        }
+    }
     },
     {
         id: "karla_zeit",
@@ -13453,6 +14634,25 @@ setup.kap2Storylets = [
         available: function () {
             return State.variables.npc.karla.memory.flags.verhaftung_seen !== true
                 && State.variables.world.karla_zeit_tag !== State.variables.world.day;
+        }
+    },
+    {
+        id: "nachtfuhre",
+        text: "Die nächste Nachtfuhre abpassen",
+        target: "Ermittlung_S9_Nachtfuhre",
+        available: function () {
+            var e = State.variables.world.ermittlung;
+            if (!e || !e.flags.s8_done || e.flags.s9_done) return false;
+            return State.variables.world.day >= e.flags.naechste_fuhre_tag;
+        }
+  	},
+  	{
+        id: "s10_finale",
+        text: "Rindler die Beweise vorlegen",
+        target: "Ermittlung_S10_Rindler",
+        available: function () {
+            var e = State.variables.world.ermittlung;
+            return !!(e && e.flags.s9_done && !e.flags.s10_done);
         }
     },
     {
@@ -13908,6 +15108,77 @@ setup.datumAnzeige = function () {
     var woche = Math.ceil(tagImJahr / 7);
     var wtag = setup.wochentage[d % 7];
     return jahr + ". Jahr · Woche " + woche + " · " + wtag;
+};
+
+setup.biwagKatalog = [
+    { key:"rationen",     gruppe:"ueberleben", label:"Volle Rationen",                 last:2, text:"Brot, Pökelfleisch, Erbsen für sieben Tage. Ohne: knappe Rationen — ihr müsst unterwegs jagen." },
+    { key:"zelte",        gruppe:"ueberleben", label:"Zelte & Planen",                 last:2, text:"Schutz an den Regentagen. Ohne: Nässe und Krankheitsrisiko." },
+    { key:"kessel",       gruppe:"ueberleben", label:"Kochkessel, Zunder & Feuerzeug", last:1, text:"Warmes Essen. Ohne: kalte Kost drückt täglich die Stimmung." },
+    { key:"futter",       gruppe:"ueberleben", label:"Zugtierfutter",                  last:1, text:"Der Ochse bleibt bei Kräften. Ohne: zäher Marsch am ersten und letzten Tag." },
+    { key:"feldscher",    gruppe:"helfer",     label:"Feldscher-Vorrat",               last:1, text:"Verbände, Kräuter, Branntwein — leichtere Heilkunde-Proben." },
+    { key:"schanzzeug",   gruppe:"helfer",     label:"Schanzzeug",                     last:1, text:"Spaten, Beil, Seil — Lager befestigen, Karren bergen." },
+    { key:"waffenpflege", gruppe:"helfer",     label:"Waffenpflege",                   last:1, text:"Ersatzsehnen, Wetzsteine, Zündkraut — Waffen bleiben einsatzfähig." },
+    { key:"laterne",      gruppe:"helfer",     label:"Laterne & Öl",                   last:1, text:"Licht für die Nachtwache." },
+    { key:"angelzeug",    gruppe:"helfer",     label:"Angel- & Fallenzeug",            last:1, text:"Macht die Jagd ergiebig — nur sinnvoll, wenn du keine vollen Rationen nimmst." },
+    { key:"branntwein",   gruppe:"helfer",     label:"Branntwein & Spielkarten",       last:1, text:"Hebt die Stimmung am Lagerfeuer." },
+    { key:"hygiene",      gruppe:"helfer",     label:"Latrinenspaten & Kalk",          last:1, text:"Hält die Lagerkrankheit fern." },
+    { key:"decken",       gruppe:"helfer",     label:"Extra Wolldecken",               last:1, text:"Halber Regen- und Kälteschutz — billiger als Zelte." }
+];
+
+setup.biwagItemMod = function (key) {
+    var e = State.variables.world.biwagEquipment;
+    return (e && e[key]) ? -2 : 0;   /* -2 DC, wenn das Item gepackt ist */
+};
+
+/* ===== BIWAK-HELFER ===== */
+setup.biwagBeatOnce = function (id) {
+    var w = State.variables.world;
+    if (!w.biwagBeatsDone) w.biwagBeatsDone = {};
+    if (w.biwagBeatsDone[id]) return false;
+    w.biwagBeatsDone[id] = true;
+    return true;
+};
+
+setup.biwagMoral = function (d) {
+    var w = State.variables.world;
+    w.biwagMoral = Math.min(100, (w.biwagMoral || 100) + d);
+    return "";
+};
+
+setup.biwagProviant = function (d) {
+    var w = State.variables.world;
+    w.biwagProviant = Math.max(0, (w.biwagProviant || 0) + d);
+    return "";
+};
+
+setup.biwagItemMod = function (key) {
+    var e = State.variables.world.biwagEquipment;
+    return (e && e[key]) ? -2 : 0;
+};
+
+setup.biwagAngel = function () {
+    return setup.biwagItemMod("angelzeug");
+};
+
+setup.biwagWetterMalus = function (gebaut) {   /* Regen */
+    var e = State.variables.world.biwagEquipment;
+    if (e && e.zelte) return 0;
+    if (gebaut && e && e.schanzzeug) return -2;
+    if (e && e.decken) return -3;
+    return -6;
+};
+setup.biwagKaelteMalus = function () {         /* Kälte */
+    var e = State.variables.world.biwagEquipment;
+    if (e && (e.zelte || e.decken)) return 0;
+    return -6;
+};
+setup.biwagVerdikt = function () {
+    var m = State.variables.world.biwagMoral || 0;
+    var stufe = m >= 85 ? "ausgezeichnet" : m >= 65 ? "bestanden" : m >= 45 ? "knapp" : "durchgefallen";
+    var p = State.variables.player;
+    p.flags = p.flags || {};
+    p.flags.biwagErgebnis = { stufe: stufe, wert: m };
+    return stufe;
 };
 
 :: StoryStylesheet [stylesheet]
@@ -14614,3 +15885,12 @@ setup.datumAnzeige = function () {
     flex-shrink: 0;
 }
 .npc-card-body { flex: 1; }
+
+.biwag-item { margin: 6px 0; }
+.biwag-item-text { font-size: 0.85em; opacity: 0.7; margin-left: 4px; }
+.biwag-item-disabled { opacity: 0.4; }
+
+.passage ul {
+    list-style: none;
+    padding-left: 0;
+}
