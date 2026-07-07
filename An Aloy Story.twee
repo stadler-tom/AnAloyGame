@@ -941,11 +941,7 @@ wenn es am wenigsten passt.</p>
 
 
 :: Biwag_Tag1 {"position":"3425,4075","size":"100,100"}
-<<if setup.biwagBeatOnce("tag1_start")>>
-	<<= setup.biwagMoral(-2)>>
-	<<= setup.biwagProviant(-1)>>
-	<<if not $world.biwagEquipment.futter>><<= setup.biwagMoral(-2)>><</if>>
-<</if>>
+<<if setup.biwagBeatOnce("tagN_start")>><<= setup.biwagTagStart()>><</if>>
 
 <<scene>>
 <p>Das Nordtor fällt hinter euch ins Schloss, und mit dem ersten Schritt ins offene Land wird aus einem Haufen Rekruten deine Verantwortung. 
@@ -1069,10 +1065,7 @@ Doch als ihr endlich haltet, hat die Sonne den Horizont schon halb geschluckt.</
 
 
 :: Biwag_Tag2 {"position":"4025,4075","size":"100,100"}
-<<if setup.biwagBeatOnce("tag2_start")>>
-	<<= setup.biwagMoral(-2)>>
-	<<= setup.biwagProviant(-1)>>
-<</if>>
+<<if setup.biwagBeatOnce("tagN_start")>><<= setup.biwagTagStart()>><</if>>
 
 <<scene>>
 <p>Der zweite Morgen schmeckt nach kaltem Rauch und feuchtem Gras. 
@@ -1261,11 +1254,9 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 <</if>>
 
 
-:: Biwag_Tag3 [layout] {"position":"4625,3575","size":"100,100"}
-<<if setup.biwagBeatOnce("tag3_start")>>
-	<<= setup.biwagMoral(-2)>>
-	<<= setup.biwagProviant(-1)>>
-<</if>>
+:: Biwag_Tag3 [layout] {"position":"4425,3800","size":"100,100"}
+<<if setup.biwagBeatOnce("tagN_start")>><<= setup.biwagTagStart()>><</if>>
+
 <<scene>>
 <p>Der dritte Morgen bricht grau und nass an. Kein Sturm, aber ein zäher, kalter Regen, der von oben und von den Ästen zugleich kommt und den Weg vor euch in einen braunen Brei verwandelt. Der Karren steht schon halb im Schlamm, und die Männer sehen dich an: durchziehen oder das Wetter aussitzen?</p>
 <</scene>>
@@ -1273,7 +1264,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 [[Rasten — das Ärgste vorüberziehen lassen|Biwag_Tag3_Rasten]]
 
 
-:: Biwag_Tag3_Abend [layout] {"position":"4625,3575","size":"100,100"}
+:: Biwag_Tag3_Abend [layout] {"position":"3625,3700","size":"100,100"}
 <<scene>>
 <p>Gegen Morgen hustet einer der Männer schwer, ein anderer fiebert leicht. Die Nässe hat ihren Tribut gefordert, und es liegt an dir<<if $player.spezialisation eq "medicine">> — dem Feldscher der Truppe —<</if>>, dass aus einer feuchten Nacht keine kranke Woche wird.</p>
 <</scene>>
@@ -1291,7 +1282,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 [[Der vierte Tag|Biwag_Tag4]]
 
 
-:: Biwag_Tag3_Enge [layout] {"position":"4625,3575","size":"100,100"}
+:: Biwag_Tag3_Enge [layout] {"position":"3775,3775","size":"100,100"}
 <<scene>>
 <p>Ihr rückt zusammen, Rücken an Rücken unter den Planen, die ihr habt. <<if $world.biwagEquipment.zelte>>Die Zelte halten dicht — es geht.<<elseif $world.biwagEquipment.decken>>Die Wolldecken halten wenigstens die Wärme.<<else>>Es hilft wenig; ehe die Nacht vorüber ist, ist jeder bis auf die Haut durchnässt.<</if>></p>
 <</scene>>
@@ -1301,7 +1292,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 [[Die Nacht überstehen|Biwag_Tag3_Abend]]
 
 
-:: Biwag_Tag3_Lager [layout] {"position":"4625,3575","size":"100,100"}
+:: Biwag_Tag3_Lager [layout] {"position":"4100,3875","size":"100,100"}
 <<scene>>
 <p>Als ihr haltet, steht die Frage im Raum, wie ihr die nasse Nacht übersteht. Ein ordentlicher Unterstand kostet Mühe und braucht Gerät — oder ihr rückt einfach eng zusammen und hofft, dass der Regen nachlässt.</p>
 <</scene>>
@@ -1309,7 +1300,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 [[Zusammenrücken|Biwag_Tag3_Enge]]
 
 
-:: Biwag_Tag3_Rasten [layout] {"position":"4625,3575","size":"100,100"}
+:: Biwag_Tag3_Rasten [layout] {"position":"4275,3925","size":"100,100"}
 <<scene>>
 <p>Du lässt halten und die Truppe unter die Bäume rücken. Es ist die vernünftige Wahl — doch ein verlorener Tag bleibt ein verlorener Tag, und das Murren mischt sich bald ins Trommeln des Regens.</p>
 <</scene>>
@@ -1319,7 +1310,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 [[Ein Lager schlagen|Biwag_Tag3_Lager]]
 
 
-:: Biwag_Tag3_Unterstand [layout] {"position":"4625,3575","size":"100,100"}
+:: Biwag_Tag3_Unterstand [layout] {"position":"3900,3850","size":"100,100"}
 <<scene>>
 <p><<if $world.biwagEquipment.zelte>>Ihr spannt die Zelte und Planen, und binnen kurzem sitzt die Truppe im Trockenen.<<elseif $world.biwagEquipment.schanzzeug>>Mit Spaten, Beil und Seil zimmert ihr aus Ästen und Planen einen brauchbaren Unterstand — nicht bequem, aber trocken genug.<<else>>Ohne rechtes Gerät bleibt euer Unterstand Stückwerk; der Regen findet jede Lücke.<</if>></p>
 <</scene>>
@@ -1329,7 +1320,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 [[Die Nacht überstehen|Biwag_Tag3_Abend]]
 
 
-:: Biwag_Tag3_Weiterziehen [layout] {"position":"4625,3575","size":"100,100"}
+:: Biwag_Tag3_Weiterziehen [layout] {"position":"3950,3725","size":"100,100"}
 <<scene>>
 <p>Ihr stemmt euch gegen Regen und Schlamm. Das Karrenrad sinkt bis zur Nabe, und jeder Schritt will erkämpft sein — doch stillzustehen wäre schlimmer.</p>
 <</scene>>
@@ -1347,11 +1338,9 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 [[Ein Lager schlagen|Biwag_Tag3_Lager]]
 
 
-:: Biwag_Tag4 [layout] {"position":"4625,3575","size":"100,100"}
-<<if setup.biwagBeatOnce("tag4_start")>>
-	<<= setup.biwagMoral(-2)>>
-	<<= setup.biwagProviant(-1)>>
-<</if>>
+:: Biwag_Tag4 [layout] {"position":"4650,3700","size":"100,100"}
+<<if setup.biwagBeatOnce("tagN_start")>><<= setup.biwagTagStart()>><</if>>
+
 <<scene>>
 <p>Der vierte Tag bringt die Sonne zurück, doch beim Blick in die Vorratskiste wird dir mulmig<<if $world.biwagProviant lte 3>> — es reicht nicht mehr lange<</if>>. Entweder ihr macht Fleisch, oder ihr lernt zu hungern.</p>
 <</scene>>
@@ -1453,10 +1442,8 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 
 
 :: Biwag_Tag5 [layout] {"position":"5100,4600","size":"100,100"}
-<<if setup.biwagBeatOnce("tag5_start")>>
-	<<= setup.biwagMoral(-2)>>
-	<<= setup.biwagProviant(-1)>>
-<</if>>
+<<if setup.biwagBeatOnce("tagN_start")>><<= setup.biwagTagStart()>><</if>>
+
 <<scene>>
 <p>Zur Wochenmitte wird die Truppe stumpf — vier Tage Marsch schleifen die Schärfe ab. Du kannst sie fordern, um sie wach zu halten, oder ihnen die Rast gönnen, die sie sich wünschen.</p>
 <</scene>>
@@ -1535,10 +1522,8 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 
 
 :: Biwag_Tag6 [layout] {"position":"5625,3750","size":"100,100"}
-<<if setup.biwagBeatOnce("tag6_start")>>
-	<<= setup.biwagMoral(-2)>>
-	<<= setup.biwagProviant(-1)>>
-<</if>>
+<<if setup.biwagBeatOnce("tagN_start")>><<= setup.biwagTagStart()>><</if>>
+
 <<scene>>
 <p>Der sechste Tag kommt wieder mit Regen — härter als beim ersten Mal, und die Männer sind müder, dünnhäutiger. Es gibt keine Wahl als weiter: Der Weg zurück nach Ohm führt durch den Matsch.</p>
 <</scene>>
@@ -1677,11 +1662,8 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 
 
 :: Biwag_Tag7 [layout] {"position":"4725,3850","size":"100,100"}
-<<if setup.biwagBeatOnce("tag7_start")>>
-	<<= setup.biwagMoral(-2)>>
-	<<= setup.biwagProviant(-1)>>
-	<<if not $world.biwagEquipment.futter>><<= setup.biwagMoral(-2)>><</if>>
-<</if>>
+<<if setup.biwagBeatOnce("tagN_start")>><<= setup.biwagTagStart()>><</if>>
+
 <<scene>>
 <p>Der letzte Tag. Vor euch liegt der Heimweg nach Ohm, und mit ihm die Frage, wie ihr ankommt: gehetzt und erschöpft, aber früh — oder aufrecht und geschlossen, wie eine Truppe, die etwas hinter sich gebracht hat.</p>
 <</scene>>
@@ -1719,7 +1701,68 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 [[Ankunft in Ohm|Biwag_Tag7_Ankunft]]
 
 
-:: DEBUG_Kap2_Setup {"position":"1400,4550","size":"100,100"}
+:: DEBUG_Menu {"position":"100,300","size":"100,100"}
+<h3>— DEBUG / Quest-Sprungbrett —</h3>
+
+''Jarek-Kette:''
+<<link "Setup S1 (Vorlesung)">>
+  <<set $npc.jarek.memory.flags.s0_done = true>>
+  <<set $npc.magister.known = true>>
+  <<goto "Jarek_S1_Vorlesung">>
+<</link>>
+<<link "Setup S2 (Test)">>
+  <<set $npc.jarek.memory.flags.s1_seen = true>>
+  <<goto "Jarek_S2_Angebot">>
+<</link>>
+<<link "Setup S3 (Lüge)">>
+  <<set $npc.jarek.memory.flags.s2_done = true>>
+  <<goto "Jarek_S3_Start">>
+<</link>>
+<<link "Setup S4 BEFUGT (mit Zeichen)">>
+  <<set $npc.jarek.memory.flags.s3_zugesagt = true>>
+  <<set $edu.archivzugang = true>>
+  <<goto "Jarek_S4_Archiv">>
+<</link>>
+<<link "Setup S4 UNBEFUGT (ohne Zeichen)">>
+  <<set $npc.jarek.memory.flags.s3_zugesagt = true>>
+  <<set $edu.archivzugang = false>>
+  <<goto "Jarek_S4_Archiv">>
+<</link>>
+''S06 Gestehen — Direktsprung:''
+<<link "Gestehen BEFUGT (sofort)">>
+  <<set $edu.archivzugang = true>>
+  <<set $npc.jarek.memory.flags.spaet_gestanden = false>>
+  <<goto "S06_Gestehen">>
+<</link>>
+<<link "Gestehen UNBEFUGT (sofort)">>
+  <<set $edu.archivzugang = false>>
+  <<set $npc.jarek.memory.flags.spaet_gestanden = false>>
+  <<goto "S06_Gestehen">>
+<</link>>
+<<link "Gestehen BEFUGT (verspätet)">>
+  <<set $edu.archivzugang = true>>
+  <<set $npc.jarek.memory.flags.spaet_gestanden = true>>
+  <<goto "S06_Gestehen">>
+<</link>>
+<<link "Gestehen UNBEFUGT (verspätet)">>
+  <<set $edu.archivzugang = false>>
+  <<set $npc.jarek.memory.flags.spaet_gestanden = true>>
+  <<goto "S06_Gestehen">>
+<</link>>
+
+''Stellschrauben:''
+<<link "aloy = 5 (begreift selbst)">><<set $player.knowledge.aloy = 5>><</link>>
+<<link "aloy = 0 (Jarek erklärt)">><<set $player.knowledge.aloy = 0>><</link>>
+<<link "ahnung an">><<set $npc.jarek.memory.flags.ahnung = true>><</link>>
+<<link "combat = 0 / 10">><<set $player.knowledge.combat = 0>><</link>>
+
+<<link "↻ Flags zurücksetzen">>
+  <<set $npc.jarek.memory.flags = {}>>
+  <<goto "DEBUG_Menu">>
+<</link>>
+
+
+:: DEV {"position":"1375,4250","size":"100,100"}
 <<run setup.ermInit()>>
 <<if not $world.flags>><<set $world.flags = {}>><</if>>
 
@@ -1814,67 +1857,6 @@ Ermittlung frühestens Tag: <b><<= $world.ermittlung.fruehestens_tag>></b> · Lu
 [[Regulär: Kapitel-2-Intro (mit Probe & Waffenwahl)|Kap2_Intro]]
 [[Direkt in den Tagesloop (Spezialisierung oben wählen!)|Kap2_Tagesstart]]
 [[Biwag|Biwag_Drill]] 
-
-
-:: DEBUG_Menu {"position":"100,300","size":"100,100"}
-<h3>— DEBUG / Quest-Sprungbrett —</h3>
-
-''Jarek-Kette:''
-<<link "Setup S1 (Vorlesung)">>
-  <<set $npc.jarek.memory.flags.s0_done = true>>
-  <<set $npc.magister.known = true>>
-  <<goto "Jarek_S1_Vorlesung">>
-<</link>>
-<<link "Setup S2 (Test)">>
-  <<set $npc.jarek.memory.flags.s1_seen = true>>
-  <<goto "Jarek_S2_Angebot">>
-<</link>>
-<<link "Setup S3 (Lüge)">>
-  <<set $npc.jarek.memory.flags.s2_done = true>>
-  <<goto "Jarek_S3_Start">>
-<</link>>
-<<link "Setup S4 BEFUGT (mit Zeichen)">>
-  <<set $npc.jarek.memory.flags.s3_zugesagt = true>>
-  <<set $edu.archivzugang = true>>
-  <<goto "Jarek_S4_Archiv">>
-<</link>>
-<<link "Setup S4 UNBEFUGT (ohne Zeichen)">>
-  <<set $npc.jarek.memory.flags.s3_zugesagt = true>>
-  <<set $edu.archivzugang = false>>
-  <<goto "Jarek_S4_Archiv">>
-<</link>>
-''S06 Gestehen — Direktsprung:''
-<<link "Gestehen BEFUGT (sofort)">>
-  <<set $edu.archivzugang = true>>
-  <<set $npc.jarek.memory.flags.spaet_gestanden = false>>
-  <<goto "S06_Gestehen">>
-<</link>>
-<<link "Gestehen UNBEFUGT (sofort)">>
-  <<set $edu.archivzugang = false>>
-  <<set $npc.jarek.memory.flags.spaet_gestanden = false>>
-  <<goto "S06_Gestehen">>
-<</link>>
-<<link "Gestehen BEFUGT (verspätet)">>
-  <<set $edu.archivzugang = true>>
-  <<set $npc.jarek.memory.flags.spaet_gestanden = true>>
-  <<goto "S06_Gestehen">>
-<</link>>
-<<link "Gestehen UNBEFUGT (verspätet)">>
-  <<set $edu.archivzugang = false>>
-  <<set $npc.jarek.memory.flags.spaet_gestanden = true>>
-  <<goto "S06_Gestehen">>
-<</link>>
-
-''Stellschrauben:''
-<<link "aloy = 5 (begreift selbst)">><<set $player.knowledge.aloy = 5>><</link>>
-<<link "aloy = 0 (Jarek erklärt)">><<set $player.knowledge.aloy = 0>><</link>>
-<<link "ahnung an">><<set $npc.jarek.memory.flags.ahnung = true>><</link>>
-<<link "combat = 0 / 10">><<set $player.knowledge.combat = 0>><</link>>
-
-<<link "↻ Flags zurücksetzen">>
-  <<set $npc.jarek.memory.flags = {}>>
-  <<goto "DEBUG_Menu">>
-<</link>>
 
 
 :: Das Erwachen [layout] {"position":"675,150","size":"100,100"}
@@ -2124,6 +2106,20 @@ Nur ein Mann, dem der Krieg etwas genommen hat — und der trotzdem noch hier st
 [[Beginne deine Ausbildung->Kap01_RekrutenKennenlernen]]
 
 
+:: DevLogin {"position":"1100,4150","size":"100,100"}
+<h2>Developer Login</h2>
+
+<input id="devpw" type="password">
+
+<<button "Login">>
+	<<run (
+		$("#devpw").val() === "fleischens"
+			? Engine.play("DEV")
+			: alert("Falsches Passwort.")
+	)>>
+<</button>>
+
+
 :: EE_Tross {"position":"725,875","size":"100,100"}
 <p>Du hörst sie bevor du sie siehst.</p>
 
@@ -2354,6 +2350,13 @@ kommt herüber, offenbar der Meinung, ihre Hilfe sei jetzt gefragt.
 <p>„Ich habe wenig Zeit“, sagt er ohne Begrüßung, „also hört gut zu. Was ihr getan habt, ist nicht ungesehen geblieben — nicht von denen, für die ich spreche. In Grodaus kennt man eure Namen nun. Ihr steht auf einer Liste.“ Ein dünnes Lächeln. „Keine Sorge. Auf der richtigen.“</p>
 <</dialog>>
 
+<<if $world.flags.akteneintrag>>
+<<dialog>>
+<p>„Man sagt mir, Ihr steht noch in einem anderen Buch“, fügt er hinzu, und für einen Moment wird sein Blick schärfer. „In dem Eures Hauptmanns, als einer, den man im Auge behält. Für uns ist das kein Makel — im Gegenteil. Ein Mann, der auffällt und trotzdem liefert, ist brauchbarer als einer, den nie jemand bemerkt. Aber merkt Euch: Was in diesem Buch steht, verschwindet nicht von selbst. Es sei denn, jemand mit dem rechten Ring lässt es verschwinden.“</p>
+<</dialog>>
+<</if>>
+
+
 <<dialog>>
 <p>„Ihr habt gegen die Loyalisten ermittelt“, fährt er fort, „und dabei etwas bewiesen, das seltener ist, als ihr glaubt. Ihr habt gegraben, ohne dass der Feind es merkte. Ohne dass das Opfer es merkte. Ohne dass euer eigener Hauptmann euch auf die Schliche kam, ehe ihr fertig wart. Das“ — er mustert euch beide — „ist eine Gabe. Und Gaben sollte man nicht vergeuden.“</p>
 <</dialog>>
@@ -2378,9 +2381,24 @@ kommt herüber, offenbar der Meinung, ihre Hilfe sei jetzt gefragt.
 	<<set $world.ermittlung.flags.nachspiel_done to true>>
 <</if>>
 
+<<if $world.ermittlung.spuren.includes("familia_geruecht")>>
+<<dialog>>
+<p>„Und noch etwas“, sagt der Namenlose und mustert dich genauer. „Ihr habt Freunde in der Grauwelt — Leute, die Fracht kennen, die keiner kennen soll. Auch sie fürchten die, die wir jagen. Das ist selten, und es ist wertvoll. Wenn die Zeit kommt, werden wir uns an diese Freunde erinnern.“</p>
+<</dialog>>
+<</if>>
+
+<<if $world.ermittlung.spuren.includes("fuhre_detail")>>
+<<dialog>>
+<p>„Das Detail, das Euch aufgefallen ist“ — er tippt sich an die Schläfe — „behaltet es. Es ist mehr als der Beweis gegen einen Schreiber. Es ist ein Faden, und am Ende jedes Fadens sitzt jemand, der ihn hält. Wir werden ihn verfolgen. Ihr vielleicht mit uns.“</p>
+<</dialog>>
+<</if>>
+
 <<dialog>>
 <p>Er wendet sich zum Gehen, hält dann inne, und über sein graues Gesicht huscht etwas, das man bei einem anderen ein Lächeln nennen würde. „Und weil ich kein Unmensch bin“ — ein Augenzwinkern — „das Wichtigste zuletzt. Heute Abend, in der Schenke zu Ohm, gehört euch beiden alles. Speis und Trank, so viel ihr wollt. Die Wirtsleute sind unterrichtet, die Zeche ist gezahlt. Ein einziger Abend ohne Sold und ohne Sorge. Nutzt ihn.“ Dann ist er fort, als hätte ihn die Dämmerung nie hergetragen.</p>
 <</dialog>>
+
+<p>Als ihr das gehört hab dreht ihr euch einander zu und beginnt beide simultan zu grinsen. Dümmlich aber glücklich.</p>
+<<= setup.setNpcAffection("karla", 1)>>
 
 <<weiterImTag "Weiter">>
 
@@ -2510,6 +2528,7 @@ kommt herüber, offenbar der Meinung, ihre Hilfe sei jetzt gefragt.
 <p>„Dann ist das auch eine Antwort.“</p>
 <p>„Nein“, sagt Karla. „Dann ist es eine Lüge.“</p>
 <</dialog>>
+<<= setup.setNpcAffection("karla", 1)>>
 
 <<gedanke>>
 <p>Das ist der Unterschied zwischen uns. Ich suche nach einer Spur, weil ich hoffe, dass sie da ist. Karla sucht nach der Stelle, an der jemand zu viel Ordnung hinterlassen hat. Ich will finden. Sie will den Riss im Glatten sehen. Und ich fürchte, sie hat das schärfere Auge.</p>
@@ -2572,21 +2591,31 @@ kommt herüber, offenbar der Meinung, ihre Hilfe sei jetzt gefragt.
 
 
 :: Ermittlung_S10_Rindler {"position":"1200,6225","size":"100,100"}
-<<set _burned to ($world.ermittlung.flags.s2_weg eq "hauptmann")>>
+<<run setup.ermInit()>>
+<<set _hauptmannVerbrannt to ($world.ermittlung.flags.s2_weg eq "hauptmann")>>
+<<set _aktenkundig to ($world.flags.akteneintrag === true)>>
+<<set _burned to _hauptmannVerbrannt or _aktenkundig>>
 <<set _tuer to (State.variables.npc.magister.affection gte 5) or ($world.flags.jarek_ausgang eq "gemeldet")>>
 <<scene>>
 <p>Der kahle Raum neben der Wachstube, in dem sonst Verhöre und Verweise stattfinden — diesmal seid ihr es, die kommen, nicht die man holt. Karla neben dir, das Kinn hoch, und auf dem rohen Tisch das, was ihr in Wochen zusammengetragen habt: Krebs' Gegenbuch aus Westhof, das zeigt, was ankam; die Aufzeichnung dessen, was das Ausgabebuch verschickte — und dazwischen die Lücke, die keine Nachprüfung füllt.</p>
 <</scene>>
 
-<<if $world.ermittlung.flags.beweis_stark>>
+
+
+<<switch setup.ermFallStaerke()>>
+<<case "stark">>
 <<gedanke>>
 <p>Wir haben mehr als Papier. Wir haben die Fuhre selbst — gesehen, gemessen, in dieser Nacht. Zwei Bücher, die einander widersprechen, und ein Karren, der die Lüge in Holz und Eisen fährt. Wenn das nicht reicht, reicht nichts.</p>
 <</gedanke>>
-<<else>>
+<<case "indizien">>
 <<gedanke>>
-<p>Es ist dünner, als ich es mir gewünscht hätte. Oren hat die Fuhre gestrichen, die Seiten getilgt — geblieben ist Krebs' Gegenbuch allein. Ein Wort aus Westhof gegen Orens Ordnung. Es muss reichen. Es muss.</p>
+<p>Die Fuhre ist uns entgangen — aber nicht das Übrige. Jede Spur, die wir Woche um Woche zusammengetragen haben, liegt hier auf dem Tisch, und zusammen wiegen sie schwerer als jeder Einzelbeweis. Es muss genügen. Es wird genügen.</p>
 <</gedanke>>
-<</if>>
+<<case "duenn">>
+<<gedanke>>
+<p>Es ist dünn. Oren hat die Fuhre gestrichen, die Seiten getilgt, und wir haben zu wenig gesammelt, um die Lücke zu füllen. Ein Wort aus Westhof gegen seine Ordnung. Ich weiß nicht, ob es reicht — aber es ist alles, was wir haben.</p>
+<</gedanke>>
+<</switch>>
 
 <<dialog>>
 <p>Rindler hört zu, ohne ein einziges Mal zu unterbrechen, die Hände auf dem Rücken, das Gesicht so unbewegt wie immer. Als du endest, tritt eine Stille ein, die länger dauert, als du ertragen möchtest.</p>
@@ -2594,21 +2623,28 @@ kommt herüber, offenbar der Meinung, ihre Hilfe sei jetzt gefragt.
 
 <<if _burned and not _tuer>>
 <<dialog>>
-<p>„Ihr“, sagt Rindler schließlich, und in dem einen Wort liegt die ganze Geschichte eurer letzten Begegnung. „Ihr kommt schon wieder mit Vermutungen zu mir, nachdem Ihr mir das letzte Mal meine Zeit gestohlen habt. Zwei Rekruten, ein fremdes Buch, eine Geschichte, die zu groß ist für Euren Rang. Warum sollte ich Euch ein zweites Mal glauben?“</p>
+<<if _aktenkundig>>
+<p>„Euer Name liegt bereits in meinem Fach“, sagt Rindler und tippt mit einem Finger auf eine Kladde, die er nicht öffnet. „Ein Vermerk, nicht schmeichelhaft. Und nun kommt Ihr mit Beschuldigungen gegen einen meiner Schreiber. Ihr müsst verstehen, dass ein Mann in meiner Stellung einem Aktenkundigen nicht aufs Wort glaubt.“</p>
+<<else>>
+<p>„Ihr“, sagt Rindler schließlich, und in dem einen Wort liegt die ganze Geschichte eurer letzten Begegnung. „Ihr kommt schon wieder mit Vermutungen zu mir, nachdem Ihr mir das letzte Mal meine Zeit gestohlen habt. Warum sollte ich Euch ein zweites Mal glauben?“</p>
+<</if>>
 <</dialog>>
 <<gedanke>>
-<p>Er hört mich nicht — nicht mir allein. Was in Westhof geschah, hat die Tür zwischen uns zugeschlagen, und ich brauche jemanden, dessen Wort schwerer wiegt als meines, um sie wieder zu öffnen.</p>
+<p>Er hört mich nicht — nicht mir allein. Ich brauche jemanden, dessen Wort schwerer wiegt als meines, um diese Tür zu öffnen.</p>
 <</gedanke>>
 [[Einen Fürsprecher suchen|Ermittlung_S10_Tuersteher]]
 <<else>>
 <<if _burned>>
 <<dialog>>
+<<if _aktenkundig>>
+<p>„Ihr steht in meinem Fach, Waffenträger, und das macht Euch nicht glaubwürdiger“, sagt Rindler. „Doch Ihr kommt nicht allein — und der, der für Euch bürgt, ist keiner, den ich leichthin übergehe.“</p>
+<<else>>
 <p>„Nach dem, was zwischen uns steht, würde ich Euch fortschicken“, sagt Rindler langsam. „Doch Ihr kommt nicht allein — und der, der für Euch bürgt, ist keiner, den ich leichthin übergehe.“</p>
+<</if>>
 <</dialog>>
 <</if>>
 [[Rindler prüft die Beweise|Ermittlung_S10_Zugriff]]
 <</if>>
-
 
 
 :: Ermittlung_S10_Rueckblick {"position":"1225,6650","size":"100,100"}
@@ -2627,6 +2663,7 @@ kommt herüber, offenbar der Meinung, ihre Hilfe sei jetzt gefragt.
 <p>„Oren“, sagt Karla, und das Wort schmeckt ihr bitter. „Die ganze Zeit unter unseren Augen. Kein Ungeheuer, kein Verschwörer mit irrem Blick. Ein Schreiber mit lahmem Bein, der jeden Nagel dreimal zählte.“</p>
 <p>„Deshalb hat ihn niemand gesehen“, sagst du. „Weil er nicht aussah wie das, was man sucht. Halm dachte, es sei Angst. Aber ein Ängstlicher wäre gerannt. Oren hat aufgeräumt und geschwiegen. Das war Überzeugung.“</p>
 <</dialog>>
+<<= setup.setNpcAffection("karla", 2)>>
 
 <<gedanke>>
 <p>Und das ist es, was mir nachhängt, während wir hier sitzen: Wir haben eine Hand gefasst. Aber die Hand gehört zu einem Arm, und der Arm zu einem Körper, den wir nie gesehen haben. Das Siegel in der Fracht, das auf nichts in Aloy weist. Wir haben ein Loch gestopft in einem Damm, von dem wir nicht wissen, wie breit er ist.</p>
@@ -2634,14 +2671,22 @@ kommt herüber, offenbar der Meinung, ihre Hilfe sei jetzt gefragt.
 
 <<dialog>>
 <p>Ihr schweigt eine Weile. Dann sagt Karla leise, ohne dich anzusehen: „Wir sind die Einzigen, die alles wissen, Tom. Das war schon vor dem Zugriff keine gute Stelle. Jetzt ist es eine gefährliche.“</p>
+
+<<beziehung>>
+<<if $world.ermittlung.flags.karla_auffaellig>>
+<<dialog>>
+<p>„Und er hat mich gesehen“, sagt Karla, und es ist keine Klage, nur eine Feststellung. „Damals in der Stube. Für einen Wimpernschlag wusste Oren, dass ich mit drinstecke. Wäre es anders gelaufen, säße vielleicht ich jetzt dort, wo er sitzt.“</p>
+<</dialog>>
+<</if>>
+<</beziehung>>
+
 <p>„Ich weiß“, sagst du. „Aber wir stehen hier zu zweit. Das ist mehr, als die meisten haben, die zu viel wissen.“</p>
 <p>Sie sieht dich lange an, und das harte Lächeln, das sonst nur den Spott kennt, wird für einen Atemzug zu etwas anderem. „Ja“, sagt sie. „Das ist es.“</p>
 <</dialog>>
 
 <<if not $world.ermittlung.flags.rueckblick_done>>
 	<<run setup.romanzeInit()>>
-	<<set $npc.karla.romanze += 1>>
-    <<set $player.rel.karla += 1>>
+	<<= setup.setRomanze(1)>>
 	<<set $world.ermittlung.flags.rueckblick_done to true>>
 <</if>>
 
@@ -2669,19 +2714,41 @@ kommt herüber, offenbar der Meinung, ihre Hilfe sei jetzt gefragt.
 
 
 :: Ermittlung_S10_Zugriff {"position":"1275,6375","size":"100,100"}
+<<run setup.ermInit()>>
+<<set _staerke to setup.ermFallStaerke()>>
 <<scene>>
 <p>Rindler blättert selbst — dem richtigen Buch, denn er ist kein Mann, den man mit einem falschen Band abspeist. Er findet die Daten, legt Krebs' Gegenbuch daneben, folgt der Lücke mit dem Finger, Zeile um Zeile, Monat um Monat. Seine Miene verändert sich mit keiner Regung, und doch spürst du den Augenblick, in dem aus einer Vermutung eine Gewissheit wird.</p>
 <</scene>>
 
-<<if $world.ermittlung.flags.beweis_stark>>
+<<if $world.ermittlung.spuren.includes("westhof_ladung")>>
+<<dialog>>
+<p>„Und jede dieser Kisten“, sagt Rindler leise, den Finger auf einer Zeile, „in seiner eigenen Hand abgezeichnet. Ein Schreiber, der seine Fälschungen selbst gegenzeichnet. Das ist keine Nachlässigkeit. Das ist ein System.“</p>
+<</dialog>>
+<</if>>
+
+<<if $world.ermittlung.spuren.includes("fuhre_detail")>>
+<<switch $player.spezialisation>>
+<<case "cannon">><<dialog>><p>„Und Ihr wisst, wohin die Fuhren gehen“, sagt Rindler. „Zur Esse — ein Ort, den nur meine Artilleristen kennen. Das lässt sich nachprüfen. Und das werde ich.“</p><</dialog>>
+<<case "medicine">><<dialog>><p>„Ein fremder Fuhrmann“, wiederholt Rindler deinen Fund. „Ein Mann, den man auf den Bock setzt, nicht anheuert. Solche verschwinden nicht spurlos. Ich weiß, wo zu suchen ist.“</p><</dialog>>
+<<case "pike">><<dialog>><p>„Das Torprotokoll“, sagt Rindler und nickt langsam. „Ein zweites Buch, das dasselbe sagt — und das Oren Malk nie in Händen hielt. Damit fällt seine letzte Ausrede.“</p><</dialog>>
+<<case "crossbow">><<dialog>><p>„Eine Kiste, getragen wie rohe Eier“, sagt Rindler. „Kein Schadeisen liegt so. Euer Auge hat gesehen, was das Buch verschweigt.“</p><</dialog>>
+<</switch>>
+<</if>>
+
+<<switch _staerke>>
+<<case "stark">>
 <<dialog>>
 <p>„Das ist kein Verdacht mehr“, sagt Rindler, und seine Stimme trägt eine Kälte, die nicht euch gilt. „Das ist ein Kanal. Und er läuft durch meine Waffenausgabe.“ Er sieht auf, und zum ersten Mal liegt in seinem Blick etwas, das euch beide meint. „Ihr hättet es mir früher bringen sollen. Aber Ihr habt es gebracht.“</p>
 <</dialog>>
-<<else>>
+<<case "indizien">>
 <<dialog>>
-<p>„Es fehlt das Handfeste“, sagt Rindler. „Die Fuhre selbst ist mir durch die Finger gegangen — jemand war schneller als Ihr.“ Ein kurzes Schweigen. „Aber zwei Bücher, die einander widersprechen, lassen sich nicht beide fälschen. Es reicht, um eine Frage zu stellen, die nicht mehr weggeht. Es reicht, um ihn zu holen.“</p>
+<p>„Die Fuhre selbst ist mir durch die Finger gegangen“, sagt Rindler. „Jemand war schneller als Ihr. Aber Ihr habt genug daneben zusammengetragen, dass es keine Rolle mehr spielt. Ein Widerspruch lässt sich leugnen. Ein Dutzend nicht.“ Ein kurzes Schweigen. „Es reicht. Es reicht, um ihn zu holen.“</p>
 <</dialog>>
-<</if>>
+<<case "duenn">>
+<<dialog>>
+<p>„Es ist dünn“, sagt Rindler, ohne Wärme. „Zwei Bücher, ein Verdacht, mehr habt Ihr nicht. Für ein Gericht wäre es zu wenig.“ Er legt das Gegenbuch beiseite. „Aber ich brauche kein Gericht, um einen Schreiber zu versetzen und ein Fach durchsuchen zu lassen. Es reicht, um zu handeln. Nicht, um Euch zu danken.“</p>
+<</dialog>>
+<</switch>>
 
 <<gedanke>>
 <p>Am folgenden Tag lässt Rindler nach Oren Malk schicken.</p>
@@ -3764,12 +3831,15 @@ genug, dass er wackelt, nicht genug, dass es wie mutwillige Beschädigung aussie
 <p>„Und die Frage ist: Wie oft stand 'zur Nachprüfung Westhof' in diesem Buch?“ Sie sieht dich an, und in ihren Augen liegt dasselbe kalte, klare Licht wie in jener Nacht in der Schreibstube. „Wir müssen es noch einmal aufschlagen, Tom. Diesmal wissen wir, wonach wir suchen.“</p>
 <</dialog>>
 
+<<= setup.setNpcAffection("karla", 2)>>
+
 <<= setup.ermFund("nachtfuhre", "In der Fluchtnacht passierte kein Mensch das Tor — nur eine nächtliche Ausbesserungsfuhre der Waffenausgabe mit sauberem Geleitschein. Jarek verließ die Akademie in einer Kiste des Übungsbestands C. Die C-Fuhren sind ein Kanal, und Orens Feder öffnet das Tor.")>>
 <<set $world.ermittlung.flags.s7_done to true>>
 
 <<gedanke>>
 <p>Das Ausgabebuch. Bei der nächsten Waffenpflege, beim nächsten Dienst in der Stube — irgendwann liegt es wieder offen, und diesmal zähle ich nicht Dolche. Diesmal zähle ich, wie oft Westhof im Buch steht und wie oft nichts zurückkam. Jede dieser Zeilen ist eine Fuhre. Und jede Fuhre ist ein Beweis.</p>
 <</gedanke>>
+
 
 <<weiterImTag "Weiter">>
 
@@ -3986,6 +4056,7 @@ genug, dass er wackelt, nicht genug, dass es wie mutwillige Beschädigung aussie
 		<p>Oren hält inne, den Kopf schräg gelegt, und für einen Herzschlag glaubst du, er durchschaue alles. Dann siegt die Pflicht über den Argwohn — ein Weibel der Waffenausgabe duldet keinen lärmenden Streit vor seiner Tür. Er erhebt sich schwerfällig, das steife Bein nachziehend, und humpelt hinaus, um Ruhe zu stiften.</p>
 		<p>Die Tür fällt zu, und mit ihr fällt eine Last von dir. Du hast deine Minuten — und du nutzt jede einzelne, die Finger flink über die Seiten, die Lippen lautlos zählend, während dein Herz die Zeit misst, die dir bleibt.</p>
 		<<= setup.ermVerdacht("orenmalk", 1)>>
+        <<= setup.setNpcAffection("karla", 1)>>
 	<<else>>
 		<p>Oren geht — aber er geht als ein Mann, der zählt, wie lange er fort ist. Zu früh kehrt er zurück, viel zu früh, und in dem Augenblick, da er die Tür öffnet, sind seine Augen schon bei dir. Sie wandern von deinem Gesicht zum offenen Buch, vom Buch zur Tür, hinter der Karla noch immer zu laut, zu eifrig ihren Streit spielt.</p>
 		<p>Du hast fast alles. Fast. Doch was Oren in diesem Moment begreift, wiegt schwerer als die paar Zeilen, die dir fehlen: dass hier zwei Hände am Werk waren, abgestimmt, geplant. Er sagt kein Wort. Er muss es nicht. Von dieser Stunde an seid ihr beide in seinem Blick.</p>
@@ -4120,7 +4191,8 @@ genug, dass er wackelt, nicht genug, dass es wie mutwillige Beschädigung aussie
 <p>Du bleibst, wo du bist, im sicheren Dunkel, und machst das, was oft mehr wert ist als Kühnheit: Du siehst genau hin. Jede Bewegung, jede Kiste, jeder Blick der beiden Männer — dein geübtes Auge sammelt, was ein flüchtiger Beobachter übersähe, und dein Gedächtnis hält es fest.</p>
 <</scene>>
 <<if not $world.ermittlung.flags.s9_zugang_done>>
-	<<set _r to setup.skillCheckXp("perception", 13, -2)>>
+	<<set _mod to -2 + ($world.ermittlung.flags.karla_auffaellig ? 2 : 0)>>
+	<<set _r to setup.skillCheckXp("perception", 13, _mod)>>
 	<<= setup.skillCheckAlert(_r)>>
 	<<if _r.success>>
 		<p>Du liest die Szene wie eine Seite: wie sie die Kisten heben, welche schwer sind und welche leicht, wie der Wachmann nicht zum Fuhrmann spricht, als kennten sie einander nicht — und doch handeln sie im selben eingeübten Takt. Am Ende hast du ein Bild, so klar, dass keiner es dir ausreden kann.</p>
@@ -4170,12 +4242,13 @@ genug, dass er wackelt, nicht genug, dass es wie mutwillige Beschädigung aussie
 <p>„Wir haben ihn“, sagt Karla, und zum ersten Mal seit Wochen liegt etwas wie Hoffnung in ihrer rauen Stimme. „Nicht auf Papier allein. Wir haben ihn *gesehen*.“</p>
 <p>„Wir haben die Fuhre“, sagst du leise. „Ihn haben wir, wenn Rindler uns glaubt. Und das ist eine andere Nacht.“</p>
 <</dialog>>
+<<= setup.setNpcAffection("karla", 1)>>
 
 <<weiterImTag "Weiter">>
 
 
 :: Ermittlung_S9_Nachtfuhre {"position":"775,6275","size":"100,100"}
-<<if ($world.ermittlung.verdacht.orenmalk || 0) gte 8>>
+<<if ($world.ermittlung.verdacht.orenmalk || 0) gte 6>>
 <<scene>>
 <p>Ihr liegt im Schatten des Holzstapels gegenüber der Waffenausgabe, Karla und du, und wartet auf eine Fuhre, die nicht kommt. Die Stunde, die das Buch euch verraten hat, verstreicht. Dann die nächste. Die Rampe bleibt dunkel, das Tor geschlossen, und je länger ihr wartet, desto sicherer wisst ihr, was das Schweigen bedeutet.</p>
 <</scene>>
@@ -4190,6 +4263,11 @@ genug, dass er wackelt, nicht genug, dass es wie mutwillige Beschädigung aussie
 <<gedanke>>
 <p>Da ist sie. Kein Gerücht mehr, kein Eintrag auf Papier, sondern Holz und Eisen und ein Mann, der etwas hinausfährt, das bei Tag niemand hinausfahren würde. Ein Wort gegen Orens Wort ist nichts. Aber das hier — gesehen, festgehalten, mit Krebs' Gegenbuch zusammengelegt — das ist etwas, das er nicht mehr wegschreiben kann. Wenn ich nah genug herankomme.</p>
 <</gedanke>>
+<<if $world.ermittlung.flags.karla_auffaellig>>
+<<gedanke>>
+<p>Seit jener Nacht in der Stube, als Oren Karlas Hand in der Sache sah, behält er nicht nur mich im Auge. Ich spüre es heute doppelt: Wir stehen zu zweit auf seiner Liste, und wer selbst beobachtet wird, tut sich schwer damit, zu beobachten.</p>
+<</gedanke>>
+<</if>>
 <<dialog>>
 <p>„Geleitschein und Plombe“, flüstert Karla, „oder wir beobachten aus der Deckung und schreiben mit, was wir sehen. Nah bringt mehr — und kostet mehr, wenn sie dich fassen.“</p>
 <</dialog>>
@@ -4206,7 +4284,8 @@ genug, dass er wackelt, nicht genug, dass es wie mutwillige Beschädigung aussie
 <p>Du löst dich aus dem Schatten und arbeitest dich an der Mauer entlang, Schritt um Schritt, bis du nah genug bist, um den Geleitschein zu lesen, der am Karren hängt, und die Plombe zu erkennen, die die Kisten verschließt. Was deine Ausbildung dich gelehrt hat, hilft dir jetzt, das Wesentliche vom Beiwerk zu trennen — und schnell zu sein.</p>
 <</scene>>
 <<if not $world.ermittlung.flags.s9_zugang_done>>
-	<<set _r to setup.skillCheckXp("thievery", 13, -2)>>
+	<<set _mod to -2 + ($world.ermittlung.flags.karla_auffaellig ? 2 : 0)>>
+	<<set _r to setup.skillCheckXp("thievery", 13, _mod)>>
 	<<= setup.skillCheckAlert(_r)>>
 	<<if _r.success>>
 		<p>Du bekommst alles: die Nummer des Geleitscheins, das Siegel, die Aufschrift „Übungsbestand C" in Orens Hand, sogar den Namen des Zielhofs. Lautlos ziehst du dich zurück, und in deinem Kopf trägst du einen Beweis, der keine Lücke lässt.</p>
@@ -4691,7 +4770,7 @@ Wer sagt denn, dass ich wegen des Gottesdienstes hier bin?"</div>
 
     hauptmann: {
         name: "Konrad Rindler",
-        head-and-shoulders portrait,retro RPG character portrait style. Simple medieval background or subtle neutral backdrop, strong readable silhouette, charming stylized character design. 64x64 pixel art style 
+        image: "Hauptmann.png",
         known: false,
         affection: 0,
         trust: false,
@@ -4708,7 +4787,7 @@ Wer sagt denn, dass ich wegen des Gottesdienstes hier bin?"</div>
         isRealPlayer: false,
         archivzugang: false,
         memory: { flags: {}, events: [] },
-        journalEntry: "Der hagere Magister für Staatskunde – Tintenfinger, trockene Stimme, kein Wort zu viel. Hält die Vorlesungen und ist zugleich Archivar der Akademie. Wer in die Schreibstuben oder gar ins Archiv will, kommt an ihm nicht vorbei."
+        journalEntry: "Der hagere Magister für Staatskunde – Tintenfinger, trockene Stimme, kein Wort zu viel. Hält die Vorlesungen und ist zugleich Archivar der Akademie. Wer in die Schreibstuben oder gar ins Archiv will, kommt an ihm nicht vorbei.",
         /*
             PLOTNOTIZ (nicht im Journal):
             Magister Halm ist Archivar der Akademie zu Ohm. Er verwaltet die
@@ -4847,7 +4926,7 @@ bast: {
 },
     hansFichtensplitter: {
         name: "Hans Fichtensplitter",
-        image: "Hansbert.jpg",
+        image: "Hansbert.png",
         known: false,
         faction: "84. Banner",
         affection: 0,
@@ -4858,7 +4937,7 @@ bast: {
     },
     clausz: {
     name: "Clausz Andelsmann",
-    image: "Clausz.jpg",
+    image: "Clausz.png",
     known: false,
     faction: "84. Banner",
     affection: 0,
@@ -4881,7 +4960,7 @@ rosi: {
 
 tilly: {
     name: "Tilly",
-    image: "Sergeant.png",
+    image: "Tilly.png",
     known: false,
     faction: "84. Banner",
     affection: 0,
@@ -5860,7 +5939,7 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 [[Schlafen. ->Kap2_Tagesstart]]
 
 
-:: Kap2_Abend_Karla {"position":"3025,3475","size":"100,100"}
+:: Kap2_Abend_Karla {"position":"3025,3425","size":"100,100"}
 <<run setup.romanzeInit()>>
 <<scene>>Sie ist schon oben, an der Stelle über dem Osttor, an der der Wind beißt und die Wache nie lange steht. Du erkennst ihre Silhouette gegen den Nachthimmel, die Beine über der Kante, und sie rückt zur Seite, ehe du ein Wort gesagt hast — als hätte sie den Platz freigehalten.<</scene>>
 
@@ -5870,7 +5949,7 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 [[Leise erzählen — vom Tag, von früher.|Kap2_Abend_Karla_Reden]]
 
 
-:: Kap2_Abend_Karla_Reden {"position":"2875,3600","size":"100,100"}
+:: Kap2_Abend_Karla_Reden {"position":"2925,3575","size":"100,100"}
 <p>Du erzählst leise — vom Drill, von den Bergen, von dem, was der Tag übrig gelassen hat. Karla hört zu, den Blick bei den Sternen, und wirft nur hin und wieder einen trockenen Satz dazwischen, der genau an der richtigen Stelle sitzt.</p>
 
 <div class="dialog">„Du redest zu viel“, sagt sie schließlich. Ihre Stimme sagt das Gegenteil.</div>
@@ -5880,7 +5959,7 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 [[Hinunter zur Baracke. ->Kap2_Abend]]
 
 
-:: Kap2_Abend_Karla_Schweigen {"position":"2800,3450","size":"100,100"}
+:: Kap2_Abend_Karla_Schweigen {"position":"2775,3450","size":"100,100"}
 <p>Ihr sitzt, bis die Kälte durch den Stoff kriecht und keiner von euch es zugeben will. Irgendwann lehnt ihre Schulter an deiner — vielleicht die Kälte, vielleicht nicht — und keiner rückt ab.</p>
 
 <div class="dialog">„Gleiche Zeit morgen?“, fragt sie beim Aufstehen, so beiläufig, als wäre nichts gefragt worden.</div>
@@ -6633,7 +6712,7 @@ Der Feldscher. Keine Waffe. Hände, die heilen statt schlagen. Der Gedanke fühl
 [[ "Was kommt, kommt."|Kapitel 2]]
 
 
-:: Karla_Geschenk {"position":"3950,5125","size":"100,100"}
+:: Karla_Geschenk {"position":"3725,5075","size":"100,100"}
 <p>Du hast etwas für sie dabei. Die Frage ist nur, was davon — und ob heute der richtige Tag ist.</p>
 
 <ul class="menu">
@@ -6645,12 +6724,31 @@ Der Feldscher. Keine Waffe. Hände, die heilen statt schlagen. Der Gedanke fühl
 </ul>
 
 
-:: Karla_Geschenk_Reaktion {"position":"3850,5200","size":"100,100"}
+:: Karla_Geschenk_Reaktion [nach_Kap2_tag] {"position":"3925,5075","size":"100,100"}
 <<= setup.gibKarlaGeschenk($world.tmpGeschenk)>>
-[[Zurück auf den Hof|Kap2_Tageshub]]
+<<if $world.tmpGeschenk eq "haarband" and $npc.karla.memory.flags.haarband_getragen>>
+	[[…und dann|Karla_Paar_Moment]]
+<<else>>
+	<<weiterImTag "Zurück auf den Hof">>
+<</if>>
 
 
-:: Karla_Romanze_Moment {"position":"4025,5425","size":"100,100"}
+
+:: Karla_Paar_Moment [nach_Kap2_tag] {"position":"4100,5100","size":"100,100"}
+<<scene>>
+<p>Es fällt kein Wort darüber. Keines von euch würde es aussprechen, und gerade darin liegt die ganze Wahrheit. Das rote Band sitzt um ihr linkes Handgelenk, fest verknotet, dort, wo sie sonst niemanden hinsehen lässt — und dass sie es dort trägt und nicht im Haar, ist keine Laune. Es ist eine Antwort auf eine Frage, die du nie gestellt hast.</p>
+<</scene>>
+<<dialog>>
+<p>Beim nächsten Drill hebt sie einmal kurz den Arm, scheinbar nur, um sich den Schweiß zu wischen, und lässt das Band aufblitzen, rot gegen den Staub — für dich, nur für dich. Dann fängt sie deinen Blick auf und hält ihn, ohne zu lächeln, ohne wegzusehen.</p>
+<</dialog>>
+<<gedanke>>
+<p>Kein Versprechen, keine großen Worte, kein Ring. Nur ein Band an einem Handgelenk und ein Blick, der länger dauert, als er müsste. Aber ich weiß, was es heißt. Wir beide wissen es. Und das genügt uns.</p>
+<</gedanke>>
+<<set $npc.karla.memory.flags.paar to true>>
+<<weiterImTag "Zurück auf den Hof">>
+
+
+:: Karla_Romanze_Moment [nach_Kap2_tag] {"position":"3225,5300","size":"100,100"}
 <<set $npc.karla.memory.flags.romanze_moment_seen to true>>
 <<scene>>Sie wartet nicht bei den Übungsgestellen. Sie wartet am Fuß der Treppe zum Wehrgang, und als sie dich sieht, dreht sie sich wortlos um und steigt hinauf — in dem sicheren Wissen, dass du folgst. Oben, an der Stelle, an der der Wind beißt, bleibt sie stehen und sieht über das Land, das im letzten Licht liegt.<</scene>>
 
@@ -6671,10 +6769,40 @@ Der Feldscher. Keine Waffe. Hände, die heilen statt schlagen. Der Gedanke fühl
 <<= setup.setNpcAffection("karla", 5)>>
 <div class="system-alert status-positive">♥ Etwas Eigenes — was zwischen dir und Karla ist, braucht keinen Namen mehr.</div>
 
-[[Hinunter, zum Appell.|Kap2_Tageshub]]
+<<weiterImTag "Zurück auf den Hof">>
 
 
-:: Karla_Zeit_Mauer {"position":"3250,5625","size":"100,100"}
+:: Karla_Stufe_Reaktion {"position":"3400,5400","size":"100,100"}
+<<switch setup.romanzeStufe()>>
+<<case 1>>
+<<scene>>
+<p>Etwas hat sich verschoben, so leise, dass du es zuerst nicht benennen kannst. Karla, die sonst jeden Platz am Feuer mit den Ellenbogen verteidigt, rückt ein Stück, als du dich setzt — nicht viel, aber genug, dass du weißt: Es ist gemeint.</p>
+<</scene>>
+<<dialog>>
+<p>„Du bist weniger nutzlos, als du aussiehst“, sagt sie, ohne dich anzusehen, und in ihrem Mund ist das beinahe zärtlich. „Behalt das für dich.“</p>
+<</dialog>>
+<<case 2>>
+<<scene>>
+<p>Ihr sitzt auf der Mauer, die Beine über der Leere, und eine lange Weile sagt keiner etwas — und es ist kein Schweigen, das gefüllt werden müsste. Karla lehnt sich zurück, das Gesicht in den letzten Sonnenstrahl, und lässt dich sehen, was sie sonst niemandem zeigt: dass sie müde ist. Dass sie es sein darf, neben dir.</p>
+<</scene>>
+<<dialog>>
+<p>„Ich rede mit niemandem so wie mit dir“, sagt sie, und es klingt fast wie ein Vorwurf. „Ich weiß nicht, ob mir das gefällt.“ Aber sie steht nicht auf.</p>
+<</dialog>>
+<<case 3>>
+<<scene>>
+<p>Es kommt ohne Vorwarnung, wie alles, was Karla wirklich tut. Mitten in einem Satz, den du im selben Moment vergisst, greift sie in deinen Kragen, zieht dich zu sich und küsst dich — hart, entschlossen, ohne die geringste Scheu, so wie sie kämpft und flucht und lebt. Dann lässt sie ebenso plötzlich wieder los.</p>
+<</scene>>
+<<dialog>>
+<p>Sie mustert dich, ein wenig atemlos, das Kinn trotzig gehoben, als warte sie darauf, dass du etwas Dummes sagst, das sie dir übelnehmen kann. „Wenn du jetzt anfängst zu reden“, sagt sie leise, „bring ich dich um.“</p>
+<</dialog>>
+<<gedanke>>
+<p>Also rede ich nicht. Ich habe bei Karla gelernt, dass die wichtigsten Dinge die sind, die man nicht ausspricht.</p>
+<</gedanke>>
+<</switch>>
+[[Weiter|Tageshub_Karla]]
+
+
+:: Karla_Zeit_Mauer [nach_Kap2_tag] {"position":"3525,5525","size":"100,100"}
 <<scene>>Es gibt eine Stelle auf dem Wehrgang über dem Osttor, an der die Wache nie lange steht, weil der Wind dort beißt. Karla mag sie genau deshalb. Ihr sitzt nebeneinander auf dem kalten Stein, die Beine über der Kante, und unter euch liegt die Akademie wie ein Spielbrett, das euch für eine Stunde nichts angeht.<</scene>>
 
 <p>Karla schweigt. Es ist kein leeres Schweigen — es ist ihres, und sie teilt es mit dir.</p>
@@ -6687,29 +6815,24 @@ Der Feldscher. Keine Waffe. Hände, die heilen statt schlagen. Der Gedanke fühl
 <p>Du sagst nichts. Der Wind sagt genug.</p>
 <p>Nach einer langen Weile lehnt sich Karlas Schulter gegen deine — kaum ein Gewicht, vielleicht nur die Kälte, vielleicht nicht. Keiner von euch rückt ab. Als die Glocke zum Abendappell ruft, steht sie auf, klopft sich den Staub von der Hose und sagt im Gehen, ohne dich anzusehen:</p>
 <div class="dialog">„Du bist der Einzige, mit dem Schweigen nicht anstrengend ist.“</div>
-<<= setup.setRomanze(2)>>
-<<= setup.setPlayerRel("karla", 1)>>
-[[Zurück auf den Hof|Kap2_Tageshub]]
+<<weiterImTag "Zurück auf den Hof">>
 
 
-:: Karla_Zeit_Mauer_Reden {"position":"3400,5475","size":"100,100"}
+:: Karla_Zeit_Mauer_Reden [nach_Kap2_tag] {"position":"3625,5675","size":"100,100"}
 <p>Du erzählst. Von den Bergen, vom Käse, vom langen Gesundwerden — Dinge, die du sonst niemandem erzählst. Karla hört zu, den Blick auf dem Horizont, und unterbricht dich kein einziges Mal.</p>
 <div class="dialog">„Du warst krank“, sagt sie schließlich. „Und jetzt sitzt du hier oben im Wind und frierst freiwillig.“ Sie schüttelt den Kopf, aber es ist kein Vorwurf. „Zäher, als du aussiehst, Wabbler.“</div>
-<<= setup.setRomanze(1)>>
-<<= setup.setPlayerRel("karla", 1)>>
-[[Zurück auf den Hof|Kap2_Tageshub]]
+<<weiterImTag "Zurück auf den Hof">>
 
 
-:: Karla_Zeit_Mauer_Schweigen {"position":"3200,5450","size":"100,100"}
+:: Karla_Zeit_Mauer_Schweigen [nach_Kap2_tag] {"position":"3425,5675","size":"100,100"}
 <p>Du sagst nichts. Der Wind sagt genug.</p>
 <p>Nach einer langen Weile lehnt sich Karlas Schulter gegen deine — kaum ein Gewicht, vielleicht nur die Kälte, vielleicht nicht. Keiner von euch rückt ab. Als die Glocke zum Abendappell ruft, steht sie auf, klopft sich den Staub von der Hose und sagt im Gehen, ohne dich anzusehen:</p>
 <div class="dialog">„Du bist der Einzige, mit dem Schweigen nicht anstrengend ist.“</div>
-<<= setup.setRomanze(2)>>
-<<= setup.setPlayerRel("karla", 1)>>
-[[Zurück auf den Hof|Kap2_Tageshub]]
+<<= setup.setRomanze(1)>>
+<<weiterImTag "Zurück auf den Hof">>
 
 
-:: Karla_Zeit_Stadtgang {"position":"3800,5475","size":"100,100"}
+:: Karla_Zeit_Stadtgang {"position":"3750,5350","size":"100,100"}
 <<scene>>Karla in der Stadt ist ein anderes Bild: Sie geht durch das Gedränge des Marktes wie durch eine Gasse voller Gegner — wach, raumgreifend, die Hand nie weit vom Gürtel. Aber heute geht sie langsamer als nötig. Wegen dir, auch wenn sie das nie sagen würde.<</scene>>
 
 <<if $npc.karla.memory.flags.haarband_getragen>>
@@ -6720,13 +6843,12 @@ Der Feldscher. Keine Waffe. Hände, die heilen statt schlagen. Der Gedanke fühl
 
 <div class="thought-box">Ein ganzer Nachmittag, an dem niemand etwas von uns wollte. Keine Listen, keine Spuren, keine Wände. Nur wir. Ich wusste gar nicht mehr, wie sich das anfühlt.</div>
 
-<<= setup.setRomanze(2)>>
-<<= setup.setPlayerRel("karla", 1)>>
-<<= setup.removeMoney(2)>>
-[[Zurück auf den Hof|Kap2_Tageshub]]
+<<= setup.setRomanze(1)>>
+<<= setup.removeMoney(4)>>
+<<weiterImTag "Zurück auf den Hof">>
 
 
-:: Karla_Zeit_Training {"position":"3750,5000","size":"100,100"}
+:: Karla_Zeit_Training [nach_Kap2_tag] {"position":"3475,5025","size":"100,100"}
 <<set _stufe to setup.romanzeStufe()>>
 <p>Sie wirft dir die Übungsklinge zu, ohne ein „fang" davor — das hat sich seit dem ersten Jahr nicht geändert, und es soll sich nicht ändern. Ihr geht in Position, und für eine Weile gibt es nur das Klacken der Schäfte, den Atem, den Staub.</p>
 
@@ -6737,20 +6859,18 @@ Der Feldscher. Keine Waffe. Hände, die heilen statt schlagen. Der Gedanke fühl
 [[Bewusst von links kommen — sie fordern.|Karla_Zeit_Training_Fordern]]
 <<else>>
 <p>Als ihr abbrecht, seid ihr beide außer Atem, und Karla nickt dir zu — anerkennend, sachlich. „Du wirst besser", sagt sie. Von ihr ist das ein halber Festumzug.</p>
-<<= setup.setRomanze(1)>>
-<<= setup.setPlayerRel("karla", 1)>>
-[[Zurück auf den Hof|Kap2_Tageshub]]
+<<= setup.setRomanze(0)>>
+<<weiterImTag "Zurück auf den Hof">>
 <</if>>
 
 
-:: Karla_Zeit_Training_Fordern {"position":"3600,4875","size":"100,100"}
+:: Karla_Zeit_Training_Fordern [nach_Kap2_tag] {"position":"3375,4875","size":"100,100"}
 <<if $npc.karla.romanze gte 8>>
 <p>Du kommst von links. Langsam genug, dass sie es sieht. Schnell genug, dass es zählt.</p>
 <p>Karla weicht nicht zurück. Sie dreht sich hinein, fängt den Schaft, und für einen Atemzug steht ihr Gesicht eine Handbreit vor deinem — wach, hart, und darunter etwas, das beinahe Dankbarkeit ist.</p>
 <div class="dialog">„Wieder“, sagt sie.</div>
 <p>Ihr übt die linke Seite, bis das Licht geht. Sie hat dich nie darum gebeten. Sie hätte nie darum gebeten. Aber du hast es getan, ohne zu fragen — und das ist die einzige Sprache, in der man Karla solche Dinge sagen darf.</p>
 <<= setup.setRomanze(2)>>
-<<= setup.setPlayerRel("karla", 1)>>
 <<else>>
 <p>Du kommst von links. Und du spürst sofort, dass es ein Fehler war.</p>
 <p>Karla pariert — technisch sauber, einen Herzschlag zu hart —, und dann senkt sie die Klinge und sieht dich an. Kein Zorn. Etwas Schlimmeres: die Wand, die du seit Monaten nicht mehr gesehen hast.</p>
@@ -6758,17 +6878,16 @@ Der Feldscher. Keine Waffe. Hände, die heilen statt schlagen. Der Gedanke fühl
 <p>Sie stellt die Klinge ins Gestell und geht. Du bleibst im Staub zurück, mit dem Gefühl, an eine Tür geklopft zu haben, zu der du noch keinen Schlüssel hast.</p>
 <<= setup.setRomanze(-2)>>
 <</if>>
-[[Zurück auf den Hof|Kap2_Tageshub]]
+<<weiterImTag "Zurück auf den Hof">>
 
 
-:: Karla_Zeit_Training_Schonen {"position":"3675,4775","size":"100,100"}
+:: Karla_Zeit_Training_Schonen [nach_Kap2_tag] {"position":"3550,4875","size":"100,100"}
 <p>Du greifst an wie immer — von rechts, von vorn, sauber. Sie pariert, kontert, treibt dich über den Platz, und irgendwann steht ihr beide lachend im Staub, so weit Karla eben lacht: ein kurzes, raues Ausatmen, das mehr wert ist als das Gelächter anderer Leute.</p>
 
 <div class="thought-box">Ich könnte sie treffen, wenn ich von links käme. Wir wissen es beide. Und genau deshalb tue ich es nicht.</div>
 
 <<= setup.setRomanze(1)>>
-<<= setup.setPlayerRel("karla", 1)>>
-[[Zurück auf den Hof|Kap2_Tageshub]]
+<<weiterImTag "Zurück auf den Hof">>
 
 
 :: Nachmittag Cannon {"position":"725,1475","size":"100,100"}
@@ -7442,23 +7561,23 @@ Der Feldscher. Keine Waffe. Hände, die heilen statt schlagen. Der Gedanke fühl
     </li>
     
         <li>
-    <<if not setup.hasItem("Rotes Haarband")>>
-        <<if setup.canAffordMoney(9)>>
+    <<if not setup.hasItem("Rotes Haarband") and not $npc.karla.memory.flags.haarband_getragen>>
+        <<if setup.canAffordMoney(14)>>
         <<set _g to setup.karlaGeschenke["haarband"]>>
-            <<link "Ein rotes Haarband (1Silber 2 Kupfer)">>
+            <<link "Ein rotes Haarband (2 Silber)">>
             	<<print setup.removeMoney(_g.preis)>>
                 <<= setup.addItem(_g.item)>>
                 <<goto "Stadt_Markt">>
             <</link>>
         <<else>>
-            <span class="stat-empty">Ein rotes Haarband (1Silber 2 Kupfer) — dafür reicht dein Beutel nicht</span>
+            <span class="stat-empty">Ein rotes Haarband (2Silber) — dafür reicht dein Beutel nicht</span>
         <</if>>
      <</if>> 
          	<span class="subtext">— Ein Rotes Haarband aus feinem Stoff. Ein schickes Etwas. Man braucht es nicht, aber es ist etwas besonderes.</span>
     </li>
     
         <li>
-    <<if not setup.hasItem("Wallwurz-Salbe")>>
+    <<if not setup.hasItem("Wallwurz-Salbe") and not $npc.karla.memory.flags.salbe_angenommen>>
         <<if setup.canAffordMoney(7)>>
         <<set _g to setup.karlaGeschenke[ "salbe"]>>
             <<link "Wallwurz-Salbe (1Silber)">>
@@ -8786,12 +8905,9 @@ Der Feldscher. Keine Waffe. Hände, die heilen statt schlagen. Der Gedanke fühl
 
 <p>Du stehst reglos, während fremde Hände dein Weniges durchwühlen. Jeder Blick der anderen Rekruten brennt in deinem Rücken. Es gibt nichts zu tun, als zu warten, was sie finden.</p>
 
-<<set _belastend to ["abschrift", "torprotokoll", "gegenbuch"]>>
-<<set _gefunden to _belastend.filter(function (it) { return setup.hasItem(it); })>>
-
-<<if _gefunden.length > 0>>
+<<if setup.hatBelastendes()>>
 <<dialog>>
-<p>Der Mann richtet sich auf, ein Bündel Papiere in der Hand, das dort niemals hätte liegen dürfen. Er sagt kein Wort. Er muss es nicht.</p>
+<p>Der Mann richtet sich auf, ein Bündel Papiere in der Hand — deine Aufzeichnungen, Namen, Daten, Fuhren, in deiner eigenen Schrift. Etwas, das dort niemals hätte liegen dürfen. Er sagt kein Wort. Er muss es nicht.</p>
 <</dialog>>
 <<gedanke>>
 <p>Es ist vorbei. Nicht heute vielleicht, nicht in diesem Augenblick — aber sie haben es in der Hand, und nichts, was ich sage, macht es ungeschehen.</p>
@@ -8836,8 +8952,9 @@ Der Feldscher. Keine Waffe. Hände, die heilen statt schlagen. Der Gedanke fühl
 <<set $world.karla_zeit_tag to $world.day>>
 <<set _stufe to setup.romanzeStufe()>>
 
-<<if $npc.karla.romanze gte 12 and not $npc.karla.memory.flags.romanze_moment_seen>>
-	<<goto "Karla_Romanze_Moment">>
+<<if _stufe gt ($npc.karla.memory.flags.romanze_stufe_seen || 0)>>
+	<<set $npc.karla.memory.flags.romanze_stufe_seen to _stufe>>
+	<<goto "Karla_Stufe_Reaktion">>
 <</if>>
 
 <<switch _stufe>>
@@ -9932,6 +10049,9 @@ Der Feldscher. Keine Waffe. Hände, die heilen statt schlagen. Der Gedanke fühl
         <p class="weiter-link">[[🔍 Ermittlungstagebuch öffnen ->Notizbuch_Ermittlung]]</p>
     </details>
     <</if>>
+
+
+    [[Development|DevLogin]] 
 
     <span class="weiter-link">
         [[🛏️ Zurück auf die Stube ->Auf Stube]]
@@ -14633,6 +14753,7 @@ setup.kap2Storylets = [
         target: "Tageshub_Karla",
         available: function () {
             return State.variables.npc.karla.memory.flags.verhaftung_seen !== true
+                && State.variables.npc.karla.affection >= 10
                 && State.variables.world.karla_zeit_tag !== State.variables.world.day;
         }
     },
@@ -14879,6 +15000,10 @@ setup.romanzeInit = function () {
 setup.setRomanze = function (mod) {
     var k = setup.romanzeInit();
     k.romanze = setup.clamp(k.romanze + mod, 0, 20);
+    var p = State.variables.player;
+    if (p && p.rel) {
+        p.rel.karla = setup.clamp((p.rel.karla || 0) + (mod > 0 ? 1 : (mod < 0 ? -1 : 0)), -100, 100);
+    }
     if (mod > 0) return '<div class="system-alert status-positive">♥ Zwischen dir und Karla wächst etwas (+' + mod + ')</div>';
     if (mod < 0) return '<div class="system-alert status-negative">♥ Ein Schritt zurück (' + mod + ')</div>';
     return "";
@@ -14887,9 +15012,9 @@ setup.setRomanze = function (mod) {
 /* Stufe 0-3: Kameradschaft / Mehr als Kameradschaft / Vertrautheit / Etwas Eigenes */
 setup.romanzeStufe = function () {
     var r = setup.romanzeInit().romanze;
-    if (r >= 12) return 3;
-    if (r >= 8) return 2;
-    if (r >= 4) return 1;
+    if (r >= 15) return 3;
+    if (r >= 10) return 2;
+    if (r >= 5)  return 1;
     return 0;
 };
 
@@ -14928,29 +15053,29 @@ setup.gibKarlaGeschenk = function (id) {
 
         case "wetzstein":
             out += '<p>Sie zieht den Stein prüfend über den Daumennagel, hält ihn ins Licht, wie ein Händler eine Münze. &bdquo;Der ist gut&ldquo;, sagt sie. Mehr nicht. Aber am nächsten Morgen ist ihre Klinge die schärfste der ganzen Reihe, und als sie deinen Blick bemerkt, hebt sie eine Braue — fast ein Lächeln.</p>';
-            out += setup.setRomanze(2);
+            out += setup.setRomanze(1);
             break;
 
         case "haarband":
-            if (s >= 2) {
+            if (s >= 3) {
                 out += '<p>Sie sagt nichts. Sie bindet es sich auch nicht ins Haar — sie schlingt es zweimal um das linke Handgelenk und zieht den Knoten fest. Dort bleibt es. Von diesem Tag an siehst du es bei jedem Drill aufblitzen, rot gegen den Staub, und jedes Mal zieht sich etwas in dir zusammen, das kein Name hat.</p>';
-                out += setup.setRomanze(3);
+                out += setup.setRomanze(2);
                 f.haarband_getragen = true;
             } else {
                 out += '<p>Sie hält das Band zwischen zwei Fingern wie etwas, das erklärt werden muss. &bdquo;Wofür?&ldquo; Du hast keine gute Antwort — und sie sieht, dass du keine hast. Sie legt es dir zurück in die Hand. Nicht unfreundlich. Aber sie legt es zurück.</p>';
-                out += setup.setRomanze(-1);
+                out += setup.setRomanze(-3);
                 behalten = true;
             }
             break;
 
         case "salbe":
-            if (s >= 3) {
+            if (s >= 2) {
                 out += '<p>Sie wird sehr still, als sie liest, was auf der Dose steht. Wallwurz. Für alte Verletzungen. Sie sieht dich lange an — und du hältst den Blick, ohne ein Wort, ohne eine Frage, so wie damals in der Schreibstube. Dann steckt sie die Dose ein. &bdquo;Du fragst nicht&ldquo;, sagt sie leise. &bdquo;Du hast nie gefragt.&ldquo; Es klingt wie das größte Kompliment, das sie zu vergeben hat.</p>';
-                out += setup.setRomanze(3);
+                out += setup.setRomanze(1);
                 f.salbe_angenommen = true;
             } else {
                 out += '<p>Ihr Gesicht schließt sich, kaum dass sie begreift, wofür die Salbe ist. Kein Wort. Sie gibt dir die Dose zurück, steht auf und geht — und du hörst das Echo eines Satzes, den sie einmal auf dem Übungsplatz gesagt hat, leise und endgültig: Frag das nie wieder.</p>';
-                out += setup.setRomanze(-2);
+                out += setup.setRomanze(-3);
                 behalten = true;
             }
             break;
@@ -15131,6 +15256,9 @@ setup.biwagItemMod = function (key) {
 };
 
 /* ===== BIWAK-HELFER ===== */
+/* Zentrale Stellschrauben */
+setup.BIWAG = { grunddrain: 2, failMalus: 3, critBonus: 2, rastMalus: 2, hunger: 3 };
+
 setup.biwagBeatOnce = function (id) {
     var w = State.variables.world;
     if (!w.biwagBeatsDone) w.biwagBeatsDone = {};
@@ -15139,9 +15267,10 @@ setup.biwagBeatOnce = function (id) {
     return true;
 };
 
+/* GEÄNDERT: Boden bei 0, und == null statt || (sonst wird echte 0 als 100 gelesen) */
 setup.biwagMoral = function (d) {
     var w = State.variables.world;
-    w.biwagMoral = Math.min(100, (w.biwagMoral || 100) + d);
+    w.biwagMoral = Math.min(100, Math.max(0, (w.biwagMoral == null ? 100 : w.biwagMoral) + d));
     return "";
 };
 
@@ -15149,6 +15278,57 @@ setup.biwagProviant = function (d) {
     var w = State.variables.world;
     w.biwagProviant = Math.max(0, (w.biwagProviant || 0) + d);
     return "";
+};
+
+/* NEU */
+setup.biwagVerzug = function (d) {
+    var w = State.variables.world;
+    w.biwagVerzug = Math.max(0, (w.biwagVerzug || 0) + d);
+    return "";
+};
+
+/* NEU: Tagesbeginn — Grunddrain + Ration; kein Vorrat -> Hunger */
+setup.biwagTagStart = function () {
+    var w = State.variables.world;
+    setup.biwagMoral(-setup.BIWAG.grunddrain);
+    if ((w.biwagProviant || 0) <= 0) {
+        setup.biwagMoral(-setup.BIWAG.hunger);
+    } else {
+        setup.biwagProviant(-1);
+    }
+    return "";
+};
+
+/* NEU: Tagesende — Rast-Malus, falls heute gerastet */
+setup.biwagTagEnde = function () {
+    var w = State.variables.world;
+    if (w.biwagRastHeute) {
+        setup.biwagMoral(-setup.BIWAG.rastMalus);
+        w.biwagRastHeute = false;
+    }
+    return "";
+};
+
+/* NEU: Rast-Entscheidung — kostet Zeit jetzt (Tages-Flag) und später (Verzug) */
+setup.biwagRast = function () {
+    setup.biwagVerzug(1);
+    State.variables.world.biwagRastHeute = true;
+    return "";
+};
+
+/* NEU: zentraler Check — crit(20) +2 · success 0 · fail -X · fumble(1) -X UND +Zeit */
+setup.biwagCheck = function (skill, dc, mod, failMalus) {
+    failMalus = (failMalus == null) ? setup.BIWAG.failMalus : failMalus;
+    var r = setup.skillCheckXp(skill, dc, mod || 0);
+    if (r.outcome === "crit") {
+        setup.biwagMoral(setup.BIWAG.critBonus);
+    } else if (r.outcome === "fumble") {
+        setup.biwagMoral(-failMalus);
+        setup.biwagVerzug(1);
+    } else if (!r.success) {
+        setup.biwagMoral(-failMalus);
+    }
+    return r;   /* Passage verzweigt auf _r.success für die Prosa */
 };
 
 setup.biwagItemMod = function (key) {
@@ -15167,18 +15347,159 @@ setup.biwagWetterMalus = function (gebaut) {   /* Regen */
     if (e && e.decken) return -3;
     return -6;
 };
+
 setup.biwagKaelteMalus = function () {         /* Kälte */
     var e = State.variables.world.biwagEquipment;
     if (e && (e.zelte || e.decken)) return 0;
     return -6;
 };
+
+/* GEÄNDERT: rechnet Verzug einmalig ein, ehe die Stufe fällt */
 setup.biwagVerdikt = function () {
-    var m = State.variables.world.biwagMoral || 0;
+    var w = State.variables.world;
+    if (!w.biwagVerzugAbgerechnet) {
+        setup.biwagMoral(-Math.max(0, (w.biwagVerzug || 0) - 1));
+        w.biwagVerzugAbgerechnet = true;
+    }
+    var m = w.biwagMoral || 0;
     var stufe = m >= 85 ? "ausgezeichnet" : m >= 65 ? "bestanden" : m >= 45 ? "knapp" : "durchgefallen";
     var p = State.variables.player;
     p.flags = p.flags || {};
     p.flags.biwagErgebnis = { stufe: stufe, wert: m };
     return stufe;
+};
+
+setup.hatBelastendes = function () {
+    var e = State.variables.world.ermittlung;
+    if (!e || !e.spuren) return false;
+    var belastend = ["fuhre_dokumentiert", "fuhren_muster", "westhof_krebs", "westhof_ladung"];
+    return belastend.some(function (id) { return e.spuren.indexOf(id) !== -1; });
+};
+
+setup.beweiskraft = function () {
+    var e = State.variables.world.ermittlung;
+    if (!e || !e.spuren) return 0;
+    var relevant = ["fuhren_muster", "westhof_krebs", "westhof_ladung",
+                    "fuhrmann_hinweis", "fuhre_dokumentiert", "fuhre_detail", "familia_geruecht"];
+    return relevant.filter(function (id) { return e.spuren.indexOf(id) !== -1; }).length;
+};
+
+setup.ermFallStaerke = function () {
+    var e = State.variables.world.ermittlung;
+    if (e && e.flags && e.flags.beweis_stark) return "stark";
+    if (setup.beweiskraft() >= 4) return "indizien";
+    return "duenn";
+};
+
+/* ===========================
+   DEV LOGIN
+   =========================== */
+
+setup.dev = {
+
+    // <-- Hier deinen SHA-256 Hash eintragen
+    hash: "DEIN_HASH_HIER",
+
+    async sha256(text) {
+
+        const data = new TextEncoder().encode(text);
+
+        const digest = await crypto.subtle.digest(
+            "SHA-256",
+            data
+        );
+
+        return [...new Uint8Array(digest)]
+            .map(x => x.toString(16).padStart(2, "0"))
+            .join("");
+
+    },
+
+    async login(password) {
+
+        const hash = await this.sha256(password);
+
+        if (hash === this.hash) {
+
+            State.variables.devAccess = true;
+
+            return true;
+        }
+
+        return false;
+    },
+
+    logout() {
+        State.variables.devAccess = false;
+    },
+
+    openDialog() {
+
+        Dialog.create("Developer Login");
+
+        Dialog.append(`
+            <div class="devLogin">
+
+                <p>Developer Passwort</p>
+
+                <input
+                    id="devPassword"
+                    type="password"
+                    autocomplete="off"
+                    style="width:100%;">
+
+                <div id="devError"
+                     style="color:#d44;margin-top:8px;"></div>
+
+                <p style="margin-top:1em;text-align:right;">
+                    <button id="devLoginButton">
+                        Login
+                    </button>
+                </p>
+
+            </div>
+        `);
+
+        Dialog.open();
+
+        setTimeout(() => {
+
+            $("#devPassword").trigger("focus");
+
+            $("#devPassword").on("keydown", function(e){
+
+                if(e.key === "Enter"){
+                    $("#devLoginButton").click();
+                }
+
+            });
+
+            $("#devLoginButton").on("click", async function(){
+
+                const ok = await setup.dev.login(
+                    $("#devPassword").val()
+                );
+
+                if(ok){
+
+                    Dialog.close();
+
+                    Engine.play("DEV");
+
+                } else {
+
+                    $("#devError").text("Falsches Passwort.");
+
+                    $("#devPassword").val("").focus();
+
+                }
+
+            });
+
+        },20);
+
+    }
+
 };
 
 :: StoryStylesheet [stylesheet]
