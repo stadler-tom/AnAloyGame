@@ -1,0 +1,404 @@
+
+:: Kapitel 0 {"position":"225,50","size":"200,200"}
+<p>Vers. 0.8.7</p>
+
+<div class="chapter-screen">
+    <div class="fade-trigger">Intro</div>
+
+    <div class="center-link">
+        <<timed 4500ms>>
+            [[Start->Intro]]
+        <</timed>>
+    </div>
+</div>
+
+:: Intro [kapitel-opener layout] {"position":"500,150","size":"100,100"}
+<div class="scenery-text">Der Wind über Ohm ist kein sanfter Hauch.
+Er kommt nicht und geht wieder — er liegt auf dem kahlen Gelände der Akademie wie eine unsichtbare, eiserne Last, kalt und trocken und ohne jedes Erbarmen. Er kriecht durch die Nähte deiner Zivilkleidung, als wollte er dir die letzte Wärme deines alten Lebens aus den Knochen saugen. Und vielleicht tut er genau das.</div>
+<p>Du denkst an das Strohbett daheim. An den vertrauten Geruch der Küche am Morgen, an die Geräusche, die du nie bewusst wahrgenommen hast, weil sie einfach immer da waren. An das Gewicht eines Tages, der keine Konsequenzen hatte.</p>
+<p>Das alles liegt hinter dir. Nicht weit — aber unerreichbar.</p>
+<p>Vor dir ragt die Kaserne auf. Grauer Stein, fensterlos zur Straße hin, ohne Verzierung, ohne Geste. Kein Willkommen, keine Schwelle, die man feierlich überschreitet. Nur Mauern, die schon Hunderte vor dir aufgenommen haben und die deinen Namen nicht kennen und nicht kennen wollen. Ein Ort, dem dein bisheriges Leben vollkommen gleichgültig ist.</p>
+<p>Du schaust nach links. Nach rechts.</p>
+<p>Die anderen Rekruten stehen genauso starr im Wind wie du — Bündel unter den Armen, Blicke geradeaus, Münder geschlossen. Niemand spricht. Ein Stück weiter zittert ein junger Bursche, und es ist nicht nur die Kälte, die seinen Kiefer beben lässt. Es ist etwas Älteres als Kälte. Die nackte, lähmende Angst vor einem Leben, das man noch nicht kennt und dem man sich trotzdem gerade ausgeliefert hat.</p>
+<div class="thought-box">Ich kenne dieses Zittern. Ich spüre es selbst in meinen Fingern, die sich viel zu fest um mein Bündel klammern. Dieses erbärmliche, kleine Paket ist alles, was mir von zu Hause geblieben ist... und hier drinnen wiegt es einfach gar nichts. Warum bin ich überhaupt hierhergekommen? Was habe ich mir dabei gedacht? Es gibt kein Zurück mehr. Atmen, Thomas. Einfach nur atmen, sonst merken sie, wie viel Angst ich habe.
+</div>
+<p>Der Exerzierplatz lehrt dich das Schweigen, noch bevor ein einziger Ausbilder das Wort ergriffen hat.</p>
+<p>Du bist klein hier. Nicht als Beleidigung — als Tatsache. Ein Mensch unter vielen, ohne Rang, ohne Geschichte, ohne den geringsten Beweis, dass du irgendetwas kannst oder bist. Die Kindheit, die dich bis heute getragen hat wie selbstverständlicher Grund unter den Füßen — sie ist nicht langsam zu Ende gegangen. Sie hat mit dem heutigen Sonnenaufgang aufgehört. Ohne Ankündigung. Ohne Abschied.</p>
+<p>Und während du noch versuchst, das zu begreifen, reißt ein metallisches Knallen dich aus den Gedanken.</p>
+<p>Die schwere Eichentür zum Hauptgebäude fliegt auf — nicht geöffnet, sondern aufgestoßen, mit der Gleichgültigkeit von jemandem, dem Türen aus dem Weg zu gehen haben.</p>
+<div class="dialog">„Ausrichten, ihr Maden!" Die Stimme gellt über den Hof wie ein Peitschenhieb. „Die Truppenrolle wartet nicht!"</div>
+<p>Der Strom der Rekruten setzt sich in Bewegung. Schwerfällig. Lautlos. Wie Menschen, die noch nicht wissen, wie man hier geht — aber bereits ahnen, dass man es ihnen beibringen wird.</p>
+<p>Du gehst mit.</p>
+<p>Was bleibt dir anderes übrig.</p>
+
+
+<hr class="trenner-raute">
+<p>Der Sergeant am hölzernen Tisch blickt von seinen Listen auf und bellt:</p>
+<div class="voice-formal">"Na und wer bist du? Was soll ich in die Truppenrolle eintragen?"</div>
+<hr class="trenner-raute">
+
+<<silently>>
+	<<set $player.rank = "Rekrut">>
+<</silently>>
+[["Ein junger Mann, bereit für die Ausbildung."->Das Erwachen]]
+
+:: Sergent aushorchen [layout] {"position":"600,300","size":"100,100"}
+<div class="voice-aggressive">BIN ICH EINE KLATSCHTANTE???"</div>
+<div class="voice-aggressive dialog">„Du hast einen Befehl erhalten und der war nicht mit mir zu reden, also sieh zu dass du Land gewinnst sonst schmeiss ich dich in den Turm bevor deine Ausbildung angefangen hat!!!“</div>
+
+<<= setup.setNpcAffection("sergeant", -5)>>
+
+[[Befehl befolgen und direkt zum Kasernenhof gehen->Der Kasernenhof]]
+[[Sich heimlich von der Truppe absetzen und die Akademie-Hallen auskundschaften->Hallen erkunden]]
+
+
+
+:: Rausreden Versuch [layout] {"position":"825,300","size":"100,100"}
+<p>Die Eichentür fliegt mit einem lauten Knall auf. Kurt, der ältere Ausbilder, steht im Rahmen. Seine Augen verengen sich zu Schlitzen, als er dich sieht.</p>
+
+<p>@@.voice-aggressive;"Ein Frischling!", speit er aus. "Spionierst uns nach, noch bevor du überhaupt den ersten Staub gefressen hast?!"@@</p>
+
+<p>Deine Ausrede stirbt, noch bevor sie fertig gedacht ist.</p>
+<div class="dialog">„Verlaufene Wege" — als hättest du dir dabei selbst geglaubt.</div>
+<p>Kurt hört nicht einmal zu Ende zu. Seine Hand schließt sich um den Kragen deiner Umhängetasche mit dem Griff eines Mannes, der keine Gegenwehr erwartet und auch keine dulden würde.</p>
+
+<p>@@.voice-aggressive;„Hier wird nicht diskutiert, Bürschchen.“@@</p>
+
+<p>Was folgt, ist keine Strafe im eigentlichen Sinne. Es ist eine Lektion — kurz, schmerzhaft und ohne jedes Übermaß. Gerade genug, damit du weißt, dass er es ernst meint. Dann zerrt er dich los.</p>
+<p>Die Treppe. Den Korridor. Keine Rücksicht auf dein Tempo, kein Wort mehr, nur der eiserne Zug an deinem Kragen und das Geräusch deiner eigenen Stiefel, die kaum mit den Schritten eines Mannes mithalten können, der seit Jahrzehnten weiß, wohin er geht.</p>
+
+<<=setup.setNpcAffection("kurt", -5)>><<set $npc.kurt.known = true>>
+<<=setup.setPlayerStat("honesty", -3)>>
+[[Zähneknirschend auf den Hof zerren lassen.->Der Kasernenhof]]
+
+
+:: Hallen erkunden [layout] {"position":"900,150","size":"100,100"}
+<p>Du stiehlst dich von den anderen Rekruten fort und meidest das helle Tageslicht, das durch die großen Tore auf den Hof fällt. Stattdessen gleitest du einen schmalen, steinernen Treppenaufgang hinauf, der in den Offiziersflügel der Akademie führt. Hier oben riecht es nach Bohnerwachs und schwerem Tabak.</p>
+
+<p>Aus einem leicht geöffneten Spalt einer schweren Eichentür dringt das gedämpfte Licht eines Kamins – und aufgebrachte Stimmen. Du drückst dich flach gegen die Wand und hältst den Atem an.</p>
+
+<div class="dialog">"Ich sage dir, Hauptmann, diese ewige politische Schaukelbude bricht uns irgendwann das Genick", grollt die tiefe, raue Stimme eines älteren Mannes, den sie hier Kurt nennen. "Aloy rühmt sich seiner Neutralität, während unsere Banner über den halben Kontinent verstreut für fremdes Gold bluten. Wir entblößen die Heimat, nur weil jede Klinge hier frei buchbar ist!"</div>
+
+<p>Die jüngere, kühlere Stimme des Hauptmanns antwortet: </p>
+
+<div class="dialog">"Das ist das Gesetz des Städtebundes, Kurt. Uns geht die Politik nichts an, wir füllen nur die Truppenrollen. Unsere Pflicht gilt der Ausbildung des Corps, um mehr nicht. Also lass das Gerede und bring den Frischlingen da draußen gefälligst bei, wie man überlebt."</div>
+
+<div class="scenery-text">Du lehnst dich ein Stück zu weit vor, um mehr zu verstehen – und prompt knarrt eine morsche Holzdiele laut unter deinem Stiefel. Drinnen herrscht schlagartig eisige Stille.."</div>
+
+[[Hastig herumwirbeln und zur Treppe am anderen Ende des Flurs sprinten! ->Treppe runterrennen]]
+[[Stehen bleiben und versuchen, sich irgendwie herauszureden. ->Rausreden Versuch]]
+
+:: Der Kasernenhof [layout] {"position":"750,450","size":"100,100"}
+<<if $npc.kurt.affection < 0>>
+<p>Das Tor zum Exerzierplatz fliegt auf.</p>
+<p>Die nasskalte Luft trifft dich wie eine Ohrfeige — und mit ihr der Blick des Schinders, der bereits wartet. Er sieht dich an. Dann sieht er Kurt. Sein Gesicht verändert sich nicht, aber in seinem einen Auge liegt etwas, das vielleicht Belustigung wäre, wenn er ein anderer Mann wäre.</p>
+<p>Kurt lässt dich los. Ohne Kommentar. Ohne dich noch eines Blickes zu würdigen dreht er sich um und verschwindet wieder ins Innere der Akademie.</p>
+<p>Der Schlamm klatscht unter deinen Stiefeln.</p>
+<p>Du stehst auf dem Exerzierplatz — nicht weil du gegangen bist, sondern weil man dich gebracht hat. Der Unterschied ist gering. Aber der Schinder sieht ihn.</p>
+<div class="dialog">„Noch so ein unbeschriebenes Blatt für das Corps", sagt er. Und dann, nach einer Pause, die einen Moment zu lang dauert: „Oder doch nicht ganz so unbeschrieben."</div>
+<<else>>
+<p>Der Schlamm klatscht unter deinen Stiefeln.</p>
+<p>Du hast dir diesen Moment vorgestellt. Irgendwie. Den Eintritt. Den Beginn. Vielleicht hast du an Fahnen gedacht, an Gleichschritt, an das Gefühl, zu etwas Größerem zu gehören.</p>
+<p>Dann siehst du den Schinder — und der Gedanke stirbt leise.</p>
+<p>Er steht am Rand des Hofes wie ein Mahnmal, das niemand aufgestellt hat. Der Körper eines Mannes, den der Krieg genommen und wieder ausgespuckt hat — nicht unversehrt, nicht gebrochen, aber für immer gezeichnet. Der graue Bart. Das eine Auge, das dich sofort findet und nicht mehr loslässt. Über der leeren linken Augenhöhle zieht sich eine Narbe, breit und tief, die Geschichte einer Klinge oder eines Schicksals, das du nicht kennst und nicht fragen wirst. Wo seine linke Hand sein sollte: Leder. Stumpf. Abgebunden.</p>
+<p>Kein Holzbein aus den Liedern. Kein stolzer Veteran aus den Geschichten.
+Nur ein Mann, dem der Krieg etwas genommen hat — und der trotzdem noch hier steht.</p>
+<p>Er spuckt aus.</p>
+<div class="dialog">„Noch so ein unbeschriebenes Blatt für das Corps."</div>
+<</if>>
+<p>Er schaut dich an, so wie man etwas anschaut, das man noch nicht einschätzen kann und auch noch nicht einschätzen muss. Dann, fast beiläufig:</p>
+<div class="dialog">„Ich muss hier kriegsversehrt die Kinderstube hüten."</div>
+<p>Er sagt es ohne Bitterkeit. Das ist das Schlimmste daran.</p>
+<div class="dialog">„Aber keine Sorge, $player.rank." Ein Schritt vorwärts. Langsam. Schwer. „Ich biege dich hin, bis du weißt, wierum man eine Hellebarde hält."</div>
+<p>Du sagst nichts. Was solltest du auch sagen.</p>
+<p>Irgendwo hinter dir schließt sich das Tor der Akademie mit einem dumpfen, endgültigen Laut.</p>
+<p>Du bist jetzt drin.</p>
+
+[[Beginne deine Ausbildung->Kap01_RekrutenKennenlernen]]
+
+
+:: Kap01_RekrutenKennenlernen [layout] {"position":"325,425","size":"100,100"}
+<<set $npc.karla.known = true, $npc.jarek.known = true>>
+<p>Die schwere Holztür der Baracke fällt hinter dir ins Schloss, und für einen Herzschlag bleibt das Heulen des Windes draußen. Doch was dich drinnen erwartet, ist keine Gemütlichkeit — nur eine andere Art von Kälte.</p>
+<div class="scenery-text">Der Raum riecht nach feuchter Wolle, billigem Talgöl und dem herben Schweiß von dreißig Menschen, die heute alle dasselbe an den Toren abgegeben haben. Zwei Reihen hölzerner Doppelstockbetten ziehen sich durch die Stube, die Strohsäcke flach und hart wie das Versprechen, das man dir hier nicht gegeben hat. Das Licht fällt grau und gleichgültig durch die schmalen Fenster.</div>
+<p>Die Hackordnung beginnt genau hier. Nicht auf dem Exerzierplatz, nicht in der Schreibstube des Sergeanten — hier, bei der Suche nach einem Platz zum Schlafen.</p>
+<p>Am hinteren Ende der Stube bricht Unruhe aus.</p>
+<p>Eine stämmige Rekrutin mit breiten Schultern und einem spöttischen Zug um die Lippen greift ohne ein Wort in die Habseligkeiten eines kleineren Jungen und befördert sie von der Pritsche in den Dreck. Das ist Karla. Ihre Stimme dröhnt rau durch den Raum wie ein Mühlstein über Kiesel.</p>
+<div class="dialog">„Der Platz am Ofen gehört mir, Knirps. Such dir einen Platz im Zugwind, wenn dir deine Knochen lieb sind."</div>
+<p>Der vertriebene Junge zieht ab. Schweigend. Den Kopf gesenkt, die Wangen rot — nicht vor Scham allein, sondern vor der Ohnmacht dessen, der begriffen hat, dass Einspruch hier nichts kostet außer mehr Demütigung. Karla sieht sich um, langsam und lauernd, als würde sie geradezu darauf warten, dass jemand ihr widerspricht.</p>
+<p>Ihr Blick bleibt an dir hängen.</p>
+<<if $npc.kurt.affection < 0 >>
+<p>Dann bricht ein Lachen aus ihr heraus — rau und breit und ohne jede Zurückhaltung. Sie mustert dich von oben bis unten, und das spöttische Funkeln in ihren Augen weicht etwas Echtererem. Einer fast dreckigen Begeisterung.</p>
+<div class="dialog">„Haltet die Klappe!", ruft sie in den Raum, ohne den Blick von dir zu nehmen. „Schaut euch das an. Das ist der Frischling, den Brasner vorhin höchstpersönlich am Kragen über den Hof geschleift hat." Sie lacht wieder, kurz und anerkennend. „Dem alten Kurt am ersten Tag so in die Suppe zu spucken — verdammt, das braucht Eier."</div>
+<p>Ihre flache Hand trifft deine Schulter mit einem Klang, der durch die halbe Stube hallt.</p>
+<div class="dialog">„Ich bin Karla. Wenn du im Schlamm genauso zäh bist wie im Offiziersflügel, werden wir beide hier verdammt viel Spaß haben." Sie nickt auf die freie Pritsche neben ihrer. „Schnapp sie dir, bevor es ein anderer tut."</div>
+
+
+[[Bei Karla einrichten->Stube: Bei Karla einrichten]]
+[[Ihr Angebot ablehnen und einen eigenen Platz suchen->Stube: Eigene Pritsche suchen][$npc.karla.affection -= 5]]
+
+<<else>>
+<p>Bevor die Situation eskalieren kann, spürst du eine Hand auf deiner Schulter.</p>
+<p>Du fährst herum.</p>
+<p>Vor dir steht ein schlanker, sehniger Rekrut mit wachen, dunklen Augen und dem ruhigen Gesicht eines Menschen, dem Lärm noch nie viel bedeutet hat. Er trägt dieselbe rot-weiße Rekrutenkleidung wie du, wirkt darin aber seltsam gefasst — als hätte er sich mit dem Chaos um ihn herum bereits abgefunden, noch bevor es begann. Mit einer knappen Geste deutet er auf ein freies Stockbett nahe der Tür, weit genug von Karla entfernt, um unsichtbar zu bleiben.</p>
+<div class="dialog">„Lass gut sein", sagt er mit leiser Stimme. „Wer am ersten Tag den dicken Max markiert, fängt sich beim Schinder als Erster den Schaft ein." Er streckt dir die Hand hin. „Ich bin Jarek. Sieht so aus, als müssten wir uns diese Holzkiste für die nächsten zwei Jahre teilen."</div>
+
+[[Jareks Hand schütteln und das obere Bett für sich beanspruchen. ->Stube: Jarek anfreunden]]
+[[Jarek ignorieren und stattdessen eine eigene Pritsche suchen. ->Stube: Eigene Pritsche suchen]]
+
+<</if>>
+
+
+
+:: Stube: Bei Karla einrichten [layout] {"position":"125,625","size":"100,100"}
+<p>Du wirfst deine Umhängetasche auf die raue Holzpritsche neben Karla, und der dumpfe Aufschlag ist laut genug, um ein paar Köpfe herumfahren zu lassen. Die Rekruten in der Nähe weichen einen halben Schritt zurück — nicht aus Respekt vor dir, sondern aus dem instinktiven Gespür, dass es klüger ist, Abstand zu halten, wenn jemand eine Entscheidung trifft, ohne dabei zu zögern.</p>
+<p>Karla grinst. Schief und ohne jeden Aufwand, es freundlicher aussehen zu lassen als es ist. Sie lässt sich auf ihre eigene Decke fallen, zieht ein kurzes Messer aus dem Stiefelschaft und beginnt, mit der Ruhe eines Menschen, dem die Meinung anderer seit Jahren gleichgültig ist, den Dreck unter ihren Fingernägeln hervorzukratzen.</p>
+<div class="dialog">„Gute Wahl, Frischling." Sie schaut dabei nicht auf. „Wer bei mir schläft, hat nachts seine Ruhe vor den Langfingern im Raum."</div>
+<div class="dialog">„Aber bild dir nichts ein: Morgen auf dem Exerzierplatz krieche ich dir genauso wenig in den Hintern wie der Schinder."</div>
+<p>Du weißt, dass das kein Angebot war. Nur eine Tatsache, die sie der Vollständigkeit halber ausspricht.</p>
+<p>Am anderen Ende der Baracke, nahe der Tür, sitzt Jarek auf seiner Pritsche. Seine dunklen Augen ruhen einen Moment lang auf dir — ruhig, aufmerksam, ohne Vorwurf. Dann schüttelt er kaum merklich den Kopf, wendet sich ab und rollt sich auf seiner Decke zusammen. Nicht beleidigt. Nur fertig mit dem Tag.</p>
+<p>Die Talglichtflammen zucken im Zugwind. Irgendwo in der Stube hustet jemand. Das Stroh unter dir ist hart und riecht nach altem Heu und fremden Körpern.</p>
+<p>Du liegst in deiner neuen Welt.</p>
+<<= setup.setNpcAffection("karla", 4)>>
+
+[[Dich hinlegen und auf den Schlaf warten. ->Stube: Jarek kommt vorbei]]
+
+
+:: Stube: Eigene Pritsche suchen [layout] {"position":"250,575","size":"100,100"}
+<p>Du wendest dich ab und gehst.</p>
+<p>Keine Erklärung. Kein Blick zurück. Nur deine Schritte durch den Mittelgang der Baracke, vorbei an Rekruten, die sich bereits zusammenrotten, Allianzen schließen, Namen austauschen — all die kleinen, hastigen Versuche von Menschen, die plötzlich allein sind und es nicht bleiben wollen.</p>
+<p>Du bleibst allein.</p>
+<p>Weiter hinten, im zugigen Teil der Baracke, ist noch ein oberes Etagenbett frei. Niemand hat es gewollt. Der Wind findet hier seinen Weg durch die Ritzen der alten Holzwände, und das Stroh auf dem Gestell ist dünner als anderswo, als hätte man bei diesem Platz von Anfang an weniger Mühe gegeben. Du wirfst deine Tasche hinauf und kletterst nach.</p>
+<p>Von hier oben siehst du die ganze Stube.</p>
+<p>Karla, die am Ofen ihren Thron errichtet hat und jeden, der zu nah kommt, mit einem einzigen Blick auf Abstand hält. Die kleinen Gruppen, die sich bereits gebildet haben — zwei Jungen aus derselben Gegend, die an ihren Dialekten erkennbar sind, eine Handvoll Rekruten, die gemeinsam geschwiegen haben und nun gemeinsam reden. Jarek, der ein paar Betten weiter seine Stiefel ordentlich nebeneinanderstellt und dir dann kurz zunickt — ruhig, ohne Erwartung.</p>
+<p>Du nickst zurück. Mehr nicht.</p>
+<p>Es wäre so einfach gewesen. Ein Wort. Ein Händedruck. Und du wärst nicht allein.</p>
+<p>Aber du hast dich entschieden, und jetzt liegt die Entscheidung hinter dir wie ein Schritt, den man nicht zurücknehmen kann. Vielleicht ist es Stolz. Vielleicht ist es etwas, das du selbst noch nicht benennen kannst — das Bedürfnis, in diesem fremden, lauten, überfordernden Raum wenigstens einen einzigen Moment lang nur dir selbst zu gehören.</p>
+<p>Die Talglichtflammen zucken im Zugwind. Das Gemurmel der Stube ebbt langsam ab. Irgendwo hustet jemand, irgendwo lacht jemand zu laut, und dann wird es stiller, und stiller, bis nur noch das Heulen des Windes draußen übrig bleibt.</p>
+<p>Du liegst auf dem Rücken und starrst an die Decke der Baracke. Das Holz über dir ist dunkel und rissig und trägt die Kratzer von all denen, die vor dir hier gelegen haben. Menschen, die dieselbe erste Nacht hatten. Dieselbe Stille. Denselben Gedanken, den du jetzt nicht ganz zu Ende denkst, weil er zu groß ist für einen Abend, der ohnehin schon zu viel war.</p>
+<p>Morgen beginnt es.</p>
+<p>Heute Nacht bist du noch einfach nur müde.</p>
+
+[[Versuchen, zur Ruhe zu kommen. ->Stube: Jarek kommt vorbei]]
+
+
+:: Stube: Jarek anfreunden [layout] {"position":"400,575","size":"100,100"}
+<<set $npc.jarek.memory.flags.s0_done = true>>
+<p>Du ergreifst Jareks Hand und erwiderst seinen Händedruck fest. „Das obere Bett ist gebucht." Deine Tasche landet mit einem dumpfen Schlag auf dem morschen Holzgestell.</p>
+<p>Jarek lächelt — schmal und ohne Überschwang, das Lächeln eines Menschen, der gelernt hat, sparsam damit umzugehen. Er lehnt sich mit dem Rücken gegen den hölzernen Pfosten und lässt den Blick kurz durch die Stube wandern.</p>
+<div class="dialog">„Gute Entscheidung. Hier vorne zieht es zwar ordentlich durch die Türritzen — aber du bist am weitesten weg vom ewigen Theater da hinten." Er deutet mit dem Kinn zu Karla, die am Ofen noch immer ihr Revier absteckt wie ein Tier, das seinen Käfig vermisst. „Wir sollten ihr aus dem Weg gehen. Sie ist anstrengend." Eine kurze Pause. „Aber verdammt gut an der Waffe. Man hört sie in den Schenken von Ohm über ihre Kraft reden — und die Leute, die es hören, widersprechen ihr meistens nicht."</div>
+<p>Er setzt sich auf die untere Pritsche und beginnt, seine schweren Marschstiefel aufzuknoten. Die Bewegungen sind gleichmäßig, fast mechanisch — die Bewegungen eines Mannes, der mit seinen Gedanken schon woanders ist.</p>
+<div class="dialog">„Ich bin übrigens hier, weil das Banner pünktlich zahlt." Er sagt es ohne Scham, aber auch ohne Leichtigkeit. Nur als Tatsache. „Zu Hause in der Unterstadt ernährt das Schusterhandwerk meines Vaters keine fünf Mäuler mehr. Wenn ich die zwei Jahre hier überstehe, schicke ich genug Gold heim, damit er aufhören kann, sich die Augen kaputt zu nähen."</div>
+<p>Er stellt die Stiefel nebeneinander auf den Boden — ordentlich, parallel — und sieht dich dann an. Seine dunklen Augen wirken alt für sein Gesicht. Nicht müde. Nur alt.</p>
+<div class="dialog">„Ich hoffe, auf dich ist Verlass, wenn wir erst im Schildwall stehen."</div>
+<p>Es ist keine Drohung. Keine Prüfung. Nur eine ehrliche Frage von jemandem, der weiß, dass die Antwort darauf irgendwann zählen wird.</p>
+
+[[Ihm versichern, dass er auf dich zählen kann. ->Nachtruhe 1][$npc.jarek.affection += 2]]
+[[Dich einfach wortlos hinlegen und das Gespräch beenden. ->Nachtruhe 1]]
+
+
+:: Stube: Jarek kommt vorbei [layout] {"position":"275,725","size":"100,100"}
+<<if previous() is "Stube: Bei Karla einrichten">>
+<p>Du streckst dich auf der harten Pritsche neben Karla aus. Sie hat sich zur Wand gedreht, den Rücken dir zugekehrt wie eine Mauer, und atmet bald tief und gleichmäßig. Das Gemurmel der Stube ebbt ab, die Talglichter sterben eins nach dem anderen, bis nur noch das Heulen des Windes bleibt.</p>
+<p>Du bist noch nicht eingeschlafen, als sich ein Schatten neben deine Pritsche schiebt — leise, mit einem kurzen Blick zu Karlas reglosem Rücken, als wolle er sie um keinen Preis wecken. Er geht neben dir in die Hocke. „Schlecht angekommen?", fragt Jarek leise.</p>
+<<else>>
+<p>Du liegst oben in der zugigen Koje und starrst an das rissige Holz über dir. Der Wind findet jede Ritze. Unter dir wird die Stube still, ein Husten hier, ein Lachen da, dann nur noch das Heulen draußen.</p>
+<p>Du bist noch nicht eingeschlafen, als das Gestell leise knarrt. Jemand hat sich am Pfosten hochgezogen, gerade weit genug, um über die Kante zu sehen. „Ist oben noch Platz für ein Wort?", fragt Jarek — leise, und ohne die Antwort abzuwarten, als hätte ein Nein ihn nicht gekränkt.</p>
+<</if>>
+
+<p>Er drängt sich nicht auf. Er hockt einfach da, die Arme auf die Knie gestützt, und sieht dich an mit diesen ruhigen, viel zu wachen Augen. „Der erste Abend ist der schlimmste", sagt er. „Danach gewöhnt man sich an das meiste. Nicht an alles. Aber an das meiste."</p>
+
+<p>Im fahlen Restlicht siehst du, wie dünn sein Hemd ist, wie abgelaufen die Stiefel, die er ordentlich neben sich gestellt hat. Es ist kalt in der Baracke, und Jarek hat nichts, was wärmt. Fast ohne nachzudenken schiebst du ihm deine Decke ein Stück hin.</p>
+
+<p>Jarek schüttelt den Kopf. Nicht hastig, nicht stolz im lauten Sinn. Nur bestimmt. „Behalt's", sagt er. „Ich komm schon klar." Und er sagt es so ruhig, so fertig mit der Sache, dass es dir für einen Moment seltsam vorkommt — als hätte einer mit sechzehn schon zu Ende gelernt, dass man sich auf nichts verlassen darf, das man nicht selbst in der Hand hält. Dann ist der Moment vorbei, und es ist nur wieder Jarek, der dir nichts schuldig sein will.</p>
+
+<div class="dialog">„Zu Hause näht mein Vater Schuhe", sagt er, mehr zur Wand als zu dir. „Seine Augen werden schlechter. Bald sieht er die Naht nicht mehr, und dann sieht sie keiner mehr für ihn." Er zuckt mit den Schultern, als hätte er über das Wetter gesprochen. „Ist nicht wichtig. Ich bin hier, das ist der Plan. Schlaf jetzt. Morgen wird hart."</div>
+
+<p>Er macht keine Anstalten zu gehen, und er wartet auch auf nichts. Aber da ist dieser Moment, in dem du etwas sagen könntest — oder eben nicht.</p>
+
+[[Ihm von früher erzählen — davon, dass auch du nicht immer stark warst. ->Stube: Thomas erzählt]]
+[[Auch schweigen. Zwei, die nichts hermachen aus dem, was sie tragen. ->Stube: Schweigen mit Jarek]]
+
+
+:: Stube: Schweigen mit Jarek [layout] {"position":"275,850","size":"100,100"}
+<<set $npc.jarek.memory.flags.s0_done = true>>
+
+<p>Du sagst nichts. Was sollte es auch ändern.</p>
+
+<p>Jarek scheint das nicht im Geringsten zu stören — im Gegenteil, etwas in seiner Haltung wird ruhiger, als hätte er eine Frage gestellt und genau die Antwort bekommen, auf die er gehofft hatte. Ein Frischling, der nicht redet. Der nicht jammert, nicht fragt, nicht klammert.</p>
+
+<div class="dialog">„Gut", sagt er nur, steht auf und geht so leise zu seiner Pritsche zurück, wie er gekommen ist.</div>
+
+<p>Du liegst noch eine Weile wach und denkst, dass das der erste Mensch hier ist, der nichts von dir wollte. Du wirst dich später an diesen Gedanken erinnern.</p>
+
+<<= setup.setNpcAffection("jarek", 2)>>
+
+[[Die Augen schließen. ->Nachtruhe 1]]
+
+
+:: Stube: Thomas erzählt [layout] {"position":"75,850","size":"100,100"}
+<<set $npc.jarek.memory.flags.s0_done = true>>
+
+<p>Du weißt selbst nicht, warum es ausgerechnet jetzt aus dir herauskommt. Vielleicht, weil er nicht gefragt hat.</p>
+
+<div class="dialog">„Ich war als Kind oft krank", sagst du leise. „So krank, dass keiner geglaubt hat, ich käme je auf die Beine. Die Luft blieb mir weg, wenn ich rannte. Ein Junge, der die Treppe nicht hochkam, ohne stehenzubleiben." Du starrst an die Decke. „Es gab jemanden, der das nicht hingenommen hat. Der mich in die Berge gebracht hat, wo die Luft und die Höhe aus mir etwas anderes gemacht haben. Ich weiß, dass ich ohne ihn nicht hier läge."</div>
+
+<p>Jarek sagt eine Weile nichts. Dann nickt er, einmal, als hätte er etwas verstanden, das über deine Worte hinausgeht. „Dann sind wir beide hier, weil ein anderer es so wollte", sagt er schließlich. Es klingt fast warm. Es klingt wie der Anfang von etwas.</p>
+
+<p>Du schläfst ein, bevor dir auffällt, dass er nie gesagt hat, wer es bei ihm war.</p>
+
+<<= setup.setNpcAffection("jarek", 1)>>
+
+[[Die Augen schließen. ->Nachtruhe 1]]
+
+
+:: Nachtruhe 1 [layout] {"position":"350,1050","size":"100,100"}
+<<run setup.resetDailyVariables()>>
+<div class="scenery-text">Ein vorbeigehender Korporal löscht das Talglicht mit einem harschen Fluch, als wäre selbst das Licht hier etwas, das Gehorsam schuldet.</div>
+<p>Dunkelheit.</p>
+<p>Nicht die sanfte Dunkelheit eines vertrauten Zimmers, in dem man weiß, wo die Wände stehen und wie der Schatten auf der Decke liegt, wenn der Mond durch das Fenster fällt. Diese Dunkelheit ist fremd und riecht nach nassem Holz und fremdem Schweiß und dem Talg der erloschenen Flamme. Sie gehört nicht dir.</p>
+<p>Aus dem Atem von dreißig Menschen formt sich allmählich ein Rhythmus. Schnarchen. Das Knarren eines Holzgestells. Und irgendwo, nicht weit genug entfernt, das leise, unterdrückte Schluchzen eines Rekruten, der nicht will, dass man es hört — und den trotzdem jeder hört, und dem trotzdem niemand etwas sagt. Manche Dinge lässt man der Nacht.</p>
+<p>Du liegst auf dem harten Stroh und spürst, wie deine Muskeln brennen. Nicht stark. Nur genug, um dich daran zu erinnern, dass heute wirklich passiert ist.</p>
+<p>Das war Tag eins.</p>
+<p>Es bleiben noch exakt einhundert und vier Wochen.</p>
+<p>Du schließt die Augen.</p>
+
+[[Der nächste Morgen: Der erste Tag vergeht... ->Das Training: Erster Tag]]
+
+:: Das Erwachen [layout] {"position":"675,150","size":"100,100"}
+<<set $showLogo to true>>
+
+<div class="scenery-text">Der Sergeant nickt brummend. Die Feder taucht in die Tinte, kratzt deinen Namen ins Pergament — ein trockenes, endgültiges Geräusch.</div>
+
+<div class="dialog">„Gut. $player.rank $player.name — ab heute gehörst du zum Heer Aloys."</div>
+
+<p>Er lehnt sich nicht zurück. Er verschwendet keine Geste.</p>
+<div class="dialog">„Hier in Ohm werden wir euch das Söldner-Handwerk von der Pike auf beibringen. Kein Erlass, kein Erbe, kein Name schützt dich vor dem, was kommt." Ein kurzes Schweigen. „Schnapp dir deine Ausrüstung. Dann meldest du dich beim //Schinder// auf dem Hof."</div>
+<p>Den letzten Satz sagt er so, als wäre er eine Warnung. Vielleicht ist er das auch.</p>
+
+<p>Du nimmst, was dir gehört. Es ist nicht viel.</p>
+<p>Ein paar einfache Schuhe, zwei Hemden, zwei Beinlinge in Rot und Weiß, eine Bundhaube und ein verschlissener Gürtel. Das alles in einer Umhängetasche verpackt.</p>
+<p>In den langen Hallen der Akademie hängen Stimmen in der Luft — gedämpft, aber nicht leise genug. Die Ausbilder tuscheln. Berichte aus dem Feld. Alfaltermark, Greifenorden</p>
+<p>Namen und Orte, die dir noch nichts bedeuten.</p>
+<p>Noch nicht.</p>
+<p>Für dich zählen erst einmal die harten Holzböden der Kaserne in Ohm — und der Mann auf dem Hof, den sie den Schinder nennen.</p>
+
+<<set $npc.sergeant.known = true>>
+
+[[Befehl befolgen und direkt zum Kasernenhof gehen->Der Kasernenhof]]
+[[Sich heimlich von der Truppe absetzen und die Akademie-Hallen auskundschaften->Hallen erkunden]]
+[[Den Sergeant nach neuen Gerüchten ausfragen->Sergent aushorchen]]
+
+
+:: Das Training: Erster Tag [kapitel-opener layout] {"position":"450,825","size":"100,100"}
+<p>Der Morgen kommt nicht sanft.</p>
+<p>Er kommt mit dem Krachen einer Tür, die jemand mit dem Stiefel aufgestoßen hat, und einer Stimme, die keine Rücksicht auf den Schlaf nimmt, den du dir noch nicht geholt hast.</p>
+<div class="dialog">„Aufstehen! Raus aus den Federn, ihr Maden! Die Sonne wartet nicht auf Rekruten!"</div>
+<p>Du bist auf den Beinen, bevor du wach bist. Der Körper hat bereits begriffen, was der Kopf noch nicht verarbeitet hat. Um dich herum das Chaos von dreißig Menschen, die gleichzeitig nach Stiefeln greifen, Gürtel zuschnallen und sich gegenseitig anrempeln, ohne sich zu entschuldigen. Niemand hat Zeit. Niemand weiß genau, wofür — aber die Dringlichkeit hängt im Raum wie Rauch.</p>
+
+<p>Die Kantine ist laut und riecht nach heißem Fett und gekochtem Gemüse.</p>
+<p>Aloyer Allerlei — Schupfnudeln mit Wurzelgemüse, dampfend und reichhaltig, in tiefen Holzschüsseln auf die langen Tische gestellt. Es ist gutes Essen. Nahrhaftes Essen. Unter anderen Umständen würdest du dir die Zeit nehmen, es zu genießen.</p>
+<p>Stattdessen löffelst du es stehend halb in dich hinein, weil alle anderen es auch stehend tun, weil niemand sitzen will und als Letzter aufstehen muss, weil die Nervosität im Raum von Tisch zu Tisch springt wie ein Feuer, das sich seinen eigenen Weg sucht. Ein Rekrut verschüttet seinen Becher Wasser. Ein anderer lacht zu laut und hört abrupt damit auf. Niemand spricht über das, worüber alle nachdenken.</p>
+<p>Was kommt danach.</p>
+<p>Dann fliegt die Kantinentür auf.</p>
+<p>Der Sergeant füllt den Rahmen wie ein Naturereignis. Seine Stimme trifft die Wände, bevor irgendjemand reagieren kann.</p>
+<div class="dialog">„Auf den Platz! Antreten! Wer in fünf Minuten noch hier steht, lernt den Schinder von seiner ungemütlichen Seite kennen!"</div>
+<p>Die Schüsseln bleiben halbvoll. Niemand stellt sie ordentlich hin.</p>
+
+<p>Der Exerzierplatz liegt grau und weit im Morgenlicht. Der Wind ist derselbe wie gestern — er hat die Nacht nicht genutzt, um freundlicher zu werden.</p>
+<p>Sie stehen bereits da und warten.</p>
+<p>Kurt, mit dem Gesicht eines Mannes, der Rekruten schon gesehen hat, als ihre Väter noch in den Windeln lagen. Neben ihm die Ausbilder, eine Reihe von Männern und Frauen, deren Gesichter alle dasselbe ausdrücken: geduldige, professionelle Gleichgültigkeit. Und dann, einen halben Schritt vor allen anderen, der Schinder.</p>
+<p>Er braucht keine Einführung. Er ist einfach da, und das genügt.</p>
+<p>Kurt tritt vor. Seine Stimme ist nicht laut, aber sie trägt — die Stimme eines Mannes, der gelernt hat, dass man nicht brüllen muss, wenn man etwas zu sagen hat.</p>
+<<if $npc.kurt.affection < 0>>
+<p>Du duckst dich unter seinem Blick weg. Versteckst dich in der Masse. Dass du ausgerechnet den Fähnrich verärgert hast ist kein gutes Omen für deine Zeit hier.</p><</if>>
+<div class="dialog">„Ich bin Fähnrich Kurt Brasner. Ihr werdet mich Fähnrich nennen, oder ihr werdet mich gar nicht nennen. Ich bin nicht euer Vater, nicht euer Freund und nicht euer Pfaffe." Er lässt seinen Blick einmal langsam über die Reihe wandern. „Ich bin derjenige, der entscheidet, ob ihr in zwei Jahren als Söldner aus diesen Toren geht — oder gar nicht."</div>
+<p>Stille.</p>
+<p>Kurt tritt zurück.</p>
+<p>Ein Mann tritt vor.</p>
+<p>Er ist anders als die anderen hier — nicht lauter, nicht größer, aber auf eine Weise präsent, die nichts mit Lautstärke zu tun hat. Hauptmann Konrad Rindler trägt seine Uniform wie ein zweites Ich, jeden Knopf geschlossen, jeden Saum gerade, die Hände ruhig hinter dem Rücken verschränkt. Sein Gesicht ist glatt und kontrolliert, die Augen kühl und aufmerksam — die Augen eines Mannes, der gewohnt ist, Dinge zu bewerten, bevor er sie benennt.</p>
+<p>Er lässt sich einen Moment Zeit. Nicht um Eindruck zu schinden. Sondern weil er es kann.</p>
+<div class="dialog">„Ich bin Hauptmann Konrad Rindler." Seine Stimme ist ruhig und trägt dennoch bis in die letzte Reihe, ohne dass er sie hebt. „Das 86. Banner existiert noch nicht. Was ihr hier seht — diese Ansammlung von Rekruten auf diesem Platz — das ist der Rohstoff, aus dem es entstehen soll."</div>
+<p>Sein Blick gleitet langsam über die Gruppe. Nicht feindselig. Eher wie jemand, der eine Rechnung aufmacht und noch nicht weiß, ob sie aufgehen wird.</p>
+<div class="dialog">„Ich werde dieses Banner führen. Was das bedeutet, werden Sie — werdet ihr — in den kommenden zwei Jahren verstehen lernen. Bis dahin gilt: Ihr gehört der Akademie. Ihr gehört dem Fähnrich. Ihr gehört dem Ausbildungskorps." Eine kurze Pause. „Und ihr gehört dem Banner, das wir hier gemeinsam aufbauen werden."</div>
+<p>Er tritt zurück. Sauber. Ohne Übergang, ohne Nachsatz.</p>
+<p>Als wäre alles Wesentliche gesagt.</p>
+<p>Dann tritt schließlich der Schinder vor.</p>
+<p>Er stellt sich nicht vor. Er schaut euch an — einen nach dem anderen, als würde er bereits abschätzen, was in jedem von euch steckt und was nicht. Als er schließlich spricht, ist seine Stimme rau wie Schleifstein auf Eisen.</p>
+<div class="dialog">„Ihr wollt Söldner werden. Schön. Dann fangen wir damit an, was einen Söldner am Leben hält — nicht Mut, nicht Stärke, nicht der Wille zum Kämpfen." Er lässt die Worte einen Moment stehen. „Formation. Wer nicht in der Formation steht, stirbt als Erster. Wer die Formation bricht, reißt seinen Nebenmann mit in den Tod. Wer den Spieß nicht kennt, ist eine Gefahr für jeden, der neben ihm steht."</div>
+<p>Er verschränkt den Lederarm hinter dem Rücken.</p>
+<div class="dialog">„Heute lernt ihr, wie man einen Haufen aus dreißig einzelnen Idioten zu einem einzigen Körper macht. Das wird nicht schön. Das wird nicht schnell gehen. Und keiner von euch wird heute Abend zufrieden mit sich sein."</div>
+<p>Sein Auge wandert über die Gruppe.</p>
+<div class="dialog">„Also."</div>
+<p>Eine Pause, kurz und absolut.</p>
+<div class="dialog">„Herstellt euch in fünf Reihen!"</div>
+<p>Der Befehl kracht über den Platz wie ein Donnerschlag — und dann passiert genau das, was passiert, wenn dreißig Menschen gleichzeitig dasselbe wollen und keiner weiß wie.</p>
+<p>Chaos.</p>
+<p>Die Mutigsten — oder die Dümmsten, der Unterschied ist im ersten Moment schwer zu erkennen — laufen nach vorne und stellen sich hin, irgendwie, ungefähr. Die anderen folgen zögernd, füllen Lücken, weichen einander aus, stoßen zusammen. Jemand fragt flüsternd seinen Nachbarn, was eine Reihe überhaupt bedeutet. Niemand antwortet mit Überzeugung. Was am Ende entsteht, ist ein schlecht ausgerichtetes Rechteck aus dreißig Menschen, die alle geradeaus schauen und dabei so tun, als hätten sie genau das vorgehabt.</p>
+<p>Der Schinder schaut es sich an.</p>
+<p>Lange.</p>
+<p>Der Schinder geht die erste Reihe ab. Seine schweren Stiefel klatschen rhythmisch in den Matsch des Exerzierplatzes.</p>
+<p>Er sagt kein Wort. Er schaut sich nicht einmal die Gesichter an, sondern starrt nur auf die schiefen Schulterlinien,</p>
+<p>die ungleichen Abstände und die zitternden Knie. Die Stille, die er erzeugt, ist schlimmer als jedes Brüllen.</p>
+<p>Er bleibt genau vor dir stehen. Sein einzelnes Auge fixiert dich, kalt und prüfend.</p>
+<div class="dialog">„Eine Reihe“, murmelt er, und seine Stimme ist gefährlich leise. „Ich verlangte fünf Reihen. Was ich sehe, ist ein Haufen betrunkener Bauern auf dem Weg zum Viehmarkt.“</div>
+<p>Er tritt einen halben Schritt näher. Sein Atem riecht nach bitterem Kautabak. „Du da. Ja, genau du. Du stehst schief. Deine Schulter hängt,</p>
+<p>als hättest du schon jetzt keine Knochen mehr im Leib. Und dein Nebenmann klebt dir an der Hüfte, als wolltet ihr tanzen.“</p>
+<p>Er hebt den Holzschaft und deutet auf die Lücke hinter dir.</p>
+<p>Der Schinder steht vor dir. Sein Auge wartet.</p>
+
+<<if $npc.karla.affection gt 0>>
+<p>@@.beziehung;Karlas Stimme trifft dich von der Seite — kaum mehr als ein Zischen, aber scharf genug um anzukommen. „Beweg dich, Frischling.“@@</p>
+<<elseif $npc.jarek.affection gt 0>>
+<p>@@.beziehung;Jarek rührt sich nicht. Aber sein rechter Fuß verschiebt sich einen halben Schritt — langsam, bewusst, so dass du es siehst. Eine stille Anweisung, mehr nicht.@@</p>
+<<else>>
+<p>@@.beziehung;Du blickst dich suchend nach vertrauten Gesichtern aus deiner Stube um. Du entdeckst Jarek und Karla, aber beide ignorieren dich starr.@@</p>
+<</if>>
+<<if $npc.karla.affection gt 0 or $npc.jarek.affection gt 0>>
+<<link "Dich dank des Hinweises sofort ausrichten — du weißt, was zu tun ist.">>
+<<if $npc.karla.affection gt 0>><<set $player.rel.karla += 1>><</if>>
+<<if $npc.jarek.affection gt 0>><<set $player.rel.jarek += 1>><</if>>
+<<set $player.chosen_activity to "zeigt_eigeninitiative">>
+<<goto "Appell: Ausrichten">>
+<</link>>
+<</if>>
+[[Warten, bis er es dir befiehlt. ->Appell: Ausrichten][$player.chosen_activity to "ist_befehlstreu"]]
+<<if $npc.karla.affection lte 0 and $npc.jarek.affection lte 0>>
+	[[Auf gut Glück versuchen dich auszurichten — du rätst, was verlangt ist. ->Appell: Ausrichten][$player.chosen_activity to "ist_panisch"]]
+<</if>>
+
+<<set $npc.hauptmann.known to true>>
+<<set $npc.schinder.known to true>>
+<<set $npc.kurt.known to true>>
+
+:: Appell: Ausrichten [layout] {"position":"550,650","size":"100,100"}
+<<if $player.chosen_activity eq "zeigt_eigeninitiative">>
+<p>@@.beziehung;Dank des unauffälligen Hinweises reagierst du blitzschnell. Noch bevor der Schinder die Augen zusammenkneifen kann, stehst du perfekt in der Formation. Ein kaum merkliches Nicken des Ausbilders zeigt dir, dass du die Situation gerettet hast.@@</p>
+<<elseif $player.chosen_activity eq "ist_befehlstreu">>
+<p>@@.beziehung;Du rührst dich keinen Zentimeter und wartest stur auf den Befehl, so wie es dir eingebläut wurde. Der Schinder baut sich vor dir auf, die Lederpeitsche klatscht rhythmisch gegen seinen Stiefel. „Wenigstens einer, der nicht wie ein aufgescheuchtes Huhn zappelt“, knurrt er. Nicht gelobt, aber auch nicht bestraft.@@</p>
+<<elseif $player.chosen_activity eq "ist_panisch">>
+<p>@@.beziehung;Du rätst auf gut Glück, straffst die Schultern und machst einen Schritt zur Seite – prompt in die falsche Richtung. Du rempelst deinen Nebenmann an. Das Auge des Schinders fixiert dich sofort. „Du elender, ungelenker Tölpel!", brüllt er dir ins Gesicht, dass der Speichel fliegt.@@</p>
+<</if>>
+<<= setup.pushNpcMemory("schinder", $player.chosen_activity)>>
+<<silently>>
+<<if setup.hasNpcMemory("schinder", "zeigt_eigeninitiative")>>
+	<<if setup.hasNpcMemory("schinder", "ist_befehlstreu")>>Er mustert dich anders als die anderen — er nickt kühl, ein Frontsoldat, der tut, was man ihm sagt.<</if>>
+	<<if setup.hasNpcMemory("schinder", "ist_panisch")>>Er mustert dich anders als die anderen — er schüttelt enttäuscht den Kopf, dreht sich weg und geht weiter.<</if>>
+<</if>>
+<</silently>>
+
+<p>Was folgt, lässt sich nicht in Worte fassen — nicht weil es unbeschreiblich wäre, sondern weil der Körper irgendwann aufhört, Eindrücke zu speichern, und nur noch funktioniert.</p>
+<p>Der Schinder treibt euch durch die Formation wie ein Schmied, der rohes Eisen bearbeitet. Kein Sadismus, kein Genuss an eurer Not — nur die kalte, unerbittliche Überzeugung eines Mannes, der weiß, was es kostet, wenn ein Soldat im Haufen die falsche Schulter dreht. Er brüllt nicht aus Freude. Er brüllt, weil Fehler dort draußen den Tod bedeuten.</p>
+<p>Ihr lernt, was eine Reihe ist. Was ein Glied ist. Dann lernt ihr es nochmal und nochmal. Dann nochmal. Der Spieß ist schwerer als erwartet, das Holz rau und unbarmherzig gegen die ungehärteten Handflächen. Wer stolpert, steht wieder auf. Wer jammert, macht es zweimal. Wer schweigt und weitermacht, bekommt keinen Applaus — aber auch keinen zweiten Durchgang.</p>
+<p>Der Schinder hat kein Mitleid. Aber er hat auch keine Grausamkeit. Er hat nur einen Maßstab — und der liegt höher als alles, was ihr bisher von euch selbst kanntet.</p>
+
+<p>Der Abend kommt grau und still über den Platz.</p>
+<p>In der Kantine riecht es wieder nach Aloyer Allerlei — dieselben Schupfnudeln wie am Morgen, dieselben Holzschüsseln. Aber diesmal schmeckt es anders. Nicht besser. Nur echter. Der Hunger ist kein höflicher Hunger mehr, sondern der Hunger eines Körpers, der heute tatsächlich gearbeitet hat.</p>
+<p>Niemand spricht viel. Die Löffel kratzen über das Holz, jemand hustet, jemand starrt einfach nur auf seine Schüssel. Die Worte, die man sich vielleicht am Morgen noch zugeworfen hätte — Prahlerei, Nervosität, das vorsichtige Abtasten fremder Menschen — sie sind alle verbraucht. Übrig bleibt nur die bleierne, ehrliche Erschöpfung von Menschen, die verstanden haben, was die nächsten zwei Jahre bedeuten.</p>
+
+<p>Die Baracke nimmt euch auf wie jeden Abend — ohne Begrüßung, ohne Wärme.</p>
+<p>Du lässt dich auf deine Pritsche fallen, und der Strohsack, der heute Morgen noch hart und fremd war, fühlt sich jetzt an wie das Weichste auf der Welt. Deine Hände brennen. Deine Schultern brennen. Irgendwo tief in den Oberschenkeln sitzt ein Schmerz, der morgen früh schlimmer sein wird als heute Nacht.</p>
+<p>Das Talglicht flackert.</p>
+<p>Du schließt die Augen, noch bevor jemand es löscht.</p>
+
+[[Der nächste Tag. ->Kapitel 1]]

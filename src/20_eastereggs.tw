@@ -1,0 +1,915 @@
+
+/* HANSBERT */
+
+
+:: 05_Sidequest_Hansbert [layout kap1] {"position":"125,2375","size":"100,100"}
+<p>Am Morgen ruft die Glocke zum Gottesdienst. Im Betsaal der Akademie stehen die Rekruten in Reihen, der Priester der Drei spricht von Limbas Funken, von Mirams Waage, von Hortum, der die Taten der Toten wiegt. Weihrauch hängt schwer in der kalten Luft.</p>
+
+<div class="scenery-text">In der Letzten Reihe sitzt heute eine Gestalt die nicht zu den Rekruten gehört. Trotz dem hängenden Kopf siest du dass sie ein SöldnerBarett Auf dem Kopf Trägt</div> 
+<div class="thought-box">Seltsam, was macht denn ein Söldner hier?</div>
+<p>Dein interesse ist geweckt.</p>
+
+<p>Setzt du dich zu der Gestalt oder gehst du in die Bänke zu deinen Kammeraden</p>
+
+[[Zu den Kammeraden->05_Sidequest_Hansbert_Abbruch]] 
+[[Setz dich zu dem Fremden->05_Sidequest_Hansbert_Hinsetzen]]
+
+
+:: 05_Sidequest_Hansbert_Abbruch [layout] {"position":"250,2500","size":"100,100"}
+<p>Du gehst weiter. Du willst dich am Gottesdienst beteiligen.</p>
+<p>Das ist hier nicht die passende Umgebung für seltsame Begegnungen.</p>
+
+[[Neben den anderen Rekruten Platz nehmen->Story005_Gottesdienst]]
+
+
+:: 05_Sidequest_Hansbert_Barsinger [layout] {"position":"100,2775","size":"100,100"}
+<div class="dialog">"Versteh mich nicht falsch. Die Drei sind schon in Ordnung."Hansbert beobachtet den Prediger."Aber deren Gottesdienste könnten ein wenig mehr Würfelspiele vertragen."</div>
+<div class="thought-box">Du unterdrückst ein Grinsen.</div>
+<div class="dialog">"Barsinger wird hier einfach nicht genug gewürdigt." Er schüttelt den Kopf. "Im Feld schaut das anders aus."</div>
+
+<div class="voice-formal">Seine Stimme wird etwas lauter.</div>
+<div class="dialog">„Frag die Söldner. Nach einer gewonnenen Schlacht — was machen die dann?"<br>
+Er hebt einen Finger.<br>
+„Dann danken sie Barsinger für das Bier."<br>
+Ein zweiter Finger.<br>
+„Und für die Geschichten am Feuer."<br>
+Ein dritter.<br>
+„Und für die Würfel, mit denen sie ihren Sold verspielen."</div>
+
+<div class="scenery-text">Einige Rekruten in den vorderen Reihen drehen sich bereits nach euch um.</div>
+<p>Hansbert interessiert es nicht.</p>
+<div class="dialog">"Und auf dem Land ist es dasselbe. Die Handwerker, die Bauern, die Fuhrleute. Die verstehen wenigstens noch, dass das Leben mehr ist als Arbeit und Gebet."</div>
+
+<div class="scenery-text">Der Prediger stockt kurz in seiner Predigt.</div>
+<p>Hansbert fährt unbeirrt fort.</p>
+<div class="dialog">"Und Drachengard erst!In Drachengard wirst du mit offenen Armen empfangen, wenn du Barsinger treu bist."</div>
+<p>Er schlägt sich gegen die Brust.</p>
+<div class="dialog">"Obwohl es nicht einmal ihr eigener Glaube ist!"</div>
+
+<div class="voice-formal">Seine Stimme hallt inzwischen durch den Betsaal.</div>
+<div class="dialog">"Die Leute dort wissen Gastfreundschaft noch zu schätzen!"</div>
+
+<div class="scenery-text">Der Prediger räuspert sich demonstrativ.</div>
+<div class="dialog">"Ja, ja. Einen Augenblick."</div>
+<p>Hansbert winkt ab.</p>
+<p>Dann beugt er sich wieder zu dir.</p>
+<div class="dialog">"Die Leute vom Imperium frönen Barsinger besser als wir!"</div>
+
+<div class="scenery-text">Mehrere Köpfe drehen sich.</div>
+<p>Er zeigt mit ausgestrecktem Finger auf den Altar.</p>
+<div class="dialog">"Und hier... HIER geht es nur um Tugend, Pflicht, Opferbereitschaft und noch mehr Tugend!"</div>
+
+<div class="scenery-text">Der Prediger unterbricht seine Predigt.
+<Stille breitet sich im Saal aus.</div>
+<div class="dialog">"WENN IHR DAS BEDÜRFNIS VERSPÜHRT, werter Bruder, eine eigene Predigt zu halten, dürft Ihr dies gern außerhalb des Betsaales tun."</div>
+
+<p>Hansbert öffnet den Mund.</p>
+<div class="dialog">"Ich wollte lediglich—"</div>
+
+<div class="dialog">"Außerhalb! Und du ebenfalls, Rekrut. Wer unmittelbar neben einem Barsinger-Geweihten sitzt, trägt Mitschuld an dem, was folgt."</div>
+
+<div class="scenery-text">Vereinzeltes Kichern geht durch die Reihen.</div>
+<p>Hansbert erhebt sich seufzend.</p>
+<div class="dialog">"Siehst du? Genau diese Art von Intoleranz meine ich."</div>
+<p>Er setzt sein Barett zurecht.</p>
+<div class="voice-aggressive">BARSINGER!</div>
+<p>Hansbert grinst.</p>
+<div class="dialog">"Nach dir."</div>
+
+<<include "05_Sidequest_Hansbert_finalize">>
+
+
+:: 05_Sidequest_Hansbert_Hinsetzen [layout] {"position":"50,2500","size":"100,100"}
+<div class="scenery-text">Als du dich neben dem Kerl niederlässt steigt dir eine Fahne in die Nase.</div> <div class="thought-box">PUHHH! So ein Duft und dass am Morgen, war ne harte Nacht.</div>
+<p>Du schaust den Fremden musternd an. Ein Vogel auf seinem Barrett.</p>
+<<if setup.isFactionKnown("84. Banner")>>
+	<div class="scenery-text">Der Haubentaucher!</div>
+    <<set $story002_knownSoeldner = setup.getRandomKnownNpcByFaction("84. Banner")>>
+    <div class="thought-box">Den habe ich schon bei $story002_knownSoeldner gesehen</div>
+<<else>>
+<div class="dialog beziehung">Aber mehr als ein Seltsamer Gedanke kommt nicht hoch..</div>
+<</if>>
+
+<p>Der Fremde hebt den Kopf.</p>
+<p>Seine Augen sind gerötet, sein Bart wirkt als hätte er Bekanntschaft mit mehreren Krügen Bier gemacht.</p>
+
+<p>Was willst du? Kann man sich hier in den hochheiligen Hallen nicht einmal ganz kurz ausruhen?</p>
+
+[[Entschuldigt. Ich wollte nicht stören.->Hansbert_Hoeflich]]
+[[Ein Söldner beim Gottesdienst? Das sieht man selten.->Hansbert_Neugierig]]
+[[Ihr riecht als hättet Ihr in einem Bierfass geschlafen.->Hansbert_Frech]]
+
+
+:: 05_Sidequest_Hansbert_finalize [layout] {"position":"300,2350","size":"100,100"}
+<<set $npc.hansFichtensplitter.memory.flags.sidequest05Complete = true>>
+<<set $npc.hansFichtensplitter.known = true>>
+<<run setup.setNpcAffection("hansFichtensplitter", 2)>>
+<<run setup.setPlayerStat("faith",5)>>
+[[Die Kirche verlassen|Nachmittag Hub]]
+
+:: Hansbert_Frech [layout] {"position":"200,2625","size":"100,100"}
+<div class="dialog">"Ihr riecht als hättet Ihr in einem Bierfass geschlafen."</div>
+
+<p>Hansbert sieht an sich herunter.</p>
+
+<div class="dialog">"Dann war es offenbar ein gutes Bierfass."</div>
+
+<p>Er schnuppert an seinem Ärmel.</p>
+
+<div class="dialog">"Ja."</div>
+
+<p>Kurzes Nicken.</p>
+
+<div class="dialog">"Definitiv gutes Bier."</div>
+
+<p>Er grinst breit und streckt dir die Hand hin.</p>
+
+<div class="dialog">"Hansbert."</div>
+
+<p>Sein Händedruck ist fest.</p>
+
+<div class="dialog">"Barsinger segnet meine Arbeit regelmäßig."</div>
+
+[[Er holt Luft ->05_Sidequest_Hansbert_Barsinger]]
+
+
+:: Hansbert_Hoeflich [layout] {"position":"0,2625","size":"100,100"}
+<div class="dialog">"Hm."</div>
+
+<p>Der Fremde mustert dich kurz.</p>
+
+<div class="dialog">"Du bist Rekrut. Dann bist du entschuldigt. Die meisten Rekruten haben wenigstens noch Manieren."</div>
+
+<p>Er streckt dir die Hand hin.</p>
+
+<div class="dialog">"Hansbert."</div>
+
+<p>Sein Händedruck ist fest.</p>
+
+<div class="dialog">"Barsingers Diener, wenn man den Gerüchten glauben darf."</div>
+
+[[Er holt Luft ->05_Sidequest_Hansbert_Barsinger]]
+
+
+:: Hansbert_Neugierig [layout] {"position":"100,2625","size":"100,100"}
+<div class="dialog">"Ein Söldner beim Gottesdienst? Das sieht man selten...
+Wer sagt denn, dass ich wegen des Gottesdienstes hier bin?"</div>
+
+<p>Er grinst.</p>
+
+<div class="dialog">"Weißt du wie ruhig es in einer Kapelle am Morgen ist? Nein?! Eben!"</div>
+
+<p>Er lehnt sich zurück.</p>
+
+<div class="dialog">"Außerdem hat Barsinger nie gesagt, dass man nur in Tavernen beten darf."</div>
+
+<p>Er tippt sich gegen die Brust.</p>
+
+<div class="dialog">"Hansbert."</div>
+
+[[Er holt Luft ->05_Sidequest_Hansbert_Barsinger]]
+
+
+
+
+
+:: 04_Sidequest_diplomaten {"position":"1350,150","size":"100,100"}
+<p>Die Tür der Gästekammer steht einen Spalt offen. Drinnen zwei Stimmen, die du beide nicht zuordnen kannst — eine redet viel, die andere selten, aber wenn, dann fällt das Reden der ersten kurz aus.</p>
+
+<div class="dialog">„…und ich sag dir, das war nicht der erste, der so sauber hochgeht. Erinnerst du dich an den im Frühjahr, der bei Ohm — nein, weiter nördlich, der mit dem Salz und dem anderen Kram —, der ist auch nicht einfach so. Da sitzt einer, der die Zettel vorher liest, anders kann das gar nicht —"</div>
+
+<div class="dialog">„Hannes."</div>
+
+<div class="dialog">„— anders kann das gar nicht laufen, weil keiner zufällig genau da steht, wo —"</div>
+
+<div class="dialog">„Hannes. Du redest dich im Kreis. Es ist einer von innen. Das wolltest du sagen. Hast du jetzt gesagt."</div>
+
+<p>Eine Pause. Dann, leiser: „…ja. Hab ich."</p>
+
+<div class="thought-box">Zwei vom einem Banner, dem Klang nach. Keine feinen Herren — die reden wie Leute, die zusammen im Dreck gelegen haben. Aber worüber, das krieg ich von hier nicht zusammen. Halbe Sätze, ein Frühjahr, ein Salz, irgendwer der Zettel liest. Brocken ohne Faden.</div>
+<p>In deinen Händen: ein verkorkter Krug und ein versiegelter Brief. Beides muss rein.</p>
+
+<span id="flur-wahl">
+<div><<link "Eintreten und abliefern">>
+    <<replace "#flur-wahl">><<goto "04_Sidequest_diplomaten_Eintreten">><</replace>>
+<</link>></div>
+
+<div>
+<<set _label to "Am Türspalt bleiben und die Brocken zusammensetzen" + setup.checkHint("thievery", 12)>>
+<<link _label>>
+    <<set _r to setup.skillCheck("thievery", 12)>>
+    <<if _r.outcome is "fail" or _r.outcome is "fumble">>
+        <<replace "#flur-wahl">><<goto "04_Sidequest_diplomaten_Erwischt">><</replace>>
+    <<else>>
+        <<set $world._lauschCrit to (_r.outcome is "crit")>>
+        <<replace "#flur-wahl">><<goto "04_Sidequest_diplomaten_Lauschen">><</replace>>
+    <</if>>
+<</link>>
+</div>
+
+<div><<link "Die Magd abpassen, die gleich das Essen bringt">>
+    <<replace "#flur-wahl">><<goto "04_Sidequest_diplomaten_Magd">><</replace>>
+<</link>></div>
+</span>
+
+
+:: 04_Sidequest_diplomaten_Auftrag [einmalig interrupt kap1] {"position":"1350,25","size":"100,100"}
+<div class="dialog">„Rekrut! Hände frei?" Der Sergeant wartet die Antwort nicht ab. Er stellt dir einen verkorkten Tonkrug auf den Tisch und legt einen versiegelten Brief daneben. „Gästekammer, oberer Gang. Zwei Diplomaten, auf Durchreise, irgendwas mit dem Banner und dem Städtebund. Der Krug ist für die, der Brief auch."</div>
+
+<p>Er sieht dich an, und zum ersten Mal liegt so etwas wie eine Warnung in seinem Blick.</p>
+
+<div class="dialog">„Eins noch. Du stellst es hin, sagst deinen Spruch, kommst zurück. Du lässt dich nicht in ein Gespräch verwickeln. Mit denen redet man nicht — mit denen verschwindet man." Er schnaubt. „Ich hab mal einen Boten reingeschickt. Der kam als anderer Mensch wieder raus. Älter."</div>
+
+<div class="thought-box">Ein Krug, ein Brief, zwei Worte und wieder weg. Klingt einfach. Klingt zu einfach für die Miene, die er gerade macht.</div>
+
+[[Zur Gästekammer. ->04_Sidequest_diplomaten]]
+
+
+:: 04_Sidequest_diplomaten_Eintreten {"position":"1150,350","size":"100,100"}
+<p>Du gehst hinein, stellst den Krug auf den Tisch und legst den Brief daneben. „Vom Sergeanten."</p>
+
+<p>Jetzt siehst du sie ganz: zwei in der rot-weißen Kleidung des Banners, abgetragen, gelebt. Keine Amtsketten, kein Brokat — der eine hat einen roten Bart und eine Dokumentenrolle am Gurt, der andere einen kürzeren, gepflegten, und eine kleine Narbe neben der Nase. Söldner, die reden können. Mehr nicht, und das ist schon viel.</p>
+
+<<set _out to "">>
+<<if $npc.diplomatHannes.known>>
+<p>Der mit der Narbe sieht auf — und erkennt dich. „Dich kenn ich. Die Treppe, im Hauptgang." Kein Vorwurf diesmal, eher ein halbes Grinsen. „Lebst also noch. Und trägst inzwischen Krüge durch die Gegend, statt Leute umzurennen." Er deutet auf den Rotbart. „Das ist Bast und mich kennst du ja schon. Wir sind die, die reden, wenn das Vierundachtzigste mal nicht hauen will." Bast hebt drei Finger zum Gruß. „Und?", fragt Hannes. „Wie hält die Ausbildung dich — oder du sie?"</p>
+
+<p>Ihr wechselt ein paar Worte. Es ist nichts Großes. Aber es ist das schön in der Akademie, dass dich jemand fragt, wie es *dir* geht.</p>
+<<else>>
+<p>Der Rotbart mustert dich, ohne den Faden zu verlieren, den er gerade trägt. „Moment. Der Krug kommt mit Gesicht." Er lehnt sich zurück. „Wer bist du denn?"</p>
+
+<p>Du nennst deinen Namen, deinen Stand — Rekrut, mehr gibt's nicht.</p>
+
+<div class="dialog">„Bast", sagt er und tippt sich an die Brust. „Der Vielredner da ist Hannes. Wir sind Diplomaten vom Vierundachtzigsten." Hannes nickt dir zu. „Und, Thomas? Hält die Ausbildung dich, oder hältst du sie?" Ein paar Worte hin und her, kameradschaftlich, ohne Herablassung. Sie fragen, wie es läuft. Sie hören sogar zu.</div>
+<</if>>
+
+<<set _out += setup.setNpcAffection("diplomatHannes", 2)>>
+<<set _out += setup.setNpcAffection("bast", 2)>>
+<<set $npc.diplomatHannes.known to true>>
+<<set $npc.bast.known to true>>
+
+<div class="outcome-box">
+<div class="outcome-title">Was sich verändert</div>
+<<= _out>>
+</div>
+<div class="scenery-text">Draußen beginnen die Glocken zu läuten, es ist Zeit für den Unterricht</div>
+<p>Dann winkt Hannes ab — freundlich, aber ihr seid fertig. „Geh schon. Bevor der Magister denkt, wir hätten dich behalten."</p>
+
+
+<<include "04_Sidequest_diplomaten_finalize">>
+
+
+:: 04_Sidequest_diplomaten_Erwischt {"position":"1300,275","size":"100,100"}
+<div class="scenery-text">Du beugst dich einen Daumenbreit zu weit in den Spalt — und der Boden unter deinem Stiefel hat eine andere Meinung. Ein Knarren. Winzig. Genug.</div>
+<div class="dialog">„…einer von innen, anders —" Bast bricht ab.</div>
+
+<p>Zwei Schritte, die Tür fliegt auf. Der mit der Narbe füllt den Rahmen, und das Beiläufige ist weg aus seinem Gesicht.</p>
+
+<div class="thought-box">Einer von innen. Das hab ich noch gehört, bevor die Tür aufging. Mehr nicht. Und jetzt steht der da und schaut mich an, als hätte ich gerade selbst bewiesen, wovon sie geredet haben.</div>
+<div class="dialog">„Ein Rekrut", sagt er, ohne die Stimme zu heben. „Am Türspalt. Bei genau dem Gespräch." Er sieht über die Schulter zum Rotbart. Der ist schon aufgestanden. „Den nehmen wir mit."</div>
+
+<<set _out to setup.setPlayerSuspicion(3)>>
+<<set _out += setup.addRumor("Bei den Transportüberfällen könnte es einen Maulwurf geben")>>
+
+<div class="outcome-box">
+<div class="outcome-title">Das bleibt hängen</div>
+<<= _out>>
+</div>
+
+<p>Eine Hand schließt sich um deinen Oberarm — nicht grob, aber ohne jeden Zweifel daran, dass du jetzt mitkommst. Krug und Brief bleiben stehen, wo sie stehen.</p>
+
+[[Mitgehen ->04_Sidequest_diplomaten_Kurt]]
+
+
+:: 04_Sidequest_diplomaten_Kurt {"position":"1450,275","size":"100,100"}
+<p>Sie bringen dich nicht weit. Eine Tür, ein Gang, und dann stehst du vor Kurt Brasner — grauhaarig, Fähnrich, einer, der schon Rekruten hat kommen und gehen sehen, als deine Eltern noch keine waren.</p>
+
+<p>Der Rotbart erklärt es in drei Sätzen. Kein Drama, keine Anklage. Nur: am Türspalt, beim falschen Gespräch, erwischt.</p>
+
+<p>Kurt sieht dich an. Lange. Dann sagt er nicht, was du erwartest — nichts über Vertrauen, nichts über Anstand.</p>
+
+<div class="dialog">„Erwischt", sagt er nur, und das Wort fällt wie ein Stein. „Das ist es, was mich stört. Nicht dass du gehorcht hast — neugierig sind sie alle. Sondern dass du so schlecht darin warst, dass dich zwei Männer mitten im Reden gehört haben." Er tritt näher. „Wenn du schon schnüffelst, Rekrut, dann tu's so, dass es keiner merkt. Und wenn du das nicht kannst — und du kannst es offensichtlich nicht —, dann lass die Finger davon, bis du's kannst. Hab ich mich klar genug ausgedrückt, oder soll ich's dir auf dem Hof nochmal erklären, bis dir die Beine wegsacken?"</div>
+
+<p>Du sagst, was man da sagt. Es ist wenig, und es ist das Richtige.</p>
+
+<p>Hinter dir, halb amüsiert, der mit der Narbe: „Hannes, fürs Protokoll. Der Rotbart ist Bast. Wir sind die Diplomaten vom 84. Banner — und du, Rekrut, bist ab heute der, den wir am Türspalt erwischt haben. Glückwunsch zum Eindruck."</p>
+
+<<set _out to "">>
+<<set _out += setup.setPlayerSuspicion(5)>>
+<<set _out += setup.setNpcAffection("kurt", -3)>>
+<<set _out += setup.setNpcAffection("diplomatHannes", -3)>>
+<<set _out += setup.setNpcAffection("bast", -3)>>
+<<set _out += setup.pushNpcMemory("kurt", "hat Thomas beim Lauschen erwischt")>>
+<<set _out += setup.pushNpcMemory("diplomatHannes", "Thomas am Tuerspalt erwischt")>>
+<<set $npc.diplomatHannes.known to true>>
+<<set $npc.bast.known to true>>
+<<set $npc.kurt.known to true>>
+
+<div class="outcome-box">
+<div class="outcome-title">Was sich verändert</div>
+<<= _out>>
+</div>
+
+<div class="thought-box">Drei Namen reicher, drei Mal schlechter angesehen. Das hab ich ja sauber hinbekommen...</div>
+
+[[Den Tag hinter dich bringen ->Auf Stube]]
+
+
+:: 04_Sidequest_diplomaten_Lauschen {"position":"1200,150","size":"100,100"}
+<div class="scenery-text">Du bleibst stehen, atmest flach und lässt die Brocken nicht mehr einzeln vorbeiziehen, sondern legst sie nebeneinander, bis sie ein Bild ergeben.</div>
+<p>Es geht um Transporte. Zwei, die nicht ankamen. Beide an Stellen, wo kein Räuber zufällig wartet. Und um den Gedanken, den Hannes umkreist und Bast in einen Satz presst: dass keiner von außen so genau weiß, wo ein Transport schwach ist — dass einer die Wege vorher liest, bevor sie gefahren werden.</p>
+
+<<set _wissen to setup.ueberfallWissen()>>
+<<set _out to "">>
+<<if _wissen gte 2>>
+<div class="thought-box">Ich weiß genau, wovon sie reden. Karla hat mir alles erzählt: Edric, das Fieber, der Zeuge der schwieg. Und jetzt sagen es zwei vom Banner mit denselben Worten — von oben, mit Karten und Wegen. Dieselbe Sache von zwei Seiten. Und in der Mitte einer, der die Zettel vorher liest.</div>
+<<set _out += setup.setPlayerStat("scholarship", 1)>>
+<<set _out += setup.addRumor("Oben und unten dieselbe Geschichte: Die Überfälle saßen zu genau für Zufall — einer liest die Wege vorher, von innen. Und Edric im Turm passt nicht ins Bild.")>>
+<<elseif _wissen gte 1>>
+<div class="thought-box">Transportüberfälle — das hab ich unten schon mal aufgeschnappt, damals nur ein Halbsatz. Jetzt sagen zwei vom Banner, es sei einer von innen. Also ist mehr dran, als ich dachte.</div>
+<<set _out += setup.setPlayerKnowledge("gossip", 1)>>
+<<set _out += setup.addRumor("Zwei Diplomaten vom Banner sind sich sicher: Die Transportüberfälle gehen auf einen Innentäter zurück, der die Wege vorher kennt. Deckt sich mit dem Gerede unten.")>>
+<<else>>
+<div class="thought-box">Überfallene Transporte. Einer, der von innen die Wege durchsticht. Davon hab ich noch nie gehört — aber so wie die zwei das sagen, ist da was dran. Das behalte ich.</div>
+<<set _out += setup.setPlayerKnowledge("gossip", 1)>>
+<<set _out += setup.addRumor("Zwei Diplomaten vom Banner reden leise über die Transportüberfälle — sie glauben, einer von innen liest die Wege vorher aus.")>>
+<</if>>
+<<set _out += setup.setPlayerKnowledge("thievery", 1)>>
+<<if $world._lauschCrit>>
+<div class="scenery-text">Du bleibst eine Spur länger, als klug ist — und erwischst den Moment, in dem Hannes verstummt und Bast nicht nachsetzt. Kein Wort mehr, nur zwei Männer, die zusammen genug gesehen haben, um zu wissen, was es heißt, wenn der Verrat aus den eigenen Reihen kommt. Es ist die Stille, die dir mehr sagt als alles davor: Die beiden haben keine Angst vor Räubern. Sie haben Angst vor jemandem, den sie kennen.</div>
+<<set _out += setup.pushNpcMemory("diplomatHannes", "Thomas hat ihre Sorge gesehen, ohne erwischt zu werden")>>
+<</if>>
+<div class="outcome-box"> 
+<div class="outcome-title">Du nimmst etwas mit</div>
+<<= _out>>
+</div>
+<div class="thought-box">Und ich steh hier immer noch mit Krug und Brief. Die müssen trotzdem rein.</div>
+
+[[Eintreten und abliefern ->04_Sidequest_diplomaten_Eintreten]]
+
+
+:: 04_Sidequest_diplomaten_Magd {"position":"1225,475","size":"100,100"}
+<p>Hinter dir will die Küchenmagd mit einem Tablett herein, und du trittst beiseite, um sie durchzulassen und schließt dich ihr an. Eine Selbstverständlichkeit. Du denkst dir nichts dabei.</p>
+
+<p>Bast schon.</p>
+
+<p>Mitten in dem, was Hannes gerade umkreist, hebt der Rotbart eine Hand — der Vielredner stoppt — und folgt der Magd mit den Augen quer durch den Raum.</p>
+
+<div class="dialog">„…fürs erste belassen wir es dabei", sagt er schließlich.</div>
+
+<p>Hannes nutzt die Lücke mit der Schnelligkeit eines Mannes, der seit einer halben Stunde auf eine wartet. „Genug für heute. Den Rest morgen." Er klappt die Mappe zu.</p>
+
+<p>Du stellst Krug und Brief ab.</p>
+<p>Der Rotbart starrt der Magd hinterher, Der andere verstaut seine Utensilien.</p>
+<<set _out to "">>
+<<if $npc.diplomatHannes.known>>
+<p>Hannes' Blick bleibt kurz an dir hängen. „Die Treppe", sagt er, halb festgestellt. Dann, fast amüsiert: „Heute wenigstens niemanden umgerannt. Fortschritt!"</p>
+<p>Er wendet sich an den anderen, der immer noch in Gedanken bei der Magd festhängt.</p>
+<div class="dialog">"He Bast! Schau mal wer hier ist."</div>
+<<set _out += setup.pushNpcMemory("diplomatHannes", "hat den Treppen-Rekruten wiedererkannt")>>
+<<else>>
+<p>und bemerkt dich. "Ein Rekrut der Trinken bringt?! Wie kommst du zu der Ehre?"</p>
+<p>Das reist den Rotbart aus seinem Tagtraum.</p>
+<</if>>
+
+<p>Es entsteht eine kleine illustre Unterhaltung.</p>
+<p>Wie die Ausbildung läuft, ob die Küche mittlerweile auch was anderes hat als "Allerley". Die Zeit vergeht...</p>
+<<set _out += setup.setNpcAffection("diplomatHannes", 2)>>
+<<set _out += setup.setNpcAffection("bast", 2)>>
+
+<div class="outcome-box">
+<div class="outcome-title">Was sich verändert</div>
+<<= _out>>
+</div>
+
+<div class="scenery-text">Draußen beginnen die Glocken zu läuten, es ist Zeit für den Unterricht</div>
+<p>Dann winkt Hannes ab — freundlich, aber ihr seid fertig. „Geh schon. Bevor der Magister denkt, wir hätten dich behalten."</p>
+
+
+<<include "04_Sidequest_diplomaten_finalize">>
+
+
+:: 04_Sidequest_diplomaten_finalize {"position":"1375,450","size":"100,100"}
+<<set $npc.bast.known = true>>
+<<set $npc.diplomatHannes.known = true>>
+<<set $npc.bast.memory.flags.sidequest04Complete = true>>
+<<set $npc.diplomatHannes.memory.flags.sidequest04Complete = true>>
+[[Die Glocken rufen zum Unterricht->Studium Hub]]
+
+
+
+
+
+:: 03_Sidequest_wenzel {"position":"575,2825","size":"100,100"}
+<p>Du biegst um die Ecke der Schreibstube und wärst um ein Haar in ihn hineingelaufen: Ein Söldner bunt wie ein Pfau, an die Wand gelehnt, Arme verschränkt, das rote Barett schief, im Gesicht das Grinsen eines Mannes, der gleich die beste Vorstellung seines Lebens erwartet.</p>
+
+<p>Er hebt den Zeigefinger an die Lippen. Pst.</p>
+
+<p>Dann nickt er mit dem Kinn nach vorn. Ein paar Schritte weiter stolziert ein Unteroffizier den Gang entlang — Brust raus, Nase hoch, einer von der Sorte, die ihren eigenen Schritt zählt. Direkt auf eine Stelle des Steinbodens zu, die verdächtig matt glänzt.</p>
+
+<div class="thought-box">Öl oder Fett. Frisch. Und der Kerl steht hier wie im Parkett. Das ist kein Zufall!</div>
+<div class="dialog">„Schau zu", flüstert der Söldner, ohne dich anzusehen. „Oder schau weg. Aber wenn du was sagst, hast du's mir versaut, Bürschchen."</div>
+
+[[Klappe halten und zusehen. ->03_Sidequest_wenzel_Mitspielen]]
+[[Den Unteroffizier unauffällig warnen. ->03_Sidequest_wenzel_Warnen]]
+[[Wenzel fragen, was das soll. ->03_Sidequest_wenzel_Fragen]]
+
+
+:: 03_Sidequest_wenzel_Auftrag [interrupt einmalig kap1] {"position":"450,2825","size":"100,100"}
+<p>Es ist der Schinder, der dich aus dem Tritt reißt — nicht mit einem Schlag, mit einem Blick und einem Zettel.</p>
+
+<div class="dialog">„Du. Rekrut." Er drückt dir ein Stück Papier in die Hand, an dem ein Stempel klebt. „Schreibstube. Dein Eintrag in der Truppenrolle stimmt nicht. Der Sergeant will dich sehen, bevor's offiziell wird. Und nimm die Beine in die Hand — ich will dich vor dem Appell zurück."</div>
+
+<p>Du siehst auf den Zettel. Deine eigene Handschrift ist es nicht. Irgendwo steht dein Name — falsch geschrieben, oder gar nicht, das erkennst du auf die Schnelle nicht.</p>
+
+<div class="thought-box">Ein Fehler in einer Liste. Klingt nach nichts. Aber hier ist eine Liste das Einzige, was beweist, dass es mich überhaupt gibt. Besser, ich bring das in Ordnung.</div>
+<p>Der Weg zur Schreibstube führt durch die hinteren Gänge der Kaserne, dorthin, wo der Stein nach Tinte und altem Papier riecht und der Lärm des Hofs verstummt.</p>
+
+[[Zur Schreibstube. ->03_Sidequest_wenzel]]
+
+
+:: 03_Sidequest_wenzel_Fragen {"position":"700,2825","size":"100,100"}
+<div class="dialog">„Was ich da treib?" Er nimmt die Augen nicht vom Gang. „Handwerk."</div>
+
+<p>Eine Pause. „War Zimmermann, bevor mich das Heer hatte. Und ein Zimmermann weiß: Jedes Holz hat 'ne Stelle, wo's bricht. Bei Leuten is das genauso." Erst jetzt sieht er dich an. „Bei dem da" — Kinn Richtung Unteroffizier — „is es der Hochmut. Bei dir weiß ich's noch nich."</p>
+
+<p>Während er redet, ist der Unteroffizier längst um die Ecke verschwunden, am Öl vorbei, ahnungslos. Wenzel seufzt, fast genüsslich enttäuscht.</p>
+
+<div class="dialog">„Pech. Vorstellung fällt aus. Wegen Geschwätz.Mein Name ist Wenzel, Feldweibel im 84. Und wer bist du?" Er grinst dabei, und du hast das Gefühl, du hast trotzdem nichts falsch gemacht.</div>
+
+<<= setup.setNpcAffection("weibelWenzel", 3)>>
+<<= setup.pushNpcMemory("weibelWenzel", "hat nach dem Lampenoel gefragt")>>
+<<include "03_Sidequest_wenzel_finalize">>
+
+
+:: 03_Sidequest_wenzel_Mitspielen {"position":"575,2700","size":"100,100"}
+<p>Du hältst den Mund. Du tust gar nichts. Das ist alles, was es braucht.</p>
+
+<p>Der Unteroffizier trifft das Öl, und die Würde verlässt ihn von unten nach oben: erst der Stiefel, dann das Gleichgewicht, dann die Haltung, und zuletzt sitzt er auf dem Hintern zwischen verstreuten Papieren und einem Fluch, der eines Weibels würdig wäre.</p>
+
+<p>Er lacht nicht laut. Er atmet nur langsam durch die Nase aus, zufrieden bis in die Zehen, wie ein Mann, der einem Sonnenuntergang zusieht. Dann dreht er den Kopf zu dir.</p>
+
+<div class="dialog">„Du kannst die Klappe halten." Er mustert dich neu, als hätte er gerade ein Brett gefunden, das besser ist als gedacht. „Selten bei Frischlingen. Sehr selten.</div>
+<p>Mein Name ist Wenzel, Feldweibel im 84. Und wer bist du? Jemanden wie dich könnt ich gut gebrauchen!"</p>
+
+<<= setup.setNpcAffection("weibelWenzel", 5)>>
+<<= setup.pushNpcMemory("weibelWenzel", "hat mitgespielt und Klappe gehalten")>>
+<<include "03_Sidequest_wenzel_finalize">>
+
+
+:: 03_Sidequest_wenzel_Warnen {"position":"575,2950","size":"100,100"}
+<p>Du hustest. Ein halber Schritt, ein Blick nach unten, gerade genug — der Unteroffizier stutzt, sieht den matten Fleck und macht einen knappen Bogen darum. Er marschiert weiter, ohne je zu erfahren, wie nah er dem Boden war.</p>
+
+<p>Die Vorstellung ist vorbei, bevor sie begonnen hat.</p>
+
+<p>Er dreht langsam den Kopf. Wütend ist er nicht — das ist das Seltsame. Er sieht dich an, wie ein Zimmermann ein Brett ansieht, das ausgerechnet an einer interessanten Stelle einen Ast hat.</p>
+
+<div class="dialog">„Tss. Held." Aber da ist kein Gift drin. „Merk dir eins: Ich hab gesehn, dass du das kannst. Den Anstand. Sowas brauch ich vielleicht mal." Ein kurzes Lachen. „Oder ich rächs mir. Mal schaun. Mein Name ist Wenzel, Feldweibel im 84. Und wer bist du?"</div>
+
+<<= setup.setPlayerStat("mercy", 2)>>
+<<= setup.setNpcAffection("weibelWenzel", 1)>>
+<<= setup.pushNpcMemory("weibelWenzel", "hat den Unteroffizier gewarnt")>>
+<<include "03_Sidequest_wenzel_finalize">>
+
+
+:: 03_Sidequest_wenzel_finalize [nach_appell] {"position":"700,2700","size":"100,100"}
+<<set $npc.weibelWenzel.memory.flags.sidequest03Complete = true>>
+<<set $npc.weibelWenzel.known = true>>
+
+<p>Was war das für ein seltsamer Moment?</p>
+<p>Du sinierst noch etwas befor dir auffällt dass du zu spät zum Appell kommst und noch zum Sergeanten musst !!!</p>
+
+[[Losstürmen! ->Abendappell]]
+
+
+
+:: 02_Sidequest_vasil [layout kap1] {"position":"200,1150","size":"100,100"}
+<div class="scenery-text">Der Armbrust-Stand ist um diese Stunde fast verwaist — bis auf den einen Mann, der breitbeinig vor dem hintersten Schießpfosten steht und mit einer Geduld an einer Ballistenwinde dreht, die so gar nicht zu seiner Statur passt.</div>
+
+<p>Er ist groß. Nicht groß, wie ein hochgewachsener Rekrut groß ist, sondern groß wie eine Türöffnung, die jemand aus Versehen verbaut hat. Rot-weiße Söldnerkleidung, ein abgegriffenes Barett, Werkzeug am Gurt, das mehr nach Werkstatt als nach Schlachtfeld aussieht. Sein Gesicht steht auf Gewitter.</p>
+
+<p>Das Abzeichen auf seinem Barrett kommt dir irgendwie vertraut vor.</p>
+<<if setup.isFactionKnown("84. Banner")>>
+	<div class="scenery-text">Der Haubentaucher!</div>
+    <<set $story002_knownSoeldner = setup.getRandomKnownNpcByFaction("84. Banner")>>
+    <div class="thought-box">Den habe ich schon bei $story002_knownSoeldner gesehen</div>
+<<else>>
+<p>//Aber mehr als ein Seltsamer Gedanke kommt nicht hoch..</p>
+
+<</if>>
+
+<div class="thought-box">Der sieht aus, als hätte ihm heute schon jemand den Tag versaut. Vielleicht lass ich ihn besser in Ruhe. Vielleicht.</div>
+
+<p>Er bemerkt dich, ohne den Kopf zu heben. „Steh mir nicht in der Sonne, Frischling."</p>
+
+[[Ihn um einen Tipp fragen. ->02_Sidequest_vasil_Tipp]]
+[[Dich danebenstellen und einfach zusehen. ->02_Sidequest_vasil_Zusehen]]
+[[Lieber weitergehen. ->02_Sidequest_vasil_Ablehnung]]
+
+
+:: 02_Sidequest_vasil_Ablehnung [layout] {"position":"325,1275","size":"100,100"}
+<p>Du gehst weiter. Hinter dir dreht sich die Winde unbeirrt weiter. Er ruft dir nicht nach.</p>
+
+<p>Große Männer, die Ballisten reparieren, laufen keinem Frischling hinterher.</p>
+
+<<include "02_Sidequest_vasil_finalize">>
+
+
+:: 02_Sidequest_vasil_Hoeflich [layout] {"position":"200,1400","size":"100,100"}
+<p>Du ziehst die Mundwinkel hoch und nickst — die Höflichkeit, die man jemandem schuldet, der einem etwas beibringt.</p>
+
+<p>Er sieht es. Natürlich sieht er es. „Tss. Kenner." Die Wand schiebt sich wieder vor sein Gesicht, aber er korrigiert deinen Stand trotzdem noch ein letztes Mal, kurz und korrekt, bevor er sich wieder der Winde zuwendet.</p>
+
+<<= setup.setNpcAffection("vasil", 2)>>
+<<= setup.setPlayerKnowledge("crossbow", 1)>>
+<<include "02_Sidequest_vasil_finalize">>
+
+
+:: 02_Sidequest_vasil_Lachen [layout] {"position":"75,1400","size":"100,100"}
+<p>Und etwas passiert im Gesicht der Wand: Es bricht auf. Erst die Augen, dann der Rest, und plötzlich grinst da kein Gewitter mehr, sondern ein großer Junge, der gerade gehört hat, dass sein Witz angekommen ist.</p>
+
+<div class="dialog">„Gut, oder? Hab noch 'nen besseren." Er hat keinen besseren, aber er erzählt ihn trotzdem, und der ist schlechter, und er klopft dir dabei auf die Schulter, dass du fast in den Pfosten kippst. Dann drückt er dir die Armbrust in die Hand und richtet deinen Griff noch einmal — „damit's auch sitzt".</div>
+
+<div class="thought-box">Grantig sieht er aus. Grantig ist er nicht. Den merk ich mir.</div>
+
+<<= setup.setNpcAffection("vasil", 6)>>
+<<= setup.setPlayerKnowledge("crossbow", 1)>>
+<<= setup.pushNpcMemory("vasil", "hat ueber den Witz gelacht")>>
+<<include "02_Sidequest_vasil_finalize">>
+
+
+:: 02_Sidequest_vasil_Tipp [layout] {"position":"75,1275","size":"100,100"}
+<<set $npc.vasil.known = true>>
+<div class="dialog">„Tipp." Er sagt das Wort, als würde er es auf Festigkeit prüfen. Dann legt er die Winde aus der Hand und mustert dich von unten herauf — das Gewitter zieht ein Stück weiter, ohne ganz zu verschwinden. „Na gut."</div>
+
+<p>Er tippt sich ans Barett. „Vasil. Vierundachtzigstes Banner. Und du bist der, der gern im Licht steht."</p>
+
+<p>Was dann kommt, hast du nicht erwartet. Griff. Atmung am Anschlag. Der Moment vor dem Abzug, in dem man nichts tut, gar nichts. Für einen Mann, der aussieht wie eine Wand, hat er Hände, die genau wissen, was sie tun — und eine Ruhe, die ansteckt.</p>
+
+<p>Dann, beim Spannen, ganz beiläufig: „Weißt du, was der Unterschied is zwischen 'nem Bolzen und 'nem Rekruten?" Pause. „Der Bolzen geht dahin, wo man hinzielt."</p>
+
+<p>Er sieht dich an. Wartet. Es ist offensichtlich ein Witz, den er für ausgezeichnet hält.</p>
+
+[[Ehrlich lachen — der Witz ist so dämlich, dass er gut ist. ->02_Sidequest_vasil_Lachen]]
+[[Höflich nicken und weiterschießen. ->02_Sidequest_vasil_Hoeflich]]
+
+
+:: 02_Sidequest_vasil_Zusehen [layout] {"position":"200,1275","size":"100,100"}
+<<set $npc.vasil.known = true>>
+<p>Du stellst dich neben ihn und sagst nichts. Er schießt. Wieder. Wieder. Die Bolzen sitzen so dicht beieinander, dass man sie mit einer Hand verdecken könnte — eine Präzision, die nichts mit seiner Masse zu tun hat und alles mit den tausend Stunden dahinter.</p>
+
+<p>Irgendwann, ohne ein Wort, hält er dir eine gespannte Armbrust hin. „Eine. Mal sehn."</p>
+
+<p>Du legst an. Der Schuss geht, wohin er geht — aber er nickt, ein kurzes, brummiges Nicken, das mehr Anerkennung ist, als die meisten hier an einem ganzen Tag bekommen. „Geht scho."</p>
+
+<p>Er tippt sich ans Barett. „Vasil. Vierundachtzigstes Banner. Und du bist der, der gern im Licht steht."</p>
+
+<<= setup.setNpcAffection("vasil", 4)>>
+<<= setup.setPlayerKnowledge("crossbow", 1)>>
+<<= setup.pushNpcMemory("vasil", "hat zugesehen und mitgeschossen")>>
+<<include "02_Sidequest_vasil_finalize">>
+
+
+:: 02_Sidequest_vasil_finalize [layout] {"position":"325,1400","size":"100,100"}
+<<set $npc.vasil.memory.flags.sidequest02Complete = true>>
+[[Zurück zu den Schützen ->Nachmittag Crossbow]]
+
+
+
+
+
+:: Story002_BierAnnehmen {"position":"2075,2675","size":"100,100"}
+<p>Du nimmst den Becher.</p>
+<p>Das Bier ist dünn und hat einen Stich ins Saure — das Billige, das der Wirt für Soldaten aufhebt weil er weiß dass sie es trotzdem trinken. Es schmeckt trotzdem gut. Vielleicht wegen der Gesellschaft. Vielleicht wegen des Tages der dahinter liegt.</p>
+<p>Haddl redet. Über die Gebirgsmarine, über einen Winter irgendwo an der Grenze, über einen Maultier das klüger war als sein Reiter. Lars hört zu mit dem Gesicht eines Mannes der die meisten dieser Geschichten schon kennt und sie trotzdem lässt.</p>
+<p>Irgendwann bist du kein Rekrut mehr an ihrem Tisch. Du bist jemand der dazugehört.</p>
+
+<div class="scenery-text">Der Abend wird länger als geplant.</div>
+
+[[Noch eine Runde ->Story002_finalize]]
+
+
+:: Story002_Bier_Ausgeben {"position":"2225,2675","size":"100,100"}
+<<set $player.gold -= 8>>
+<<= setup.setNpcAffection("weibelLars", 1)>>
+<<= setup.pushNpcMemory("weibelLars","Hat Bier ausgegeben")>>
+<<= setup.setNpcAffection("haddl", 1)>>
+<<= setup.pushNpcMemory("haddl","Hat Bier ausgegeben")>>
+<p>Du winkst den Wirt heran und legst acht Kupfer auf den Tisch.</p>
+<div class="dialog">„Für die zwei."</div>
+<p>Der Wirt nimmt das Geld ohne Kommentar. Haddl dreht sich um, sieht den Becher, sieht dich — und grinst dann breit wie ein Mann dem gerade ein langer Tag besser wird.</p>
+<div class="dialog">„Der Opa hat immer gesagt—"</div>
+<div class="dialog">„Ich weiß", sagt Lars. Aber er nimmt den Becher.</div>
+<p>Eine kurze Stille. Dann lehnt sich Lars zurück und hebt den Becher in deine Richtung. Nicht warm. Nicht feierlich. Einfach nur — anerkennend.</p>
+<div class="dialog">„Wie heißt du."</div>
+<p>Du sagst es.</p>
+<p>Er nickt. Dann dreht er sich zum Wirt.</p>
+<div class="dialog">„Noch eine Runde. Der Bursche auch."</div>
+<p>Haddl strahlt. „Der Opa hat immer gesagt: Wer großzügig ist bekommt mehr zurück als er gegeben hat."</p>
+<div class="dialog">„Das hat der Opa diesmal vielleicht sogar gesagt", gibt Lars zu.</div>
+
+[[Noch eine Runde ->Story002_finalize]]
+
+
+:: Story002_Taverne_Ansprechen_KeinAufhaenger {"position":"2300,2525","size":"100,100"}
+<p>Du gehst rüber. Ohne Grund. Ohne Plan.</p>
+<p>Der Große bemerkt dich zuerst. Sein Blick kommt langsam hoch — so wie ein Mann der gelernt hat dass das meiste was auf ihn zukommt entweder Arbeit oder Ärger ist. Er wartet ab welches du bist.</p>
+<p>Der Lange dreht sich um. Mustert dich von oben bis unten mit der entspannten Gründlichkeit von jemandem dem das Ergebnis egal ist.</p>
+<p>Stille.</p>
+<div class="dialog">„Nun!" Der Große. Kein Fragezeichen dahinter.</div>
+<div class="thought-box">Oh Mann! Ich hätte mir echt vorher überlegen sollen was ich eigentlich sagen will!</div> 
+<p>Der Lange greift seinen Becher, lehnt sich zurück und rettet dich auf seine Art.</p>
+<div class="dialog">„Setz dich, Bursche. Wer steht wenn er sitzen könnte ist entweder auf der Flucht—" er trinkt, „—oder zu dumm um's zu merken."</div>
+<p>Der Große sieht ihn an mit dem Gesicht eines Mannes der sich an diesen Satz seit Jahren gewöhnt.</p>
+<p>Sie nennen ihre Namen. $npc.weibelLars.name und $npc.haddl.name .</p>
+<<set $npc.weibelLars.known = true>>
+<<set $npc.haddl.known = true>>
+<p>Das Gespräch ist kurz und unverbindlich. Lars antwortet wenn er muss, Haddl redet in die Lücken. Draußen wird es dunkler. Irgendwo kracht ein Stuhl um.</p>
+<<if $player.money.copper >= 8>>
+
+<p>Du könntest die Runde schmeißen. Ein Becher Bier kauft mehr als Bier.</p>
+[[Ihnen ein Bier ausgeben ->Story002_Bier_Ausgeben]]
+[[Sich verabschieden und zurück zu den Rekruten ->Auf Stube][$world.kondition += 5]]
+<<else>>
+[[Sich verabschieden und zurück zu den Rekruten ->Auf Stube][$world.kondition += 5]]
+<</if>>
+
+
+:: Story002_Taverne_Ansprechen_MitAufhaenger {"position":"2025,2525","size":"100,100"}
+<p>Du gehst rüber. Das Wappen auf dem Mantel gibt dir genug.</p>
+<div class="dialog">„Das Wappenschild—" du nickst in Richtung seiner Brust. „Das 84. Banner."</div>
+<p>Der Große sieht dich an. Dann sieht er dich //anders// an — so wie man jemanden ansieht der gerade von Hund auf Mensch hochgestuft wurde.</p>
+<div class="dialog">„Ja." Eine kurze Pause. „Woher weißt du das."</div>
+<p>Keine Frage. Eine Prüfung.</p>
+<p>Du nennst den Namen. $story002_knownSoeldner</p>
+<p>Etwas in seinem Gesicht verändert sich. Kaum merklich. Er reibt sich den Nasenrücken, langsam, und nickt dann einmal — so wie Männer nicken wenn eine Rechnung aufgeht die sie nicht erwartet haben.</p>
+<div class="dialog">„Setz dich."</div>
+<p>Der Lange hat das Ganze mit stiller Freude verfolgt. Er schiebt mit dem Fuß einen Stuhl heraus ohne aufzuhören zu trinken.</p>
+<div class="dialog">„Lars", sagt der Große.</div>
+<div class="dialog">„Haddl." Der Lange hebt seinen Becher. „Und der Opa hat immer gesagt: Wer das Wappen kennt ohne gefragt zu werden — der schaut hin. Wer hinschaut überlebt länger."</div>
+<p>Lars sieht ihn an.</p>
+<div class="dialog">„Das hat der Opa nie gesagt."</div>
+<div class="dialog">„Nein", gibt Haddl zu. „Aber es klingt gut."</div>
+<<set $npc.weibelLars.known = true>>
+<<set $npc.weibelLars.affection += 2>>
+<<set $npc.haddl.known = true>>
+<<= setup.setNpcAffection("haddl", 1)>>
+<div class="scenery-text">Das Gespräch findet seinen eigenen Rhythmus. Lars redet wenig aber wenn er redet hat es Gewicht. Haddl füllt die Lücken mit Geschichten die halb gelogen und halb zu gut sind um erfunden zu sein.
+<p>Irgendwann bestellt Lars ohne zu fragen eine neue Runde.</p></div>
+[[Das Bier annehmen ->Story002_BierAnnehmen]]
+
+
+:: Story002_Taverne_mit_Lars_Und_Hadde [interrupt einmalig kap1] {"position":"2175,2400","size":"100,100"}
+<p>Es war die Idee von jemand anderem. Zumindest sagst du dir das.</p>
+<p>Drei Mann, ein Loch im Zaun das schon seit Wochen niemand geflickt hat, und ein Nachmittag der sich lang genug anfühlt um es zu riskieren. Der Weg zur Taverne dauert keine zehn Minuten — aber die ersten zwei gehst du mit dem Nacken zwischen den Schultern.</p>
+<p>Niemand ruft euch zurück.</p>
+<div class="scenery-text">Es riecht nach Talg, saurem Bier und dem angenehmen Nichts von //nach dem Dienst//. Ein Dutzend Tische, halb besetzt. Irgendwer lacht zu laut. Niemand schaut hin.
+</div>
+<p>Becher werden bestellt. Einer deiner Kameraden zieht unter dem Tisch die Stiefel aus und seufzt dabei wie ein alter Mann. Die Schultern fallen zum ersten Mal seit dem Morgen ein wenig nach unten.</p>
+<p>Du lässt den Blick wandern.</p>
+<p>In der hinteren Ecke sitzen zwei Männer.</p>
+
+<p>Der Größere lehnt mit dem Rücken zur Wand — roter Mantel, der rechte Arm schwarz abgesetzt, ein auffälliges Wappenschild auf der Brust</p>
+<<if setup.isFactionKnown("84. Banner")>>
+	<div class="scenery-text">Der Haubentaucher!</div>
+    <<set $story002_knownSoeldner = setup.getRandomKnownNpcByFaction("84. Banner")>>
+    <div class="thought-box">Den habe ich schon bei $story002_knownSoeldner gesehen</div>
+<<else>>
+<p>//Aber du kannst es nicht einordnen.</p>
+
+<</if>>
+<p>Er hört zu, die Arme vor der Brust verschränkt, und reibt sich dabei langsam den Nasenrücken. Das Gesicht eines Mannes dem das hier nicht der erste schwierige Nachmittag ist.</p>
+<p>Der andere — kein Bart, lange Haare, eine rot-weiße Hose die nach Gebirge aussieht — redet. Mit den Händen, mit dem Oberkörper, mit dem halben Becher der dabei gefährlich schwappt. Was er sagt geht im Lärm des Raumes unter.</p>
+
+<p>Der Große antwortet mit zwei Worten.</p>
+
+<p>Der Lange lacht</p>
+
+<<if setup.isFactionKnown("84. Banner")>>
+<p>Das Barret, das Wappen, Du willst mehr über die Kerle erfahren.</p>
+<p>Aber du bist mit deinen Kammeraden gekommen und willst eigentlich die Zeit mit ihnen genießen</p>
+    
+	[[Hingehen ->Story002_Taverne_Ansprechen_MitAufhaenger]]
+    [[Den Nachmittag genießen und die zwei vergessen ->Auf Stube][$world.kondition += 1]]
+<<else>>
+<p>Fremde Gesichter. Kein Grund hinzugehen.</p>
+
+<p>Und trotzdem.</p>
+
+<p>Irgendetwas an den zwei — die Haltung, der Mantel, die Art wie der Große zuhört — lässt deinen Blick immer wieder rüberwandern.</p>
+
+[[Den Nachmittag genießen und die zwei vergessen ->Auf Stube][$world.kondition += 1]]
+[[Hingehen ->Story002_Taverne_Ansprechen_KeinAufhaenger]]
+<</if>>
+
+
+:: Story002_finalize [nach_morgen] {"position":"2150,2825","size":"100,100"}
+<div class="scenery-text">Was danach passiert lässt sich schwer in einer geraden Linie erzählen.</div>
+<p>Irgendwann war der Becher leer und dann voll und dann wieder leer.</p>
+
+<p>Haddl hat eine Sau aufgetrieben — woher, das hat niemand gefragt und er hat es nicht erklärt.</p>
+<p>Die Gasse draußen war schmal genug dass es knapp wurde.</p>
+<p>Lars hat dabei das Gesicht eines Mannes gemacht der das nicht gutheißt und trotzdem nicht aufgehört hat zu lachen.</p>
+<p>Du erinnerst dich an Pflastersteine. An kalte Luft. An Haddl der irgendetwas über den Opa ruft während die Sau die Richtung wechselt.</p>
+<p>Den Rest reimst du dir morgen zusammen. Vielleicht hast du dir was notiert?</p>
+<div class="thought-box">Es war ein guter Abend. Das weißt du noch. Den Rest nicht.</div>
+
+	<<unset $story002_knownSoeldner>>
+    <<= setup.setPlayerCondition(-10)>>
+    <<= setup.setPlayerStat("ambition", -10)>>
+    <<= setup.pushNpcMemory("weibelLars", "Saurreiten in Ohm")>>
+    <<= setup.pushNpcMemory("haddl", "Saurreiten in Ohm")>>
+    <<= setup.addRumor("Lars hat schon mal wem ins Bier gepisst.")>>
+    <<run setup.addRumor("Haddl verwendet oft den Satz: Der Opa hat immer gesagt...")>>
+    <<= setup.addItem("Söldner-Handbuch mit Widmung von Lars und Hadde")>>
+
+
+<hr class="trenner-raute">
+<<weiterImTag "Tswu .. viel... lang... verdammt!">>
+
+
+
+:: EE_Tross {"position":"725,875","size":"100,100"}
+<p>Du hörst sie bevor du sie siehst.</p>
+
+<div class="scenery-text">Eine Frauenstimme — Dialekt, warm, schnell — erklärt gerade jemandem mit großer Sachkenntnis und wenig Geduld, 
+dass eine Wunde die man selbst aufkratzt keine Wunde mehr ist sondern eine Dummheit. 
+Ein zweites Wort, tiefer, männlich, antwortet mit der Gelassenheit eines Mannes dem die Welt gerade genau so gefällt wie sie ist. 
+Eine dritte Stimme — weiblich, knapper — sagt nur: „Stimmt."</div>
+
+<p>Du biegst um die Ecke.</p>
+
+<p>Vor einer Taverne deren Schild schief hängt hat sich eine kleine Welt breitgemacht. Ein Klapptisch auf dem unebenen Pflaster. Darauf: ein offenes Lagerbuch, ein Krug, eine Schüssel mit etwas das nach Weinbrand riecht und nach Pflaumen aussieht, Verbandszeug — und eine Wasserpfeife aus der träge ein dünner Faden Rauch steigt.</p>
+
+<p>Der Mann am Tisch hat ein Barett und einen Gürtel der allein schon mehr kostet als deine Jahresration. Er hält das Mundstück der Wasserpfeife locker in der Hand und schaut dich an mit der Ruhe von jemandem dem Eile grundsätzlich fremd ist.</p>
+
+<p>Die Frau neben ihm trägt ein kleines Hirnbisla auf dem Barett wie einen Orden und näht ohne aufzusehen. 
+Auf einer umgedrehten Kiste daneben lehnt eine dritte Gestalt, die Beine lang von sich gestreckt. 
+Zwei geflochtene Zöpfe mit ausgeblichenen Schleifen hängen ihr über die Schultern.
+Ihre Augen sind halb geschlossen, als koste es Kraft, sie überhaupt offen zu halten.</p>
+
+<div class="dialog">"Der Mann hebt das Kinn. „Rekrut. Setz dich kurz."</div>
+
+<p>Keine Frage. Kein Angebot. Einfach so.
+Du sitzt.</p>
+
+<p>Er greift nach dem Krug, schenkt einen Becher ein und stellt ihn vor dich — alles in einer Bewegung, 
+ohne dich dabei anzusehen. Dann erst schaut er dich an.</p>
+
+<div class="dialog">„Was brauchst?"</div>
+
+[[Ich such' eine Adresse. Die Gasse hier oben stimmt irgendwie nicht|EE_Tross_Adresse]]
+[[Ich weiß es selbst nicht genau|EE_Tross_Ehrlich]]
+
+
+:: EE_Tross_Abgang [nach_hub] {"position":"550,1150","size":"100,100"}
+<p>Du gehst.</p>
+
+<p>Hinter dir, noch bevor du um die Ecke bist, hörst du den Mann sagen: „Guter Rekrut."
+
+Die Frau antwortet: „Stimmt, fei."
+
+Und dann, eine Idee zu laut, wie um sicherzugehen, dass du es auch noch hörst: 
+„Sehr guter Rekrut! Fand ich auch!" 
+Eine kurze Pause. „Ich fand's zumindest sehr souverän, wie ich das vorhin rübergebracht hab." Niemand widerspricht ihr. Niemand bestätigt es auch.</p>
+
+<<set $npc.klausz.known to true>>
+<<set $npc.tilly.known to true>>
+<<set $npc.rosi.known to true>>
+
+<<weiterImTag "Zurück zum Tagesgeschehen">>
+
+
+:: EE_Tross_Adresse {"position":"575,1000","size":"100,100"}
+<p>Du hältst ihm den Zettel hin.</p>
+
+<p>Er nimmt ihn, dreht ihn einmal um, hält ihn kurz gegen das Licht. Dann legt er ihn auf den Tisch und hält dir das Mundstück der Wasserpfeife hin.</p>
+
+<div class="dialog">„Zug?"</div>
+
+<p>Du nimmst an oder nicht. Er wartet so oder so.</p>
+
+<div class="dialog">„Die Gasse stimmt. Das Haus nicht. Der Färber ist vor drei Wochen zwei Straßen weiter gezogen." 
+Er zeigt mit dem Mundstück in die ungefähre Richtung. „Geradeaus, dann links wo's nach Lavendel riecht. Zweites Haus, blaue Tür."</div>
+
+<div class="dialog">„Blaue Tür stimmt", sagt die Frau ohne aufzusehen. „Aber klopf fei laut, der ist schwerhörig."</div>
+
+<div class="dialog">Die Person auf der Kiste öffnet ein Auge. „Sehr schwerhörig."</div>
+
+<p>Kurze Pause.</p>
+
+<div class="dialog">„Sehr."</div>
+
+<p>Die Gestalt auf der Kiste richtet sich ein Stück auf, offenbar bemüht, den Eindruck zu erwecken, sie hätte die ganze Zeit aufmerksam zugehört. 
+„Ich bin übrigens Tilly", sagt sie und versucht dabei einen Tonfall, der nach Offizier klingen soll und eher nach jemandem klingt, 
+der das Wort zum ersten Mal ausprobiert. „Söldnerin. Vierundachtzigstes Banner. Offiziell." 
+Sie hält kurz inne, als müsste sie selbst erst überlegen, was als Nächstes kommt, und wechselt dann, ohne Übergang, in einen Ton, 
+der eher zur Markthändlerin passt als zur Söldnerin: „Und wenn du eh grad in der Gasse bist — 
+der mit der blauen Tür kauft dir auch gebrauchte Stiefel ab, falls du mal welche über hast." 
+Die Feldscherin nickt.
+„Fei a Guter Preis!" 
+Beim Aufstehen, um sich zu strecken, tritt sie gegen den Klapptisch, und der Krug wackelt bedenklich, 
+bevor Clausz ihn ohne hinzusehen mit einer Hand auffängt.</p>
+
+<p>Du willst aufstehen. Clausz macht eine kleine, beiläufige Handbewegung. Bleib kurz.</p>
+
+<p>Und dann schaut die Frau von ihrer Nadel auf — nicht ins Gesicht, tiefer, sachlicher. 
+Der Blick eines Menschen der gelernt hat Körper zu lesen wie andere Leute Wetterfahnen lesen.</p>
+
+<div class="dialog">„Das da." Sie zeigt ohne Umschweife auf die Stelle die du seit Tagen ignorierst. „Zeig das mal her."</div>
+
+<<= setup.setNpcAffection("clausz", 2)>>
+<<= setup.setNpcAffection("tilly", 1)>>
+
+[[Weiter|EE_Tross_Rosi]]
+
+
+:: EE_Tross_Ehrlich {"position":"875,1000","size":"100,100"}
+<p>Er sieht dich an. Nickt einmal, kurz, anerkennend.</p>
+
+<div class="dialog">„Das ist die richtige Antwort."</div>
+
+<p>Er greift nach der Wasserpfeife und hält dir das Mundstück hin.</p>
+
+<div class="dialog">„Zug?"</div>
+
+<p>Du nimmst an oder nicht. Er wartet so oder so.</p>
+
+<p>Es wird nicht viel geredet. Er schreibt ins Lagerbuch — diesmal wirklich. 
+Die Frau näht. Auf der Kiste rührt sich die dritte Gestalt, blinzelt einmal in deine Richtung und scheint zu dem Schluss zu kommen, 
+dass ehrliche Rekruten es verdient haben, wenigstens kurz begrüßt zu werden. 
+„Tilly", sagt sie, mit einem Nicken, das sie erkennbar für würdevoll hält. 
+„Söldnerin. Vierundachtzigstes Banner." Dann, nach einer Pause, die vermutlich als bedeutungsschwer gemeint ist: „Offiziell." 
+Sie klingt einen Moment lang tatsächlich wie jemand, der weiß, wovon er redet — 
+bis sie beim Zurücklehnen mit dem Ellbogen den Tintentopf des Lagerbuchs streift und ihn gerade noch mit der freien Hand auffängt, 
+ohne den Blick von dir zu nehmen, als wäre nichts gewesen. Der Rauch der Wasserpfeife steigt derweil träge in den Nachmittag.</p>
+
+<p>Nach einer Weile schaut die Frau von ihrer Nadel auf — nicht ins Gesicht, tiefer, sachlicher. 
+Der Blick eines Menschen der gelernt hat Körper zu lesen wie andere Leute Wetterfahnen lesen.</p>
+
+<div class="dialog">„Das da." Sie zeigt ohne Umschweife auf die Stelle die du seit Tagen ignorierst. „Zeig mal her."</div>
+
+<<= setup.setNpcAffection("clausz", 2)>>
+<<= setup.setNpcAffection("tilly", 1)>>
+
+[[Weiter|EE_Tross_Rosi]]
+
+
+:: EE_Tross_Intro [kap1] {"position":"725,750","size":"100,100"}
+<p>Der Schinder hat dich am Morgen zur Seite genommen — keine große Sache, nur eine Besorgung. Irgendetwas fehlt im Lager, irgendjemand braucht irgendetwas aus der Stadt, und du bist der, der gerade keinen Grund hat nein zu sagen.</p>
+
+<p>Du hast einen Zettel in der Hand und eine ungefähre Vorstellung wo die Gasse sein soll. Die Stadt ist laut, eng, und riecht nach Fisch und Pferden und dem Rauch von hundert Herden gleichzeitig. Du findest die Gasse. Du findest das Haus. Du klopfst.</p>
+
+<p>Niemand öffnet.</p>
+
+<p>Du wartest. Du klopfst nochmal. Nichts.</p>
+
+<p>Der Zettel hilft dir nicht weiter. Du schaust dich um.</p>
+
+<p>Unter dem Vordach des Nachbargebäudes hat sich eine kleine Welt eingerichtet.</p>
+
+[[Nachschauen|EE_Tross]]
+
+
+:: EE_Tross_Rosi {"position":"725,1125","size":"100,100"}
+<p>Du willst sagen dass es nichts ist. Sie lässt dich nicht.</p>
+
+<div class="dialog">„Setz dich da hin. Fei, ich schau's mir an."</div>
+
+<div class="scenery-text">Was dann folgt ist eine ruhige, gründliche Angelegenheit. 
+Sie reinigt, prüft, versorgt — und erklärt dabei jeden Schritt mit einer Selbstverständlichkeit als wärst du ein Lehrling und nicht zufällig vorbeigelaufen.
+ Warum sie so reinigt und nicht anders. Was sie dabei sucht. Wie man erkennt ob es sich entzündet. Was man dann tut und was man auf keinen Fall tut.</div>
+
+<p>Clausz schenkt ihr nebenbei einen Becher ein ohne zu fragen. Sie nimmt ihn ohne aufzusehen.</p>
+
+<div class="dialog">„Merkst du dir das?"</div>
+
+<p>Du nickst.</p>
+
+<div class="dialog">„Gut." Sie schneidet den Faden ab. „Beim nächsten Mal machst du's selber. Und kratzt fei nicht dran!"</div>
+
+<p>Clausz zieht einmal an der Wasserpfeife. „Sie hat fei mal einen Ritter zum Schmied geschickt."</p>
+
+<div class="dialog">„Der hat eine Delle in der Rüstung gehabt", sagt sie. „Was soll ich mit einer Delle?"</div>
+
+<div class="dialog">„Er war Ritter...."</div>
+
+<div class="dialog">"Deswegen kann ich fei trotzdem keine Dellen nähen, schmieren, oder sonst wie heilen!"</div>
+
+<p>Tilly, die bislang mit dem Rücken gegen die Häuserwand gelehnt hatte, 
+kommt herüber, offenbar der Meinung, ihre Hilfe sei jetzt gefragt. 
+„Ich kann assistieren", verkündet sie mit einem Ernst, der besser zu einem Feldscher-Lehrmeister passen würde als zu jemandem,
+ der im selben Moment eine Rolle Verbandszeug fallen lässt, sich danach bückt, sich dabei den Kopf am Tisch stößt und sich mit einem Lächeln wieder aufrichtet, 
+ als sei genau das der Plan gewesen. Rosi nimmt ihr das Verbandszeug wortlos aus der Hand, ohne aufzuschauen. 
+ „Setz dich, Tilly." — „Ich sitz eh schon fast", antwortet Tilly und setzt sich, diesmal tatsächlich, 
+ auf die Kiste zurück, wo sie mit einer Selbstverständlichkeit weiterredet, als hätte ihr Beitrag gerade den Unterschied gemacht: 
+ „Mein Vater war übrigens auch mal beim Militär. Ein Adliger, aus dem Ausland. Hat mal die Bumsburg besucht, ganz sicher." 
+ Rosi verdreht die Augen, ohne dabei den Faden zu verlieren. Clausz sagt gar nichts, was bei ihm ungefähr einem Kommentar gleichkommt.</p>
+
+<<= setup.pushNpcMemory("tilly", "hat sich als Feldscher-Assistenz angeboten (erfolglos)")>>
+<<= setup.setNpcAffection("rosi", 3)>>
+<<= setup.setPlayerKnowledge("medicine", 1)>>
+<<= setup.pushNpcMemory("rosi", "hat Thomas versorgt")>>
+<<run setup.addRumor("Tillys Vater war Adliger, aus dem Ausland. Hat mal die Bumsburg besucht.")>>
+
+[[Weiter. ->EE_Tross_Abgang]]

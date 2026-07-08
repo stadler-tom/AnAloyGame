@@ -1,0 +1,1173 @@
+
+:: Kapitel 1 {"position":"975,625","size":"200,200"}
+<div class="chapter-screen">
+    <div class="chapter-title">KAPITEL 1</div>
+    <div class="chapter-time">
+<p>$world.day <<if $world.day == 1>>Tag<<else>>Tage<</if>> in der Ausbildung</p>
+	</div>
+
+    <div class="center-link">
+        <<timed 4500ms>>
+            [[Weiter->Kap1_Tagesstart]]
+        <</timed>>
+    </div>
+</div>
+
+
+
+
+
+
+:: Nachmittag Cannon {"position":"725,1475","size":"100,100"}
+<p>Die Geschütze der Artillerie</p>
+<div class="scenery-text"><<= setup.executeStationRewards("cannon", "scenery")>></div>
+<<= setup.executeStationRewards("cannon", "main")>>
+<hr class="trenner-raute">
+<div class="thought-box"><<= setup.executeStationRewards("cannon", "thoughts")>></div>
+<hr class="trenner-raute">
+[[Zurück zum Appellplatz ->Abendappell]]
+
+
+:: Nachmittag Crossbow {"position":"925,1475","size":"100,100"}
+<<if not $npc.vasil.memory.flags.sidequest02Complete>><<goto "02_Sidequest_vasil">><</if>>
+<p>Der Stand der Armbrustschützen</p>
+<div class="scenery-text"><<= setup.executeStationRewards("crossbow", "scenery")>></div>
+<<= setup.executeStationRewards("crossbow", "main")>>
+<hr class="trenner-raute">
+<div class="thought-box"><<= setup.executeStationRewards("crossbow", "thoughts")>></div>
+<hr class="trenner-raute">
+[[Zurück zum Appellplatz ->Abendappell]]
+
+
+:: Nachmittag Hub {"position":"825,1325","size":"100,100"}
+<<= setup.getRandomText("hubIntros")>>
+
+<div class="scenery-text"><<= setup.getRandomText("hubScenery")>></div>
+<p>Ein paar Gelegenheiten fallen dir im Vorbeigehen ins Auge:</p>
+<ul class="sandbox-menu">
+    <<hubOption "pike" "Zu den Waffengestellen der Infanterie" "Nachmittag Pike">>
+    <<hubOption "cannon" "Zu den schweren Geschützen" "Nachmittag Cannon">>
+    <<hubOption "medicine" "Zum Zelt des Feldschers" "Nachmittag Medicine">>
+    <<hubOption "crossbow" "Zu den Armbrustschützen" "Nachmittag Crossbow">>
+    <<hubOption "thievery" "Hinter den Stallungen herumtreiben" "Nachmittag Thievery">>
+</ul>
+<div class="thought-box"> <<= setup.getRandomText("hubThoughts")>></div>
+
+
+:: Nachmittag Hub bak {"position":"825,1325","size":"100,100"}
+<<= setup.getRandomText("hubIntros")>>
+
+<div class="scenery-text"><<= setup.getRandomText("hubScenery")>></div>
+<p>Fünf Gelegenheiten fallen dir im Vorbeigehen ins Auge:</p>
+<ul class="sandbox-menu">
+    <li>[[Zu den Waffengestellen der Infanterie ->Nachmittag Pike]]<span class="subtext"><<= setup.getRandomText("hubSubtexts", "pike")>></span></li>
+    <li>[[Zu den schweren Geschützen ->Nachmittag Cannon]]<span class="subtext"><<= setup.getRandomText("hubSubtexts", "cannon")>></span></li>
+    <li>[[Zum Zelt des Feldschers ->Nachmittag Medicine]]<span class="subtext"><<= setup.getRandomText("hubSubtexts", "medicine")>></span></li>
+    <li>[[Zu den Armbrustschützen ->Nachmittag Crossbow]]<span class="subtext"><<= setup.getRandomText("hubSubtexts", "crossbow")>></span></li>
+    <li>[[Hinter den Stallungen herumtreiben ->Nachmittag Thievery]]<span class="subtext"><<= setup.getRandomText("hubSubtexts", "thievery")>></span></li>
+</ul>
+<div class="thought-box"> <<= setup.getRandomText("hubThoughts")>></div>
+
+
+:: Nachmittag Medicine {"position":"825,1475","size":"100,100"}
+<p>Das Zelt des Feldschers</p>
+<div class="scenery-text"><<= setup.executeStationRewards("medicine", "scenery")>></div>
+<<= setup.executeStationRewards("medicine", "main")>>
+<hr class="trenner-raute">
+<div class="thought-box"><<= setup.executeStationRewards("medicine", "thoughts")>></div>
+<hr class="trenner-raute">
+[[Zurück zum Appellplatz ->Abendappell]]
+
+
+:: Nachmittag Pike {"position":"625,1475","size":"100,100"}
+<p>Die Waffengestelle der Infanterie</p>
+<div class="scenery-text"><<= setup.executeStationRewards("pike", "scenery")>></div>
+<<= setup.executeStationRewards("pike", "main")>>
+<<if $player.knowledge.pike == 4>>
+    <div class="voice-formal">Das ganze Trainieren macht sich bezahlt, du dein Gegenüber schon ganz von selbst ein.</div>
+    <<= setup.setPlayerKnowledge("combat", 1)>>
+<</if>>
+<hr class="trenner-raute">
+<div class="thought-box"><<= setup.executeStationRewards("pike", "thoughts")>></div>
+<hr class="trenner-raute">
+[[Zurück zum Appellplatz ->Abendappell]]
+
+
+:: Nachmittag Thievery {"position":"1025,1475","size":"100,100"}
+<p>Die Schatten hinter den Stallungen</p>
+<div class="scenery-text"><<= setup.executeStationRewards("thievery", "scenery")>></div>
+<<= setup.executeStationRewards("thievery", "main")>>
+<hr class="trenner-raute">
+<div class="thought-box"><<= setup.executeStationRewards("thievery", "thoughts")>></div>
+<hr class="trenner-raute">
+[[Zurück zum Appellplatz ->Abendappell]]
+
+
+
+:: Studium Aloy [nach_stube studium] {"position":"1800,250","size":"100,100"}
+<<set _r = setup.teachLecture("aloy")>>
+<p>Aloyer Staatskunde</p>
+<div class="scenery-text"><<= setup.getStudiumText("aloy", "scenery")>></div>
+<div class="voice-formal"><<= setup.getStudiumText("aloy", "intro")>></div>
+<<if _r.isNew>>
+<<= _r.lessonHTML>>
+<<= _r.rewardHTML>>
+<<else>>
+<<= _r.revisionHTML>>
+<</if>>
+<hr class="trenner-raute">
+<div class="thought-box"><<= setup.getStudiumText("aloy", "thought")>></div>
+<hr class="trenner-raute">
+<<weiterImTag >>
+
+
+:: Studium Archivzugang [studium] {"position":"1625,25","size":"100,100"}
+<div class="scenery-text">Halm mustert dich lange. Dann nickt er, kaum merklich, und schiebt dir ein abgegriffenes Holztäfelchen über das Pult – ein Archivzeichen, abgewetzt von vielen Händen vor dir.</div>
+<div class="voice-formal">„Du trägst Akten von der Schreibstube ins Regal und zurück. Du liest sie nicht. Du sprichst nicht über das, was du siehst. Und du fragst niemanden nach Namen.“ Er hält inne. „Das Archiv kennt keinen Rang. Es kennt nur mich. Vergiss das nicht.“</div>
+<div class="thought-box">Ein Fuß in den Schreibstuben. Militärakten, Prozessrollen, alte Verträge – sogar Abschriften aus dem Gründungsarchiv in Grodaus sollen hier durchlaufen. Wenn jemand etwas Bestimmtes suchen würde ... aber wer sollte das schon.</div>
+<div class="system-alert status-positive">Archivzugang erhalten — die Schreibstuben der Akademie stehen dir offen.</div>
+
+<span class="weiter-link">[[Weiter ->Studium Hub]]</span>
+
+
+:: Studium Diplomatie [studium nach_stube] {"position":"2200,250","size":"100,100"}
+<<set _r = setup.teachLecture("diplomatie")>>
+<p>Diplomatie & Recht</p>
+<div class="scenery-text"><<= setup.getStudiumText("diplomatie", "scenery")>></div>
+<div class="voice-formal"><<= setup.getStudiumText("diplomatie", "intro")>></div>
+<<if _r.isNew>>
+<<= _r.lessonHTML>>
+<<= _r.rewardHTML>>
+<<else>>
+<<= _r.revisionHTML>>
+<</if>>
+<hr class="trenner-raute">
+<div class="thought-box"><<= setup.getStudiumText("diplomatie", "thought")>></div>
+<hr class="trenner-raute">
+<<weiterImTag >>
+
+
+:: Studium Disput [studium] {"position":"1950,100","size":"100,100"}
+<<silently>>
+<<set _fach = either("splitterlande", "aloy", "geographie", "diplomatie")>>
+<<run setup.spendScholarship(8)>>
+<<set $player.knowledge[_fach] += 1>>
+<<set $npc.magister.affection += 1>>
+<<set _namen = { splitterlande: "Die Splitterlande", aloy: "Aloyer Staatskunde", geographie: "Geographie & Landeskunde", diplomatie: "Diplomatie & Recht" }>>
+<</silently>>
+<div class="scenery-text">Du wagst einen Einwand – und für einen Moment hebt Halm tatsächlich eine Augenbraue. Ihr ringt um einen einzigen Satz aus der Freiheitserklärung, bis er die Hand hebt. „Falsch begründet“, sagt er. „Aber nicht dumm gedacht. Das ist mehr, als ich von den meisten hier sagen kann.“</div>
+<div class="system-alert status-positive"><<= _namen[_fach]>> um 1 gestiegen</div>
+<div class="thought-box">Er streitet gern – solange das Gegenüber etwas zu sagen hat. Das werde ich mir merken.</div>
+<span class="weiter-link">[[Zurück ->Studium Magister]]</span>
+
+
+:: Studium Geographie [studium nach_stube] {"position":"1925,250","size":"100,100"}
+<<set _r = setup.teachLecture("geographie")>>
+<p>Geographie & Landeskunde</p>
+<div class="scenery-text"><<= setup.getStudiumText("geographie", "scenery")>></div>
+<div class="voice-formal"><<= setup.getStudiumText("geographie", "intro")>></div>
+<<if _r.isNew>>
+<<= _r.lessonHTML>>
+<<= _r.rewardHTML>>
+<<else>>
+<<= _r.revisionHTML>>
+<</if>>
+<hr class="trenner-raute">
+<div class="thought-box"><<= setup.getStudiumText("geographie", "thought")>></div>
+<hr class="trenner-raute">
+<<weiterImTag >>
+
+
+:: Studium Hub [studium] {"position":"1675,425","size":"100,100"}
+<<if not $npc.magister.known>><<goto "Studium Magister Vorstellung">><</if>>
+<<set _fresh = setup.maybeAnnounceExam()>>
+<<if _fresh>><div class="system-alert status-info">Der Magister hat soeben die Abschlusspruefung angekuendigt.</div><</if>>
+
+<<= setup.getStudiumHubText("hubIntros")>>
+
+<div class="scenery-text"><<= setup.getStudiumHubText("hubScenery")>></div>
+<p>An der grossen Wandtafel haengt der Stundenplan. Vier Faecher stehen heute zur Wahl:</p>
+<ul class="sandbox-menu">
+    <li>[[Aloyer Staatskunde ->Studium Aloy]]<span class="subtext"><<= setup.getStudiumHubText("hubSubtexts", "aloy")>> <<= setup.studiumProgressTag("aloy")>></span></li>
+    <li>[[Geographie & Landeskunde ->Studium Geographie]]<span class="subtext"><<= setup.getStudiumHubText("hubSubtexts", "geographie")>> <<= setup.studiumProgressTag("geographie")>></span></li>
+    <li>[[Die Splitterlande ->Studium Splitterlande]]<span class="subtext"><<= setup.getStudiumHubText("hubSubtexts", "splitterlande")>> <<= setup.studiumProgressTag("splitterlande")>></span></li>
+    <li>[[Diplomatie & Recht ->Studium Diplomatie]]<span class="subtext"><<= setup.getStudiumHubText("hubSubtexts", "diplomatie")>> <<= setup.studiumProgressTag("diplomatie")>></span></li>
+    <li>[[Beim Magister vorsprechen ->Studium Magister]]<span class="subtext">— Gelehrsamkeit einsetzen. Aktuell: <b><<= setup.scholarship()>></b></span></li>
+</ul>
+<div class="thought-box"><<= setup.getStudiumHubText("hubThoughts")>></div>
+
+
+<<= setup.examHubHTML()>>
+
+
+:: Studium Magister [studium] {"position":"1775,100","size":"100,100"}
+<<set _s = setup.scholarship()>>
+<p>Beim Magister vorsprechen</p>
+<div class="scenery-text">Du bleibst, bis die Bänke leer sind. Halm ordnet seine Papiere, ohne aufzusehen. „Wer freiwillig bleibt, will entweder etwas wissen oder etwas erbitten“, sagt er. „Beides kostet. Du zahlst mit dem, was zwischen deinen Ohren sitzt – oder du lässt es bleiben.“</div>
+
+<div class="system-alert status-info">Gelehrsamkeit: <<= _s>></div>
+
+<ul class="sandbox-menu">
+<<if $edu.archivzugang>>
+  <li><span class="subtext"><b>Archivzugang gewährt.</b> Die Schreibstuben stehen dir offen – solange du nicht auffällst.</span></li>
+<<elseif setup.canAfford(15)>>
+  <li><<link "Um Zugang zu den Schreibstuben ersuchen (15 Gelehrsamkeit)">><<run setup.spendScholarship(15)>><<set $edu.archivzugang = true, $npc.magister.archivzugang = true, $npc.magister.trust += 1>><<goto "Studium Archivzugang">><</link>></li>
+<<else>>
+  <li><span class="subtext">Um Zugang zu den Schreibstuben ersuchen — <i>verlangt 15 Gelehrsamkeit (du hast <<= _s>>)</i></span></li>
+<</if>>
+<<if setup.canAfford(8)>>
+  <li><<link "Einen Disput mit dem Magister wagen (8 Gelehrsamkeit)">><<goto "Studium Disput">><</link>></li>
+<<else>>
+  <li><span class="subtext">Einen Disput mit dem Magister wagen — <i>verlangt 8 Gelehrsamkeit</i></span></li>
+<</if>>
+</ul>
+
+<span class="weiter-link">[[Zurück in den Hörsaal ->Studium Hub]]</span>
+
+
+:: Studium Magister Vorstellung [studium] {"position":"1575,150","size":"100,100"}
+<<set $npc.magister.known = true>>
+<p>Der Magister</p>
+<div class="scenery-text">Der Mann, der den Hörsaal betritt, ist hager bis an die Grenze des Möglichen, als hätte das viele Lesen ihm das Fleisch von den Knochen gezogen. Tinte sitzt in den Furchen seiner Finger, so tief, dass keine Bürste sie je wieder herausholt. Er setzt sich nicht. Er steht, legt ein abgegriffenes Buch aufs Pult und lässt den Blick über die Bänke wandern, langsam, als zähle er, wie viele von euch die zwei Jahre überstehen werden.</div>
+
+<div class="voice-formal">„Ich bin Magister Halm. Ihr werdet bei mir lernen, wem ihr eigentlich dient – und es ist kein Mann mit einer Krone.“ Eine Pause, in der niemand zu atmen wagt. „Manche von euch halten den Spieß für die wichtigste Sache hier drin. Ihr irrt. Ein Spieß tötet einen Mann. Ein falsch gelesener Satz tötet ein ganzes Banner.“</div>
+
+<div class="scenery-text">Auf dem Pult liegt, neben dem Buch, eine vergilbte Abschrift der Freiheitserklärung. Halm legt im Reden den Finger darauf, beiläufig, wie auf einen Zeugen, den man jederzeit aufrufen kann.</div>
+
+<div class="voice-formal">„Und damit ihr es wisst: Ich lese euch nicht nur vor. Ich bin der Archivar dieser Akademie. Jede Akte, jede Prozessrolle, jeder alte Vertrag, der durch diese Mauern geht, geht durch meine Hände. Das Archiv kennt keinen Rang, Rekruten. Es kennt nur mich.“</div>
+
+<div class="thought-box">Ein Archivar also. Akten, Prozesse, alte Verträge – alles an einem Ort, hinter einer einzigen Tür, und der Schlüssel hängt an diesem dürren Mann. Ich weiß noch nicht, warum, aber ich habe das Gefühl, dass dieser Satz noch wichtig wird.</div>
+
+<p>Halm schlägt sein Buch auf. „Genug der Vorrede. Wer etwas wissen will, fragt. Wer etwas erbittet, zahlt – und zwar nicht in Kupfer.“</p>
+
+[[Ihm offen in die Augen sehen und nicken. ->Studium Hub][$npc.magister.affection += 1]]
+[[Den Blick senken und einfach mitschreiben. ->Studium Hub]]
+
+
+:: Studium Splitterlande [studium nach_stube] {"position":"2075,250","size":"100,100"}
+<<set _r = setup.teachLecture("splitterlande")>>
+<p>Die Splitterlande</p>
+<div class="scenery-text"><<= setup.getStudiumText("splitterlande", "scenery")>></div>
+<div class="voice-formal"><<= setup.getStudiumText("splitterlande", "intro")>></div>
+<<if _r.isNew>>
+<<= _r.lessonHTML>>
+<<= _r.rewardHTML>>
+<<else>>
+<<= _r.revisionHTML>>
+<</if>>
+<hr class="trenner-raute">
+<div class="thought-box"><<= setup.getStudiumText("splitterlande", "thought")>></div>
+<hr class="trenner-raute">
+<<weiterImTag >>
+
+:: Pruefung Ergebnis [pruefung nach_hub] {"position":"2025,675","size":"100,100"}
+<<set _g = setup.examGrade()>>
+<p>Das Urteil des Magisters</p>
+<div class="scenery-text">Der Magister sammelt die Boegen ein, ohne ein Wort. Dann hebt er den Blick.</div>
+
+<<if _g.total === 0>>
+<div class="voice-formal">„Wer nichts lernt, hat auch nichts zu verlieren – ausser dem eigenen Platz hier. Geht. Und kommt das naechste Mal mit etwas im Kopf.“</div>
+<<else>>
+<div class="system-alert <<= _g.pct >= 50 ? 'status-positive' : 'status-negative'>>">
+<p>Ergebnis: <<= _g.correct>> von <<= _g.total>> richtig (<<= _g.pct>>%) — <<= _g.label>></p>
+</div>
+<div class="voice-formal"><<= setup.examVerdict(_g.pct)>></div>
+<<run setup.applyExamRewards(_g.pct)>>
+<<run setup.markExamResult(_g.pct)>>
+<<= setup.examRewardHTML(_g.pct)>>
+<</if>>
+<<weiterImTag "Den Prüfungssaal verlassen">>
+
+
+:: Pruefung Frage [pruefung] {"position":"2175,675","size":"100,100"}
+<<set _e = $edu.exam>>
+<<set _q = _e.queue[_e.pos]>>
+<div class="voice-formal">Frage <<= _e.pos + 1>> von <<= _e.queue.length>> · <<= _q.subject>></div>
+<div class="lecture-text"><<= _q.q>></div>
+
+<<if _e.lastAnswer === null>>
+<ul class="exam-options">
+<<for _i to 0; _i lt _q.options.length; _i++>>
+<<capture _i>>
+<li><<link _q.options[_i]>><<run setup.answerExam(_i)>><<goto "Pruefung Frage">><</link>></li>
+<</capture>>
+<</for>>
+</ul>
+<<else>>
+<ul class="exam-options exam-revealed">
+<<for _i to 0; _i lt _q.options.length; _i++>>
+<<if _i === _q.answer>>
+<li class="exam-option-correct">✓ <<= _q.options[_i]>></li>
+<<elseif _i === _e.lastAnswer>>
+<li class="exam-option-wrong">✗ <<= _q.options[_i]>> <span class="subtext">(deine Wahl)</span></li>
+<<else>>
+<li class="exam-option-muted"><<= _q.options[_i]>></li>
+<</if>>
+<</for>>
+</ul>
+<<if $edu.exam.lastAnswer === _q.answer>>
+<div class="system-alert status-positive">Richtig.</div>
+<<else>>
+<div class="system-alert status-negative">Falsch.</div>
+<</if>>
+<<link "Weiter">>
+<<run setup.nextExam()>>
+<<if $edu.exam.done>><<goto "Pruefung Ergebnis">><<else>><<goto "Pruefung Frage">><</if>>
+<</link>>
+<</if>>
+
+
+:: Pruefung Start [pruefung] {"position":"2100,475","size":"100,100"}
+<<set _anzahl = setup.buildExam(6)>>
+<p>Abschlusspruefung – Kapitel 1</p>
+<div class="scenery-text">Der Hoersaal ist heute anders. Kein Gemurmel, kein Scharren. Vor jedem Platz liegt ein Bogen Papier, und vorne steht der Magister mit dem Gesicht eines Mannes, der heute keine Ausreden hoeren will. „Ihr habt zugehoert oder ihr habt es nicht“, sagt er. „Gleich wissen wir, was davon stimmt."</div>
+
+<<if _anzahl === 0>>
+<div class="system-alert status-negative">Du hast bisher keine einzige Vorlesung wirklich verfolgt. Es gibt nichts, was man dich fragen koennte – und das ist die schlechteste aller Antworten.</div>
+[[Den Hoersaal beschaemt verlassen ->Pruefung Ergebnis]]
+<<else>>
+<div class="thought-box">Sechs Fragen. Oder so viele, wie ich mir ueberhaupt gemerkt habe. Atmen. Was ich weiss, das weiss ich.</div>
+[[Die Pruefung beginnen ->Pruefung Frage]]
+<</if>>
+
+
+
+
+:: Storry006_DrillMitSchinder [interrupt nach_appell kap1] {"position":"1100,2575","size":"100,100"}
+<p>Noch vor dem ersten Licht jagt der Schinder die Rekruten auf den Hof. „Aufstellung! Wer schläft, schläft auf dem Boden weiter!" Sein Stock klopft den Takt, während die Reihen sich im Halbdunkel formieren. Der Atem steht weiß in der Luft, die Knochen sind noch steif vom Stroh.</p>
+
+<p>Der Schinder geht die Reihe ab. Bei Thomas bleibt er stehen, mustert ihn von oben bis unten, sagt nichts. Noch nichts.</p>
+
+<span id="drill-wahl">
+<div><<link "Zähne zusammenbeißen und jeden Befehl übererfüllen">>
+    <<set _out to setup.setPlayerStat("discipline", 3) + setup.setPlayerCondition(-8)>>
+    <<replace "#drill-wahl">><div class="scenery-text">Du gibst alles, schneller und härter als verlangt. Der Schinder sagt nichts — aber er geht weiter, und das ist bei ihm schon fast ein Lob.</div>_out<</replace>>
+    <<run $("#gd-weiter").show()>>
+<</link>></div>
+
+<div><<link "Sauber im Mittelmaß mitlaufen, nicht auffallen">>
+    <<set _out to setup.setPlayerStat("discipline", 1) + setup.setPlayerCondition(-6)>>
+    <<replace "#drill-wahl">><div class="scenery-text">Du tust, was nötig ist, nicht mehr. Der Blick des Schinders gleitet über dich hinweg zum Nächsten. Unsichtbar zu sein ist auch eine Kunst.</div>_out<</replace>>
+    <<run $("#gd-weiter").show()>>
+<</link>></div>
+
+<div>
+<<set _label to "Dem Schinder die Stirn bieten, als er dich anbrüllt" + setup.checkHint("combat", 13)>>
+<<link _label>>
+    <<set _r to setup.skillCheck("combat", 13)>>
+    <<if _r.success>>
+        <<set _out to setup.setPlayerStat("ambition", 3) + setup.setPlayerKnowledge("combat", 6)>>
+        <<set _txt to 'Du hältst seinem Blick stand, Rücken gerade, Kiefer fest. Einen langen Moment misst er dich — dann ein knappes Nicken. Manche muss man sich erst verdienen.'>>
+    <<else>>
+        <<set _out to setup.setPlayerStat("discipline", -3) + setup.setPlayerCondition(-10)>>
+        <<set _txt to 'Du hältst nicht stand. Der Schinder riecht die Schwäche wie ein Hund und lässt dich Liegestütze zählen, bis dir die Arme zittern. Die ganze Reihe schaut zu.'>>
+    <</if>>
+    <<replace "#drill-wahl">><div class="scenery-text">_txt</div>_out<</replace>>
+    <<run $("#gd-weiter").show()>>
+<</link>>
+</div>
+
+<div>
+<<set _label to 'Einem schwächelnden Rekruten heimlich unter die Arme greifen' + setup.checkHint("thievery", 12)>>
+<<link _label>>
+    <<set _r to setup.skillCheck("thievery", 12)>>
+    <<if _r.success>>
+        <<set _out to setup.setPlayerStat("mercy", 3)>>
+        <<set _txt to 'Du stützt ihn unauffällig, fängst seinen Tritt ab, ohne dass der Schinder es bemerkt. Der andere wirft dir einen Blick zu, den du nicht vergisst.'>>
+    <<else>>
+        <<set _out to setup.setPlayerStat("mercy", 2) + setup.setPlayerStat("discipline", -2) + setup.setPlayerSuspicion(5)>>
+        <<set _txt to 'Du greifst ihm unter die Arme — und der Schinder sieht es. „Ist das hier ein Krankenlager?" Sein Stock zeigt auf euch beide. Geholfen hast du trotzdem.'>>
+    <</if>>
+    <<replace "#drill-wahl">><div class="scenery-text">_txt</div>_out<</replace>>
+    <<run $("#gd-weiter").show()>>
+<</link>>
+</div>
+
+<div>
+<<set _label to "So tun, als wäre dir schlecht, um dich zu drücken" + setup.checkHint("gossip", 13)>>
+<<link _label>>
+    <<set _r to setup.skillCheck("gossip", 13)>>
+    <<if _r.success>>
+        <<set _out to setup.setPlayerCondition(4)>>
+        <<set _out to setup.setPlayerStat("honesty", -5)>>
+        <<set _txt to "Du spielst es überzeugend — blass, schwankend, glaubhaft. Der Schinder winkt dich angewidert an den Rand. Du verschnaufst, während die anderen schwitzen.">>
+    <<else>>
+        <<set _out to setup.setPlayerStat("discipline", -4) + setup.setPlayerCondition(-6) + setup.setPlayerSuspicion(8)>>
+        <<set _txt to 'Er durchschaut dich sofort. „Krank? Dann schwitz es raus." Du läufst Extrarunden, und ab jetzt hat er ein Auge auf dich.'>>
+    <</if>>
+    <<replace "#drill-wahl">><div class="scenery-text">_txt</div>_out<</replace>>
+    <<run $("#gd-weiter").show()>>
+<</link>>
+</div>
+</span>
+
+<span id="gd-weiter" style="display:none">
+<<weiterImTag "Das war ein antrengender Tag. Zum Appell">>
+</span>
+
+
+:: Story003_Abend [nach_stube] {"position":"875,2925","size":"100,100"}
+<p>Der Abendappell verläuft ohne Vorfall.</p>
+
+<p>Das ist, wie du inzwischen verstehst, bereits eine Leistung.</p>
+
+<div class="scenery-text">Der Hauptmann spricht. Du hörst die Worte ohne sie vollständig aufzunehmen. Deine Beine stehen, dein Rücken ist gerade, deine Augen sind geradeaus gerichtet. Das reicht. Das ist heute alles was verlangt wird und alles was du geben kannst.</div>
+<<= setup.setPlayerStat('amition', 1)>>
+<p>Dann: entlassen.</p>
+<hr class="trenner-raute">
+
+<p>Die Stube am Abend ist anders als am Morgen. Leiser. Die Erschöpfung hat die Lautstärke herausgezogen. Jemand putzt seine Stiefel. Jemand anderes liegt bereits auf der Pritsche und schaut an dieselbe Fichtenholzdecke wie du heute früh.</p>
+
+<p>Du setzt dich auf dein Bett.</p>
+
+<p>Keine Gedanken über morgen. Keine Pläne. Nur das leise Knacken des Holzes, das Atmen von dreißig Menschen, und das langsam nachlassende Pochen in deinen Beinen.</p>
+
+<div class="scenery-text">Draußen ist der Wind noch immer da. Er wird morgen auch noch da sein. Du wirst auch noch da sein.</div>
+<div class="thought-box">Das zählt.</div>---
+
+<<weiterImTag "Das war ein antrengender Tag. Auf die Stube">>
+
+
+:: Story003_Drill {"position":"875,2800","size":"100,100"}
+<p>Was folgt, lässt sich nicht als Erzählung zusammenfassen.</p>
+
+<p>Es ist zu viel und zu gleichförmig und zu erschöpfend um Gestalt anzunehmen – ein langer, grauer Block aus Kommandos, Kies, kaltem Wind und dem rhythmischen Schlagen von Holzschäften auf Leder. Der Schinder brüllt nicht mehr als gestern. Er muss auch nicht. Sein Schweigen funktioniert genauso gut.</p>
+
+<div class="scenery-text">Du läufst. Du stehst. Du läufst wieder. Irgendwann hört dein Körper auf zu protestieren und fängt an, einfach zu funktionieren – nicht weil er es will, sondern weil er keine andere Wahl hat. Das ist, soweit du das beurteilen kannst, der Punkt.</div>
+<<= setup.setPlayerStat('discipline', 2)>>
+<<= setup.setPlayerCondition(-6)>>
+
+<p>Mittags gibt es Suppe.</p>
+
+<p>Du sitzt auf einer Bank vor der Kantine, die Schüssel zwischen den Knien, und schaust auf den Hof. Der Wind hat nicht nachgelassen. Die Fahne über dem Hauptgebäude peitscht gleichmäßig.</p>
+
+<p>Du denkst an nichts Bestimmtes.</p>
+
+<div class="thought-box">Das ist ungewohnt. Meistens denkst du an zu viel auf einmal. Aber der Körper, wenn er müde genug ist, macht den Kopf still. Das ist vielleicht die ehrlichste Form der Ruhe.</div>
+
+[[Weiter->Story003_Abend]]
+
+
+:: Story003_ErsterMorgen [einmalig interrupt kap1] {"position":"875,2425","size":"100,100"}
+<p>Der zweite Tag beginnt, bevor du bereit bist.</p>
+
+<p>Nicht mit Licht – das kommt später. Erst mit Geräuschen. Das Knarren einer Pritsche. Das dumpfe Aufsetzen von Stiefeln auf Holzdielen. Jemand hustet, kurz und trocken, und hört damit nicht auf. Dreißig Menschen in einem Raum, die alle gleichzeitig aufwachen und dabei so wenig Platz brauchen wollen wie möglich.</p>
+
+<p>Du liegst einen Moment still.</p>
+
+<div class="scenery-text">Die Decke über dir ist aus rohem Fichtenholz. Astlöcher, eine alte Verfärbung in der Ecke, ein Riss der sich quer durch zwei Bretter zieht. Du hast sie heute Nacht lange genug angestarrt um zu wissen, dass sich das nicht ändern wird.</div>
+<p>Dein Körper meldet sich der Reihe nach. Rücken zuerst. Dann die Schultern. Dann die Beine, mit einem dumpfen Pochen, das sich nicht ganz wie Muskelkater anfühlt und auch nicht ganz wie etwas anderes.</p>
+
+<p>Du atmest.</p>
+
+<p>Nur das. Kalt, ein bisschen nach fremdem Schweiß und nassem Holz, aber gleichmäßig. Kein Ziehen in der Brust. Kein Kratzen im Hals das bleibt.</p>
+
+<div class="thought-box">Früher war das nicht selbstverständlich.</div>
+<p>Jemand stößt im Vorbeigehen gegen deine Pritsche. Keine Absicht. Einfach zu wenig Platz und zu viel Morgenmüdigkeit.</p>
+
+[[Du stehst auf.->Story003_Fruehstueck]]
+
+
+:: Story003_Fruehstueck {"position":"875,2550","size":"100,100"}
+<p>Die Kantine riecht nach heißem Fett und gekochtem Kohl.</p>
+
+<p>Es ist lautes, rohes Essen – eine Schüssel Brei, dazu ein Kanten Brot der sich biegt wenn man ihn hält. Kein schlechtes Essen. Nur keines, bei dem man sich Zeit lässt.</p>
+
+<div class="scenery-text">Die langen Tische sind voll. Stimmen überlagern sich, Holzlöffel kratzen über Ton. Draußen vor den Fenstern ist der Himmel noch grau, und das Licht das hereinkommt ist das blasse, unentschlossene Licht eines Morgens der noch nicht weiß ob er schön wird.</div>
+<p>Du isst stehend. Alle essen stehend. Niemand hat das angeordnet – es hat sich einfach so ergeben, aus der kollektiven Nervosität von Menschen die nicht sitzen wollen wenn sie gleich wieder aufspringen müssen.</p>
+
+<p>Du schaust in die Schüssel. Du schaust kurz auf. Du schaust wieder in die Schüssel.</p>
+
+<p>Irgendwo an diesem Tisch sitzen Karla und Jarek. Du weißt das, ohne hinzusehen.</p>
+
+<p>Wie du den Morgen angehst – das entscheidest du jetzt, ohne groß darüber nachzudenken. Meistens sind das die Entscheidungen, die zählen.</p>
+
+[[Schweigend essen und in Ruhe lassen wollen->Story003_Stille]]
+[[Den Blickkontakt suchen – irgendjemanden ansprechen->Story003_Kontakt]]
+
+
+:: Story003_Kontakt {"position":"950,2675","size":"100,100"}
+<p>Du schaust auf.</p>
+
+<p>Karla sitzt drei Plätze weiter und isst mit einer Effizienz, die fast respekteinflößend ist. Sie schaut nicht auf. Aber als du dich setzt – näher als nötig, nah genug damit es kein Zufall mehr ist – hebt sie kurz den Kopf.</p>
+
+<p>Kein Lächeln. Nur ein kurzes Abschätzen.</p>
+
+<div class="dialog">„Thomas."</div>
+
+<div class="dialog">„Karla."</div>
+
+<p>Das war alles. Aber es war genug. Sie schiebt den Brotkorb ein Stück in deine Richtung, ohne etwas dabei zu sagen, und schaut wieder auf ihre Schüssel.</p>
+
+<div class="thought-box">Manche Menschen reden mit Gesten. Du hast gelernt, das zu lesen.</div>
+<p>Du nimmst ein Stück Brot.</p>
+
+<<= setup.setNpcAffection("karla", 1)>>
+
+[[Weiter->Story003_Drill]]
+
+
+:: Story003_Stille {"position":"825,2675","size":"100,100"}
+<p>Du isst.</p>
+
+<p>Nicht weil das Essen gut ist. Nicht weil du Hunger hast, genau genommen. Sondern weil es etwas ist, das du tun kannst ohne dabei mit jemandem reden zu müssen.</p>
+
+<div class="scenery-text">Das Geräusch der Kantine läuft an dir ab wie Wasser. Stimmen, Gelächter, das Scharren von Bänken. Du nimmst es wahr ohne darin zu versinken. Eine Fertigkeit, die du irgendwann gelernt hast und nicht mehr weißt wann.</div>
+<p>Jemand stellt sich neben dich. Sagt nichts. Isst auch nur.</p>
+
+<p>Du schaust kurz zur Seite.</p>
+
+<p>Jarek. Er hat denselben Ausdruck wie du – nicht unzugänglich, nur abwesend. Als würde er den Morgen durchrechnen bevor er anfängt.</p>
+
+<p>Ihr esst nebeneinander ohne ein Wort. Das ist keine Ablehnung. Das ist, auf seine eigene Art, eine Verständigung.</p>
+
+<<= setup.setNpcAffection("jarek", 1)>>
+
+[[Weiter->Story003_Drill]]
+
+
+
+:: Story004_Interrupt_Schinder_Stellprobe [nach_hub interrupt einmalig kap1] {"position":"1100,2300","size":"100,100"}
+<div class="scenery-text">Der Morgen ist kaum eine Stunde alt, da steht der Schinder schon mitten in der Formation. Er geht die Reihe ab, langsam, mit der Geduld eines Mannes, der weiß, dass die Zeit auf seiner Seite arbeitet. Vor dir bleibt er stehen. Sieht dich an. Sagt nichts.</div>
+<p>Dann, ohne Vorwarnung, tritt er dir den Stiefel gegen die Ferse, sodass dein Stand für einen Moment bricht.</p>
+
+<div class="voice-formal">„Wackelig, Rekrut. Wie ein Kalb auf Eis. Ich frage mich, ob in dir überhaupt was steckt — oder ob du nur die Suppe wegfrisst, die ein anderer verdient hätte."</div>
+<p>Die Reihe um dich herum ist still. Niemand schaut. Alle schauen. Das ist hier dasselbe.</p>
+
+<div class="thought-box">Er will eine Reaktion. Die Frage ist nur, welche.</div><span id="schinder-wahl">
+<<link "Den Blick senken und es schlucken">>
+<<replace "#schinder-wahl">>
+<p>Du senkst den Blick. Nicht aus Angst — oder nicht nur. Sondern weil du in den letzten Tagen gelernt hast, dass ein gesenkter Blick hier nichts kostet außer Stolz, und Stolz ist billig, wenn man wenig davon hat.</p>
+
+<p>Der Schinder mustert dich einen Herzschlag zu lang, als hätte er auf mehr gehofft. Dann ein knappes, fast enttäuschtes Schnauben. Er geht weiter.</p>
+
+<div class="thought-box">Er wird mich vergessen, bis morgen. Genau das wollte ich. Wer nicht auffällt, überlebt den Drill. Aber irgendwas an dem gesenkten Blick fühlt sich an wie eine kleine Niederlage, die niemand außer mir gesehen hat.</div>
+<<= setup.setNpcAffection("schinder", 2)>>
+<<= setup.setPlayerStat("ambition", -2)>>
+<hr class="trenner-raute">
+
+<<weiterImTag>>
+<</replace>>
+<</link>>
+
+<<link "Den Blick halten und ihn ansehen">>
+<<replace "#schinder-wahl">>
+<p>Du senkst den Blick nicht. Du sagst nichts — so dumm bist du nicht — aber du hältst seinem Blick stand, ruhig, ohne Trotz, ohne Angst, die du eigentlich spürst.</p>
+
+<p>Einen Moment lang geschieht gar nichts. Dann verengen sich seine Augen, und etwas darin verschiebt sich — nicht Wohlwollen, eher die Art Aufmerksamkeit, die ein Mann einem Hund schenkt, der zum ersten Mal knurrt.</p>
+
+<div class="voice-formal">„Mut oder Dummheit. Bei deiner Sorte ist das meistens dasselbe." Er beugt sich vor. „Wir werden sehen, was von dir übrig ist, wenn ich damit fertig bin."</div>
+
+<p>Dann zwanzig Liegestütze, sofort, im Kies. Deine Arme zittern bei der zwölften. Du machst alle zwanzig.</p>
+
+<div class="thought-box">Das hat etwas gekostet. Aber er kennt jetzt meinen Namen aus einem anderen Grund als nur dem Suppentopf. Ob das gut ist, weiß ich nicht.</div>
+<<= setup.setPlayerCondition(-8)>>
+<<= setup.setNpcAffection("schinder", -1)>>
+<<= setup.setPlayerStat("ambition", 3)>>
+<hr class="trenner-raute">
+
+<<weiterImTag>>
+<</replace>>
+<</link>>
+</span>
+
+
+:: Story005_Gottesdienst [interrupt nach_hub kap1] {"position":"1100,2450","size":"100,100"}
+<<if not $npc.hansFichtensplitter.memory.flags.sidequest05Complete and $world.visitedChurch>><<goto "05_Sidequest_Hansbert">><</if>>
+<p>Am Morgen ruft die Glocke zum Gottesdienst. Im Betsaal der Akademie stehen die Rekruten in Reihen, der Priester der Drei spricht von Limbas Funken, von Mirams Waage, von Hortum, der die Taten der Toten wiegt. Weihrauch hängt schwer in der kalten Luft.</p>
+<p>Thomas steht zwischen den anderen. Niemand prüft, ob er wirklich betet — aber jeder sieht, was er tut.</p>
+
+<span id="gd-wahl">
+<<link "Andächtig mitbeten, Wort für Wort">>
+    <<set _out to setup.setPlayerStat("faith", 3) + setup.setPlayerReputation("church", 1)>>
+    <<replace "#gd-wahl">><div class="scenery-text">Du sprichst die Worte mit, und für einen Moment trägt dich der gemeinsame Gesang.</div>_out<</replace>>
+    <<run $("#gd-weiter").show()>>
+<</link>>
+
+<<if $player.money.copper >= 1>>
+<<link "Eine Kupfermünze in den Opferstock werfen">>
+    <<set $player.money.copper -= 1>>
+    <<set _out to setup.setPlayerStat("faith", 2) + setup.setPlayerReputation("church", 2)>>
+    <<replace "#gd-wahl">><div class="scenery-text">Die Münze klimpert in den Stock. Ein Priester nickt dir kaum merklich zu.</div>_out<</replace>>
+    <<run $("#gd-weiter").show()>>
+<</link>>
+<</if>>
+
+<<link "Still zu Hortum beten — um Kraft im Kampf">>
+    <<if random(1, 100) <= 10>>
+        <<set _out to setup.setPlayerKnowledge("combat", 1)>>
+        <<set _txt to "Etwas in dir wird ruhiger und härter zugleich. Als hätte der Schwarze kurz hergesehen.">>
+    <<else>>
+        <<set _out to "">>
+        <<set _txt to "Du sprichst dein stilles Gebet. Ob es gehört wird, weißt du nicht.">>
+    <</if>>
+    <<replace "#gd-wahl">><div class="scenery-text">_txt</div>_out<</replace>>
+    <<run $("#gd-weiter").show()>>
+<</link>>
+
+<<link "Die Gedanken schweifen lassen, die Predigt über sich ergehen lassen">>
+    <<set _out to setup.setPlayerStat("faith", -2)>>
+    <<replace "#gd-wahl">><div class="scenery-text">Deine Gedanken wandern. Die Worte des Priesters werden zu einem fernen Summen.</div>_out<</replace>>
+    <<run $("#gd-weiter").show()>>
+<</link>>
+
+<<link "Den Reihen lauschen — wer tuschelt, wer fehlt">>
+    <<set _out to "">>
+    <<set _r to setup.skillCheck("gossip", 11)>>
+    <<if _r.success>>
+        <<set _out to setup.setPlayerKnowledge("gossip", 1) + setup.addRumor("Aufgeschnapptes Geflüster aus dem Betsaal")>>
+        <<set _txt to "Zwischen zwei Versen schnappst du auf, was nicht für deine Ohren bestimmt war.">>
+    <<else>>
+        <<set _txt to "Du lauschst — aber außer Gemurmel und Husten ist nichts zu holen.">>
+    <</if>>
+    <<set _out to _out + setup.setPlayerStat("faith", -1)>>
+    <<replace "#gd-wahl">><div class="scenery-text">_txt</div>_out<</replace>>
+    <<run $("#gd-weiter").show()>>
+<</link>>
+</span>
+
+<<set $world.visitedChurch = true>>
+<span id="gd-weiter" style="display:none">
+<<weiterImTag "Die Kirche verlassen">>
+</span>
+
+
+:: Story007_Training mit Karla [kap1] {"position":"1100,2700","size":"100,100"}
+<p>Karla will wieder mit dir trianieren.</p>
+
+
+<p>knowledge wichtign. das höchste wird ausgesucht und da will karla nachhilfe.</p>
+
+<p>gibt affection und ein bisschen Storry mir Karla</p>
+
+
+:: Story008_Extra Unterricht Magister {"position":"1125,2825","size":"100,100"}
+
+
+
+:: Kapitel1_Ende [interrupt einmalig] {"position":"200,4500","size":"100,100"}
+<<set $npc.karla.memory.flags.kapitel1_ende_seen to true>>
+<<set _kampf to setup.hoechsteKampfwerte()>>
+<<set $world.day to 365>>
+<p>Es ist soweit. Ein ganzes Jahr — dreihundertfünfundsechzig Tage — und doch fühlt es sich an wie ein einziger langer Tag, der erst jetzt zu Ende geht.</p>
+
+<div class="scenery-text">Auf dem Appellplatz stehen die Rekruten in Reih und Glied, zum letzten Mal als Rekruten. Der Morgen ist klar, die Banner hängen schwer in der windstillen Luft, und vorne, auf der hölzernen Tribüne, haben sich die Ausbilder versammelt. Heute werdet ihr keine Frischlinge mehr sein.</div>
+
+<p>Du denkst zurück. An den Jungen, der hier ankam — kurzatmig, weich, von den Bergen gerade erst notdürftig zusammengeflickt. Und an das, was aus ihm geworden ist.</p>
+
+<div class="thought-box">Ich bin nicht mehr der, der durch dieses Tor kam. Irgendwo zwischen Drill und Nacht, zwischen Schweiß und Schweigen, ist aus dem kranken Jungen etwas anderes geworden. Etwas Härteres. Etwas, das steht.</div>
+
+<p>Der Drill hat dich geformt, Tag um Tag, bis dein Körper vergaß, dass er einmal schwach war. Und unter all den Disziplinen, die sie dir eingeprügelt haben, ist eine, in der du wirklich gewachsen bist:</p>
+
+<<for _i to 0; _i lt _kampf.length; _i++>>
+<div class="beziehung"><<= setup.kampfwertWuerdigung(_kampf[_i])>></div>
+<</for>>
+
+<p>Dann treten die Ausbilder vor, einer nach dem anderen, um den Jahrgang zu entlassen.</p>
+
+<div class="voice-formal"><<dialog>><<= setup.ausbilderVermerk("schinder",
+"Der Schinder geht die Reihe ab und bleibt vor dir kaum stehen. Was zwischen euch war, war nie Wärme — und das bleibt es. Ein knappes Nicken, mehr nicht. Du warst für ihn nie mehr als ein Körper, den es zu härten galt.",
+"Der Schinder mustert dich im Vorbeigehen, sachlich, ohne Regung. Du warst weder sein bester noch sein schlechtester Rekrut. Du hast überlebt. Für ihn ist das genug.",
+"Der Schinder bleibt einen Moment vor dir stehen. „Du hast nicht aufgegeben“, sagt er nur. Aus seinem Mund, das weißt du inzwischen, ist das beinahe ein Lob.",
+"Der Schinder bleibt vor dir stehen und sieht dich an, lange. „Von hundert“, sagt er rau, „erinnere ich mich an drei. Du bist einer davon.“ Dann geht er weiter, und du weißt, dass dieser Mann dich nie vergessen wird."
+) >><</dialog>></div>
+
+<div class="voice-formal"><<dialog>><<= setup.ausbilderVermerk("kurt",
+"Fähnrich Brasner würdigt dich kaum eines Blickes. Was am ersten Tag zwischen euch zerbrach, hat sich nie gekittet. Er entlässt dich, weil er muss — nicht, weil er will.",
+"Fähnrich Brasner nickt dir zu, korrekt und distanziert. Ihr seid nie warm geworden, aber er hat dich auch nie im Stich gelassen. Pflicht, sauber erfüllt, auf beiden Seiten.",
+"Fähnrich Brasner reicht dir die Hand. „Du hast dich gemacht, Wabbler“, sagt er. „Ich hatte am Anfang meine Zweifel. Du hast sie widerlegt.“",
+"Fähnrich Brasner hält deine Hand einen Moment länger als nötig. „Wenn du je ein Banner suchst, das dich will“, sagt er leise, „dann komm zu mir. Männer wie dich gibt es selten.“"
+) >><</dialog>></div>
+
+<div class="voice-formal"><<dialog>><<= setup.ausbilderVermerk("hauptmann",
+"Hauptmann Rindler streift dich nur mit einem kühlen Blick. Für einen Mann seines Ranges bist du ein Name auf einer Liste, mehr nicht — und nach allem vielleicht ein Name, den er lieber vergäße.",
+"Hauptmann Rindler nimmt dich zur Kenntnis, nicht mehr und nicht weniger. Ein Offizier des Corps merkt sich nicht jeden Rekruten. Du hast keinen Anlass gegeben, dich zu merken — im Guten wie im Schlechten.",
+"Hauptmann Rindler hält im Vorbeigehen kurz inne. „Man hat von dir gehört“, sagt er knapp. „Nicht nur Schlechtes.“ Von einem Mann des Corps ist das mehr, als die meisten je hören.",
+"Hauptmann Rindler bleibt vor dir stehen, und für einen Moment liegt etwas wie Interesse in seinem kühlen Blick. „Dein Name ist mir untergekommen, Wabbler. Mehr als einmal. Ich behalte ihn im Auge.“"
+) >><</dialog>></div>
+
+<div class="voice-formal"><<dialog>><<= setup.ausbilderVermerk("magister",
+"Magister Halm sucht deinen Blick nicht. Was immer einmal zwischen euch an Vertrauen war, ist verbraucht. Er entlässt deinen Jahrgang mit einem Satz, in dem für dich nichts Persönliches liegt.",
+"Magister Halm nickt dir aus der Ferne zu, sachlich wie immer. Du warst ein Schüler unter vielen — aufmerksam genug, um nicht aufzufallen, unauffällig genug, um vergessen zu werden.",
+"Magister Halm fängt deinen Blick auf und neigt den Kopf. „Du hast zugehört“, sagt er nur, als ihr aneinander vorbeigeht. „Das tun die wenigsten.“",
+"Magister Halm tritt eigens zu dir. „Das Archiv“, sagt er leise, „vergisst niemanden, der wirklich wissen wollte. Du gehörst dazu. Wenn du je zurückkommst — die Tür kennt dich.“"
+) >><</dialog>></div>
+
+<p>Und dann, als die Zeremonie verklingt, wandern deine Gedanken zu den beiden Menschen, die dieses Jahr für dich mehr geprägt haben als jeder Ausbilder.</p>
+
+<<if $npc.karla.memory.flags.umkehrung_done>>
+<div class="scenery-text">Karla steht ein paar Reihen weiter. Als sich eure Blicke treffen, nickt sie — kurz, fast unmerklich, aber für euch beide bedeutet es alles. Ihr Onkel wird frei sein, bald. Sie weiß, was du getan hast, und du weißt, dass sie für dich da war, als der Boden unter dir wegbrach. Was zwischen euch ist, hat den Drill überdauert und wird ihn überdauern. Es ist das, was bleibt, wenn alles andere Befehl und Pflicht war: ein Mensch, der bleibt.</div>
+<<else>>
+<div class="scenery-text">Wo Karla stehen müsste, ist eine Lücke in der Reihe. Sie ist fort — nach Grodaus gebracht, an einem nebligen Morgen, den du nicht vergessen wirst. Du kennst die Wahrheit über ihren Onkel, über den Zeugen, über das Unrecht. Aber du hast im entscheidenden Moment danebengestanden statt an ihrer Seite, und das ist ein Gewicht, das du mit aus diesem Kapitel nimmst. Manche Türen schließt man, ohne es zu merken — bis sie zu sind.</div>
+<</if>>
+
+<<if $world.flags.jarek_ausgang === "schande">>
+<div class="scenery-text">Und Jarek. Sein Name liegt über diesem Tag wie ein Schatten. Du hast deinen Ruf verloren für etwas, das niemand versteht — und nur du trägst das Wissen, was wirklich geschah, was auf jenem Blatt stand. Sie sehen einen Dieb, einen, der sein Land beschämte. Du weißt es besser. Aber Wissen, das man mit niemandem teilen kann, ist eine einsame Last.</div>
+<<elseif $world.flags.jarek_ausgang === "geschwiegen">>
+<div class="scenery-text">Und Jarek. Verschwunden, sein Name unbefleckt, weil du geschwiegen hast. Niemand weiß, was in jener Nacht geschah — außer dir und ihm, irgendwo da draußen. Du trägst das Geheimnis der sechsten Unterschrift wie eine Narbe, die niemand sieht. Vielleicht war es Treue. Vielleicht Schwäche. Du wirst es nie ganz wissen.</div>
+<<elseif $world.flags.jarek_ausgang === "gemeldet">>
+<div class="scenery-text">Und Jarek. Du hast ihn gemeldet — denselben Weg gegangen, den er mit dir ging. Die Offiziere ehren dich dafür, und doch sitzt etwas in deiner Brust, das sich nicht nach Ehre anfühlt. Du hast einen Verräter ausgeliefert und dabei einen Freund verloren. Beides ist wahr. Beides nimmst du mit.</div>
+<<else>>
+<div class="scenery-text">Und Jarek. Eine Geschichte, die langsam verklingt — der Schustersohn, der verschwand. Nach außen ist nichts geschehen, und genau das hast du gewollt. Aber du trägst, was du weißt, allein, und das Erloschene in dir bemerkt niemand. Niemand außer einer.</div>
+<</if>>
+
+<div class="thought-box">Die Grundausbildung ist vorbei. Was kommt, weiß ich nicht. Aber ich weiß, wer ich geworden bin — und wer mit mir gegangen ist, und wer nicht. Das ist mehr, als ich hatte, als ich kam.</div>
+
+<div class="system-alert status-positive">KAPITEL 1 ABGESCHLOSSEN — Die Grundausbildung ist beendet. Aus dem kranken Jungen in den Bergen ist ein Soldat geworden.</div>
+<<run setup.kapitel1Abschliessen()>>
+
+[[ "Was kommt, kommt."|Kapitel 2]]
+
+
+:: Treppe runterrennen [layout] {"position":"975,300","size":"100,100"}
+<p>Die Panik schießt dir in die Glieder wie eisiges Wasser, und bevor du einen klaren Gedanken fassen kannst, hast du dich bereits umgeworfen und sprintest den Flur hinunter. Die Stufen der hinteren Treppe nimmst du im freien Fall, die Finger kaum am Geländer, die Stiefel auf dem glatten Stein ohne Halt.</p>
+<p>An der Biegung unten tritt ein Mann aus dem Schatten — und du hast keine Chance mehr zu bremsen.</p>
+<p>Der Aufprall ist hart und ungnädig. Papiere explodieren in alle Richtungen, eine kunstvoll versiegelte Dokumentenrolle entgleitet seinen Fingern und kracht polternd über die Steinstufen. Der Mann taumelt, greift mit beiden Händen nach dem Geländer und fängt sich mit einer Beherrschung, die unter den Umständen fast unheimlich wirkt. Dann richtet er sich auf und sieht dich an — mit einer Mischung aus Bestürzung und einer eisigen Würde, die keinen Zweifel daran lässt, dass er an Situationen gewöhnt ist, die er nicht selbst verschuldet hat.</p>
+<p>Er ist mittelgroß und trägt einen kurzen, gepflegten Vollbart über einem harten Kiefer. Ein Söldnerbarret mit dem Abzeichen des Haubentauchers sitzt auf seinem Kopf, darunter ein rotes Wollwams mit geschlitzten Pluderärmeln — und über den Schultern liegt, breit und unverkennbar, ein weißer bodenlanger Mantel ohne Ärmel. Das Zeichen der Diplomaten. Du erkennst es, noch bevor er den Mund öffnet.</p>
+<div class="dialog">„//Hortum//—", keucht er, dann streicht er mit langsamen, kontrollierten Bewegungen seine Kleidung glatt. Nach den Papieren bückt er sich nicht. Er fixiert dich stattdessen mit braunen Augen, die scharf und ruhig sind wie die Klinge eines Mannes, der gelernt hat, Wut in Kälte zu verwandeln.</div>
+<p>Als er bemerkt, wie ungläubig du ihn anschaust, zieht sich sein Mundwinkel einen knappen Moment zusammen.</p>
+<div class="dialog">„Mein Name ist $npc.diplomatHannes.name . Diplomat im Dienste des Städtebundes." Eine kurze, gewichtete Pause. „Und du bist ein Rekrut, der offenbar die Orientierung //und// die Manieren verloren hat."</div>
+<p>Er hebt die Dokumentenrolle vom Boden auf und klopft den Staub mit zwei gemessenen Schlägen herab, als wäre selbst diese Geste ein Urteil über dich.</p>
+<div class="dialog">„Merke dir eines für deine Zeit in dieser Akademie: Du wirst hier niemals glücklich werden — und vermutlich nicht einmal die nächsten zwei Jahre überleben —, wenn du dich nicht augenblicklich an die Regeln hältst. Ordnung und Verträge sind das Einzige, was dieses Land zusammenhält. Daran solltest du dich erinnern, solange du in Ohm bist."</div>
+<p>Mit einer herrischen, absolut unmissverständlichen Geste deutet er auf die schwere Flügeltür hinter dir.</p>
+<div class="dialog">„Und jetzt ab mit dir — bevor ich dem Sergeanten von diesem Vorfall berichte."</div>
+<p>Er sagt es ohne Lautstärke. Als wäre sein Schweigen das Großzügigste, was er dir anbieten kann.</p>
+
+<<set $npc.diplomatHannes.known = true>>
+
+[[Befehl befolgen und direkt zum Kasernenhof gehen->Der Kasernenhof]]
+
+
+
+
+
+:: Wuerfel_AllIn {"position":"2700,2500","size":"100,100"}
+<<set _bet = $player.money.copper>>
+<<include "Wuerfel_Auswertung">>
+
+
+:: Wuerfel_Auswertung {"position":"2900,2250","size":"100,100"}
+<<set _isScripted = $world.needsDiceGame>>
+<<set _win = false>>
+<<if _isScripted>> 
+    /* SCRIPTED WIN (Story-Moment) */
+    <<set _win = true>> 
+    <<set _bet = 5>>
+<<else>>	
+    /* NORMAL GAME */
+    <<set $player.money.copper -= _bet>>
+    <<set _roll = random(1,100)>>
+    <<set _win = (_roll <= 45)>>
+<</if>>
+<<if _win>>
+	<<set _gain = _bet * 2>>
+    <<set $player.money.copper += _gain>>
+<</if>>
+<div class="scenery-text">Du würfelst...
+
+<p>Die Würfel schlagen auf den Tisch.</p></div>
+<<timed 3s>>
+    <<if _win >>
+        <<if _isScripted>>
+            <div class="system-alert status-positive">10 Kupfer Gewonnen.</div>
+        <<else>>
+            <div class="system-alert status-positive">„<<= _bet >> Kupfer Gewonnen."</div>
+        <</if>>
+    <<else>>
+        <div class="system-alert status-negative">„<<= _bet >> Kupfer Verloren."</div>
+    <</if>>
+<</timed>>
+<<if _isScripted>>
+    <<timed 5s>>
+        <<set $world.needsDiceGame = false>>
+<p>Dein Herz schlägt bis zum Hals.</p>
+        <<if $sendByKarla>>
+<p>Karla schlägt dir auf die Schulter "Schau an, du solltest öfter auf mich hören!"</p>
+        <<else>>
+<p>Das Spiel ist vorbei. Du hast gewonnen, der Rausch des Moments lässt dich noch immer zittern.</p>
+        <</if>>
+<p>Du stehst auf und wackelst in Richtung deiner Pritsche</p>
+
+        [[Aufhören->Kap1_Tagesstart]] 
+    <</timed>>
+<<else>>   
+ <<timed 5s>>
+<hr class="trenner-raute">
+    <<if $player.money.copper > 0>>
+
+        [[Nochmal spielen->Wuerfel_Start]] 
+        [[Aufhören->Kap1_Tagesstart]] 
+
+    <<else>>
+
+<p>Du hast kein Geld mehr.</p>
+
+    [[Aufstehen->Auf Stube]]
+
+    <</if>>
+<</timed>>
+<</if>>
+
+
+:: Wuerfel_Set_1 {"position":"2600,2400","size":"100,100"}
+<<set _bet = 1>>
+<<include "Wuerfel_Auswertung">>
+
+
+:: Wuerfel_Set_2 {"position":"2700,2400","size":"100,100"}
+<<set _bet = 2>>
+<<include "Wuerfel_Auswertung">>
+
+
+:: Wuerfel_Set_5 {"position":"2600,2500","size":"100,100"}
+<<set _bet = 5>>
+<<include "Wuerfel_Auswertung">>
+
+
+:: Wuerfel_Start {"position":"2650,2275","size":"100,100"}
+<<if $world.needsDiceGame>>
+<p>Heute ist dein Absoluter Glückstag!</p>
+<p>Wir spielen Alles oder Nichts, dafür gehts auch um alles am Tisch!</p>
+
+<p>Du siehst am Tisch 8 Kupfer liegen.</p>
+
+<div class="thought-box">"Verdammt! ich hab nur 2 Kupfer, das ist alles was  von der Käserei übrig ist..."</div>
+[[Dein ganzes Kupfer auf den Tisch legen->Wuerfel_AllIn]]
+<<else>>
+<p>Wie viel willst du setzen?</p>
+
+[[1 Kupfer->Wuerfel_Set_1]]
+[[2 Kupfer->Wuerfel_Set_2]]
+[[5 Kupfer->Wuerfel_Set_5]]
+[[Alles setzen->Wuerfel_AllIn]]
+[[Abbrechen->Auf Stube]]
+<</if>>
+
+
+:: Wuerfel_Zuschauen {"position":"2450,2350","size":"100,100"}
+<<if $world.needsDiceGame>> 
+
+<p>Du willst dich gerade abwenden, als eine Stimme hinter dir schneidet.</p>
+
+<div class="dialog">„Wirklich?“</div>
+
+<p>Karla steht schon hinter dir, viel zu nah.</p>
+
+<p>Ein schiefes Grinsen zieht über ihr Gesicht, während sie deinen Blick festhält.</p>
+
+<div class="dialog">„Du gehst nirgendwo hin.“</div>
+
+<p>Bevor du reagieren kannst, packt sie dich am Kragen und zieht dich zurück an den Tisch.<<set $sendByKarla = true>></p>
+
+[[Der Würfel klackt auf Holz->Wuerfel_Start]] 
+
+<<else>>
+
+<p>Du lehnst dich zurück.</p>
+
+<p>Die Würfel rollen gleichmäßig über das Holz, begleitet von gedämpftem Lachen und dem leisen Klirren leerer Krüge.</p>
+
+<p>Für einen Moment bist du nur Zuschauer.</p>
+
+<p>Die Wärme des Raumes, das monotone Klacken der Würfel und das leise Murmeln der Rekruten ziehen langsam an dir vorbei.</p>
+
+<p>Deine Augen werden schwer.</p>
+<p>Nicht plötzlich – eher so, als würde die Müdigkeit sich einfach neben dich setzen und nicht mehr weggehen.</p>
+
+<<timed 9s>>
+<p>Die Geräusche verschwimmen.</p>
+<p>Stimmen werden zu etwas Fernem, Unwichtigem.</p>
+<</timed>>
+
+<<timed 13s>>
+<p>Irgendwann merkst du kaum noch, dass du noch wach bist.</p>
+<</timed>>
+
+<<timed 16s>>
+<p>Dein Kopf sinkt leicht nach vorne.</p>
+
+<p>Niemand sagt etwas dagegen.</p>
+<p>In einer Kaserne schläft jeder irgendwann irgendwo ein.</p>
+    
+    [[schlafen->Kap1_Tagesstart]]
+<</timed>>
+<</if>>
+
+
+
+
+:: Event_Geschichte {"position":"2400,1675","size":"100,100"}
+<<set _istMumpitz = random(1,100) <= 15>>
+<<if _istMumpitz>>
+    <<include "Event_Geschichte_Mumpitz">>
+<<else>>
+    <<set _gossipStory = setup.getGossipStory()>>
+    <<set $world.currentGossipStory = _gossipStory>>
+    <<if _gossipStory == null>>
+<p>Du lehnst dich zurück und horchst in den Raum.</p>
+<p>Heute Abend ist nichts Neues zu hören — nur dieselben müden Männer,</p>
+<p>die dieselben müden Geschichten erzählen.</p>
+        <div class="thought-box">Ich kenne diese Gesichter langsam. Aber ihre Geheimnisse hab ich noch nicht alle.
+        </div>
+        [[Schlafen ->Kap1_Tagesstart]]
+    <<else>>
+        <div class="scenery-text">Ein paar Kerzen flackern. Jemand lehnt sich vor.
+<p>Die Stimmen werden leiser — oder du wirst aufmerksamer, das ist schwer zu sagen.</p>
+        </div>
+        <<= _gossipStory.base>>
+        <<run setup.markGossipSeen(_gossipStory.id, false)>>
+        <<if _gossipStory.probe>>
+            <<set _gossipDiff = _gossipStory.probe.difficulty>>
+            <<set _gossipSkill = $player.knowledge.gossip>>
+            <<set _probeThought = setup.getProbeThoughtText(_gossipSkill, _gossipDiff)>>
+            <<if _probeThought !== null>>
+                <div class="thought-box"><<= _probeThought>></div>
+                <<set _label to 'Nachhaken' + setup.checkHint('gossip', _gossipDiff,3)>>
+                <<link _label>><<goto 'Event_Geschichte_Probe'>><</link>>
+            <</if>>
+        <</if>>
+        [[Schlafen ->Kap1_Tagesstart]]
+    <</if>>
+<</if>>
+
+
+:: Event_Geschichte_Mumpitz {"position":"2575,1600","size":"100,100"}
+<<set _gossipStory = setup.getFailedGossipStory()>>
+<div class="scenery-text">Irgendwo im Raum kommt wieder ein altes Gespräch auf…
+    </div>
+<<if _gossipStory>>
+    <<set $world.currentGossipStory = _gossipStory>>
+    <<= _gossipStory.base>>
+    <<if _gossipStory.probe>>
+        <div class="thought-box">Moment… die Geschichte kenn ich doch. Vielleicht ist da doch mehr dran.
+        </div>
+        [[Nachfragen ->Event_Geschichte_Probe]] 
+    <</if>>
+    [[Schlafen ->Kap1_Tagesstart]]
+<<else>>
+    <div class="thought-box">Das ist alles nur uninteressanter Tratsch. Ich hau ab...
+    </div>
+    [[Sich hinlegen und schlafen->Kap1_Tagesstart]]
+<</if>>
+
+
+:: Event_Geschichte_Probe {"position":"2400,1900","size":"100,100"}
+<<set _gossipStory = $world.currentGossipStory>>
+<<set _r = setup.skillCheckXp("gossip", _gossipStory.probe.difficulty,3)>>
+<<if _r.skill <= 3>>
+    <div class="scenery-text">Du hakst nach, etwas forsch.</div>
+<<elseif _r.skill <= 7>>
+    <div class="scenery-text">Du hakst nach. Beiläufig. So, als wäre es keine echte Frage.</div>
+<<else>>
+    <div class="scenery-text">Du musst nicht mal wirklich fragen und der Tratsch beginnt.</div>
+<</if>>
+
+<<if _r.success>>
+    <<= setup.getSuccessThought($player.knowledge.gossip, _r.skill)>>
+    <<if _r.outcome == "crit">>
+        <div class="thought-box">Und noch mehr — er redet sich in Fahrt, du erfährst Dinge, nach denen du nie gefragt hättest.</div>
+    <</if>>
+    <<= _gossipStory.probe.success>><br>
+    <<= _r.lernHTML>>
+    <<= setup.addRumor(_gossipStory.rumorText)>>
+    <<run setup.markGossipSeen(_gossipStory.id, true)>>
+<<else>>
+    <<if _r.outcome == "fumble">>
+        <div class="thought-box">Du fragst zu plump. Er macht dicht — und sieht dich jetzt schief an. Die halbe Stube weiß jetzt, dass du schnüffelst.</div>
+        <<= setup.setPlayerSuspicion(5)>>
+    <<else>>
+        <div class="thought-box">Mist. Er hatte noch was zu sagen — das war spürbar.
+<p>Aber jetzt ist die Tür zu.</div></p>
+        <<= setup.setPlayerSuspicion(2)>>
+    <</if>>
+    <<= _gossipStory.probe.fail>>
+    <<run setup.markGossipSeen(_gossipStory.id, false)>>
+<</if>>
+
+<<set $world.currentGossipStory = null>>
+[[Schlafen ->Kap1_Tagesstart]]
+
+
+:: Event_Schlaegerei {"position":"2725,1600","size":"100,100"}
+<<if $player.knowledge.combat == 0>>
+<p>Es hört sich an als würden zwei Rekruten streiten.</p>
+<<elseif $player.knowledge.combat == 10>>
+<p>Zwei Rekruten gehen sich an die Gurgel — doch als du dich aufrichtest, verstummen sie. Vor deiner Kampferfahrung haben sie Respekt.</p>
+    
+    [[Zur Pritsche gehen ->Kap1_Tagesstart]]
+<<else>>
+    <div class="thought-box">Zwei Rekruten streiten lautstark. Du könntest dazwischengehen — ob du sie auseinanderbekommst, hängt von deiner Kampferfahrung ab.</div>
+    <span id="stubeFightJoice">
+        <<set _label to 'Dazwischen gehen.' + setup.checkHint('combat', 13)>>
+        <<link _label>>
+            <<replace "#stubeFightJoice">>
+                <<set _allianz to (random(1, 100) <= 10)>>
+                <<set _r to setup.skillCheck('combat', 13, _allianz ? 3 : 0)>>
+                <<if _allianz>>
+<p>Kaum stehst du zwischen ihnen, wenden sich beide gemeinsam gegen dich. Zwei gegen einen.</p>
+                <<else>>
+<p>Du schiebst dich zwischen die beiden.</p>
+                <</if>>
+                <<if _r.outcome == 'crit'>>
+<p>Ein einziger harter Schlag, perfekt ins Ziel – und es ist vorbei. Die ganze Stube hat es gesehen.</p>
+                    <<= setup.setPlayerKnowledge('combat', 1)>>
+                    [[Stolz geschwellt zur Pritsche gehen ->Kap1_Tagesstart]]
+                <<elseif _r.success>>
+<p>Fäuste fliegen, beide Seiten stecken ein und teilen aus. Am Ende bleibst du stehen.</p>
+                    <<= setup.setPlayerKnowledge('combat', 1)>>
+                    [[Zur Pritsche gehen ->Kap1_Tagesstart]]
+                <<elseif _r.outcome == 'fumble'>>
+<p>Du greifst voll daneben und gehst selbst zu Boden, ehe ein Weibel dazwischenfährt.</p>
+                    <<= setup.setPlayerCondition(-5)>>
+                    <<= setup.setPlayerStat('discipline', -2)>>
+                    <<= setup.setPlayerStat('ambition', -1)>>
+                    [[Unter Lachen der Anderen zur Pritsche gehen ->Kap1_Tagesstart]]
+                <<else>>
+<p>Es misslingt – du fängst ein paar Hiebe, ein Weibel reißt euch auseinander.</p>
+                    <<= setup.setPlayerCondition(-2)>>
+                    <<= setup.setPlayerStat('discipline', -1)>>
+                    [[Zur Pritsche humpeln ->Kap1_Tagesstart]]
+                <</if>>
+            <</replace>>
+        <</link>>
+    </span>
+<</if>>
+
+
+:: Event_Wuerfelspiel {"position":"2450,2200","size":"100,100"}
+<p>Ein paar Rekruten sitzen um einen groben Holztisch.</p>
+<p>Zwischen Krügen und Kerzenlicht klackern Würfel.</p>
+
+<<if $world.needsDiceGame>>
+<div class="dialog">„Setz dich. Heute spielen wir.“</div>
+<<else>>
+<div class="dialog">„Willst du würfeln oder zuschauen?“</div>
+<</if>>
+<<if $player.money.copper <= 0>>
+<p>Der Blick des Spielers wandert kurz zu deinem leeren Geldbeutel.</p>
+
+<div class="dialog">„Ohne Kupfer bist du hier falsch, Bürschlein!“</div>
+
+<p>Du wirst vom Tisch weggeschickt.</p>
+
+<<else>>
+
+[[Mitspielen->Wuerfel_Start]] 
+[[Zuschauen->Wuerfel_Zuschauen]]
+<</if>>
+
+:: Auf Stube {"position":"1925,1750","size":"100,100"}
+<p>Nach dem harten Tag bist du auf der Stube.</p>
+
+<p>Der Raum riecht nach kaltem Holz, Leder und abgestandenem Rauch, der sich irgendwo zwischen den Balken festgesetzt hat.</p>
+<p>Draußen knackt das Gebäude leise im Wind, als würde es selbst noch den Dienst des Tages verdauen.</p>
+
+<p>Ein paar Kerzen flackern unruhig auf dem Tisch.</p>
+<p>Schatten kriechen über die Wände, ziehen sich über Spinde, Stiefel und halb geöffnete Ausrüstungstaschen.</p>
+
+<p>Irgendwo lacht jemand zu laut. Dann wieder Stille.</p>
+<p>Dieses kurze, gespannte Schweigen, das in Kasernen nie wirklich Ruhe bedeutet.</p>
+
+<<if $world.needsDiceGame>>
+	<<include "Event_Wuerfelspiel">>
+<<else>>
+	<<if random(1,100) <= 40>>
+
+<<set _event = either("Event_Wuerfelspiel", "Event_Schlaegerei")>>
+<<include _event>>
+ <</if>>
+	
+    [[Zuhören, was geredet wird ->Event_Geschichte]]
+    [[Schlafen->Kap1_Tagesstart]]
+    
+<</if>>
+
+:: Abendappell {"position":"850,1925","size":"100,100"}
+<<= setup.getAbendappellText("szenerie")>>
+
+<p>Die Reihen schließen sich. Nicht ordentlich genug, um schön zu sein — aber ordentlich genug, dass niemand sofort angeschrien wird.</p>
+
+<p>Der Hauptmann schreitet die Front ab. Seine Stiefel knirschen gleichmäßig im Kies, sein Blick bleibt nie lange auf einem Gesicht liegen und scheint doch jedes einzelne zu wiegen. Neben dir steht Karla, aufrecht wie ein eingeschlagener Pflock. Sie sieht nicht zu dir herüber.</p>
+
+<<formal>><<= setup.getAbendappellText("hauptmann")>><</formal>>
+
+<p>Niemand antwortet. Niemand muss.</p>
+
+<hr class="trenner-raute">
+
+<<gedanke>><<= setup.getAbendappellText("gedanke")>><</gedanke>>
+
+<<set _q = setup.readySidequest()>>
+<<if _q>>
+  <<run setup.questState(_q).active = true>>
+  <<goto setup.sidequests[_q].start>>
+<</if>>
+
+[[Auf Stube gehen ->Auf Stube]]
+
+
+
+
+
+:: Kap1_Der nächste Tag {"position":"1350,850","size":"100,100"}
+<<set _interrupt = setup.checkInterrupt()>>
+<<if _interrupt != null>>
+    <<goto _interrupt>>
+<<else>>
+    
+ <<if random(1, 100) <= 50>>
+      <div class="scenery-text">Kaum hast du dein Frühstück beendet, erklingt das vertraute Läuten der Glocken über den Dächern der Akademie. 
+<p>Ihr Klang hallt durch Höfe und Korridore und ruft Studenten wie Lehrmeister gleichermaßen zu ihren Pflichten.</p>
+        
+<p>Überall setzen sich Gruppen in Bewegung, Bücher werden unter die Arme geklemmt und Gespräche verstummen.</p>
+<p>Offenbar beginnt gleich die erste Vorlesung des Tages.</p>
+    </div>
+
+    <div class="thought-box">
+<p>Zeit, sich dem Studium zu widmen.</p>
+    </div>
+    [[Die Glocken zuStudium läuten ->Studium Hub]]
+    <<else>>
+      <div class="scenery-text">Nach dem Frühstück gab es heute Vormittag lediglich einen kurzen Drill.
+<p>Nichts Außergewöhnliches, aber auch nichts besonders Anstrengendes.</p>
+<p>Die Ausbilder wirkten ungewohnt gelassen und entließen euch bereits vorzeitig.</p>
+
+<p>Auf den Höfen der Akademie herrscht geschäftiges Treiben. Manche Studenten</p>
+<p>eilen ihren Verpflichtungen nach, andere nutzen die unerwartete Freizeit,</p>
+<p>um eigenen Interessen nachzugehen.</p>
+    </div>
+      <<if random(1, 100) <= 50>>
+<p>Den Nachmittag hat man euch zur freien wahl gelassen.</p>
+      <<else>>
+<p>Nach dem Frühstück wurde der reguläre Unterricht überraschend abgesagt. Offenbar waren mehrere Dozenten anderweitig beschäftigt. Die meisten Studenten nutzten die unerwartete Freizeit, um ihren eigenen Angelegenheiten nachzugehen.</p>
+      <</if>>
+      <div class="thought-box">Einfach mal in Ruhe los ziehen...</div>
+        [[Die Akkademie auf eigene Faust erkunden ->Nachmittag Hub]]
+    <</if>>
+<</if>>
+
+
+:: Kap1_Tagesstart [tagesstart layout] {"position":"1475,775","size":"100,100"}
+/* Einstiegspunkt für den Tag */
+<<= setup.renderTagesbericht()>>
+<div class="scenery-text"><<= setup.getNaechsterTagText("morgen")>></div>
+<<= setup.getNaechsterTagText("koerper")>>
+<div class="thought-box"><<= setup.getNaechsterTagText("gedanke")>></div>
+<<= setup.getNaechsterTagText("luigi_schatten")>>
+
+[[Sieh was der Tag bringt->Kap1_Der nächste Tag]]
+
+
+
+
+
+
+
+:: bye {"position":"1050,4475","size":"100,100"}
+<p>Danke fürs Spielen!</p>
+
+<p>Das wars fürs erste.</p>
+
+<p>Mehr Content wird sicher irgendwann kommen.</p>
+
+

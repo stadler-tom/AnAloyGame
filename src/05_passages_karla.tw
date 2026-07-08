@@ -1,0 +1,1180 @@
+
+:: karla_S1 [interrupt einmalig kapitel-opener kap1] {"position":"150,3150","size":"100,100"}
+<<set $npc.karla.memory.flags.s1_seen to true>>
+<p>Der Drill ist vorbei, die Reihe löst sich auf, und du spürst es in den Schultern — diesen dumpfen Schmerz, der erst kommt, wenn man aufhört sich zu bewegen. Du reibst dir die Handflächen, an denen der Schaft der Übungslanze rote Striemen hinterlassen hat.</p>
+
+<div class="dialog">„Du hältst sie falsch."</div>
+
+<p>Karla. Sie steht ein paar Schritt entfernt, die eigene Lanze lässig über der Schulter, und sieht dir auf die Hände statt ins Gesicht.</p>
+
+<div class="scenery-text">Der Exerzierplatz leert sich. Staub hängt noch in der Nachmittagsluft, und irgendwo bellt der Schinder einen Nachzügler an. Die Sonne steht tief und wirft lange Schatten über den festgetretenen Boden.</div>
+
+<div class="dialog">„Du klammerst." Sie tritt näher, ohne zu fragen, und legt zwei Finger an deinen Unterarm — kurz, sachlich, korrigierend. „Deshalb zittert die Spitze. Halt sie wie einen Vogel. Fest genug, dass er nicht wegfliegt. Locker genug, dass du ihn nicht zerdrückst."</div>
+
+<p>Sie tritt einen Schritt zurück und mustert dich. Kein Lob, keine Wärme. Nur die nüchterne Prüfung von jemandem, der einschätzt, ob sich Mühe lohnt.</p>
+
+<div class="thought-box">Sie muss das nicht tun. Niemand hier korrigiert einen anderen, ohne etwas dafür zu wollen. Und doch wirkt es nicht, als wolle sie etwas.</div>
+
+<<set $npc.karla.memory.flags.s1_done to true>>
+
+[[Es ausprobieren — den Griff lockern. ->karla_S1_annehmen]]
+[[Abwinken — du bist müde, das reicht für heute. ->karla_S1_abwinken]]
+
+
+:: karla_S10 [interrupt einmalig nach_stube kap1] {"position":"1300,3275","size":"100,100"}
+<<set _ausgang = $world.flags.jarek_ausgang>>
+<p>Karla findet dich. Natürlich findet sie dich — sie hat ein Gespür für die Risse in Menschen, weil sie ihre eigenen so lange verstecken musste.</p>
+
+<p>Du sitzt allein, dort wo dich niemand sucht, und du hast nicht gehört, dass sie kommt. Erst als sie sich neben dich setzt, ohne ein Wort, merkst du, dass du nicht mehr allein bist.</p>
+
+<div class="scenery-text">Die Nacht ist kühl. Über dem Hof steht ein blasser Mond, und die Geräusche des Lagers sind weit weg, gedämpft, als gehörten sie zu einer Welt, die dich gerade nichts angeht.</div>
+
+<p>Sie fragt nicht, was los ist. Sie weiß, dass das die falsche Frage wäre — du hast es ihr beigebracht, in einer Schreibstube, vor langer Zeit. Stattdessen sitzt sie einfach da, neben dir, und wartet.</p>
+
+<<if _ausgang === "schande">>
+<p>Du brauchst niemandem zu erzählen, was geschehen ist. Das halbe Lager weiß es. Der Frischling, der ins Archiv eingebrochen ist, der sein Land beschämt hat, dem Magister Halm den Rücken gekehrt hat. Sie tuscheln, wenn du vorbeigehst. Sie sehen weg, wenn du sie ansiehst. Du bist zu etwas geworden, das man meidet.</p>
+
+<p>Lange sagt Karla nichts. Dann, leise und mit einer Härte, die nicht dir gilt, sondern allen anderen:</p>
+
+<div class="dialog">„Ich weiß, was sie über dich sagen. Und es ist mir gleich." Sie sieht dich von der Seite an. „Ich weiß, warum du dort warst. Nicht für dich. Für jemanden, dem du helfen wolltest. Genau wie du es bei mir getan hast." Ihre Stimme wird fest. „Die da draußen sehen einen Dieb. Ich sehe den Einzigen, der je für mich aufgestanden ist, ohne etwas dafür zu wollen. Sollen sie tuscheln. Ich weiß, wer du bist."</div>
+
+<div class="thought-box">Das ganze Lager hat sich von mir abgewandt. Und ausgerechnet sie — die ich kaum dazu bringen konnte, mir am Anfang ein Wort zu gönnen — bleibt sitzen. Als wäre nichts selbstverständlicher.</div>
+
+<<elseif _ausgang === "geschwiegen">>
+<p>Der Schnitt an deinem Arm hat sich wieder geöffnet — du hast ihn schlecht versorgt, weil dir alles gleichgültig war in diesen Tagen. Karla sieht das Blut, das durch den groben Verband sickert, und ohne zu fragen nimmt sie deinen Arm, löst den Stoff und beginnt, ihn neu zu binden, fest und geübt.</p>
+
+<div class="dialog">„Du lässt dich gehen", sagt sie, während ihre Hände arbeiten. Kein Vorwurf. Eine Feststellung. „Was auch immer in dieser Nacht passiert ist — du trägst es mit dir herum wie diese Wunde. Schlecht verbunden. Damit es wehtut."</div>
+
+<p>Sie zieht den Knoten fest, vielleicht eine Spur zu fest, und sieht dich dann an.</p>
+
+<div class="dialog">„Ich frag nicht, was war. Das geht mich nichts an, und du würdest es mir sowieso nicht sagen. Aber ich kann dafür sorgen, dass wenigstens der Arm heilt. Den Rest …" Sie zögert. „Den Rest trägst du nicht mehr allein. Auch wenn ich nicht weiß, was es ist."</div>
+
+<div class="thought-box">Sie versorgt die Wunde, die sie sehen kann, und macht mir damit ein Angebot für die, die sie nicht sehen kann. Genau das hab ich für sie getan. Brauchst du Licht. Jetzt fragt sie mich dasselbe — ohne die Worte.</div>
+
+<<elseif _ausgang === "gemeldet">>
+<p>Sie alle haben dir auf die Schulter geklopft. Der Schinder, der Hauptmann, sogar der Magister. Du hast einen Dieb gemeldet, hast deine Pflicht getan, hast Anerkennung geerntet. Und nichts davon hat das Gefühl in deiner Brust auch nur berührt.</p>
+
+<p>Karla ist die Einzige, die nicht gratuliert.</p>
+
+<div class="dialog">„Sie feiern dich", sagt sie nach einer Weile. „Und du sitzt hier, als hättest du etwas verloren." Sie nickt langsam, als verstünde sie etwas, das den anderen entgeht. „Du hast jemanden ausgeliefert. Jemanden, dem du mal vertraut hast. Und jetzt sagen dir alle, du hättest das Richtige getan — und keiner von ihnen versteht, warum es sich anfühlt wie Verrat."</div>
+
+<p>Sie sieht dich an, und in ihrem Blick liegt ein Wiedererkennen.</p>
+
+<div class="dialog">„Ich kenne das, Thomas. Einen Menschen, der schweigt, wenn er reden müsste. Einen, der dich im Stich lässt. Es zerfrisst dich — egal, ob du am Ende recht hattest." Sie legt eine Hand auf deinen Arm, kurz, fest. „Du hast nicht das Falsche getan. Aber du darfst trotzdem trauern. Das eine schließt das andere nicht aus."</div>
+
+<div class="thought-box">Alle sehen den Mann, der seine Pflicht tat. Sie sieht den Mann, der einen Freund verlor — und der nicht weiß, ob er selbst noch einer von den Guten ist. Niemand sonst hat das gesehen. Nur sie.</div>
+
+<<else>>
+<p>Nach außen ist nichts geschehen. Jarek ist eine Geschichte geworden, die langsam verklingt — der Schustersohn, der verschwand. Niemand sieht dir an, was du mit dir trägst. Du hast dafür gesorgt, dass niemand es sieht.</p>
+
+<p>Aber Karla sieht es trotzdem.</p>
+
+<div class="dialog">„Irgendwas in dir ist aus", sagt sie leise. „Seit Tagen. Du gehst durch den Tag wie ein Mann, der ein Licht ausgeblasen hat, und jetzt nicht mehr weiß, wie er im Dunkeln gehen soll."</div>
+
+<p>Sie drängt nicht. Sie rückt nur ein wenig näher, sodass ihr Arm den deinen berührt.</p>
+
+<div class="dialog">„Was es auch war — ich seh, dass es schwer ist. Und ich seh, dass du allein damit bist." Eine Pause. „Das musst du nicht. Das ist alles, was ich sagen will. Du musst es mir nicht erzählen. Du musst nur wissen, dass da jemand sitzt, der bleibt."</div>
+
+<div class="thought-box">Ich hab es vor allen verborgen. Vor allen außer ihr. Sie sieht das Erloschene, das niemand sonst bemerkt — weil sie gelernt hat, genau da hinzuschauen, wo Menschen ihre Risse verstecken.</div>
+<</if>>
+
+<p>Ihr sitzt eine Weile schweigend nebeneinander. Es löst nichts. Das, was geschehen ist, ist immer noch geschehen, und das Geheimnis, das du trägst, ist immer noch deins allein.</p>
+
+<p>Aber zum ersten Mal seit jener Nacht bist du nicht mehr allein damit, *dass* du etwas trägst. Und das, so merkst du, macht einen Unterschied, den du nicht in Worte fassen könntest.</p>
+
+<div class="thought-box">Ich habe ihr einmal Licht gebracht, als sie im Dunkeln suchte. Ich hätte nie gedacht, dass sie es mir eines Tages zurückgibt. So ist das wohl mit den Menschen, die man nicht im Stich lässt: Irgendwann lassen sie auch dich nicht im Stich.</div>
+
+<<= setup.setNpcAffection("karla", 10)>>
+<<set $npc.karla.memory.flags.umkehrung_done to true>>
+<<set $npc.karla.memory.flags.s10_done to true>>
+
+<div class="system-alert status-positive">Karla war für dich da, so wie du für sie da warst. Was ihr verbindet, hat den Namen Freundschaft längst hinter sich gelassen — es ist etwas, das hält.</div>
+
+<<weiterImTag "Weiter">>
+
+
+:: karla_S1_abwinken [nach_appell] {"position":"300,3275","size":"100,100"}
+<div class="dialog">„Reicht für heute", sagst du und senkst die Lanze.</div>
+
+<p>Karla zuckt mit einer Schulter. Kein Vorwurf, kein zweiter Versuch. Sie hat dir etwas angeboten, du hast es liegen lassen, und für sie ist das kein Drama — nur eine Information.</p>
+
+<div class="dialog">„Wie du willst, Frischling."</div>
+
+<p>Sie geht. Und du merkst, während du ihr nachschaust, dass dich der ziehende Schmerz in den Handflächen daran erinnern wird, dass sie recht gehabt hätte.</p>
+
+<div class="thought-box">Vielleicht war das eine vertane Gelegenheit. Vielleicht auch nicht. Bei ihr ist das schwer zu sagen.</div>
+
+<<= setup.setNpcAffection("karla", 1)>>
+<<weiterImTag "Zum Appell gehen">>
+
+
+:: karla_S1_annehmen [nach_appell] {"position":"150,3275","size":"100,100"}
+<p>Du lockerst den Griff. Hältst sie wie einen Vogel.</p>
+
+<p>Es fühlt sich falsch an — zu lose, als würde sie dir gleich aus der Hand fallen. Dann hebst du sie, stößt einmal in die leere Luft, und die Spitze fährt gerade nach vorn, ohne zu zittern.</p>
+
+<p>Du stutzt.</p>
+
+<p>Karla nickt knapp. Nicht überrascht. Eher so, als hätte sie auf genau diesen Moment gewartet, in dem du selbst merkst, dass sie recht hatte.</p>
+
+<div class="dialog">„Siehst du."</div>
+
+<p>Mehr sagt sie nicht. Sie dreht sich um und geht, die Lanze wieder über der Schulter, und lässt dich mit der Waffe und einer kleinen, unerwarteten Erkenntnis zurück.</p>
+
+<div class="thought-box">Eine winzige Sache. Aber sie hat sie mir gezeigt, ohne dass ich darum gebeten habe. Das vergisst man nicht so schnell.</div>
+
+<<= setup.setNpcAffection("karla", 3)>>
+<<= setup.pushNpcMemory("karla", "training_angenommen")>>
+<<weiterImTag "Zum Appell gehen">>
+
+
+:: karla_S1b [interrupt einmalig nach_hub kap1] {"position":"25,3275","size":"100,100"}
+<p>Nach einem Morgen mit leichten Marschübungen bist du auf dem Weg zum Brunnen, als du am Rand des Übungsplatzes hängenbleibst. Karla trainiert. Nicht allein — ihr gegenüber steht Berns, ein breiter Kerl aus dem zweiten Zug, der mehr Kraft hat als Verstand und das auch weiß.</p>
+
+<p>Du bleibst stehen. Irgendetwas an der Art, wie Karla kämpft, hält dich fest.</p>
+
+<div class="scenery-text">Die Vormittagssonne brennt schon. Staub steigt bei jedem Schritt auf, und das harte Klacken der Übungslanzen hallt von der Mauer wider. Ein paar andere schauen zu, gelangweilt, kauend.</div>
+
+<p>Sie ist gut. Schneller als Berns, präziser. Sie treibt ihn vor sich her, Schlag um Schlag, und du siehst förmlich, wie sich seine Miene verfinstert, weil ein Mädchen ihn alt aussehen lässt.</p>
+
+<p>Dann passiert es. Berns, mehr aus Frust als aus Können, bricht aus der Linie aus und greift von links an — tief, von ihrer schwachen Seite.</p>
+
+<p>Und Karla *zuckt*.</p>
+
+<p>Nicht viel. Ein halber Schritt zurück, der Körper weggedreht, die Linke an den Leib gezogen — für einen Wimpernschlag ist die kühle, überlegene Kämpferin verschwunden, und an ihrer Stelle steht etwas anderes. Etwas Älteres. Etwas, das wehtut.</p>
+
+<div class="thought-box">Das war kein technischer Fehler. Das war ein Reflex. So zuckt nur, wer einmal an genau dieser Stelle wirklich verletzt wurde.</div>
+
+<p>Berns lacht. Laut, dumm, triumphierend. „Na, was ist denn da los? Tut das Ärmchen weh?" Er stößt noch einmal nach links nach, halb im Spaß. „Komm schon, was hast'n da? Erzähl doch mal —"</p>
+
+<p>Karla schlägt ihm die Lanze aus der Hand.</p>
+
+<p>Kein Wort. Keine Erklärung. Nur eine einzige, kalte Bewegung, so schnell, dass Berns gar nicht begreift, wie ihm geschieht — und dann steht sie über ihm, die Spitze ihrer Lanze eine Handbreit vor seiner Brust, und ihr Blick ist so leer und so endgültig, dass das Lachen ringsum sofort erstirbt.</p>
+
+<div class="voice-formal">„Frag das nie wieder."</div>
+
+<<run setup.addRumor("Karla scheint eine Verletzung an der linken Seite zu haben. Sie will nicht darüber reden, aber sie reagiert sehr empfindlich darauf.")>>
+
+<p>Sie sagt es leise. Das macht es schlimmer.</p>
+
+<p>Dann lässt sie die Lanze sinken, dreht sich um und geht, ohne sich noch einmal umzusehen und Berns bleibt im Staub sitzen.</p>
+
+<div class="thought-box">Was immer mit ihrer linken Seite ist — es schmerzt sie...</div>
+
+<<set $npc.karla.memory.flags.s1b_seen to true>>
+<<set $npc.karla.memory.flags.s1b_done to true>>
+<<weiterImTag "Weiter">>
+
+
+:: karla_S2 [interrupt einmalig kap1] {"position":"150,3400","size":"100,100"}
+<p>Der Schinder war heute wieder streng. Du hast dich durchgekämpft, aber die Müdigkeit hängt dir in den Gliedern.</p>
+<p>Langsam formten sich die Rekruten zu einer Einheit. Die Sonne ist schon hinter den Palisaden verschwunden, und die Schatten der Stallungen sind lang.</p>
+
+<p>Nach dem Abendapell willst du gerade zur Stube, als sie aus dem Schatten der Stallungen tritt. Nicht laut. Sie wartet einfach, bis du sie siehst.</p>
+
+<div class="dialog">„Du. Komm mit."</div>
+
+<p>Sie sieht dich dabei nicht an, dreht sich um und geht, als wäre längst beschlossen, dass du folgst.</p>
+
+<div class="scenery-text">Sie führt dich hinter die Stallungen, an den Wachen vorbei, durch eine Lücke zwischen zwei Planwagen — und dann stehst du auf einem kleinen, vergessenen Flecken Erde. Ein paar ausgeblichene Strohballen, ein ramponierter Holzpfosten. Kein Talglicht. Nur das letzte Tageslicht, das von Westen gegen die Palisaden drückt.</div>
+
+<p>Karla dreht sich um. Ihre Augen wandern einmal über dich — prüfend, kurz.</p>
+
+<div class="dialog">„Du hast heute auf dem Platz nicht gezuckt", sagt sie. Keine Frage. Keine Schmeichelei. Eine Feststellung, die sie offenbar für relevant hält.</div>
+
+<p>Sie hebt eine abgenutzte Übungslanze vom Boden und wirft sie dir zu. Kein „fang" davor. Einfach werfen.</p>
+
+<div class="dialog">„Ich brauche jemanden zum Üben. Jetzt. Und du redest mit niemandem darüber." Sie dreht die eigene Lanze zwischen den Handflächen, locker und gewohnt. „Fang an."</div>
+
+<div class="thought-box">Kein Bitte. Kein Warum. Eine Tatsache, die jetzt im Raum steht wie ein Werkzeug, das man entweder anfasst oder liegen lässt.</div>
+<<set $npc.karla.memory.flags.s2_done to true>>
+
+[[Mitmachen und genau beobachten, wie sie kämpft. ->karla_S2_aktiv]]
+[[Die Lanze auffangen und trotzdem ablehnen. ->karla_S2_ablehnen]]
+
+
+:: karla_S2_ablehnen [nach_stube] {"position":"400,3525","size":"100,100"}
+<p>Du fängst die Lanze auf — und hältst sie einen Moment in den Händen, bevor du sie langsam wieder zum Boden senkst.</p>
+
+<div class="dialog">„Nicht heute."</div>
+
+<p>Karla sieht dich an. Ihr Gesicht verändert sich nicht.</p>
+
+<div class="dialog">„Warum."</div>
+
+<p>Kein Fragezeichen. Nur das Wort, hingestellt wie ein Block.</p>
+
+<p>Du nennst deinen Grund — Erschöpfung, ein steifer Nacken, was auch immer dir zuerst kommt. Sie hört zu. Oder sie tut so. Dann nimmt sie dir die Lanze aus der Hand. Ohne Kommentar. Ohne sie fallen zu lassen.</p>
+
+<div class="dialog">„Ein anderes Mal vielleicht." Und du weißt nicht, ob das eine Drohung ist oder ein Angebot.</div>
+
+<div class="thought-box">Sie hat nicht widersprochen. Aber sie hat auch nichts vergessen.</div>
+
+<<= setup.setNpcAffection("karla", -1)>>
+<<weiterImTag "Auf die Stube gehen">>
+
+
+:: karla_S2_aktiv {"position":"150,3525","size":"100,100"}
+<p>Du fängst die Lanze auf und nimmst die Position ein, die euch der Schinder eingeprügelt hat.</p>
+<div class="thought-box">Was hat sie vor, warum will sie immer mehr trainieren?</div>
+
+<p>Karla greift an. Schnell. Direkt. Von rechts, immer von rechts — und du bemerkst es erst beim dritten Mal: Wenn du von links kommst, macht sie einen Schritt zurück. Kein Ausweichen, keine Parade. Einen Schritt zurück, den Körper leicht weggedreht. Als wäre es eine Gewohnheit, die tiefer sitzt als jede Technik.</p>
+
+<div class="thought-box">Sie zieht die Linke nach. Das ist ein Reflex. Und Reflexe dieser Art lernt man nicht — die übt man ein, weil man muss.</div>
+
+<p>Du greifst noch einmal von links an. Langsam diesmal, tiefer, mit mehr Gewicht. Karla pariert — einen Herzschlag zu spät. Der Schaft streift ihre Schulter. Nicht stark. Aber er trifft.</p>
+
+<p>Sie hält inne. Ihr Blick sucht deinen, kalt und aufmerksam weil sie bemerkt hat das es dir aufgefallen ist.</p>
+
+<<if setup.getRumor("Karla scheint eine Verletzung an der linken Seite zu haben. Sie will nicht darüber reden, aber sie reagiert sehr empfindlich darauf.").hasRumor >>
+  <<beziehung>>
+    <<gedanke>>
+      <p>sie hat gemerkt, dass ich es gesehen habe. Spreche ich es an — oder lasse ich es liegen? Bei Berns war sie ungehalten. Aber er hat sich über sie lustig gemacht.</p>
+      <<set _r to setup.skillCheckXp("perception", 13)>>
+      <<if _r.success>>
+        <<= setup.skillCheckAlert(_r)>>
+        <p>Aber das war es nicht... Sie will es verbergen. Sie will nicht, dass jemand ihre Schwäche sieht.</p>
+      <</if>>
+    <</gedanke>>
+  <</beziehung>>
+<</if>>
+
+[[Komm, alte Gewohnheiten macht stetes üben wett! ->karla_S2_schweigen]]
+[[Woher kommt dein zurückzucken, was ist passiert? ->karla_S2_ansprechen]]
+
+
+:: karla_S2_ansprechen [nach_stube] {"position":"250,3650","size":"100,100"}
+<div class="dialog">„Von links", sagst du. „Da weichst du zurück. Jedes Mal."</div>
+
+<p>Karla sieht dich an.</p>
+
+<p>Die Stille, die folgt, hat eine Textur — sie ist nicht leer, sie ist voll von etwas, das sie gerade in Schach hält.</p>
+
+<p>Dann entspannt sich ihr Kiefer, aber nicht ihr Blick.</p>
+
+<div class="dialog">„Das hab ich nicht gefragt."</div>
+
+<p>Sie stellt die Lanze gegen den Holzpfosten. Das Training ist vorbei. Du weißt es, noch bevor sie sich umdreht.</p>
+
+<div class="dialog">„Geh schlafen, Frischling."</div>
+
+<p>Keine Aggression. Nur eine Tür, die sich schließt — ruhig aber entschlossen.</p>
+
+<div class="thought-box">Ich hab es richtig benannt. Und genau das war der Fehler. Nicht das Sehen — das Sagen.</div>
+
+<<= setup.setNpcAffection("karla", 1)>>
+<<weiterImTag "Auf die Stube gehen">>
+
+
+:: karla_S2_schweigen [nach_stube] {"position":"100,3650","size":"100,100"}
+<p>Du hebst die Lanze wieder in Position.</p>
+
+<p>Keine weitere Bemerkung. Kein Blick, der zu lange bleibt. Du hast es gesehen — und du lässt es dort, wo es ist.</p>
+
+<p>Karla steht einen Moment still. Ihre Augen sind auf dir, und du spürst es, ohne hinzusehen. Dann dreht sie die Lanze langsam in den Händen und greift wieder an.</p>
+
+<p>Das Training geht weiter. Aber es ist jetzt anders — ruhiger, präziser. Als hätte sie beschlossen, dass du es verdient hast, ernst genommen zu werden.</p>
+
+<div class="scenery-text">Das Licht ist fast weg. Der Abend riecht nach Erde und altem Holz.</div>
+
+<p>Als sie abbricht, steht sie einen Moment mit dem Rücken zu dir und putzt den Schaft mit dem Ärmel ab. Dann, ohne sich umzudrehen:</p>
+
+<div class="dialog">„Du hast ein gutes Auge." Eine Pause. „Und du weißt, wann man es zumacht. Das ist seltener."</div>
+
+<p>Kein Dank. Kein Lächeln. Nur diese Feststellung, hingelegt wie eine Münze auf einen Tisch.</p>
+
+<p>Sie geht.</p>
+
+<div class="thought-box">Ich weiß nicht genau, was ich ihr gerade gegeben habe. Aber es war etwas. Das hab ich gespürt.</div>
+
+<<= setup.setNpcAffection("karla", 6)>>
+<<= setup.pushNpcMemory("karla", "hat_geschwiegen")>>
+<<weiterImTag "Auf die Stube gehen">>
+
+
+:: karla_S3 [interrupt einmalig nach_morgen kapitel-opener kap1] {"position":"150,3750","size":"100,100"}
+<p>Du kannst nicht schlafen. Die Pritsche ist hart, die Luft in der Stube steht, und nach einer Stunde des Wälzens gibst du auf und schiebst dich nach draußen — nur ein paar Schritte, nur frische Luft.</p>
+
+<p>Der Hof liegt im Mondlicht. Und im Verwaltungstrakt, dort, wo um diese Zeit niemand sein dürfte, brennt schwach ein Licht.</p>
+
+<div class="scenery-text">Es ist die Stunde, in der die Akademie sich selbst vergisst. Kein Drill, kein Befehl, nur das Knacken von abkühlendem Holz und der ferne Schritt einer Wache, die ihre Runde geht — weit genug weg, um jetzt keine Rolle zu spielen.</div>
+
+<p>Du solltest umkehren. Du weißt es. Stattdessen gehst du näher.</p>
+
+<p>Die Tür zur Schreibstube steht einen Spalt offen. Durch den Spalt: der Schein einer abgeschirmten Kerze, das Rascheln von Papier. Jemand durchsucht die Akten. Schnell, leise, geübt.</p>
+
+<p>Du schiebst die Tür auf.</p>
+
+<p>Karla fährt herum.</p>
+
+<p>Einen Atemzug lang ist alles in der Schwebe — sie mit einem Bündel Dokumente in der Hand, du in der Tür, und zwischen euch die ganze Wucht dessen, was hier gerade passiert. Sie könnte dich anlügen. Du könntest gehen. Jeder von euch wartet darauf, was der andere tut.</p>
+
+<<if $npc.karla.affection >= 8>>
+<p>Ihr Blick ist hart — aber unter der Härte liegt etwas, das du schon einmal gesehen hast. In ihren Augen ist nicht nur Schreck. Da ist auch die leise, ungläubige Frage, ob ausgerechnet du sie jetzt verrätst. Ihr habt zusammen im Dunkeln geübt. <<if $npc.karla.memory.flags.hat_geschwiegen>> Sie weiß, dass du den Mund halten kannst. Die Frage ist nur, ob du es auch *jetzt* tust.<</if>></p>
+<<else>>
+<p>Ihr Blick ist hart und abweisend, eine Wand, die im selben Moment hochfährt, in dem sie dich erkennt. Sie schätzt dich nicht als Verbündeten ein. Sie schätzt dich als Risiko ein — und du siehst, wie sie schon abwägt, was sie tun muss, falls du der falsche Mensch bist.</p>
+<</if>>
+
+<div class="thought-box">Was immer sie hier sucht — es ist nichts Kleines. So sucht niemand, der nur neugierig ist. So sucht jemand, der etwas zu verlieren hat.</div>
+
+<p>Du hast die Wahl. Und du hast sie nur einmal.</p>
+
+[[Soll ich aufpassen?|karla_S3_licht]]
+[[Was machst du da?|karla_S3_frage]]
+
+
+:: karla_S3_frage {"position":"300,3875","size":"100,100"}
+<div class="dialog">„Was machst du da?"</div>
+
+<p>Die Worte sind heraus, bevor du sie zurückhalten kannst. Und im selben Moment, in dem du sie aussprichst, weißt du, dass es falsch war.</p>
+
+<p>Denn Karlas Gesicht schließt sich. Nicht langsam — sofort, vollständig, wie eine Tür, die zugeschlagen wird. Die kurze Verletzlichkeit, das Abwägen, die ungestellte Frage, ob du der Richtige bist: alles weg. Was bleibt, ist die Wand, die du vom Exerzierplatz kennst.</p>
+
+<div class="dialog">„Akten sortieren", sagt sie tonlos. „Schinder hat mich eingeteilt. Geh schlafen."</div>
+
+<p>Es ist eine Lüge, und beide wisst ihr, dass es eine ist. Aber sie hat sie dir hingestellt wie einen Ausweg — für sich und für dich. Nimm sie, sagt ihr Blick. Nimm sie und vergiss, was du gesehen hast.</p>
+
+<div class="thought-box">Ich hab gefragt, statt zu helfen. Genau wie Berns auf dem Platz. Und genau wie bei Berns ist die Tür jetzt zu.</div>
+
+<p>Du gehst. Es bleibt dir nichts anderes.</p>
+
+<<= setup.setNpcAffection("karla", -2)>>
+<<set $npc.karla.memory.flags.p2_zweiter_anlauf to true>>
+<<set $npc.karla.memory.flags.p2_zweiter_anlauf_tag to $world.day>>
+[[Auf die Stube gehen.|Kap1_Tagesstart]]
+
+
+:: karla_S3_helfen [nach_morgen] {"position":"0,4000","size":"100,100"}
+<p>Du schließt die Tür hinter dir. Leise. Das Klicken der Klinke ist eine Antwort für sich: Ich bin drin. Ich bin auf deiner Seite. Wir machen das zusammen.</p>
+
+<p>Karla sieht dich an, und etwas Unausgesprochenes geht zwischen euch über — kein Dank, dafür ist sie nicht gemacht, aber etwas Schwereres, Dauerhafteres als Dank.</p>
+
+<p>Ihr durchsucht die Akten gemeinsam. Du hältst die Kerze, sie liest. Stunden später, mit brennenden Augen und leeren Händen, gebt ihr für diese Nacht auf — der richtige Aktenstapel ist nicht hier, vielleicht nicht einmal in dieser Stube. Aber das ist nicht das, was zählt.</p>
+
+<p>Was zählt, ist, dass ihr es ab jetzt zu zweit tragt.</p>
+
+<div class="thought-box">Sie hat mir etwas gegeben, das sie noch keinem gegeben hat. Nicht das Geheimnis. Das Vertrauen, es zu kennen.</div>
+
+<<= setup.setNpcAffection("karla", 10)>>
+<<set $npc.karla.memory.flags.kennt_geheimnis to true>>
+<<weiterImTag "Die Nacht ist vorbei">>
+
+
+:: karla_S3_licht {"position":"50,3875","size":"100,100"}
+<p>Du fragst nicht, was sie tut. Du fragst nicht, warum. Du siehst die abgeschirmte Kerze, die kaum genug Licht wirft, um die Schrift zu erkennen — und du sagst das Einzige, was zählt.</p>
+
+<div class="dialog">„Soll ich aufpassen?"</div>
+
+<p>Karla erstarrt.</p>
+
+<p>Es ist nicht das, womit sie gerechnet hat. Nicht die Frage, nicht der Verrat, nicht das Zurückweichen. Sondern ein Angebot. Du stehst in der Tür, hast alles gesehen — und statt zu fragen, was du gerade siehst, fragst du, wie du helfen kannst.</p>
+
+<p>Etwas in ihrem Gesicht gibt nach. Nur ein Stück. Aber bei Karla ist ein Stück sehr viel.</p>
+
+<div class="scenery-text">Die Kerzenflamme zittert im Luftzug der offenen Tür. Draußen, weit weg, der Schritt der Wache. Drinnen nur ihr Atem und deiner.</div>
+
+<p>Lange sagt sie nichts. Dann, leise, ohne dich anzusehen, während sie ein Dokument glatt streicht, das ihre Finger nicht ruhig halten können:</p>
+
+<div class="dialog">„Mein Onkel. Edric." Eine Pause. „Er sitzt seit zwei Jahren. Für einen Überfall auf einen Militärtransport. Sie sagen, er war der Ortskundige. Der, der die Räuber geführt hat."</div>
+
+<p>Sie schaut endlich auf. Und zum ersten Mal, seit du sie kennst, ist da keine Wand.</p>
+
+<div class="dialog">„Er lag mit Fieber im Bett, als das passierte. Ich weiß es. Ich war dabei." Sie hält inne. Und dann, zum ersten Mal, hörst du es — wie ihre Stimme an einer Stelle nachgibt, die sie nicht mehr halten kann. „Es gab einen Zeugen. Einen, der das hätte bestätigen können." Sie schluckt. „Aber vor Gericht hat er den Mund gehalten. Kein einziges Wort. Und mein Onkel ist dafür eingefahren."</div>
+
+<p>Sie wischt sich mit dem Handrücken über die Augen — schnell, fast ärgerlich, als wäre sie wütend auf sich selbst dafür, dass sie das vor dir zulässt.</p>
+
+<div class="thought-box">Deshalb ist sie hier. Nicht für den Sold. Nicht fürs Dach überm Kopf. Sondern wegen eines Mannes in einer Zelle und eines Zeugen, der geschwiegen hat.</div>
+
+<div class="dialog">„Die Akten über den Überfall müssen hier irgendwo sein. Wer ausgesagt hat. Wer geschwiegen hat. *Warum* er geschwiegen hat." Sie sieht dich an, und jetzt liegt eine Frage darin, die sie nicht ausspricht. „Das ist der einzige Plan, den ich hab."</div>
+
+<p>Du könntest jetzt vieles sagen. Aber du spürst, dass die wichtigste Antwort keine Worte braucht.</p>
+<<set $npc.karla.memory.flags.s3_done to true>>
+
+[[Die Tür hinter dir schließen und ihr beim Suchen helfen. ->karla_S3_helfen]]
+[[Ihr versprechen zu schweigen — aber sie warnen, dass das hier gefährlich ist. ->karla_S3_warnen]]
+
+
+:: karla_S3_warnen [nach_morgen] {"position":"150,4000","size":"100,100"}
+<div class="dialog">"Ich werde nichts sagen, zu niemandem", sagst du.</div>
+
+<p>Karla nickt knapp.</p>
+
+<p>Du siehst auf die Akten in ihrer Hand, dann zur Tür, durch die jeden Moment eine Wache treten könnte. Sie ist gut in dem, was sie tut — schneller und leiser, als du es je wärst. Aber niemand, der allein arbeitet, kann gleichzeitig suchen und den Gang im Auge behalten.</p>
+
+<div class="dialog">„Lass mich wenigstens aufpassen", sagst du. „Wenn du das nächste Mal hier rein musst — sag mir Bescheid. Ich steh draußen. Ich huste, wenn jemand kommt."</div>
+
+<p>Einen Moment lang sieht sie dich nur an, als müsste sie neu berechnen, wer du bist. Dann, fast widerwillig, hebt sich ein Mundwinkel.</p>
+
+<div class="dialog">„Du bist nicht so dumm, wie du auf dem Platz aussiehst, Frischling."</div>
+
+<div class="thought-box">Das ist von ihr beinahe eine Liebeserklärung. Wir teilen jetzt mehr als eine Stube. Wir teilen ein Risiko.</div>
+
+<<= setup.setNpcAffection("karla", 8)>>
+<<set $npc.karla.memory.flags.kennt_geheimnis to true>>
+<<weiterImTag "Die Nacht ist vorbei">>
+
+
+:: karla_S3b [interrupt einmalig nach_morgen kap1] {"position":"700,3150","size":"100,100"}
+<p>Seit jener Nacht in der Schreibstube ist etwas zwischen euch. Kein Streit — Karla streitet nicht. Etwas Kühleres. 
+Sie redet mit dir wie mit jedem anderen, knapp und sachlich, und genau das ist es: Du bist wieder jeder andere geworden. 
+Die kurze Tür, die sich damals einen Spalt geöffnet hatte, ist zu.</p>
+
+<p>Du hast nicht vergessen, was du gesehen hast. Sie weiß das. Und sie wartet darauf, dass du es benutzt — oder vergisst.</p>
+
+<div class="scenery-text">Es ist spät. Die Stube schläft, das Talglicht ist fast herabgebrannt. 
+Du liegst wach, als du das leise Knarren der Tür hörst. Eine Gestalt schiebt sich nach draußen — lautlos, geübt. Du kennst diesen Gang inzwischen.</div>
+
+<p>Karla. Wieder unterwegs. Wieder allein.</p>
+
+<p>Du könntest liegen bleiben. Es geht dich nichts an — das hat sie dir in dieser Nacht deutlich gemacht. 
+Aber du weißt auch, was sie dort draußen sucht, und du weißt, dass sie es allein sucht, weil du ihr keinen Grund gegeben hast, es nicht zu tun.</p>
+
+<div class="thought-box">Beim letzten Mal hab ich gefragt, statt zu helfen. Wenn ich aufstehe, muss ich es diesmal richtig machen. Ich krieg keine dritte Gelegenheit.</div>
+
+[[Aufstehen und ihr nach.|karla_S3b_folgen]]
+[[Liegen bleiben. Sie hat klar gemacht, dass sie dich nicht will.|karla_S3b_bleiben]]
+
+
+:: karla_S3b_bleiben [nach_morgen] {"position":"850,3275","size":"100,100"}
+<p>Du bleibst liegen.</p>
+
+<p>Sie hat klar gemacht, dass sie dich nicht dabei will, und vielleicht ist es nicht an dir, das zu überstimmen. Du hörst, wie ihre Schritte im Gang verklingen. Dann nichts mehr.</p>
+
+<div class="thought-box">Manche Türen öffnet man nicht wieder, wenn man einmal davor stehengeblieben ist. Vielleicht war das meine.</div>
+
+<p>Irgendwann schläfst du ein. Am Morgen ist Karla schon auf dem Platz, als wäre nichts gewesen — und in gewisser Weise ist auch nichts gewesen.</p>
+
+<<set $npc.karla.memory.flags.p2_quest_zu to true>>
+<<set $npc.karla.memory.flags.p2_quest_zu_tag to $world.day>>
+<div class="system-alert status-info">Du bist liegen geblieben. Karla trägt die Sache mit ihrem Onkel allein weiter — ohne dich.</div>
+
+<<weiterImTag "Weiter">>
+
+
+:: karla_S3b_folgen {"position":"600,3275","size":"100,100"}
+<p>Du stehst auf. Ziehst die Stiefel an, leise, und folgst ihr in die Nacht.</p>
+
+<p>Sie ist nicht in der Schreibstube. Du findest sie hinter dem Verwaltungstrakt, im Schatten der Mauer, wo sie gerade abwägt, wie sie ungesehen an der Wache vorbeikommt. Als sie deine Schritte hört, fährt sie herum — die Hand schon an dem kurzen Messer im Stiefelschaft, ehe sie dich erkennt.</p>
+
+<div class="dialog">„Du." Ihre Stimme ist Eis. „Geh wieder rein. Das hier geht dich nichts an."</div>
+
+<p>Du bleibst stehen. Du weißt, dass ein falsches Wort jetzt alles endgültig zumacht. Kein Verhör. Keine Frage. Beim letzten Mal hast du gefragt — das war der Fehler.</p>
+
+[[Ich frag nicht, was du tust. Ich frag, ob du eine zweite Person für die Tür brauchst.|karla_S3b_gelingt]]
+[[Ich weiß, was du suchst. Wegen deinem Onkel, oder?|karla_S3b_misslingt]]
+
+
+:: karla_S3b_gelingt [nach_morgen] {"position":"550,3400","size":"100,100"}
+<div class="dialog">„Ich frag nicht, was du tust", sagst du leise. „Ich frag, ob du eine zweite Person für die Tür brauchst."</div>
+
+<p>Karla wird ganz still.</p>
+
+<p>Es ist genau das, was du beim ersten Mal hättest sagen sollen — und irgendwie scheint sie zu spüren, dass du das weißt. Dass du seit jener Nacht darüber nachgedacht hast. Dass du gekommen bist, nicht um zu erfahren, sondern um zu helfen.</p>
+
+<p>Die Hand löst sich vom Messer.</p>
+
+<div class="scenery-text">Über euch zieht eine Wolke vom Mond weg, und für einen Moment liegt fahles Licht auf ihrem Gesicht. Die Wand ist noch da. Aber dahinter, das siehst du jetzt, ist jemand, der furchtbar müde davon ist, alles allein zu tragen.</div>
+
+<p>Lange sagt sie nichts. Dann, leise:</p>
+
+<div class="dialog">„Mein Onkel sitzt im Gefängnis. Edric. Für einen Überfall, bei dem er krank im Bett lag." Sie sieht dich an, und ihre Stimme ist nicht mehr ganz fest. „Es gab einen Zeugen, der das wusste. Vor Gericht hat er geschwiegen. Ich will wissen, warum. Die Akten sind hier irgendwo."</div>
+
+<p>Sie holt Luft. Es kostet sie sichtlich, das Nächste zu sagen.</p>
+
+<div class="dialog">„Und ja. Ich könnte eine zweite Person für die Tür gebrauchen."</div>
+
+<div class="thought-box">Ich hab eine zweite Chance bekommen, die ich nicht verdient hatte. Und diesmal hab ich sie nicht verspielt.</div>
+
+<<= setup.setNpcAffection("karla", 8)>>
+<<set $npc.karla.memory.flags.s3_done to true>>
+<<set $npc.karla.memory.flags.kennt_geheimnis to true>>
+<<weiterImTag "Weiter">>
+
+
+:: karla_S3b_misslingt [nach_morgen] {"position":"700,3400","size":"100,100"}
+<div class="dialog">„Ich weiß, was du suchst", sagst du. „Wegen deinem Onkel, oder?"</div>
+
+<p>Im selben Moment, in dem du es aussprichst, siehst du, dass es wieder falsch war.</p>
+
+<p>Denn du hast ihr gezeigt, dass du nachgedacht hast. Dass du Schlüsse gezogen hast. Dass das, was sie für sich behalten wollte, in deinem Kopf herumgeht und sich zu etwas zusammensetzt. Für Karla ist das keine Anteilnahme — das ist eine Bedrohung.</p>
+
+<div class="dialog">„Was ich suche", sagt sie tonlos, „ist Ruhe vor Leuten, die zu viel denken."</div>
+
+<p>Sie geht an dir vorbei, zurück Richtung Stube, und lässt ihr Vorhaben für heute fallen. An der Ecke bleibt sie kurz stehen, ohne sich umzudrehen.</p>
+
+<div class="dialog">„Vergiss, was du dir zusammenreimst, Frischling. Zu deinem eigenen Besten."</div>
+
+<div class="thought-box">Zweimal hatte ich die Wahl. Zweimal hab ich geredet, statt einfach da zu sein. Vielleicht bin ich nicht der Mensch, dem sie das hier anvertrauen kann.</div>
+
+<div class="system-alert status-info">Karla hat sich abgewandt. Was immer sie mit den Akten ihres Onkels vorhat — sie wird es ohne dich tun.</div>
+<<= setup.setNpcAffection("karla", -4)>>
+<<set $npc.karla.memory.flags.p2_quest_zu to true>>
+<<set $npc.karla.memory.flags.p2_quest_zu_tag to $world.day>>
+<<weiterImTag "Weiter">>
+
+
+:: karla_S4 [interrupt nach_stube kapitel-opener kap1] {"position":"600,3600","size":"100,100"}
+<<set _archiv = $world.archivzugang === true>>
+<<set _wissen = ($player.knowledge.diplomatie || 0) >= 3>>
+<<set _magister = $npc.magister.affection >= 4>>
+<<set _hatWeg = _archiv or _wissen or _magister>>
+<p>Karla findet dich nach dem Abendessen, dort wo die Fackeln nicht ganz hinreichen. Sie lehnt an der Mauer, die Arme verschränkt, und kommt ohne Umweg zur Sache.</p>
+
+<div class="dialog">„Ich komm an die Akten nicht ran." Ihre Stimme ist gedämpft, kontrolliert. „Die Schreibstube ist seit letzter Woche nachts verschlossen. Was auch immer ich versuche — ich steh vor verriegelten Türen."</div>
+
+<p>Sie sieht dich an.</p>
+
+<div class="dialog">„Du kommst rum. Du redest mit Leuten, mit denen ich nicht rede. Vielleicht fällt dir ein Weg ein, der mir nicht einfällt."</div>
+
+<div class="scenery-text">Über dem Hof steht ein schmaler Mond. Irgendwo klappert Geschirr, eine Tür fällt ins Schloss. Karla wartet — und an der Art, wie sie wartet, siehst du, wie viel diese Bitte sie kostet.</div>
+
+<<if _hatWeg>>
+<div class="thought-box">Es gibt einen Weg. Vielleicht sogar mehr als einen. Ich muss nur entscheiden, welchen ich gehe.</div>
+
+<<if _archiv>>[[Über mein Archivzeichen — ich komme an die Gerichtsprotokolle.|karla_S4_archiv]]<</if>>
+<<if _wissen>>[[Nicht die Militärakten — die Ladungslisten. Ich weiß, wo die liegen.|karla_S4_wissen]]<</if>>
+<<if _magister>>[[Magister Halm. Er ist Archivar — vielleicht sieht er für mich nach.|karla_S4_magister]]<</if>>
+<<else>>
+<<set $npc.karla.memory.flags.s4_vertroestet to ($npc.karla.memory.flags.s4_vertroestet || 0) + 1>>
+<<set $world.karla_druck to 0>>
+<<if $npc.karla.memory.flags.s4_vertroestet >= 4>>
+<<goto "karla_S4_karla_loest_selbst">>
+<<else>>
+<div class="thought-box">Sie hat recht — ich komme rum. Aber im Moment fällt mir kein Weg ein, der nicht sofort auffliegt. Ich brauche etwas, das ich noch nicht habe: einen Zugang, eine Idee, eine Tür, die mir jemand öffnet.</div>
+
+<div class="dialog">„Ich weiß noch nicht, wie", sagst du. „Aber ich find was. Gib mir Zeit."</div>
+
+<p>Karla nickt langsam. Es ist kein zufriedenes Nicken, aber auch kein enttäuschtes. Eher das Nicken von jemandem, der gelernt hat, dass „ich find was" manchmal das Ehrlichste ist, das man bekommen kann.</p>
+
+<div class="dialog">„Zeit hab ich", sagt sie. „Edric auch — noch." Sie stößt sich von der Mauer ab. „Aber nicht ewig."</div>
+
+<div class="thought-box">Ich sollte einen Weg in die Akten finden. Das Archiv. Das Recht. Oder jemanden, der die Türen für mich aufmacht. Irgendwo muss der Name dieses Zeugen stehen.</div>
+
+<<weiterImTag "Weiter">>
+<</if>>
+<</if>>
+
+
+:: karla_S4_archiv [nach_stube] {"position":"500,3725","size":"100,100"}
+<p>Du trägst seit Wochen Akten von der Schreibstube ins Regal und zurück. Niemand sieht dich mehr an dabei — ein Rekrut mit einem Holztäfelchen, der tut, was ein Magister ihm aufgetragen hat. Genau das macht dich unsichtbar.</p>
+
+<p>Du brauchst drei Versuche, bis du den richtigen Stapel findest. Prozessrollen, nach Jahren geordnet, in einem Regal, das niemand seit Langem angefasst hat. Und dann liegt sie vor dir: die Verhandlung gegen Edric, Fuhrmann aus Umseck. Das Protokoll ist trocken, beamtenhaft, jede Aussage mit Namen und Datum verzeichnet.</p>
+
+<p>Du liest, bis du die Stelle findest. Der geladene Zeuge, der die Krankheit hätte bestätigen können. Sein Name steht da, schwarz auf vergilbtem Papier — und daneben, in der knappen Sprache des Protokolls, der Vermerk: *erschienen, doch zur Sache nichts ausgesagt.*</p>
+
+<div class="thought-box">Da ist er. Der Mann, der mit einem einzigen Satz alles hätte ändern können — und der geschwiegen hat. Jetzt hat er einen Namen.</div>
+
+<<include "karla_S4_finalize">>
+
+
+:: karla_S4_finalize {"position":"600,3850","size":"100,100"}
+<p>Du bringst Karla den Namen noch am selben Abend.</p>
+
+<p>Sie liest ihn. Liest ihn ein zweites Mal. Und für einen Moment ist da etwas auf ihrem Gesicht, das du selten siehst — nicht Freude, dafür ist die Sache zu schwer, aber etwas wie ein Halt. Als hätte sie zwei Jahre lang ins Leere gegriffen und endlich etwas Festes in der Hand.</p>
+
+<div class="dialog">„Das ist er", sagt sie leise. „Der, der geschwiegen hat."</div>
+
+<p>Dann sieht sie dich an, und in ihrem Blick liegt eine Frage, die größer ist als der Zettel in ihrer Hand.</p>
+
+<div class="thought-box">Wir haben einen Namen. Aber ein Name ist nur ein Anfang. Die eigentliche Frage kommt erst noch: Was machen wir damit?</div>
+
+<<= setup.setNpcAffection("karla", 5)>>
+
+<div class="system-alert status-info">Du kennst den Namen des Zeugen, der gegen Edric schwieg. Doch was nun damit anzufangen ist, weißt du noch nicht.</div>
+
+<<set $npc.karla.memory.flags.s4_done to true>>
+<<set $npc.karla.memory.flags.zeuge_gefunden to true>>
+<<weiterImTag "Weiter">>
+
+
+:: karla_S4_karla_loest_selbst [einmalig nach_stube kapitel-opener] {"position":"475,3950","size":"100,100"}
+<<set _recht = ($player.knowledge.diplomatie || 0) > 0 and ($player.knowledge.diplomatie || 0) < 3>>
+<<set _mag = $npc.magister.affection > 2 and $npc.magister.affection < 4>>
+<p>Karla findet dich, und diesmal wartet sie nicht an der Mauer. Sie kommt direkt auf dich zu, einen gefalteten Zettel in der Hand, und in ihrem Gesicht liegt etwas zwischen Triumph und Vorwurf.</p>
+
+<div class="dialog">„Ich hab's selbst."</div>
+
+<p>Sie hält dir den Zettel hin, nimmt ihn aber wieder weg, bevor du ihn nehmen kannst — als müsste sie erst etwas loswerden.</p>
+
+<div class="dialog">„Weißt du, wo's am Ende stand? Nicht in den Militärakten. In den *Ladungslisten*. Wer vorgeladen war, schwarz auf weiß, für jeden zugänglich, der weiß, dass es so was gibt."</div>
+
+<<if _recht and _mag>>
+<<if random(0, 1) === 0>>
+<<set _variante = "recht">>
+<<else>>
+<<set _variante = "magister">>
+<</if>>
+<<elseif _recht>>
+<<set _variante = "recht">>
+<<elseif _mag>>
+<<set _variante = "magister">>
+<<else>>
+<<set _variante = "neutral">>
+<</if>>
+
+<<if _variante === "recht">>
+<p>Sie sieht dich an, und ihr Blick wird scharf.</p>
+
+<div class="dialog">„Und das Verrückte ist — *du* hast davon gehört. Im Recht-Unterricht, bei Halm. Ladungslisten, Prozessordnung, der ganze Kram. Ich hab nicht so viel von dem Zeug gelernt wie du. Und trotzdem musste ich selbst draufkommen." Sie schnaubt. „Du hattest die Antwort die ganze Zeit im Kopf, Thomas. Du hast nur nicht hingeschaut."</div>
+<<elseif _variante === "magister">>
+<p>Sie sieht dich an, und ihr Blick wird scharf.</p>
+
+<div class="dialog">„Und du — du hättest bloß Halm fragen müssen. Der Mann mag dich. Das sieht doch ein Blinder. Du sitzt in seinem Hörsaal, er nickt dir zu, und es kommt dir nicht in den Sinn, ihn nach einer alten Ladungsliste zu fragen?" Sie schüttelt den Kopf. „Manchmal frag ich mich, ob du nicht siehst, welche Türen dir offenstehen."</div>
+<<else>>
+<p>Sie sieht dich an, und der Vorwurf in ihrem Blick weicht etwas.</p>
+
+<div class="dialog">„War nicht leicht. Aber irgendwann fragt man die richtigen Leute die richtigen Dinge, und dann fügt sich's." Sie zuckt mit den Schultern. „Hätt mir gewünscht, ich wär nicht allein draufgekommen. Aber gut. Ist jetzt egal."</div>
+<</if>>
+
+<p>Sie atmet aus, und der Ärger fällt von ihr ab, weil das Eigentliche schwerer wiegt als jeder Vorwurf. Sie reicht dir den Zettel, und diesmal lässt sie ihn los.</p>
+
+<p>Ein Name. Der Zeuge, der schwieg.</p>
+
+<div class="thought-box">Sie hat es allein geschafft. Und ein Teil von mir schämt sich dafür — weil ich den Weg hätte sehen können, wenn ich nur genauer hingeschaut hätte.</div>
+
+<p>Karla setzt sich neben dich, den Blick auf den Namen gerichtet, und sagt das, was eigentlich du hättest denken müssen.</p>
+
+<div class="dialog">„Wir haben einen Namen. Aber ein Name ist nur ein Anfang. Die eigentliche Frage kommt erst jetzt." Sie sieht dich an. „Was machen wir damit?"</div>
+
+<div class="thought-box">Karla hat den Zeugen selbst ausfindig gemacht — über die Ladungslisten. Wir kennen den Namen. Doch was nun damit anzufangen ist, weiß keiner von uns...</div>
+
+<<set $npc.karla.memory.flags.zeuge_gefunden to true>>
+<<set $npc.karla.memory.flags.s4_done to true>>
+<<= setup.setNpcAffection("karla", 2)>>
+
+<<weiterImTag "Weiter">>
+
+
+:: karla_S4_magister [nach_stube] {"position":"700,3725","size":"100,100"}
+<p>Du wartest, bis der Hörsaal leer ist, und trittst an Halms Pult. Er sieht nicht auf, aber er weiß, dass du da bist.</p>
+
+<div class="dialog">„Magister. Eine Frage zu einer alten Verhandlung. Ein Transportüberfall, vor etwa zwei Jahren. Ich suche, wer damals als Zeuge geladen war."</div>
+
+<p>Jetzt hebt er den Blick. Lange. Prüfend. Du hast gelernt, diesem Blick standzuhalten, ohne zu erklären — und vielleicht ist genau das der Grund, warum er nach einer Weile nur knapp nickt.</p>
+
+<div class="dialog">„Neugier ist eine teure Eigenschaft, Rekrut. Manche zahlen mehr dafür, als sie ahnen." Er legt die Feder beiseite. „Aber du hast in meinem Hörsaal gesessen, statt zu dösen. Das wiegt etwas."</div>
+
+<p>Am nächsten Tag liegt ein gefalteter Zettel unter deinem Notizbuch. Keine Erklärung, keine Unterschrift. Nur ein Name und ein Vermerk in Halms knapper Handschrift: *geladen, doch ohne Aussage.*</p>
+
+<div class="thought-box">Er hat nicht gefragt, warum. Vielleicht weiß er es längst. Bei Halm hat man nie das Gefühl, ihm etwas zu verheimlichen — nur das Gefühl, dass er entscheidet, was er sehen will.</div>
+
+<<include "karla_S4_finalize">>
+
+
+:: karla_S4_wissen [nach_stube] {"position":"600,3725","size":"100,100"}
+<p>Du brauchst einen Moment, dann fällt es dir wieder ein — etwas, das Magister Halm beiläufig im Recht-Unterricht erwähnt hat. Die eigentlichen Militärakten zum Überfall sind unter Verschluss, klar. Aber jedes Gericht führt eine *Ladungsliste*: wer vorgeladen wurde, wann, in welcher Sache. Diese Listen gelten als Verwaltungskram, nicht als Geheimsache. Sie liegen offener.</p>
+
+<p>Du musst nicht einbrechen. Du musst nur wissen, wonach du fragst — und das tust du.</p>
+
+<p>Es dauert ein paar Tage, ein paar beiläufige Fragen an den richtigen Stellen. Aber dann hast du sie: die Ladungsliste zur Verhandlung gegen den Fuhrmann aus Umseck. Geladene Zeugen, säuberlich aufgeführt. Einer davon, ein Nachbar, geladen „zur Frage des Aufenthalts des Angeklagten zur Tatzeit".</p>
+
+<p>Der, der hätte bestätigen können, dass Edric krank im Bett lag. Sein Name steht da, klar und unverschlüsselt.</p>
+
+<div class="thought-box">Kein Einbruch, kein Risiko. Nur Wissen, am richtigen Ort eingesetzt. Manchmal ist der Kopf die bessere Brechstange.</div>
+
+<<include "karla_S4_finalize">>
+
+
+:: karla_S5 [interrupt einmalig nach_morgen kapitel-opener kap1] {"position":"850,3600","size":"100,100"}
+<p>Ihr sitzt hinter der Schmiede, dort wo das Lager euch in Ruhe lässt. Zwischen euch auf einem umgedrehten Eimer liegt der Zettel mit dem Namen. Ihr habt ihn beide schon zu oft angesehen.</p>
+
+<p>Karla redet. Nicht viel — aber für ihre Verhältnisse ist es ein Wasserfall, und das allein zeigt dir, wie aufgewühlt sie ist.</p>
+
+<div class="dialog">„Wir wissen, wer es ist. Wir wissen, dass er geladen war. Wir wissen, dass er geschwiegen hat." Sie zählt es an den Fingern ab, hart, fast wütend. „Und jetzt? Was machen wir damit?"</div>
+
+<div class="scenery-text">Das Schmiedefeuer ist längst erloschen, aber das Eisen gibt noch Wärme ab. Über euch ein paar Sterne, dazwischen Wolkenfetzen. Vom Hof her das gedämpfte Geräusch der Nachtwache, die ihre Runde geht.</div>
+
+<p>Du hast keine Antwort. Und das Schlimmste ist, dass du anfängst zu begreifen, warum nicht.</p>
+
+<div class="dialog">„Wir gehen damit zu wem?", fragt sie, und beantwortet es gleich selbst. „Zum Hauptmann? Der lacht uns aus. Zwei Rekruten, die mit einem gestohlenen Namen ankommen und behaupten, ein zwei Jahre altes Urteil sei falsch. Wir hätten die Akten gar nicht sehen dürfen. Allein dafür sperren sie uns ein."</div>
+
+<p>Sie lacht, aber es ist kein Lachen.</p>
+
+<div class="dialog">„Und selbst wenn uns einer glaubt — was dann? Der Zeuge hat geschwiegen, weil ihn jemand dazu gebracht hat. Jemand mit mehr Macht als ein Fuhrmann aus Umseck. Mehr Macht als wir. Viel mehr." Sie schüttelt den Kopf. „Wir haben keinen Namen für die Hintermänner. Kein Geld. Keinen Titel. Niemanden, der für uns spricht. Wir haben einen Zettel — und sonst nichts."</div>
+
+<div class="thought-box">Sie hat recht. Das ist es, was mir die ganze Zeit gefehlt hat zu verstehen: Die Wahrheit zu kennen ist nicht dasselbe wie sie durchsetzen zu können. Wir sind zwei Niemande mit einem Stück Papier.</div>
+
+<p>Karla zieht die Knie an und legt die Arme darauf. Zum ersten Mal, seit du sie kennst, sieht sie nicht hart aus. Sie sieht müde aus. Erschöpft von zwei Jahren, in denen sie einen Plan verfolgt hat, der sie genau hierher gebracht hat — an einen Punkt, an dem der Plan zu Ende ist und nichts dahinter liegt.</p>
+
+<div class="dialog">„Ich dachte, wenn ich den Namen erst hab, dann …" Sie bricht ab. „Ich weiß nicht, was ich dachte. Dass sich der Rest von selbst löst, schätze ich. Dumm."</div>
+
+<p>Eine lange Stille. Das Eisen knackt beim Abkühlen.</p>
+
+<div class="dialog">„Geh schlafen, Thomas." Sie sagt es leise, ohne Schärfe. „Es bringt nichts, hier zu sitzen. Ich muss nachdenken. Allein."</div>
+
+<p>Du stehst auf. Du weißt, dass es nichts gibt, das du jetzt sagen könntest, das die Lage besser macht. Also sagst du nichts — das hast du von ihr gelernt.</p>
+
+<p>Aber auf dem Weg zur Stube lässt dich ein Gedanke nicht los. Ein Name aus einer anderen Zeit, aus den Bergen, von einem Mann, der einmal alles für dich möglich gemacht hat, als nichts mehr möglich schien.</p>
+
+<div class="thought-box">Wir kennen niemanden, der für uns sprechen kann. Wir nicht. Aber vielleicht … kenne ich jemanden. Von früher. Einen, der immer einen Weg gefunden hat.</div>
+
+<p>In der Stube schläft alles. Du hörst das schwere Atmen der anderen, das Knarren des Holzes, irgendwo ein Husten, das wieder verebbt. Du liegst wach — und irgendwann gibst du es auf.</p>
+
+<p>Du holst, was du in den letzten Tagen unbewusst schon zusammengetragen hast: ein Stück Papier, halb so groß wie deine Hand, geglättet und wieder geglättet. Einen Stummel Kohle, weil du dir keine Tinte leisten konntest. Und beim schwachen Schein des heruntergebrannten Talglichts beginnst du zu schreiben.</p>
+
+<div class="scenery-text">Das Licht reicht kaum für die Zeilen. Du schreibst klein, gedrängt, jedes Wort abgewogen — denn Platz ist knapp und das, was du sagen musst, ist nicht leicht zu sagen. Draußen zieht der Wind um die Baracke. Sonst nichts.</div>
+
+<p>Du schreibst, streichst durch, schreibst neu. Was man jemandem schreibt, dem man seit Jahren nicht geschrieben hat. Wie man um etwas bittet, ohne zu betteln. Wie man eine Hoffnung in Worte fasst, an die man selbst kaum glaubt.</p>
+
+<p>Es dauert lange. Aber irgendwann liegt es da, fertig, in deiner ungelenken Handschrift. Du faltest das Papier klein genug, um es zu verbergen. Morgen findest du einen Weg, es auf die Reise zu schicken — über einen Händler, einen Boten, eine der Adressen, die durch das Lager gehen.</p>
+
+<div class="thought-box">Karla sage ich nichts davon. Wenn nichts daraus wird, soll sie nicht auch noch das verlieren. Eine Hoffnung, die man gar nicht erst hatte, kann einen nicht enttäuschen. Das trage ich allein.</div>
+
+<p>Als du fertig bist fällt dir auf, dass der Tag anbricht.</p>
+
+<<set $npc.karla.memory.flags.dilemma_done to true>>
+<<set $npc.karla.memory.flags.brief_gesendet to true>>
+<<set $npc.karla.memory.flags.brief_tag to $world.day>>
+
+<<weiterImTag "Weiter">>
+
+
+:: karla_S7 [interrupt einmalig nach_stube kap1] {"position":"1175,3150","size":"100,100"}
+<p>Sechs Tage. Du hast aufgehört zu zählen, ehrlich gesagt — der Brief unter deinem Strohlager ist längst fort, einem Händler mitgegeben, und mit jedem Tag ohne Antwort ist die Hoffnung kleiner geworden, bis sie sich anfühlte wie etwas, das du dir nur eingebildet hast. Du hast den Drill, das Studium, den Alltag. Du hast fast vergessen, dass du je geschrieben hast.</p>
+
+<p>Bis zu diesem Nachmittag.</p>
+
+<p>Du kommst vom Exerzierplatz, der Nacken steif, die Hände wund, den Kopf noch beim letzten Kommando des Schinders — und biegst um die Ecke zum Verwaltungstrakt.</p>
+
+<p>Und bleibst stehen.</p>
+
+<div class="scenery-text">Im Hof stehen vier Männer, die nicht hierhergehören. Keine Rekruten, keine Ausbilder. Reisende, dem Staub auf ihren Stiefeln nach, aber gut gekleidet — zu gut für diese Gegend. Ein Pferd und ein beladener Karren warten am Tor. Ein paar Rekruten haben sich in sicherem Abstand aufgebaut und gaffen.</div>
+
+<<if $npc.weibelWenzel.known>> 
+<p>Einen der vier kennst du. Weibel Wenzel vom 84. Banner — das rote Barett, die Pluderhose, die laute Art, mit der er gerade auf einen der Fremden einredet und dabei lacht. Du hast ihn schon einmal im Lager gesehen.</p>
+<p>Die anderen drei nicht.</p>
+  <<else>>
+<p>Drei in Zivil und einer in Söldnertracht.</p>
+<p>Du erkennst niemanden von ihnen.</p>
+<</if>>
+
+<p>Ein hagerer Mann mit wachen Augen steht etwas abseits und lässt den Blick langsam über den Hof wandern — über die Mauern, die Ausgänge, die gaffenden Rekruten —, als zähle er etwas, das nur er sehen kann. Er sagt nichts. Er muss nichts sagen.</p>
+
+<p>Daneben ein zweiter, jünger, lebhafter, der mit den Händen redet und den Weibel offenbar an alte Zeiten erinnert, denn er schlägt ihm gerade lachend auf die Schulter.</p>
+
+<p>Und der vierte —</p>
+
+<p>Der vierte sieht bereits in deine Richtung. Als hätte er gewusst, an welcher Ecke du auftauchen würdest. Als hätte er gewartet.</p>
+
+<div class="thought-box">Ein Mann in den besten Jahren, normale Statur, ein kurzer Vollbart, ein freundliches, wettergegerbtes Gesicht. Ich kenne ihn nicht — und doch zieht sich etwas in meiner Brust zusammen, als wäre ein Teil von mir schneller als mein Kopf.</div>
+
+[[Näher treten.|karla_S7_erkennung]]
+
+
+:: karla_S7_erkennung {"position":"1175,3275","size":"100,100"}
+<p>Du gehst näher.</p>
+<<if $npc.weibelWenzel.known>>
+<p>Wenzel bemerkt dich zuerst. Er bricht mitten im Satz ab, mustert dich kurz, und etwas in seinem Gesicht arbeitet, als gliche er ab, was er sieht, mit dem, was er weiß.</p>
+
+<div class="dialog">„Da bist du ja", sagt er.</div>
+<<else>>
+<p>Der farbenfrohe Weibel bemerkt dich zuerst — rotes Barett, offener Gambeson, eine Erscheinung, die so gar nicht in die graue Ordnung der Akademie passt. Er bricht mitten im Satz ab, mustert dich kurz, und etwas in seinem Gesicht arbeitet, als gliche er ab, was er sieht, mit dem, was er weiß.</p>
+
+<div class="dialog">„Du bist der Wabbler-Junge", sagt er. Keine Frage. „Thomas Wabbler."</div>
+
+<p>Du nickst, ohne zu verstehen, woher ein fremder Weibel des 84. deinen Namen kennt.</p>
+<</if>>
+
+<p>Er wendet sich zu dem Mann mit dem kurzen Vollbart, der die ganze Zeit in deine Richtung gesehen hat. „Da ist er. Wie bestellt." Dann, zu dir, mit einer ausladenden Geste: „Junge, das hier ist Luigi. Luigi vom Handelskontor. Dein Pate — der Mann, der dich all die Jahre unterstützt hat."</p>
+
+<p>Die Worte treffen dich wie aus großer Entfernung.</p>
+
+<div class="scenery-text">Luigi. Der Name allein wirft dich um Jahre zurück. Eine Unterschrift am Fuß von Briefen, die immer pünktlich kamen. Ein ferner Wohltäter, den du dir als Kind tausendmal ausgemalt und nie zu Gesicht bekommen hast. Der Mann, der dich von der Straße holte, dein Asthma, deine Berge, dein ganzes Leben danach bezahlte — ohne je vor dir zu stehen.</div>
+
+<p>Und jetzt steht er vor dir. Aus Fleisch und Blut, normale Statur, ein gepflegter Bart, ruhige Augen, ein schwerer Ring an der Hand. Kleiner, als der Mann in deiner Vorstellung war. Und unendlich viel wirklicher.</p>
+
+<div class="thought-box">All die Jahre war Luigi ein Wort. Eine Unterschrift. Eine Schuld, die ich nie begleichen konnte, weil ich nicht einmal wusste, wem ich sie schulde. Und jetzt hat das Wort ein Gesicht.</div>
+
+<p>Luigi tritt einen Schritt vor. Er mustert dich, langsam, und etwas in seinem Blick wird weich.</p>
+
+<div class="dialog">„Thomaso Wabbler", sagt er. Er legt die Betonung auf eine Art, die du noch nie gehört hast — das gerollte, weiche Ende deines Namens, südländisch, warm. „Buongiorno. Es iste gute, dich endlich zu sehen mite eigene Augen, eh? Endlich. Nach so viele, viele Briefe."</div>
+<div class="dialog">„Du haste geschrieben", sagt er leise, nur für dich. „Und Luigi — Luigi komme. Immer." Er hebt eine Hand, deutet beiläufig auf die drei hinter sich. „Aber non heute allein, eh? Heute habe ich ... wie sagt man ... compagnia mitgebracht. Gesellschaft."</div>
+
+[[Weiter|karla_S7_gespraech]]
+
+
+:: karla_S7_gespraech [nach_stube] {"position":"1175,3400","size":"100,100"}
+<p>Luigi tritt neben dich und dreht dich mit einer Hand an der Schulter sanft ein Stück zur Seite, weg von den gaffenden Rekruten, sodass ihr für einen Moment fast unter euch seid.</p>
+
+<div class="dialog">„Lass mich sehen die Junge." Er mustert dich mit einem Schmunzeln, von Kopf bis Fuß. „Die Briefe, die du mir geschrieben haste, als du klein warst — immer dieselbe Schrift, immer dasselbe: ‚Die Lufte hier iste besser.‘" Er lacht leise. „Und ich habe nie gewusste, iste wahr oder iste der Junge nur höflich, eh? Aber jetze sehe ich mite eigene Augen. Iste wahr. Guarda — schau dich an. Schultern wie ein Soldato."</div>
+
+<p>Du willst etwas sagen — Dank, eine Frage, irgendetwas. Wie dankt man einem Mann für ein ganzes Leben? Aber er hebt die Hand, als hätte er die Frage kommen sehen.</p>
+
+<div class="dialog">„No jetzt. Nicht hier." Sein Ton bleibt leicht, aber die Augen werden ernst. „Ich habe gelesen deinen letzte Brief, Thomaso. Den von vor ein paare Tage. Jedes Worte, eh." Er wird leiser. „Und ich sage dir nur das eine, una cosa: Du hast richtig getan, dass du haste geschrieben. So wie früher. Nur dass diesmal nicht heißte ‚mir gehte gut‘ — diesmal heißte, jemand brauchte Hilfe."</div>
+
+<p>Er tippt sich mit dem Finger an die Schläfe.</p>
+
+<div class="dialog">„Diese Sache — der Onkel von deine Freundin, das Urteil, der Mann, der hate geschwiegen — die kenne ich jetzte, eh. Und es gibte da Dinge, die ein Rekrut non kann regeln." Ein Lächeln, das du nicht deuten kannst, weil du den Mann dahinter nicht kennst — noch nicht. „Aber Luigi ... Luigi iste kein Rekrut."</div>
+
+<div class="scenery-text">Hinter ihm wechselt Wenzel ein paar Worte mit einem lebhaften Mann, der mit den Händen redet; ein zweiter, hagerer Begleiter lässt unterdessen den Blick langsam über den Hof gehen, über Mauern und Ausgänge, als zähle er etwas. Niemand drängt. Es ist, als hätten diese Männer Zeit mitgebracht, so viel sie brauchen.</div>
+
+<div class="dialog">„Wir reden", sagt Luigi und drückt noch einmal deine Schulter. „Presto. Bald. Wenn ich habe geordnet, was zu ordnen iste. Du machste jetze deinen Dienst, als wäre nichts — capisci? Niemand musse wissen, warum vier fremde Männer stehen am Tor. Schon gar nicht deine Freundin." Ein kurzes Zwinkern. „Lass dem Luigi seine ... wie sagt man ... seine Überraschung, eh?"</div>
+
+<div class="thought-box">Ich habe ihm als Kind Briefe geschrieben, ohne je sein Gesicht zu kennen. Und jetzt steht er hier, weil ich wieder geschrieben habe — aus reiner Verzweiflung, ohne zu glauben, dass es etwas ändert. Ich verstehe noch nicht, wie er helfen will. Aber zum ersten Mal seit der Schmiede ist da etwas, das sich anfühlt wie Boden unter den Füßen.</div>
+
+<p>Dann nickt er dir zu, einmal, fast verschwörerisch, und wendet sich zurück zu den anderen. Du gehst weiter — den Dienst tun, als wäre nichts, mit einem Geheimnis mehr in der Brust und einer Hoffnung, die du Karla nicht zeigen darfst.</p>
+
+<<set $npc.karla.memory.flags.luigi_done to true>>
+<<set $npc.karla.memory.flags.luigi_aufgetaucht to true>>
+<<set $npc.karla.memory.flags.s7_done to true>>
+
+<<weiterImTag "Zurück auf die Stube">>
+
+
+:: karla_S8 [interrupt einmalig nach_hub kap1] {"position":"1175,3550","size":"100,100"}
+<p>Ein paar Tage sind vergangen, und du hast dich beinahe damit abgefunden, dass das Treffen im Hof alles war — ein Versprechen, das vielleicht im Sand verläuft, wie so viele Versprechen.</p>
+
+<p>Dann stehen sie wieder da.</p>
+
+<div class="scenery-text">Diesmal kein Wenzel an ihrer Seite. Diesmal gehen die drei Männer durch das Tor, als gehörten sie hierher — und der Wachposten lässt sie passieren, mit einem knappen Blick auf ein gesiegeltes Papier, das Luigi ihm beiläufig entgegenhält.</div>
+
+<p>Luigi sieht dich, hebt die Hand zum Gruß und kommt herüber. Hinter ihm die beiden anderen — der lebhafte Jüngere mit dem wachen Lächeln, der schweigsame Hagere, der wie beim ersten Mal den Hof abtastet.</p>
+
+<div class="dialog">„Thomaso." Luigi klingt zufrieden. „Diesmal brauche ich keinen Weibel, der mich hereinbringt, eh. Wir habene jetzte ein eigenes Papier — von einem Diplomaten Hannes. Ein höflicher Mann." Er klopft sich auf die Brusttasche. „Luigi findete immer einen Weg. Mal so, mal so."</div>
+
+<div class="thought-box">Erst Wenzel, jetzt ein Diplomat des Städtebunds. Dieser Mann zieht an Fäden, von denen ich nicht einmal wusste, dass es sie gibt.</div>
+
+[[Was gibt es Neues?|karla_S8_bericht]]
+
+
+:: karla_S8_bericht {"position":"1175,3675","size":"100,100"}
+<p>Luigi wird ernst, und die Leichtigkeit weicht aus seinem Gesicht — nicht ganz, aber genug, dass du merkst: Jetzt kommt das Eigentliche.</p>
+
+<div class="dialog">„Ich habe nicht geredet in den letzten Tage, Thomaso. Ich habe gearbeitet." Er senkt die Stimme. „Der Fall von Edric — der Onkel deiner Freundin — er iste wieder offen. Ich habe erwirkt, dass man den Prozess neu aufnimmte. Das alleine iste schon ... molto schwierig. Zwei Jahre altes Urteil. Aber es iste geschehen."</div>
+
+<p>Er macht eine Pause, lässt es wirken.</p>
+
+<div class="dialog">„Und das Wichtigste: Der Zeuge. Der Mann, der damals hate geschwiegen." Ein dünnes Lächeln. „Er hate geredet. Diesmal hate er geredet. Alles. Dass Edric krank im Bette lag, dass er es wusste, dass er es immer wusste — und warum er den Mund hate gehalten."</div>
+
+<div class="thought-box">Er hat geredet. Nach zwei Jahren des Schweigens. Einfach so?</div>
+
+<p>Du musst die Frage nicht aussprechen. Luigi sieht sie dir an, und etwas Verschmitztes legt sich in seine Miene.</p>
+
+<div class="dialog">„Du fragste dich, warum ein Mann plötzlich redete, der zwei Jahre lang nichts gesagt hate." Er dreht sich halb um, zu den beiden hinter ihm. „Das ... das erzählene dir besser meine Freunde. Sie warene dabei."</div>
+
+[[Weiter|karla_S8_zeugen]]
+
+
+:: karla_S8_prognose [nach_hub] {"position":"1175,3925","size":"100,100"}
+<p>Luigi legt dir wieder die Hand auf die Schulter.</p>
+
+<div class="dialog">„Ich sage dir, wie es weitergehte, Thomaso, damite du keine falsche Hoffnung hast — und keine falsche Angst." Sein Blick ist offen, ehrlich. „Ein Gericht iste langsam. Sehr langsam. Es werden Wochen vergehen, vielleicht Monate, bis alles iste geregelt, bis die Tinte trocken iste und Edric durche das Tor geht in die Freiheit. Diese Mühlen mahlene nicht schnell."</div>
+
+<p>Er drückt fester zu.</p>
+
+<div class="dialog">„Aber höre mir zu, und höre gut: Es iste sicher. Capisci? Sicher. Der Zeuge hate ausgesagt, das Urteil hate keinen Boden mehr, und ich ..." ein kurzes, warmes Lächeln, „... ich lasse nichte locker, bis er frei iste. Das iste kein Vielleicht. Das iste ein Wann."</div>
+
+<div class="thought-box">Sicher. Er sagt es, als gäbe es kein anderes Ergebnis. Und so, wie dieser Mann redet, wie er handelt, wie er Türen öffnet, die für andere verschlossen sind — ich glaube ihm. Ich glaube ihm jedes Wort.</div>
+
+<p>Luigi mustert dich noch einmal, und das Geschäftliche fällt von ihm ab. Was bleibt, ist etwas Wärmeres.</p>
+
+<div class="dialog">„Du haste das gut gemacht, Junge. Du haste geschrieben, als du nicht mehr weiter wusstest. Das iste keine Schwäche — das iste Klugheit. Ein Mann muss wissen, wann er um Hilfe bittete." Er lächelt.</div>
+
+<p>Dann wird er wieder geschäftig, nickt den beiden zu. „Wir gehene. Es iste noch viel zu tun in Grodaus. Aber wir sehene uns wieder, Thomaso — und das nächste Mal mite besseren Nachrichten, eh?"</p>
+
+<div class="scenery-text">Du siehst ihnen nach, wie sie durch das Tor verschwinden, der gesiegelte Passierschein noch in Luigis Hand. Drei Männer, die gekommen sind, weil ein Junge einen Brief geschrieben hat. Dann ist der Hof wieder leer, als wäre nichts gewesen.</div>
+
+<<set $npc.karla.memory.flags.aufloesung_done to true>>
+<<set $npc.karla.memory.flags.s8_done to true>>
+
+<<weiterImTag "Ihnen noch eine Weile nachsehen bevor du dich wieder an den Dienst machst.">>
+
+
+:: karla_S8_zeugen {"position":"1175,3800","size":"100,100"}
+<p>Der lebhafte tritt vor, und zum ersten Mal hörst du ihn richtig sprechen — eine andere Färbung als Luigi, weicher, näselnder, mit gerolltem Tonfall, der die Worte tänzeln lässt.</p>
+
+<div class="dialog">„Maurice", stellt er sich vor und legt eine Hand aufs Herz, als wäre das Wort schon eine Höflichkeit. „Mon ami, die Sache war ... wie sagt man ... eine Frage des Gespräches. Wir habn den Monsieur Zeugen besucht. Ein nervöser Mann, sehr nervös. Lebt allein, schlechte Schlaf, eh? Man sieht so etwas."</div>
+
+<p>Er lächelt, und das Lächeln ist charmant und kalt zugleich.</p>
+
+<div class="dialog">„Wir habn uns gesetzt. Wir habn geredet. Über das Wetter, über die Ernte, über die Sorgen, die ein Mann so hat in diese unsichere Zeiten. Und irgendwann — ganz natürlisch — sind wir gekommen auf die Frage, wer ihm eigentlisch mehr Angst macht, hm? Die Männer von früher, die ihm habn gedroht ..." Maurice breitet die Hände aus. „... oder die Männer, die jetzt in seine Stube sitzen."</div>
+
+<div class="scenery-text">Hinter ihm, ohne ein Wort, tritt der Hagere einen halben Schritt ins Licht. Er sagt nichts. Er sieht dich nur an, mit dem ruhigen, gleichgültigen Blick eines Mannes, für den Gewalt keine Drohung ist, sondern bloß ein Werkzeug, das man selten in die Hand nehmen muss, weil seine bloße Anwesenheit genügt.</div>
+
+<div class="dialog">„Vincente redete nicht viel", sagt Maurice fast zärtlich. „Aber er hat eine ... présence. Eine Wirkung. Der Monsieur Zeuge hat sehr schnell verstanden, dass die alten Drohungen ihn nicht mehr schützen. Dass es jetzt klüger iste, die Wahrheit zu sagen, als sie weiter zu verstecken." Er zwinkert. „Wir habn ihm nur geholfen, die rischtige Wahl zu treffen, eh? Ganz ohne ... Unannehmlichkeiten."</div>
+
+<div class="thought-box">Sie haben ihm nichts getan. Das ist das Unheimliche daran. Sie mussten nichts tun. Sie sind einfach gekommen, haben sich hingesetzt — und der Mann hat begriffen, dass die Loyalisten nicht mehr die Gefährlichsten in seinem Leben sind. Das ist eine Welt, von der ich nichts wusste. Und sie steht hinter meinem Paten.</div>
+
+<p>Vincente tritt wieder zurück in den Schatten, lautlos, wie er gekommen ist. Maurice verbeugt sich knapp, das Lächeln nie ganz weg.</p>
+
+[[Weiter|karla_S8_prognose]]
+
+
+:: karla_S9 [interrupt einmalig nach_stube kap1] {"position":"1300,3150","size":"100,100"}
+<p>Du findest Karla nach dem Abendappell hinter der Schmiede — an demselben Ort, an dem sie damals zusammengebrochen ist vor der Wand aus Ohnmacht, an dem sie sagte: *Was machen wir damit?* Sie sitzt auf dem umgedrehten Eimer, die Arme um die Knie, und sieht auf, als sie deine Schritte hört.</p>
+
+<div class="dialog">„Du wolltest mich sprechen." Misstrauisch. Sie ist Gutes nicht gewohnt. „Was ist los, Thomas?"</div>
+
+<p>Du setzt dich. Und dann — du, der du sonst mit Gesten redest, mit Schweigen, mit allem außer Worten — fängst du an zu erzählen.</p>
+
+<div class="thought-box">Wo fange ich an? Beim Brief? Bei den Bergen? Bei einem Mann, den ich nie gesehen hatte und der trotzdem mein ganzes Leben bezahlt hat? Ich fange einfach an. Und dann kann ich nicht mehr aufhören.</div>
+
+<p>Du erzählst ihr von Luigi. Von der Patenschaft, die ein Fremder für ein verstoßenes Kind übernahm. Von den Briefen, die du als Junge schriebst, ohne je ein Gesicht zu kennen. Du erzählst ihr von jener Nacht nach der Schmiede, als du nicht schlafen konntest und aus reiner Verzweiflung schriebst — an die einzige Adresse, die dir einfiel, ohne zu glauben, dass je eine Antwort käme.</p>
+
+<p>Karla sagt nichts. Aber ihr Gesicht beginnt sich zu verändern, langsam, während sie begreift, wovon du redest.</p>
+
+<p>Du erzählst ihr, dass er gekommen ist. Dass er ihren Onkel kennt, ihren Fall, den Namen des Zeugen. Dass er Anwalt ist — und mehr als das. Dass der Prozess wieder offen ist. Dass der Zeuge geredet hat.</p>
+
+<p>Und dann sagst du den Satz, für den du das alles getragen hast.</p>
+
+<div class="dialog">„Edric kommt frei, Karla. Es wird dauern. Wochen, Monate vielleicht. Aber er kommt frei. Das ist sicher."</div>
+
+<div class="scenery-text">Lange ist es still. Das Eisen der Schmiede ist kalt, die Nacht legt sich über den Hof, und irgendwo ruft eine Wache ihren Posten. Karla sitzt vollkommen reglos, und du siehst, wie das, was du gesagt hast, durch sie hindurchgeht, Schicht um Schicht, bis es ganz unten ankommt.</div>
+
+<p>Dann bricht sie.</p>
+
+<p>Nicht laut. Karla würde nie laut weinen. Aber ihre Schultern beginnen zu zittern, und sie presst eine Hand vor den Mund, und über ihren Handrücken laufen Tränen, die sie nicht mehr zurückhält — zwei Jahre Tränen, aufgespart, weil Weinen ein Luxus war, den sie sich nie erlauben konnte, solange sie kämpfen musste.</p>
+
+<div class="dialog">„Warum", bringt sie schließlich heraus, mit erstickter Stimme. „Warum hast du mir nichts gesagt? Die ganze Zeit —"</div>
+
+<div class="dialog">„Weil ich nicht wusste, ob es klappt", sagst du leise. „Und ich wollte dir keine Hoffnung machen, die vielleicht zerbricht. Du hattest schon genug zerbrochene Hoffnung."</div>
+
+<p>Sie sieht dich an, das Gesicht nass, und in ihrem Blick liegt etwas, das du noch nie darin gesehen hast — als sähe sie dich zum ersten Mal wirklich, ganz, ohne Wand.</p>
+
+<div class="dialog">„Du hast das für mich getan." Es ist keine Frage. „Heimlich. Ohne ein Wort. Du hast den einen Menschen um Hilfe gebeten, der dir je geholfen hat — für meinen Onkel. Für mich."</div>
+
+<div class="thought-box">Ich weiß nicht, was ich darauf sagen soll. Also sage ich nichts. Manche Dinge sind zu groß für Worte — das habe ich von ihr gelernt.</div>
+
+<p>Sie lehnt sich zu dir herüber, langsam, und legt für einen Moment die Stirn an deine Schulter. Keine Umarmung — dafür ist sie nicht gemacht, und das musst du auch nicht. Nur dieser eine Moment, in dem die Stärkste, die du kennst, sich erlaubt, sich kurz an jemanden zu lehnen.</p>
+
+<div class="dialog">„Danke", flüstert sie. Nur das eine Wort. Aber von Karla wiegt es so schwer wie alles, was je ein Mensch zu dir gesagt hat.</div>
+
+<<= setup.setNpcAffection("karla", 10)>>
+<<set $npc.karla.trust to true>>
+<<set $npc.karla.memory.flags.karla_erfahren to true>>
+<<set $npc.karla.memory.flags.s9_done to true>>
+
+<div class="system-alert status-positive">Karla weiß nun alles — vom Brief, von Luigi, von der Wahrheit über ihren Onkel. Was zwischen euch ist, hat sich für immer verändert.</div>
+
+<<weiterImTag "Weiter">>
+
+
+:: karla_S_Verhaftung [interrupt einmalig nach_hub kapitel-opener kap1] {"position":"1025,3150","size":"100,100"}
+<<set $npc.karla.memory.flags.verhaftung_seen to true>>
+<p>Es ist ein Morgen wie jeder andere, bis er es nicht mehr ist.</p>
+
+<p>Auf dem Appellplatz steht ein Wagen, der nicht hierhergehört — schwer, vergittert, mit dem Wappen des Landgerichts zu Grodaus an der Seite. Daneben zwei Gardisten in fremder Montur und der Hauptmann, dessen Miene nichts verrät. Die Reihen sind angetreten, aber niemand hat zum Drill gerufen. Etwas anderes liegt in der Luft.</p>
+
+<div class="scenery-text">Der Morgennebel hängt noch tief über dem Hof. Niemand redet. Hundert Rekruten stehen still, und das Einzige, was man hört, ist das Schnauben der Pferde vor dem Gefangenenwagen und das Klirren von Ketten, irgendwo, noch nicht zu sehen.</div>
+
+<p>Dann führen sie Karla heraus.</p>
+
+<p>Ihre Hände sind gefesselt. Sie geht aufrecht — natürlich geht sie aufrecht, sie würde diesen Leuten niemals den Gefallen tun, gebeugt zu gehen — aber an ihrer Schläfe ist eine verkrustete Wunde, und ihr Blick ist leer auf eine Art, die du noch nie an ihr gesehen hast.</p>
+
+<p>Ein Schreiber verliest die Anklage, und seine Stimme trägt über den ganzen stillen Platz.</p>
+
+<div class="voice-formal">„Unbefugtes Eindringen in die Schreibstuben der Akademie. Entwendung versiegelter Militärakten. Der Verdacht der Spionage wider die Republik. Die Beschuldigte wird zur Verhandlung nach Grodaus überstellt."</div>
+
+<p>Spionage. Das Wort fällt wie ein Stein in stilles Wasser, und du spürst, wie es durch die Reihen geht — ein Raunen, ein Zurückweichen, als könnte allein die Nähe zu so einer Anklage abfärben.</p>
+
+<p>Sie wissen nichts von Edric. Sie wissen nichts von einem kranken Onkel, von einem Zeugen, der schwieg, von einer Frau, die nur die Wahrheit über ein Unrecht suchte. Sie sehen eine Rekrutin, die nachts versiegelte Akten gestohlen hat, und sie haben sich daraus ihre eigene, viel größere Geschichte gemacht.</p>
+
+<p>Als sie sie zum Wagen führen, geht ihr Blick einmal über die Reihen.</p>
+
+<<if $npc.karla.affection >= 5>>
+<p>Für den Bruchteil eines Augenblicks bleibt er an dir hängen. Kein Vorwurf liegt darin. Keine Bitte. Nur ein müdes, fast sanftes Erkennen — als wollte sie sagen: Es ist nicht deine Schuld. Und gerade weil sie das sagen würde, fühlt es sich an wie deine.</p>
+<<else>>
+<p>Er gleitet über dich hinweg wie über jeden anderen. Für sie warst du nie mehr als einer von hundert Gesichtern in der Reihe. Vielleicht hätte es anders sein können. Jetzt wirst du es nie erfahren.</p>
+<</if>>
+
+<p>Dann schließt sich die Gittertür. Der Wagen setzt sich in Bewegung, rumpelt durch das Tor, und ist fort.</p>
+
+<div class="thought-box">Sie hat es allein versucht. Bis zum Schluss allein. Und irgendwo zwischen jener Nacht und diesem Morgen gab es einen Moment, in dem ich an ihrer Seite hätte stehen können — und es nicht tat.</div>
+
+<div class="system-alert status-info">Karla wurde verhaftet und nach Grodaus überstellt. Ihr Weg und deiner trennen sich hier. Was aus ihr und ihrem Onkel wird, liegt nicht mehr in deiner Hand.</div>
+
+<<weiterImTag "Weiter">>
+
+
+
+
+
+
+
+
+/* ================================================================================================================
+   Kap 2 Karla Sim Game
+   ================================================================================================================ */
+
+
+:: Karla_Geschenk {"position":"3725,5075","size":"100,100"}
+<p>Du hast etwas für sie dabei. Die Frage ist nur, was davon — und ob heute der richtige Tag ist.</p>
+
+<ul class="menu">
+<<if setup.hasItem("Gebrannte Mandeln")>><li>[[Die gebrannten Mandeln|Karla_Geschenk_Reaktion][$world.tmpGeschenk to "mandeln"]]</li><</if>>
+<<if setup.hasItem("Feiner Wetzstein")>><li>[[Den feinen Wetzstein|Karla_Geschenk_Reaktion][$world.tmpGeschenk to "wetzstein"]]</li><</if>>
+<<if setup.hasItem("Rotes Haarband")>><li>[[Das rote Haarband|Karla_Geschenk_Reaktion][$world.tmpGeschenk to "haarband"]]</li><</if>>
+<<if setup.hasItem("Wallwurz-Salbe")>><li>[[Die Wallwurz-Salbe|Karla_Geschenk_Reaktion][$world.tmpGeschenk to "salbe"]]</li><</if>>
+<li>[[Doch nicht heute|Tageshub_Karla]]</li>
+</ul>
+
+
+:: Karla_Geschenk_Reaktion [nach_Kap2_tag] {"position":"3925,5075","size":"100,100"}
+<<= setup.gibKarlaGeschenk($world.tmpGeschenk)>>
+<<if $world.tmpGeschenk eq "haarband" and $npc.karla.memory.flags.haarband_getragen>>
+	[[…und dann|Karla_Paar_Moment]]
+<<else>>
+	<<weiterImTag "Zurück auf den Hof">>
+<</if>>
+
+
+:: Karla_Paar_Moment [nach_Kap2_tag] {"position":"4100,5100","size":"100,100"}
+<<scene>>
+<p>Es fällt kein Wort darüber. Keines von euch würde es aussprechen, und gerade darin liegt die ganze Wahrheit. Das rote Band sitzt um ihr linkes Handgelenk, fest verknotet, dort, wo sie sonst niemanden hinsehen lässt — und dass sie es dort trägt und nicht im Haar, ist keine Laune. Es ist eine Antwort auf eine Frage, die du nie gestellt hast.</p>
+<</scene>>
+<<dialog>>
+<p>Beim nächsten Drill hebt sie einmal kurz den Arm, scheinbar nur, um sich den Schweiß zu wischen, und lässt das Band aufblitzen, rot gegen den Staub — für dich, nur für dich. Dann fängt sie deinen Blick auf und hält ihn, ohne zu lächeln, ohne wegzusehen.</p>
+<</dialog>>
+<<gedanke>>
+<p>Kein Versprechen, keine großen Worte, kein Ring. Nur ein Band an einem Handgelenk und ein Blick, der länger dauert, als er müsste. Aber ich weiß, was es heißt. Wir beide wissen es. Und das genügt uns.</p>
+<</gedanke>>
+<<set $npc.karla.memory.flags.paar to true>>
+<<weiterImTag "Zurück auf den Hof">>
+
+
+:: Karla_Romanze_Moment [nach_Kap2_tag] {"position":"3225,5300","size":"100,100"}
+<<set $npc.karla.memory.flags.romanze_moment_seen to true>>
+<<scene>>Sie wartet nicht bei den Übungsgestellen. Sie wartet am Fuß der Treppe zum Wehrgang, und als sie dich sieht, dreht sie sich wortlos um und steigt hinauf — in dem sicheren Wissen, dass du folgst. Oben, an der Stelle, an der der Wind beißt, bleibt sie stehen und sieht über das Land, das im letzten Licht liegt.<</scene>>
+
+<p>Ihr steht nebeneinander. Lange. Unten ruft jemand nach der Wachablösung, ein Hund bellt, das Lager macht seine Abendgeräusche — und alles davon ist weit weg.</p>
+
+<div class="dialog">„Ich hab mir geschworen, dass hier niemand nah rankommt“, sagt Karla schließlich. Sie sieht dich nicht an. „Zu teuer. Zu gefährlich. Menschen, die nah dran sind, kann man verlieren, und ich hab genug verloren.“</div>
+
+<p>Der Wind zerrt an ihrem Haar. Sie macht keine Anstalten, es festzuhalten.</p>
+
+<div class="dialog">„Und dann stehst du jeden Tag wieder da. Fragst nichts. Willst nichts. Bist einfach da.“ Jetzt dreht sie den Kopf, und ihr Blick ist so gerade wie ihre Klingenführung. „Ich weiß nicht, was das hier ist, Thomas. Ich weiß nur, dass es mir fehlt, wenn du nicht kommst.“</div>
+
+<p>Ihre Hand liegt auf dem kalten Stein zwischen euch. Du legst deine daneben — nicht darauf, daneben, den kleinen Finger an ihrem. Es ist die vorsichtigste Berührung der Welt, und sie zieht ihre Hand nicht weg. Sie lehnt den Kopf an deine Schulter, nur für ein paar Atemzüge, ehe die Glocke zum Appell ruft und sie sich aufrichtet, als wäre nichts gewesen.</p>
+
+<div class="dialog">„Kein Wort zu niemandem“, sagt sie, aber ihre Stimme ist weich dabei. „Das gehört uns.“</div>
+
+<div class="thought-box">Kein Kuss, kein Schwur, kein Name für das Ganze. Nur eine Hand neben meiner und ein Kopf an meiner Schulter. Und trotzdem weiß ich: Was auch kommt — das hier trage ich mit hinaus, wohin immer man uns schickt.</div>
+
+<<= setup.setNpcAffection("karla", 5)>>
+<div class="system-alert status-positive">♥ Etwas Eigenes — was zwischen dir und Karla ist, braucht keinen Namen mehr.</div>
+
+<<weiterImTag "Zurück auf den Hof">>
+
+
+:: Karla_Stufe_Reaktion {"position":"3400,5400","size":"100,100"}
+<<switch setup.romanzeStufe()>>
+<<case 1>>
+<<scene>>
+<p>Etwas hat sich verschoben, so leise, dass du es zuerst nicht benennen kannst. Karla, die sonst jeden Platz am Feuer mit den Ellenbogen verteidigt, rückt ein Stück, als du dich setzt — nicht viel, aber genug, dass du weißt: Es ist gemeint.</p>
+<</scene>>
+<<dialog>>
+<p>„Du bist weniger nutzlos, als du aussiehst“, sagt sie, ohne dich anzusehen, und in ihrem Mund ist das beinahe zärtlich. „Behalt das für dich.“</p>
+<</dialog>>
+<<case 2>>
+<<scene>>
+<p>Ihr sitzt auf der Mauer, die Beine über der Leere, und eine lange Weile sagt keiner etwas — und es ist kein Schweigen, das gefüllt werden müsste. Karla lehnt sich zurück, das Gesicht in den letzten Sonnenstrahl, und lässt dich sehen, was sie sonst niemandem zeigt: dass sie müde ist. Dass sie es sein darf, neben dir.</p>
+<</scene>>
+<<dialog>>
+<p>„Ich rede mit niemandem so wie mit dir“, sagt sie, und es klingt fast wie ein Vorwurf. „Ich weiß nicht, ob mir das gefällt.“ Aber sie steht nicht auf.</p>
+<</dialog>>
+<<case 3>>
+<<scene>>
+<p>Es kommt ohne Vorwarnung, wie alles, was Karla wirklich tut. Mitten in einem Satz, den du im selben Moment vergisst, greift sie in deinen Kragen, zieht dich zu sich und küsst dich — hart, entschlossen, ohne die geringste Scheu, so wie sie kämpft und flucht und lebt. Dann lässt sie ebenso plötzlich wieder los.</p>
+<</scene>>
+<<dialog>>
+<p>Sie mustert dich, ein wenig atemlos, das Kinn trotzig gehoben, als warte sie darauf, dass du etwas Dummes sagst, das sie dir übelnehmen kann. „Wenn du jetzt anfängst zu reden“, sagt sie leise, „bring ich dich um.“</p>
+<</dialog>>
+<<gedanke>>
+<p>Also rede ich nicht. Ich habe bei Karla gelernt, dass die wichtigsten Dinge die sind, die man nicht ausspricht.</p>
+<</gedanke>>
+<</switch>>
+[[Weiter|Tageshub_Karla]]
+
+
+:: Karla_Zeit_Mauer [nach_Kap2_tag] {"position":"3550,5450","size":"100,100"}
+<<scene>>Es gibt eine Stelle auf dem Wehrgang über dem Osttor, an der die Wache nie lange steht, weil der Wind dort beißt. Karla mag sie genau deshalb. Ihr sitzt nebeneinander auf dem kalten Stein, die Beine über der Kante, und unter euch liegt die Akademie wie ein Spielbrett, das euch für eine Stunde nichts angeht.<</scene>>
+
+<p>Karla schweigt. Es ist kein leeres Schweigen — es ist ihres, und sie teilt es mit dir.</p>
+
+[[Das Schweigen halten.|Karla_Zeit_Mauer_Schweigen]]
+[[Erzählen — von früher, von den Bergen.|Karla_Zeit_Mauer_Reden]]
+
+
+\:: Karla_Zeit_Mauer_Schweigen {"position":"2200,4850","size":"100,100"}
+<p>Du sagst nichts. Der Wind sagt genug.</p>
+<p>Nach einer langen Weile lehnt sich Karlas Schulter gegen deine — kaum ein Gewicht, vielleicht nur die Kälte, vielleicht nicht. Keiner von euch rückt ab. Als die Glocke zum Abendappell ruft, steht sie auf, klopft sich den Staub von der Hose und sagt im Gehen, ohne dich anzusehen:</p>
+<div class="dialog">„Du bist der Einzige, mit dem Schweigen nicht anstrengend ist.“</div>
+<<weiterImTag "Zurück auf den Hof">>
+
+
+:: Karla_Zeit_Mauer_Reden [nach_Kap2_tag] {"position":"3625,5675","size":"100,100"}
+<p>Du erzählst. Von den Bergen, vom Käse, vom langen Gesundwerden — Dinge, die du sonst niemandem erzählst. Karla hört zu, den Blick auf dem Horizont, und unterbricht dich kein einziges Mal.</p>
+<div class="dialog">„Du warst krank“, sagt sie schließlich. „Und jetzt sitzt du hier oben im Wind und frierst freiwillig.“ Sie schüttelt den Kopf, aber es ist kein Vorwurf. „Zäher, als du aussiehst, Wabbler.“</div>
+<<weiterImTag "Zurück auf den Hof">>
+
+
+:: Karla_Zeit_Mauer_Schweigen [nach_Kap2_tag] {"position":"3425,5675","size":"100,100"}
+<p>Du sagst nichts. Der Wind sagt genug.</p>
+<p>Nach einer langen Weile lehnt sich Karlas Schulter gegen deine — kaum ein Gewicht, vielleicht nur die Kälte, vielleicht nicht. Keiner von euch rückt ab. Als die Glocke zum Abendappell ruft, steht sie auf, klopft sich den Staub von der Hose und sagt im Gehen, ohne dich anzusehen:</p>
+<div class="dialog">„Du bist der Einzige, mit dem Schweigen nicht anstrengend ist.“</div>
+<<= setup.setRomanze(1)>>
+<<weiterImTag "Zurück auf den Hof">>
+
+
+:: Karla_Zeit_Stadtgang {"position":"3750,5350","size":"100,100"}
+<<scene>>Karla in der Stadt ist ein anderes Bild: Sie geht durch das Gedränge des Marktes wie durch eine Gasse voller Gegner — wach, raumgreifend, die Hand nie weit vom Gürtel. Aber heute geht sie langsamer als nötig. Wegen dir, auch wenn sie das nie sagen würde.<</scene>>
+
+<<if $npc.karla.memory.flags.haarband_getragen>>
+<p>Am Handgelenk trägt sie das rote Band. Eine Marktfrau sieht es, sieht euch beide, und grinst wissend. Karla starrt zurück, bis das Grinsen verschwindet — aber das Band nimmt sie nicht ab.</p>
+<</if>>
+
+<p>Ihr teilt euch heiße Maronen aus einer Tüte, streitet über die beste Pikenlänge, und vor dem Stand eines Waffenschmieds bleibt sie so lange stehen, dass der Händler schon Morgenluft wittert. Als ihr am Abend durchs Tor zurückkommt, ist nichts Besonderes geschehen — und genau das war das Besondere.</p>
+
+<div class="thought-box">Ein ganzer Nachmittag, an dem niemand etwas von uns wollte. Keine Listen, keine Spuren, keine Wände. Nur wir. Ich wusste gar nicht mehr, wie sich das anfühlt.</div>
+
+<<= setup.setRomanze(1)>>
+<<= setup.removeMoney(4)>>
+<<weiterImTag "Zurück auf den Hof">>
+
+
+:: Karla_Zeit_Training [nach_Kap2_tag] {"position":"3475,5025","size":"100,100"}
+<<set _stufe to setup.romanzeStufe()>>
+<p>Sie wirft dir die Übungsklinge zu, ohne ein „fang" davor — das hat sich seit dem ersten Jahr nicht geändert, und es soll sich nicht ändern. Ihr geht in Position, und für eine Weile gibt es nur das Klacken der Schäfte, den Atem, den Staub.</p>
+
+<<if $npc.karla.affection <= 15>>
+  <<if random(0,3) === 1 >>
+      	<<= setup.setNpcAffection("karla", 1)>>
+  <</if>>
+<</if>>
+
+<<if _stufe gte 1>>
+<p>Nach dem dritten Durchgang merkst du es wieder: Ihre linke Seite. Sie deckt sie besser als früher — aber du weißt, wo sie ist. Und Karla weiß, dass du es weißt.</p>
+
+[[Die linke Seite meiden, wie immer.|Karla_Zeit_Training_Schonen]]
+[[Bewusst von links kommen — sie fordern.|Karla_Zeit_Training_Fordern]]
+<<else>>
+<p>Als ihr abbrecht, seid ihr beide außer Atem, und Karla nickt dir zu — anerkennend, sachlich. „Du wirst besser", sagt sie. Von ihr ist das ein halber Festumzug.</p>
+<<= setup.setRomanze(0)>>
+<<weiterImTag "Zurück auf den Hof">>
+<</if>>
+
+
+:: Karla_Zeit_Training_Fordern [nach_Kap2_tag] {"position":"3375,4875","size":"100,100"}
+<<if $npc.karla.romanze gte 8>>
+<p>Du kommst von links. Langsam genug, dass sie es sieht. Schnell genug, dass es zählt.</p>
+<p>Karla weicht nicht zurück. Sie dreht sich hinein, fängt den Schaft, und für einen Atemzug steht ihr Gesicht eine Handbreit vor deinem — wach, hart, und darunter etwas, das beinahe Dankbarkeit ist.</p>
+<div class="dialog">„Wieder“, sagt sie.</div>
+<p>Ihr übt die linke Seite, bis das Licht geht. Sie hat dich nie darum gebeten. Sie hätte nie darum gebeten. Aber du hast es getan, ohne zu fragen — und das ist die einzige Sprache, in der man Karla solche Dinge sagen darf.</p>
+<<= setup.setRomanze(2)>>
+<<else>>
+<p>Du kommst von links. Und du spürst sofort, dass es ein Fehler war.</p>
+<p>Karla pariert — technisch sauber, einen Herzschlag zu hart —, und dann senkt sie die Klinge und sieht dich an. Kein Zorn. Etwas Schlimmeres: die Wand, die du seit Monaten nicht mehr gesehen hast.</p>
+<div class="dialog">„Reicht für heute.“</div>
+<p>Sie stellt die Klinge ins Gestell und geht. Du bleibst im Staub zurück, mit dem Gefühl, an eine Tür geklopft zu haben, zu der du noch keinen Schlüssel hast.</p>
+<<= setup.setRomanze(-2)>>
+<</if>>
+<<weiterImTag "Zurück auf den Hof">>
+
+
+:: Karla_Zeit_Training_Schonen [nach_Kap2_tag] {"position":"3550,4875","size":"100,100"}
+<p>Du greifst an wie immer — von rechts, von vorn, sauber. Sie pariert, kontert, treibt dich über den Platz, und irgendwann steht ihr beide lachend im Staub, so weit Karla eben lacht: ein kurzes, raues Ausatmen, das mehr wert ist als das Gelächter anderer Leute.</p>
+
+<div class="thought-box">Ich könnte sie treffen, wenn ich von links käme. Wir wissen es beide. Und genau deshalb tue ich es nicht.</div>
+
+<<= setup.setRomanze(1)>>
+<<weiterImTag "Zurück auf den Hof">>

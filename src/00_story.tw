@@ -1,0 +1,31 @@
+:: StoryTitle
+An Aloy Story
+
+:: StoryData
+{
+  "ifid": "C7096067-F133-4DE2-AACD-2D383E8BB71A",
+  "format": "SugarCube",
+  "format-version": "2.37.3",
+  "start": "Kapitel 0",
+  "tag-colors": {
+    "header": "blue",
+    "script": "purple",
+    "startup-debug": "purple",
+    "widget": "blue",
+    "nach_stube": "orange",
+    "nach_hub": "green",
+    "einmalig": "red",
+    "nach_morgen": "red",
+    "interrupt": "purple",
+    "nach_appell": "yellow",
+    "studium": "yellow",
+    "pruefung": "green",
+    "kapitel-opener": "red",
+    "layout": "green",
+    "journal": "orange",
+    "nach_Kap2_tag": "green",
+    "nach_Kap2_morgen": "green",
+    "nach_Kap2_abend": "yellow"
+  },
+  "zoom": 0.6
+}

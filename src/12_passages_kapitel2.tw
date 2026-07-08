@@ -1,0 +1,1612 @@
+
+:: Kap2_Abend {"position":"2750,3800","size":"100,100"}
+<<if $world.abendAktion === undefined>><<set $world.abendAktion to false>><</if>>
+<<set $player.hasSlept to true>>
+
+<<scene>>Die Glocke über dem Torhaus schlägt die letzte Stunde des Dienstes. Über den Dächern der Akademie verglimmt das Licht, die Höfe leeren sich, und aus der Küche zieht der Geruch von dünner Suppe und Brot herüber. Der Dienst ist vorbei — aber der Abend gehört noch dir.<</scene>>
+
+<<if not $world.abendAktion>>
+
+<p>Talglichter flackern hinter den Fenstern der Baracken auf. Noch ist Zeit für eines, ehe die Müdigkeit gewinnt.</p>
+
+<<set _options = setup.kap2AbendStorylets.filter(function(s) { return s.available(); })>>
+<ul class="menu">
+<<for _i = 0; _i < _options.length; _i++>>
+    <<capture _i>>
+        <li><<link ` _options[_i].text` `_options[_i].target`>><<set $world.abendAktion to true>><</link>></li>
+    <</capture>>
+<</for>>
+<li>[[Früh schlafen gehen|Kap2_Abend_FruehSchlafen]]</li>
+</ul>
+
+<<else>>
+
+<p>Der Abend ist verbraucht. Die Baracke atmet schon im Takt der Schlafenden, und deine Pritsche ruft lauter als alles andere.</p>
+
+[[Schlafen. ->Kap2_Tagesstart]]
+
+<</if>>
+
+
+:: Kap2_Abend_FruehSchlafen {"position":"2900,3800","size":"100,100"}
+<p>Keine Schenke, kein Licht, keine Pläne. Du liegst als Erster auf der Pritsche, und zum ersten Mal seit Tagen ist das Einschlafen kein Fallen, sondern ein Ankommen.</p>
+
+<<= setup.setPlayerCondition(5)>>
+
+<<gedanke>>Der Schinder hat im ersten Jahr immer gesagt: Schlaf ist die halbe Ausbildung. Der Mann hatte in mehr Dingen recht, als mir damals lieb war.<</gedanke>>
+
+[[Schlafen. ->Kap2_Tagesstart]]
+
+
+:: Kap2_Abend_Karla {"position":"3025,3425","size":"100,100"}
+<<run setup.romanzeInit()>>
+<<scene>>Sie ist schon oben, an der Stelle über dem Osttor, an der der Wind beißt und die Wache nie lange steht. Du erkennst ihre Silhouette gegen den Nachthimmel, die Beine über der Kante, und sie rückt zur Seite, ehe du ein Wort gesagt hast — als hätte sie den Platz freigehalten.<</scene>>
+
+<p>Unter euch macht das Lager seine Nachtgeräusche. Über euch stehen mehr Sterne, als ein Mensch zählen könnte, und Karla schweigt, wie nur sie schweigen kann: nicht leer, sondern voll.</p>
+
+[[Das Schweigen halten.|Kap2_Abend_Karla_Schweigen]]
+[[Leise erzählen — vom Tag, von früher.|Kap2_Abend_Karla_Reden]]
+
+
+:: Kap2_Abend_Karla_Reden {"position":"2925,3575","size":"100,100"}
+<p>Du erzählst leise — vom Drill, von den Bergen, von dem, was der Tag übrig gelassen hat. Karla hört zu, den Blick bei den Sternen, und wirft nur hin und wieder einen trockenen Satz dazwischen, der genau an der richtigen Stelle sitzt.</p>
+
+<div class="dialog">„Du redest zu viel“, sagt sie schließlich. Ihre Stimme sagt das Gegenteil.</div>
+
+
+
+[[Hinunter zur Baracke. ->Kap2_Abend]]
+
+
+:: Kap2_Abend_Karla_Schweigen {"position":"2775,3450","size":"100,100"}
+<p>Ihr sitzt, bis die Kälte durch den Stoff kriecht und keiner von euch es zugeben will. Irgendwann lehnt ihre Schulter an deiner — vielleicht die Kälte, vielleicht nicht — und keiner rückt ab.</p>
+
+<div class="dialog">„Gleiche Zeit morgen?“, fragt sie beim Aufstehen, so beiläufig, als wäre nichts gefragt worden.</div>
+
+
+
+[[Hinunter zur Baracke. ->Kap2_Abend]]
+
+
+:: Kap2_Abend_Lesen {"position":"2525,3750","size":"100,100"}
+<<scene>>Ein Stumpen Talglicht, ein geliehenes Bändchen aus der Schreibstube, die Pritsche als Lesepult. Um dich herum fällt die Baracke in Schlaf, Atemzug um Atemzug, während du liest — über Feldzüge, Provinzen, alte Verträge, was immer die Seiten hergeben.<</scene>>
+
+<p>Als das Licht niederbrennt, sind deine Augen trocken und dein Kopf voller als zuvor. Der Morgen wird früh kommen, und er wird es dich spüren lassen. Aber das hier nimmt dir keiner mehr.</p>
+
+<div class="system-alert status-positive">Gelehrsamkeit erhöht</div>
+<<set $player.stats.scholarship += 1>>
+<<= setup.setPlayerCondition(-5)>>
+
+<<gedanke>>Halm hat einmal gesagt, das Archiv vergisst niemanden, der wirklich wissen wollte. Vielleicht liest deshalb ein Waffenträger nachts bei Talglicht — damit irgendwer sich erinnert, dass er mehr war als ein Spieß mit Beinen.<</gedanke>>
+
+[[Das Licht löschen. ->Kap2_Abend]]
+
+
+:: Kap2_Abend_Schenke {"position":"2875,4050","size":"100,100"}
+<<set $world.schenkeRueckweg to "Kap2_Abend">>
+<<scene>>Die Stadt bei Nacht ist eine andere Stadt. Die Marktstände sind verrammelt, dafür fällt aus den Gassen um den Grauen Wolf warmes Licht auf das Pflaster, und mit ihm Stimmen, Würfelklappern und der Geruch von Bier und Talg. Um diese Stunde sitzt hier jeder, der einen Grund hat, nicht zu schlafen — und jeder, der einen sucht.<</scene>>
+
+[[Eintreten. ->Stadt_Schenke]]
+
+
+:: Kap2_Abend_Waffenpflege {"position":"2425,3950","size":"100,100"}
+<<scene>>Ölstein, Lappen, Lederfett. Du sitzt auf der Bank vor der Baracke, die Waffe über den Knien, und arbeitest dich durch die Handgriffe, die dir das erste Jahr eingebläut hat — Schneide, Schaft, Riemen, jede Schraube, jede Naht.<</scene>>
+
+<p>Es ist stumpfe Arbeit, und genau das ist ihr Wert: Die Hände tun, was sie können, und der Kopf sortiert derweil den Tag. Als du fertig bist, liegt das Zeug bereit wie für eine Parade — und morgen wird jeder Handgriff einen Fingerbreit leichter gehen.</p>
+
+<<set $world.gut_vorbereitet to true>>
+<div class="system-alert status-info">Gut vorbereitet — der nächste Gattungsdrill wird sicher Fortschritt bringen.</div>
+
+[[Zurück zur Baracke. ->Kap2_Abend]]
+
+
+:: Kap2_Ausbildung {"position":"1700,4550","size":"100,100"}
+<<silently>>
+<<set $world.day += 21>>
+<<run setup.ermInit()>>
+<<set $world.ermittlung.fruehestens_tag to $world.day + 3>>
+<</silently>>
+
+<<scene>>Die ersten Wochen der Gattungsausbildung verschwimmen zu einem einzigen langen Tag aus Wiederholung. Neue Handgriffe, neue Kommandos, neue Schwielen an Stellen, an denen du schon keine mehr für möglich gehieltest.<</scene>>
+
+<p>Du bist jetzt einer von den <<= setup.spezialisierungsName[$player.spezialisierung]>>-Leuten — so reden die anderen über dich, und irgendwann ertappst du dich dabei, selbst so zu denken.</p>
+
+<p>Und mit der neuen Gattung kommt die neue Freiheit des zweiten Jahres: Niemand schiebt dich mehr von Station zu Station. Der Tag gehört dir — und es liegt an dir, etwas daraus zu machen.</p>
+
+<<gedanke>>Drill am Morgen, danach meine Zeit. Die Stadt, die Leute, die eigenen Vorhaben. Ein Jahr lang hat man mir jede Stunde vorgeschrieben. Mal sehen, was ich tue, wenn es keiner mehr tut.<</gedanke>>
+
+[[Der erste freie Tag beginnt. ->Kap2_Tagesstart]]
+
+
+:: Kap2_Die_Probe {"position":"675,4750","size":"100,100"}
+<<run setup.rebuildKnowledgeForChapter2()>>
+<<set _peakKeys = setup.getPeakKnowledgeAfterKapOne()>>
+<<set _peakKey = _peakKeys.random()>>
+
+<p>Du trittst vor.</p>
+
+<p>Die Reihe hinter dir bleibt still. Nicht aus Respekt. Eher aus jener vorsichtigen Freude, die Rekruten empfinden, wenn es ausnahmsweise jemand anderen trifft.</p>
+
+<<dialog>>„Also Rekrut, mit welcher Waffengattung bist du nach einem Jahr m besten vertraut?“<</dialog>>
+
+<<gedanke>>
+Meine besten Erfahrungen habe ich mit 
+<<if _peakKeys.length === 1>>
+    <<=_chosenKey = _peakKeys.random()>>
+<<elseif _peakKeys.length === 0>>
+	Dingen, die mir hier jetzt nicht weiterhelfen 
+<<else>>
+    <<for _i to 0; _i < _peakKeys.length; _i++>>
+        <<print _peakKeys[_i]>>
+
+        <<if _i < _peakKeys.length - 2>>
+            , 
+        <<elseif _i == _peakKeys.length - 2>>
+            und 
+        <</if>>
+    <</for>>
+<</if>>
+gemacht...<br>
+<<if _peakKeys.length > 1>>
+	Ich entscheide mich für: <<=_chosenKey = _peakKeys.random()>>
+<<elseif _peakKeys.length === 0>>
+	Ich entscheide mich für: <<=_chosenKey = "Pike & Hellebarde">> da hatte ich immerhin die Drills beim Schinder.
+<</if>>
+<</gedanke>>
+
+<<dialog>>„<<print _chosenKey>>“ erwiederst du Kurt stolz.<</dialog>>
+
+<p>Kurt hebt nur zwei Finger.</p>
+
+<p>Aus der Reihe der älteren löst sich ein Rekrut. Größer als Thomas, nicht viel breiter, aber mit der ruhigen Haltung eines Menschen, der schon oft genug gefallen ist, um keine Angst mehr vor dem Boden zu haben.</p>
+
+<<dialog>>„<<print _chosenKey>> also.“, sagt Kurt.<</dialog>>
+
+<<formal>>Er sagt es nicht wie ein Lob.<br>
+Er sagt es wie eine Falle.<</formal>>
+
+<hr class="trenner-raute">
+
+<<if _chosenKey eq "Pike & Hellebarde">>
+<p>Man drückt dir eine Übungsstange in die Hand.<br>
+Sie ist leichter als eine echte Hellebarde, stumpf an den Enden, aber lang genug, um jeden Fehler sichtbar zu machen.</p>
+
+<p>Der ältere Rekrut grüßt knapp.<br>
+Dann beginnt es.</p>
+
+<p>Du setzt zum Stoß an, wie du es gelernt hast. Der andere ist schon nicht mehr dort. Ein Schlag gegen den Schaft, ein kurzer Schritt, ein Haken hinter dein Bein — und der Himmel kippt.</p>
+
+<p>Der Aufprall treibt dir den Atem aus der Brust.</p>
+
+<p>Gelächter geht durch die Reihe, kurz und hässlich, bis Kurt den Kopf dreht.<br>
+Stille.</p>
+
+<p>Du kommt wieder hoch.<br>
+Diesmal hältst du länger durch. Drei Atemzüge. Vielleicht vier.<br>
+Dannliegst du  wieder im Staub.</p>
+
+
+
+<<elseif _chosenKey eq "Artillerie">>
+<p>Kurt führt euch zu den Geschützen</p>
+
+<p>Wie gehwohnt liegen die Stationen gut sortiert vor euch.<br>
+Darauf liegen Ladestange, Wischer, Keile, Pulvermaße, Lappen, Zündzeug und eine kleine Holzkiste mit Kreidestrichen auf dem Deckel.</p>
+
+<<dialog>>„Laden!“, sagt Kurt.<</dialog>>
+
+<p>Mehr nicht.</p>
+
+<p>Du beginnst.<br>
+Du kennst die Namen. Du den Ablauf. Deine Hände greifen nicht völlig falsch.</p>
+
+<p>Neben dir arbeitet der ältere Rekrut.</p>
+
+<p>Er ist nicht hastig.<br>
+Das macht es schlimmer.</p>
+
+<p>Wischen: Reste von Pulver, Papier oder Glut entfernen<br>
+Pulverladung einbringen: Stoffbeutel in das Rohr, Mit der Ladestange fest nach hinten schieben<br>
+Geschoss laden: Steinkugel in das Rohr, Nein! Wattierung zuerst. Wieder mit der Ladestange schieben.<br>
+Stopfung einbringen: Heu oder Stroh, das ganze gut verdichten... </p>
+
+<<formal>>„Fertig!“<</formal>>
+
+<p>Der ältere steht neben seiner Kannone am Zünloch und ist abschussbereit.</p>
+
+<<gedanke>>„Bei den Dreyn! War das schnell!“<</gedanke>>
+
+<p>Kurt tritt näher. Er Schaut sich das Zündloch bei den Nachbarkannone an. </p>
+
+<<dialog>>„Sehr schön!“<br>
+„So werden unsere Kanonen geladen!“<</dialog>>
+
+<p>Der ältere Rekrut sagt nichts.<br>
+Das ist schlimmer als Spott.</p>
+
+
+<<elseif _chosenKey eq "Armbrust">>
+<p>Man gibt dir eine Armbrust.<br>
+Das Holz liegt sehr vertraut genug in deinen Händen.</p>
+
+<p>Fuß in den Bügel.<br>
+Sehne spannen.<br>
+Bolzen auflegen.</p>
+
+<p>Du atmest aus und zielst.</p>
+
+<p>Dein erster Schuss trifft die Scheibe.<br>
+Nicht mittig, aber sauber genug.</p>
+
+<p>Ein paar Rekruten murmeln.</p>
+
+<p>Dann hebt der ältere seine Armbrust.</p>
+
+<p>Er spannt langsam.<br>
+Legt den Bolzen ein.<br>
+Wartet.</p>
+
+<<gedanke>>Zu lange, denkst du.<</gedanke>>
+
+<p>Dann löst er.</p>
+
+<p>Der Bolzen schlägt näher an der Mitte ein als deiner.</p>
+
+<p>Wieder.</p>
+
+<p>Und wieder.</p>
+
+<p>Kein großer Auftritt. Kein Lächeln. Kein Stolz.<br>
+Nur ein Schuss nach dem anderen, ruhig wie ein Uhrwerk.</p>
+
+<p>Du schießt schneller.<br>
+Dann zu schnell.</p>
+
+<p>Ein Bolzen sitzt zu hoch.<br>
+Der nächste kratzt nur den Rand.</p>
+
+<p>Kurt steht hinter dir.</p>
+
+<<dialog>>„Du triffst, wenn es leicht ist“, sagt er.<br>
+„Er trifft, wenn es zählt.“<</dialog>>
+
+<p>Deine Finger tun vom Spannen weh.<br>
+Aber Demühtigung ist schlimmer.</p>
+
+
+<<elseif _chosenKey eq "Heilkunde">>
+<p>Man führt dich nicht ins Feldscherzelt.<br>
+Kurt lässt einen Tisch auf den Platz tragen.</p>
+
+<p>Darauf liegen Verbände, Schienen, Nadeln, Tücher, Essigwasser und ein Stück Fleisch, in das jemand eine tiefe Wunde geschnitten hat.</p>
+
+<p>Einige Rekruten lachen leise.</p>
+
+<p>Kurt sieht sie über die Schulter an.<br>
+Sie verstummen sofort.</p>
+
+<<dialog>>„Versorgen“, sagt er.<</dialog>>
+
+<p>Du trittst vor.</p>
+
+<p>Der Geruch von Essig steigt dir in die Nase.<br>
+Du reinigst die Wunde. Du greifst nach dem Verband. Du erinnerst dich an die ruhigen Hände des Feldschers.</p>
+
+<p>Es ist nicht falsch.</p>
+
+<p>Der ältere Rekrut arbeitet neben dir.</p>
+
+<p>Seine Hände sind schneller, aber nicht hektisch.<br>
+Er verschwendet keine Bewegung. Kein Tuch liegt dort, wo es nicht hingehört. Kein Knoten sitzt zu locker.</p>
+
+<p>Du bindest deinen Verband fest.</p>
+
+<p>Zu fest.</p>
+
+<p>Kurt prüft erst seine Arbeit.<br>
+Dann deine.</p>
+
+<p>Er zieht an deinem Verband.</p>
+
+<p>Er verrutscht.</p>
+
+<<dialog>>„Ein Mann marschiert damit keine Stunde“, sagt Kurt.<</dialog>>
+
+<p>Er zieht noch einmal.<br>
+Diesmal löst sich der Rand des Stoffes.</p>
+
+<p>Einige in der Reihe atmen hörbar aus.</p>
+
+<p>Du sagst nichts.<br>
+Du hast plötzlich sehr viel Verständnis für Männer, die bei Wunden wegsehen.</p>
+<</if>>
+
+<hr class="trenner-raute">
+
+<p>Als die Probe vorbei ist, stehst du wieder in der Reihe.</p>
+
+<p>Staub klebt an deiner Kleidung.<br>
+Oder Schweiß.<br>
+Oder Scham.</p>
+
+<p>Vielleicht alles zusammen.</p>
+
+<p>Kurt geht vor dir auf und ab.</p>
+
+<<dialog>>„Das erste Jahr“, sagt er, „bringt euch bei, nicht sofort zu sterben.“<</dialog>>
+
+<p>Er lässt den Satz hängen.</p>
+
+<p>Niemand lacht jetzt.</p>
+
+<<dialog>>„Das zweite“, sagt Kurt, „bringt euch bei, warum das noch lange nicht reicht.“<</dialog>>
+
+<p>Du senkst den Blick nicht.</p>
+
+<p>Aber zum ersten Mal seit langer Zeit fühlt sich dein Können kleiner an, als es sich gestern noch angefühlt hat.</p>
+
+<p>Nicht verschwunden.</p>
+
+<p>Nur neu vermessen.</p>
+
+[[Weiter ->Kapitel 2: Rekrutenhof]]
+
+
+:: Kap2_Gattungsdrill {"position":"1925,4800","size":"100,100"}
+<<if $world.gattungsdrillToken isnot $world.day + "-" + $world.tagesAktionen>>
+	<<set $world.gattungsdrillCache to setup.gattungsdrill()>>
+	<<set $world.gattungsdrillToken to $world.day + "-" + $world.tagesAktionen>>
+<</if>>
+<<set _d to $world.gattungsdrillCache>>
+<<scene>><<= _d.text>><</scene>>
+<<gedanke>><<= _d.thought>><</gedanke>>
+<<= _d.reward>>
+
+[[Zurück auf den Hof->Kap2_Tageshub]]
+
+
+:: Kap2_Intro {"position":"500,4750","size":"100,100"}
+<<set $player.rank = "Waffenträger">>
+
+<<set $npc.karla.memory.flags.verhaftung_seen to false>>
+
+
+
+Das Lager ist dasselbe geblieben, und doch ist es ein anderer Ort.
+
+<<scene>> Die Zelte stehen noch immer in ihren Reihen. Der Exerzierplatz trägt noch immer dieselben Narben aus Schlamm, Kies und festgetretenem Staub. Am Morgen riecht es nach Rauch, dünner Suppe und nassem Leder.<</scene>>
+
+<p>Du erkennst jetzt den Unterscherschied bei den Auszubildenden.</p>
+<p>Die Neuen ducken sich noch vor jedem Ruf. Die Alten lachen leiser. Und die Waffenträger des zweiten Jahres — Thomas jetzt unter ihnen — bewegen sich mit jener vorsichtigen Freiheit, die nicht geschenkt, sondern geduldet wird.</p>
+
+<p>Man wird nicht mehr überall hingeschoben. Man wird nicht mehr bei jeder Kleinigkeit angebrüllt.<br>
+Das macht es nicht leichter<br>
+Es bedeutet nur, dass man jetzt selbst wissen soll, wohin man gehört.</p>
+
+<<if $npc.karla.memory.flags.verhaftung_seen>>
+<<beziehung>>Manchmal, wenn eine rote Strähne im Gedränge aufblitzt oder jemand Karlas Namen nur ähnlich ausspricht, zieht sich etwas in dir zusammen.<br>
+Dann falckert die Erinnerung auf an das Mädchen, dass du hast alleine gelassen.
+Die nach der Wahrheit gesucht hat oder zumindest für das was ihr als die Wahrheit erschien.
+Das Mädchen das einen Freund hätte gebrauchen können. Oder zumindest jemanden der ihr Deckung gegeben hätte.<</beziehung>>
+
+<<gedanke>>Nicht jetzt....
+Nicht daran denken.
+Der Drill ist einfacher. Der Drill fragt nicht, wen man verloren hat.<</gedanke>>
+
+<<else>>
+<<beziehung>>Aber ganz auf dich selbst bist du nicht gestellt. Du hast Karla. Im letzten Jahr habt ihr euch erst kennen und dann vertrauen gelernt. Ihr ward beide füreinander da als der jeweils andere jemadnen brauchte. Diese Rückendeckung nimmt euch keiner und es macht den Alltag sehr viel einfacher, wenn man weis, dass es hier drinnen zumindest einen Menschen gibt, der auf deiner Seite steht.<</beziehung>>
+<</if>>
+
+<p>Am dritten Morgen des neuen Ausbildungsjahres lässt Kurt die Waffenträger auf dem Platz antreten.</p>
+
+<p>Er geht die Reihe entlang, langsam genug, dass jeder seine Stiefel im Kies hören kann.</p>
+
+<<dialog>>„Ihr habt das erste Jahr hinter euch gebracht. Ihr habt die Grundausbildung hinter euch gebracht. Ihr habt fleißig trainiert. Ihr habt fleißg gelernt. Ihr habt euch das Recht erworben euch Waffenträger zu nennen. Ihr denkt ihr seit jetzt Soldaten.“ <</dialog>>
+
+<p>Er bleibt stehen.</p>
+
+<<dialog>>„Ihr irrt euch!“<</dialog>>
+
+<p>Sein Blick schneidet durch die Reihe und bleibt an dir hängen.</p>
+
+<<dialog>>„Du.“<</dialog>>
+
+<p>Thomas richtet sich auf.</p>
+
+<<dialog>>„Vortreten.“<</dialog>>
+
+[[Vortreten ->Kap2_Die_Probe]]
+
+
+
+
+:: Kap2_Tageshub {"position":"2150,5200","size":"100,100"}
+<<if $world.tagesAktionen === undefined>><<set $world.tagesAktionen to 0>><</if>>
+
+<<set _interrupt = setup.checkInterrupt()>>
+<<if _interrupt != null>>
+    <<goto _interrupt>>
+<<elseif $world.tagesAktionen gte 2>>
+    <<goto "Kap2_Abend">>
+<<else>>
+
+<<if $world.tagesAktionen === 0>>
+<p>Der Tag liegt vor dir. Zeit genug für zwei Unternehmungen, ehe die Abendglocke ruft.</p>
+<<else>>
+<p>Der Nachmittag neigt sich. Zeit für eine letzte Unternehmung.</p>
+<</if>>
+
+<<set _options = setup.kap2Storylets.filter(function(s) { return s.available(); })>>
+<ul class="menu">
+<<for _i = 0; _i < _options.length; _i++>>
+    <<capture _i>>
+        <li><<link ` _options[_i].text` `_options[_i].target`>><<set $world.tagesAktionen += 1>><</link>></li>
+    <</capture>>
+<</for>>
+<li>[[Den Tag beschließen|Kap2_Abend]]</li>
+</ul>
+
+<</if>>
+
+<<link "🛠 DEBUG: +1 Tag" "Kap2_Tagesstart">><</link>>
+
+
+:: Kap2_Tagesstart [tagesstart] {"position":"2350,4900","size":"100,100"}
+/* Einstiegspunkt für den Tag */
+<<= setup.renderTagesbericht()>>
+<div class="scenery-text"><<= setup.getKap2NaechsterTagText("morgen")>></div>
+<br>
+<p><<= setup.getKap2NaechsterTagText("koerper")>></p>
+<br>
+<<gedanke>><<= setup.getKap2NaechsterTagText("gedanke")>><</gedanke>>
+
+[[Sieh was der Tag bringt->Kap2_Tageshub]]
+
+
+:: Kap2_Waffenwahl {"position":"1150,4750","size":"100,100"}
+<<scene>>Der Morgen ist grau und kalt. Reif liegt dünn auf dem Kies, und der Atem der Waffenträger steht in kleinen Wolken über der Reihe. Niemand spricht. Jeder trägt die Nacht im Gesicht, in der er nicht geschlafen hat.<</scene>>
+
+<p>Kurt steht vor euch, eine Liste in der Hand, einen stumpfen Kohlestift dahinter.</p>
+
+<<dialog>>„Keine Reden mehr. Ihr tretet vor, ihr nennt mir eure Gattung, ihr tretet zurück. Wer zögert, dem helfe ich nach."<</dialog>>
+
+<p>Die Reihe rückt vor, einer nach dem anderen. Namen fallen, der Stift kratzt, Männer treten zurück. Dann steht niemand mehr vor dir.</p>
+
+<<dialog>>„Wabbler."<</dialog>>
+
+<p>Du trittst vor. Der Kies knirscht zu laut in der Stille. Kurt sieht dich an, den Stift bereit, und wartet.</p>
+
+<<gedanke>>Diesmal liege ich nicht im Staub. Diesmal entscheide ich, wo ich stehe.<</gedanke>>
+
+<ul class="sandbox-menu">
+<li><<link "Pike und Hellebarde">><<set $player.spezialisierung to "pike">><<goto "Kap2_Waffenwahl_Reaktion">><</link>><span class="subtext">Nah am Feind. Der Schaft, das Gewicht, der Boden unter den Füßen.</span></li>
+<li><<link "Armbrust">><<set $player.spezialisierung to "crossbow">><<goto "Kap2_Waffenwahl_Reaktion">><</link>><span class="subtext">Stille und Geduld. Der eine Schuss, der zählt.</span></li>
+<li><<link "Geschütz">><<set $player.spezialisierung to "cannon">><<goto "Kap2_Waffenwahl_Reaktion">><</link>><span class="subtext">Pulver, Maße, Handgriffe. Ein Handwerk, kein Zweikampf.</span></li>
+<li><<link "Feldscher">><<set $player.spezialisierung to "medicine">><<goto "Kap2_Waffenwahl_Reaktion">><</link>><span class="subtext">Keine Waffe. Hände, die heilen statt schlagen.</span></li>
+</ul>
+
+
+:: Kap2_Waffenwahl_Reaktion {"position":"1400,4725","size":"100,100"}
+<<switch $player.spezialisierung>>
+<<case "pike">>
+<<dialog>>„Pike." Kurt notiert es, ohne aufzusehen. „Der Weg für die, die nichts haben, hinter dem sie sich verstecken. Kein Abstand. Kein Versteck. Du stehst, oder du fällst."<</dialog>>
+<p>Er hebt den Blick.</p>
+<<dialog>>„Gestern bist du gefallen. Das ist kein Hindernis. Das ist die Voraussetzung."<</dialog>>
+
+<<case "crossbow">>
+<<dialog>>„Armbrust." Der Stift kratzt. „Die Gattung für ruhige Hände und kalte Köpfe. Du hast gestern getroffen, als es leicht war." Eine Pause. „Du hast danebengeschossen, als du es eilig hattest."<</dialog>>
+<p>Er sieht dich an, lange genug, dass es unangenehm wird.</p>
+<<dialog>>„Wenn du das verstehst, taugst du was. Wenn nicht, verschwendest du Bolzen."<</dialog>>
+
+<<case "cannon">>
+<<dialog>>„Geschütz." Kurt nickt knapp. „Ein Handwerk. Kein Platz für Stolz, kein Platz für Tempo um des Tempos willen. Ein Fehler in der Reihenfolge, und du nimmst deine eigene Bedienung mit."<</dialog>>
+<p>Er mustert dich.</p>
+<<dialog>>„Wer schnell und richtig lädt, schlägt den, der nur stark ist. Mal sehen, ob deine Hände das lernen."<</dialog>>
+
+<<case "medicine">>
+<<dialog>>„Feldscher." Kurt hält im Schreiben inne, nur einen Moment. „Die wenigsten wählen das. Keine Beute, kein Ruhm, und du siehst Dinge, die andere nie sehen müssen."<</dialog>>
+<p>Etwas in seinem Tonfall hat sich verschoben — nicht weicher, aber anders.</p>
+<<dialog>>„Wer Wunden schließt, entscheidet, wer wieder läuft. Das ist mehr Macht, als eine Klinge je hat. Vertu sie nicht."<</dialog>>
+<</switch>>
+
+<p>Er macht ein letztes Zeichen auf der Liste und winkt dich zurück in die Reihe.</p>
+
+<<formal>>Es ist entschieden.<br>
+Kein Zurück mehr — die Liste vergisst nichts.<</formal>>
+
+<<run setup.addWeaponToInventory(setup.spezialisierungsWaffe[$player.spezialisierung])>>
+<<run setup.equipWeapon(setup.spezialisierungsWaffe[$player.spezialisierung])>>
+<<= '<div class="system-alert status-positive">Ausgerüstet: ' + setup.weaponTemplates[setup.spezialisierungsWaffe[$player.spezialisierung]].name + '</div>'>>
+
+<hr class="trenner-raute">
+
+<p>Während du zurücktrittst, fällt dein Blick auf den Rand des Hofes.</p>
+
+<p>Dort, im Schatten des Stabsgebäudes, steht Hauptmann Rindler. Vornehmer als Kurt, ruhiger, die Hände im Rücken. Du kennst das Gesicht aus dem ersten Jahr — aus der Ferne meist, ein Offizier des Corps, der selten sprach und immer zu sehen schien, was um ihn herum geschah.</p>
+
+<p>Er beobachtet nicht die Reihe. Er beobachtet die Entscheidungen — und für einen Moment, kurz nur, ruht sein Blick auf dir. Dann notiert er sich etwas. Oder es sieht nur so aus.</p>
+
+<<gedanke>>Rindler.<br>
+Im ersten Jahr war er einer von vielen über mir. Jetzt steht er da und schaut, als ginge ihn meine Wahl etwas an.<br>
+Warum habe ich das Gefühl, dass er sich gemerkt hat, was ich gewählt habe?<</gedanke>>
+
+<p>Dann ist der Moment vorbei. Die Reihe löst sich auf, der Tag beginnt, und mit ihm das zweite Jahr — diesmal mit einem Weg, den du selbst gewählt hast.</p>
+
+[[Weiter ->Kap2_Ausbildung]]
+
+
+:: Kapitel 2 {"position":"575,4425","size":"200,200"} 
+<div class="chapter-screen">
+    <div class="chapter-title">KAPITEL 2</div>
+    <div class="chapter-time">
+<p>$world.day <<if $world.day == 1>>Tag<<else>>Tage<</if>> in der Ausbildung</p>
+	</div>
+
+    <div class="center-link">
+        <<timed 4500ms>>
+            [[Weiter|bye]] 
+        <</timed>>
+    </div>
+</div>
+
+
+:: Kapitel 2: Rekrutenhof {"position":"900,4750","size":"100,100"}
+<<scene>>Der Hof liegt im schrägen Licht des späten Nachmittags. Der Drill ist vorbei, der Platz noch nicht leer — überall sitzen Waffenträger im Staub, reiben sich Schultern, prüfen blaue Flecken, sagen wenig. Irgendwo schabt jemand Dreck von einer Übungsklinge.<</scene>>
+
+<p>Du sitzt mit dem Rücken an der kühlen Bohlenwand und siehst deine Hände an.</p>
+
+<p>Es sind dieselben Hände wie gestern. Gestern haben sie sich gut angefühlt. Geübt. Sicher.<br>
+Heute haben sie im Staub gelegen, während ein Älterer dasselbe besser tat, langsamer, ohne Mühe.</p>
+
+<<gedanke>>Ich dachte, ich kann etwas.<br>
+Ich kann nichts. Ich kann nur weniger schlecht als der, der gestern angefangen hat.<br>
+Ein Jahr. Und das ist alles, was davon übrig ist, wenn jemand mit echtem Können danebensteht.<</gedanke>>
+
+<p>Es ist kein lautes Gefühl. Eher etwas, das sich setzt — wie Staub, der sich nach dem Sturz langsam wieder auf den Boden legt und dort liegen bleibt.</p>
+
+<<if $npc.karla.memory.flags.verhaftung_seen>>
+<<beziehung>>Es gibt niemanden, dem du das sagen könntest. Früher hätte da jemand neben dir gesessen, breitschultrig, mit einem groben Spruch, der das Gewicht für einen Moment kleiner gemacht hätte. Jetzt ist da nur die Wand und der Staub und du.<</beziehung>>
+<<else>>
+<p>Ein Schatten fällt neben dich. Karla lässt sich ohne ein Wort daneben in den Staub fallen, die Unterarme auf den Knien.</p>
+<<dialog>>„Du hast länger durchgehalten als ich es hätte", sagt sie, ohne dich anzusehen. „Liegt am Boden. Wird man gut drin."<</dialog>>
+<<beziehung>>Sie spielt es klein, und genau das hilft. Nicht der Trost — der trockene Spott, der so tut, als wäre nichts Besonderes geschehen. Als wärst du nicht allein damit.<</beziehung>>
+<</if>>
+
+<hr class="trenner-raute">
+
+<p>Die Glocke ruft die Waffenträger noch einmal zusammen, ein letztes Mal an diesem Tag. Kurt steht vor der Reihe, die Hände hinter dem Rücken, und wartet, bis das Scharren verstummt.</p>
+
+<<dialog>>„Bis heute habt ihr von allem ein bisschen gelernt. Pike, Bolzen, Pulver, Verband. Genug, um zu wissen, was ihr nicht könnt."<</dialog>>
+
+<p>Ein paar Blicke gehen zu dir. Du erwiderst keinen.</p>
+
+<<dialog>>„Damit ist Schluss. Das zweite Jahr fragt nicht mehr, was ihr alles ein bisschen könnt. Es fragt, worin ihr gut werdet. Eine Gattung. Eure."<</dialog>>
+
+<p>Er lässt den Satz im Hof stehen, bis er schwer wird.</p>
+
+<<dialog>>„Pike und Hellebarde. Armbrust. Geschütz. Feldscher. Morgen früh tretet ihr an und nennt mir jeder seine Wahl. Heute Nacht denkt ihr darüber nach — gründlich. Wer sich morgen nicht entscheidet, für den entscheide ich. Und ihr wollt nicht, dass ich das tue."<</dialog>>
+
+<<formal>>Er sagt es nicht als Drohung.<br>
+Er sagt es, als hätte er es schon zu oft erlebt.<</formal>>
+
+<hr class="trenner-raute">
+
+<p>Später, auf der Pritsche, liegt die Frage über dir wie die niedrige Decke der Baracke.</p>
+
+<p>Vier Wege. Du gehst sie im Kopf ab, einen nach dem anderen.</p>
+
+<<gedanke>>Die Pike. Der Schaft in der Hand, das Gewicht, das man durch den Raum trägt. Nah. Hart. Du weißt, wie sich der Boden anfühlt, wenn man verliert.<br>
+<br>
+Die Armbrust. Stille. Geduld. Der eine Schuss, der zählt, statt der zehn, die danebengehen. Etwas in dir wehrt sich gegen das Warten — und etwas anderes sehnt sich danach.<br>
+<br>
+Das Geschütz. Pulver, Maße, Handgriffe in der richtigen Reihenfolge. Kein Zweikampf, ein Handwerk. Wer schnell und richtig lädt, schlägt den, der nur stark ist.<br>
+<br>
+Der Feldscher. Keine Waffe. Hände, die heilen statt schlagen. Der Gedanke fühlt sich seltsam an — und bleibt trotzdem hängen.<</gedanke>>
+
+<p>Keiner der vier Gedanken schließt sich zu einer Gewissheit. Sie liegen alle nebeneinander, gleich schwer, gleich offen.</p>
+
+<p>Du weißt nur eines, klarer als alles andere: Diesmal willst du nicht der sein, der im Staub liegt, während ein anderer es besser macht.</p>
+
+<p>Irgendwann schläfst du ein, ohne entschieden zu haben.</p>
+
+[[Der Morgen kommt. ->Kap2_Waffenwahl]]
+
+
+
+
+:: Stadt_Arbeit {"position":"2300,5750","size":"100,100"}
+<<scene>>
+<p>Am Kai, wo die Lastkähne anlegen, herrscht reger Betrieb. Ein Kaufmann mit schweißnasser Stirn brüllt nach Händen, die seine Fässer vom Kahn in den Speicher schaffen, ehe der Regen sie verdirbt.</p>
+<</scene>>
+
+<<dialog>>
+<p>„Zwei Groschen, wenn Ihr bis zum Abend durchhaltet“, ruft er, ohne dich richtig anzusehen.</p>
+<</dialog>>
+
+<<beziehung>>
+	<<set _r to setup.skillCheck("combat", 12)>>
+    <<= setup.skillCheckAlert(_r)>>
+	<<if _r.success>>
+      <p>Du packst zu, Fass um Fass, den Rücken bald schmerzend, doch deine Kraft reicht, ohne dass du nachlässt. Der Kaufmann nickt zufrieden, als die letzte Ladung im Speicher verstaut ist, und zählt dir den Lohn ohne Feilschen in die Hand.</p>
+      <<print setup.addMoney(14)>>
+      <<print setup.setPlayerCondition(-15)>>
+  <<else>>
+        <p>Nach der Hälfte der Fässer brennen deine Arme wie Feuer, und ein falscher Griff lässt dich stolpern, mitsamt der Last. Der Kaufmann flucht, zahlt dir nur die Hälfte des vereinbarten Lohns und schickt dich fort.</p>
+        <<print setup.addMoney(5)>>
+        <<print setup.setPlayerCondition(-20)>>
+  <</if>>
+<</beziehung>>
+
+[[Zurück in die Stadt|Tageshub_Stadt]]
+
+
+:: Stadt_Bader {"position":"2250,5375","size":"100,100"}
+<<if setup.canAffordMoney(6)>>
+	<<print setup.removeMoney(6)>>
+	<<scene>>
+	<p>Die Stube des Baders riecht nach Kräutersud und heißem Wasser, nach Essig und getrockneten Blüten, die von der Decke hängen. Der Bader selbst, ein Mann mit geschickten, narbigen Händen, mustert dich kurz, ehe er dich auf einen Schemel weist.</p>
+	<</scene>>
+	<<= setup.getNpcInteraction("Kap2_Pool_Bader")>>
+	<<print setup.setPlayerCondition(20)>>
+<<else>>
+	<<scene>>
+	<p>Der Bader wirft einen Blick auf dich, dann auf deinen offensichtlich leeren Beutel, und schüttelt den Kopf. „Kommt wieder, wenn Ihr zahlen könnt. Ich flicke keine Rekruten aus reiner Nächstenliebe.“</p>
+	<</scene>>
+<</if>>
+
+[[Zurück in die Stadt|Tageshub_Stadt]]
+
+
+:: Stadt_Botenstand {"position":"2700,5675","size":"100,100"}
+<<scene>>
+<p>Der Botenstand liegt am Rand des Marktes, ein schmaler Verschlag, in dem ein hagerer Schreiber Nachrichten entgegennimmt, sie faltet, siegelt und den reitenden Boten übergibt, die zweimal die Woche in alle Himmelsrichtungen aufbrechen.</p>
+<</scene>>
+
+<<dialog>>
+<p>„Wohin soll die Nachricht?“, fragt der Schreiber, ohne aufzusehen.</p>
+<</dialog>>
+
+<<if $world.ermittlung.flags.westhof_done === true>>
+    <<gedanke>>
+    Luigi! Er hat Kontakte und könnte etwas in Erfahrung bringen. Aber kann ich ihn schon wieder um Hilfe bitten oder überreize ich den Bogen?
+    <</gedanke>>
+
+    <<dialog>>
+    <p>„Ein Brief nach Grodaus. In das Kontor von Ramirez de Volpe. Was kostet mich das?“</p>
+    <p>Jetzt blickt der Schreiber auf. „Hauptstadt, vier Kupfer. In den Verteiler nochmal zwei Kupfer, direkte Zustellung vier Kupfer extra. Gleich morgen geht die nächste Lieferung auf den Weg.“ Damit macht sich der Schreiber wieder über seine Liste her. </p>
+    <</dialog>>
+    <<if setup.canAffordMoney(8)>>
+    		<<link "Einen Brief an Luigi schicken (8 Kupfer)">>
+			<<print setup.removeMoney(8)>>
+            <<set $world.ermittlung.flags.sendLetterToLuigi to true>>
+			<<goto "Tageshub_Stadt">>
+		<</link>>
+    <<else>>
+   			 <<dialog>>
+     		<p>Schon gut, das kann ich mir nicht leisten.</p>
+            <</dialog>>
+            <p> Du verneinst und drehst dich zum gehen um.</p> 
+            [[Zurück in die Stadt|Tageshub_Stadt]]
+    <</if>>
+
+<<else>>
+<<gedanke>>
+<p>Ich habe niemanden, dem ich derzeit etwas zu sagen hätte, das eine Reise wert wäre. Vielleicht ändert sich das noch.</p>
+<</gedanke>>
+
+<p>Du verlässt den Stand, ohne eine Nachricht zu hinterlassen.</p>
+[[Zurück in die Stadt|Tageshub_Stadt]]
+<</if>>
+
+
+:: Stadt_Fuhrmannsviertel {"position":"2600,5500","size":"100,100"}
+<<scene>>
+<p>Hier riecht es nach Pferdemist, Teer und nassem Sackleinen. Karren stehen aufgereiht, ihre Achsen von tausend Meilen glattgeschliffen, und zwischen ihnen sitzen Fuhrleute an kleinen Feuern, rauchen, würfeln, erzählen sich Geschichten von Straßen, die kein Rekrut je zu Gesicht bekommt.</p>
+<</scene>>
+
+<<if not $npc.karla.memory.flags.verhaftung_seen>>
+	<<gedanke>>
+	<p>Jarek ist mit dem Dokument verschwunden, mitten in der Nacht, durch Tore, die eigentlich niemanden ungesehen hinauslassen sollten. Wenn er nicht zu Fuß ging — und wie hätte er das schaffen sollen, mit einem gestohlenen Aktenstück unterm Wams —, dann führte sein Weg durch genau solche Hände wie diese. Fuhrleute reden viel. Manchmal reden sie auch über das Falsche, ohne es zu merken.</p>
+	<</gedanke>>
+<<else>>
+	<<gedanke>>
+	<p>Diese Männer kennen jede Route zwischen hier und der Grenze besser als ich meinen eigenen Namen. Was sie sich erzählen, dringt selten bis zur Akademie durch — man muss schon selbst hier stehen, um es zu hören.</p>
+	<</gedanke>>
+<</if>>
+
+<p>Heute reden sie nur vom Wetter und von schlechten Straßen — nichts, das du nicht schon wüsstest.</p>
+
+<<if not $npc.karla.memory.flags.verhaftung_seen and not $world.ermittlung.spuren.includes("fuhrmann_hinweis")>>
+	<<if random(1,100) <= 8>>
+		<p>Ein alter Fuhrmann, dessen Hände von Zügeln und Kälte gleichermaßen gegerbt sind, erzählt beiläufig, fast im Vorübergehen, von einer Nacht vor einigen Wochen — einem Karren, der außerhalb der üblichen Stunde das Nordtor passierte, ohne dass jemand danach fragte, wessen Fracht er trug. Er selbst hielt es nicht für erwähnenswert. Für dich klingt es wie ein Stein, der gerade erst ins Wasser gefallen ist.</p>
+		<<gedanke>>
+		<p>Ein Karren. Zur falschen Stunde. Niemand, der fragte. Das könnte nichts bedeuten — oder alles.</p>
+		<</gedanke>>
+		<<print setup.ermFund("fuhrmann_hinweis", "Ein Fuhrmann erwähnte beiläufig einen Karren, der zur falschen Stunde durchs Nordtor fuhr, ohne dass die Wache nach der Fracht fragte.")>>
+	<</if>>
+<</if>>
+
+[[Zurück in die Stadt|Tageshub_Stadt]]
+
+
+:: Stadt_Geruechte {"position":"2475,5600","size":"100,100"}
+<<scene>>
+<p>Am Marktbrunnen versammeln sich, wie jeden Nachmittag, jene, die mehr reden als arbeiten — Mägde, Handelsburschen, ein müder Wächter, der seine Runde vergessen zu haben scheint.</p>
+<</scene>>
+
+<<gedanke>>
+<p>Im Lärm der Gaststube verwischt sich jedes Wort — man muss es fast erraten, mehr als hören.</p>
+<</gedanke>>
+
+
+<<set _story = setup.getGossipStory()>>
+<<if _story>>
+	<p><<= _story.base>></p>
+
+	<<if _story.probe>>
+		<<set _stadtModifier = 3>>
+		<<set _erfolg = setup.skillCheckXp("gossip", _story.probe.difficulty + _stadtModifier)>>
+		<<if _erfolg.success>>      
+        	<<dialog>>
+              <p>„Was sagen sie?“, flüstert Karla.</p>
+              <p>„Moment! Da ist noch was!.“</p>
+          <</dialog>>
+            <<= _story.probe.success>><br>
+            <<= setup.addRumor(_story.rumorText)>>
+            <<run setup.markGossipSeen(_story.id, _erfolg)>>
+		<<else>>
+			<<dialog>>
+              <p>„Was sagen sie?“, flüstert Karla.</p>
+              <p>„Ich weiß nicht genau. Zu viele Stimmen auf einmal.“</p>
+          <</dialog>>
+		<</if>>
+	<<else>>
+		<<run setup.markGossipSeen(_story.id, true)>>
+		<<run setup.addRumor(_story.base)>>
+	<</if>>
+<<else>>
+	<p>Heute hörst du nichts, das du nicht schon wüsstest — nur das übliche Gemurmel über Wetter, Preise und fremde Gesichter.</p>
+<</if>>
+
+[[Zurück in die Stadt|Tageshub_Stadt]]
+
+
+:: Stadt_Gluecksspiel {"position":"2050,5800","size":"100,100"}
+<<set _enoughMoney = setup.canAffordMoney(3)>>
+<<if _enoughMoney>>
+	<<print setup.removeMoney(3)>>
+	<<scene>>
+	<p>Ein Tisch in der Ecke zieht dich mit dem Klappern der Würfel förmlich an.</p>
+	<</scene>>
+	<<= setup.getNpcInteraction("Kap2_Pool_Stadt_Gluecksspiel")>>
+<<else>>
+	<<scene>>
+	<p>Du tastest nach deinem Beutel und findest ihn zu leicht. Kein Mann an diesem Tisch nimmt dich ohne Einsatz auf — wer nichts zu verlieren hat, hat auch nichts, worauf man setzen könnte.</p>
+	<</scene>>
+<</if>>
+
+<<if _enoughMoney>>
+[[Noch eine Runde|Stadt_Gluecksspiel]]
+<</if>>
+[[Vom Tisch aufstehen|Stadt_Schenke]]
+
+
+:: Stadt_Kirche {"position":"2575,5375","size":"100,100"}
+<<scene>>
+<p>Die Kapelle ist klein, kühl, von Weihrauch und altem Stein durchdrungen. Kerzenlicht flackert vor einem schlichten Altar, und für einen Moment ist es, als hielte selbst der Lärm der Stadt draußen den Atem an.</p>
+<</scene>>
+
+<ul class="sandbox-menu">
+	<li>
+	<<link "Eine Weile still verweilen (ohne Spende)">>
+		<<print setup.setPlayerStat("faith", 1)>>
+		<<goto "Stadt_Kirche_Ende">>
+	<</link>>
+	<span class="subtext">— Nichts kostet weniger als Schweigen, und manchmal ist es genug.</span>
+	</li>
+	<li>
+	<<if setup.canAffordMoney(5)>>
+		<<link "Eine Kerze stiften (5 Kupfer)">>
+			<<print setup.removeMoney(5)>>
+			<<print setup.setPlayerStat("faith", 3)>>
+			<<goto "Stadt_Kirche_Ende">>
+		<</link>>
+	<<else>>
+		<span class="stat-empty">Eine Kerze stiften (5 Kupfer) — dafür reicht dein Beutel nicht</span>
+	<</if>>
+	<span class="subtext">— Ein kleines Opfer, sichtbar für jeden, der danach hier betet.</span>
+	</li>
+</ul>
+
+[[Zurück in die Stadt|Tageshub_Stadt]]
+
+
+:: Stadt_Kirche_Ende {"position":"2575,5275","size":"100,100"}
+<<gedanke>>
+<p>Ich weiß nicht, ob es etwas ändert, dort draußen, wo die Dinge entschieden werden, die mich betreffen. Aber für diesen einen Moment fühlt es sich an, als wöge die Welt ein wenig weniger schwer.</p>
+<</gedanke>>
+
+[[Zurück in die Stadt|Tageshub_Stadt]]
+
+
+:: Stadt_Markt {"position":"2425,5750","size":"100,100"}
+<<scene>>
+<p>Zwischen den Ständen drängen sich Käufer und Verkäufer, feilschende Stimmen, das Klappern von Tonkrügen, der metallische Klang, wenn ein Händler eine Klinge gegen einen Amboss schlägt, um ihre Güte zu beweisen. Hier gibt es alles, was ein Rekrut mit Kupfer in der Tasche brauchen könnte — und vieles, das er sich nur ansehen kann.</p>
+<</scene>>
+
+<p>Ein Händler mit ledriger Haut und geflickter Schürze breitet seine Ware auf einem groben Tuch aus.</p>
+
+<ul class="sandbox-menu">
+	<li>
+	<<if setup.canAffordMoney(35)>>
+		<<link "Ein wunderschönes Feldmesser erstehen (5 Silber)">>
+			<<print setup.removeMoney(35)>>
+			<<print setup.addWeaponToInventory("field_knife")>>
+			<<goto "Stadt_Markt">>
+		<</link>>
+	<<else>>
+		<span class="stat-empty">Ein wunderschönes Feldmesser (5 Silber) — dafür reicht dein Beutel nicht</span>
+	<</if>>
+	<span class="subtext">— Kurz, aber verlässlich. Wunderschön gearbeitet. Nützt auch abseits des Gefechts.</span>
+	</li>
+
+	<li>
+	<<if setup.canAffordMoney(4)>>
+		<<link "Ein Stück geräuchertes Fleisch kaufen (4 Kupfer)">>
+			<<print setup.removeMoney(4)>>
+			<<print setup.addItem("Geräuchertes Fleisch")>>
+			<<goto "Stadt_Markt">>
+		<</link>>
+	<<else>>
+		<span class="stat-empty">Geräuchertes Fleisch (4 Kupfer) — dafür reicht dein Beutel nicht</span>
+	<</if>>
+	<span class="subtext">— Hält sich, und schmeckt besser als das, was die Küche der Akademie auftischt.</span>
+	</li>
+
+	<li>
+	<<if setup.canAffordMoney(3)>>
+		<<link "Ölstein und Lappen kaufen (3 Kupfer)">>
+			<<print setup.removeMoney(3)>>
+			<<print setup.addItem("Ölstein und Lappen")>>
+			<<goto "Stadt_Markt">>
+		<</link>>
+	<<else>>
+		<span class="stat-empty">Ölstein und Lappen (3 Kupfer) — dafür reicht dein Beutel nicht</span>
+	<</if>>
+	<span class="subtext">— Für die eigene Klinge, statt auf das Zeug der Waffenstube zu warten.</span>
+	</li>
+</ul>
+
+<hr class="trenner-raute">
+<p>Zwischen den Ständen hat sich ein Krämer eingerichtet, dessen Tisch aussieht, als hätte er von allem eines: Bänder, Steine, Tüten, Töpfchen. Dein Blick bleibt an ein paar Dingen hängen — nicht für dich.</p>
+
+<ul class="sandbox-menu">
+	<li>
+    <<if setup.canAffordMoney(4)>>
+		<<link "Gebrannte Mandeln (4 Kupfer)">>
+			<<print setup.removeMoney(4)>>
+			<<set $world.tmpKauf to "mandeln">>
+			<<goto "Stadt_Markt">>
+		<</link>>
+	<<else>>
+		<span class="stat-empty">Gebrannte Mandeln (4 Kupfer) — dafür reicht dein Beutel nicht</span>
+	<</if>>
+    	<span class="subtext">— Süß und knackig. Ein Leckerbissen und eine willkommene Abwechslung zum Aloyer Allerley.</span>
+    </li>
+   
+    <li>
+    <<if not setup.hasItem("Feiner Wetzstein")>>
+    	<<set _g to setup.karlaGeschenke["wetzstein"]>>
+        <<if setup.canAffordMoney(_g.preis)>>
+            <<link "Ein feiner Wetzstein (1Silber 5 Kupfer)">>
+            	<<print setup.removeMoney(_g.preis)>>
+                <<= setup.addItem(_g.item)>>
+                <<goto "Stadt_Markt">>
+            <</link>>
+        <<else>>
+            <span class="stat-empty">Feiner Wetzstein (1Silber 5 Kupfer) — dafür reicht dein Beutel nicht</span>
+        <</if>>
+     <</if>>   
+         	<span class="subtext">— Ein sehr fein gearbeiteter Wetzstein, nichtt so klobig wie andere. Damit bekommt man eine richtig scharfen und sauberen Schliff.</span>
+    </li>
+    
+        <li>
+    <<if not setup.hasItem("Rotes Haarband") and not $npc.karla.memory.flags.haarband_getragen>>
+        <<if setup.canAffordMoney(14)>>
+        <<set _g to setup.karlaGeschenke["haarband"]>>
+            <<link "Ein rotes Haarband (2 Silber)">>
+            	<<print setup.removeMoney(_g.preis)>>
+                <<= setup.addItem(_g.item)>>
+                <<goto "Stadt_Markt">>
+            <</link>>
+        <<else>>
+            <span class="stat-empty">Ein rotes Haarband (2Silber) — dafür reicht dein Beutel nicht</span>
+        <</if>>
+     <</if>> 
+         	<span class="subtext">— Ein Rotes Haarband aus feinem Stoff. Ein schickes Etwas. Man braucht es nicht, aber es ist etwas besonderes.</span>
+    </li>
+    
+        <li>
+    <<if not setup.hasItem("Wallwurz-Salbe") and not $npc.karla.memory.flags.salbe_angenommen>>
+        <<if setup.canAffordMoney(7)>>
+        <<set _g to setup.karlaGeschenke[ "salbe"]>>
+            <<link "Wallwurz-Salbe (1Silber)">>
+            	<<print setup.removeMoney(_g.preis)>>
+                <<= setup.addItem(_g.item)>>
+                <<goto "Stadt_Markt">>
+            <</link>>
+        <<else>>
+            <span class="stat-empty">Wallwurz-Salbe (1Silber) — dafür reicht dein Beutel nicht</span>
+        <</if>>
+     <</if>>   
+     <<if $player.spezialisierung === "medicine">>
+         	<span class="subtext">— Beinwell-Salbe wirkt stark schmerzstillend, entzündungshemmend und abschwellend.. Die Heilpflanze fördert zudem die Geweberegeneration. Sie wird typischerweise zur äußerlichen Behandlung von stumpfen Verletzungen wie Prellungen, Zerrungen und Verstauchungen sowie bei Muskel- und Gelenkbeschwerden, Arthrose und Sehnenscheidenentzündungen eingesetzt. </span>
+     <<else>>
+     		         	<span class="subtext">— Die Gute Wallwurz Salbe. Sie ist zwar teuer, aber wirkt bei zahlreichen verletzungen.</span>
+      <</if>>
+    </li>
+    
+    
+    
+    
+</ul>
+
+
+[[Zurück in die Stadt|Tageshub_Stadt]]
+
+
+:: Stadt_Markt_Kauf {"position":"2425,5875","size":"100,100"}
+<<set _g to setup.karlaGeschenke[$world.tmpKauf]>>
+<<if setup.canAffordMoney(_g.preis)>>
+	<<= setup.removeMoney(_g.preis)>>
+	<<= setup.addItem(_g.item)>>
+<<else>>
+	<p>Du zählst nach — und steckst den Beutel wieder ein. Dafür reicht es heute nicht.</p>
+<</if>>
+[[Zurück zum Markt|Stadt_Markt]]
+
+
+:: Stadt_Schenke {"position":"2100,5625","size":"100,100"}
+<<scene>>
+<p>„Zum Grauen Wolf“ liegt tief im Gassengewirr, ihr Schild so verwittert, dass der namensgebende Wolf kaum mehr zu erkennen ist. Drinnen erwartet dich eine Wand aus Wärme, Talglicht und dem beißenden Rauch billigen Tabaks, vermengt mit dem säuerlichen Duft von verschüttetem Bier und feuchtem Stroh, das den Boden bedeckt. An den Tischen sitzen Fuhrleute, ein paar Söldner ohne Banner, ein Weib, das Karten mischt, als wäre es ihr Handwerk.</p>
+<</scene>>
+
+<p>Der Wirt, ein Mann mit einer Narbe quer über der Nase, mustert dich kurz, ohne sonderliches Interesse. Solange du zahlst, bist du hier willkommen — mehr fragt er nicht.</p>
+
+<ul class="sandbox-menu">
+ <li>
+ <<link "An einem Tisch würfeln" "Stadt_Gluecksspiel">><</link>>
+ <span class="subtext">— Riskant, doch mit etwas Glück füllt sich der Beutel schneller als durch ehrliche Arbeit. Mit drei Kupfer bist du dabei.</span>
+ </li>
+ <li>
+ <<link "Einen Krug bestellen" "Stadt_Trinken">><</link>>
+ <span class="subtext">— Zwei Kupfer für etwas, das die Müdigkeit für eine Weile vergessen lässt.</span>
+ </li>
+ <li>
+ <<set _rueck to $world.schenkeRueckweg || "Tageshub_Stadt">>
+ <<if _rueck === "Kap2_Abend">>
+ <<link "Aufbrechen und zurück zur Akademie" _rueck>><</link>>
+ <span class="subtext">— Der Weg zurück ist dunkel, aber du kennst ihn inzwischen.</span>
+ <<else>>
+ <<link "Zurück in die Stadt" _rueck>><</link>>
+ <span class="subtext">— Die Gaststube kann warten.</span>
+ <</if>>
+ </li>
+</ul>
+
+
+:: Stadt_Trinken {"position":"2175,5800","size":"100,100"}
+<<if setup.canAffordMoney(2)>>
+	<<print setup.removeMoney(2)>>
+	<<if random(1,20) === 1>>
+		<<scene>>
+		<p>Der zweite Schluck trifft dich stärker, als der erste es ahnen ließ — ein warmer Ruck, der durch die Glieder fährt wie ein Windstoß, der ein lange still liegendes Schiff endlich vorwärtstreibt. Irgendwo, du kannst nicht sagen woher, meinst du eine Flöte zu hören, ein einfaches, eingängiges Stück, das dir ein tiefes, unvermitteltes Gefühl von Zufriedenheit schenkt. Du siehst dich um. Kein Spielmann weit und breit — nur Gesichter, gerötet vom Bier, die dich merkwürdig erwartungsvoll ansehen.</p>
+		<</scene>>
+		<<gedanke>>
+		<p>Was ist hier los? Kann es sein, dass sie alle darauf gewartet haben?</p>
+		<</gedanke>>
+		<p>Du holst tief Luft, hebst deinen Krug und rufst, lauter, als du eigentlich wolltest:</p>
+		<<dialog>>
+		<<formal>>„Barsinger!“<</formal>>
+		<</dialog>>
+		<p>Für einen kurzen Atemzug sehen dich alle Anwesenden ungläubig an — dann erheben sich ein Dutzend Krüge, und der Ruf hallt zurück, dreifach, zehnfach, bis die ganze Schenke in einen Sturm des Feierns ausbricht, als hätten sie nur auf dieses eine Wort gewartet.</p>
+        <<print setup.setPlayerStat("faith", 10)>>
+	<<else>>
+		<<= setup.getNpcInteraction("Kap2_Pool_Schenke_Trinken")>>
+	<</if>>
+<<else>>
+	<<scene>>
+	<p>Du tastest nach deinem Beutel und findest ihn leichter, als dir lieb ist. Für einen Krug reicht es nicht — und der Wirt ist nicht der Mann, der auf Kredit ausschenkt.</p>
+	<</scene>>
+<</if>>
+
+[[Zurück in die Schenke|Stadt_Schenke]]
+
+
+
+:: Suspicion_Rapport_Ausrede [nach_Kap2_tag] {"position":"1425,5075","size":"100,100"}
+<<scene>>
+<p>Du wählst die Lüge — glatt, beiläufig, mit dem unschuldigen Gesicht eines Rekruten, der nicht begreift, warum man ihn überhaupt gerufen hat. Ein Missverständnis, sagst du. Ein Auftrag, den man dir gab. Ein Weg, den du nur abgekürzt hast.</p>
+<</scene>>
+
+<<set _r to setup.skillCheckXp("gossip", 13, setup.suspicionMod())>>
+<<= setup.skillCheckAlert(_r)>>
+
+<<if _r.success>>
+<<dialog>>
+<p>Rindler kneift die Augen zusammen, doch er findet keinen Riss in deiner Geschichte. „Dann achtet künftig genauer darauf, wo Ihr Euch aufhaltet“, sagt er knapp. Die Tür steht dir offen.</p>
+<</dialog>>
+<<gedanke>>
+<p>Er hat es nicht geglaubt. Aber er kann es nicht widerlegen, und das genügt — für heute.</p>
+<</gedanke>>
+<<= setup.setPlayerSuspicion(-35)>>
+<<else>>
+<<dialog>>
+<p>Rindler lässt dich nicht einmal ausreden. „Genug“, sagt er, und seine Stimme ist kälter als zuvor. „Ich weiß, wann ein Mann lügt. Beweisen kann ich es nicht — noch nicht. Aber ich werde es aufschreiben. Und ich vergesse nichts, was ich aufschreibe.“</p>
+<</dialog>>
+<<gedanke>>
+<p>Ein Eintrag. Ein Name in einem Buch, das ich nicht einsehen kann. Von nun an bin ich für ihn kein Rekrut mehr, sondern ein Fall.</p>
+<</gedanke>>
+<<set $world.flags.akteneintrag to true>>
+<<= setup.setPlayerSuspicion(5)>>
+<<= setup.setNpcAffection("hauptmann", -3)>>
+<</if>>
+
+<<set $world.tagesAktionen += 1>>
+
+<<weiterImTag "Zurück in den Tag">>
+
+
+:: Suspicion_Rapport_Ehrlich [nach_Kap2_tag] 
+<<scene>>
+<p>Du entscheidest dich für die Wahrheit — nicht die ganze, aber genug, dass kein Wort sich später gegen dich wenden kann. Du sprichst von Jarek, von den Fragen, die seit seinem Verschwinden offen sind, von dem Bedürfnis, zu verstehen, was mit einem Kameraden geschah.</p>
+<</scene>>
+
+<p>Rindler hört zu, ohne zu unterbrechen. Als du endest, mustert er dich lange.</p>
+
+<<dialog>>
+<p>„Loyalität zu einem Kameraden ist keine Schande“, sagt er schließlich. „Aber sie macht Euch blind für die Grenzen, die ein Soldat einzuhalten hat. Lasst die Toten ruhen, Waffenträger. Für Euer eigenes Wohl.“</p>
+<</dialog>>
+
+<<gedanke>>
+<p>Er glaubt mir — oder er glaubt zumindest, dass ich kein Verschwörer bin, nur ein Narr mit zu viel Herz. Das ist die beste Deckung, die ich mir wünschen konnte.</p>
+<</gedanke>>
+
+<<= setup.setPlayerSuspicion(-30)>>
+<<= setup.setNpcAffection("hauptmann", -1)>>
+<<= setup.setPlayerStat("discipline", 1)>>
+<<set $world.tagesAktionen += 1>>
+
+<<weiterImTag "Zurück in den Tag">>
+
+
+:: Suspicion_Rapport_Rindler [interrupt] {"position":"1350,4950","size":"100,100"}
+<<scene>>
+<p>Der Bote findet dich zwischen zwei Übungen, und die Worte lassen keinen Zweifel: Hauptmann Rindler wünscht dich zu sehen. Sofort. Nicht in der Schreibstube, sondern in dem kahlen Raum neben der Wachstube, in dem sonst nur Verhöre und Verweise stattfinden.</p>
+<</scene>>
+
+<p>Rindler steht am Fenster, als du eintrittst, die Hände auf dem Rücken verschränkt. Er dreht sich nicht sofort um. Erst als die Tür ins Schloss fällt, wendet er dir das Gesicht zu — ruhig, prüfend, ohne Wärme.</p>
+
+<<dialog>>
+<p>„Ihr fallt auf, Waffenträger“, sagt er ohne Umschweife. „Ein Mann, der Fragen stellt, die ihn nichts angehen. Der in Büchern liest, die nicht für ihn geführt werden. Der an Türen steht, hinter denen er nichts zu suchen hat.“</p>
+<</dialog>>
+
+<<gedanke>>
+<p>Er hat keine Beweise — sonst säße ich bereits in Ketten. Aber er hat genug gehört, um mich in diesen Raum zu rufen. Was ich jetzt sage, entscheidet, ob aus einem Verdacht eine Akte wird.</p>
+<</gedanke>>
+
+<<dialog>>
+<p>„Ich frage Euch nur einmal“, sagt Rindler. „Was treibt Ihr?“</p>
+<</dialog>>
+
+<ul>
+<li>[[Ruhig bei der Wahrheit bleiben, so weit du kannst->Suspicion_Rapport_Ehrlich]]</li>
+<li>[[Eine Ausrede wagen->Suspicion_Rapport_Ausrede]]</li>
+</ul>
+
+
+:: Suspicion_Spinddurchsuchung [interrupt nach_Kap2_tag] {"position":"1650,4975","size":"100,100"}
+<<scene>>
+<p>Es geschieht ohne Vorwarnung. Als die Truppe vom Nachmittagsdrill zurückkehrt, stehen zwei Weibel an der Tür der Stube, und ein dritter Mann — einer von Rindlers Leuten — hat bereits begonnen, die Spinde zu öffnen. Deinen zuerst.</p>
+<</scene>>
+
+<p>Du stehst reglos, während fremde Hände dein Weniges durchwühlen. Jeder Blick der anderen Rekruten brennt in deinem Rücken. Es gibt nichts zu tun, als zu warten, was sie finden.</p>
+
+<<if setup.hatBelastendes()>>
+<<dialog>>
+<p>Der Mann richtet sich auf, ein Bündel Papiere in der Hand — deine Aufzeichnungen, Namen, Daten, Fuhren, in deiner eigenen Schrift. Etwas, das dort niemals hätte liegen dürfen. Er sagt kein Wort. Er muss es nicht.</p>
+<</dialog>>
+<<gedanke>>
+<p>Es ist vorbei. Nicht heute vielleicht, nicht in diesem Augenblick — aber sie haben es in der Hand, und nichts, was ich sage, macht es ungeschehen.</p>
+<</gedanke>>
+<<set $world.flags.akteneintrag to true>>
+<<= setup.setNpcAffection("hauptmann", -6)>>
+<<= setup.setPlayerSuspicion(10)>>
+<<else>>
+<<dialog>>
+<p>Der Mann schließt den Spind, ohne gefunden zu haben, wonach er suchte. „Diesmal“, sagt er nur, ehe er sich abwendet — ein Wort, das mehr Drohung ist als jede Anklage.</p>
+<</dialog>>
+<<gedanke>>
+<p>Sie haben nichts. Aber sie haben mir gezeigt, dass sie kommen können, wann immer sie wollen. Von nun an muss ich sauber sein — sauberer, als ich es je war.</p>
+<</gedanke>>
+<<= setup.setPlayerSuspicion(-20)>>
+<</if>>
+
+<<set $world.tagesAktionen += 1>>
+<<weiterImTag "Zurück in den Tag">>
+
+
+
+
+
+:: Tageshub_Halm {"position":"1900,5600","size":"100,100"}
+<<scene>>
+<p>Die Schreibstube liegt im ältesten Flügel der Akademie, wo das Licht durch schmale Fenster fällt wie durch ein Sieb und der Staub in der Luft steht, als hätte er sich seit Jahrzehnten nicht mehr zu bewegen getraut. Magister Cornelius Halm sitzt über einem aufgeschlagenen Folianten, die Feder in der einen, ein Lesegerät aus geschliffenem Glas in der anderen Hand, und hebt den Blick erst, als deine Schritte auf den Dielen ihn nicht länger ignorieren lassen.</p>
+<</scene>>
+
+<<dialog>>
+<p>„Magister“, sagst du. „Ich wollte fragen, ob Ihr eine Aufgabe für mich habt — etwas, das Eurer Gelehrsamkeit dient.“</p>
+<</dialog>>
+
+<p>Halm legt die Feder ab, mit der Umständlichkeit eines Mannes, dem jede Unterbrechung erst ihren Wert beweisen muss, ehe er sie duldet. Er mustert dich über den Rand seines Lesegeräts hinweg, lange, wie einen Text, den er noch nicht ganz entziffert hat.</p>
+
+<<linkreplace "Sein Urteil abwarten">>
+<<= setup.getNpcInteraction("Kap2_Pool_Halm_Gelehrsamkeit")>>
+
+<div class="weiter-link">[[Zurück zum Tag|Kap2_Tageshub]]</div>
+<</linkreplace>>
+
+
+:: Tageshub_Karla {"position":"3500,5175","size":"100,100"}
+<<run setup.romanzeInit()>>
+<<set $world.karla_zeit_tag to $world.day>>
+<<set _stufe to setup.romanzeStufe()>>
+
+<<if _stufe gt ($npc.karla.memory.flags.romanze_stufe_seen || 0)>>
+	<<set $npc.karla.memory.flags.romanze_stufe_seen to _stufe>>
+	<<goto "Karla_Stufe_Reaktion">>
+<</if>>
+
+<<switch _stufe>>
+<<case 0>>
+	<<scene>>Du findest Karla dort, wo man sie immer findet: bei den Übungsgestellen, eine Klinge in der Hand, den Blick auf dem, was sie gerade besser macht. Sie nickt dir zu — das knappe Nicken unter Kameraden, nicht mehr. Noch nicht.<</scene>>
+<<case 1>>
+	<<scene>>Karla sieht auf, ehe du sie erreicht hast — sie hat deinen Schritt erkannt, zwischen all den anderen. Sie sagt nichts dazu. Aber sie rückt ein Stück zur Seite, wie jemand, der Platz macht, ohne gefragt worden zu sein.<</scene>>
+<<case 2>>
+	<<scene>>„Da bist du ja“, sagt Karla statt einer Begrüßung, als wäre dein Kommen etwas, mit dem sie gerechnet hat. Vielleicht hat sie das. Der Gedanke gefällt dir mehr, als du zugeben würdest.<</scene>>
+<<case 3>>
+	<<scene>>Sie lächelt nicht, als sie dich sieht. Karla lächelt selten. Aber irgendetwas an ihrer Haltung wird eine Spur weicher, ein Grad weniger kampfbereit — als würde ein Posten abtreten, den sie sonst nie abtreten lässt. Bei dir muss er nicht mehr stehen.<</scene>>
+<</switch>>
+
+<div class="thought-box"><<= setup.romanzeStufeLabel[_stufe]>></div>
+
+<ul class="menu">
+<li>[[Gemeinsam trainieren|Karla_Zeit_Training]]</li>
+<<if _stufe gte 1>><li>[[Auf der Mauer sitzen|Karla_Zeit_Mauer]]</li><</if>>
+<<if _stufe gte 2>><li>[[Sie in die Stadt begleiten|Karla_Zeit_Stadtgang]]</li><</if>>
+<<if setup.hatKarlaGeschenk()>><li>[[Ihr etwas geben|Karla_Geschenk]]</li><</if>>
+<li>[[Doch wieder gehen|Kap2_Tageshub][$world.tagesAktionen -= 1]]</li>
+</ul>
+
+
+:: Tageshub_Rindler {"position":"1750,5300","size":"100,100"}
+<<scene>>
+<p>Das Quartier der Hauptleute liegt im steinernen Flügel der Akademie, dort, wo die Mauern dicker sind und die Kälte anders riecht — nach Wachs, nach frisch geöltem Riemenzeug, nach der stillen Schwere von Papier, das Befehle trägt. Der Posten mustert dich, ehe er dich mit einem knappen Nicken einlässt.</p>
+<</scene>>
+
+<<dialog>>
+<p>„Herr Hauptmann“, sagst du und bleibst in gebührendem Abstand vor dem Tisch stehen. „Ich wollte fragen, ob ein Zusatzdienst zu vergeben ist.“</p>
+<</dialog>>
+
+<p>Rindler legt die Feder beiseite, langsam, mit der Umständlichkeit eines Mannes, der jede Unterbrechung erst als mögliche Zeitverschwendung wägt. Er mustert dich einen Atemzug lang, ehe er antwortet.</p>
+
+<div id="zusatzdienstButton">
+<<link "Seine Antwort abwarten">>
+    <<replace "#rindler-antwort">><<= setup.getNpcInteraction("Kap2_Pool_Rindler_Zusatzdienst")>><</replace>>
+    <<replace "#rindler-weiter">><div class="weiter-link">[[Zurück zum Tag|Kap2_Tageshub]]</div><</replace>>
+    <<replace "#zusatzdienstButton">> <</replace>>
+<</link>>
+</div>
+
+<div id="rindler-antwort"></div>
+<div id="rindler-weiter"></div>
+
+
+:: Tageshub_Stadt {"position":"2200,5525","size":"100,100"}
+<<if $world.stadtActivitiesUsed is undefined>>
+	<<set $world.stadtActivitiesUsed = 0>>
+<</if>>
+
+<<scene>>
+<p>Hinter dem Nordtor der Akademie beginnt eine andere Welt. Die Gassen sind eng, das Pflaster uneben, überall drängen sich Fuhrleute, Marktweiber und Handwerksburschen aneinander vorbei, während der Geruch von Fischständen, frisch gebackenem Brot und dem beißenden Rauch der Schmieden sich zu einem einzigen, dichten Gemenge vermengt. Hier fragt niemand nach deinem Rang. Hier zählt, was in deinem Beutel klimpert.</p>
+<</scene>>
+
+<<= setup.getNpcInteraction("Kap2_Pool_Stadt_Encounter")>>
+
+<p>Karla wartet an der Ecke zur Fischgasse, die Arme verschränkt, ungeduldig wie stets, wenn sie nicht weiß, wie du deine Zeit verbringen willst.</p>
+
+<ul class="sandbox-menu">
+<<if $world.stadtActivitiesUsed < 2>>
+	<li>
+	<<link "Die Marktstände durchstöbern">>
+		<<set $world.stadtActivitiesUsed += 1>>
+		<<goto "Stadt_Markt">>
+	<</link>>
+	<span class="subtext">— Klingen, Krüge, Kleinkram. Wer genug Kupfer hat, findet hier so manches.</span>
+	</li>
+	<li>
+	<<link "Nach Gelegenheitsarbeit suchen">>
+		<<set $world.stadtActivitiesUsed += 2>>
+		<<goto "Stadt_Arbeit">>
+	<</link>>
+	<span class="subtext">— Ein ehrlicher Botengang oder eine Lastenfuhre, wenn sich jemand findet, der zahlt.</span>
+	</li>
+	<li>
+	<<link "Die Schenke aufsuchen">>
+		<<set $world.stadtActivitiesUsed += 1>>
+		<<goto "Stadt_Schenke">>
+	<</link>>
+	<span class="subtext">— Würfeln, trinken, den Ohren der Gaststube lauschen.</span>
+	</li>
+	<li>
+	<<link "Den Ohren der Stadt lauschen">>
+		<<set $world.stadtActivitiesUsed += 1>>
+		<<goto "Stadt_Geruechte">>
+	<</link>>
+	<span class="subtext">— Wer zuhört, erfährt manches, das in der Akademie nie ausgesprochen wird.</span>
+	</li>
+	<li>
+	<<link "Den Bader aufsuchen">>
+		<<set $world.stadtActivitiesUsed += 1>>
+		<<goto "Stadt_Bader">>
+	<</link>>
+	<span class="subtext">— Gegen ein paar Münzen lindert er, was der Drill an dir hinterlassen hat.</span>
+	</li>
+	<li>
+	<<link "Die Kapelle besuchen">>
+		<<set $world.stadtActivitiesUsed += 1>>
+		<<goto "Stadt_Kirche">>
+	<</link>>
+	<span class="subtext">— Ein Moment der Stille, fernab von Drill und Pflicht.</span>
+	</li>
+	<li>
+	<<link "Zum Fuhrmannsviertel gehen">>
+		<<set $world.stadtActivitiesUsed += 1>>
+		<<goto "Stadt_Fuhrmannsviertel">>
+	<</link>>
+	<span class="subtext">— Dort, wo die Trossleute rasten, riecht es nach Pferden, Teer und langen Wegen.</span>
+	</li>
+	<li>
+	<<link "Zum Botenstand gehen">>
+		<<set $world.stadtActivitiesUsed += 1>>
+		<<goto "Stadt_Botenstand">>
+	<</link>>
+	<span class="subtext">— Ein Wort in die Ferne schicken, gegen Lohn und etwas Geduld.</span>
+	</li>
+<<else>>
+	<li class="stat-empty">
+	<span class="subtext">Der Tag neigt sich. Für mehr als das bleibt heute keine Zeit mehr.</span>
+	</li>
+<</if>>
+	<li>
+	<<link "Zurück zur Akademie">>
+		<<set $world.stadtActivitiesUsed = 0>>
+		<<goto "Kap2_Tageshub">>
+	<</link>>
+	<span class="subtext">— Genug für heute.</span>
+	</li>
+</ul>
+
+
+
+:: Halm_S1_Ruft_Thomas [interrupt einmalig nach_Kap2_tag] {"position":"1850,5500","size":"100,100"}
+<<scene>>
+<p>Die Schreibstube liegt im Nachmittagslicht anders da als sonst — kein Staub tanzt in den schmalen Sonnenstreifen, kein Blättern von Seiten unterbricht die Stille. Magister Cornelius Halm sitzt hinter seinem Tisch, die Hände gefaltet, kein Buch, keine Feder vor sich. Er hat nicht auf dich gewartet, wie ein Mann auf einen Besucher wartet. Er hat auf dich gewartet, wie ein Jäger auf ein Wild wartet, das er längst gesehen hat, ehe es selbst wusste, dass es beobachtet wird.</p>
+<</scene>>
+
+<p>Ein Bote hatte dich mitten im Drill abgeholt, mit der knappen Mitteilung, der Magister wünsche dich zu sprechen. Keine Begründung. Keine Erklärung. Nur die Gewissheit, dass ein Ruf des Magisters keine Bitte ist.</p>
+
+<<beziehung>>
+<p>Du weißt, wie du bei ihm stehst. Was zwischen euch geschah, seit jene Nacht im Archiv ans Licht kam, hat sich nie wieder geglättet — er hat dir das Wort kaum gegönnt, seither, und du hast gelernt, seiner Schreibstube fernzubleiben, es sei denn, die Pflicht selbst zwingt dich hinein.</p>
+<</beziehung>>
+
+<<dialog>>
+<p>„Setzt Euch“, sagt Halm, ohne den Blick zu heben. Keine Aufforderung, ein Befehl in der Verkleidung der Höflichkeit.</p>
+<</dialog>>
+
+<p>Du setzt dich. Das Schweigen zieht sich, und du erkennst darin dieselbe Methode, die du schon einmal an ihm bewundert und gefürchtet hast: Er lässt die Stille arbeiten, ehe er selbst ein Wort verschwendet.</p>
+
+<<dialog>>
+<p>„Ich unterrichte seit vielen Jahren Staatskunde“, sagt er schließlich. „Wisst Ihr, was das lehrt, was in keinem Lehrbuch steht?“</p>
+<p>„Nein, Magister.“</p>
+<p>„Es lehrt, Muster zu erkennen, ehe sie sich vollenden. Ein Schreiber, der sonst jede Zeile mit derselben Hand führt, beginnt plötzlich zu zögern, wenn ein bestimmtes Buch geöffnet wird. Zwei Rekruten, die sich sonst kaum in seine Nähe wagten, suchen auf einmal wiederholt die Waffenausgabe auf. Ein Name, der in keiner Meldung auftaucht, und doch in der Luft hängt, wenn man nur genau genug hinhört.“</p>
+<</dialog>>
+
+<<gedanke>>
+<p>Er spricht Orens Namen nicht aus. Er muss es nicht. Jedes Wort, das er wählt, ist genau dorthin gezielt, wo ich es am wenigsten erwidern kann.</p>
+<</gedanke>>
+
+<<formal>>
+<p>Ein Mann, der über Jahre hinweg Akten, Register und die kleinen Widersprüche menschlichen Verhaltens studiert hat, muss keine Beweise in der Hand halten, um eine Wahrheit zu erahnen. Für einen Gelehrten wie Halm ist ein hinreichend dichtes Muster von Indizien einem Geständnis beinahe gleichwertig — nicht vor einem Gericht, doch vor sich selbst.</p>
+<</formal>>
+
+<<dialog>>
+<p>„Ich frage Euch nicht, was Ihr wisst“, sagt Halm. „Ich sage Euch, was ich sehe. Ihr geht einer Sache nach, die größer ist, als Ihr es einzuschätzen vermögt. Und Ihr tut es mit der Vorsicht von Kindern, die glauben, niemand bemerke, wenn sie sich in der Speisekammer bedienen.“</p>
+<</dialog>>
+
+<p>Du willst widersprechen, eine Ausrede finden, wie du es bei Oren, bei Krebs, bei jedem anderen getan hast, der dir zu nahekam. Doch etwas in Halms Blick sagt dir, dass jede Lüge hier nur ein weiterer Strich in seinem Register würde.</p>
+
+<<gedanke>>
+<p>Er hat mich nicht hierhergerufen, um mich zu strafen. Wäre es das, hätte er längst zum Hauptmann gehen können. Er hat mich gerufen, um mich zu warnen — und ich verstehe nicht, warum ein Mann, der mich verachtet, sich diese Mühe macht.</p>
+<</gedanke>>
+
+<<dialog>>
+<p>„Ein Schreiber, der genug Angst hat, um eine Lücke zu vertuschen“, sagt Halm langsam, „ist ein Schreiber, der irgendwann bemerkt, dass er beobachtet wird. Und ein Mann, der bemerkt, dass er beobachtet wird, handelt nicht mehr wie ein Schreiber. Er handelt wie ein Tier in der Falle.“</p>
+<</dialog>>
+
+<p>Er steht auf, tritt ans Fenster, den Rücken dir zugewandt — eine Geste, die dir mehr sagt als jedes Wort: Er will nicht sehen, was in deinem Gesicht steht, wenn er das Nächste ausspricht.</p>
+
+<<dialog>>
+<p>„Ich schulde Euch nichts, Rekrut. Nach dem, was war, am wenigsten eine Warnung. Doch ich habe in meinem Leben genug Männer gesehen, die aus Vorsicht Fehler machten, die größer waren als jede Nachlässigkeit. Geht behutsamer vor. Nicht um Euretwillen. Um dessentwillen, was Ihr aufzudecken versucht.“</p>
+<</dialog>>
+
+<<gedanke>>
+<p>Das ist keine Vergebung. Das ist auch keine Freundschaft. Aber es ist mehr, als ich von ihm erwartet hätte — und ich frage mich, ob dies der erste Riss in einer Mauer ist, die ich selbst errichtet habe, oder nur eine Ausnahme, die er sich selbst nie verzeihen wird.</p>
+<</gedanke>>
+
+<p>Halm wendet sich nicht wieder um. Das Gespräch ist beendet, so unvermittelt, wie es begann.</p>
+
+<<print setup.setNpcAffection("magister", 2)>>
+<<set $npc.magister.memory.flags.hat_thomas_gerufen = true>>
+<<set $world.tagesAktionen += 1>>
+
+<<weiterImTag "Zurück in den Tag">>
+
+
+:: Kurt_Bead_1 [interrupt einmalig nach_Kap2_tag] {"position":"1475,5725","size":"100,100"}
+<<scene>>
+<p>Der Drill des zweiten Lehrjahres ist eine andere Sache als der des ersten — härter, schneller, unversöhnlicher. Und Fähnrich Kurt Brasner, der ihn führt, hat sich, so scheint es, ausgerechnet dich als Zielscheibe erkoren. Was die anderen im ersten Anlauf richtig machen, lässt er dich dreimal wiederholen; was ihnen durchgeht, kreidet er dir an. Heute steht er vor dir, während der Schweiß dir in die Augen läuft, und sein Blick ist kälter als der Morgen.</p>
+<</scene>>
+<<dialog>>
+
+<p>„Noch einmal, Waffenträger. Und diesmal, als hinge ein Leben davon ab — denn eines Tages wird es das.“</p>
+<</dialog>>
+<<gedanke>>
+<p>Warum ich? Die halbe Reihe macht dieselben Fehler. Aber er sieht nur mich, und in seiner Härte liegt etwas, das nicht bloß Dienst ist.</p>
+<</gedanke>>
+
+<ul>
+<li><<link "Ihm trotzig standhalten — du hast nichts falsch gemacht">>
+	<<set $npc.kurt.memory.flags.kurt_ton to "trotz">>
+	<<goto "Kurt_1_Reaktion">>
+<</link>></li>
+<li><<link "Schweigend gehorchen und es noch einmal tun">>
+	<<set $npc.kurt.memory.flags.kurt_ton to "halten">>
+	<<goto "Kurt_1_Reaktion">>
+<</link>></li>
+<li><<link "Ruhig fragen, was er von dir sehen will">>
+	<<set $npc.kurt.memory.flags.kurt_ton to "klug">>
+	<<goto "Kurt_1_Reaktion">>
+<</link>></li>
+</ul>
+
+
+:: Kurt_1_Reaktion [nach_Kap2_abend] {"position":"1400,5825","size":"100,100"}
+<<switch $npc.kurt.memory.flags.kurt_ton>>
+<<case "trotz">>
+<<dialog>>
+<p>Einen Moment glaubst du, er schlägt zu. Dann, ganz kurz, hebt sich sein Mundwinkel — kein Lächeln, eher das Zucken eines Mannes, der eine Antwort erkennt, die er kennt. „Rückgrat“, sagt er nur. „Gut. Ohne das taugt der Rest nichts.“ Aber er lässt dich die Übung trotzdem noch einmal machen.</p>
+<<= setup.setPlayerStat("honesty", 2)>>
+<</dialog>>
+<<case "halten">>
+<<dialog>>
+<p>Du sagst nichts, gehst zurück auf die Linie, machst es noch einmal. Und noch einmal. Kurt beobachtet dich, und in seinem Nicken liegt weder Lob noch Tadel — nur die kühle Anerkennung eines Mannes, der weiß, was Disziplin kostet.</p>
+<<= setup.setPlayerStat("discipline", 2)>>
+<</dialog>>
+<<case "klug">>
+<<dialog>>
+<p>„Was ich sehen will“, wiederholt er, als hätte ihn die Frage überrascht. Für einen Herzschlag mustert er dich anders — nicht den Rekruten, den Menschen. „Dass Ihr's überlebt, Waffenträger. Mehr will ich von keinem.“ Dann wendet er sich ab, ehe du das Gewicht dieses Satzes fassen kannst.</p>
+<<= setup.setPlayerStat("ambition", 2)>>
+<</dialog>>
+<</switch>>
+<<set $npc.kurt.memory.flags.kurt_stufe to 1>>
+<<set $npc.kurt.memory.flags.kurt_stufe1_tag to $world.day>>
+<<weiterImTag "Zurück in den Tag">>
+
+
+:: Kurt_Faden_2 [interrupt einmalig nach_Kap2_tag] {"position":"1550,5875","size":"100,100"}
+<<scene>>
+<p>Tage später findest du Kurt allein, spät, am Rand des leeren Übungsplatzes, wo er einen Pikenschaft prüft, den niemand mehr prüfen muss. Ohne die Reihe vor sich wirkt er kleiner, älter. </p>
+<</scene>>
+
+<<beziehung>>
+  <<if $npc.kurt.memory.flags.kurt_ton eq "trotz">>
+      Er bemerkt dich und nickt knapp —  „Na du K-R-I-E-G-E-R“ Lässt er in sarkastischem Ton fallen. 
+  <<elseif $npc.kurt.memory.flags.kurt_ton eq "klug">>
+      „Du wieder! Du Wissbegieriger“, sagt er, aber es klingt nicht unwillig.
+  <<elseif $npc.kurt.memory.flags.kurt_ton eq "halten">>   
+      „Du wirst langsam. Deine Diziplin wächst. Das ist gut, Soldat.“
+  <<else>>Er sieht auf, als hätte er dich erwartet.<</if>>
+<</beziehung>>
+
+<<dialog>>
+<p>
+„Man drillt nicht, um zu quälen“, sagt er, mehr zum Schaft als zu dir. „Man drillt, weil das Feld nicht verzeiht, was die Kaserne durchgehen lässt. Das lernt man. Manchmal“ — er hält inne — „lernt man es zu spät.“</p>
+<</dialog>>
+
+<<gedanke>>
+<p>Da ist es wieder, dieses Etwas unter der Härte. Ein Riss. Wenn ich genau hinsehe, sehe ich vielleicht, was dahinter liegt — oder ich lasse es ruhen, wie man einen schlafenden Hund ruhen lässt.</p>
+<</gedanke>>
+
+<<if not $npc.kurt.memory.flags.kurt2_done>>
+  <<set $r to setup.skillCheckXp("perception", 13)>>
+  <<if $r.success>>
+  	<<beziehung>>
+  	<<= setup.skillCheckAlert($r)>>
+    <<set $npc.kurt.memory.flags.kurt_gelesen to $r.success>>
+    <p>Kurt scheint heute etwas anders zu sein als sonst.</p>
+    <</beziehung>>
+  <<else>>
+  <<set $npc.kurt.memory.flags.kurt_gelesen to false>>
+  <</if>>
+
+
+  <<set $rumor = setup.getRumor("Der Schinder war früher Offizier. Was ihn hierher gebracht hat, erzählt er nicht.")>>
+  <<if $rumor.hasRumor>>
+  <<if $r.success>>
+  <hr class="trenner-raute">
+  <</if>>
+  <<beziehung>>
+    <<gedanke>>
+      <p>Moment, da war doch was... JA! Die Leute erzählen, dass der Schinder früher Offizier war....</p>
+    <</gedanke>>
+      <<dialog>>
+        <p>
+            „Hat das was mit dem Schinder zu tun? Dass er Kriegsversehrt ist und früher Offizier war? Ich mein, dass man es zu spät lernt?!“
+            Kurt blickt auf.  „Wo hast du das her, dass er früher Offizier war?“
+            Du fühlst dich ertappt. „Ich weis nicht, die Leute reden. Es muss ja auhc nicht stimmen. Ich dachte nur...“
+            „Man wühlt nicht in den Geheimnissen anderer rum! Wenn er es erzählen wollen würde, würde er es tun, meinst du nicht?“ Er wirkt sältsam väterlich, weniger wie der Ausbilder der euch über den Drillplatz scheucht. „Der Schinder hat sehr viel gegeben. sehr viel. Ich wüsste nicht ob ich an seiner Stelle aus so ein Opfer bringen könnte. Frag nicht mehr danach! Er will es nicht öffentlich wissen. Das solltest du akzeptieren. “
+            <<run setup.setNpcAffection("kurt", 1)>>
+            <<set $npc.schinder.journalEntry +=" Er hat sehr viel geopfert. Kurt scheint ihn für das was er getan hat zu bewundern.">>
+        </p>
+      <</dialog>>
+      <</beziehung>>
+      <<if $r.success>>
+  <hr class="trenner-raute">
+  <</if>>
+  <</if>>
+  <<dialog>>
+    <p>
+        „Weist du kleiner, ich war auch einmal jung, unerfahren und voller Tatendrang. 
+        Ich wusste auch alles besser und verstand nur die Hälfte von dem was passierte.“ 
+        Sagt Kurt und es wirkt so falle er in Melancholie. „Hier in der Akademie ist alles nur Übung. 
+        Alles nur dafür da um euch die Abläufe zu zeigen. Euch zu lehren wie ihr nicht innerhalb von ein paar Augenblicken ablebt. 
+        Wenn das Jahr vorbei ist, werdet ihr einem Banner zugeteilt und dann zieht ihr los. Wenn ihr unterwegs seid, dann habt ihr kein Netz mehr das euch fängt, 
+        keine Akkademie, kein Kurt kein Schinder, nichts. Dann habt ihr den Söldner rechts und links neben euch und ihr könnt nur
+        hoffen dass die beiden nicht so viel Angst habt wie ihr und euch in der Formation halten. Wir schinden euch nicht aus Spaß...“
+        Du bist beeindruckt von seiner Ehrlichkeit und schaffst es nur noch knapp zu nicken. „So jetzt! Abgang! ich hab noch etwas zu erledigen.“
+      <<= setup.setNpcAffection("kurt", 1)>>
+      <<set $npc.kurt.journalEntry +=" Es liegt ihm viel an einer anständigen Ausbildung der Rekruten. ">>
+    </p>
+  <</dialog>>
+<<set $npc.kurt.memory.flags.kurt2_done to true>>
+<</if>>
+
+[[Zum Haupthaus gehen|Kurt_2_Ende]] 
+
+:: Kurt_2_Ende [nach_Kap2_tag] {"position":"1525,6000","size":"100,100"}
+<p>Als du die ersten Schritte machst lässt dich etwas innehalten und du drehst dich noch einmal zu Kurt um</p>
+
+<<if $npc.kurt.memory.flags.kurt_gelesen>>
+    <<gedanke>>
+    <p>Die Art, wie seine Hand kurz innehält: Das gilt nicht mir. Irgendjemanden hat er verloren und das macht ihm zu schaffen. Das weis ich jetzt sicher.</p>
+    <</gedanke>>
+<</if>>
+<p>Du lässt ihn mit dem Schaft und seinem Schweigen allein. Was ihn drückt, wird warten, bis er selbst es aussprechen will — wenn überhaupt.</p>
+
+<<set $npc.kurt.memory.flags.kurt_stufe to 2>>
+<<set $npc.kurt.memory.flags.kurt_stufe2_tag to $world.day>>
+<<weiterImTag "Zurück in den Tag">>
+
+
+
+:: Kurt_Faden_3 [interrupt einmalig nach_Kap2_tag]
+<<scene>>
+<p>Du bist gerade auf dem Weg zum Mittagessen, bis jetzt war der Tag eher entspannt. Einer der Guten Tage, die die man hin und wieder braucht um wieder
+nach Vorne und zu Kräften zu kommen. Als du in Gedanken durch die Gänge gehst, fällt dir beim Vorbeigehen an Kurts Dienstkammer auf, dass er still und selbst in Gedanken versunken 
+an seinem Tisch sitzt.</p>
+<</scene>>
+
+<p>Du trittst vorsichtig ein und lässt deinen Blick über die wenigen Gegenstände schweifen, die er in seinem Quartier hat.
+Er bemerkt dich, und du siehst, dass er etwas in der Hand hält — ein abgegriffener Helm, zu klein für einen Mann, zu groß für ein Kind.
+Kurt folgt deinem Blick, und zum ersten Mal wehrt er ihn nicht ab.</p>
+
+<<dialog>>
+
+<p>„Drey zum Gruße,
+<<switch $npc.kurt.memory.flags.kurt_ton>>
+<<case "trotz">>
+    Krieger
+<<case "klug">>
+    Wissbegieriger
+<<case "halten">>   
+    Soldat
+<<default>>
+    Rekrut
+<</switch>>     
+“</p>
+
+<p>„Alwin“, sagt er. „Siebzehn. Mein Nebenmann. 
+Wir standen Schulter an Schulter, in Gerbalon, in der Alfaltermark — lange genug, dass ich seinen Atem im Schlaf erkannt hätte.“ 
+Er dreht den Helm in den Händen, langsam, als suche er eine Beule, die er tausendmal gefunden hat. 
+„Man drillt euch die Formation ein, bis ihr sie im Schlaf haltet, weil im Feld das Denken aufhört. Da bleibt nur, was in den Knochen sitzt.“</p>
+
+<p>„An jenem Tag saß es nicht tief genug. Bei ihm nicht, bei mir nicht. 
+Ein Schritt zu weit, eine Lücke, keine zwei Handbreit — und die reichte.“ 
+Seine Stimme bleibt eben, und gerade das macht sie kaum erträglich. 
+„Ich hab hundertmal geübt, sie zu schließen. In dem einen Augenblick, der zählte, habe ich es nicht getan. Und er auch nicht.“</p>
+<</dialog>>
+
+<<if $npc.kurt.memory.flags.kurt_gelesen>>
+<<gedanke>>
+    <p>Da ist es. Das, was ich an jenem Abend am Übungsplatz nur ahnte — der Verlust, den er mit sich schleppt. Jetzt hat er einen Namen.</p>
+<<else>>
+    <p>Ich habe nichts kommen sehen. Der Mann, der uns über den Platz treibt, bis wir kotzen, 
+    und plötzlich hält er einen Kinderhelm in der Hand und redet von einem Toten, als wäre es gestern gewesen.</p>
+<</gedanke>>
+<</if>>
+
+<<set _r to setup.skillCheckXp("perception", 13)>>
+<<if _r.success>>
+    <<beziehung>>
+    <<= setup.skillCheckAlert(_r)>>
+    <<gedanke>>
+        <p>Er hat sich geöffnet. Er wirkt geschlagen, fast traurig. Ich sollte ihm ein paar nette Worte spenden.</p>
+    <</gedanke>>
+    <</beziehung>>
+<</if>>
+
+<<dialog>>
+<p>„Ihr wollt wissen, warum ich euch schinde.“ Er sieht auf, und zum ersten Mal ist da kein Ausbilder, nur ein müder Mann. 
+„Weil jeder Handgriff, den ich euch einbläue, eine Lücke ist, die sich nicht öffnet. Ich begrabe keine Rekruten mehr. Nicht wegen etwas, das sie hätten wissen müssen.“
+Jetzt wo Komarn und Alfalter im Krieg sind!</p>
+<p>Er mustert dich, länger als ihm lieb ist. „Und Ihr … Ihr habt seine Art, euch reinzuwerfen, als gäbe es kein Morgen. Alwin war genauso. Es hat ihn keins gekostet.“</p>
+<</dialog>>
+
+
+<ul>
+<li><<link "Ihm sagen, dass ein Feld kein Übungsplatz ist — die Schuld liegt nicht bei ihm allein">>
+    <<set $npc.kurt.memory.flags.kurt_ergebnis to "bund">>
+	<<goto "Kurt_3_Ende">>
+<</link>></li>
+<li><<link "Nichts sagen. Sein Toter ist nicht dein Toter">>
+	<<set $npc.kurt.memory.flags.kurt_ergebnis to "kalt">>
+	<<goto "Kurt_3_Ende">>
+<</link>></li>
+</ul>
+
+:: Kurt_3_Ende [nach_Kap2_tag]
+<<switch $npc.kurt.memory.flags.kurt_ergebnis>>
+<<case "bund">>
+<<dialog>>
+<p>Er hört dich an, und lange sagt er nichts. Dann, rau: „Vielleicht. Vielleicht nicht. 
+Aber Ihr — Ihr macht's mir schwerer, ein Ausbilder zu bleiben und kein Vater.“ 
+Es ist das Nächste an Wärme, das ein Mann wie Kurt zulässt. 
+Von diesem Tag an ist seine Härte noch da — aber sie hat ein Gesicht bekommen, und du weißt, 
+dass hinter dem Ausbilder einer steht, der auf deiner Seite ist.</p>
+<</dialog>>
+<<= setup.setNpcAffection("kurt", 4)>>
+<<run setup.pushNpcMemory("kurt", "Thomas hat mir gut zugesprochen als ich von Alwin erzählte.")>>
+<<case "kalt">>
+<<dialog>>
+<p>Du bleibst höflich und fern, und Kurt sieht es. 
+Etwas in seinem Gesicht schließt sich, endgültig. 
+„Natürlich“, sagt er. „Vergesst, was ich sagte.“ 
+Er wird dich weiter drillen, hart und korrekt — aber die Tür, die sich einen Spalt geöffnet hatte,
+ fällt wieder zu, und diesmal für immer.</p>
+<</dialog>>
+<<= setup.setNpcAffection("kurt", -1)>>
+<<run setup.pushNpcMemory("kurt", "Thomas hat mich ignoriert als ich von Alwin erzählte.")>>
+<</switch>>
+<<set $npc.kurt.memory.flags.kurt_stufe to 3>>
+<<weiterImTag "Zurück in den Tag">>

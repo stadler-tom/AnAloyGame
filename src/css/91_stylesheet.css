@@ -1,0 +1,721 @@
+
+/* ===================================================================
+   AN ALOY STORY — Stylesheet
+   1. DESIGN-TOKENS  2. LESE-GRUNDLAGE  3. KAPITEL-SCREENS
+   4. HUD  5. JOURNAL / NPC / STATS  6. DIALOG-STIMMEN
+   7. ATMOSPHÄRE  8. SYSTEM-MELDUNGEN  9. LINKS  10. ACCESSIBILITY
+=================================================================== */
+
+
+/* === 1. DESIGN-TOKENS ============================================== */
+:root {
+    --text-prose:     #e6e3da;
+    --text-parchment: #dfdcd6;
+    --text-dust:      #a39e93;
+    --text-bright:    #ffffff;
+    --text-visited:   #8a7f6e;
+
+    --panel-bg:           #1a1917;
+    --panel-bg-hover:     #24221f;
+    --panel-border:       #2d2b27;
+    --panel-border-hover: #4a453d;
+    --accent-iron:        #5a564c;
+    --accent-brass:       #c5b394;
+    --accent-gold:        #c9a84c;
+    --border-visited:     #3d3a34;
+
+    --font-prose: "Iowan Old Style", Palatino, Georgia, serif;
+    --font-ui:    system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+
+/* === 2. LESE-GRUNDLAGE ============================================= */
+.passage {
+    max-width: 40em;
+    margin-inline: auto;
+    text-align: left;
+    line-height: 1.65;
+    font-size: 1.06rem;
+    color: var(--text-prose);
+    text-wrap: pretty;
+}
+.passage:has(.chapter-screen) { max-width: none; margin-inline: 0; }
+
+.passage p { margin: 0 0 1em; }
+
+.dialog { display: block; margin: 0.4em 0; text-indent: 0; padding-left: 0.6em; }
+
+.passage p,
+.dialog,
+.scenery-text,
+.thought-box { font-family: var(--font-prose); }
+
+.trenner {
+    border: 0; height: 1px; margin: 2em auto; width: 70%;
+    background: linear-gradient(to right, transparent, var(--accent-iron), transparent);
+}
+.trenner-raute {
+    border: 0; margin: 2.2em auto; width: 70%; height: 1em; position: relative;
+    background: linear-gradient(to right, transparent, var(--accent-iron), transparent);
+    background-size: 100% 1px; background-position: center; background-repeat: no-repeat;
+}
+.trenner-raute::after {
+    content: ""; position: absolute; left: 50%; top: 50%;
+    width: 7px; height: 7px;
+    transform: translate(-50%, -50%) rotate(45deg);
+    background: var(--accent-brass);
+    box-shadow: 0 0 0 4px var(--panel-bg);
+}
+
+
+/* === 3. KAPITEL- & INTRO-SCREENS ================================== */
+.chapter-screen {
+    min-height: 100vh; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; text-align: center;
+}
+.fade-trigger {
+    font-size: 48px; opacity: 0;
+    animation: fadeIn 1.5s ease forwards, fadeOut 1.5s ease forwards;
+    animation-delay: 0s, 3s;
+}
+.chapter-title {
+    font-size: 48px; font-weight: bold; letter-spacing: 0.08em;
+    text-wrap: balance; opacity: 0;
+    animation: fadeIn 1.5s ease forwards, fadeOut 1.5s ease forwards;
+    animation-delay: 0s, 3s;
+}
+.chapter-time {
+    font-size: 24px; margin-top: 0.75em; opacity: 0;
+    animation: fadeIn 1.5s ease forwards, fadeOut 1.5s ease forwards;
+    animation-delay: 1.5s, 3s;
+}
+.center-link { margin-top: 2em; min-height: 2em; text-align: center; }
+
+@keyframes fadeIn  { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+
+
+/* === 4. HUD / KOPFZEILE =========================================== */
+#ui-bar-history { display: none; }
+#passage-header { margin: 0; padding: 0; }
+
+#hud-bar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 6px 4px 4px 4px; margin-bottom: 0; flex-wrap: wrap; gap: 0.4em;
+}
+.hud-left { display: flex; flex-wrap: wrap; gap: 0.6em; align-items: center; }
+.hud-right { margin-left: auto; white-space: nowrap; }
+.hud-item {
+    font-size: 0.82em; font-variant: small-caps; letter-spacing: 0.04em;
+    color: var(--text-dust); background: var(--panel-bg);
+    border: 1px solid var(--panel-border); border-radius: 2px; padding: 2px 8px;
+}
+.hud-right a.link-internal {
+    display: inline-block !important; padding: 4px 14px !important;
+    margin-bottom: 0 !important; font-size: 0.88em !important;
+    font-variant: small-caps; letter-spacing: 0.04em;
+    border-left-width: 2px !important; transform: none !important;
+}
+.hud-right a.link-internal:hover {
+    transform: none !important; border-left-color: var(--accent-brass) !important;
+}
+.hud-divider { margin-top: 6px; border-color: var(--panel-border); }
+.journal-link { text-align: right; margin: 0; padding: 0; }
+
+
+/* === 5. JOURNAL / NPC / STATS ===================================== */
+
+/* -- Legacy (nur falls noch alte Tabellen/Einträge irgendwo benutzt werden) -- */
+.npc-entry { margin-bottom: 1em; }
+.npc-entry div { margin-top: 0.3em; }
+.player-stats {
+    width: 100%; border-collapse: collapse; table-layout: fixed;
+    font-family: var(--font-ui);
+}
+.player-stats th, .player-stats td {
+    border: 1px solid white; padding: 4px 8px; text-align: center;
+}
+.player-stats th { font-weight: bold; }
+
+/* im Notizbuch keine harten Zeilenumbrüche */
+.passage.journalansicht br { display: none; }
+
+/* -- Personen-Karten (Journal) -- */
+.journal-group { margin: 0 0 1.4rem; }
+.journal-group-title {
+    font-variant: small-caps; letter-spacing: .04em; font-weight: 600;
+    color: var(--accent-gold);
+    border-bottom: 1px solid var(--accent-brass);
+    padding-bottom: .2rem; margin-bottom: .6rem;
+}
+.npc-card {
+    background: var(--panel-bg);
+    border-left: 3px solid var(--accent-brass);
+    border-radius: 4px; padding: .7rem .9rem; margin: 0 0 .6rem;
+}
+.npc-card-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: .5rem; margin-bottom: .35rem;
+}
+.npc-name { font-weight: 700; font-size: 1.05em; color: var(--text-prose); }
+.npc-trust { font-size: .8em; white-space: nowrap; color: var(--accent-gold); }
+.npc-entry-text {
+    font-family: var(--font-prose); line-height: 1.5;
+    color: var(--text-prose); margin-bottom: .4rem;
+}
+.npc-meta { font-size: .85em; opacity: .9; }
+.npc-affection-val { opacity: .55; }
+.journal-empty { font-style: italic; opacity: .7; }
+
+/* -- Werte-Sektionen -- */
+/* Einheitliche SCHRIFT für alles in der Tabelle (nur font-family,
+   damit die kleineren Größen von Zahlen/Titeln NICHT überschrieben werden) */
+.stat-section, .stat-section * { font-family: var(--font-prose); }
+
+.stat-section { margin: 0 0 1rem; font-size: 1rem; line-height: 1.5; }
+.stat-section-title {
+    font-variant: small-caps; letter-spacing: .04em; font-weight: 600;
+    font-size: .95rem; color: var(--accent-gold);
+    border-bottom: 1px solid var(--accent-brass);
+    padding-bottom: .15rem; margin-bottom: .4rem;
+}
+.stat-row {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 1rem; padding: .15rem 0; line-height: 1.4;
+}
+.stat-label { flex: 1 1 auto; color: var(--text-prose); opacity: .85; }
+.stat-val {
+    flex: 0 0 auto; display: inline-flex; align-items: center; gap: .4rem;
+    text-align: right; color: var(--text-prose);
+}
+.stat-item  { justify-content: flex-start; }
+.stat-empty { font-style: italic; opacity: .6; }
+.stat-highlight { color: var(--accent-gold); font-weight: 600; }
+
+/* die kleine Zahl neben den Leisten: feste Breite + gleich breite Ziffern */
+.stat-num {
+    opacity: .55; font-size: .85em;
+    display: inline-block; width: 3ch; text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+/* -- Pip-Leisten -- */
+.meter { display: inline-flex; gap: 3px; vertical-align: middle; flex: 0 0 auto; }
+.pip { width: 10px; height: 10px; border-radius: 50%; box-sizing: border-box; }
+.pip-full  { background: var(--accent-gold); }
+.pip-empty { background: transparent; border: 1px solid var(--accent-brass); }
+
+/* -- Einklappbare Abschnitte -- */
+.journal-section {
+    margin: 0 0 1rem; border-top: 1px solid var(--accent-iron); padding-top: .5rem;
+}
+.journal-section > summary {
+    cursor: pointer; font-weight: 700; font-size: 1.1em; padding: .2rem 0;
+    color: var(--accent-gold); list-style: none;
+}
+.journal-section > summary::-webkit-details-marker { display: none; }
+.journal-section > summary::before { content: "▸ "; }
+.journal-section[open] > summary::before { content: "▾ "; }
+
+
+/* === 6. DIALOG-STIMMEN ============================================ */
+.voice-aggressive { color: #e05252; font-weight: bold; letter-spacing: 0.05em; }
+.voice-whisper    { color: #7ab3a0; font-style: italic; font-size: 0.95em; }
+.voice-formal {
+    color: var(--accent-gold); font-variant: small-caps; letter-spacing: 0.03em; margin: 0 0 1em; 
+}
+
+
+/* === 7. ATMOSPHÄRE ================================================ */
+.scenery-text {
+    font-style: italic; color: #8a9a7a; margin: 1em 0;
+    padding-left: 10px; border-left: 2px solid #3a4a32;width: 90%;
+}
+.thought-box {
+    background-color: #16161a; border: 1px dashed #3a3560;
+    padding: 12px; margin: 1.2em 0; font-size: 0.95em; color: #b0a8d8;font-style: italic;
+}
+
+
+/* === 8. SYSTEM-MELDUNGEN & WERTE ================================== */
+.system-alert {
+    padding: 10px; margin: 0.8em 0; border-radius: 4px;
+    font-size: 0.9em; font-weight: bold; font-family: var(--font-ui);
+}
+
+/*
+.status-positive { background-color: #1b2b1c; border: 1px solid #2e5230; color: #73c976; }
+.status-negative { background-color: #2b1b1b; border: 1px solid #522e2e; color: #e57373; }
+.status-info     { background-color: #22252a; border: 1px solid #3b424c; color: #a3b8cc; }
+*/
+
+.status-positive { background-color: #1d2418; border: 1px solid #3a4a2e; color: #a4c18b; }
+.status-negative { background-color: #291a17; border: 1px solid #59322a; color: #d98d7e; }
+.status-info     { background-color: #20232a; border: 1px solid #3b424c; color: #9fb3c8; }
+
+.beziehung {
+    display: block;
+    border-left: 2px solid var(--accent-brass);
+    background: rgba(197, 179, 148, 0.05);
+    padding: 0.15em 0.6em 0.15em 0.8em;
+    margin: 0.6em 0;
+    color: #f0ece1;
+    font-style: normal;
+}
+.outcome-box {
+    border-left: 3px solid #8a7a5c; background: rgba(255, 255, 255, 0.03);
+    padding: 0.6em 0.9em; margin: 1em 0; border-radius: 3px;
+}
+.outcome-title {
+    font-variant: small-caps; letter-spacing: 0.08em;
+    opacity: 0.7; font-size: 0.85em; margin-bottom: 0.4em;
+}
+
+
+/* === 9. LINKS & ENTSCHEIDUNGEN ==================================== */
+.sandbox-menu { list-style-type: none; padding-left: 0; margin: 2em 0; }
+.sandbox-menu li {
+    background-color: var(--panel-bg); border: 1px solid var(--panel-border);
+    border-left: 4px solid var(--accent-iron);
+    padding: 15px 20px; margin-bottom: 1em; border-radius: 2px;
+    transition: all 0.2s ease-in-out;
+}
+.sandbox-menu li:hover {
+    background-color: var(--panel-bg-hover); border-color: var(--panel-border-hover);
+    border-left-color: var(--accent-brass); transform: translateX(4px);
+}
+.sandbox-menu li a {
+    font-weight: bold; font-size: 1.15em; color: var(--text-parchment) !important;
+    text-decoration: none; display: inline-block; margin-bottom: 0.3em;
+}
+.sandbox-menu li a:hover { color: var(--text-bright) !important; }
+.sandbox-menu .subtext {
+    display: block; font-size: 0.95em; color: var(--text-dust); line-height: 1.4;
+}
+
+#passages a.link-internal,
+.weiter-link a {
+    display: block; background-color: var(--panel-bg);
+    border: 1px solid var(--panel-border); border-left: 4px solid var(--accent-iron);
+    padding: 12px 18px; margin-bottom: 0.75em; border-radius: 2px;
+    color: var(--text-parchment); font-weight: bold; font-size: 1.05em;
+    text-decoration: none; transition: all 0.2s ease-in-out;
+}
+#passages a.link-internal:hover,
+.weiter-link a:hover {
+    background-color: var(--panel-bg-hover); border-color: var(--panel-border-hover);
+    border-left-color: var(--accent-brass); color: var(--text-bright);
+    transform: translateX(4px); cursor: pointer;
+}
+#passages a.link-internal:visited {
+    color: var(--text-visited); border-left-color: var(--border-visited);
+}
+.check-hint {
+    display: block; font-size: 0.8em; opacity: 0.65;
+    font-style: italic; margin-top: 0.3em;
+}
+
+
+/* === 10. ACCESSIBILITY & FEINSCHLIFF ============================== */
+.passage a:focus-visible { outline: 2px solid var(--accent-gold); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+    .fade-trigger, .chapter-title, .chapter-time { animation: none; opacity: 1; }
+}
+
+.kapitel-opener p:first-of-type::first-letter {
+    font-size: 3.2em; float: left; line-height: 0.8;
+    padding: 0.05em 0.1em 0 0; color: var(--accent-gold);
+}
+
+
+
+/* =========================
+   COMBAT LAYOUT
+========================= */
+
+.combat {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px;
+}
+
+/* Reihen */
+.combat-row {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+/* =========================
+   COMBAT CARD
+========================= */
+
+.combat-card {
+    width: 160px;
+    padding: 10px;
+
+    border: 2px solid #444;
+    border-radius: 10px;
+
+    background: #1e1e1e;
+    color: #f0f0f0;
+
+    cursor: pointer;
+
+    transition: transform 0.1s ease, border-color 0.2s ease;
+}
+
+.combat-card:hover {
+    transform: scale(1.03);
+    border-color: #888;
+}
+
+/* optional side styling */
+.combat-card.enemy {
+    border-color: #7a2b2b;
+}
+
+.combat-card.ally {
+    border-color: #2b4b7a;
+}
+
+/* =========================
+   NAME
+========================= */
+
+.combat-name {
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+/* =========================
+   HP BAR
+========================= */
+
+.combat-hp-bar {
+    width: 100%;
+    height: 12px;
+
+    background: #333;
+    border-radius: 6px;
+
+    overflow: hidden;
+
+    margin-bottom: 5px;
+}
+
+.combat-hp-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #b33, #e44);
+    width: 100%;
+
+    transition: width 0.3s ease;
+}
+
+/* HP TEXT */
+.combat-hp-text {
+    text-align: center;
+    font-size: 12px;
+    color: #ccc;
+}
+
+/* =========================
+   TYPE / INFO
+========================= */
+
+.combat-type {
+    font-size: 11px;
+    text-align: center;
+    margin-top: 4px;
+    color: #aaa;
+}
+
+.combat-weakness {
+    font-size: 11px;
+    text-align: center;
+    margin-top: 2px;
+    color: #d9a84f;
+}
+
+/* =========================
+   LOG
+========================= */
+
+.combat-log {
+    margin-top: 10px;
+    padding: 10px;
+
+    background: #111;
+    border: 1px solid #333;
+
+    font-size: 13px;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.combat-log-entry {
+    margin-bottom: 4px;
+    color: #ddd;
+}
+
+/* =========================================================
+   WAFFEN-INVENTAR / RADIOBUTTONS
+========================================================= */
+
+.stat-weapon {
+    padding: .28rem 0;
+    border-bottom: 1px solid rgba(197, 179, 148, 0.12);
+}
+
+.stat-weapon:last-child {
+    border-bottom: 0;
+}
+
+.stat-weapon.equipped {
+    color: var(--accent-gold);
+}
+
+.stat-weapon.equipped .stat-label {
+    color: var(--accent-gold);
+    opacity: 1;
+}
+
+.stat-weapon.equipped .stat-val {
+    color: var(--text-parchment);
+}
+
+/* Radio selbst */
+.js-equip-weapon {
+    appearance: none;
+    -webkit-appearance: none;
+
+    width: 14px;
+    height: 14px;
+    margin: 0 .45rem 0 0;
+
+    border: 1px solid var(--accent-brass);
+    border-radius: 50%;
+    background: var(--panel-bg);
+
+    display: inline-grid;
+    place-content: center;
+
+    vertical-align: -2px;
+    cursor: pointer;
+
+    transition:
+        border-color .18s ease,
+        background-color .18s ease,
+        box-shadow .18s ease;
+}
+
+/* innerer Punkt */
+.js-equip-weapon::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+
+    transform: scale(0);
+    transition: transform .14s ease;
+
+    background: var(--accent-gold);
+    box-shadow: 0 0 6px rgba(201, 168, 76, 0.45);
+}
+
+.js-equip-weapon:checked::before {
+    transform: scale(1);
+}
+
+.js-equip-weapon:hover {
+    border-color: var(--accent-gold);
+    background: var(--panel-bg-hover);
+}
+
+.js-equip-weapon:focus-visible {
+    outline: 2px solid var(--accent-gold);
+    outline-offset: 3px;
+}
+
+/* Waffenname klickiger wirken lassen */
+.stat-weapon .stat-label {
+    display: inline-flex;
+    align-items: center;
+    gap: .15rem;
+    cursor: pointer;
+}
+
+/* Werte rechts etwas dezenter */
+.stat-weapon .stat-val {
+    font-size: .9em;
+    color: var(--text-dust);
+}
+
+/* Ausgerüstet-Marker */
+.stat-weapon.equipped .stat-val b {
+    color: var(--accent-gold);
+    font-weight: 600;
+}
+
+/* Fehlerhafte Waffen */
+.stat-weapon.stat-error {
+    color: #e57373;
+}
+
+.stat-weapon.stat-error .stat-val {
+    color: #e57373;
+}
+
+/* =========================================================
+   COMBAT-XP-BAR IN PLAYER TABLE
+========================================================= */
+
+.combat-xp-display {
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    min-width: 220px;
+}
+
+.combat-xp-bar {
+    width: 90px;
+    height: 8px;
+    background: var(--panel-bg);
+    border: 1px solid var(--accent-iron);
+    border-radius: 999px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.combat-xp-fill {
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        var(--accent-brass),
+        var(--accent-gold)
+    );
+    box-shadow: 0 0 6px rgba(201, 168, 76, 0.35);
+    transition: width .25s ease;
+}
+
+.combat-xp-text {
+    font-size: .82em;
+    color: var(--text-dust);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+}
+
+
+.verdacht-alert {
+    border-left: 3px solid #7a2b2b;
+    background: rgba(122, 43, 43, 0.12);
+    padding: 10px; margin: 0.8em 0; border-radius: 4px;
+    font-family: var(--font-ui); font-size: 0.9em; font-weight: bold;
+    color: #d99a86; letter-spacing: 0.03em;
+    animation: verdachtPuls 0.7s ease;
+}
+@keyframes verdachtPuls {
+    0%   { background: rgba(122, 43, 43, 0.45); transform: translateX(-2px); }
+    50%  { transform: translateX(2px); }
+    100% { background: rgba(122, 43, 43, 0.12); transform: translateX(0); }
+}
+
+.menu { list-style: none; padding-left: 0; margin: 2em 0; }
+.menu li { margin-bottom: 0.75em; }
+
+#ui-bar .story-title-box {
+    width: 90%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+#ui-bar .story-title-box img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+}
+
+.npc-row-compact {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 2px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.npc-row-compact .npc-name { font-weight: bold; }
+.npc-row-compact .npc-meta { font-size: 0.9em; opacity: 0.85; }
+
+.erm-section { margin: 0 0 14px; }
+.erm-title {
+    font-weight: bold;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    margin-bottom: 4px;
+}
+.erm-line { padding: 1px 0; }
+.erm-fund { padding: 2px 0; }
+.erm-name { font-weight: bold; }
+.erm-empty { opacity: 0.6; font-style: italic; }
+
+.skill-xp {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: -2px 0 6px;
+    padding-left: 4px;
+}
+.skill-xp-track {
+    flex: 1;
+    height: 5px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 3px;
+    overflow: hidden;
+}
+.skill-xp-fill {
+    height: 100%;
+    background: #c9a24b;
+    border-radius: 3px;
+}
+.skill-xp-num {
+    font-size: 0.75em;
+    opacity: 0.8;
+    white-space: nowrap;
+}
+.skill-xp-max {
+    font-size: 0.75em;
+    opacity: 0.6;
+    font-style: italic;
+}
+.npc-card {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+}
+.npc-portrait {
+    width: 96px;
+    height: 96px;
+    object-fit: cover;
+    border-radius: 6px;
+    flex-shrink: 0;
+}
+.npc-card-body { flex: 1; }
+
+.biwag-item { margin: 6px 0; }
+.biwag-item-text { font-size: 0.85em; opacity: 0.7; margin-left: 4px; }
+.biwag-item-disabled { opacity: 0.4; }
+
+.passage ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+#ui-dialog.notizbuch-dialog,
+#ui-dialog-body.notizbuch-dialog {
+    max-width: 900px;
+    width: 92vw;
+}
+#ui-dialog-body.notizbuch-dialog { padding: 1.2em 1.5em; }
+

@@ -1,0 +1,1994 @@
+
+:: Ermittlung_S0_Auftakt [einmalig interrupt] {"position":"625,4975","size":"100,100"}
+<<run setup.ermInit()>>
+
+<<scene>>
+<p>Der Winter kennt keine Gnade für die Dämmerung. Über den Zinnen der Akademie verglimmt das letzte kupferne Licht wie eine Kohle, der man den Atem genommen hat, und mit ihm weicht auch die letzte Wärme aus dem Gemäuer. Im Hof werden die Pechfackeln entzündet, eine nach der anderen, ihr Schein trüb und unstet, und was er berührt, verwandelt sich: die vertrauten Mauern werden fremd, die Schatten lang und lebendig.</p>
+<p>Du stehst mit Karla im Windschatten des Holzstapels, dort, wo der Hof sich in Dunkelheit auflöst und zwei Rekruten, die leise die Köpfe zusammenstecken, niemandem einen zweiten Blick wert sind. Genau darum hat sie diesen Ort gewählt. Karla wählt ihre Plätze mit derselben Sorgfalt, mit der andere ihre Worte wägen.</p>
+<</scene>>
+
+<p>Sie hat dir die Regeln genannt, ehe sie ein einziges anderes Wort verlor. Leise, ohne dich anzusehen, mit der Geduld eines Menschen, der weiß: Ein Fehltritt kostet hier mehr, als jede Mühe je einbringen kann.</p>
+<p>Fragt ihr zu viel, merkt man sich eure Gesichter.</p>
+<p>Betretet ihr die falsche Kammer, seid ihr keine Ermittler mehr, sondern Rekruten, die vergessen haben, wo ihr Platz ist.</p>
+<p>Du verstehst es wohl. Ihr habt keine Befugnis, kein Siegel, keinen Auftrag. Ihr habt nur eure Dienste, eure Wege und eure Augen — und das Wissen, dass man euch alle drei nehmen kann, gebraucht ihr sie falsch.</p>
+
+<<dialog>>
+<p>„Wie willst du ihn suchen?“ fragst du.</p>
+<</dialog>>
+<p>Zum ersten Mal wirkt Karla nicht sicher. Nicht unsicher, das wäre zu einfach gesagt — eher, als hätte sie diese Frage schon zwanzigmal hinter den Zähnen zermahlen, ohne je eine taugliche Antwort zu finden. Sie blickt hinaus über den Hof, dem wandernden Fackellicht nach, und als sie spricht, ist ihre Stimme so leise, dass der Wind mehr davon trägt als du.</p>
+<<dialog>>
+<p>„Nicht, indem wir nach ihm fragen.“</p>
+<p>„Sondern?“</p>
+<p>„Wir gehen seinen letzten Tag noch einmal ab, Schritt für Schritt.“</p>
+<</dialog>>
+<p>Sie sagt es leise, aber nicht wie einen Einfall. Wie eine Entscheidung, die längst gefällt war, ehe du überhaupt gefragt hast.</p>
+
+
+<<if $world.flags.jarek_ausgang === "schweigen" or $world.flags.jarek_ausgang === "geschwiegen">>
+	/* ===== SCHWEIGEN — Thomas hat niemandem was von dem Abend im Archiv erzählt. ===== */
+    <<include "Ermittlung_S0_Jarek_schweigen">>
+
+<<elseif $world.flags.jarek_ausgang === "gemeldet">>
+	/* ===== GEMELDET — Thomas stellte sich Jarek in den Weg. Karla fragt nach. ===== */
+	<<dialog>>
+	<p>„Du warst dabei“, sagt Karla. Keine Frage. „In jener Nacht, als er verschwand. Du hast ihm den Weg verstellt.“</p>
+	<</dialog>>
+	<<gedanke>>
+	<p>Sie weiß mehr, als mir lieb ist. Nicht alles — aber genug, um zu fragen. Und jede Antwort, die ich gebe, ist ein Pfad: Wie viel kann ich preisgeben, ohne das zu verraten, was für immer mein bleiben muss?</p>
+	<</gedanke>>
+	<<include "Ermittlung_S0_Jarek_gemeldet">>
+
+<<elseif $world.flags.jarek_ausgang === "schande">>
+	/* ===== SCHANDE — Karla weiß, was es ihn gekostet hat. Sie steht zu ihm. ===== */
+	<<dialog>>
+	<p>„Du musst mir nicht vormachen, es ginge dir gut damit“, sagt Karla leise. „Ich war dabei. Ich hab gesehen, wie du danach warst.“</p>
+	<</dialog>>
+	<<if $player.flags.jareknarbe>>
+	<p>Ihr Blick streift die Narbe, kurz, ohne dort zu verweilen. Sie hat sie gesehen, als sie noch frisch war, in jener Nacht, in der du kein Wort herausgebracht hast. Gefragt hat sie nie. Sie hat nur dagesessen, bis das Zittern aufhörte.</p>
+	<</if>>
+	<p>Vor ihr musst du nichts verbergen. Sie kennt die Geschichte — Jareks Flucht, deinen Sturz, das, was zwischen euch beiden zerbrach. Bei Karla kannst du offen reden, und vielleicht ist genau das der Grund, warum du diese Suche überhaupt erträgst.</p>
+    
+	<<include "Ermittlung_S0_Jarek_schande">>
+<</if>>
+
+
+:: Ermittlung_S0_Jarek_gemeldet {"position":"225,5050","size":"100,100"}
+<<dialog>>
+<p>„Ich bin ihm in die Quere gekommen“, sagst du langsam. „Nicht mit Absicht. Ich war zur falschen Stunde am falschen Ort, und dann ging alles zu schnell, um es noch zu ordnen.“</p>
+<</dialog>>
+<p>Karla sieht dich an, einen Atemzug zu lang. Sie hört, was du sagst — und sie hört, was du verschweigst, und das Zweite spricht lauter als das Erste.</p>
+<<dialog>>
+<p>„So“, sagt sie. Nur das eine Wort. Sie hakt nicht nach. Aber sie hat bemerkt, dass du nicht alles gibst.</p>
+<</dialog>>
+<<if $player.flags.jareknarbe>>
+<p>Ihr Blick fällt auf die Narbe. „Muss wirklich schnell gegangen sein“, sagt sie leise. Weiter fragt sie nicht. Aber etwas in ihrem Gesicht härtet sich.</p>
+<<else>>
+<p>Karla nickt langsam, während du sprichst, ohne zu unterbrechen. „Gut, dass er dich nicht mit dem Messer erwischt hat“, sagt sie schließlich.</p>
+<</if>>
+<<gedanke>>
+<p>Karg ist sicher. Karg verrät nichts. Doch bei Karla wiegt Schweigen schwer, und ich habe etwas auf die Waage gelegt, das nun zwischen uns liegen bleibt.</p>
+<</gedanke>>
+
+[[Weiter ->Ermittlung_S0_PlanFortsetzung]]
+
+
+:: Ermittlung_S0_Jarek_schande {"position":"475,5025","size":"100,100"}
+<<dialog>>
+<p>„Ich —“</p>
+<</dialog>>
+<p>Du erzählst ihr den Weg, die Nacht, das Tor. Du erzählst, was geschah — und lässt die eine Stelle aus, an der die Geschichte aufhörte, deine zu sein, und seine wurde.</p>
+<<if $player.flags.jareknarbe>>
+<p>Karlas Blick fällt auf die Narbe, und diesmal verweilt er. „Muss wirklich schnell gegangen sein“, sagt sie nur. Weiter fragt sie nicht. Doch etwas in ihrem Gesicht härtet sich — nicht gegen dich. Für dich.</p>
+<<else>>
+<p>Karla nickt langsam, während du sprichst, ohne dich zu unterbrechen. Am Ende sagt sie nichts Tröstliches — das ist nicht ihre Art —, doch sie sieht dich an, als hätte sie soeben entschieden, dass du einer bist, mit dem man durch solche Nächte geht.</p>
+<</if>>
+<<gedanke>>
+<p>Ich habe ihr viel gegeben. Nicht alles. Der letzte Stein liegt noch in meiner Faust. Aber genug, dass sie weiß: Ich mache ihr nichts vor. Und manchmal wiegt das mehr als die ganze Wahrheit.</p>
+<</gedanke>>
+
+[[Weiter ->Ermittlung_S0_PlanFortsetzung]]
+
+
+:: Ermittlung_S0_Jarek_schweigen {"position":"350,5025","size":"100,100"}
+/* ===== SCHWEIGEN — Karla weiß nichts. Thomas trägt es allein. ===== */
+	<<gedanke>>
+	<p>Sie weiß nicht, dass ich in jener Nacht im Archiv war. Sie weiß nicht, was ich sah, was er trug, und dass ich geschwiegen habe. Für sie ist Jarek nur ein Rätsel wie für alle anderen auch. Und dabei muss es bleiben.</p>
+	<<if $player.flags.jareknarbe>>
+	<p>Die Narbe zieht in der Kälte. Sie fragt nie, woher sie stammt. Vielleicht, weil sie ahnt, dass manche Wunden keine Geschichte erzählt haben wollen.</p>
+	<</if>>
+	<p>Ich vertraue ihr. Doch Vertrauen ist das eine, und was ich getan habe, grenzt an Verrat. Verrate ich mich — ein falsches Wort, ein Blick, der zu lange auf dem Falschen ruht —, so wird sie es wissen. Und dann muss sie wählen, ob sie zu mir hält oder zu dem, worauf wir geschworen haben. Vor diese Wahl will ich sie nie stellen. Also gebe ich acht. Bei jedem Schritt.</p>
+	<</gedanke>>
+    
+    [[Weiter ->Ermittlung_S0_PlanFortsetzung]]
+
+
+:: Ermittlung_S0_PlanFortsetzung [nach_Kap2_morgen] {"position":"450,5150","size":"100,100"}
+<<dialog>>
+<p>„Jeder Tag hier hinterlässt Spuren“, sagt Karla. „Wache. Speisung. Waffen. Meldungen. Wege. Wer eine Waffe fasst, wird eingetragen. Wer sie zurückbringt, hinterlässt ein Zeichen. Wer durchs Tor geht, wird gesehen. Wer beim Tross war, trägt den Dreck an den Stiefeln davon.“</p>
+<p>„Und wenn einer die Spuren getilgt hat?“</p>
+<p>„Dann suchen wir den Fehler in der Tilgung.“</p>
+<</dialog>>
+
+<<formal>>
+<p><strong>Karlas Plan:</strong> Jareks letzten Tag Schritt für Schritt nachzeichnen. Nicht nach Jarek selbst fragen — nach seinen Wegen, Marken, Diensten und den Lücken dazwischen suchen.</p>
+<</formal>>
+
+<p>Der Plan ist kleiner, als du erwartet hast. Kein Sturm aufs Archiv, kein kühnes Verhör, nichts von dem, was du dir in den schlaflosen Stunden ausgemalt hast. Nur Geduld, Listen — und das, was zwischen den Listen fehlt.</p>
+<p>Vielleicht ist er gerade darum brauchbar.</p>
+
+<<dialog>>
+<p>„Wir fangen dort an, wo jeder Waffenträger seine Spur hinterlässt“, sagt Karla.</p>
+<p>„Bei den Waffen.“</p>
+<p>Sie nickt.</p>
+<p>„Hat Jarek seine Waffe zurückgegeben, steht es irgendwo geschrieben. Hat sie ein anderer für ihn zurückgebracht, steht das auch irgendwo. Und steht dort gar nichts …“</p>
+<p>„Dann ist das auch eine Antwort.“</p>
+<p>„Nein“, sagt Karla. „Dann ist es eine Lüge.“</p>
+<</dialog>>
+<<= setup.setNpcAffection("karla", 1)>>
+
+<<gedanke>>
+<p>Das ist der Unterschied zwischen uns. Ich suche nach einer Spur, weil ich hoffe, dass sie da ist. Karla sucht nach der Stelle, an der jemand zu viel Ordnung hinterlassen hat. Ich will finden. Sie will den Riss im Glatten sehen. Und ich fürchte, sie hat das schärfere Auge.</p>
+<</gedanke>>
+
+<p>Über den Hof ruft eine raue Stimme, schon heiser vom langen Tag, nach den Männern für die späte Waffenpflege. Ein Korporal flucht, weil eine Reihe Hellebarden nicht sauber geölt wurde, und das Schelten verliert sich im Wind wie alles hier: ungehört, folgenlos, ein Laut unter hundert anderen.</p>
+<p>Karla wendet den Kopf kaum. Doch sie hat es gehört, und du siehst, dass sie es bereits eingeordnet hat, ehe der Hall verklungen ist.</p>
+<<dialog>>
+<p>„Du bist morgen zu den Waffengestellen eingeteilt.“</p>
+<p>„Woher weißt du das?“</p>
+<p>„Weil ich hingesehen habe.“</p>
+<</dialog>>
+<p>Dann, nach einem kurzen Atemzug, in dem der Wind die Fackeln biegt:</p>
+<<dialog>>
+<p>„Also tu du das auch.“</p>
+<</dialog>>
+
+<<set $world.ermittlung.flags.S0_done to true>>
+
+<<gedanke>>
+<p>Nicht heute Nacht, nicht morgen. Beim nächsten Dienst in der Waffenpflege — dort fangen Jareks letzte Schritte an. Bis dahin: ein Rekrut sein, der nichts sucht.</p>
+<</gedanke>>
+
+<<set $world.tagesAktionen += 1>>
+<<weiterImTag "Weiter">>
+
+
+:: Ermittlung_S1_Intro_in_Waffenstube [einmalig interrupt] {"position":"850,5075","size":"100,100"}
+<<scene>>
+<p>Hinter dem Ausgabetisch, auf einem Hocker, der zu niedrig für ihn scheint, sitzt ein schmaler Mann mit tintenfleckigen Fingern und einem Bart, so ordentlich gestutzt, als traue er der Unordnung nicht über den Weg. Die Rekruten treten nacheinander vor, jeder mit dem Stück, das er sich am Morgen genommen hat, und jedes Mal dasselbe Ritual: Nummer nennen, Waffe reichen, warten, bis die Feder kratzt. Du stehst in der Reihe der zur Waffenpflege Eingeteilten, nimmst die zurückgebrachten Stücke entgegen, prüfst sie auf Scharten und Wurmstich im Holz, reihst sie in die Gestelle — und wartest auf deine Gelegenheit, während das Ausgabebuch unter Orens Händen ein ums andere Mal auf- und zuklappt.</p>
+<</scene>>
+
+<p>Ein Dutzend Mal wiederholt sich das Bild, ehe die Reihe merklich kürzer wird: Ein Rekrut tritt vor, nennt seine Nummer, Oren nimmt die Waffe entgegen, prüft sie mit einem einzigen geübten Blick, trägt sie ins Buch, streut Sand darüber, wartet, bis die Tinte trocken ist, klappt zu. Alles an ihm ist Ordnung. Zu viel Ordnung, denkst du, für einen Mann, dessen Aufgabe aus nichts als Wiederholung besteht — und jedes Mal, wenn das Buch offen daliegt, bist du zu weit weg oder zu spät dran, um mehr als die Bewegung seiner Feder zu sehen.</p>
+
+<<gedanke>>
+<p>Ich warte auf eine Lücke, die nicht kommt, und in der Zeit, die mir das Warten lässt, fällt mir etwas ein, das ich Wochen lang nicht bedacht habe. An dem Tag, an dem Jarek floh, gab es keinen Waffendrill für uns Erstjährige. Keine Übung, kein Ausgabezettel, kein Grund, weshalb ein Rekrut wie er überhaupt eine Klinge in der Hand gehabt haben sollte. Und doch hatte er einen Dolch. Ich habe die Klinge gesehen — ich trage ihre Erinnerung über der Augenbraue.</p>
+<</gedanke>>
+
+<<formal>>
+<p>Jede Waffe, die ein Rekrut führt, muss im Ausgabebuch der Akademie vermerkt sein: Datum, Name, Zeichen des ausgebenden Schreibers. Ohne angesetzten Drill gibt es keinen Anlass zur Ausgabe — und ohne Anlass keinen rechtmäßigen Eintrag. Fehlt der eine, während die Waffe dennoch in fremder Hand war, bleibt nur eine Erklärung: Jemand hat sie dennoch gegeben, und jemand hat es vermerkt, oder eben absichtlich nicht.</p>
+<</formal>>
+
+<p>Der Dienst endet, ehe du eine einzige Seite des Buches auch nur von Weitem lesen konntest. Du sagst noch nichts davon. Aber der Gedanke sitzt in dir wie ein Splitter, den man nicht sofort spürt, bis man die Hand bewegt.</p>
+
+<p>Am Abend, wieder im Windschatten des Holzstapels, erzählst du Karla, was dir bei der Waffenpflege aufgefallen ist. Sie hört zu, ohne dich zu unterbrechen, und als du fertig bist, schweigt sie eine Weile, den Blick auf die Waffenausgabe gerichtet, deren Fensterläden im letzten Licht wie blinde Augen wirken.</p>
+
+<<dialog>>
+<p>„Kein Drill, aber eine Waffe“, sagt sie schließlich. „Das ist keine Nachlässigkeit. Das ist eine Lücke, die jemand gelassen hat.“</p>
+<p>„Oder gemacht.“</p>
+<p>„Also müssen wir ins Buch sehen. Aber wenn Oren die Lücke selbst geschrieben hat können wir ihr unter keinen Umständen fragen. Die Frage ist also — wie können wir den Eintrag einsehen, ohne Verdacht zu erregen?“</p>
+<</dialog>>
+
+<p>Drei Wege liegen offen, und keiner davon ist ohne Preis. 
+Ihr könnt euch nehmen, was ihr braucht, und die Gefahr des Entdecktwerdens tragen.
+ Ihr könnt einen Vorgesetzten bitten, mit dem Gewicht seines Ranges Druck zu machen — und riskieren, dass die Bitte selbst zur Warnung wird. 
+ Oder ihr könnt Oren mit seinen eigenen Regeln in die Enge treiben, leise, unauffällig, und euch mit einem einzigen flüchtigen Blick zufriedengeben müssen.</p>
+
+[[Nachts in die Waffenausgabe einbrechen|Ermittlung_S1_Beschluss][$world.ermittlung.flags.s2_weg to "einbruch"]]
+[[Einen Hauptmann um Prüfung des Ausgabebuchs bitten|Ermittlung_S1_Beschluss][$world.ermittlung.flags.s2_weg to "hauptmann"]]
+[[Eine Unstimmigkeit im Waffenbestand vortäuschen|Ermittlung_S1_Beschluss][$world.ermittlung.flags.s2_weg to "trick"]]
+
+
+:: Ermittlung_S2_Einbruch [interrupt einmalig] {"position":"750,5275","size":"100,100"}
+<<scene>>
+<p>Die Nacht, die ihr euch ausgesucht habt, ist eine ohne Mond — Karla hat drei Abende lang den Himmel beobachtet, ehe sie diesen für richtig befand. Kein Licht außer den Wachfeuern an den Toren, kein Laut außer dem Wind, der durch die leeren Übungshöfe streicht und die losen Läden der Waffenausgabe gegen ihre Rahmen schlagen lässt, immer und immer wieder, bis das Geräusch selbst zur Stille gehört.</p>
+<p>Ihr habt die Tage zuvor genutzt, wie man einen Feind vor der Schlacht auskundschaftet. Du hast beobachtet, wann Oren geht — jeden Abend zur selben Stunde, kein einziges Mal später, ein Mann, der seine eigene Pünktlichkeit wie eine Tugend trägt. Karla hat sich Tür, Fenster, Schlüssel und Wachwege eingeprägt, ohne ein Wort darüber zu verlieren, bis sie es dir an diesem Abend flüsternd vorlegt wie eine Karte, die nur in ihrem Kopf existiert.</p>
+<</scene>>
+
+<<dialog>>
+<p>„Der Riegel am Fensterladen zur Gasse ist morsch“, sagt Karla. „Und die Wache macht ihre Runde erst wieder in einer Vierzigtel-Stunde.“</p>
+<p>„Und wenn Oren früher zurückkommt?“</p>
+<p>„Dann beten wir, dass sein Hinken ihn diesmal aufhält.“</p>
+<</dialog>>
+
+<<if $world.flags.jarek_ausgang === "schande">>
+	<<gedanke>>
+	<p>Ich habe das schon einmal getan. Mich in der Dunkelheit an einen Ort geschlichen, an den ich nicht gehörte, überzeugt, dass niemand es merken würde. Damals hat man mich gesehen. Damals ist alles ans Licht gekommen, was ich für immer hätte verbergen wollen. Und jetzt stehe ich wieder hier, vor einem fremden Fenster, in derselben Nacht-Schwärze, und mein Körper erinnert sich an die Angst, noch ehe mein Verstand sie zulässt.</p>
+	<</gedanke>>
+<</if>>
+
+<p>Die Ablenkung kommt, wie verabredet: Drüben am Stall löst sich — mit ein wenig Nachhilfe von Karlas Hand — ein Pferderiemen, und ein Tier schlägt aus, laut genug, dass zwei Stallburschen fluchend herbeilaufen. In dem kurzen Aufruhr, den das gibt, huscht ihr an der Wache vorbei, hinein in den toten Winkel zwischen Waffenausgabe und Schmiede, wo euch niemand erwartet.</p>
+
+<<formal>>
+<p>Widerrechtliches Eindringen in eine Amtsstube der Akademie gilt als schweres Vergehen — gleichgestellt dem Diebstahl an Kriegsgerät, sollte etwas daraus entwendet werden. Wer dabei ertappt wird, hat mit Kerker, Degradierung oder, im schlimmsten Fall, mit dem Vorwurf der Spionage zu rechnen.</p>
+<</formal>>
+
+<p>Karla kniet vor dem Fensterladen, die Finger am morschen Riegel, und du hältst Wache, den Rücken an die kalte Mauer gepresst, das Herz laut genug, dass du fürchtest, man höre es bis zum Tor.</p>
+
+<<beziehung>>
+<<set _r to setup.skillCheck("thievery", 14)>>
+<<= setup.skillCheckAlert(_r)>>
+<<if _r.success>>	
+	<p>Der Riegel gibt nach, kaum dass Karla ihn berührt, lautlos, als hätte das morsche Holz nur auf eine höfliche Bitte gewartet. Der Laden schwingt, ohne zu knarren. Ihr seid drinnen, ehe der Wind auch nur einmal die Richtung wechseln konnte. Was du in den Monaten zuvor über Schlösser, Riegel und das lautlose Öffnen gelernt hast, zahlt sich jetzt aus, in einem einzigen, geräuschlosen Augenblick.</p>
+	<<set $world.ermittlung.flags.einbruch_lautlos = true>>
+<<else>>
+	<p>Der Riegel klemmt, hält, gibt dann mit einem Ruck nach, der den ganzen Laden gegen den Rahmen schlagen lässt — ein hartes, hölzernes Krachen, das euch beiden das Blut gefrieren lässt. Was du über solche Verrichtungen weißt, reicht nicht für mehr als diesen einen groben Ruck. Ihr wartet, reglos, einen Atemzug, zwei, drei. Nichts rührt sich. Doch der Laut ist hinaus in die Nacht, und man kann ein Geräusch nicht zurückrufen, wie man ein Wort nicht zurücknehmen kann.</p>
+	<<set $world.ermittlung.flags.einbruch_lautlos = false>>
+<</if>>
+<</beziehung>>
+
+<<scene>>
+<p>Drinnen riecht es nach kaltem Eisen und erloschenem Docht. Die Gestelle stehen wie schlafende Wachen in Reih und Glied, die Klingen matt im Sternenlicht, das durch den offenen Laden fällt. Auf dem Ausgabetisch liegen nicht ein, sondern gleich mehrere Bücher gestapelt, jedes mit einem anderen Lederrücken, jedes ungekennzeichnet bis auf ein kleines, handgeschriebenes Wort auf der ersten Seite.</p>
+<</scene>>
+
+<p>Karla schlägt das erste auf. Reparaturen — Klingenbrüche, verbogene Parierstangen, ein zerschlissener Riemen, datiert bis vor drei Wochen. Das zweite: Bruchbestand, Waffen, die man ausgemustert und noch nicht verbrannt hat. Das dritte trägt keinen Titel, nur ein Zeichen, das keiner von euch beiden kennt.</p>
+
+<<dialog>>
+<p>„Das hier ist es nicht“, flüstert Karla, „und das auch nicht. Wo, bei allen Heiligen, führt er die Ausgabe?“</p>
+<</dialog>>
+
+<p>Erst unter dem Stapel, halb verdeckt von einem Ölfläschchen, findest du das rechte Buch — abgegriffener als die anderen, die Seiten dunkel von tausend Fingern, die vor dir hier geschrieben haben. Du blätterst mit zitternden Fingern zurück, Woche um Woche, bis das Datum vor dir liegt, das du nie vergessen wirst.</p>
+
+<<gedanke>>
+<p>Da ist es. Die Nacht, in der Jarek verschwand. Meine Finger sind kälter als das Eisen um mich herum.</p>
+<</gedanke>>
+
+<p>Der Eintrag ist knapp, in einer fremden, eiligen Hand, die sich von Orens sonst so sauberer Schrift deutlich unterscheidet:</p>
+
+<<formal>>
+<p><em>„Ein Dolch, Übungsbestand C, zur Nachprüfung Westhof.“</em></p>
+<</formal>>
+
+<p>Keine Nummer eines Rekruten. Kein Name. Kein Zeichen, das du Oren zuordnen könntest. Nur diese eine, unverständliche Zeile, die mehr verbirgt, als sie preisgibt.</p>
+
+<<gedanke>>
+<p>Übungsbestand C — was, bei allen Heiligen, ist das? Und Westhof — eine Nachprüfung wofür? Ich kann den Eintrag lesen, aber ich verstehe kein Wort davon.</p>
+<</gedanke>>
+
+<p>In diesem Moment, während du die Zeile noch ein zweites Mal liest, als könnte sie sich beim erneuten Lesen erklären, hörst du draußen Schritte — ungleichmäßig, das eine schwerer als das andere. Ein Hinken.</p>
+
+<<dialog>>
+<p>„Oren“, haucht Karla. „Zu früh.“</p>
+<</dialog>>
+
+<<beziehung>>
+<<if $world.ermittlung.flags.einbruch_lautlos>>
+	<p>Wenigstens weiß er nichts von eurer Anwesenheit — noch nicht. Die Schritte kommen näher, doch sie klingen nicht eilig, nicht misstrauisch. Nur ein Mann, der zurückkehrt, weil ihm etwas eingefallen ist.</p>
+<<else>>
+	<p>Und diesmal trägt sein Gang eine Eile, die vorhin nicht darin lag. Er hat den Laden krachen gehört, oder jemand hat es ihm zugetragen. Die Schritte kommen schneller, als sein Hinken es erlauben sollte.</p>
+	<<print setup.setNpcsuspicion("orenmalk", 1)>>
+<</if>>
+<</beziehung>>
+
+<p>Das Buch liegt noch offen zwischen euren Händen, der Eintrag halb entziffert, die Tür zwischen euch und der Entdeckung nur noch wenige Herzschläge entfernt. Reicht die Zeit um es zurückzulegen und zu verschwinden?</p>
+
+[[1. Das Buch rasch zurücklegen und durch den Laden fliehen|Ermittlung_S2_Einbruch_Flucht]]
+[[2. Sich hinter den Waffengestellen verstecken und abwarten|Ermittlung_S2_Einbruch_Versteck]]
+
+
+:: Ermittlung_S2_Einbruch_Flucht {"position":"775,5500","size":"100,100"}
+<<scene>>
+<p>Kein Wort. Kein Blick, der zu lange bleibt. Karla reißt das Buch aus deinen Händen, noch ehe der Gedanke, es zu behalten, überhaupt Gestalt annehmen kann, und schiebt es zurück unter den Stapel — Reparaturen obenauf, dann Bruchbestand, dann das namenlose dritte, genau in der Reihenfolge, in der ihr sie vorgefunden habt. Ihre Finger zittern nicht. Deine schon.</p>
+<</scene>>
+
+<p>Die Schritte draußen sind jetzt nah genug, dass du das Schleifen seines schwächeren Beins über den festgetretenen Grund hörst, ein ungleichmäßiges Scharren, das näher kommt wie ein Uhrwerk, das man nicht anhalten kann.</p>
+
+<<dialog>>
+<p>„Das Fenster“, flüstert Karla. „Jetzt.“</p>
+<</dialog>>
+
+<p>Du bist schon dort, ehe sie den Satz beendet hat. Der Laden — vorhin nur ein Riegel, jetzt eine Grenze zwischen allem, was war, und allem, was sein wird, wenn man euch hier findet. Du schwingst ein Bein über das Sims, spürst die kalte Steinkante durch den Stoff der Hose, und für einen entsetzlichen Herzschlag verkeilt sich dein Fuß im Rahmen, als wollte das Haus selbst dich festhalten.</p>
+
+<<gedanke>>
+<p>Nicht jetzt. Bei allen Heiligen, nicht jetzt.</p>
+<</gedanke>>
+
+<p>Du reißt dich frei. Draußen erwartet dich die Kälte wie ein Schlag ins Gesicht, willkommen, weil sie Freiheit bedeutet. Karla folgt dir, geschmeidiger, als du es für möglich gehalten hättest bei jemandem, der breitschultrig genug ist, um jedem Rekrut die Stirn zu bieten. Sie landet neben dir im Schatten der Schmiede, lautlos wie eine Katze, die weiß, dass ihr Leben davon abhängt.</p>
+
+<p>Hinter euch, durch den Spalt des nicht ganz geschlossenen Ladens, hört ihr das Knarren der Tür zur Waffenausgabe. Orens Schritte, das vertraute Scharren, dann — Stille. Die Stille eines Mannes, der einen Raum betritt und nichts Ungewöhnliches findet.</p>
+
+<<beziehung>>
+<<if $world.ermittlung.flags.einbruch_lautlos>>
+	<p>Kein Fluch. Kein Ruf nach der Wache. Nur das Geräusch eines Hockers, der unter Gewicht knarrt, und dann — nichts. Er ist zurückgekommen, weil ihm etwas eingefallen ist, nicht, weil ihn jemand gewarnt hat. Ihr presst euch gegen die kalte Mauer der Schmiede, Schulter an Schulter, und wartet, bis euer Atem sich wieder in Takt findet mit der Nacht um euch herum.</p>
+<<else>>
+	<p>Für einen endlosen Moment hört ihr gar nichts — kein Schritt, kein Atemzug, nur das Blut in deinen eigenen Ohren. Dann: das Kratzen eines Hockers, der zurückgeschoben wird. Ein Fluch, halb unter den Atem gemurmelt. Er hat etwas bemerkt — den Laden vielleicht, der nicht ganz so sitzt, wie er ihn verlassen hat, oder nur ein Gefühl, das ihn nicht in Ruhe lässt. Ihr hört, wie er zur Tür geht, sie öffnet, in die Nacht hinaushorcht.</p>
+	<<gedanke>>
+	<p>Wenn er jetzt um die Ecke tritt, ist alles vorbei. Alles, wofür Karla gekämpft hat. Alles, was von mir noch unbefleckt ist.</p>
+	<</gedanke>>
+<</if>>
+<</beziehung>>
+
+<p>Karla packt deinen Ärmel und zieht dich tiefer in den Schatten, dorthin, wo sich Schmiede und Zeughaus in einem stumpfen Winkel berühren und die Dunkelheit am dichtesten steht. Ihr presst euch in die Nische, so eng, dass du ihren Herzschlag durch den Stoff ihres Wamses zu spüren glaubst — oder ist es dein eigener, der sich zwischen euch beiden nicht mehr unterscheiden lässt.</p>
+
+<<if $world.flags.jarek_ausgang === "schande">>
+	<<gedanke>>
+	<p>So hat es letztes Mal auch angefangen. Dieses Warten, dieser Atem, der sich weigert, ruhig zu werden. Nur dass mich damals niemand rechtzeitig in einen Schatten gezogen hat.</p>
+	<</gedanke>>
+<</if>>
+
+<p>Schritte, ganz nah jetzt, das ungleiche Scharren-und-Setzen von Orens Gang, so nah, dass du seinen Atem zu hören glaubst, kalt und kurz in der Nachtluft. Er bleibt stehen. Eine Ewigkeit, in einem einzigen Atemzug gefasst. Dann — er wendet sich, geht zurück. Die Tür der Waffenausgabe fällt ins Schloss, der Riegel klackt von innen.</p>
+
+<p>Ihr wartet, bis eure Beine euch wieder gehorchen, ehe ihr euch löst, einer nach dem anderen, lautlos wie Diebe, die ihr für diese eine Nacht auch wirklich gewesen seid.</p>
+
+<<scene>>
+<p>Erst hinter der dritten Ecke, weit genug entfernt, dass die Waffenausgabe nur noch ein dunkler Schatten unter vielen ist, lässt Karla den Atem heraus, den sie die ganze Zeit angehalten zu haben scheint. Über euch spannt sich der sternenlose Himmel wie ein Deckel, unter dem die ganze Akademie schläft, ahnungslos, was sich soeben in ihrer Mitte zugetragen hat.</p>
+<</scene>>
+
+<<dialog>>
+<p>„Wir haben es“, flüstert Karla, und in ihrer Stimme liegt etwas, das fast wie Lachen klingt, gepresst durch die Nachwirkung der Angst. „Ein Dolch, Übungsbestand C, zur Nachprüfung Westhof. Weißt du, was das heißt?“</p>
+<p>„Nein“, sagst du. „Aber ich werde es herausfinden.“</p>
+<</dialog>>
+
+<<gedanke>>
+<p>Das Buch liegt wieder da, wo es lag, als hätte niemand es je berührt. Nur wir wissen es besser. Und irgendwo in dieser einen Zeile steckt die Antwort auf eine Frage, die ich seit Monaten mit mir herumtrage — wenn ich sie nur zu lesen verstünde.</p>
+<</gedanke>>
+
+[[Den Fund mit Karla besprechen|Ermittlung_S3_Erkenntnis]]
+
+
+:: Ermittlung_S2_Einbruch_Versteck {"position":"875,5400","size":"100,100"}
+<<scene>>
+<p>Für die Flucht bleibt keine Zeit mehr — die Schritte sind schon zu nah, das Fenster zu weit, der offene Hof dahinter zu hell vom fernen Schein der Wachfeuer. Karla begreift es im selben Herzschlag wie du. Sie schiebt das Buch zurück unter den Stapel, Reparaturen obenauf, dann Bruchbestand, dann das namenlose dritte, mit Händen, die trotz allem nicht zittern, und zieht dich mit der anderen Hand tief zwischen die Waffengestelle, dorthin, wo die Schatten der aufgereihten Hellebarden am dichtesten fallen.</p>
+<</scene>>
+
+<p>Ihr presst euch in den schmalen Raum zwischen zwei Gestellen, den Rücken an kaltes Holz, die Knie angezogen, so eng beieinander, dass jede Bewegung des anderen die eigene Haut zu berühren scheint. Über euch ragen die Schäfte wie ein Zaun aus totem Holz, ihre Klingen im Sternenlicht vom Fenster her nur schwache, kalte Linien.</p>
+
+<<gedanke>>
+<p>Kein Laut. Keine Bewegung. Wenn er die Lampe entzündet, sind wir tot — nicht wörtlich, aber alles, was ich in diesem Jahr aufgebaut habe, ist es dann.</p>
+<</gedanke>>
+
+<<beziehung>>
+<<if $world.flags.jarek_ausgang === "schande">>
+	<<gedanke>>
+	<p>Ich kenne dieses Kauern schon. Dieses Zusammenziehen, als könnte man durch bloßen Willen kleiner werden, als der eigene Schatten es erlaubt. Letztes Mal hat es nicht gereicht. Ich presse die Zähne zusammen und hoffe, dass diese Nacht anders endet als jene.</p>
+	<</gedanke>>
+<</if>>
+<</beziehung>>
+
+<p>Die Tür öffnet sich. Orens Schritte, das vertraute, ungleiche Scharren-und-Setzen, treten ein, und mit ihnen ein Hauch von kalter Nachtluft, der für einen Moment den Geruch von Öl und Leder überdeckt.</p>
+
+<<beziehung>>
+<<if $world.ermittlung.flags.einbruch_lautlos>>
+	<p>Er summt vor sich hin, leise, tonlos, wie ein Mann, der an nichts Böses denkt. Du hörst, wie er zum Tisch geht, etwas verschiebt — vielleicht sucht er nur den Ölstein, den er vergessen hat —, und wieder zur Tür wendet. Kein Zögern in seinem Gang. Kein Verdacht.</p>
+<<else>>
+	<p>Er bleibt gleich hinter der Schwelle stehen. Zu lange. Du hörst, wie er den Atem anhält, wie ein Mann, der in einem Raum etwas spürt, das er nicht benennen kann. Dann, langsam, seine Schritte — nicht zum Tisch, sondern quer durch den Raum, entlang der Gestelle, als würde er jeden Schatten mit den Augen abtasten.</p>
+	<<gedanke>>
+	<p>Er hat etwas gehört. Draußen, vorhin, den Riegel. Und jetzt sucht er nach dem, was das Geräusch verursacht haben könnte, mit der Geduld eines Mannes, der weiß, dass Eile den Fehler macht, den Vorsicht vermeidet.</p>
+	<</gedanke>>
+<</if>>
+<</beziehung>>
+
+<p>Karlas Hand findet deine im Dunkeln, nicht aus Zärtlichkeit, sondern aus derselben stummen Übereinkunft, mit der man einander im Gefecht die Deckung sichert: <em>Beweg dich nicht. Was auch geschieht.</em> Ihr Griff ist fest genug, dass es wehtut, und gerade das hilft, den eigenen Atem zu zügeln.</p>
+
+<p>Orens Schritte kommen näher an eure Nische heran — einmal, zweimal —, und du siehst durch den schmalen Spalt zwischen zwei Schaftreihen den matten Schein einer Blende, die er mit sich trägt, halb abgedeckt, gerade hell genug, um den nächsten Schritt zu erkennen. Der Lichtschein streift die Gestelle vor euch, wandert, kommt zurück.</p>
+
+<<formal>>
+<p>Eine Blendlaterne verrät den Träger ebenso, wie sie ihm leuchtet — ihr enger, gerichteter Schein lässt nur einen schmalen Streifen der Umgebung erkennen und lässt alles daneben umso tiefer in Schwärze fallen. Wer sich außerhalb dieses Streifens hält, bleibt für den Träger unsichtbar, und sei es nur um Fingerbreite.</p>
+<</formal>>
+
+<p>Der Schein hält inne. Für einen endlosen Moment liegt er auf dem Gestell unmittelbar vor euren Gesichtern, so nah, dass du das Muster des geflochtenen Weidenkorbs erkennst, in dem die Ersatzklingen liegen, so nah, dass du meinst, das eigene Blut in den Ohren rauschen zu hören wie einen Sturm.</p>
+
+<p>Dann — ein Fluch, leise, mehr Seufzer als Wort. Oren wendet sich ab. Seine Schritte entfernen sich zum Tisch zurück, ein Rascheln von Papier, das Klicken eines Riegels, den er von innen an einer Schublade prüft. Ein Mann, der sich selbst überzeugt hat, dass die Nacht ihm nur einen Streich gespielt hat.</p>
+
+<p>Die Blende erlischt. Die Tür fällt ins Schloss. Der Riegel klackt von außen.</p>
+
+<p>Ihr bleibt reglos, noch lange nachdem die Schritte verklungen sind, bis der Schmerz in den verkrampften Beinen lauter wird als die Angst, und erst dann löst Karla ihre Hand von deiner, Finger für Finger, als müsste sie sich selbst erst erlauben, wieder etwas anderes zu fühlen als die pure Not des Wartens.</p>
+
+<<scene>>
+<p>Ihr wartet, bis die Nacht draußen wieder ganz euch gehört, ehe ihr euch durch den Fensterladen zurück in die Kälte schiebt. Über der Akademie liegt noch immer derselbe sternenlose Himmel wie ein Deckel, unter dem alles schläft, ahnungslos, was sich soeben in ihrer Mitte zugetragen hat.</p>
+<</scene>>
+
+<<dialog>>
+<p>„Er hat uns beinahe gefunden“, flüsterst du, als ihr endlich weit genug entfernt seid, um wieder normal zu atmen.</p>
+<p>„Beinahe zählt nicht“, sagt Karla, doch ihre Stimme zittert noch ein wenig. „Wir haben es. Ein Dolch, Übungsbestand C, zur Nachprüfung Westhof. Weißt du, was das heißt?“</p>
+<p>„Nein“, sagst du. „Aber ich werde es herausfinden.“</p>
+<</dialog>>
+
+<<gedanke>>
+<p>Das Buch liegt wieder da, wo es lag, als hätte niemand es je berührt. Nur wir wissen es besser. Und irgendwo in dieser einen Zeile steckt die Antwort auf eine Frage, die ich seit Monaten mit mir herumtrage — wenn ich sie nur zu lesen verstünde.</p>
+<</gedanke>>
+
+[[Den Fund mit Karla besprechen|Ermittlung_S3_Erkenntnis]]
+
+
+:: Ermittlung_S1_Beschluss [nach_Kap2_abend] {"position":"1075,5075","size":"100,100"}
+<<switch $world.ermittlung.flags.s2_weg>>
+<<case "einbruch">>
+	<<dialog>>
+	<p>„Dann bei Nacht“, sagt Karla. Sie sagt es ohne Zögern, aber auch ohne Leichtsinn. „Nicht morgen. Nicht übermorgen. Ich will den Himmel erst ein paar Abende gesehen haben — wir gehen, wenn kein Mond steht und ich die Runden der Wache auswendig kenne. Bis dahin: kein Wort, kein Blick zur Waffenausgabe, nichts.“</p>
+	<</dialog>>
+<<case "hauptmann">>
+	<<dialog>>
+	<p>„Dann über den Rang“, sagt Karla langsam. „Aber nicht überstürzt. Wenn wir vor einen Hauptmann treten, haben wir genau einen Versuch — jedes Wort muss sitzen, und wir müssen wissen, wann er Zeit hat und wann er nur gestört sein will. Lass mich die Worte zurechtlegen. Ein paar Tage.“</p>
+	<</dialog>>
+<<case "trick">>
+	<<dialog>>
+	<p>„Dann mit seinen eigenen Regeln“, sagt Karla, und um ihre Mundwinkel liegt etwas, das kein Lächeln ist. „Dafür brauche ich die richtige Stunde — wenn die Ausgabe voll ist und ein Vorfall im Gedränge untergeht. Und eine Klinge, deren Griff genau so locker ist, wie ich ihn brauche. Das richtet man nicht an einem Abend.“</p>
+	<</dialog>>
+<</switch>>
+
+<<gedanke>>
+<p>Also warten. Drill, Appell, Dienst — Tage, die aussehen müssen wie alle anderen, während die Sache in uns arbeitet. Das Schwerste am Ermitteln, lerne ich gerade, ist nicht das Wagnis. Es ist das Stillhalten davor.</p>
+<</gedanke>>
+
+<<weiterImTag "Weiter">>
+
+
+:: Ermittlung_S2_Hauptmann [interrupt einmalig] {"position":"950,5275","size":"100,100"}
+<<scene>>
+<p>Das Quartier der Hauptleute liegt im steinernen Flügel der Akademie, dort, wo die Wände dicker sind und die Kälte anders riecht — nach Wachs, nach frisch geöltem Leder der Riemenzeuge, nach der stillen Schwere von Papier, das Macht bedeutet. Vor der Tür zu Hauptmann Rindlers Stube wartet ihr, bis der Posten euch mit einem knappen Kopfnicken einlässt, und schon der erste Blick in den Raum sagt mehr über den Mann als jedes Wort, das er noch sprechen wird: alles an seinem Platz, keine Feder verrutscht, kein Blatt, das nicht genau parallel zur Tischkante liegt.</p>
+<</scene>>
+
+<p>Konrad Rindler sitzt, ehe ihr eintretet, schon aufrecht, als hätte er die Haltung nie verlassen. Ein kühler Mann, mit dem vornehmen Understatement derer, die nie beweisen mussten, dass sie wer sind. Er sieht euch nicht mit Neugier an, sondern mit der abwägenden Ruhe eines Mannes, der jeden Besuch zuerst als mögliche Zeitverschwendung einschätzt, ehe er ihm eine andere Bedeutung zugesteht.</p>
+
+<<gedanke>>
+<p>Ich kenne ihn kaum. Ein Name, ein Rang, ein Ruf als korrekt und unbestechlich — mehr weiß ich nicht über den Mann, dem ich gleich unser halbes Geheimnis anvertrauen will.</p>
+<</gedanke>>
+
+<<dialog>>
+<p>„Rekruten“, sagt er, ohne aufzublicken von dem Schreiben vor sich. „Ihr wisst, dass meine Zeit nach der Abendglocke nicht Euch gehört.“</p>
+<</dialog>>
+
+<p>Karla hat sich die Worte zurechtgelegt, wie sie sich alles zurechtlegt — knapp, ohne Umschweife, ohne eine Spur der Geschichte preiszugeben, die dahinter liegt.</p>
+
+<<dialog>>
+<p>„Herr Hauptmann, wir glauben, dass am Tag von Jareks Verschwinden eine Waffe falsch ausgegeben wurde. Ohne Drill, ohne Anlass. Wir möchten nur wissen, ob das Ausgabebuch der Waffenstube das bestätigt.“</p>
+<</dialog>>
+
+<p>Endlich hebt er den Blick. Es ist kein Blick des Zweifels, eher der eines Mannes, der eine Rechnung prüft, ehe er sie bezahlt.</p>
+
+<<dialog>>
+<p>„Eine kühne Behauptung für zwei Rekruten des ersten Jahrgangs.“</p>
+<p>„Es ist keine Behauptung, Herr Hauptmann“, sagt Karla. „Es ist eine Frage, die sich mit einem Blick in ein Buch beantworten lässt.“</p>
+<</dialog>>
+
+<<formal>>
+<p>Ein Hauptmann des Corps besitzt das Recht, jederzeit Einsicht in die Bücher der Zeug- und Waffenverwaltung zu verlangen. Ein Schreiber, der sich diesem Verlangen widersetzt, begeht damit selbst ein Vergehen gegen die Ordnung der Akademie.</p>
+<</formal>>
+
+<p>Rindler betrachtet euch beide, länger, als es angenehm ist. Dann legt er die Feder beiseite — eine Geste, die mehr Gewicht trägt als jedes Wort, das er bislang gesprochen hat.</p>
+
+<<dialog>>
+<p>„Gut“, sagt er schließlich. „Ich werde den Schreiber Malk bitten, mir das Buch vorzulegen. Doch merkt euch: Findet sich nichts als ein gewöhnlicher Schreibfehler, werdet ihr beide für diese Störung geradestehen.“</p>
+<</dialog>>
+
+<<gedanke>>
+<p>Ein Angebot und eine Drohung in einem Atemzug. Genau das, was ich von einem Mann erwartet hätte, der weder Freund noch Feind sein will, ehe er weiß, welche Seite sich lohnt.</p>
+<</gedanke>>
+
+<<beziehung>>
+<p>Was auch immer aus dieser Begegnung wird — es ist die erste Brücke, die du zu diesem Mann schlägst. Er kennt dich nicht, vertraut dir nicht, hat keinen Grund, dir mehr zu glauben als jedem anderen Rekruten. Was hier geschieht, wird die Grundlage dafür sein, was zwischen euch beiden künftig möglich ist — oder eben nicht.</p>
+<</beziehung>>
+
+<p>Am folgenden Tag lässt Rindler nach Oren Malk schicken. Ihr steht im Hintergrund, während der Schreiber das Zimmer betritt, sein Gang hinkend wie stets, sein Gesicht die Höflichkeit selbst — und doch, für einen Wimpernschlag, ehe er sich fasst, huscht etwas über seine Züge, das keine Höflichkeit ist.</p>
+
+<<dialog>>
+<p>„Ihr wünscht das Ausgabebuch zu sehen, Herr Hauptmann?“</p>
+<p>„Das der Waffenausgabe, Malk. Vom Tag, an dem der Rekrut Jarek die Akademie verließ.“</p>
+<</dialog>>
+
+<p>Oren zögert — nicht lange, nicht auffällig für jemanden, der nicht darauf achtet. Doch du achtest darauf.</p>
+
+<<gedanke>>
+<p>Er überlegt, welches Buch er bringt. Genau wie in jener Nacht, als Karla und ich zwischen drei falschen Bänden suchten, ehe wir den richtigen fanden. Nur dass er jetzt die Wahl hat, uns absichtlich in die Irre zu führen.</p>
+<</gedanke>>
+
+<p>Er kehrt mit einem Buch zurück — dem richtigen, wie sich zeigt, denn Rindler ist kein Mann, den man mit einem falschen Band abspeist, ohne dass er es bemerkt. Der Hauptmann blättert selbst, findet das Datum, liest — und seine Miene verändert sich mit keiner Regung.</p>
+
+<<dialog>>
+<p>„Ein Dolch, Übungsbestand C, zur Nachprüfung Westhof“, liest er halblaut vor. Dann klappt er das Buch zu, ohne eine weitere Zeile zu suchen.</p>
+<p>„Eine Sondereintragung. Nichts weiter.“</p>
+<</dialog>>
+
+<<gedanke>>
+<p>Nichts weiter. Als hätte ich erwartet, dass ein einziger Blick genügt, um alles aufzudecken. Natürlich nicht. Ein Hauptmann sieht in einem Jahr Dutzende solcher Zeilen — Kuriere, Sonderaufträge, Prüfungen, die niemanden interessieren. Für ihn ist das Alltag. Für mich ist es die einzige Spur, die ich habe.</p>
+<</gedanke>>
+
+<<dialog>>
+<p>„Herr Hauptmann“, versucht Karla, „aber ohne Drill an jenem Tag —“</p>
+<p>„Genügt mir nicht, Rekrutin, um einen Schreiber der Zeugverwaltung wegen einer ordnungsgemäßen Sondereintragung zu belangen.“ Seine Stimme wird schärfer. „Ihr habt mich mit einer vagen Vermutung von meiner Arbeit abgehalten. Das wird nicht wieder geschehen.“</p>
+<</dialog>>
+
+<<formal>>
+<p>Wer einen Vorgesetzten ohne hinreichenden Grund mit einer Anschuldigung behelligt, riskiert eine Ordnungsstrafe — im geringsten Fall zusätzlichen Wachdienst, im schlimmeren einen Eintrag in die eigene Akte.</p>
+<</formal>>
+
+<<= setup.setNpcsuspicion("hauptmann", 1)>>
+
+<p>Rindler verurteilt euch beide zu einer Nachtwache zusätzlich zum ohnehin vollen Dienstplan — eine milde Strafe, wie er selbst anmerkt, gemessen an dem, was er hätte veranlassen können. Milde und dennoch spürbar: Ein Zeichen, dass er nicht gewillt ist, euch ein zweites Mal mit einer solchen Vermutung vor sich zu sehen.</p>
+
+<p>Etwas in seinem Blick, als er euch entlässt, ist kühler als zuvor — nicht Zorn, eher die Enttäuschung eines Mannes, der erwartet hatte, dass Rekruten seine Zeit besser zu nutzen wissen. Was auch immer zwischen dir und Rindler noch entstehen mag, es beginnt nicht mit Vertrauen, sondern mit dieser einen verpufften Gelegenheit.</p>
+
+<p>Oren war während der ganzen Unterredung im Raum gestanden, stumm, den Blick gesenkt, wie es sich für einen Schreiber vor seinem Hauptmann geziemt. Doch als ihr an ihm vorbei zur Tür geht, hebt er für einen einzigen Wimpernschlag den Kopf, und in seinen Augen liegt etwas, das keine Demut mehr ist.</p>
+
+<<gedanke>>
+<p>Er weiß es jetzt. Er weiß, dass wir nach diesem einen Eintrag gesucht haben, dass wir wissen, wo er steht, was er bedeutet. Rindler mag es für eine Lappalie halten. Oren tut das nicht.</p>
+<</gedanke>>
+<<= setup.setNpcAffection("orenmalk", -3)>>
+<<= setup.pushNpcMemory("orenmalk", "Dolch-Eintrag gesucht")>>
+<<= setup.setNpcsuspicion("orenmalk", 2)>>
+
+<p>Draußen, im kalten Gang, atmet Karla lange aus, ehe sie spricht.</p>
+
+<<dialog>>
+<p>„Er hat es nicht gesehen“, sagt sie leise, „aber wir schon. Ein Dolch, ausgegeben ohne Drill, vertuscht als Sondereintragung. Das ist kein Zufall mehr, Tom. Das ist ein Beweis.“</p>
+<p>„Nur, dass niemand außer uns beiden ihn als solchen erkennt.“</p>
+<</dialog>>
+
+<<gedanke>>
+<p>Wir haben, was wir brauchten — aber wir haben es teuer erkauft. Rindler wird uns nicht mehr ernst nehmen, sollte wir je wieder mit einer Vermutung zu ihm kommen. Und Oren wird von nun an wissen, dass wir ihm auf den Fersen sind.</p>
+<</gedanke>>
+
+[[Den Fund mit Karla besprechen|Ermittlung_S3_Erkenntnis]]
+
+
+:: Ermittlung_S2_Verwaltungstrick [einmalig interrupt] {"position":"1125,5275","size":"100,100"}
+<<scene>>
+<p>Der Nachmittag ist grau und geschäftig, die Stunde, in der die Waffenausgabe am meisten Betrieb hat — Rekruten, die Übungswaffen tauschen, ein Korporal, der nach fehlenden Riemen fragt, das ständige Kommen und Gehen, in dem ein einzelner Vorfall leicht untergeht. Genau diese Stunde hat Karla gewählt, mit derselben kühlen Berechnung, mit der sie schon den mondlosen Abend für den Einbruch gewählt hätte, wäre es dazu gekommen.</p>
+<</scene>>
+
+<<dialog>>
+<p>„Du sagst nichts“, hatte sie dir vorher eingeschärft, auf dem Weg hierher. „Du siehst nur zu. Und wenn ich das Buch offen habe, liest du! Du schaust nicht mich an, du schaust nicht ihn an. Du schaust auf das Buch.“</p>
+<</dialog>>
+
+<<gedanke>>
+<p>Ein einfacher Plan, hat sie gesagt. Zu einfach, fürchte ich — aber vielleicht ist gerade das seine Stärke. Kein Riegel, der bricht. Kein Hauptmann, der Fragen stellt. Nur eine Lüge, klein genug, dass niemand sie eines zweiten Blickes für würdig hält.</p>
+<</gedanke>>
+
+<p>Karla tritt an den Ausgabetisch, eine stumpfe Übungsklinge in der Hand, deren Griff sie unterwegs mit einem geübten Ruck ein Stück gelockert hat — 
+genug, dass er wackelt, nicht genug, dass es wie mutwillige Beschädigung aussieht. Sie legt die Waffe vor Oren hin, mit der Empörung einer Rekrutin, die eine schlechte Ausrüstung nicht länger hinnehmen will.</p>
+
+<<dialog>>
+<p>„Der Griff sitzt nicht richtig. War schon so, als ich sie fasste.“</p>
+<</dialog>>
+
+<p>Oren nimmt die Klinge, prüft sie mit einem einzigen, geübten Blick, und du siehst, wie er schon den Mund öffnet, um sie mit einer knappen Bemerkung abzutun — <em>„Das ist nichts, Rekrutin, bringt sie nach dem Drill zurück"</em> — ehe Karla ihm die Gelegenheit dazu nimmt.</p>
+
+<<dialog>>
+<p>„Ich will einen ordentlichen Eintrag“, sagt sie, lauter, als nötig wäre, gerade laut genug, dass zwei andere Rekruten in der Nähe aufblicken. „Wenn diese Klinge im Drill bricht, will ich nicht dastehen und für einen Schaden geradestehen, den ich nicht verursacht habe.“</p>
+<</dialog>>
+
+<<formal>>
+<p>Jede gemeldete Beschädigung an Ausrüstung muss im Ausgabebuch mit Datum und Zeichen des Schreibers vermerkt werden — nicht zum Schutz des Schreibers, sondern zum Schutz des Rekruten, der sonst für fremdes Verschulden haftet. Ein Schreiber, der eine solche Meldung abweist, trägt die Haftung fortan selbst.</p>
+<</formal>>
+
+<p>Oren zögert — nicht aus Misstrauen, sondern aus derselben überkorrekten Pflichttreue, die ihn erst zu dem gemacht hat, was er ist. Eine Rekrutin, die auf ihrem Recht besteht, ist ihm unangenehmer als eine, die einfach geht. Mit einem knappen, missmutigen Seufzer zieht er das Buch zu sich heran und schlägt es auf — bei der laufenden Woche, wo die letzten Einträge stehen. Nicht bei der Woche, die du brauchst.</p>
+
+<<gedanke>>
+<p>Zu früh. Das Buch liegt offen, aber auf der falschen Seite, und ich habe keine Ahnung, wie Karla ihn dazu bringen will, zurückzublättern, ohne dass er sich fragt, warum.</p>
+<</gedanke>>
+
+<<dialog>>
+<p>„Wartet“, sagt Karla, ehe er die Feder ansetzt. „Ich hatte diese Klinge schon einmal in der Hand. Vor Wochen. Damals war der Griff schon locker — ich hab's nur nicht gemeldet, weil ich dachte, es geht vorüber. Wenn Ihr jetzt vermerkt, dass der Schaden neu ist, hafte ich womöglich für etwas, das längst bestand.“</p>
+<</dialog>>
+
+<p>Oren blinzelt, kurz aus dem Takt seiner Routine gebracht. Eine Behauptung, die er weder bestätigen noch verwerfen kann, ohne nachzusehen — und genau das ist ihr Ziel.</p>
+
+<<dialog>>
+<p>„Wann soll das gewesen sein?“</p>
+<p>„Vor der Nacht, in der der Rekrut Jarek verschwand. Kurz davor, meine ich — ich weiß es nicht mehr genau.“</p>
+<</dialog>>
+
+<<gedanke>>
+<p>Ein Name, beiläufig fallengelassen, als wäre er nur ein Zeitanker und nichts weiter. Ich hätte nicht gedacht, dass sie es wagen würde, ihn selbst auszusprechen.</p>
+<</gedanke>>
+
+<p>Oren zögert einen Atemzug zu lang — genug, dass du es bemerkst, nicht genug, dass es ihm selbst auffällt. Dann blättert er zurück, Seite um Seite, murmelnd, mehr zu sich selbst als zu euch.</p>
+
+<<dialog>>
+<p>„Das wäre dann … hier irgendwo.“</p>
+<</dialog>>
+
+<p>Er ist noch nicht an der richtigen Stelle — eine Woche zu spät, wie du siehst, als du unauffällig über seine Schulter blickst —, doch er blättert weiter, Seite für Seite, ehe Karla die zweite und entscheidende Ablenkung setzt.</p>
+
+<<dialog>>
+<p>„Da“, sagt sie und tippt auf eine Zeile drei Wochen zu früh. „Ist das meine Hand? Sieben-und-zwanzig?“</p>
+<p>„Das ist nicht einmal Eure Nummer“, sagt Oren scharf und blättert, um es ihr zu beweisen, vorwärts — genau in die Woche, die du brauchst.</p>
+<</dialog>>
+
+<<gedanke>>
+<p>Jetzt. Genau jetzt.</p>
+<</gedanke>>
+
+<p>Für den Bruchteil eines Atemzugs liegt die Seite offen vor dir, während Oren mit dem Finger auf Karlas angebliche Nummer deutet und sie mit einer gespielt kleinlauten Entschuldigung Zeit schindet. Deine Augen wandern nicht zu ihrer Zeile — die interessiert dich nicht —, sondern eine Handbreit tiefer, zu dem Datum, das du seit Monaten im Kopf trägst.</p>
+
+<<formal>>
+<p><em>„Ein Dolch, Übungsbestand C, zur Nachprüfung Westhof.“</em></p>
+<</formal>>
+
+<<gedanke>>
+<p>Da. Nur ein Wimpernschlag, und doch genug — nicht, weil das Glück mir half, sondern weil Karla ihm zwei Lügen aufgetischt hat, ehe die dritte ihn endlich an die richtige Stelle trieb.</p>
+<</gedanke>>
+
+<<if $world.flags.jarek_ausgang === "schande">>
+	<<gedanke>>
+	<p>Ich werde gut darin, Dinge zu lesen, die man mir nicht zeigen will, und noch besser darin, dabei ein Gesicht zu machen, als hätte ich nichts gesehen. Das ist keine Fähigkeit, auf die ich stolz sein sollte. Aber sie ist meine.</p>
+	<</gedanke>>
+<</if>>
+
+<p>Oren blättert vor, zurück zur laufenden Woche, ohne zu ahnen, welchen Umweg er soeben genommen hat, und trägt endlich Karlas Beschwerde ein — ein knapper Vermerk, eine hingeworfene Unterschrift.</p>
+
+<<dialog>>
+<p>„Da“, sagt er. „Bringt die Klinge morgen zum Waffenmeister, wenn Ihr auf einem Ersatz besteht.“</p>
+<p>„Ich danke Euch“, sagt Karla, mit einer Höflichkeit, die eine Spur zu breit lächelt, um ganz echt zu sein.</p>
+<</dialog>>
+
+<p>Ihr geht, ehe er Gelegenheit hat, sich zu fragen, warum eine Rekrutin für einen wackligen Griff so viel Aufhebens macht. Erst draußen, außer Hörweite, hinter der nächsten Ecke, lässt Karla den Atem heraus, den sie die ganze Zeit angehalten zu haben scheint.</p>
+
+<<dialog>>
+<p>„Nun?“ fragt sie. „Was stand dort?“</p>
+<p>„Ein Dolch. Übungsbestand C. Zur Nachprüfung Westhof.“</p>
+<</dialog>>
+
+<p>Karla wiederholt die Worte, leise, als könnte sie ihnen durch bloßes Aussprechen mehr Sinn abringen, als sie beim ersten Hören hatten.</p>
+
+<<dialog>>
+<p>„Das ist alles?“</p>
+<p>„Das ist alles, was ich in einem Wimpernschlag lesen konnte.“</p>
+<</dialog>>
+
+<<gedanke>>
+<p>Kein Name. Kein Zeichen, das ich Oren zuordnen könnte. Nur diese eine Zeile, kurz genug, um sie mir einzuprägen, zu kurz, um sie zu verstehen.</p>
+<</gedanke>>
+
+<p>Kein Einbruch, keine Strafe, kein Hauptmann, der euch von nun an mit anderen Augen ansieht. Nur ein winziger, sauberer Betrug, verübt mit den eigenen Regeln der Akademie als Werkzeug — und ein einziger Satz, gestohlen aus einem offenen Buch, der euch nicht sagt, was er bedeutet, nur, dass er etwas bedeutet.</p>
+
+[[Den Fund mit Karla besprechen|Ermittlung_S3_Erkenntnis]]
+
+
+:: Ermittlung_S3_Beobachtung [nach_Kap2_abend] {"position":"775,5950","size":"100,100"}
+<<scene>>
+<p>Karla nimmt die Nachricht von Halms Abweisung auf, wie sie alles aufnimmt, was sich ihr in den Weg stellt: mit einem kurzen, harten Nicken, als hätte sie nie etwas anderes erwartet. „Dann fragen wir niemanden mehr“, sagt sie. „Fragen hinterlassen Spuren. Augen nicht.“</p>
+<</scene>>
+
+<p>Also beobachtet ihr. Tagelang, im Vorbeigehen, aus dem Augenwinkel, ohne je stehenzubleiben — beim Wasserholen, auf dem Weg zum Drill, in der Reihe der zur Waffenpflege Eingeteilten. Die Waffenausgabe hat eine Rückseite, das lernst du in diesen Tagen: eine hölzerne Verladerampe zur schmalen Gasse hin, wo Karren halten können, ohne den Hof zu kreuzen.</p>
+
+<<set $world.ermittlung.flags.rampe_gesehen = true>>
+
+<p>Am vierten Morgen kommt Bewegung in das Bild. Zwei Knechte tragen Kisten aus dem Seitentor auf die Rampe — flache, lange Kisten, jede mit einem Kreidezeichen auf dem Deckel, das du auch aus der Entfernung lesen kannst: ein einzelnes C. Ein Fuhrmann in fremder, lehmverkrusteter Kleidung zurrt sie fest, während Oren mit dem Geleitschein daneben steht und jede Kiste einzeln abzeichnet, ehe sie den Karren berührt.</p>
+
+<<gedanke>>
+<p>Da ist es. Übungsbestand C verlässt die Akademie — kistenweise, über eine Rampe, die vom Hof aus niemand sieht. Jetzt fehlt nur noch: wohin.</p>
+<</gedanke>>
+
+<p>Der Fuhrmann tränkt seine Pferde am Brunnen vor dem Tor, ehe er auflädt. Ein Mann, der wartet, ist ein Mann, mit dem man reden kann — wenn man die richtige Art hat, nichts Besonderes zu fragen.</p>
+
+
+<<if $player.spezialisierung === "cannon">>
+	<<beziehung>>
+	<p>Du schlenderst hin und hilfst ungefragt mit dem zweiten Eimer. Der Blick des Fuhrmanns streift deine Ärmel — die Pulverflecken, die kein Waschen der Welt mehr herauskriegt — und sein Gesicht klappt auf wie ein Scheunentor.</p>
+
+	<<dialog>>
+	<p>„Ah! Sieh an, einer von die Feuerwerkers!“ Er schlägt dir auf die Schulter, dass der Eimer schwappt. „Hab zwei Jahre für die Stückmeisterei gefahren, Junge — Pulverfässer, Kugeln, das ganze schöne Zeug. Ihr seid die Einzigen hier, wo wissen, was ne Achse auhalten tut, bevor se brechen tut. Die mit die Spieße tun den Karren voll, als wär Eisen aus Stroh.“</p>
+	<</dialog>>
+
+	<p>Von da an redet er von selbst, und du musst nur noch die Zügel halten. Die Fuhre? Winkt ab.</p>
+
+	<<dialog>>
+	<p>„Schadeisen, wie immer. Raus nach Westhof, zur Esse vom Krebs — Schadeisen hin, Geflicktes zurück, seit Jahren dieselbe Tour.“ Er beugt sich näher, vertraulich unter Fachleuten. „Und der da drin“ — ein Nicken zur Waffenausgabe — „tut dir jeden Nagel dreimal zählen, eh er ihn hergeben tut. Tut jede Kiste selber abzeichnen, mit die eigenen Fingers. Bei die Stückmeisterei damals hat das der Verwalter gemacht, und keinen hat's gejuckt.“</p>
+	<</dialog>>
+
+	<<gedanke>>
+	<p>Pulverflecken als Losungswort. Er hat mir mehr erzählt, als ich zu fragen gewagt hätte — und nebenbei etwas, das hängen bleibt: Oren zeichnet jede Kiste persönlich. Kein Verwalter, kein Geselle. Er allein.</p>
+	<</gedanke>>
+	<</beziehung>>
+<<else>>
+
+
+<div id="sandbox-menu">
+
+<ul class="sandbox-menu">
+    <li>
+        <<link "Den Fuhrmann befragen">>
+            <<replace "#sandbox-menu">>
+                <<include "Ermittlung_S3_Beobachtung_Ausfragen">>
+            <</replace>>
+        <</link>>
+
+        <span class="subtext">
+            <<set _checkOn = "gossip">>
+            — Frage den Fuhrmann aus.
+            <<= setup.getKnowledgeLabel(_checkOn)>>
+            <<= setup.getPlayerKnowledge(_checkOn)>>
+        </span>
+    </li>
+
+    <li>
+        <<link "Die Rampe ausspähen">>
+            <<replace "#sandbox-menu">>
+                <<include "Ermittlung_S3_Beobachtung_Ausspaehen">>
+            <</replace>>
+        <</link>>
+
+        <span class="subtext">
+            <<set _checkOn = "perception">>
+            — Spähe die Rampe aus.
+            <<= setup.getKnowledgeLabel(_checkOn)>>
+            <<= setup.getPlayerKnowledge(_checkOn)>>
+        </span>
+    </li>
+</ul>
+
+</div>
+
+
+<</if>>
+
+
+
+<<= setup.ermFund("westhof_krebs", "Übungsbestand C = Schadeisen, verlässt die Akademie kistenweise über die Verladerampe der Waffenausgabe. Ziel der Fuhren: die Schmiede Westhof an der Nordstraße, geführt von einem Mann namens Krebs.")>>
+
+<<dialog>>
+<p>„Westhof“, sagt Karla am Abend. „Eine Schmiede, ein Name, eine Straße. Wenn der Dolch dort ankam, gibt es dort ein Buch, das es weiß. Und wenn nicht —“</p>
+<p>„— dann ist der Eintrag eine Lüge mit einer Adresse.“</p>
+<p>„Die Fuhren nehmen Begleitschutz mit. Zwei Mann, Freiwillige.“ Sie sieht dich an. „Wann hast du dich zuletzt freiwillig gemeldet, Tom?“</p>
+<</dialog>>
+
+<<set $world.ermittlung.flags.s4_done to true>>
+<<set $world.ermittlung.flags.westhof_plan to true>>
+
+<<gedanke>>
+<p>Jetzt heißt es warten, bis die nächste Fuhre angesetzt wird — und die Hände heben, ehe es ein anderer tut.</p>
+<</gedanke>>
+
+<<weiterImTag "Weiter">>
+
+
+:: Ermittlung_S3_Beobachtung_Ausfragen {"position":"700,6050","size":"100,100"}
+<<beziehung>>  
+<<set _r to setup.skillCheckXp("gossip", 12)>>
+  <<= setup.skillCheckAlert(_r)>>
+  <<if _r.success>>
+      <p>Du schlenderst hin, hilfst ungefragt mit dem zweiten Eimer, sagst etwas über das Wetter und die Straßen. Der Fuhrmann ist ein Redseliger, wie die meisten, die den halben Tag allein auf einem Bock sitzen. Binnen weniger Atemzüge weißt du mehr, als du zu fragen gewagt hättest: Er fährt die Nordstraße, seit Jahren schon, immer dieselbe Fuhre — „raus nach Westhof, zur Esse vom Krebs. Schadeisen hin, Geflicktes zurück. Und der da drin“ — ein Nicken zur Waffenausgabe — „zählt dir jeden Nagel dreimal, eh er ihn hergibt.“</p>
+      <<= setup.ermFund("westhof_ladung", "Oren zeichnet jede Kiste die nach Westhof geht persönlich ab.")>>
+  <<else>>
+      <p>Du versuchst es beiläufig, aber die Beiläufigkeit will dir heute nicht gelingen — die Fragen kommen zu schnell hintereinander, und der Fuhrmann wird wortkarg, wie Männer wortkarg werden, wenn ein Fremder sich zu sehr für ihre Ladung interessiert. „Westhof“, sagt er nur noch, „wie immer“, und wendet dir die Schulter zu. Immerhin: Als der Verwalter von der Rampe herüberruft, wohin der Geleitschein solle, fällt der Name, den du brauchst — „für den Krebs, wie sonst“. Aber der Fuhrmann hat sich dein Gesicht gemerkt, und Fuhrleute reden mit vielen Leuten.</p>
+      <<= setup.setPlayerSuspicion(5)>>
+  <</if>>
+<</beziehung>>
+
+
+:: Ermittlung_S3_Beobachtung_Ausspaehen {"position":"800,6050","size":"100,100"}
+<<set _r to setup.skillCheck("perception", 12)>>
+<<= setup.skillCheckAlert(_r)>>
+
+<<if _r.success>>
+
+<p>Du hältst dich im Schatten des Brunnens, tust, als würdest du auf jemanden warten, und lässt den Blick immer wieder zur Verladerampe wandern. Bald fällt dir auf, dass Oren jeden einzelnen Handgriff überwacht. Keine Kiste verlässt das Lager, bevor er den Kreidestrich auf dem Deckel geprüft und den Geleitschein eigenhändig abgezeichnet hat. Als der Fuhrmann die Pferde tränkt, bleibt eine Kiste einen Augenblick unbeaufsichtigt. Das Kreidezeichen darauf ist deutlich zu erkennen: ein einzelnes C. Wenig später hörst du, wie einer der Knechte fragt, ob „die Fuhre nach Westhof“ vollständig sei. Oren nickt nur knapp und gibt das Zeichen zum Verladen.</p>
+
+<<gedanke>>
+<p>Also doch. Übungsbestand C geht nach Westhof – und Oren kontrolliert jede einzelne Kiste persönlich.</p>
+<<= setup.ermFund("westhof_ladung", "Oren zeichnet jede Kiste die nach Westhof geht persönlich ab.")>>
+<</gedanke>>
+
+<<else>>
+
+<p>Du versuchst, die Rampe unauffällig im Auge zu behalten, doch ständig versperren Knechte, Pferde oder vorbeiziehende Rekruten die Sicht. Als endlich eine Kiste frei zu erkennen wäre, schlägt der Fuhrmann die Plane darüber, bevor du das Kreidezeichen lesen kannst. Immerhin hörst du noch, wie Oren den Geleitschein einem Knecht zurückgibt und knapp befiehlt: „Nach Westhof. Wie immer.“ In derm Moment schaut der Fuhrmann zu dir herüber und bemerkt wie du zu glotzen scheinst.</p>
+<<dialog>>„Gefall ich dir so gut, Bürschlein, oder sinds die Pferde die dir gefallen tun?!“<</dialog>>
+<p>Du schreckst auf als dich der Fuhrmann anpflaumt. Du lächelst ihn dümmlich an und machst auf dem Absatz kehrt.</p>
+
+<<gedanke>>
+<p>Der Bestimmungsort ist bestätigt, aber die Einzelheiten bleiben verborgen.</p>
+<</gedanke>>
+
+<<= setup.setPlayerSuspicion(5)>>
+
+<</if>>
+
+
+:: Ermittlung_S3_Erkenntnis [nach_Kap2_abend] {"position":"1150,5575","size":"100,100"}
+<<scene>>
+<p>Der Holzstapel liegt wieder im selben Windschatten wie in jener ersten Nacht, als ihr beschlossen habt, Jareks letzten Tag nachzuzeichnen. Der Winter hat sich seither nicht gerührt – noch immer dieselbe Kälte, noch immer dieselben Pechfackeln, die den Hof in unstetes Licht tauchen. Nur ihr beide seid nicht mehr dieselben wie damals. Ihr wisst jetzt etwas, das ihr vorher nicht wusstet, und Wissen wiegt hier schwerer als jede Waffe.</p>
+<</scene>>
+
+<p>Karla wiederholt die Worte leise, als könnte allein das Aussprechen ihnen mehr Bedeutung abringen als beim ersten Lesen.</p>
+
+<<dialog>>
+<p>„Ein Dolch, Übungsbestand C, zur Nachprüfung Westhof.“</p>
+<</dialog>>
+
+<<gedanke>>
+<p>Ich lese die Worte im Kopf wieder und wieder, und sie werden nicht klarer davon. Übungsbestand C — ich habe ein Jahr lang Waffen getragen, geputzt, in die Gestelle zurückgereiht, und diese Bezeichnung ist mir nie untergekommen. Und Westhof? Ein Hof, ein Name, ein Ort? Der Eintrag ist kurz genug, um ihn auswendig zu wissen, und zu kurz, um ihn zu verstehen.</p>
+<</gedanke>>
+
+<<dialog>>
+<p>„Kennst du die Bezeichnung?“, fragst du.</p>
+<p>„Nein.“ Karla schüttelt langsam den Kopf. „Ein Jahr Waffenpflege, und ich habe nie ein Stück gesehen, das so verzeichnet war. Aber das ist nur die halbe Frage.“</p>
+<p>„Und die andere Hälfte?“</p>
+<p>„Was danach nicht geschah.“</p>
+<</dialog>>
+
+<<formal>>
+<p>Jede Waffe, die zur Ausbesserung überstellt wird, muss binnen vierzehn Tagen zurückgeführt und im Ausgabebuch mit Datum und Zeichen des Schreibers vermerkt werden — geheilt oder, falls das Eisen nicht mehr zu retten ist, ersetzt durch eine andere Klinge aus dem Bestand. Ein Vorgang, der ohne einen solchen Rückvermerk offen bleibt, gilt als ungeklärt und müsste eigentlich auffallen.</p>
+<</formal>>
+
+<<gedanke>>
+<p>Ich erinnere mich an die Seite, wie sie vor mir lag. Keine zweite Zeile darunter. Kein Rückvermerk. In den Wochen danach wurde kein neuer Dolch an irgendeinen Rekruten ausgegeben. Es war, als hätte die Sache dort einfach aufgehört zu existieren, ohne dass es jemand für nötig befand, sie zu Ende zu führen.</p>
+<</gedanke>>
+
+<<dialog>>
+<p>„Sie ist nie zurückgekommen“, sagt Karla. „Keine Reparatur. Kein Ersatz. Was immer diese Nachprüfung sein soll — sie hat nie geendet.“</p>
+<</dialog>>
+
+<p>Über dem Hof zieht der Wind wieder eine Fackel schräg, und für einen Moment fallen eure beiden Schatten lang und verzerrt auf den Schnee: zwei Gestalten, die sich über etwas beugen, das keiner von beiden noch für einen bloßen Verwaltungsfehler hält.</p>
+
+<<dialog>>
+<p>„Zwei Worte und eine Lücke“, sagt Karla schließlich. „Die Lücke verstehe ich. Die Worte nicht. Und ich folge ungern einer Spur, die ich nicht lesen kann.“</p>
+<p>„Dann finden wir zuerst heraus, was sie bedeuten.“</p>
+<p>„Und wer erklärt zwei Rekruten die Ordnung der Zeugverwaltung, ohne zu fragen, warum sie das wissen wollen?“</p>
+<</dialog>>
+
+<<if not $world.ermittlung.spuren.includes("dolch_eintrag")>>
+	<<set $world.ermittlung.spuren.push("dolch_eintrag")>>
+	<<set $world.ermittlung.spurenText["dolch_eintrag"] = "Ausgabebuch der Waffenstube, Eintrag vom Tag von Jareks Flucht: 'Ein Dolch, Übungsbestand C, zur Nachprüfung Westhof.' Kein Rückvermerk, keine Reparatur, kein Ersatz in den Wochen danach verzeichnet — der Vorgang bricht ohne Abschluss ab.">>
+<</if>>
+<<set $world.ermittlung.flags.s2_done to true>>
+
+<<gedanke>>
+<p>Der Magister. Wenn irgendwer in dieser Akademie weiß, was diese Worte bedeuten, dann der Mann, der über jedes Schriftstück wacht, das hier je verfasst wurde. Aber nicht heute, und nicht mit der Tür ins Haus. Eine solche Frage stellt man beiläufig — an einem Tag, an dem niemand einen Grund hat, sich zu wundern, dass man sie stellt.</p>
+<</gedanke>>
+
+<<weiterImTag "Weiter">>
+
+
+:: Ermittlung_S4_Magister_Halm {"position":"950,5750","size":"100,100"}
+<<gedanke>>
+<p>Übungsbestand C. Westhof. Zwei Worte, die eine Tür bewachen, hinter der ich nicht sehen kann. Wenn irgendwer in dieser Akademie weiß, was sie bedeuten, dann der Mann, der über jedes Schriftstück wacht, das hier je verfasst wurde.</p>
+<</gedanke>>
+
+<<if $edu.archivzugang and $world.flags.jarek_ausgang isnot "schande" and $npc.magister.affection >= 0>>
+
+	<<scene>>
+	<p>Das Archiv empfängt dich, wie es dich immer empfangen hat, seit man dir die Erlaubnis gab, seine Schwelle zu überschreiten — mit jenem trockenen, kühlen Geruch nach Staub und Wachs, der sich in die Kleidung setzt und noch Stunden später an einem haftet. Niemand hält dich auf. Niemand fragt, warum du hier bist. Das Vertrauen, das dir im vergangenen Jahr zugesprochen wurde, öffnet dir diese Tür, ohne dass du auch nur ein Wort darüber verlieren musst.</p>
+	<</scene>>
+
+	<p>Du gehst an den Regalen entlang, an denen sich Jahrzehnte in Leder und Pergament stapeln, bis du bei den Verwaltungsschriften der Zeugstuben ankommst — trockene, endlose Listen von Beständen, Kammern, Bezeichnungen, die niemand außer den Schreibern selbst je zu lesen pflegt.</p>
+
+	<<gedanke>>
+	<p>Karla muss diesmal nicht neben mir stehen. Muss keine Ablenkung ersinnen, keine Lüge vorbereiten. Ich kann einfach suchen, in aller Ruhe, ohne dass irgendjemand fragt, warum.</p>
+	<</gedanke>>
+
+	<p>Es dauert eine Weile — länger, als dir lieb ist, mit dem Wissen, dass jede Stunde hier eine Stunde ist, die Jarek und sein Netzwerk für sich haben —, doch schließlich findest du es: ein Verzeichnis der Bezugsstellen für auswärtige Waffenprüfungen, fein säuberlich nach Namen geordnet.</p>
+
+	<<formal>>
+	<p><em>„Bestandskategorie C; Eisenschaden. Betrifft: Gegenstände, deren Schadbild das Grundmaterial betrifft. Verfahren: Aussonderung aus dem laufenden Bestand, Überstellung zur auswärtigen Schmiede zwecks Ausbesserung oder Erneuerung. Rückführung nach Instandsetzung binnen vierzehn Tagen zu vermerken.“</em></p>
+	<</formal>>
+
+	<<formal>>
+	<p><em>„Bezugsstelle Westhof, Gehöft nahe der Nordstraße, seit dem 122 nBA unter Waffenmeister Anselm Krebs, vormals Garnison Ohm. Zuständigkeit: Schmiedearbeiten u. Ausbesserungen an Klingen u. Beschlägen der Akademie. Vertragsverhältnis fortlaufend, ohne Beanstandung.“</em></p>
+	<</formal>>
+
+	<<gedanke>>
+	<p>Ein Name. Endlich ein Name, der zu einem Ort gehört, zu einem Menschen, den ich finden kann. Anselm Krebs — vormals in der Garnison, jetzt in einem Gehöft, das ein Rekrut nie zu Gesicht bekommt, es sei denn, er sucht es absichtlich.</p>
+	<</gedanke>>
+
+	<p>Du schließt das Verzeichnis, stellst es zurück an seinen Platz, genau so, wie du es vorgefunden hast. Niemand wird je erfahren, dass du hier warst, außer du selbst — und das Wissen, das du jetzt mit dir trägst.</p>
+
+	[[Weiter ->Ermittlung_S5_Karla_Bericht]]
+
+<<elseif $world.flags.jarek_ausgang isnot "schande">>
+
+	<<scene>>
+	<p>Die Schreibstuben liegen im ältesten Flügel der Akademie, dort, wo die Fenster schmaler sind als anderswo und das Licht selbst durch sie hindurch schon wie durch ein Sieb gefiltert wirkt. Am Ende des Ganges wartet Magister Cornelius Halm — hager, tintenfingrig, mit einer Stimme, von der man sagt, sie habe seit Jahren kein überflüssiges Wort mehr gesprochen.</p>
+	<</scene>>
+
+	<<beziehung>>
+	<<if $npc.magister.affection >= 5>>
+		<p>Er kennt euch, und mehr noch: Er hat für euch beide etwas übrig, das man bei ihm kaum Zuneigung nennen würde, eher eine stille Anerkennung, wie sie ein Gelehrter für Schüler empfindet, die sich nicht dumm anstellen. Als ihr eintretet, hebt er den Blick, ohne Überraschung, fast wie erwartet.</p>
+	<<elseif $npc.magister.affection >= 1>>
+		<p>Er kennt euch aus dem vergangenen Jahr, flüchtig, wie man Namen auf einer langen Liste kennt. Kein Wohlwollen, aber auch kein Argwohn — nur die neutrale Aufmerksamkeit eines Mannes, der jeden gleich behandelt, bis sich zeigt, ob er es verdient.</p>
+	<<else>>
+		<p>Er sieht auf, mustert euch beide mit der abwägenden Geduld eines Mannes, der Besucher grundsätzlich erst einmal für eine Störung hält, ehe sie ihm das Gegenteil beweisen.</p>
+	<</if>>
+	<</beziehung>>
+
+	<<dialog>>
+	<p>„Magister“, beginnt Karla, „wir sind auf eine Bezeichnung gestoßen, die wir nicht einzuordnen wissen: ‚Übungsbestand C‘. Und einen Ort, ‚Westhof‘. Wir hofften, Ihr könntet uns Auskunft geben.“</p>
+	<</dialog>>
+
+	<p>Halm legt die Feder beiseite, langsam, mit der Umständlichkeit eines Mannes, der jede Bewegung als kleine Verhandlung versteht.</p>
+
+	<<dialog>>
+	<p>„Eine merkwürdige Frage“, sagt er. „Die Verwaltung der Zeugstuben obliegt dem Schreiber Malk, nicht mir. Warum fragt ihr nicht ihn?“</p>
+	<</dialog>>
+
+	<<gedanke>>
+	<p>Weil wir Oren nicht trauen können, ohne dass er weiß, wonach wir suchen. Das kann ich ihm nicht sagen. Also brauche ich eine andere Wahrheit, eine, die trägt, ohne zu lügen — und Karla wird jetzt improvisieren müssen.</p>
+	<</gedanke>>
+
+	<<beziehung>>
+	<<set _modifier = Math.floor($npc.magister.affection / 4)>>
+    <<set _r to setup.skillCheck("thievery", 14, -_modifier)>>
+    <<= setup.skillCheckAlert(_r)>>
+    <<if _r.success>>
+		<<dialog>>
+		<p>„Weil ein Schreiber, den man um Auskunft über die eigene Buchführung bittet, selten unbefangen antwortet“, sagt Karla, ohne zu zögern, mit einer Offenheit, die selbst dich für einen Moment überrascht. „Wir dachten, ein Mann von Eurer Gelehrsamkeit könnte uns die Bezeichnung erklären, ohne dass wir Malk erst um Erlaubnis bitten müssen, seine eigene Arbeit zu verstehen.“</p>
+		<</dialog>>
+		<p>Halm mustert sie, und für einen Moment liegt in seinem Blick etwas, das fast Zustimmung sein könnte — die Anerkennung eines Mannes, der selbst weiß, wie wenig manche Auskünfte wert sind, wenn man sie von der falschen Stelle erbittet.</p>
+		<<gedanke>>
+		<p>Sie hat es geschafft. Nicht gelogen — nur eine Wahrheit gewählt, die er hören konnte, ohne dass sie uns verrät.</p>
+		<</gedanke>>
+	<<else>>
+		<<dialog>>
+		<p>„Wir …“, beginnt Karla, doch die Erklärung, die ihr sonst so mühelos über die Lippen kommt, gerät diesmal ins Stocken, eine Spur zu lang, ehe sie weiterspricht. „Wir wollten niemanden von der Zeugstube unnötig behelligen.“</p>
+		<</dialog>>
+		<p>Halm sagt nichts dazu, doch sein Blick verweilt auf euch beiden einen Atemzug länger, als es eine zufriedenstellende Antwort erfordert hätte. Er wird die Frage nicht vergessen, ebenso wenig wie die Art, wie sie beantwortet wurde.</p>
+		<<print setup.setNpcsuspicion("magister", 1)>>
+	<</if>>
+	<</beziehung>>
+
+	<<dialog>>
+	<p>„Übungsbestand C“, sagt Halm, und seine Stimme nimmt jenen Ton an, den er wohl auch vor einem Hörsaal voller Rekruten anschlüge, „bezeichnet, mein junger Freund, keine Waffe, sondern einen Zustand: Schaden am Eisen selbst. Ein Sprung in der Klinge, eine Fehlhärtung, eine Waffe die sich verbogen hat, ein Riss, den kein Ölstein und kein Lederriemen der Welt zu heilen vermag. Solche Stücke verlassen die Akademie — zur Ausbesserung oder für Ersatz.“</p>
+	<</dialog>>
+
+	<<dialog>>
+	<p>„Und Westhof“, fügt er an, ehe du fragen musst, mit der Genugtuung eines Mannes, der sein Wissen gern vollständig entfaltet, „ist ein Gehöft an der Nordstraße, vor Jahren zur Schmiede umgebaut. Ein gewisser Anselm Krebs führt es, seit — warte — vier Jahren nun, meine ich. Er diente einst in der Garnison zu Ohm, ehe er sich dem Handwerk zuwandte. Ein solider Mann, soweit meine Kenntnis reicht. Dorthin gehen die Klingen, deren Eisen selbst die Schuld trägt.“</p>
+	<</dialog>>
+
+	<<gedanke>>
+	<p>Ein Name. Ein Ort. Mehr, als ich zu hoffen gewagt hatte, und mehr, als ich mir wünsche, jetzt zu wissen, ohne zu wissen, was ich damit anfangen soll.</p>
+	<</gedanke>>
+
+	[[Weiter ->Ermittlung_S5_Karla_Bericht]]
+
+<<else>>
+
+	<<scene>>
+	<p>Du stehst vor derselben Tür wie all die Male zuvor, doch diesmal fühlt sich der Gang dorthin an wie ein Weg, den man nicht aus freien Stücken geht, sondern weil einem keiner sonst geblieben ist. Die Schreibstuben liegen still, wie immer, das Licht durch die schmalen Fenster gefiltert wie durch ein Sieb — nur du selbst bist es, der sich hier fremd vorkommt, mehr, als es der Ort verdient hätte.</p>
+	<</scene>>
+
+	<<gedanke>>
+	<p>Ich weiß, wie er mich ansehen wird, ehe ich die Tür überhaupt berühre. Was im vergangenen Jahr geschah, ist ihm nicht verborgen geblieben, und ich komme heute zu ihm, um ausgerechnet um sein Wohlwollen zu bitten. Ein Canossa-Gang, den ich mir selbst eingebrockt habe.</p>
+	<</gedanke>>
+
+	<<beziehung>>
+	<<if $npc.magister.affection <= -10>>
+		<<dialog>>
+		<p>„Ihr“, sagt Halm, ehe du auch nur ein Wort vorbringen kannst, und in diesem einen Wort liegt mehr Verachtung, als ein längerer Satz hätte tragen können. „Ich habe Euch nichts zu sagen. Und Ihr solltet Euch gut überlegen, ob Ihr diese Schwelle je wieder betreten wollt.“</p>
+		<</dialog>>
+		<p>Er erhebt sich nicht einmal, um dich hinauszubegleiten. Er wendet sich einfach ab, als wäre die Sache bereits erledigt, ehe sie begonnen hatte.</p>
+	<<elseif $npc.magister.affection <= -5>>
+		<<dialog>>
+		<p>„Ich erinnere mich sehr gut an Euch“, sagt Halm, ohne aufzustehen. „Und ich sehe keinen Grund, weshalb ich Euch heute mehr Vertrauen entgegenbringen sollte als an jenem Tag, an dem sich zeigte, wozu Ihr fähig seid.“</p>
+		<p>„Magister, es geht nicht um mich“, versuchst du. „Es geht um eine Bezeichnung, die —“</p>
+		<p>„Es geht immer um Euch, solange Ihr vor mir steht“, unterbricht er kühl. „Sucht Eure Antworten anderswo.“</p>
+		<</dialog>>
+	<<else>>
+		<<dialog>>
+		<p>Halm sieht dich lange an, ehe er spricht, und in seinem Schweigen liegt kein Zweifel, nur Abwägung, wie hart er sein Urteil formulieren will.</p>
+		<p>„Ich habe für Euch keine Auskunft“, sagt er schließlich. „Nicht, weil ich sie nicht besäße — sondern weil ich nicht gewillt bin, sie ausgerechnet Euch zu geben.“</p>
+		<</dialog>>
+	<</if>>
+	<</beziehung>>
+
+	<<gedanke>>
+	<p>Ich hätte es wissen müssen. Manche Türen bleiben verschlossen, ganz gleich, wie höflich man anklopft. Was auch immer Westhof bedeutet — der Weg dorthin führt nicht über diesen Mann.</p>
+	<</gedanke>>
+
+	<<print setup.setNpcsuspicion("magister", 1)>>
+
+	<p>Du verlässt die Schreibstube mit leeren Händen und dem unguten Gefühl, dass du soeben nicht nur eine Auskunft, sondern auch ein Stück der letzten Nachsicht verspielt hast, die dir dieser Mann noch entgegengebracht hätte.</p>
+
+	[[Weiter ->Ermittlung_S3_Beobachtung]]
+
+<</if>>
+
+
+:: Ermittlung_S5_Karla_Bericht [nach_Kap2_abend] {"position":"650,5775","size":"100,100"}
+<<scene>>
+<p>Der Holzstapel ist inzwischen mehr als ein Treffpunkt — er ist eine Gewohnheit geworden, eine kleine Verschwörung aus Windschatten und Dunkelheit, die niemandem auffällt, weil sie nach nichts aussieht. Karla wartet schon, die Arme verschränkt, den Rücken an den kalten Scheiten, und an der Art, wie sie dich ansieht, erkennst du, dass sie deinem Gesicht die Neuigkeit ansieht, ehe du ein Wort gesagt hast.</p>
+<</scene>>
+
+<<if $edu.archivzugang and $world.flags.jarek_ausgang isnot "schande" and $npc.magister.affection gte 0>>
+	<p>Du erzählst ihr, was du zwischen den Verwaltungsschriften des Archivs gefunden hast — die Bestandskategorie, das Verfahren, den Namen. Karla hört zu, ohne dich zu unterbrechen, und du siehst, wie sie jedes Stück in Gedanken dorthin legt, wo es hingehört, wie Klingen in ein Gestell.</p>
+<<else>>
+	<p>Ihr geht das Gespräch mit dem Magister noch einmal durch, Satz für Satz, wie man eine Fährte ein zweites Mal abschreitet, um sicherzugehen, dass man nichts übersehen hat. Halm hat mehr gegeben, als ihr zu hoffen wagtet — und keine einzige Frage gestellt, die ihr nicht beantworten konntet.</p>
+<</if>>
+
+<<dialog>>
+<p>„Übungsbestand C“, wiederholt Karla. „Schaden am Eisen. Solche Stücke verlassen die Akademie — zur Schmiede nach Westhof, zu diesem Anselm Krebs.“ Sie lässt die Worte einen Moment stehen. „Dann gibt es genau zwei Möglichkeiten. Entweder der Dolch ist dort angekommen — dann liegt irgendwo in Westhof ein Buch, das es beweist.“</p>
+<p>„Oder er ist nie angekommen.“</p>
+<p>„Und dann ist der Eintrag eine Lüge mit einer Adresse.“</p>
+<</dialog>>
+
+<<= setup.ermFund("westhof_krebs", "Übungsbestand C = Schaden am Eisen. Solche Stücke gehen zur Ausbesserung an die Schmiede Westhof an der Nordstraße, geführt von Anselm Krebs, vormals Garnison Ohm.")>>
+
+<<gedanke>>
+<p>Ein Brief nach Westhof wäre der kurze Weg — und der dümmste. Briefe gehen durch Hände, und wir wissen nicht, wem die Hände gehören. Wenn wir eine Antwort wollen, der wir trauen können, müssen wir selbst hin.</p>
+<</gedanke>>
+
+<<dialog>>
+<p>„Die Ausbesserungsfuhren fahren regelmäßig“, sagt Karla. „Turnusmäßig, mit Begleitschutz. Zwei Mann, meistens die, die sich zuerst melden — weil sich sonst keiner meldet.“ Ein dünnes, freudloses Lächeln. „Wann hast du dich zuletzt freiwillig gemeldet, Tom?“</p>
+<</dialog>>
+
+<<set $world.ermittlung.flags.s4_done to true>>
+<<set $world.ermittlung.flags.westhof_plan to true>>
+
+<<gedanke>>
+<p>Jetzt heißt es warten, bis die nächste Fuhre angesetzt wird — und die Hände heben, ehe es ein anderer tut.</p>
+<</gedanke>>
+
+<<weiterImTag "Weiter">>
+
+
+:: Ermittlung_S5_Westhof [einmalig interrupt] {"position":"300,5700","size":"100,100"}
+<<scene>>
+<p>Der Karren rumpelt seit dem frühen Morgen über die Nordstraße, deren Furchen der Frost hart und ungnädig gemacht hat, und mit jeder Meile weicht die Enge der Akademie einem Land, das karger und stiller wird. Kein Wachfeuer mehr, keine Pechfackeln — nur Ackerland unter grauem Himmel, hier und da ein Gehöft, dessen Rauch senkrecht in die kalte Luft steigt, weil kein Wind ihn beugt. Karla sitzt neben dir auf der Ladefläche, zwischen Kisten mit stumpfen Übungsklingen und einem Fass Öl, das bei jedem Schlagloch dumpf gegen das Holz schlägt.</p>
+<</scene>>
+
+<p>Der Auftrag selbst war die reinste Beiläufigkeit: Ein Korporal rief am Vortag nach Freiwilligen für den turnusmäßigen Transport, zwei Mann als Begleitschutz, nichts, wofür sich ein Rekrut sonst gemeldet hätte. Du und Karla habt die Hände gehoben, ehe ein anderer es tun konnte, mit einer Beiläufigkeit, die geübt genug war, um niemandem aufzufallen.</p>
+
+<<gedanke>>
+<p>Kein erschlichener Vorwand, keine Lüge, die uns hätte auffliegen können — nur die richtige Hand zur richtigen Zeit gehoben. Manchmal ist das die beste aller Tarnungen.</p>
+<</gedanke>>
+
+<<dialog>>
+<p>„Wenn Krebs etwas weiß“, sagt Karla, den Blick auf die Straße vor euch gerichtet, „dann werden wir es an seinem Gesicht sehen, ehe er ein Wort spricht. Männer wie er lügen schlecht.“</p>
+<p>„Und wenn er nichts weiß?“</p>
+<p>„Dann war der Weg hierher wenigstens keine Lüge, die man uns eines Tages vorhalten kann.“</p>
+<</dialog>>
+
+<p>Westhof liegt am Ende eines schmalen Weges, der sich zwischen kahlen Weißdornhecken hindurchwindet — kein prunkvolles Gut, sondern ein nüchterner Gebäudekomplex, aus dem der Lärm mehrerer Essen schon von weitem zu hören ist: das rhythmische Schlagen von Hämmern auf Amboss, das Fauchen der Blasebälge, hier und da ein gebrülltes Wort zwischen den Schmieden, das im Lärm der Arbeit fast unterzugehen droht.</p>
+
+<<scene>>
+<p>Der Hof riecht nach Ruß und glühendem Eisen, nach Pferdemist und dem beißenden Schweiß schwerer Arbeit. Mehrere Gesellen hantieren an den Essen, jeder mit dem Blick eines Mannes, der seine eigene Klinge kennt wie ein zweites Gesicht. In ihrer Mitte, größer als alle anderen, steht Anselm Krebs — ein Hüne mit schwarzem Haar unter der Bundhaube, ein dichter Vollbart, der sein Kinn verschluckt, buschige Brauen über Augen, die jeden Ankömmling mit der gleichen mürrischen Gründlichkeit mustern wie ein Stück fehlerhaftes Eisen.</p>
+<</scene>>
+
+<<beziehung>>
+<p>Er kennt dich nicht, hat nie einen Grund gehabt, dich zu kennen — kein Vorfall aus dem ersten Jahr reicht bis hierher, in dieses Gehöft fernab der Akademie, das sich seine eigene, kleine Ordnung geschaffen hat. Was auch immer zwischen dir und Jarek, Karla oder dem Hauptmann geschah, es endet an diesen Hecken. Hier bist du nur ein Rekrut mit einem Karren voll Übungsklingen, nichts weiter.</p>
+<</beziehung>>
+
+<<dialog>>
+<p>„Fracht für die Ausbesserung“, sagt der Fuhrmann, der euch begleitet hat, und Krebs nickt knapp, ohne ein Wort des Grußes zu verschwenden.</p>
+<</dialog>>
+
+<p>Ihr helft beim Abladen, schleppt Kisten, die schwerer sind, als sie aussehen, und wartest auf einen Moment, in dem Krebs nicht mit einem seiner Gesellen spricht. Der Moment kommt, als der letzte Sack Kohle abgeladen ist und der Fuhrmann sich mit dem Verwalter über die Rückfracht bespricht — Karla nutzt ihn, tritt an Krebs heran, mit einer Direktheit, die zu einem Mann wie ihm besser passt als jede Umschweifigkeit.</p>
+
+<<dialog>>
+<p>„Meister Krebs“, sagt sie. „Wir suchen einen Dolch. Übungsbestand C, zur Nachprüfung hierher überstellt, vor einigen Monaten. Erinnert Ihr Euch daran?“</p>
+<</dialog>>
+
+<p>Krebs sieht sie an, lange, mit dem unbewegten Gesicht eines Mannes, der nicht aus Berechnung schweigt, sondern weil er jedes Wort erst wägt, ehe er es hergibt. Dann schüttelt er den Kopf, einmal, entschieden.</p>
+
+<<gedanke>>
+<p>Kein Zögern. Kein Blick, der zur Seite huscht, wie bei Oren, wenn man ihm zu nahe kommt. Nur die schlichte, unverstellte Sicherheit eines Mannes, der genau weiß, was durch seine Hände gegangen ist und was nicht.</p>
+<</gedanke>>
+
+<<dialog>>
+<p>„Nie gesehen“, sagt Krebs, seine Stimme wie ein Erdrutsch, jedes Wort einzeln und schwer. „Ich vergess keine Klinge, die durch meine Esse geht. Ein Dolch aus der Akademie, im letzten Jahr — das wäre mir geblieben.“</p>
+<p>„Seid Ihr sicher?“</p>
+<p>„Ich führ ein Buch, Rekrutin. Genau wie Ihr in Ohm eins führt. Wollt Ihr's sehen?“</p>
+<</dialog>>
+
+<<formal>>
+<p>Auch auswärtige Werkstätten, die im Dienst der Akademie standen, waren zur eigenen Buchführung verpflichtet — eine Gegenkontrolle, die Missbrauch der Zeugverwaltung erschweren sollte. Zwei Bücher, die denselben Vorgang widersprüchlich vermerken, gelten als schwerwiegender Beleg für ein Vergehen.</p>
+<</formal>>
+
+<p>Krebs führt euch, ohne eine weitere Frage abzuwarten, in eine kleine Kammer neben der Haupt-Esse, wo ein zerschlissenes, aber sauber geführtes Buch auf einem Pult liegt. Er blättert selbst, mit Fingern, die trotz ihrer Größe erstaunlich sicher über die Seiten gleiten, bis er die entsprechende Woche findet.</p>
+
+<<gedanke>>
+<p>Ich beuge mich über die Seite, das Herz auf einmal wieder so laut wie in jener Nacht in der Waffenausgabe. Doch was ich finde, ist kein Eintrag, sondern eine Lücke — ein leerer Raum zwischen zwei anderen Vorgängen, an genau der Stelle, an der ein Dolch aus Ohm hätte stehen müssen.</p>
+<</gedanke>>
+
+<<dialog>>
+<p>„Seht selbst“, sagt Krebs. „Kein Dolch. Keine Klinge aus Ohm in jener Woche, nicht einmal ein Beschlag. Wer euch das andere Buch gezeigt hat, hat euch angelogen — oder das Buch selbst lügt.“</p>
+<</dialog>>
+
+<p>Karla und du wechselt einen Blick, der mehr sagt als jedes Wort, das ihr vor diesem mürrischen Riesen noch äußern könntet. Die Spur, der ihr seit Wochen gefolgt seid, endet hier, an diesem sauberen, ehrlichen Buch, das keine Lüge kennt.</p>
+
+<<gedanke>>
+<p>Kein Dolch ist je hier angekommen. Es gab nie einen Grund für Krebs, ihn zu verstecken oder zu leugnen — es gab schlicht nichts zu verbergen. Jarek hat die Klinge die ganze Zeit selbst getragen, bis zu jener Nacht, in der er sie gegen mich zog. Westhof war nie mehr als ein Wort in einem Buch, hingeschrieben, um eine Lücke zu füllen, die sonst jedem aufgefallen wäre.</p>
+<</gedanke>>
+
+<p>Auf der Rückfahrt sprecht ihr lange kein Wort. Der Karren rumpelt über dieselben Furchen wie am Morgen, doch das Land, das an euch vorbeizieht, wirkt jetzt kälter, leerer, ohne die Hoffnung, die euch hierher getragen hat.</p>
+
+<<dialog>>
+<p>„Es war nie eine Nachprüfung“, sagt Karla schließlich, die Stimme flach vor Erschöpfung. „Es war nur ein Wort, das jemand in ein Buch geschrieben hat, damit niemand fragt, wo die Klinge wirklich blieb.“</p>
+<p>„Jarek hatte sie die ganze Zeit bei sich.“</p>
+<p>„Und Oren hat gewusst, dass sie fehlt. Er hat die Lücke nicht erklärt — er hat sie versteckt.“</p>
+<</dialog>>
+
+<<gedanke>>
+<p>Eine Spur, die sich als Sackgasse erweist, ist noch immer eine Spur. Sie zeigt nur nicht mehr nach Westhof — sie zeigt zurück, auf denselben Mann, den wir die ganze Zeit hätten verdächtigen sollen.</p>
+<</gedanke>>
+
+<<set _out = "">>
+<<set _out += setup.setNpcsuspicion("orenmalk", 1)>>
+<<print _out>>
+
+<p>Was auch immer als Nächstes zu tun ist — Westhof hat euch keine neue Fährte gegeben, nur die alte bestätigt, härter und unwiderruflicher, als sie zuvor war. Oren Malk hat gelogen. Die Frage ist nicht mehr, ob, sondern warum, und was er noch zu verbergen hat.</p>
+
+[[Ermittlung_S6_Sackgasse]]
+
+
+:: Ermittlung_S6_Beschluss [nach_Kap2_abend] {"position":"25,5825","size":"100,100"}
+<<set $world.ermittlung.flags.westhof_done to true>>
+
+<<switch $world.ermittlung.flags.s7_weg>>
+<<case "protokolle">>
+	<<dialog>>
+	<p>„Die Torbücher“, nickt Karla. „Aber dafür musst du erst ans Tor. Ich fädle dir einen Diensttausch ein — jemand ist immer froh, seine Nachtwache loszuwerden. Das dauert ein paar Tage, und es darf nicht aussehen, als hättest du es dir ausgesucht.“</p>
+	<</dialog>>
+<<case "posten">>
+	<<dialog>>
+	<p>„Dann brauchen wir erst einen Namen“, sagt Karla. „Wer stand in jener Nacht am Tor? Das fragt man nicht — das sammelt man auf, Stück für Stück, im Vorbeigehen. Gib mir ein paar Tage. Und dann brauchst du einen Abend in der Stadt und ein paar Kupfer für Bier.“</p>
+	<</dialog>>
+<<case "route">>
+	<<dialog>>
+	<p>„Dann laufen wir ihn ab“, sagt Karla. „Aber nicht blind. Erst will ich die Wachwechsel wieder auswendig können — die Stunde, in der die Höfe niemandem gehören. Ein paar Nächte zuhören, dann gehen wir.“</p>
+	<</dialog>>
+<</switch>>
+
+<<gedanke>>
+<p>Wieder warten. Aber diesmal fühlt es sich anders an als am Anfang — nicht wie Stillstand, sondern wie Anlauf.</p>
+<</gedanke>>
+
+<<weiterImTag "Weiter">>
+
+
+:: Ermittlung_S6_Sackgasse {"position":"100,5700","size":"100,100"}
+<<scene>>
+<p>Die Kaserne schläft, oder tut zumindest so. Durch die dünnen Wände dringt das Schnarchen der anderen Rekruten, gleichmäßig wie ein zweiter Herzschlag, während du und Karla auf der obersten Stufe der Außentreppe sitzt, dort, wo die Wache selten vorbeikommt und die Kälte des Steins durch die Hose kriecht, ehe man es bemerkt. Über euch hängt der Himmel klar und gnadenlos, jeder Stern ein kleiner, kalter Zeuge dessen, was ihr in den letzten Wochen zusammengetragen habt — und was am Ende doch zu nichts geführt hat.</p>
+<</scene>>
+
+<p>Karla hat die Knie an die Brust gezogen, die Arme darum geschlungen, und starrt auf einen Punkt irgendwo zwischen den Dächern, als läge dort eine Antwort, die sie nur lange genug suchen müsste.</p>
+
+<<dialog>>
+<p>„Kein Dolch in Westhof“, sagt sie schließlich. „Kein Rückvermerk im Buch. Keine Reparatur, kein Ersatz. Wir haben eine Lüge bewiesen, Tom. Nur führt die Lüge nirgendwohin.“</p>
+<</dialog>>
+
+<<gedanke>>
+<p>Sie hat recht, so sehr es mich auch ärgert, es zuzugeben. Wir wissen jetzt mit Sicherheit, dass Oren gelogen hat. Wir wissen nicht, warum. Wir wissen nicht, für wen. Ein bewiesener Betrug ohne einen Namen dahinter ist wie ein Fußabdruck im Schnee, der genau dort endet, wo der nächste Schritt hätte sein sollen.</p>
+<</gedanke>>
+
+<<beziehung>>
+<<if $world.ermittlung.verdacht.orenmalk >= 3>>
+	<p>Was schwerer wiegt: Oren weiß inzwischen, dass ihr sucht. Das habt ihr selbst dafür bezahlt, mit jedem Blick, jeder Frage, jedem Weg, den ihr gegangen seid, um an sein Buch zu kommen. Ein Mann, der weiß, dass man ihn beobachtet, wird vorsichtiger — und ein vorsichtiger Lügner ist ungleich schwerer zu fassen als ein sorgloser.</p>
+<<else>>
+	<p>Immerhin — Oren scheint noch nichts zu ahnen. Was auch immer ihr als Nächstes unternehmt, ihr habt noch den Vorteil, dass er sich sicher wähnt.</p>
+<</if>>
+<</beziehung>>
+
+<<dialog>>
+<p>„Wir könnten ihn stellen“, sagst du. „Direkt fragen, warum der Eintrag lügt. Ihm zeigen, dass wir es wissen.“</p>
+<p>„Und was, glaubst du, wird er tun? Gestehen, weil zwei Rekruten ihn mit einem Verdacht konfrontieren? Er wird schweigen, oder lügen, geschickter als beim ersten Mal. Und dann weiß er es mit Gewissheit, statt nur zu vermuten.“</p>
+<</dialog>>
+
+<<gedanke>>
+<p>Sie hat wieder recht. Es widerstrebt mir, es zuzugeben, aber eine Konfrontation ohne einen zweiten Beweis in der Hand ist keine Ermittlung mehr, sondern ein Gebet, dass der andere aus Schreck die Wahrheit sagt. Männer wie Oren beten nicht aus Schreck. Sie schweigen aus Berechnung.</p>
+<</gedanke>>
+
+<<dialog>>
+<p>„Also nicht der Dolch“, sagt Karla langsam, als würde ihr der Gedanke erst beim Sprechen klar. „Vielleicht war der Dolch nie die eigentliche Frage.“</p>
+<p>„Was meinst du?“</p>
+<p>„Der Dolch war nur das Werkzeug. Jarek hatte ihn, um sich einen Weg freizuschlagen, falls es nötig würde. Aber die Waffe ist nicht das, was zählt. Was zählt, ist: Wie ist er tatsächlich hinausgekommen? Mit einem gestohlenen Dokument, mitten in der Nacht, durch eine Akademie voller Wachen und geschlossener Tore?“</p>
+<</dialog>>
+
+<<formal>>
+<p>Die Akademie zu Ohm ist nachts durch geschlossene Tore, wechselnde Wachposten und die strenge Ordnung der Torwache gesichert. Ein einzelner Rekrut, der unbemerkt mit gestohlenem Gut ins Freie gelangt, benötigt entweder eine Schwäche in dieser Ordnung — oder Hilfe von innen.</p>
+<</formal>>
+
+<<gedanke>>
+<p>Sie hat recht, und ich hätte es selbst sehen müssen. Wir haben uns so lange an einer einzelnen Waffe festgebissen, dass wir die größere Frage übersehen haben. Ein Dolch erklärt nicht, wie ein Mann mit einem gestohlenen Dokument durch ein bewachtes Tor kommt, ohne dass es je zu einem Alarm kam.</p>
+<</gedanke>>
+
+<<dialog>>
+<p>„Wenn wir nicht mehr fragen, wer ihm den Dolch gab“, sagst du, „sondern wie er selbst aus der Akademie kam —“</p>
+<p>„— dann fragen wir nach einem Weg, nicht nach einer Person“, beendet Karla den Satz. „Und ein Weg lässt sich nachzeichnen, auch wenn niemand darüber spricht. Fußspuren im Schnee reden nicht, aber sie führen trotzdem irgendwohin.“</p>
+<</dialog>>
+
+<p>Ihr schweigt eine Weile, beide in Gedanken versunken, während der Wind über die Dächer streicht und irgendwo in der Ferne eine Turmuhr die Stunde schlägt, gedämpft, fast wie eine Erinnerung an etwas, das schon vorbei ist.</p>
+
+<<gedanke>>
+<p>Eine neue Frage, ein neuer Anfang. Nicht: Wer half Jarek zum Dolch. Sondern: Welchen Weg nahm er, mit dem Dokument in der Hand, in jener Nacht — und wer sonst noch könnte diesen Weg gekannt haben, lange bevor Jarek ihn je betrat.</p>
+<</gedanke>>
+
+<<dialog>>
+<p>„Wo fangen wir an?“ fragst du.</p>
+<p>„Bei den Toren“, sagt Karla. „Und bei denen, die in jener Nacht Wache standen. Jemand hat gesehen, was geschah — oder jemand hat absichtlich weggesehen. Beides ist eine Spur.“</p>
+<</dialog>>
+
+[[1. Die Wachprotokolle der Fluchtnacht einsehen|Ermittlung_S6_Beschluss][$world.ermittlung.flags.s7_weg to "protokolle"]]
+[[2. Einen Wachposten befragen, der in jener Nacht Dienst hatte|Ermittlung_S6_Beschluss][$world.ermittlung.flags.s7_weg to "posten"]]
+[[3. Die Route selbst ablaufen, die Jarek genommen haben könnte|Ermittlung_S6_Beschluss][$world.ermittlung.flags.s7_weg to "route"]]
+
+
+:: Ermittlung_S7_Erkenntnis [nach_Kap2_abend] {"position":"400,6075","size":"100,100"}
+<<scene>>
+<p>Der Holzstapel, der Windschatten, die Pechfackeln — derselbe Ort wie immer, und doch fühlt sich diese Nacht anders an. Bisher habt ihr Spuren gesammelt wie Scherben, ohne zu wissen, zu welchem Gefäß sie gehören. Heute Nacht fügen sie sich zusammen, eine nach der anderen, und was dabei entsteht, ist größer als alles, wonach ihr gesucht habt.</p>
+<</scene>>
+
+<<dialog>>
+<p>„Sag es laut“, verlangt Karla. „Der Reihe nach. Ich will hören, ob es hält.“</p>
+<p>„In der Fluchtnacht hat kein Mensch das Tor passiert. Nur eine Fuhre — Ausbesserungsgut der Waffenausgabe, mitten in der Nacht, obwohl Schadeisen immer bei Tag fährt. Der Geleitschein war sauber, also hat niemand die Kisten geöffnet. Und die Kisten des Übungsbestands C sind lang genug für einen Mann.“</p>
+<p>„Jarek ist nicht hinausgelaufen“, sagt Karla. „Er ist hinausgefahren. Verplombt und abgezeichnet, wie ein Stück Schadeisen.“</p>
+<</dialog>>
+
+<<gedanke>>
+<p>Und mit einem Mal ergibt der Eintrag im Ausgabebuch einen Sinn — nicht als Lüge über einen Dolch, sondern als Handschrift eines Systems. 'Zur Nachprüfung Westhof': So sehen Dinge auf dem Papier aus, die die Akademie verlassen und nie ankommen. Der Dolch war nie das Rätsel. Er war ein Blick durch einen Türspalt, und dahinter liegt ein ganzer Weg.</p>
+<</gedanke>>
+
+<<formal>>
+<p>Ein Kanal, der Waren, Dokumente oder Menschen unbemerkt aus einer bewachten Anlage schafft, braucht dreierlei: einen Anlass, der niemanden wundert, Papiere, die jeder Prüfung standhalten, und einen Schreiber, der beides liefern kann. Die Ausbesserungsfuhren der Waffenausgabe erfüllen alle drei Bedingungen — und laufen seit Jahren.</p>
+<</formal>>
+
+<<dialog>>
+<p>„Wenn das stimmt“, sagt Karla langsam, „dann war Jarek nicht das erste Stück Fracht. Ein Weg wie dieser wird nicht für einen einzigen Mann gebaut. Er wird gebaut, weil man ihn braucht — immer wieder.“</p>
+<p>„Luigis Brief“, sagst du. „Ware unter falschen Namen, über die Fuhrmannswege. Kein Raub — ein Tragen.“</p>
+<p>„Und die Frage ist: Wie oft stand 'zur Nachprüfung Westhof' in diesem Buch?“ Sie sieht dich an, und in ihren Augen liegt dasselbe kalte, klare Licht wie in jener Nacht in der Schreibstube. „Wir müssen es noch einmal aufschlagen, Tom. Diesmal wissen wir, wonach wir suchen.“</p>
+<</dialog>>
+
+<<= setup.setNpcAffection("karla", 2)>>
+
+<<= setup.ermFund("nachtfuhre", "In der Fluchtnacht passierte kein Mensch das Tor — nur eine nächtliche Ausbesserungsfuhre der Waffenausgabe mit sauberem Geleitschein. Jarek verließ die Akademie in einer Kiste des Übungsbestands C. Die C-Fuhren sind ein Kanal, und Orens Feder öffnet das Tor.")>>
+<<set $world.ermittlung.flags.s7_done to true>>
+
+<<gedanke>>
+<p>Das Ausgabebuch. Bei der nächsten Waffenpflege, beim nächsten Dienst in der Stube — irgendwann liegt es wieder offen, und diesmal zähle ich nicht Dolche. Diesmal zähle ich, wie oft Westhof im Buch steht und wie oft nichts zurückkam. Jede dieser Zeilen ist eine Fuhre. Und jede Fuhre ist ein Beweis.</p>
+<</gedanke>>
+
+
+<<weiterImTag "Weiter">>
+
+
+:: Ermittlung_S7_Route_Ablaufen [interrupt einmalig] {"position":"175,5975","size":"100,100"}
+<<scene>>
+<p>Ihr geht den Weg, den Jarek gegangen sein muss, in derselben Stunde, in der er ihn ging — nach der zweiten Nachtwache, wenn die Ablösung durch ist und die Höfe für eine Weile niemandem gehören. Von den Schreibstuben aus, wo alles begann, Schritt für Schritt, und Karla zählt die Möglichkeiten ab wie Posten auf einer Liste.</p>
+<</scene>>
+
+<<dialog>>
+<p>„Die Mauer“, sagt sie leise. „Zu hoch ohne Seil, und oben läuft der Wehrgang. Das Haupttor: Wache, Torbuch, Licht. Die Pforte am Küchenhof: nachts verriegelt, der Schlüssel hängt beim Küchenmeister.“ Sie bleibt stehen. „Zu Fuß kommt hier keiner raus. Nicht mit einem gestohlenen Band unterm Arm, nicht ohne dass ein Alarm ihn einholt.“</p>
+<</dialog>>
+
+<p>Ihr geht weiter, den Rest des Weges, mehr aus Gründlichkeit als aus Hoffnung — und dann stehst du plötzlich still, weil der Weg euch von selbst dorthin geführt hat, wo er endet: an die schmale Gasse hinter der Waffenausgabe, an die hölzerne Verladerampe.</p>
+
+<<if $world.ermittlung.flags.rampe_gesehen>>
+<<gedanke>>
+<p>Die Rampe. Ich habe sie schon einmal beobachtet, tagelang, wegen der Kisten mit dem Kreidezeichen. Damals dachte ich, ich sähe eine Spur. Vielleicht habe ich die ganze Zeit den Weg gesehen.</p>
+<</gedanke>>
+<</if>>
+
+<p>Im Boden der Gasse stehen die Radspuren gefroren wie in Stein gegossen — Furchen, die sich über Monate eingegraben haben, von Karren, die hier regelmäßig halten, laden, wenden. Die Rampe liegt vom Hof aus unsichtbar, vom Wehrgang aus im toten Winkel des Daches.</p>
+
+<<if $player.spezialisierung === "crossbow">>
+	<<beziehung>>Du bist Armbruster.<</beziehung>>
+	<<gedanke>>
+	<p>Diesen Winkel kenne ich. Der Schießstand liegt keine dreißig Schritt von hier — ich sehe diese Gasse jeden Abend beim Üben, seit Wochen, ohne je wirklich hingesehen zu haben. Ich muss nicht nachts hierher schleichen. Ich muss nur schießen gehen.</p>
+	<</gedanke>>
+
+	<p>Ihr zieht euch zurück, noch ehe die Nacht euch gefährlich werden kann. Von da an übernimmst du den Rest allein, bei Tageslicht, mit der Armbrust unter dem Arm — ein Schütze, der länger übt als die anderen, wundert an diesem Stand niemanden. Zwischen zwei Schüssen wandert dein Blick, beiläufig, wie er zum Wind und zu den Fähnchen wandert: hinüber zur Rampe.</p>
+
+	<p>Drei Abende reichen. Das Seitentor der Waffenausgabe öffnet direkt auf die Rampe — kein Hof, keine Wache, kein Blickwinkel, aus dem irgendjemand sehen könnte, was dort in eine Kiste gelegt wird, ehe der Deckel zugeht. Wer dort einsteigt, ist von der Welt schon verschwunden, bevor der Karren anrollt. Und die Kisten des Übungsbestands C, die du dort stehen siehst, sind lang genug für Klingen. Lang genug auch für anderes.</p>
+
+	<<gedanke>>
+	<p>Kein Schleichen, kein Risiko, kein Herzklopfen. Nur ein Schütze an seinem Stand, der gelernt hat, wohin man schaut, während alle denken, er schaue auf die Scheibe.</p>
+	<</gedanke>>
+
+	<p>Am dritten Abend erzählst du Karla, was du gesehen hast.</p>
+<<else>>
+	<<beziehung>>
+	<<set _r to setup.skillCheckXp("thievery", 14)>>
+	<<if _r.success>>
+    <<= setup.skillCheckAlert(_r)>>
+		<p>Ihr bleibt in den Schatten, geduldig, und die Geduld zahlt sich aus: Ihr könnt in Ruhe sehen, wie die Rampe gebaut ist — das Seitentor der Waffenausgabe öffnet direkt auf sie, kein Hof, keine Wache dazwischen. Was hier in eine Kiste steigt, ist von der Welt schon verschwunden, ehe der Karren anrollt. Und die Kisten des Übungsbestands C sind lang genug für Klingen. Lang genug auch für anderes.</p>
+	<<else>>
+		<p>Dann siehst du das Licht. Hinter den Ritzen der Fensterläden der Waffenausgabe glimmt ein Schein — jemand arbeitet dort, zu einer Stunde, zu der niemand arbeiten sollte. Ehe ihr euch zurückziehen könnt, geht das Seitentor auf, und Oren tritt auf die Rampe, eine Blendlaterne in der Hand, deren Streifen über die Gasse wandert. Ihr presst euch hinter die Regentonne an der Schmiedewand, und der Lichtschein streicht eine Handbreit an euren Stiefeln vorbei. Oren steht lange still. Zu lange für einen Mann, der nur die Kälte prüft. Dann geht er hinein, und der Riegel klackt.</p>
+		<<gedanke>>
+		<p>Er hat nichts gesehen. Aber er hat gestanden wie einer, der lauscht — wie einer, der damit rechnet, dass jemand kommt. Seit wann rechnet ein Schreiber nachts mit Besuch?</p>
+		<</gedanke>>
+		<<= setup.setNpcsuspicion("orenmalk", 1)>>
+	<</if>>
+	<</beziehung>>
+<</if>>
+
+<<dialog>>
+<p>„Wir haben die ganze Zeit gefragt, wie ein Mann hier hinauskommt“, sagt Karla schließlich. Ihre Stimme ist ganz ruhig, auf die Art, wie sie ruhig wird, wenn sie etwas begriffen hat. „Falsche Frage. Die richtige ist: Wie kommt eine Kiste hinaus?“</p>
+<</dialog>>
+
+[[Den Gedanken zu Ende denken|Ermittlung_S7_Erkenntnis]]
+
+
+:: Ermittlung_S7_Wachposten_Befragung [interrupt einmalig] {"position":"300,5900","size":"100,100"}
+<<scene>>
+<p>Es kostet Karla drei Tage und ein Dutzend beiläufiger Fragen, den Namen zusammenzutragen: Bolte, ein Waffenknecht mit grauem Bartstoppel und einem Kreuz, das von zwanzig Jahren Wachdienst krumm ist. Er stand in der Fluchtnacht am Tor, und er trinkt — nicht viel, aber verlässlich, jeden freien Abend in derselben Schenke in der Stadt, am selben Tisch, mit demselben Blick ins Leere.</p>
+<</scene>>
+
+<p>Ihr setzt euch nicht zu ihm. Ihr setzt euch in seine Nähe, und du sorgst dafür, dass der Wirt ihm den nächsten Krug von dir bringt — ohne Aufhebens, wie unter Leuten vom selben Hof üblich.</p>
+
+<<= setup.removeMoney(3)>>
+
+<p>Bolte hebt den Krug einen Fingerbreit, als Dank, und mustert dich dabei über den Rand hinweg — mit dem geübten Blick eines Mannes, der dreißig Jahre lang jeden eingeschätzt hat, der durch sein Tor wollte.</p>
+
+<<if $player.spezialisierung === "medicine">>
+	<<beziehung>>Du bist Feldscherer.<</beziehung>>
+	<p>Dann verlagert er das Bein unter dem Tisch, und sein Gesicht verzieht sich — nur einen Wimpernschlag lang, aber du siehst es mit dem Blick, den der Bader dir eingebläut hat. Die Art, wie er das rechte Knie streckt, ehe er sich setzt. Wie er die Ferse aufstellt statt der Sohle.</p>
+
+	<<dialog>>
+	<p>„Das rechte“, sagst du. „Schlimmer bei Kälte? Morgens steif, bis Ihr eine Stunde auf den Beinen wart?“</p>
+	<p>Bolte setzt den Krug ab und sieht dich an, als hättest du ihm aus der Hand gelesen. „Biste einer von die Wundflicker?“</p>
+	<</dialog>>
+
+	<p>Du nickst — und dann hörst du zu. Wo es sitzt, seit wann, was der Dienst daraus gemacht hat. Du rätst ihm, was der Bader dir beigebracht hat: warm wickeln, abends hochlegen, nicht auf kaltem Stein knien, und eine Wallwurz-Salbe, die er sich in der Krankenstube holen kann — er soll sich auf dich berufen.</p>
+
+	<<dialog>>
+	<p>„Der Bader sagt bloß: wirste alt.“ Bolte schnaubt, aber es klingt nicht bitter, es klingt erleichtert. „Du bist der Erste seit Jahren, der sich das Knie anhört, statt bloß den Mann.“</p>
+	<</dialog>>
+
+	<p>Von da an gehört dir der Abend. Bolte redet, wie ein Fass ausläuft, dem man den Zapfen gezogen hat — über den Dienst, über die Jugend, über Nächte am Tor —, und als die Fluchtnacht an die Reihe kommt, ist sie für ihn nur die nächste Geschichte unter Leuten, denen man vertraut.</p>
+
+	<<dialog>>
+	<p>„Zu sehen? Nix war zu sehen. Das is es ja grade.“ Er beugt sich vor, den Krug zwischen den Fäusten. „Die halbe Nacht kein Hund am Tor. Und dann, zweite Wache, kommt mir da eine Fuhre an. Ausbesserungsgut, von die Waffenausgabe. Mitten in der Nacht! Ich sag zum Wachhabenden, sag ich: seit wann fährt Schadeisen bei Dunkelheit? Der zuckt bloß mit die Schultern. Schein war sauber — Siegel, Zeichen, alles vom Schreiber. Da winkste durch, Junge. Papiere stimmen, Tor auf.“</p>
+	<</dialog>>
+
+	<<dialog>>
+	<p>„Und die Kisten?“, fragst du, so beiläufig du kannst.</p>
+	<p>„Wer macht denn Kisten auf, wenn die Papiere stimmen?“ Er schnaubt in den Krug. „Dafür wär unsereins nich mal befugt gewesen.“ Dann hält er inne, und sein Blick geht für einen Moment ins Leere. „Und komisch war noch was. Auf dem Bock saß nich der Übliche. Die Westhof-Tour fährt seit Jahren derselbe Kerl, den kennste vom Sehen. In der Nacht war's ein Fremder. Hab mir nix bei gedacht — Papiere ham ja gestimmt.“</p>
+	<</dialog>>
+
+	<<gedanke>>
+	<p>Ein Knie, ein offenes Ohr, und der Mann erzählt mir mehr, als jede List herausbekommen hätte. Und ein Detail bleibt hängen wie ein Splitter: ein fremder Fuhrmann, auf einer Tour, die seit Jahren derselbe fährt.</p>
+	<</gedanke>>
+<<else>>
+	<p>Irgendwann, zwischen dem zweiten und dritten Schluck, ist es das Natürlichste der Welt, dass man redet — über den Dienst, die Kälte, die Knie. Du lässt ihn erzählen und legst die Frage erst, als sie wie von selbst in den Weg fällt: die Nacht, in der der Rekrut verschwand. Ob am Tor was zu sehen war.</p>
+
+		<<beziehung>>
+	<<set _r to setup.skillCheckXp("gossip", 12)>>
+	<<if _r.success>>    
+    <<= setup.skillCheckAlert(_r)>>
+		<<dialog>>
+		<p>„Zu sehen? Nix. Das is es ja grade.“ Er stellt den Krug ab und beugt sich vor, mit der Umständlichkeit eines Mannes, der lange auf einen gewartet hat, der zuhört. „Die halbe Nacht kein Hund am Tor. Und dann, zweite Wache, kommt mir da eine Fuhre an. Ausbesserungsgut, von die Waffenausgabe. Mitten in der Nacht! Ich sag zum Wachhabenden, sag ich: seit wann fährt Schadeisen bei Dunkelheit? Der zuckt bloß mit die Schultern. Schein war sauber — Siegel, Zeichen, alles vom Schreiber. Da winkste durch, Junge. Papiere stimmen, Tor auf.“</p>
+		<</dialog>>
+		<<dialog>>
+		<p>„Und die Kisten?“, fragst du, so beiläufig du kannst.</p>
+		<p>„Wer macht denn Kisten auf, wenn die Papiere stimmen?“ Er lacht kurz und freudlos. „Dafür wär unsereins nich mal befugt gewesen.“</p>
+		<</dialog>>
+	<<else>>
+		<<dialog>>
+		<p>„Zu sehen war nix“, sagt Bolte. „Die halbe Nacht kein Hund am Tor, bloß eine späte Fuhre von die Waffenausgabe.“ Er will weiterreden — und dann hält er inne, mitten im Satz, und sieht dich zum ersten Mal richtig an. Zu schnell gefragt. Zu genau. „Wer will das eigentlich wissen?“, fragt er, und seine Stimme is auf einmal nüchterner, als drei Krüge es erlauben sollten.</p>
+		<</dialog>>
+		<p>Du redest dich heraus, irgendwas von Langeweile und Lagerklatsch, und er nickt langsam, auf die Art, wie Männer nicken, die nichts glauben. Den Rest des Abends redet er über die Knie.</p>
+		<<gedanke>>
+		<p>Ich habe, was ich brauche — eine Fuhre, bei Nacht, von der Waffenausgabe. Aber Bolte wird von dem Gespräch erzählen. Männer wie er erzählen alles, irgendwann, am selben Tisch, an dem sie es gehört haben. Und irgendwann sitzt da jemand, der die richtigen Ohren hat.</p>
+		<</gedanke>>
+		<<= setup.setNpcsuspicion("orenmalk", 1)>>
+	<</if>>
+	<</beziehung>>
+<</if>>
+
+<<gedanke>>
+<p>Kein Mensch hat in jener Nacht das Tor passiert. Ein Wagen hat es. Mit Kisten, die niemand öffnete, weil die Papiere stimmten — Papiere aus der Feder des einen Mannes, dessen Buch schon einmal gelogen hat.</p>
+<</gedanke>>
+
+[[Karla davon erzählen|Ermittlung_S7_Erkenntnis]]
+
+
+:: Ermittlung_S7_Wachprotokolle [interrupt einmalig] {"position":"75,6100","size":"100,100"}
+<<if $player.spezialisierung === "pike">>
+<<beziehung>>Du bist Spießer <</beziehung>>
+	<<scene>>
+	<p>Für die anderen Gattungen ist die Torwache ein Los, das man zieht oder dem man ausweicht. Für Pikeniere ist sie Dienstplan. Wer die Linie hält, hält auch das Tor — so war es immer, und so steht dein Name in dieser Woche ganz von selbst auf der Liste, ohne dass Karla auch nur einen Finger hätte rühren müssen.</p>
+	<p>Das Torhaus ist ein niedriger, steinerner Raum, in dem es nach Talg, nassem Wollzeug und dem kalten Rauch des Kohlebeckens riecht. Der alte Korporal, der die zweite Nachtwache führt, kennt dich vom Drill — er hat dich Reihen halten sehen, und für Männer wie ihn ist das ein Leumund, den kein Papier ersetzt.</p>
+	<</scene>>
+
+	<<formal>>
+	<p>Jede Öffnung der Tore außerhalb der Torzeiten ist im Torbuch zu vermerken: Stunde, Anlass, Geleitschein und Zeichen des Wachhabenden. Die vollgeschriebenen Bände wandern nicht ins Archiv, sondern bleiben im Torhaus — in einem Schrank, den niemand abschließt, weil niemand auf den Gedanken käme, dass sich jemand für alte Torbücher interessiert.</p>
+	<</formal>>
+
+	<<dialog>>
+	<p>„Führ du das Buch heut Nacht“, brummt der Korporal und schiebt dir Feder und Band über das Pult. „Meine Finger sind klamm, und lernen musste es sowieso. Wennste nich weißt, wie man was einträgt — hinten im Schrank stehen die alten Bände. Schreib ab, wie's die Alten geschrieben haben, dann schreibste es richtig.“</p>
+	<</dialog>>
+
+	<<gedanke>>
+	<p>Er hat es mir selbst gesagt. Schlag in den alten Bänden nach — als Auftrag, nicht als Vergehen. Ich muss nicht einmal leise sein.</p>
+	<</gedanke>>
+
+	<p>Du wartest trotzdem, bis er seine Runde geht, aus einer Vorsicht, die dir inzwischen in den Knochen sitzt. Dann ziehst du den Band aus dem Schrank und blätterst zurück, Woche um Woche, bis zu der Nacht, die du nie vergessen wirst — in aller Ruhe, beim Licht der Wachlampe, mit der Feder in der Hand wie einer, der nur seine Einträge übt.</p>
+
+	<p>Die Seite der Fluchtnacht liegt vor dir. Kein Rekrut hat in jener Nacht das Tor passiert — kein Name, kein Vermerk, nichts. Aber eine Zeile ist da, sauber eingetragen zur zweiten Nachtwache:</p>
+
+	<<formal>>
+	<p><em>„Fuhre Waffenausgabe, Ausbesserungsgut, Tor geöffnet zur zweiten Nachtwache. Geleitschein geprüft, in Ordnung befunden. Gezeichnet: M.“</em></p>
+	<</formal>>
+
+	<p>Du liest die Zeile dreimal. Dann stellst du den Band zurück, genau so, wie er stand, und führst den Rest der Nacht das Buch, wie man es dir aufgetragen hat. Als der Korporal zurückkommt, nickt er über deine Einträge, und du denkst daran, wie Karla das nennen würde: die beste aller Tarnungen — die, die keine ist.</p>
+<<else>>
+	<<scene>>
+	<p>Das Torhaus ist ein niedriger, steinerner Raum, in dem es nach Talg, nassem Wollzeug und dem kalten Rauch des Kohlebeckens riecht. Waffenträger werden zur Torwache eingeteilt wie zu jedem anderen Dienst auch — man muss nur dafür sorgen, auf der richtigen Liste zu stehen, und Karla hat dafür gesorgt: Sie hat einem Zweitjährigen den Stalldienst abgenommen, wortlos, gegen den Tausch. Jetzt sitzt du in der zweiten Nachtwache neben einem alten Korporal, der die Stunden mit halb geschlossenen Augen absitzt, und vor euch auf dem Pult liegt das Torbuch der laufenden Woche.</p>
+	<</scene>>
+
+	<<formal>>
+	<p>Jede Öffnung der Tore außerhalb der Torzeiten ist im Torbuch zu vermerken: Stunde, Anlass, Geleitschein und Zeichen des Wachhabenden. Die vollgeschriebenen Bände wandern nicht ins Archiv, sondern bleiben im Torhaus — in einem Schrank, den niemand abschließt, weil niemand auf den Gedanken käme, dass sich jemand für alte Torbücher interessiert.</p>
+	<</formal>>
+
+	<<gedanke>>
+	<p>Der Band, den ich brauche, steht drei Handbreit von mir entfernt. Ich brauche nur eine Viertelstunde, in der der Korporal seine Runde geht — und ein Gesicht, das dabei aussieht, als langweile ich mich pflichtgemäß.</p>
+	<</gedanke>>
+
+	<p>Die Runde kommt. Der Korporal stemmt sich hoch, murmelt etwas von den Knien und schlurft hinaus in die Kälte. Du wartest, bis seine Schritte auf dem Wehrgang verklungen sind, dann ziehst du den Band aus dem Schrank und blätterst zurück, Woche um Woche, bis zu der Nacht, die du nie vergessen wirst.</p>
+
+<<beziehung>>
+	<<set _r to setup.skillCheckXp ("thievery", 13)>>
+    <<= setup.skillCheckAlert(_r)>>
+	<<if _r.success>>
+		<p>Du hast gelernt, schnell zu lesen und dabei auszusehen, als lägest du im Halbschlaf. Die Seite der Fluchtnacht liegt vor dir, und du gehst sie Zeile für Zeile durch, mit dem Finger unter dem Pult. Kein Rekrut hat in jener Nacht das Tor passiert — kein Name, kein Vermerk, nichts. Aber eine Zeile ist da, sauber eingetragen zur zweiten Nachtwache:</p>
+		<<formal>>
+		<p><em>„Fuhre Waffenausgabe, Ausbesserungsgut, Tor geöffnet zur zweiten Nachtwache. Geleitschein geprüft, in Ordnung befunden. Gezeichnet: M.“</em></p>
+		<</formal>>
+		<p>Du liest die Zeile dreimal, ehe du den Band zurückstellst, genau so, wie er stand. Als der Korporal zurückkommt, sitzt du über dem Buch der laufenden Woche und gähnst.</p>
+	<<else>>
+		<p>Du bist zu langsam. Die Schritte auf dem Wehrgang kehren früher um, als die Runde es erlaubt — vielleicht die Kälte, vielleicht die Knie —, und du hast gerade noch Zeit, den Band zuzuklappen und unter das Pult zu schieben, ehe der Korporal in der Tür steht. Sein Blick geht von dir zum Schrank, dessen Tür einen Fingerbreit offen steht, und wieder zurück. Er sagt nichts. Aber er setzt sich anders hin als vorher — so, dass er dich sehen kann.</p>
+		<p>Was du in der knappen Zeit erhascht hast, ist wenig, aber es ist das Entscheidende: In der Fluchtnacht passierte kein Mensch das Tor. Nur eine Fuhre — Ausbesserungsgut der Waffenausgabe, mitten in der Nacht.</p>
+		<<= setup.setPlayerSuspicion(2)>>
+	<</if>>
+	<</beziehung>>
+<</if>>
+
+<<gedanke>>
+<p>Ausbesserungsgut fährt bei Tag. Immer. Ein Jahr lang habe ich die Fuhren kommen und gehen sehen, und nicht eine davon fuhr nach Einbruch der Dunkelheit. In jener Nacht verließ kein Mann die Akademie — aber ein Wagen. Und der Geleitschein, der ihm das Tor öffnete, war in Ordnung. Natürlich war er das. Er kam aus der richtigen Feder.</p>
+<</gedanke>>
+
+[[Karla davon erzählen|Ermittlung_S7_Erkenntnis]]
+
+
+:: Ermittlung_S8_Karla {"position":"50,6500","size":"100,100"}
+<<scene>>
+<p>Ein Blick genügt — mehr braucht ihr nicht mehr, nach all den Nächten am Holzstapel. Karla legt den Riemen beiseite, steht auf, streckt sich, als langweile sie der Dienst, und schlendert hinaus, ohne Eile, ohne dass irgendetwas an ihr verriete, dass sie gerade in einen Plan tritt. Du zwingst dich, ihr nicht nachzusehen.</p>
+<p>Es dauert nicht lange. Von draußen, aus Richtung des Hofes, zerbricht etwas mit hellem Krachen, und darauf folgen Stimmen — Karlas, hart und laut, und die eines Mannes, der sich ungerecht behandelt glaubt. Ein Streit, der nach Aufsicht verlangt, nach jemandem, der Ordnung schafft, ehe aus Worten Fäuste werden.</p>
+<</scene>>
+<<if not $world.ermittlung.flags.s8_zugang_done>>
+	<<set _dc to 13 + ($world.ermittlung.flags.s2_weg eq "einbruch" ? 2 : 0)>>
+	<<set _r to setup.skillCheckXp("gossip", _dc)>>
+	<<= setup.skillCheckAlert(_r)>>
+	<<if _r.success>>
+		<p>Oren hält inne, den Kopf schräg gelegt, und für einen Herzschlag glaubst du, er durchschaue alles. Dann siegt die Pflicht über den Argwohn — ein Weibel der Waffenausgabe duldet keinen lärmenden Streit vor seiner Tür. Er erhebt sich schwerfällig, das steife Bein nachziehend, und humpelt hinaus, um Ruhe zu stiften.</p>
+		<p>Die Tür fällt zu, und mit ihr fällt eine Last von dir. Du hast deine Minuten — und du nutzt jede einzelne, die Finger flink über die Seiten, die Lippen lautlos zählend, während dein Herz die Zeit misst, die dir bleibt.</p>
+		<<= setup.ermVerdacht("orenmalk", 1)>>
+        <<= setup.setNpcAffection("karla", 1)>>
+	<<else>>
+		<p>Oren geht — aber er geht als ein Mann, der zählt, wie lange er fort ist. Zu früh kehrt er zurück, viel zu früh, und in dem Augenblick, da er die Tür öffnet, sind seine Augen schon bei dir. Sie wandern von deinem Gesicht zum offenen Buch, vom Buch zur Tür, hinter der Karla noch immer zu laut, zu eifrig ihren Streit spielt.</p>
+		<p>Du hast fast alles. Fast. Doch was Oren in diesem Moment begreift, wiegt schwerer als die paar Zeilen, die dir fehlen: dass hier zwei Hände am Werk waren, abgestimmt, geplant. Er sagt kein Wort. Er muss es nicht. Von dieser Stunde an seid ihr beide in seinem Blick.</p>
+		<<= setup.ermVerdacht("orenmalk", 3)>>
+		<<set $world.ermittlung.flags.karla_auffaellig to true>>
+	<</if>>
+	<<set $world.ermittlung.flags.s8_zugang_done to true>>
+<</if>>
+[[Was das Buch verrät|Ermittlung_S8_Muster]]
+
+
+:: Ermittlung_S8_Muster [nach_Kap2_abend] {"position":"275,6675","size":"100,100"}
+<<scene>>
+<p>Und da ist es, schwarz auf vergilbtem Papier, so unscheinbar, dass ein flüchtiges Auge tausendmal darüber hinweggehen würde. „Übungsbestand C zur Nachprüfung Westhof.“ Einmal im Monat. Manchmal öfter. Zurück, so weit die Seiten reichen, über ein Jahr und länger. Und neben keiner einzigen dieser Zeilen — du prüfst es zweimal, dreimal, weil du es kaum glauben willst — steht ein Rückvermerk.</p>
+<p>Nichts kam je zurück. Kein Stück Schadeisen wurde je „nachgeprüft“ und heimgeführt. Es war nie eine Nachprüfung. Es war, Monat um Monat, immer nur ein Hinausbringen — in Kisten, die lang genug sind für einen Mann, verplombt und abgezeichnet von einer Hand, die keine Zeile zittern lässt.</p>
+<</scene>>
+
+<<gedanke>>
+<p>Der Dolch war nie das Rätsel. Er war ein Blick durch einen Türspalt, und die ganze Zeit habe ich auf die Tür gestarrt, statt zu begreifen, dass dahinter ein Weg liegt — breit getreten, seit Jahren begangen, mitten durch eine bewachte Akademie und wieder hinaus. Jarek war keine Ausnahme. Jarek war Fracht.</p>
+<</gedanke>>
+
+<<dialog>>
+<p>„Sag es“, verlangt Karla am Abend, am Holzstapel, wo die Pechfackeln denselben Kreis aus Licht werfen wie immer. „Laut. Ich will hören, ob es hält.“</p>
+<p>„Es ist kein Fehler, den er vertuscht hat“, sagst du. „Es ist seine Aufgabe. Über ein Jahr, in seiner Handschrift, jede Fuhre. Oren ist kein Schreiber mit Angst. Er ist der Mann, der das Tor öffnet.“</p>
+<p>Karla schweigt lange. Dann, leiser: „Und wir sind die Einzigen, die es wissen. Das ist keine gute Stelle, Tom, an der wir da stehen.“</p>
+<</dialog>>
+
+<<if not $world.ermittlung.flags.s8_done>>
+	<<= setup.ermFund("fuhren_muster", "Das Ausgabebuch zeigt über ein Jahr verteilt zahllose 'Übungsbestand C zur Nachprüfung Westhof'-Fuhren — keine mit Rückvermerk, alle in Oren Malks Hand. Aus dem Einzelfall wird ein stehender Kanal.")>>
+	<<set $world.ermittlung.flags.s8_done to true>>
+	<<set $world.ermittlung.flags.naechste_fuhre_tag to $world.day + 6>>
+<</if>>
+
+<<gedanke>>
+<p>Doch im Takt der Einträge steht noch etwas: Die Fuhren gehen in gleichem Abstand, und rechnet man vom letzten Datum weiter, ist die nächste in wenigen Tagen fällig. Ein Buch ist nur ein Wort gegen sein Wort. Eine Fuhre aber, die wir mit eigenen Augen sehen, dokumentieren und mit Krebs' Gegenbuch aus Westhof zusammenlegen — die kann keine ruhige Hand mehr wegwischen.</p>
+<</gedanke>>
+
+<<weiterImTag "Weiter">>
+
+
+:: Ermittlung_S8_Vorwand {"position":"225,6500","size":"100,100"}
+<<scene>>
+<p>Du brauchst keinen zweiten Mann, nur einen Grund, den Oren nicht übergehen kann, ohne die eigene Pflicht zu verraten. Deine Augen suchen den Raum ab — und finden ihn: die Kammer, in der die scharfen Bolzen lagern, hinter einem Riegel, der ohnehin schwergängig läuft. Ein Handgriff im Vorbeigehen, kaum zu sehen, und der Riegel sitzt fest wie festgeschmiedet.</p>
+<p>„Der Riegel klemmt“, sagst du, halb über die Schulter, mit dem beiläufigen Ärger eines Mannes, der bloß seine Arbeit tun will. „Bekomme ihn nicht auf.“ Es ist eine kleine Sache. Aber scharfe Bolzen hinter einem Riegel, der nicht öffnet, sind für einen Waffenwart keine kleine Sache.</p>
+<</scene>>
+<<if not $world.ermittlung.flags.s8_zugang_done>>
+	<<set _dc to 13 + ($world.ermittlung.flags.s2_weg eq "einbruch" ? 2 : 0)>>
+	<<set _r to setup.skillCheckXp("thievery", _dc)>>
+	<<= setup.skillCheckAlert(_r)>>
+	<<if _r.success>>
+		<p>Oren flucht leise, ein Fluch, der mehr dem Eisen gilt als dir, und macht sich an der Kammer zu schaffen. Das kranke Bein zwingt ihn, sich umständlich hinzuknien, den Rücken dir zugewandt, beide Hände am widerspenstigen Riegel. Genug. Mehr als genug. Du zählst, so schnell die Augen die Zeilen fassen, und schreibst dir das Jahr ins Gedächtnis, ehe er sich wieder aufrichtet.</p>
+		<<= setup.ermVerdacht("orenmalk", 1)>>
+	<<else>>
+		<p>Er löst den Riegel in der halben Zeit, die du erhofft hast — die Hände eines Mannes, der dieses Eisen jeden Tag anfasst —, und dreht sich um, ehe du fertig bist. In seinem Blick liegt kein Ärger über den klemmenden Riegel. Da liegt etwas Kälteres, Wägenderes, das langsam von der Kammer zu dir und zum offenen Buch wandert und dort verweilt.</p>
+		<p>Die Zahlen hast du beisammen. Seinen Argwohn hast du dir dazu erkauft. Er hat den Riegel geöffnet und dabei genau gesehen, wer ihn hat klemmen lassen.</p>
+		<<= setup.ermVerdacht("orenmalk", 3)>>
+	<</if>>
+	<<set $world.ermittlung.flags.s8_zugang_done to true>>
+<</if>>
+[[Was das Buch verrät|Ermittlung_S8_Muster]]
+
+
+:: Ermittlung_S8_Zaehlen {"position":"425,6500","size":"100,100"}
+<<scene>>
+<p>Kein Trick, keine Ablenkung, kein zweiter Mann. Nur du, das Buch und ein Mann, der dich beobachtet — und die kalte Kunst, dir nichts anmerken zu lassen. Du schlägst das Ausgabebuch auf, als gälte es der Pflege, prüfst eine Seriennummer, die dich nicht kümmert, und liest dabei die Zeile darüber, und die darüber, und suchst zwischen den echten Handgriffen die Minuten, die du brauchst.</p>
+<p>Es wird ein Tanz aus Blicken. Lesen, wenn Oren zu seinen Bolzen sieht. Innehalten, den Kopf heben, ein gleichgültiges Gesicht machen, wenn er herüberschaut. Deine Finger dürfen nicht zittern, deine Augen nicht hetzen, und dein Puls, der in den Ohren hämmert, geht niemanden etwas an als dich.</p>
+<</scene>>
+<<beziehung>>
+<<if not $world.ermittlung.flags.s8_zugang_done>>
+	<<set _dc to 13 + ($world.ermittlung.flags.s2_weg eq "einbruch" ? 2 : 0)>>
+	<<set _r to setup.skillCheckXp("perception", _dc)>>
+	<<= setup.skillCheckAlert(_r)>>
+	<<if _r.success>>
+		<p>Du findest den Takt, und einmal gefunden, trägt er dich. Lesen, aufsehen, weiterlesen — Seite um Seite fügt sich das Jahr zusammen, ohne dass eine Miene dich verrät. Als die Stunde um ist und du das Buch schließt, als wäre nichts gewesen, hast du alles, wonach du gekommen bist, und Oren hat nichts gesehen als einen Waffenträger bei der Arbeit.</p>
+		<<= setup.ermVerdacht("orenmalk", 1)>>
+	<<else>>
+		<p>Es ist eine Zeile zu viel. Dein Blick bleibt an ihr hängen — „Westhof“, wieder und wieder —, und für einen Herzschlag zu lang vergisst du das gleichgültige Gesicht. Als du aufsiehst, sieht Oren nicht mehr auf seine Bolzen. Er sieht dich an. Nicht das Buch. Dich.</p>
+		<p>Du bringst deine Zahlen zu Ende, mit steinernem Gesicht, und niemand könnte beweisen, dass etwas geschehen ist. Aber du weißt es, und er weiß es: In diesem einen Herzschlag hat er gesehen, welches Wort auf dieser Seite dich mehr angeht als jede Seriennummer.</p>
+		<<= setup.ermVerdacht("orenmalk", 4)>>
+	<</if>>
+	<<set $world.ermittlung.flags.s8_zugang_done to true>>
+<</if>>
+<</beziehung>>
+[[Was das Buch verrät|Ermittlung_S8_Muster]]
+
+
+:: Ermittlung_S8_Zugang {"position":"250,6300","size":"100,100"}
+<<scene>>
+<p>Die Waffenpflege ist ein guter Vorwand, weil sie ein wahrer ist: Riemenzeug will geölt, Klingen wollen gewetzt, und niemand hebt eine Braue, wenn ein Waffenträger eine Stunde in der Ausgabestube verbringt. Es riecht nach Leinöl und kaltem Eisen, nach dem Staub alter Register, und in dem schmalen Licht, das durch die hohen Fenster fällt, liegt das Ausgabebuch offen auf dem Pult, als hätte es nur auf dich gewartet.</p>
+<p>Nur ist da ein Haken, mit dem du nicht gerechnet hast. Um diese Stunde ist Oren Malk sonst an der Esse, wo die Zahlen des Tages gemacht werden. Heute nicht. Heute sitzt er am anderen Ende des Raums, das kranke Bein steif von sich gestreckt, und sortiert Bolzen in Fächer, die längst sortiert sind — eine Arbeit, die keine ist, verrichtet von einem Mann, der nur einen Grund sucht, um zu bleiben.</p>
+<</scene>>
+
+<<gedanke>>
+<p>Beim ersten Mal war es die Sache von Augenblicken — ein Datum finden, eine Zeile, dann hinaus. Diesmal ist es anders. Diesmal muss ich ein ganzes Jahr zählen, jede Westhof-Zeile, jede Fuhre, die hinausging und nie zurückkam, und das dauert nicht Augenblicke, sondern Minuten, viele davon. Und Oren gibt mir keine, solange er im Raum ist.</p>
+<p>Halm hat ihn einen Schreiber genannt, der aus Angst eine Lücke vertuscht. Aber ich sehe keine Angst in dieser Stille. Ein ängstlicher Mann zappelt, redet zu viel, sucht Blicke. Oren tut nichts von alldem. Er sitzt und wartet, ruhig wie einer, der weiß, dass die Zeit für ihn arbeitet — und das jagt mir mehr Furcht ein, als jedes Zittern es könnte.</p>
+<</gedanke>>
+
+<<dialog>>
+<p>„Er geht nicht von selbst“, murmelt Karla neben dir, ohne von dem Riemen aufzusehen, den sie ölt; ihre Stimme kaum lauter als das Kratzen des Lappens über das Leder. „Also verschaff ich dir die Zeit — oder du findest selbst einen Weg, ihn aus dem Raum zu kriegen. Was dir lieber ist, Weibel. Aber entscheide dich schnell. Je länger wir hier sitzen und nichts tun, desto länger sieht er uns dabei zu.“</p>
+<</dialog>>
+
+<ul>
+<li>[[Karla einen Zwischenfall inszenieren lassen|Ermittlung_S8_Karla]]</li>
+<li>[[Selbst einen Vorwand schaffen, der ihn hinauszwingt|Ermittlung_S8_Vorwand]]</li>
+<li>[[Unter seinen Augen zählen|Ermittlung_S8_Zaehlen]]</li>
+</ul>
+
+
+:: Ermittlung_S9_Aufgeraeumt {"position":"600,6350","size":"100,100"}
+<<scene>>
+<p>Am nächsten Tag suchst du unter einem Vorwand die Ausgabestube auf, und was du findest, bestätigt, was die leere Rampe dir schon gesagt hat. Die jüngsten Seiten des Ausgabebuchs sind fort — herausgetrennt, sauber, als hätte es sie nie gegeben —, und Oren begegnet dir mit derselben höflichen Ruhe wie immer, nur dass in seinen Augen jetzt das Wissen liegt, dass er zuerst gehandelt hat.</p>
+<</scene>>
+<<gedanke>>
+<p>Er hat nicht gezögert, nicht gezittert, nicht einen Fehler gemacht. Er hat die Fuhre gestrichen und die Spuren getilgt, ruhig und gründlich, wie ein Mann, der so etwas nicht zum ersten Mal tut. Halm hat sich geirrt: Das ist keine Angst. Angst macht hastig. Das hier war Disziplin.</p>
+<</gedanke>>
+<<dialog>>
+<p>„Dann ist das Buch tot“, sagt Karla am Abend, und schlägt mit der flachen Hand auf den Holzstapel. „Alles umsonst.“</p>
+<p>„Nicht alles“, sagst du. „Krebs' Gegenbuch in Westhof hat er nicht. Es zeigt, was ankam — und dass nie ankam, was das Ausgabebuch verschickte. Zwei Bücher, die einander widersprechen. Nur haben wir jetzt statt drei Beweisen einen. Und der liegt eine Tagesreise entfernt in fremder Hand.“</p>
+<</dialog>>
+<<if not $world.ermittlung.flags.s9_done>>
+	<<= setup.ermFund("fuhre_gestrichen", "Oren hat die Nachtfuhre gestrichen und die jüngsten Buchseiten getilgt, ehe ihr zugreifen konntet. Der Buchweg ist verbrannt — es bleibt allein Krebs' Gegenbuch aus Westhof.")>>
+	<<set $world.ermittlung.flags.fuhre_gestrichen to true>>
+	<<set $world.ermittlung.flags.beweis_stark to false>>
+	<<set $world.ermittlung.flags.s9_done to true>>
+	<<set $world.ermittlung.flags.s9_tag to $world.day>>
+<</if>>
+<<weiterImTag "Weiter">>
+
+
+:: Ermittlung_S9_Deckung {"position":"925,6450","size":"100,100"}
+<<scene>>
+<p>Du bleibst, wo du bist, im sicheren Dunkel, und machst das, was oft mehr wert ist als Kühnheit: Du siehst genau hin. Jede Bewegung, jede Kiste, jeder Blick der beiden Männer — dein geübtes Auge sammelt, was ein flüchtiger Beobachter übersähe, und dein Gedächtnis hält es fest.</p>
+<</scene>>
+<<if not $world.ermittlung.flags.s9_zugang_done>>
+	<<set _mod to -2 + ($world.ermittlung.flags.karla_auffaellig ? 2 : 0)>>
+	<<set _r to setup.skillCheckXp("perception", 13, _mod)>>
+	<<= setup.skillCheckAlert(_r)>>
+	<<if _r.success>>
+		<p>Du liest die Szene wie eine Seite: wie sie die Kisten heben, welche schwer sind und welche leicht, wie der Wachmann nicht zum Fuhrmann spricht, als kennten sie einander nicht — und doch handeln sie im selben eingeübten Takt. Am Ende hast du ein Bild, so klar, dass keiner es dir ausreden kann.</p>
+		<<set $world.ermittlung.flags.s9_gut to true>>
+		<<= setup.ermVerdacht("orenmalk", 1)>>
+	<<else>>
+		<p>Die Entfernung frisst die Einzelheiten; im blendenverhangenen Licht verschwimmt, was du gerne genau wüsstest, und ein Teil des Ablaufs bleibt dir verborgen. Du hast das Gerüst — die Fuhre, die Kisten, die Stunde —, aber nicht die feinen Nägel, die einen Zweifler überzeugen.</p>
+		<<set $world.ermittlung.flags.s9_gut to false>>
+	<</if>>
+	<<set $world.ermittlung.flags.s9_zugang_done to true>>
+<</if>>
+[[Was ihr gesehen habt|Ermittlung_S9_Ergebnis]]
+
+
+:: Ermittlung_S9_Ergebnis [nach_Kap2_morgen] {"position":"825,6600","size":"100,100"}
+<<scene>>
+<p>Zurück im Schatten des Holzstapels legt ihr zusammen, was ihr habt. Der Karren, die Kisten, die Stunde, die Handschrift — und ein Detail, das nur dir aufgefallen ist, weil du bist, was du bist.</p>
+<</scene>>
+
+<<switch $player.spezialisation>>
+<<case "cannon">>
+<<gedanke>><p>Die Fuhre bog nicht zum Fluss ab, sondern nahm den Weg zur Esse. Als Geschützmann kenne ich diesen Weg — und den Hof hinter der Esse, wo Wagen stehen, nach denen niemand fragt. Ich weiß jetzt nicht nur, dass etwas hinausgeht. Ich weiß, wohin.</p><</gedanke>>
+<<set _detail to "Die C-Fuhre nimmt den Weg zur Esse, nicht zum Fluss — Ziel ist der Hof hinter der Schmelze, den nur Artilleristen kennen.">>
+<<case "medicine">>
+<<gedanke>><p>Auf dem Bock saß nicht der alte Fuhrmann von den Tagfuhren. Ein Fremder, jünger, mit Händen, die nie einen Zügel führten, ehe man sie ihm gab. Als Feldscher lese ich Hände wie andere Gesichter — dieser Mann ist kein Fuhrmann. Er ist ein Bote, den man verkleidet hat.</p><</gedanke>>
+<<set _detail to "Auf dem Bock der Nachtfuhre saß ein fremder, ungeübter Fuhrmann — nicht der übliche Mann. Die Fahrer werden gestellt, nicht angeheuert.">>
+<<case "pike">>
+<<gedanke>><p>Mein Tordienst gibt mir, was kein Späher bekäme: das Torprotokoll. Und dort steht die Fuhre, verzeichnet mit einer Stunde, die kein Ausbesserungsgut je führt. Ein zweites Buch, das dasselbe sagt wie das erste — und das Oren nicht in der Hand hat.</p><</gedanke>>
+<<set _detail to "Das Torprotokoll verzeichnet die Nachtfuhre mit Uhrzeit — ein Zweitbeleg außerhalb von Orens Reichweite.">>
+<<case "crossbow">>
+<<gedanke>><p>Vom Schießstand aus, meinem Posten, sah ich, was die Rampe verbarg: wie sie die Kisten hoben, welche schwer waren und welche leicht, und welche man trug, als läge darin etwas, das man nicht schütteln darf. Ein Armbruster misst Abstände im Schlaf. Ich habe jede Kiste vermessen.</p><</gedanke>>
+<<set _detail to "Vom Schießstand aus beobachtet: eine der Kisten wurde getragen, als dürfe ihr Inhalt nicht erschüttert werden — kein Schadeisen liegt so.">>
+<<default>>
+<<gedanke>><p>Kein besonderes Handwerk gab mir einen Vorteil — nur die eigenen Augen und eine Nacht, in der ich sie offen hielt. Aber das genügt: Ich habe die Fuhre gesehen, und was ich gesehen habe, lässt sich nicht mehr leugnen.</p><</gedanke>>
+<<set _detail to "">>
+<</switch>>
+
+<<if not $world.ermittlung.flags.s9_done>>
+	<<= setup.ermFund("fuhre_dokumentiert", "Die nächtliche C-Fuhre wurde mit eigenen Augen gesehen und festgehalten — Karren, verzurrte Kisten, gefälschter Geleitschein, mitten in der Nacht aus dem Seitentor.")>>
+	<<if _detail neq "">><<= setup.ermFund("fuhre_detail", _detail)>><</if>>
+	<<set $world.ermittlung.flags.beweis_stark to ($world.ermittlung.flags.s9_gut === true)>>
+	<<set $world.ermittlung.flags.s9_done to true>>
+	<<set $world.ermittlung.flags.s9_tag to $world.day>>
+<</if>>
+
+<<dialog>>
+<p>„Wir haben ihn“, sagt Karla, und zum ersten Mal seit Wochen liegt etwas wie Hoffnung in ihrer rauen Stimme. „Nicht auf Papier allein. Wir haben ihn *gesehen*.“</p>
+<p>„Wir haben die Fuhre“, sagst du leise. „Ihn haben wir, wenn Rindler uns glaubt. Und das ist eine andere Nacht.“</p>
+<</dialog>>
+<<= setup.setNpcAffection("karla", 1)>>
+
+<<weiterImTag "Weiter">>
+
+
+:: Ermittlung_S9_Nachtfuhre {"position":"775,6275","size":"100,100"}
+<<if ($world.ermittlung.verdacht.orenmalk || 0) gte 6>>
+<<scene>>
+<p>Ihr liegt im Schatten des Holzstapels gegenüber der Waffenausgabe, Karla und du, und wartet auf eine Fuhre, die nicht kommt. Die Stunde, die das Buch euch verraten hat, verstreicht. Dann die nächste. Die Rampe bleibt dunkel, das Tor geschlossen, und je länger ihr wartet, desto sicherer wisst ihr, was das Schweigen bedeutet.</p>
+<</scene>>
+<<gedanke>>
+<p>Er hat es gemerkt. Natürlich hat er es gemerkt — ich habe zu oft im Buch gewühlt, zu deutlich, und ein Mann wie Oren zählt nicht nur Bolzen, er zählt Blicke. Es gibt heute keine Fuhre. Vielleicht für lange keine. Er hat den Kanal geschlossen, ehe wir ihn schließen konnten.</p>
+<</gedanke>>
+[[Was uns bleibt|Ermittlung_S9_Aufgeraeumt]]
+<<else>>
+<<scene>>
+<p>Die Nacht ist mondlos und kalt, und ihr liegt im Schatten des Holzstapels gegenüber der Waffenausgabe, Karla und du, die Blicke auf die Rampe geheftet. Das Buch hat die Stunde verraten, und das Buch hat nicht gelogen: Als die Akademie längst schläft, öffnet sich das Seitentor, und ein Karren rollt heraus, das Rad in Lumpen gewickelt, damit es leiser läuft. Ein Fuhrmann auf dem Bock, ein Wachmann mit einer Blende vor der Laterne, und auf der Ladefläche Kisten — lange Kisten, sorgsam verzurrt.</p>
+<</scene>>
+<<gedanke>>
+<p>Da ist sie. Kein Gerücht mehr, kein Eintrag auf Papier, sondern Holz und Eisen und ein Mann, der etwas hinausfährt, das bei Tag niemand hinausfahren würde. Ein Wort gegen Orens Wort ist nichts. Aber das hier — gesehen, festgehalten, mit Krebs' Gegenbuch zusammengelegt — das ist etwas, das er nicht mehr wegschreiben kann. Wenn ich nah genug herankomme.</p>
+<</gedanke>>
+<<if $world.ermittlung.flags.karla_auffaellig>>
+<<gedanke>>
+<p>Seit jener Nacht in der Stube, als Oren Karlas Hand in der Sache sah, behält er nicht nur mich im Auge. Ich spüre es heute doppelt: Wir stehen zu zweit auf seiner Liste, und wer selbst beobachtet wird, tut sich schwer damit, zu beobachten.</p>
+<</gedanke>>
+<</if>>
+<<dialog>>
+<p>„Geleitschein und Plombe“, flüstert Karla, „oder wir beobachten aus der Deckung und schreiben mit, was wir sehen. Nah bringt mehr — und kostet mehr, wenn sie dich fassen.“</p>
+<</dialog>>
+<ul>
+<li>[[Nah an die Rampe schleichen|Ermittlung_S9_Nah]]</li>
+<li>[[Aus der Deckung beobachten und mitschreiben|Ermittlung_S9_Deckung]]</li>
+</ul>
+<</if>>
+
+
+:: Ermittlung_S9_Nah {"position":"725,6450","size":"100,100"}
+<<scene>>
+<p>Du löst dich aus dem Schatten und arbeitest dich an der Mauer entlang, Schritt um Schritt, bis du nah genug bist, um den Geleitschein zu lesen, der am Karren hängt, und die Plombe zu erkennen, die die Kisten verschließt. Was deine Ausbildung dich gelehrt hat, hilft dir jetzt, das Wesentliche vom Beiwerk zu trennen — und schnell zu sein.</p>
+<</scene>>
+<<if not $world.ermittlung.flags.s9_zugang_done>>
+	<<set _mod to -2 + ($world.ermittlung.flags.karla_auffaellig ? 2 : 0)>>
+	<<set _r to setup.skillCheckXp("thievery", 13, _mod)>>
+	<<= setup.skillCheckAlert(_r)>>
+	<<if _r.success>>
+		<p>Du bekommst alles: die Nummer des Geleitscheins, das Siegel, die Aufschrift „Übungsbestand C" in Orens Hand, sogar den Namen des Zielhofs. Lautlos ziehst du dich zurück, und in deinem Kopf trägst du einen Beweis, der keine Lücke lässt.</p>
+		<<set $world.ermittlung.flags.s9_gut to true>>
+		<<= setup.ermVerdacht("orenmalk", 1)>>
+	<<else>>
+		<p>Dein Stiefel findet einen losen Stein, der Wachmann fährt herum, die Laterne reißt auf — und für einen Wimpernschlag steht die Nacht in Flammen aus Licht. Du wirfst dich zurück in den Schatten, das Herz im Hals, und kommst mit dem Wesentlichen davon. Aber sie haben etwas gesehen. Nicht dein Gesicht, doch genug, um zu wissen, dass jemand zu nah war.</p>
+		<<set $world.ermittlung.flags.s9_gut to false>>
+		<<= setup.ermVerdacht("orenmalk", 3)>>
+	<</if>>
+	<<set $world.ermittlung.flags.s9_zugang_done to true>>
+<</if>>
+[[Was ihr gesehen habt|Ermittlung_S9_Ergebnis]]
+
+
+:: Ermittlung_Familia_Antwort [einmalig interrupt] {"position":"350,5450","size":"100,100"}
+<<= setup.ermInit()>>\
+<<silently>>
+<<set $world.ermittlung.flags.familia_antwort to true>>
+<<set $world.ermittlung.flags.logistik_bestaetigt to true>>
+<</silently>>\
+<<scene>>
+<p>Wenzel fängt dich am Brunnen ab, zwischen Drill und Studium, und drückt dir etwas in die Hand, ohne stehenzubleiben. „Kam über drei Ecken", brummt er. „Frag nicht welche." Dann ist er weg, als hätte er nie etwas übergeben.</p>
+<</scene>>
+<p>Ein Stück Papier, einmal gefaltet, ohne Siegel. Die Schrift darauf ist rund und sicher, mit Schnörkeln, die mehr nach Handelskontor als nach Gelehrtenstube riechen. Du kennst sie nicht — und doch weißt du beim ersten Wort, wer schreibt.</p>
+
+<hr class="trenner-raute">
+<<dialog>>
+<p>ThomasO.</p>
+<p>Man hat mir dein Wort gebracht. Ich habe meine Leute fragen lassen — in drei Städten, an den Routen, bei den Männern, die sonst alles wissen, weil alles durch ihre Hände geht. Und ich schreibe dir, was ich sonst niemandem schreibe, eh: *Ich habe nichts.*</p>
+<p>Etwas läuft, das ist sicher. Ware unter falschen Namen, über die Fuhrmannswege, kein Raub — ein Tragen. Aber keiner von meinen Leuten rührt es an. „Frommes Zeug", sagen sie, und sie sagen es leise, und dann reden sie über das Wetter. Verstehst du? Die Grauwelt hat vor wenig Angst. Vor diesen hier hat sie Angst.</p>
+<p>Eine Tür öffnet man mit Gold, ragazzo. Die nächste mit Furcht. Diese Leute aber wollen kein Gold und fürchten den Tod nicht, denn sie glauben. Maurice hat geredet, bis ihm die Zunge schwer wurde. Vincente hat einem Mann zugesetzt, der lieber die Schläge nahm als ein Wort. Und jeder von ihnen weiß nur sein eigenes kleines Kästchen, nie das nächste.</p>
+<p>Also hör auf einen alten Mann: Den Weg hinein findest nicht ich von außen. Den findest du, wo du schon stehst — hinter deinen eigenen Mauern. Schau in dein eigenes Haus.</p>
+<p>Man hat mir gesagt, die Käserei daheim sei fort. Schade. Es war ein guter Käse. Pass auf dich auf, und auf das Mädchen mit dem roten Kopf, von dem mir Wenzel erzählt. — Luigi.</p>
+<</dialog>>
+<hr class="trenner-raute">
+
+<<gedanke>>
+<p>Er nennt mich nicht Schnaufi. Nicht ein einziges Mal. Und trotzdem steht der ganze Berg in diesem Brief — die Kälte, der Käse, das langsame Gesundwerden. Er hat es versucht. Er, der sonst jede Tür aufbekommt. Und er ist gegen eine Wand gelaufen, so wie ich.</p>
+<</gedanke>>
+<<= setup.ermFund("familia_geruecht", "La Familia bestätigt: Fracht unter falschen Namen, kein Raub — aber kein Name, kein Kopf. Die Unterwelt meidet die Loyalisten.")>>
+<p>Du faltest das Papier wieder zusammen. *Schau in dein eigenes Haus.* Die Spur führt nicht hinaus in die Welt. Sie führt zurück, hinter die Palisade, an einen Tisch, an ein Gestell, an ein Gesicht, das du jeden Tag siehst.</p>
+
+<<weiterImTag>>
+
+
+:: Ermittlung_Nachspiel_Grodaus [nach_Kap2_tag] {"position":"550,6800","size":"100,100"}
+<<run setup.ermInit()>>
+<<scene>>
+<p>Drei Tage vergehen, in denen niemand ein Wort verliert. Oren wurde „versetzt“, sagt man in der Stube, mit dem Achselzucken, das Männer für Dinge haben, die sie nichts angehen. Keine Zeremonie, kein Vermerk, kein Dank. Die Akademie schluckt, was geschehen ist, und tut, als wäre es nie geschehen — denn eine Republik, die von ihrer Freiheit singt, gibt nicht zu, dass ein Königstreuer ein Jahr lang ihr Tor gehütet hat.</p>
+<</scene>>
+
+<p>Am dritten Abend fängt euch jemand am Brunnen ab. Grau gekleidet, unauffällig, ein Gesicht, das man in einer Menge sofort wieder verliert — und doch kennst du es. Der Mann aus Grodaus, der nie einen Namen nannte.</p>
+
+<<dialog>>
+<p>„Ich habe wenig Zeit“, sagt er ohne Begrüßung, „also hört gut zu. Was ihr getan habt, ist nicht ungesehen geblieben — nicht von denen, für die ich spreche. In Grodaus kennt man eure Namen nun. Ihr steht auf einer Liste.“ Ein dünnes Lächeln. „Keine Sorge. Auf der richtigen.“</p>
+<</dialog>>
+
+<<if $world.flags.akteneintrag>>
+<<dialog>>
+<p>„Man sagt mir, Ihr steht noch in einem anderen Buch“, fügt er hinzu, und für einen Moment wird sein Blick schärfer. „In dem Eures Hauptmanns, als einer, den man im Auge behält. Für uns ist das kein Makel — im Gegenteil. Ein Mann, der auffällt und trotzdem liefert, ist brauchbarer als einer, den nie jemand bemerkt. Aber merkt Euch: Was in diesem Buch steht, verschwindet nicht von selbst. Es sei denn, jemand mit dem rechten Ring lässt es verschwinden.“</p>
+<</dialog>>
+<</if>>
+
+
+<<dialog>>
+<p>„Ihr habt gegen die Loyalisten ermittelt“, fährt er fort, „und dabei etwas bewiesen, das seltener ist, als ihr glaubt. Ihr habt gegraben, ohne dass der Feind es merkte. Ohne dass das Opfer es merkte. Ohne dass euer eigener Hauptmann euch auf die Schliche kam, ehe ihr fertig wart. Das“ — er mustert euch beide — „ist eine Gabe. Und Gaben sollte man nicht vergeuden.“</p>
+<</dialog>>
+
+<p>Er reicht jedem von euch etwas. Zwei Ringe, schlicht, aus mattem Metall, wie man sie an keinem Finger zweimal ansehen würde. Ein Siegelring, das Wappen Aloys eingeprägt — und doch stimmt etwas nicht daran. Du drehst ihn im Licht, suchst den Fehler und findest ihn nicht; es ist keiner, den man benennen kann, nur das Gefühl, dass das vertraute Wappen hier ein anderes ist, um ein Haar verschoben, um einen Gedanken falsch.</p>
+
+<<dialog>>
+<p>„Wenig wert, nicht wahr“, sagt der Namenlose, und in seinen Augen blitzt etwas Belustigtes. „Behaltet ihn trotzdem. Er öffnet Türen, von denen ihr nicht wisst, dass es sie gibt. Zeigt ihn dem Rechten, und man lässt euch ein, wo man andere fortschickt. Fragt nicht, wo. Ihr werdet es erfahren, wenn es so weit ist.“</p>
+<</dialog>>
+
+<<gedanke>>
+<p>Ein Wappen, das nicht ganz das Wappen ist. Wie eine Unterschrift, die nicht ganz echt ist. Ich habe gelernt, solchen kleinen Falschheiten zu misstrauen — und halte doch die Hand auf, weil ich weiß, wer hinter dieser Tür steht: die, die genau das jagen, was wir gerade gefasst haben.</p>
+<</gedanke>>
+
+<<if not $world.ermittlung.flags.nachspiel_done>>
+	<<print setup.addItem("unscheinbarer Siegelring")>>
+	<<= setup.setPlayerReputation("ohm", 15)>>
+	<<= setup.setPlayerReputation("land", 10)>>
+	<<= setup.setPlayerReputation("grodaus", 20)>>
+	<<set $world.flags.geheimpolizei_einladung to true>>
+	<<set $world.flags.taverne_frei_ohm to true>>
+	<<set $world.ermittlung.flags.nachspiel_done to true>>
+<</if>>
+
+<<if $world.ermittlung.spuren.includes("familia_geruecht")>>
+<<dialog>>
+<p>„Und noch etwas“, sagt der Namenlose und mustert dich genauer. „Ihr habt Freunde in der Grauwelt — Leute, die Fracht kennen, die keiner kennen soll. Auch sie fürchten die, die wir jagen. Das ist selten, und es ist wertvoll. Wenn die Zeit kommt, werden wir uns an diese Freunde erinnern.“</p>
+<</dialog>>
+<</if>>
+
+<<if $world.ermittlung.spuren.includes("fuhre_detail")>>
+<<dialog>>
+<p>„Das Detail, das Euch aufgefallen ist“ — er tippt sich an die Schläfe — „behaltet es. Es ist mehr als der Beweis gegen einen Schreiber. Es ist ein Faden, und am Ende jedes Fadens sitzt jemand, der ihn hält. Wir werden ihn verfolgen. Ihr vielleicht mit uns.“</p>
+<</dialog>>
+<</if>>
+
+<<dialog>>
+<p>Er wendet sich zum Gehen, hält dann inne, und über sein graues Gesicht huscht etwas, das man bei einem anderen ein Lächeln nennen würde. „Und weil ich kein Unmensch bin“ — ein Augenzwinkern — „das Wichtigste zuletzt. Heute Abend, in der Schenke zu Ohm, gehört euch beiden alles. Speis und Trank, so viel ihr wollt. Die Wirtsleute sind unterrichtet, die Zeche ist gezahlt. Ein einziger Abend ohne Sold und ohne Sorge. Nutzt ihn.“ Dann ist er fort, als hätte ihn die Dämmerung nie hergetragen.</p>
+<</dialog>>
+
+<p>Als ihr das gehört hab dreht ihr euch einander zu und beginnt beide simultan zu grinsen. Dümmlich aber glücklich.</p>
+<<= setup.setNpcAffection("karla", 1)>>
+
+<<weiterImTag "Weiter">>
+
+
+
+
+:: Ermittlung_S10_Koda {"position":"1225,6525","size":"100,100"}
+<<scene>>
+<p>Sie holen Oren mitten am Tag, ohne Aufhebens, wie man einen Mann holt, von dem man keinen Widerstand erwartet. Er leistet keinen. Er legt die Feder beiseite, richtet die Bolzen in ihren Fächern, als sei Ordnung noch immer seine Pflicht, und geht zwischen den beiden Weibeln hinaus, das kranke Bein nachziehend, den Rücken gerade.</p>
+<</scene>>
+
+<<dialog>>
+<p>Man befragt ihn — Rindler selbst, Stunde um Stunde. Oren gesteht nichts. Nennt keinen Namen, gibt keine Zahl preis, bittet um keine Gnade. Auf jede Frage antwortet er mit der ruhigen Höflichkeit eines Mannes, der längst mit sich im Reinen ist.</p>
+<</dialog>>
+
+<<gedanke>>
+<p>Als sie ihn abführen, sucht sein Blick mich — nur für einen Augenblick. Kein Hass darin, kein Vorwurf. Dasselbe kalte, klare Licht, das ich einmal in anderen Augen gesehen habe, in einer Nacht in der Schreibstube. Oren sieht mich an wie Jarek mich ansah: als hätte ich etwas berührt, das größer ist als ich, und als wüsste er, dass ich es nie ganz begreifen werde.</p>
+<p>Halm hat sich geirrt. Es war nie Angst. Angst gesteht, wenn die Zange sich schließt. Das hier war Disziplin — und Disziplin schweigt bis zuletzt.</p>
+<</gedanke>>
+
+<<formal>>
+<p>In der beschlagnahmten Fracht der letzten Fuhren findet sich, unter falschen Namen und gefälschten Geleitscheinen, ein einzelnes Zeichen — ein Siegel, klein und ohne Prunk, das in keinem Register der Akademie verzeichnet ist und auf keine Behörde Aloys weist. Wer immer den Kanal befehligt, sitzt nicht in Ohm, und nicht in der Akademie. Und während man Oren Malk in Ketten legt, verschwindet dieser Kopf, den niemand kennt, ein wenig tiefer in den Schatten, aus denen er nie hervorgetreten ist.</p>
+<</formal>>
+
+<<dialog>>
+<p>„Wir haben ihn“, sagt Karla leise, als ihr am Abend am Holzstapel steht, ein letztes Mal. „Und trotzdem fühlt es sich nicht an wie gewonnen.“</p>
+<p>„Weil es nicht das Ende ist“, sagst du. „Es ist eine Tür. Und dahinter ist es dunkler, als wir gedacht haben.“</p>
+<</dialog>>
+
+<<if not $world.ermittlung.flags.s10_done>>
+	<<= setup.ermFund("kopf_entkommt", "Im beschlagnahmten Frachtgut lag ein unbekanntes Siegel — der eigentliche Kopf des Kanals sitzt außerhalb der Akademie und ist entkommen.")>>
+	<<set $world.ermittlung.flags.s10_done to true>>
+	<<set $world.ermittlung.flags.abgeschlossen to true>>
+	<<set $world.ermittlung.active to false>>
+	<<set $world.flags.kap3_saat to true>>
+<</if>>
+
+[[Später, am Holzstapel|Ermittlung_S10_Rueckblick]]
+
+
+:: Ermittlung_S10_Rindler {"position":"1200,6225","size":"100,100"}
+<<run setup.ermInit()>>
+<<set _hauptmannVerbrannt to ($world.ermittlung.flags.s2_weg eq "hauptmann")>>
+<<set _aktenkundig to ($world.flags.akteneintrag === true)>>
+<<set _burned to _hauptmannVerbrannt or _aktenkundig>>
+<<set _tuer to (State.variables.npc.magister.affection gte 5) or ($world.flags.jarek_ausgang eq "gemeldet")>>
+<<scene>>
+<p>Der kahle Raum neben der Wachstube, in dem sonst Verhöre und Verweise stattfinden — diesmal seid ihr es, die kommen, nicht die man holt. Karla neben dir, das Kinn hoch, und auf dem rohen Tisch das, was ihr in Wochen zusammengetragen habt: Krebs' Gegenbuch aus Westhof, das zeigt, was ankam; die Aufzeichnung dessen, was das Ausgabebuch verschickte — und dazwischen die Lücke, die keine Nachprüfung füllt.</p>
+<</scene>>
+
+
+
+<<switch setup.ermFallStaerke()>>
+<<case "stark">>
+<<gedanke>>
+<p>Wir haben mehr als Papier. Wir haben die Fuhre selbst — gesehen, gemessen, in dieser Nacht. Zwei Bücher, die einander widersprechen, und ein Karren, der die Lüge in Holz und Eisen fährt. Wenn das nicht reicht, reicht nichts.</p>
+<</gedanke>>
+<<case "indizien">>
+<<gedanke>>
+<p>Die Fuhre ist uns entgangen — aber nicht das Übrige. Jede Spur, die wir Woche um Woche zusammengetragen haben, liegt hier auf dem Tisch, und zusammen wiegen sie schwerer als jeder Einzelbeweis. Es muss genügen. Es wird genügen.</p>
+<</gedanke>>
+<<case "duenn">>
+<<gedanke>>
+<p>Es ist dünn. Oren hat die Fuhre gestrichen, die Seiten getilgt, und wir haben zu wenig gesammelt, um die Lücke zu füllen. Ein Wort aus Westhof gegen seine Ordnung. Ich weiß nicht, ob es reicht — aber es ist alles, was wir haben.</p>
+<</gedanke>>
+<</switch>>
+
+<<dialog>>
+<p>Rindler hört zu, ohne ein einziges Mal zu unterbrechen, die Hände auf dem Rücken, das Gesicht so unbewegt wie immer. Als du endest, tritt eine Stille ein, die länger dauert, als du ertragen möchtest.</p>
+<</dialog>>
+
+<<if _burned and not _tuer>>
+<<dialog>>
+<<if _aktenkundig>>
+<p>„Euer Name liegt bereits in meinem Fach“, sagt Rindler und tippt mit einem Finger auf eine Kladde, die er nicht öffnet. „Ein Vermerk, nicht schmeichelhaft. Und nun kommt Ihr mit Beschuldigungen gegen einen meiner Schreiber. Ihr müsst verstehen, dass ein Mann in meiner Stellung einem Aktenkundigen nicht aufs Wort glaubt.“</p>
+<<else>>
+<p>„Ihr“, sagt Rindler schließlich, und in dem einen Wort liegt die ganze Geschichte eurer letzten Begegnung. „Ihr kommt schon wieder mit Vermutungen zu mir, nachdem Ihr mir das letzte Mal meine Zeit gestohlen habt. Warum sollte ich Euch ein zweites Mal glauben?“</p>
+<</if>>
+<</dialog>>
+<<gedanke>>
+<p>Er hört mich nicht — nicht mir allein. Ich brauche jemanden, dessen Wort schwerer wiegt als meines, um diese Tür zu öffnen.</p>
+<</gedanke>>
+[[Einen Fürsprecher suchen|Ermittlung_S10_Tuersteher]]
+<<else>>
+<<if _burned>>
+<<dialog>>
+<<if _aktenkundig>>
+<p>„Ihr steht in meinem Fach, Waffenträger, und das macht Euch nicht glaubwürdiger“, sagt Rindler. „Doch Ihr kommt nicht allein — und der, der für Euch bürgt, ist keiner, den ich leichthin übergehe.“</p>
+<<else>>
+<p>„Nach dem, was zwischen uns steht, würde ich Euch fortschicken“, sagt Rindler langsam. „Doch Ihr kommt nicht allein — und der, der für Euch bürgt, ist keiner, den ich leichthin übergehe.“</p>
+<</if>>
+<</dialog>>
+<</if>>
+[[Rindler prüft die Beweise|Ermittlung_S10_Zugriff]]
+<</if>>
+
+
+:: Ermittlung_S10_Rueckblick {"position":"1225,6650","size":"100,100"}
+:<<run setup.ermInit()>>
+<<scene>>
+<p>Später, als der Hof sich geleert hat und die Akademie in ihr gewohntes Abendrauschen zurückgefallen ist, findet ihr euch wieder am Holzstapel ein, ohne es verabredet zu haben. Es ist der Ort, an dem alles zusammengekommen ist, Nacht für Nacht — es scheint richtig, dass es hier auch enden soll.</p>
+<</scene>>
+
+<<dialog>>
+<p>„Fang von vorn an“, sagt Karla und zieht die Knie an die Brust. „Ich will es einmal ganz hören. Damit ich weiß, dass es wirklich war und ich es mir nicht ausgedacht habe.“</p>
+<</dialog>>
+
+<p>Und du erzählst es der Reihe nach, wie man ein Garn aufwickelt, das sich über Monate verwirrt hat. Ein Eintrag über einen Dolch, der nicht stimmte — der erste lose Faden. Ein Kamerad, der nicht floh, sondern gefahren wurde, in einer Kiste, verplombt wie Schadeisen. Ein Buch voller Westhof-Fuhren, die nie zurückkamen, alle in einer ruhigen, sicheren Hand.</p>
+
+<<dialog>>
+<p>„Oren“, sagt Karla, und das Wort schmeckt ihr bitter. „Die ganze Zeit unter unseren Augen. Kein Ungeheuer, kein Verschwörer mit irrem Blick. Ein Schreiber mit lahmem Bein, der jeden Nagel dreimal zählte.“</p>
+<p>„Deshalb hat ihn niemand gesehen“, sagst du. „Weil er nicht aussah wie das, was man sucht. Halm dachte, es sei Angst. Aber ein Ängstlicher wäre gerannt. Oren hat aufgeräumt und geschwiegen. Das war Überzeugung.“</p>
+<</dialog>>
+<<= setup.setNpcAffection("karla", 2)>>
+
+<<gedanke>>
+<p>Und das ist es, was mir nachhängt, während wir hier sitzen: Wir haben eine Hand gefasst. Aber die Hand gehört zu einem Arm, und der Arm zu einem Körper, den wir nie gesehen haben. Das Siegel in der Fracht, das auf nichts in Aloy weist. Wir haben ein Loch gestopft in einem Damm, von dem wir nicht wissen, wie breit er ist.</p>
+<</gedanke>>
+
+<<dialog>>
+<p>Ihr schweigt eine Weile. Dann sagt Karla leise, ohne dich anzusehen: „Wir sind die Einzigen, die alles wissen, Tom. Das war schon vor dem Zugriff keine gute Stelle. Jetzt ist es eine gefährliche.“</p>
+
+<<beziehung>>
+<<if $world.ermittlung.flags.karla_auffaellig>>
+<<dialog>>
+<p>„Und er hat mich gesehen“, sagt Karla, und es ist keine Klage, nur eine Feststellung. „Damals in der Stube. Für einen Wimpernschlag wusste Oren, dass ich mit drinstecke. Wäre es anders gelaufen, säße vielleicht ich jetzt dort, wo er sitzt.“</p>
+<</dialog>>
+<</if>>
+<</beziehung>>
+
+<p>„Ich weiß“, sagst du. „Aber wir stehen hier zu zweit. Das ist mehr, als die meisten haben, die zu viel wissen.“</p>
+<p>Sie sieht dich lange an, und das harte Lächeln, das sonst nur den Spott kennt, wird für einen Atemzug zu etwas anderem. „Ja“, sagt sie. „Das ist es.“</p>
+<</dialog>>
+
+<<if not $world.ermittlung.flags.rueckblick_done>>
+	<<run setup.romanzeInit()>>
+	<<= setup.setRomanze(1)>>
+	<<set $world.ermittlung.flags.rueckblick_done to true>>
+<</if>>
+
+<<weiterImTag "Zurück in den Dienst">>
+
+
+:: Ermittlung_S10_Tuersteher {"position":"1125,6375","size":"100,100"}
+<<if State.variables.npc.magister.affection gte 5>>
+<<scene>>
+<p>Es gibt nur einen Mann in Ohm, dessen Wort Rindler nicht abtut, und der euch nicht gänzlich verschlossen ist: Magister Halm. Du suchst ihn in seiner Schreibstube auf, legst ihm vor, was du hast, und wartest, während er liest — langsam, gründlich, mit dem prüfenden Blick eines Mannes, der Muster erkennt, ehe sie sich vollenden.</p>
+<</scene>>
+<<dialog>>
+<p>„Ich sagte Euch, Ihr solltet behutsamer vorgehen“, sagt Halm, ohne aufzusehen. „Ihr habt nicht gehört. Und doch — was hier liegt, ist kein Kinderspiel mehr.“ Er legt das Blatt beiseite und steht auf. „Ich komme mit Euch zu Rindler. Nicht Euretwegen. Um dessentwillen, was Ihr aufgedeckt habt.“</p>
+<</dialog>>
+<<else>>
+<<scene>>
+<p>Karla findet den Weg, den du nicht kennst. „Aus Grodaus“, sagt sie nur, „hat mir jemand einmal gesagt, ich solle mich melden, wenn es je um mehr geht als um uns.“ Der Mann, der euch am Abend am Tor erwartet, nennt keinen Namen — grau gekleidet, unauffällig, mit den ruhigen Augen eines, der zuhört und nichts vergisst. Er liest, was ihr habt, und nickt einmal.</p>
+<</scene>>
+<<dialog>>
+<p>„Das gehört nicht mehr euch“, sagt der Namenlose leise. „Aber ihr habt es gefunden, und das rechne ich euch an. Ich rede mit dem Hauptmann. Er wird mir zuhören.“</p>
+<</dialog>>
+<</if>>
+<<set $world.ermittlung.flags.tueroeffner_genutzt to true>>
+[[Zurück zu Rindler|Ermittlung_S10_Zugriff]]
+
+
+:: Ermittlung_S10_Zugriff {"position":"1275,6375","size":"100,100"}
+<<run setup.ermInit()>>
+<<set _staerke to setup.ermFallStaerke()>>
+<<scene>>
+<p>Rindler blättert selbst — dem richtigen Buch, denn er ist kein Mann, den man mit einem falschen Band abspeist. Er findet die Daten, legt Krebs' Gegenbuch daneben, folgt der Lücke mit dem Finger, Zeile um Zeile, Monat um Monat. Seine Miene verändert sich mit keiner Regung, und doch spürst du den Augenblick, in dem aus einer Vermutung eine Gewissheit wird.</p>
+<</scene>>
+
+<<if $world.ermittlung.spuren.includes("westhof_ladung")>>
+<<dialog>>
+<p>„Und jede dieser Kisten“, sagt Rindler leise, den Finger auf einer Zeile, „in seiner eigenen Hand abgezeichnet. Ein Schreiber, der seine Fälschungen selbst gegenzeichnet. Das ist keine Nachlässigkeit. Das ist ein System.“</p>
+<</dialog>>
+<</if>>
+
+<<if $world.ermittlung.spuren.includes("fuhre_detail")>>
+<<switch $player.spezialisation>>
+<<case "cannon">><<dialog>><p>„Und Ihr wisst, wohin die Fuhren gehen“, sagt Rindler. „Zur Esse — ein Ort, den nur meine Artilleristen kennen. Das lässt sich nachprüfen. Und das werde ich.“</p><</dialog>>
+<<case "medicine">><<dialog>><p>„Ein fremder Fuhrmann“, wiederholt Rindler deinen Fund. „Ein Mann, den man auf den Bock setzt, nicht anheuert. Solche verschwinden nicht spurlos. Ich weiß, wo zu suchen ist.“</p><</dialog>>
+<<case "pike">><<dialog>><p>„Das Torprotokoll“, sagt Rindler und nickt langsam. „Ein zweites Buch, das dasselbe sagt — und das Oren Malk nie in Händen hielt. Damit fällt seine letzte Ausrede.“</p><</dialog>>
+<<case "crossbow">><<dialog>><p>„Eine Kiste, getragen wie rohe Eier“, sagt Rindler. „Kein Schadeisen liegt so. Euer Auge hat gesehen, was das Buch verschweigt.“</p><</dialog>>
+<</switch>>
+<</if>>
+
+<<switch _staerke>>
+<<case "stark">>
+<<dialog>>
+<p>„Das ist kein Verdacht mehr“, sagt Rindler, und seine Stimme trägt eine Kälte, die nicht euch gilt. „Das ist ein Kanal. Und er läuft durch meine Waffenausgabe.“ Er sieht auf, und zum ersten Mal liegt in seinem Blick etwas, das euch beide meint. „Ihr hättet es mir früher bringen sollen. Aber Ihr habt es gebracht.“</p>
+<</dialog>>
+<<case "indizien">>
+<<dialog>>
+<p>„Die Fuhre selbst ist mir durch die Finger gegangen“, sagt Rindler. „Jemand war schneller als Ihr. Aber Ihr habt genug daneben zusammengetragen, dass es keine Rolle mehr spielt. Ein Widerspruch lässt sich leugnen. Ein Dutzend nicht.“ Ein kurzes Schweigen. „Es reicht. Es reicht, um ihn zu holen.“</p>
+<</dialog>>
+<<case "duenn">>
+<<dialog>>
+<p>„Es ist dünn“, sagt Rindler, ohne Wärme. „Zwei Bücher, ein Verdacht, mehr habt Ihr nicht. Für ein Gericht wäre es zu wenig.“ Er legt das Gegenbuch beiseite. „Aber ich brauche kein Gericht, um einen Schreiber zu versetzen und ein Fach durchsuchen zu lassen. Es reicht, um zu handeln. Nicht, um Euch zu danken.“</p>
+<</dialog>>
+<</switch>>
+
+<<gedanke>>
+<p>Am folgenden Tag lässt Rindler nach Oren Malk schicken.</p>
+<</gedanke>>
+
+[[Der Zugriff|Ermittlung_S10_Koda]]

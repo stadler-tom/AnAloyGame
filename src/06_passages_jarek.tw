@@ -1,0 +1,537 @@
+
+:: Jarek_S1_Vorlesung [interrupt einmalig kapitel-opener kap1] {"position":"2800,75","size":"100,100"}
+<<set $npc.jarek.memory.flags.s1_seen = true>>
+<div class="scenery-text">Der Hörsaal ist kalt — die Akademie spart Holz für Räume, in denen gedacht statt gekämpft wird. Die Rekruten sitzen dicht gedrängt auf den Bänken, mehr aus Wärmebedürfnis als aus Wissensdurst, und über allem liegt der trockene Geruch von Staub und altem Papier.
+Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf einem abgegriffenen Bändchen, dessen Rücken du von hier aus nicht entziffern kannst — dessen Titel du aber kennst. Die Freiheitserklärung. Jeder kennt sie. Kaum einer hat sie gelesen.</div>
+
+<p>Ein Rekruten-Husten. Hinten döst jemand. Neben dir sitzt Jarek, und er döst nicht. Er sitzt aufrecht, die Hände still im Schoß, den Blick auf Halm — so reglos, dass er aus der Reihe der zappelnden, frierenden Jungen herausfällt wie ein einzelner ruhiger Stein in fließendem Wasser.</p>
+
+<div class="dialog">„Fünf Namen", sagt Halm, ohne die Stimme zu heben. „Fünf Hände, die vor hundertsechsundzwanzig Jahren ein Stück Pergament unterschrieben und damit eine Krone zerbrachen. Ihr werdet sie auswendig lernen, denn ihr dient nicht einem Mann — ihr dient dem, was diese fünf Hände begonnen haben."</div>
+<div class="dialog">„Und dann", fährt Halm fort, „ist da die sechste."</div>
+
+<p>Er macht eine Pause, die zu lang ist für einen Mann, der sonst kein Wort verschwendet.</p>
+
+<div class="dialog">„Unter den fünf Namen steht ein sechstes Zeichen. Keine Hand ist dafür verzeichnet, kein Stand, kein Geschlecht. Die Überlieferung sagt: Es war keine menschliche Hand. Eine höhere Vorsehung habe die Feder geführt und damit besiegelt, dass diese Republik nicht Aufruhr war, sondern Bestimmung." Er klappt das Bändchen zu. „So steht es geschrieben. So wird es gelehrt."</div>
+
+<div class="thought-box">Er sagt es, wie man eine Inventarliste vorliest. Kein Staunen, kein Funke. Als wäre das Wunder für ihn nur ein weiterer Eintrag, den er zu oft abgehakt hat. Aber so sind alte Lehrer wohl, wenn sie dasselbe zum tausendsten Mal sagen.</div>
+
+<<if $player.knowledge.aloy gte 3>>
+<p>Du hörst Halm zu — und weil du in seinen Stunden gelernt hast, hinzuhören, fällt dir etwas anderes auf. Nicht an Halm. An Jarek.</p>
+
+<p>Bei dem Wort *sechste* hat er sich nicht bewegt. Genau das ist es. Die ganze Reihe atmet, scharrt, verlagert das Gewicht — nur Jarek ist um einen Hauch zu still geworden, so still, wie Wasser still wird, kurz bevor es zufriert.</p>
+
+<div class="thought-box">Es ist nichts. Wirklich nichts — ein Junge, der bei einer alten Geschichte aufmerksam wird. Warum schaue ich überhaupt zu ihm hinüber? Und warum bleibt das Bild hängen, lange nachdem die Vorlesung weitergegangen ist?</div>
+<<set $npc.jarek.memory.flags.ahnung = true>>
+<<else>>
+<p>Du verlierst den Faden, irgendwo zwischen den fünf Namen und der Kälte, die durch deine Stiefel kriecht. Als du dich wieder fängst, ist Halm längst bei der Verwaltung der Provinzen, und Jarek sitzt neben dir wie immer — ruhig, aufmerksam, unauffällig.</p>
+
+<div class="thought-box">Ein stiller Kerl, der zuhört, während die halbe Reihe schläft. Mehr ist da nicht. Fast beneide ich ihn um die Ruhe.</div>
+<</if>>
+
+<<if $world.quest?.karla_01?.active>>
+<div class="thought-box">Seltsam — erst Karla mit ihrer Familie, jetzt diese alten Namen. Als drehte sich hier alles um Schulden, die einer für einen anderen trägt.</div>
+<</if>>
+
+<p>Als die Glocke die Stunde beendet, steht Jarek als Letzter auf. Er wartet, bis die Bank sich geleert hat, und sagt im Vorbeigehen nur ein Wort, halb zu dir, halb zu sich:</p>
+
+<div class="dialog">„Bestimmung." Ein kurzes, schiefes Lächeln. „Schön, wenn man so was glauben kann."</div>
+
+<p>Dann ist er fort, bevor du fragen kannst, wie er das gemeint hat.</p>
+
+[[Die Vorlesung endet. ->Studium Hub]]
+
+
+:: Jarek_S2_Ablehnung {"position":"3450,425","size":"100,100"}
+<<= setup.setNpcAffection("jarek", -2)>>
+<div class="dialog">„Nicht heute", sagst du. „Ich hab genug."</div>
+
+<p>Jarek nickt. Kein Vorwurf, keine zweite Frage. Er hatte die Antwort offenbar schon einkalkuliert, bevor er gefragt hat.</p>
+
+<div class="dialog">„Verständlich." Er sieht dich noch einen Moment an — diesen ruhigen, abwägenden Blick, der nichts preisgibt. „Dann nehm ich jemand anderen."</div>
+
+<p>Er geht. Aufrecht, unauffällig, schon wieder Teil der Kulisse.</p>
+
+<div class="thought-box">Er hat mich nicht gebraucht. Er hat geprüft. Und ich hab eine Tür zugemacht, von der ich nicht mal wusste, dass sie offen stand.</div>
+
+[[zurück in die Stube ->Jarek_S2_finalize]]
+
+
+:: Jarek_S2_Ablehnung_Spaet {"position":"3350,550","size":"100,100"}
+<<= setup.setNpcAffection("jarek", -1)>>
+<p>Du legst den Folianten zur Seite, den du gerade in den Händen hattest. „Mein Kopf ist nicht hier", sagst du. „Ich bring euch mehr durcheinander, als ich helfe."</p>
+
+<p>Der Schreiber winkt gleichgültig ab. Jarek sieht dich an — kurz, ruhig, ohne dich aufzuhalten. „Geh schlafen", sagt er. Keine Spitze, kein Vorwurf. Nur das Wort.</p>
+
+<p>Aber als du dich umdrehst, spürst du seinen Blick noch im Rücken. Wägend. Als hätte er sich gerade eine Antwort notiert, ohne eine Frage gestellt zu haben.</p>
+
+<div class="thought-box">Er hat mir die Tür offen gelassen. Ich bin nur nicht durchgegangen. Das ist nicht dasselbe wie ein Nein — aber es ist auch kein Ja.</div>
+
+[[zurück in die Stube ->Jarek_S2_finalize]]
+
+
+:: Jarek_S2_Angebot [interrupt kap1] {"position":"3200,75","size":"100,100"}
+<p>Der Morgenappell ist kaum verklungen, die Reihen lösen sich, und du bist schon halb im Gehen, als Jarek neben dir auftaucht — nicht plötzlich, nicht eilig. Er ist einfach da, als wäre er die ganze Zeit dort gewesen und du hättest es nur nicht bemerkt.</p>
+
+<p>Er spricht leise, ohne dich anzusehen, den Blick geradeaus über den Kies gerichtet.</p>
+
+<div class="dialog">„Der Sergeant sucht zwei Mann für die Schreibstube. Heute Abend. Alte Verzeichnisse umräumen, Botengänge. Stumpfe Arbeit." Eine kurze Pause. „Ich hab uns gemeldet. Für zwei. Du fällst nicht auf, du redest nicht viel — das passt."</div>
+
+<div class="thought-box">Er fragt nicht, ob ich will. Er stellt fest, dass ich passe. Wie ein Werkzeug, das die richtige Form hat.</div>
+
+<p>Du sagst, es sei nett, dass er an dich denkt. Etwas in seinem Gesicht schließt sich, kaum merklich.</p>
+
+<div class="dialog">„Es ist kein Gefallen", sagt er, fast schroff. „Ich brauch jemanden, der nicht quatscht. Das bist du. Mehr ist es nicht." Dann, ruhiger, als hätte er sich selbst zurückgepfiffen: „Es ist trocken und warm da drin. Besser als Exerzieren im Schlamm. Kommst du mit?"</div>
+
+[[Mitgehen. Warum nicht. ->Jarek_S2_Schreibstube]]
+[[Ablehnen. Du hast genug zu tun. ->Jarek_S2_Ablehnung]]
+
+
+:: Jarek_S2_Ansprechen {"position":"3075,475","size":"100,100"}
+<<set $npc.jarek.memory.flags.gewarnt = true>>
+<<= setup.setNpcAffection("jarek", 1)>>
+<div class="dialog">„Was ist das für ein Band?", fragst du leise. „Du liest das, als würdest du wissen, was drinsteht."</div>
+
+<p>Jarek erstarrt nicht. Nichts an ihm verändert sich sichtbar — und genau das ist es, was dich erschreckt. Er wird nur einen Hauch zu still, zu glatt, wie Wasser kurz bevor es zufriert.</p>
+
+<p>Der Schreiber ist herangetreten, nimmt den Band wortlos an sich, mustert ihn kurz und legt ihn zurück ins Regal. Der Moment ist vorbei. Was auch immer Jarek vorhatte — es ist ihm gerade aus den Händen geglitten.</p>
+
+<div class="dialog">„Ich kann ein bisschen lesen", sagt Jarek schließlich. Tonlos. „Mein Vater hat darauf bestanden. Damit man uns in den Verträgen nicht übers Ohr haut." Eine glatte Antwort. Eine gute Antwort. Und du weißt mit jeder Faser, dass sie nicht stimmt — oder höchstens zur Hälfte.</div>
+
+<p>Er sieht dich an, und der ruhige, freundliche Jarek ist immer noch da. Aber dahinter steht jetzt jemand, der dich neu vermessen hat und zu einem Schluss gekommen ist, der dir nicht gefällt. „Du beobachtest aufmerksam", sagt er. „Eine seltene Gabe. Pass nur auf, dass sie dir keinen Ärger macht."</p>
+
+<div class="thought-box">Ich hab es benannt. Und genau das war der Fehler. Nicht das Sehen — das Aussprechen. Wer Jarek ansieht, soll nichts sehen. Das hab ich gerade vergessen.</div>
+
+[[zurück in die Stube ->Jarek_S2_finalize]]
+
+
+:: Jarek_S2_Arbeit_Aktiv {"position":"3125,275","size":"100,100"}
+<p>Du sortierst — aber diesmal schaust du nicht nur auf deine eigenen Hände. Du schaust auf ihn.</p>
+
+<p>Jarek arbeitet schnell und sicher. Zu sicher. Wo du die verblassten Jahreszahlen auf den Rücken der Folianten mühsam entzifferst, greift er, ohne zu zögern. Er liest die Aufschriften wie jemand, der das Lesen nicht in der Kaserne gelernt hat — flüssig, mühelos, auch dort, wo die Schrift alt und verschnörkelt ist und die meisten hier nur Striche sehen würden.</p>
+
+<div class="thought-box">Ein Schustersohn aus der Unterstadt. Der liest verschnörkelte Kanzleischrift schneller als ich gedruckte Lettern. Wo lernt man das? Wahrscheinlich hat sein Vater darauf bestanden — Verträge, Schuhe, das passt schon irgendwie zusammen. Oder?</div>
+
+<p>Dann hält er inne. In seinen Händen liegt ein dünner Band, dunkel und brüchig, das Pergament fleckig vom Alter. Auf dem Rücken ein halb abgeplatztes Siegel und ein Wort, das du nicht entziffern kannst — er aber schon. Seine Augen wandern über die erste Seite, langsam, und für einen Moment verschwindet alles Beiläufige aus seinem Gesicht. Was übrig bleibt, ist Hunger. Konzentriert, still, alt.</p>
+
+<p>Es dauert nur einen Herzschlag. Dann ist es wieder weg, und er legt den Band zur Seite — nicht in die Kiste für das, was zerfällt. Daneben. Einen Fingerbreit abseits.</p>
+
+<p>In diesem Moment hebt der Schreiber den Kopf. „Was hast du da?"</p>
+
+<p>Jareks Gesicht verrät nichts. Aber seine Hand liegt still auf dem Band, und du spürst, ohne hinzusehen, dass er auf eine Sekunde wartet, die über mehr entscheidet als diese Stube.</p>
+
+<div class="thought-box">Er will, dass dieser Band nicht in die Kiste kommt. Und der Schreiber sieht gleich, dass er nicht zerfallen ist. Sag ich was — oder lass ich es?</div>
+
+[[Den Schreiber ablenken. Irgendetwas sagen, damit sein Blick von Jarek weggeht. ->Jarek_S2_Schweigen]]
+[[Jarek darauf ansprechen, was du gerade gesehen hast. ->Jarek_S2_Ansprechen]]
+
+
+:: Jarek_S2_Arbeit_Passiv {"position":"2900,550","size":"100,100"}
+<<set $npc.jarek.memory.flags.s2_done = true>>
+<<set $npc.jarek.trust = ($npc.jarek.trust || 0) + 1>>
+<p>Du sortierst. Jahr für Jahr, Stapel für Stapel. Es ist stumpfe, ehrliche Arbeit, und du verlierst dich darin, wie man sich in jeder Arbeit verliert, die keine Gedanken verlangt.</p>
+
+<p>Jarek arbeitet neben dir, schweigend. Hin und wieder hält er einen Folianten einen Atemzug länger in den Händen als nötig — aber du achtest nicht darauf. Du willst nur ins Bett.</p>
+
+<p>Irgendwann nickt der Schreiber euch weg. „Reicht für heute."</p>
+
+<p>Draußen im Gang bleibt Jarek kurz stehen. „Danke. Das ging schneller zu zweit." Es klingt aufrichtig, aber auch wie etwas, das er sagt, weil man es sagt.</p>
+
+<div class="thought-box">Eine ruhige Stunde, ein bisschen Wärme, ein Danke. Mehr war es nicht. Vielleicht musste es auch nicht mehr sein.</div>
+
+[[zurück in die Stube ->Jarek_S2_finalize]]
+
+
+:: Jarek_S2_Schreibstube {"position":"2950,400","size":"100,100"}
+<p>Die Schreibstube liegt am Ende eines schmalen Ganges, hinter einer Tür, die zu schwer ist für den Raum dahinter. Drinnen: der Geruch von Wachs, alter Tinte und feuchtem Pergament. Ein einzelner Schreiber sitzt am Pult und kratzt mit der Feder, ohne aufzusehen. An den Wänden Regale, Truhen, Stapel von Verzeichnissen, die seit Jahren niemand mehr angefasst hat.</p>
+
+<div class="scenery-text">Draußen ist es längst dunkel. Das Kerzenlicht zieht die Schatten der Regale lang über den Boden. Nur das Kratzen der Feder und das Rascheln von altem Papier füllen den Raum.</div>
+
+<div class="dialog">„Die hier", sagt der Schreiber knapp und deutet auf einen Wust loser Folianten. „Nach Jahr sortieren. Was zerfällt, kommt in die Kiste. Und fasst mir nichts an, das ein Siegel trägt."</div>
+
+<p>Jarek nickt, knapp und folgsam, und macht sich an die Arbeit. Seine Bewegungen sind ruhig und gleichmäßig — dieselben mechanischen Bewegungen, mit denen er an eurem ersten Abend seine Stiefel aufgeknotet hat.</p>
+
+<p>Du könntest die Arbeit einfach herunterreißen und an deine Pritsche denken. Oder du könntest darauf achten, was Jarek hier eigentlich tut.</p>
+
+[[Einfach arbeiten. Sortieren, schweigen, fertig werden. ->Jarek_S2_Arbeit_Passiv]]
+[[Arbeiten — aber genau darauf achten, was Jarek tut. ->Jarek_S2_Arbeit_Aktiv]]
+[[Doch keine Lust. Einen Vorwand finden und gehen. ->Jarek_S2_Ablehnung_Spaet]]
+
+
+:: Jarek_S2_Schweigen {"position":"3275,275","size":"100,100"}
+<<set $npc.jarek.memory.flags.s2_done = true>>
+<<set $npc.jarek.memory.flags.war_diskret = true>>
+<<set $npc.jarek.trust = ($npc.jarek.trust || 0) + 2>>
+<<= setup.setNpcAffection("jarek", 6)>>
+<<= setup.setPlayerStat("honesty", -2)>>
+<p>Du fragst nicht, was er da hat. Du fragst auch nicht dich selbst.</p>
+
+<div class="dialog">„Diese Kiste hier", sagst du in Richtung Schreiber und hältst einen halb zerfallenen Stapel hoch, von dem beim Anheben gleich ein paar Fetzen auf den Boden segeln. „Soll das alles raus, oder nur, was komplett hinüber ist? Ich will Euch nichts wegwerfen, das Ihr noch braucht."</div>
+
+<p>Der Schreiber seufzt, steht auf, kommt herüber. Während er den Stapel begutachtet, ist sein Rücken Jarek zugewandt — lange genug.</p>
+
+<div class="scenery-text">Hinter dem Rücken des Schreibers verschwindet der dunkle Band lautlos — nicht in die Kiste, sondern unter Jareks Kittel, an einer Stelle, an der schon zu oft etwas verschwunden ist, um noch ein Zufall zu sein.</div>
+
+<p>Als ihr später durch den dunklen Gang zurückgeht, sagt Jarek lange nichts. Erst an der Tür zur Stube bleibt er stehen.</p>
+
+<div class="dialog">„Du hast nicht gefragt." Es ist keine Frage. „Die meisten hätten gefragt."</div>
+
+<p>Er sieht dich an, und zum ersten Mal hast du das Gefühl, dass er dich tatsächlich ansieht — nicht abwägt, nicht einschätzt. Ansieht. „Das merk ich mir." Eine winzige Pause. „Schlaf gut."</p>
+
+<div class="thought-box">Ich weiß nicht, was ich da rausgetragen hab unter seinem Kittel. Und vielleicht ist es besser so. Was ich weiß: Eben hat sich etwas verschoben. Leise. Aber es hat sich verschoben.</div>
+
+[[zurück in die Stube ->Jarek_S2_finalize]]
+
+
+:: Jarek_S2_finalize {"position":"3150,725","size":"100,100"}
+[[zurück in die Stube ->Auf Stube]]
+
+
+:: Jarek_S3_Start [interrupt kapitel-opener kap1] {"position":"2750,225","size":"100,100"}
+<p>Es sind ein paar Tage vergangen, seit der Schreibstube. Jarek hat dich nicht darauf angesprochen, kein Wort — und genau das hat zwischen euch etwas wachsen lassen, das größer ist als jedes Gespräch: Er weiß, dass du dichthalten kannst.</p>
+
+<p>Heute findet er dich, als die Stube schon halb schläft. Er setzt sich neben dich, nah, die Stimme kaum lauter als das Knistern der letzten Kerze.</p>
+
+<div class="dialog">„Ich muss dir was sagen. Und ich sag's nur einmal, weil ich's sonst keinem sage."</div>
+
+<div class="thought-box">Jarek, der nie etwas von jemandem will. Der lieber zweimal schuftet, als einmal zu bitten. Und jetzt sitzt er hier und ringt sich etwas ab.</div>
+
+<p>Er sieht auf seine Hände. „Du erinnerst dich an meinen Vater. Die Augen. Den Laden." Ein kurzes Nicken, mehr zu sich selbst. „Was ich dir nicht gesagt hab: Da ist eine alte Schuld. Ein Vertrag, den ein Mann mit unserem Namen vor langer Zeit unterschrieben haben soll. Angeblich. Und solange das in den Akten steht, haftet meine Familie dafür — bis auf den letzten Heller."</p>
+
+<p>Seine Stimme bleibt ruhig, aber die Knöchel treten weiß hervor.</p>
+
+<div class="dialog">„In der Schreibstube, die wir umgeräumt haben — da liegen alte Verzeichnisse. Und irgendwo darin steht dieser Name. Wenn ich das Blatt finde, sehe ich, ob die Unterschrift überhaupt echt ist. Vielleicht ist sie's nicht. Vielleicht ist meine Familie seit dreißig Jahren für eine Lüge geradegestanden."</div>
+
+<p>Er hebt den Blick. „Ich komm da nicht ran. Nicht allein, nicht ungesehen. Aber du —"</p>
+
+<div class="thought-box">Da ist es. Die erste Bitte, die er je an mich gerichtet hat. Und sie kommt von jemandem, der nie bittet. Das wiegt schwer.</div>
+
+<<if $edu.archivzugang>>
+<div class="dialog">„— du gehst in den Schreibstuben ein und aus. Mit deinem Zeichen fällt niemandem auf, wenn du etwas länger zwischen den Regalen stehst." Er legt dir kurz die Hand auf den Arm. „Ich verlang nicht, dass du was stiehlst. Nur dass du suchst. Ein Name, ein Blatt. Das ist alles."</div>
+
+[[Ich schau mich um. Für dich. ->Jarek_S3_Zusage]]
+[[Und wenn ich erwischt werde? ->Jarek_S3_Zweifel]]
+<<else>>
+<div class="dialog">„— du bist klug genug, da reinzukommen. Der Magister sucht immer Hände für die Archivarbeit. Wer ihm dient, bekommt ein Zeichen, und mit dem Zeichen die Türen." Eine Pause. „Ich krieg das nie. Einer wie ich nicht. Aber du."</div>
+
+<div class="thought-box">Er meint Magister Halm. Wer sich dort nützlich macht — wer genug Gelehrsamkeit zeigt — dem öffnet er die Schreibstuben. Jarek kommt da nicht rein. Ich vielleicht schon.</div>
+
+[[Ich versuch, an dieses Zeichen zu kommen. ->Jarek_S3_Zusage]]
+[[Und wenn ich erwischt werde? ->Jarek_S3_Zweifel]]
+<</if>>
+
+
+:: Jarek_S3_Zusage {"position":"2600,425","size":"100,100"}
+<<set $npc.jarek.memory.flags.s3_zugesagt = true>>
+<<= setup.setNpcAffection("jarek", 3)>>
+<p>Jarek atmet aus — kaum hörbar, aber du hörst es. Zum ersten Mal sieht er nicht aus wie einer, der die Welt von sich fernhält. Nur müde. Und für einen Wimpernschlag: dankbar.</p>
+
+<div class="dialog">„Ich schulde dir was", sagt er. Dann, leiser, fast trotzig, als müsse er es sich selbst verbieten: „Ich mag das nicht. Jemandem was schulden."</div>
+
+<div class="thought-box">Er hat „danke" gesagt, ohne es zu sagen. Bei Jarek ist das fast ein Schwur.</div>
+
+<<if $edu.archivzugang>>
+<p>Du hast das Zeichen. Du brauchst nur noch eine ruhige Stunde zwischen den Regalen.</p>
+<<else>>
+<p>Zuerst musst du an das Archivzeichen kommen — und das führt über den Magister.</p>
+<</if>>
+
+[[Schlafen. Morgen ist ein langer Tag. ->Auf Stube]]
+
+
+:: Jarek_S3_Zweifel {"position":"2775,450","size":"100,100"}
+<p>Jarek hält deinem Blick stand. „Dann tu, als hättest du dich verlaufen. Ein Frischling, der nicht weiß, wo er hingehört — das glaubt man dir." Ein dünnes Lächeln, das die Augen nicht erreicht. „Niemand sucht hinter dir etwas, Thomas. Das ist deine beste Eigenschaft."</p>
+
+<div class="thought-box">Das soll beruhigend sein. Warum fühlt es sich dann an wie eine Beschreibung von etwas, das er benutzen kann?</div>
+
+<p>Er wartet. Er drängt nicht. Er weiß, dass die Frage längst entschieden ist — du hast nur noch nicht ja gesagt.</p>
+
+[[Schon gut. Ich mach's. ->Jarek_S3_Zusage]]
+[[Lass mich eine Nacht drüber schlafen. ->Auf Stube]]
+
+
+:: Jarek_S4_Archiv [interrupt einmalig kapitel-opener kap1] {"position":"3700,100","size":"100,100"}
+<<set $npc.jarek.memory.flags.s4_done = true>>
+<p>Die Gelegenheit kommt in dieser Nacht. Der Mond steht hinter Wolken, die Wachablösung ist gerade durch, und für eine knappe Stunde liegt der Gang zu den Schreibstuben so still, wie er nie wieder still sein wird.</p>
+
+<p>Jarek wartet im Schatten der Treppe. Er sagt nichts über seinen Vater, nichts über die Schuld. Er nickt dir nur zu — knapp, ruhig, als wäre das hier eine Botengang-Routine und kein Diebstahl an der eigenen Zukunft.</p>
+
+<div class="thought-box">Er ist so gefasst. Keine Spur Angst. Das beruhigt mich — und ich frage mich nicht, warum es das tut.</div>
+
+<<if $edu.archivzugang>>
+<p>Du hast das Zeichen des Magisters. Damit darfst du nachts hier sein — niemand wird dich aufhalten. Aber das Zeichen hat eine Kehrseite: Wer es vorzeigt, hinterlässt eine Spur. Halm wüsste, dass *du* hier warst.</p>
+
+<div class="thought-box">Mit dem Zeichen bin ich legal hier — und nachweisbar. Ohne das Zeichen bin ich ein Schatten — und in Gefahr. Was ist mir lieber?</div>
+
+[[Das Zeichen nutzen. Du gehörst hierher. ->Jarek_S4_Befugt]]
+[[Das Zeichen stecken lassen. Lieber ein Schatten als ein Name in einem Buch. ->Jarek_S4_Unbefugt]]
+<<else>>
+<p>Du hast kein Zeichen. Es gibt nur einen Weg: lautlos rein, lautlos raus, und beten, dass die Stunde reicht.</p>
+
+[[Hinein, solange der Gang leer ist. ->Jarek_S4_Unbefugt]]
+<</if>>
+
+
+:: Jarek_S4_Befugt {"position":"3600,225","size":"100,100"}
+<<set $player.knowledge.gelehrsamkeitProbe to Math.round(($player.stats.scholarship || 0) / 10)>>
+<<set _r to setup.skillCheck("gelehrsamkeitProbe", 9)>>
+<<run delete $player.knowledge.gelehrsamkeitProbe>>
+<p>Du legst dem Schreiber, der die Nachtwache hat, das Zeichen hin. Er winkt müde durch, ohne aufzusehen — Archivarbeit zu nachtschlafender Zeit ist nichts Ungewöhnliches für die, die dem Magister dienen.</p>
+
+<<if _r.success>>
+<div class="beziehung">Du bewegst dich, als hättest du jeden Grund, hier zu sein — und genau das hast du ja. </div>
+<p>Ruhig, methodisch arbeitest du dich durch die Verzeichnisse, Jahr um Jahr, ohne dass ein einziger Blick an dir hängen bleibt.</p>
+
+<div class="thought-box">Niemand sieht mich zweimal an. Ich gehöre hierher. So fühlt sich das also an.</div>
+<<else>>
+<div class="beziehung">Aber irgendwann gräbst du dort, wo ein Botenjunge nichts zu suchen hat — zwischen versiegelten Bänden, die niemand zum Umräumen anfasst.</div>
+<p>Der Schreiber hebt den Kopf. „Was genau suchst du da eigentlich, Junge?"</p>
+
+<p>Dein Herz setzt einen Schlag aus. Du stammelst etwas von einer Liste, die der Magister sehen wolle — eine dünne Lüge, aber das Zeichen in deiner Hand trägt sie. Der Schreiber mustert dich lange. Dann brummt er und wendet sich ab. Aber er hat sich dein Gesicht gemerkt.</p>
+
+<div class="thought-box">Das war zu knapp. Er wird sich erinnern, dass der Frischling mit dem Zeichen dort gewühlt hat, wo er nicht sollte. Solche Dinge sickern nach oben.</div>
+<</if>>
+
+[[Weitersuchen. ->Jarek_S4_Fund]]
+
+
+:: Jarek_S4_Fund {"position":"3700,350","size":"100,100"}
+<p>Und dann ist er da. Kein Schuldschein, kein Vertrag, wie du ihn dir vorgestellt hast — sondern ein dünner, brüchiger Band, eine frühe Abschrift, und zwischen den Seiten ein loses Beiblatt, das in keiner der Fassungen steht, die man im Wirtshaus kennt.</p>
+
+<div class="scenery-text">Der Name steht da. Lesbar. Eine Hand, die vor hundertsechsundzwanzig Jahren etwas unterschrieben hat — und daneben, in der nüchternen Schrift eines Schreibers, eine Notiz darüber, *unter welchen Umständen* sie es tat.</div>
+
+<p>Du hältst es in den Händen und spürst, dass es schwerer ist, als Papier sein dürfte. Etwas an diesem Blatt stimmt nicht mit der Geschichte überein, die Jarek dir erzählt hat — du kannst noch nicht sagen, was.</p>
+
+<div class="thought-box">Ein Familienname in einer alten Schuld, hat er gesagt. Aber warum liegt dieser Name *hier*, zwischen Pergamenten, die mit Schulden nichts zu tun haben?</div>
+
+[[Jarek das Blatt zeigen. ->Jarek_S5_Begreifen]]
+
+
+:: Jarek_S4_Unbefugt {"position":"3825,225","size":"100,100"}
+<<set _r to setup.skillCheck("thievery", 13)>>
+<p>Kein Zeichen, kein Recht, hier zu sein. Ihr drückt euch durch die schwere Tür, und sofort ist die Dunkelheit ein anderes Ding — eine, die jeden Laut verstärkt. Jarek bewegt sich, als hätte er das geübt. Du nicht.</p>
+
+<<if _r.success>>
+<div class="beziehung">Du setzt jeden Schritt zwischen das Knarren der Dielen, atmest, wenn der Wind ans Fenster schlägt. Lautlos arbeitet ihr euch zu den alten Verzeichnissen vor. Niemand hört euch. Niemand kommt.</div>
+
+<p>Ich macht euch leise im Schatten auf die Suche nach dem Dokument weswegen ihr hier seid.</p>
+
+<<= setup.setPlayerKnowledge("thievery", 1)>>
+<div class="thought-box">Mein Puls dröhnt in den Ohren. Aber es ist still geblieben. Wir sind drin.</div>
+<<else>>
+<div class="beziehung">Dein Stiefel findet die eine Diele, die unter Last aufschreit wie ein getretenes Tier. Der Laut zerreißt die Stille. Auf dem Gang: Schritte. Eine Wache.</div>
+
+<p>Jarek ist schneller als du denken kannst — eine Hand an deinem Kragen, und ihr presst euch in die Nische zwischen zwei Regalen, reglos, während der Lichtschein einer Laterne über die Wand wandert, innehält — und weiterzieht. Die Schritte entfernen sich. Erst als sie verklungen sind, merkst du, dass du die Luft angehalten hast.</p>
+
+<div class="thought-box">Um ein Haar. Jarek hat nicht gezögert, keine Sekunde — als wäre Sich-Verstecken etwas, das er im Schlaf beherrscht. Daran denke ich jetzt besser nicht.</div>
+<p>Als die Wache wieder abgezogen ist macht ihr euch weiter an die Suche nach dem Dokument weswegen ihr hier seid.</p>
+<</if>>
+
+[[Suchen, schnell, bevor die nächste Runde kommt. ->Jarek_S4_Fund]]
+
+
+:: Jarek_S5_Begreifen {"position":"3700,475","size":"100,100"}
+<<set $npc.jarek.memory.flags.s5_done = true>>
+<<set $npc.jarek.maskOff = true>>
+<<if $player.knowledge.aloy gte 3>>
+<div class="beziehung">Du hältst Jarek das Blatt hin — und in dem Moment, in dem dein eigener Blick noch einmal darüberstreift, wird dir etwas klar.</div>
+
+<p>Der Name. Die Notiz daneben. Du hast in Halms Stunden genug gelernt, um zu wissen, wo ein solches Blatt seinen Platz hat — und es ist nicht in irgendeiner Schuldenkammer. Es ist *die* Abschrift. Und der Name darunter steht nicht neben einer Schuld. Er steht unter der **sechsten Unterschrift**.</p>
+
+<div class="scenery-text">Du hebst langsam den Kopf. Jarek sieht dich an. Und er sieht, dass du es verstanden hast — du siehst, wie er es sieht.</div>
+
+<p>Und dann tut er etwas, das du noch nie an ihm gesehen hast: Er hört einfach auf. Die Ruhe, das Abwägende, das leicht Müde — all das fällt von ihm ab wie ein Mantel, den man nicht mehr braucht. Was übrig bleibt, ist wach, scharf, und vollkommen unbekannt.</p>
+
+<div class="dialog">„Du bist schlau geworden hier oben", sagt er. Es ist nicht mehr Jareks Stimme. Es ist dieselbe Stimme, aber niemand steht mehr dahinter, den du kennst.</div>
+<<else>>
+<div class="beziehung">Du hältst Jarek das Blatt hin ohne zu wissen was es genau ist. „Hier. Der Name. Ist das die Schuld?"</div>
+
+<p>Jarek nimmt es. Er liest nicht lange — er *prüft* nur, ob es das Richtige ist. Dann schließt er kurz die Augen, und als er sie wieder öffnet, ist etwas an ihm anders. Er steckt das Blatt nicht weg wie einer, dem eine Last von den Schultern fällt. Er hält es fest wie einer, der endlich eine Waffe in der Hand hat.</p>
+
+<div class="dialog">„Es gibt keine Schuld, Thomas", sagt er ruhig. „Hat es nie gegeben."</div>
+
+<div class="thought-box">Was?</div>
+
+<div class="dialog">„Der Name unter der sechsten Unterschrift. Die, von der euer Magister erzählt, eine höhere Hand habe sie geführt." Ein dünnes Lächeln. „Es war eine Hand. Eine sehr menschliche. Und daneben steht, dass man ihr ein Messer an die Kehle gehalten hat."</div>
+
+<p>Die Ruhe, die du an ihm kanntest, ist immer noch da — aber jetzt erkennst du, dass sie nie Frieden war. Sie war Geduld. Die Geduld von jemandem, der lange auf etwas gewartet hat.</p>
+<</if>>
+
+<div class="thought-box">Die Schuld. Der blinde Vater. Der Schustersohn, der für seine Familie schuftet. Nichts davon war je echt. Ich habe ihm jedes Wort geglaubt — und ich habe ihn hier reingebracht. Ich war die Hand, die er nicht hatte.</div>
+
+<<if $npc.jarek.memory.flags.ahnung>>
+<div class="thought-box">Und das Schlimmste: Ein Teil von mir hat es geahnt. Damals im Hörsaal, bei dem einen Wort. Ich habe es gesehen und mir eingeredet, es sei nichts. Ich wollte, dass es nichts ist.</div>
+<<else>>
+<div class="thought-box">Es trifft mich völlig kalt. Keine Vorahnung, kein Zweifel — ich habe nicht einen Moment lang etwas anderes in ihm gesehen als einen Freund.</div>
+<</if>>
+
+<p>Du stehst da, das Schweigen zwischen euch so schwer, dass es im Hals sitzt. Der Junge, dem du deine kranke Kindheit anvertraut hast, der dir „Schlaf gut" gesagt hat — den gibt es nicht. Hat es nie gegeben.</p>
+
+[[Warum ich? ->Jarek_S6_Bruch]]
+
+
+:: Jarek_S6_Bruch [nach_stube] {"position":"3675,600","size":"100,100"}
+<<set $npc.jarek.memory.flags.s6_done = true>>
+<<set $npc.jarek.memory.flags.sidequest01Complete = true>>
+<<set $world.flags = $world.flags || {}>>
+<<set $world.flags.freiheitserklaerung_beweis = true>>
+<<set $npc.jarek.memory.flags.verschwunden = true>>
+<div class="dialog">„Warum ich?", bringst du heraus.</div>
+<p>Jarek hält das Blatt an die Brust, als wäre es das Einzige im Raum, das zählt. „Weil du niemand bist, Thomas. Kein Name, keine Familie, die nachfragt. Ein Frischling, der nicht auffällt, der nicht quatscht." Es klingt nicht einmal grausam. Es klingt wahr. „Du warst perfekt."</p>
+<div class="thought-box">Genau die Worte vom ersten Abend. „Du fällst nicht auf, du redest nicht viel — das passt." Ich dachte, das sei ein Kompliment.</div>
+<div class="dialog">„Das hier ist kein Schuldschein für einen Schusterladen." Seine Stimme bleibt ruhig, aber jetzt brennt etwas darunter, das hundertsechsundzwanzig Jahre alt ist. „Es ist der Beweis, dass eure Republik auf einem Messer an einer Kehle gebaut ist. Eure Bestimmung. Euer Wunder. Eine Lüge, unterschrieben unter Zwang. Es gibt Leute, die dafür ihr halbes Leben gegeben haben, das schwarz auf weiß zu halten."</div>
+<div class="dialog">„Es ändert nichts", sagst du. „Hundertsechsundzwanzig Jahre, Jarek. Was daraus geworden ist, ist echt. Die Lüge macht es nicht ungeschehen."</div>
+<div class="dialog">„Nein", sagt er leise. „Aber sie macht es *angreifbar*."</div>
+<p>Er macht einen Schritt zur Tür. Und du tust das Einzige, was dir bleibt — du stellst dich ihm in den Weg. Nicht um zu kämpfen. Nur um ihn aufzuhalten, eine Sekunde, einen Atemzug lang, irgendetwas.</p>
+<div class="scenery-text">Jareks Hand fährt unter den Kittel, und plötzlich liegt Stahl darin — ein schmaler Dolch, den er die ganze Zeit getragen hat, an derselben Stelle, an der schon zu oft etwas verschwunden ist. Sein Gesicht ist nicht hasserfüllt. Es ist *panisch*. Aber die Klinge kommt trotzdem. Geradeweg auf dein Gesicht zu.</div>
+
+<<set _r to setup.skillCheck("combat", 16)>>
+<<if _r.success>>
+<div class="beziehung">Irgendein Instinkt, den die Monate des Drills in dich gehämmert haben, lässt dich zur Seite kippen, bevor dein Kopf begreift, was passiert. Die Klinge zischt an dir vorbei, du knickst weg, schlägst hart gegen das Regal — und liegst am Boden.</div>
+<<run setup.setPlayerKnowledge("combat", 1)>>
+<<run setup.setPlayerCondition(-15)>>
+<p>Als du wieder hochkommst, ist die Tür offen und der Gang leer. Jarek ist fort. Du könntest ihm nicht nach, selbst wenn du wolltest — das Bein trägt dich keine drei Schritte.</p>
+<div class="thought-box">Ausgewichen. Um Haaresbreite. Und trotzdem ist er weg, mit dem Blatt, und ich liege hier wie ein Sack.</div>
+<<else>>
+<div class="beziehung">Du bist zu langsam, dein Training reicht nicht aus dass deine Instinkte schnell genug greifen. Ein heißer, reißender Schmerz über der Augenbraue, und dann läuft dir Blut in die Augen, warm und blendend. Du taumelst gegen das Regal, die Welt verschwimmt rot.</div>
+<<run setup.setPlayerCondition(-25)>>
+<<set $player.flags = $player.flags || {}>>
+<<set $player.flags.jareknarbe = true>>
+<p>Durch den roten Schleier siehst du Jarek nur noch als Schatten in der Tür — er hält nicht inne, sieht nicht zurück, prüft nicht, was er angerichtet hat. Dann ist er weg. Du kannst ihm nicht folgen. Du kannst kaum die Augen offen halten.</p>
+<div class="thought-box">Er hat nicht einmal nachgesehen. Das ist es, was bleibt — nicht der Schnitt. Dass er nicht zurückgeschaut hat.</div>
+<</if>>
+
+<p>Du sitzt im Halbdunkel der Schreibstube, allein, mit dem Wissen, das du nie wieder loswirst — und mit der Frage, was du jetzt damit tust. Schritte werden bald kommen. Du hast nur Augenblicke.</p>
+[[Alarm schlagen. Sollen sie ihn jagen — und erfahren, was er gestohlen hat. ->Jarek_S6_Gemeldet]]
+[[Schweigen. Du lässt ihn laufen und trägst das allein. ->Jarek_S6_Geschwiegen]]
+
+
+:: Jarek_S6_DokVermisst [interrupt einmalig kapitel-opener kap1] {"position":"3700,875","size":"100,100"}
+<<set $world.flags.dok_vermisst_done = true>>
+<p>Drei Tage hat die Stille gehalten. Heute ist sie vorbei.</p>
+
+<p>Beim Morgenappell fehlt nicht nur Jareks Name in der Reihe — es fehlt etwas viel Größeres. Aus den Schreibstuben ist ein Aufschrei geworden, der durchs ganze Lager hallt: Ein versiegelter Band ist verschwunden, und mit ihm der Rekrut, der zuletzt dort eingeteilt war.</p>
+
+<div class="scenery-text">Im Hof stehen sie in Trauben zusammen, raunen. Ein Deserteur, sagen die einen. Ein Dieb. Andere wollen wissen, das Gestohlene sei brisanter als jeder Sold — etwas, das man besser nie gefunden hätte.</div>
+
+<p>Niemand sieht zu dir herüber. Noch nicht. Aber du warst mit Jarek in jenen Schreibstuben, und es ist nur eine Frage der Zeit, bis sich jemand daran erinnert.</p>
+
+<div class="thought-box">Ich könnte immer noch schweigen. Vielleicht fällt nie ein Verdacht auf mich. Oder ich gehe jetzt, aus eigenem Antrieb — bevor man mich holt.</div>
+
+[[Weiter schweigen. Sollen sie rätseln. ->Jarek_S6_Endgueltig_Schweigen]]
+[[Zum Sergeant gehen und erzählen, was du weißt. ->S06_Gestehen][$npc.jarek.memory.flags.spaet_gestanden = true]]
+
+
+:: Jarek_S6_Endgueltig_Schweigen {"position":"3525,1025","size":"100,100"}
+<p>Du sagst nichts. Du gehst durch die Tage mit gesenktem Kopf, antwortest auf keine Frage mehr als nötig, und nach einer Woche reden sie über etwas anderes. Jarek wird zu einer Geschichte, die man sich erzählt — der Schustersohn, der verschwand. Was er mitnahm, weiß keiner. Außer dir.</p>
+
+<div class="thought-box">Es ist vorbei. Niemand wird je erfahren, was in jener Nacht geschah, oder was auf dem Blatt stand. Ich trage es allein — den Schnitt, das Schweigen, das Wissen. Vielleicht ist das meine Strafe dafür, dass ich ihm geglaubt habe.</div>
+
+<div class="system-alert status-info">Du hast es endgültig für dich behalten. Das Geheimnis der sechsten Unterschrift ist jetzt deins — und Jareks, irgendwo da draußen.</div>
+<<set $npc.jarek.memory.flags.katastrophe to true>>
+<<set $world.flags.jarek_ausgang_tag to $world.day>>
+<<set $world.flags.jarek_ausgang to "schweigen">>
+[[Den Kopf senken und weitermachen. ->Auf Stube]]
+
+
+<<if $world.flags.jarek_ausgang === "schweigen" or $world.flags.jarek_ausgang === "geschwiegen">>
+<<elseif $world.flags.jarek_ausgang === "gemeldet">>
+<<elseif $world.flags.jarek_ausgang === "schande">>
+<</if>>
+
+
+:: Jarek_S6_Gemeldet {"position":"3650,725","size":"100,100"}
+<<set $world.flags.jarek_gemeldet = true>>
+<p>Du schreist, so laut die Lunge es hergibt. Stiefel donnern durch die Gänge, Laternen, Stimmen, Befehle. Du zeigst auf die offene Tür, auf das leere Regal, und die Worte stolpern aus dir heraus — Einbruch, ein Rekrut, ein gestohlenes Dokument.</p>
+
+<p>Jareks Name ist jetzt in der Welt, und die Akademie ist kein Ort, der einen Dieb vergisst.</p>
+<p>Du musst auch nicht sagen was gestohlen wurde. Magister Halm war in heller aufregung und hat alle seine Bediensteten zur Inventur eingespannt. Mit Erfolg.</p>
+<p>Halm schrieb nach Grodaus und Grodaus schickte jemanden. Jemanden der seinen Namen nicht nannte, jemanden der dich noch einmal befragte. Nach Jarek, nach allem was du über ihn weißt.</p>
+<p>Und nach dem Abend. Warum er dir in die Arme gelaufen ist.</p>
+<p>Du Antwortest so gut du es kannst</p>
+<<set _r to setup.skillCheck("thievery", 14)>>
+<<if _r.success>>
+	<div class="beziehung">und knallst ihm eine Lüge nach der anderen hin und kommst dabei nichteinmal in verlegenheit</div>
+<<else>>
+	<div class="beziehung">und wiederholst alles Was du schon einmal erzählt hast und hoffst dass er dir glaubt</div>
+<</if>>
+<p>Am Ende nickt er.</p>
+<div class="dialog">"Gut, damit hätte ich alles. Meinen Bericht lege ich der Administartion vor. Dir möchte ich für deinen Einsatz schon als erster Danken und ich mahne dich, erzähl die Geschichte nicht herum. Jarek hat dem Druck der Ausbildung nicht standgehalten. Er ist eingebrochen und hat überreagiert. Mehr muss niemand wissen."</div>
+<div class="thought-box">Ich habe ihn ans Messer geliefert — denselben Weg, den er mit mir gegangen ist. Vielleicht ist das gerecht. Vielleicht ist es nur das, was übrig bleibt, wenn das Vertrauen weg ist.</div>
+<<set _out to "">>
+<<set _out += setup.setPlayerReputation("ohm", 5)>>
+<<set _out += setup.setNpcAffection("magister", 4)>>
+<<set _out += setup.setNpcAffection("kurt", 4)>>
+<<set _out += setup.setNpcAffection("hauptmann", 4)>>
+<<set _out += setup.setNpcAffection("schinder", 4)>>
+<<set _out += setup.setPlayerSuspicion(-5)>>
+<div class="outcome-box">
+<div class="outcome-title">Das Ergebnis:</div>
+<div class="voice-formal">Deine Aussage ist glaubwürdig und die Offiziere erkennen deinen Einsatz an auch wenn du jarek nicht aufhalten konntest.</div>
+<<= _out>>
+</div>
+
+<div class="system-alert status-info">Jarek ist als Dieb gebrandmarkt. Was die Royalisten mit ihrem Beweis tun, wird sich zeigen — aber Man wird sie jagen.</div>
+<<set $npc.jarek.memory.flags.katastrophe to true>>
+<<set $world.flags.jarek_ausgang_tag to $world.day>>
+<<set $world.flags.jarek_ausgang to "gemeldet">>
+[[Auf die Stube gehen ->Kap1_Tagesstart]]
+
+
+:: Jarek_S6_Geschwiegen {"position":"3500,725","size":"100,100"}
+<<set $world.flags.jarek_gemeldet = false>>
+<<set $world.flags.dok_vermisst_armed = true>>
+<<set $world.flags.dok_vermisst_day = $world.day>>
+<p>Als die Schritte kommen, sagst du, du seist gestürzt. Im Dunkeln, beim Umräumen, dumm und ungeschickt. Sie glauben es — ein blutender Frischling, der sich schämt, ist nichts Besonderes.</p>
+
+<p>Kein Wort über Jarek. Kein Wort über das Blatt. Du weißt selbst nicht genau, warum — ob es ein letzter Rest von dem ist, was ihr wart, oder ob du einfach nicht der sein willst, der ihn verrät, nachdem er dich verraten hat.</p>
+
+<div class="thought-box">Jetzt trage ich es allein. Den Schnitt, das Geheimnis, den Beweis irgendwo da draußen in seinen Händen. Niemand wird je erfahren, was in dieser Nacht passiert ist. Außer mir. Und ihm.</div>
+
+<div class="system-alert status-info">Du hast geschwiegen. Jarek ist verschwunden, sein Name unbefleckt — und du bist der Einzige, der die Wahrheit kennt.</div>
+<<set $npc.jarek.memory.flags.katastrophe to true>>
+<<set $world.flags.jarek_ausgang_tag to $world.day>>
+<<set $world.flags.jarek_ausgang to "geschwiegen">>
+[[Den Schnitt verbinden und den Rest der Nacht überstehen. ->Kap1_Tagesstart]]
+
+
+:: S06_Gestehen {"position":"3850,1025","size":"100,100"}
+<p>Du stehst vor dem Sergeant, und dann vor mehr als dem Sergeant. Du erzählst, was war: die Schreibstube, die Bitte, die Nacht zwischen den Regalen. Du nennst Jareks Namen. Du verschweigst nichts.</p>
+<<if $edu.archivzugang>>
+<p>Du hattest das Zeichen des Magisters. Du warst befugt, dort zu sein — und genau das macht es schlimmer. Du hast Vertrauen benutzt, um Vertrauen zu brechen.</p>
+<<else>>
+<p>Und dann kommt der Teil, den du am liebsten ausließest: dass du **kein** Recht hattest, dort zu sein. Dass ihr euch hineingeschlichen habt. Du gestehst den Einbruch — und sagst, als wäre es eine Entschuldigung, die keine ist: dass du einem Freund helfen wolltest.</p>
+<</if>>
+<div class="thought-box">Einem Freund. Das Wort schmeckt falsch im Mund. Es gab keinen Freund. Es gab nur mich, der zu gern einen gehabt hätte.</div>
+<<if $npc.jarek.memory.flags.spaet_gestanden>>
+<p>Und sie fragen, was jeder fragen würde: Warum erst jetzt? Drei Tage hast du geschwiegen, während sie das halbe Lager auf den Kopf stellten. Darauf gibt es keine gute Antwort. Dein Zögern wiegt jetzt fast so schwer wie die Tat.</p>
+<p>Die Strafe fällt noch härter aus.</p>
+<</if>>
+<<set _out to "">>
+<<set _out += setup.setPlayerReputation("ohm", $edu.archivzugang ? -10 : -20)>>
+<<set _out += setup.setNpcAffection("magister", $edu.archivzugang ? -6 : -10)>>
+<<set _out += setup.setPlayerSuspicion($edu.archivzugang ? 15 : 40)>>
+<<if $npc.jarek.memory.flags.spaet_gestanden>>
+<<set _out += setup.setPlayerReputation("ohm", -10)>>
+<<set _out += setup.setNpcAffection("magister", -10)>>
+<<set _out += setup.setPlayerSuspicion(10)>>
+<</if>>
+<div class="outcome-box">
+<div class="outcome-title">Das Ergebnis:</div>
+<div class="voice-formal">Zu deinem großen Glück fällt das Urteil dahin, dass du manipuliert wurdest und nicht aus freihen Stücken gehandelt hast.<br>
+<<if $edu.archivzugang>>
+	<<set $edu.archivzugang = false>>
+    Dein Archivzugang wurde dir selbsverständlich entzogen.
+<</if>>
+</div>
+<<= _out>>
+</div>
+<<if $edu.archivzugang>> <div class="scenery-text">Magister Halm ist es, der am Ende das Wort führt. Er sieht dich nicht zornig an — das wäre leichter zu ertragen. Er sieht dich an wie eine Akte, die er falsch eingeordnet hatte. „Ich sagte dir, du sollst niemanden nach Namen fragen“, sagt er leise. „Du hast nicht gefragt. Du hast genommen.“ Dann wendet er sich ab, und das ist schlimmer als jede Strafe, die sie über dich verhängen.</div> <div class="thought-box">Halm hat mir die Tür geöffnet. Und ich habe ihm dafür ins Gesicht gelogen — ohne es zu wollen, aber das zählt für ihn nicht. Ich schäme mich so unfassbar …</div>
+<<else>> <div class="scenery-text">Magister Halm ist es, der am Ende das Wort führt. Er ist außer sich. „Wie kann es sein, dass in die Militärakademie eingebrochen und das Archiv gestohlen werden konnte? Genau aus diesem Grund hat man das Archiv hierher verlegt.“ Eine Anschuldigung, die schwer im Raum steht und die Militärs noch missmutiger stimmt, als sie ohnehin schon sind.</div> <div class="thought-box">Ich wollte jemandem helfen … seiner Familie … ich wollte Unrecht wiedergutmachen. Jetzt habe ich meinem Land geschadet — ohne es zu wollen, aber das zählt für sie nicht. Ich schäme mich so unfassbar …</div>
+<</if>>
+<<if $npc.jarek.memory.flags.spaet_gestanden>> <div class="system-alert status-info">Jarek ist über alle Berge. Die Loyalisten haben Munition. Und dank deines Wartens haben sie auch Vorlauf.</div>
+<<else>> <div class="system-alert status-info">Jarek ist über alle Berge. Die Loyalisten haben Munition. Wenigstens hat die Administration schnell davon erfahren.</div>
+<</if>>
+<<set $npc.jarek.memory.flags.katastrophe to true>>
+<<set $world.flags.jarek_ausgang_tag to $world.day>>
+<<set $world.flags.jarek_ausgang to "schande">>
+[[Die Strafe annehmen und tragen. ->Kap1_Der nächste Tag]]

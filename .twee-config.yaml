@@ -1,0 +1,15 @@
+sugarcube-2:
+  macros:
+    # Container-Widgets (werden mit <</...>> geschlossen)
+    scene:      { container: true }
+    gedanke:    { container: true }
+    dialog:     { container: true }
+    beziehung:  { container: true }
+    formal:     { container: true }
+
+    # Nicht-Container (kein schließendes Tag)
+    weiterImTag: {}
+    biwagCheck:  {}
+    refreshHud:  {}
+    hudBarInner: {}
+    hubOption:   {}

@@ -1,0 +1,50 @@
+# Betriebssystem
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# VS Code temporär / lokal
+.vscode/*.log
+.vscode/.ropeproject
+
+# Logs
+*.log
+
+# Temporäre Dateien
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+
+# Tweego/Test-Builds
+_check.html
+*.check.html
+
+# SugarCube/Twine lokale Saves oder Exporte, falls du sowas erzeugst
+*.save
+*.autosave
+
+# Node, falls später Tools dazukommen
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Mermaid / Docs Export optional und Zwischenformate
+*.svg.tmp
+docs/graphs/mmd/
+
+# Visual Studio Cache
+.vs/
+
+# Node
+node_modules/
+
+# Build / Scratch
+build/
+package.json
+tools/
+storyformats/
+include/
+

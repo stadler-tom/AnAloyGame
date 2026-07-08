@@ -1,0 +1,284 @@
+/* =============================================
+        DEV AREA
+================================================ */
+
+:: DevLogin {"position":"1100,4150","size":"100,100"}
+<h2>Developer Login</h2>
+
+<input id="devpw" type="password">
+
+<<button "Login">>
+	<<run (
+		$("#devpw").val() === "fleischens"
+			? Engine.play("DEBUG_Kap2_Setup")
+			: alert("Falsches Passwort.")
+	)>>
+<</button>>
+
+
+:: DEBUG_Kap2_Setup {"position":"1375,4250","size":"100,100"}
+<<run setup.ermInit()>>
+<<if not $world.flags>><<set $world.flags = {}>><</if>>
+
+
+<<if not $world._dbgKap2>>
+<<silently>>
+<<set $world._dbgKap2 to true>>
+<<set $world.day to 365>>
+<<set $player.rank to "Waffenträger">>
+<<set $player.condition to 70>>
+<<set $player.suspicion to 0>>
+<<set $player.money.copper to 40>>
+<<set $npc.karla.known to true, $npc.jarek.known to true, $npc.magister.known to true>>
+<<set $npc.hauptmann.known to true, $npc.kurt.known to true, $npc.schinder.known to true>>
+<<set $npc.jarek.memory.flags.katastrophe to true>>
+<<set $world.flags.jarek_ausgang to "geschwiegen">>
+<<set $world.flags.jarek_ausgang_tag to 360>>
+<<set $npc.karla.memory.flags.kapitel1_ende_seen to true>>
+<<run ["pike","crossbow","cannon","medicine","thievery","gossip","combat"].forEach(function(k){ State.variables.player.knowledge[k] = 2; })>>
+<<set $player.stats.scholarship to 8>>
+<<run setup.kapitel1Abschliessen()>>
+<</silently>>
+<</if>>
+
+<h3>DEBUG: Kapitel-2-Einstieg</h3>
+
+<div class="outcome-box">
+<div class="outcome-title">Aktueller Zustand</div>
+<p>Tag: <b>$world.day</b> · Jarek-Ausgang: <b>$world.flags.jarek_ausgang</b> · Narbe: <b><<= $player.flags && $player.flags.jareknarbe ? "ja" : "nein">></b><br>
+Karla: <b><<= $npc.karla.memory.flags.verhaftung_seen ? "VERHAFTET" : "frei">></b> · Umkehrung: <b><<= $npc.karla.memory.flags.umkehrung_done ? "ja" : "nein">></b> · Zuneigung: <b>$npc.karla.affection</b><br>
+Magister: Zuneigung <b>$npc.magister.affection</b> · Archivzugang: <b><<= $edu.archivzugang ? "ja" : "nein">></b><br>
+Skills: Pike $player.knowledge.pike · Armbrust $player.knowledge.crossbow · Geschütz $player.knowledge.cannon · Heilkunde $player.knowledge.medicine · Schatten $player.knowledge.thievery · Gerüchte $player.knowledge.gossip · Gelehrsamkeit $player.stats.scholarship<br>
+Spezialisierung: <b><<= $player.spezialisierung || "— (noch nicht gewählt)">></b> · Kupfer: <b>$player.money.copper</b> · Kondition: <b>$player.condition</b> · Verdacht: <b>$player.suspicion</b><br>
+Ermittlung frühestens Tag: <b><<= $world.ermittlung.fruehestens_tag>></b> · Luigi bekannt: <b><<= $npc.luigi.known ? "ja" : "nein">></b></p>
+</div>
+
+<h4>Jarek-Ausgang</h4>
+<<link "gemeldet">><<set $world.flags.jarek_ausgang to "gemeldet">><<goto "DEBUG_Kap2_Setup">><</link>> |
+<<link "geschwiegen">><<set $world.flags.jarek_ausgang to "geschwiegen">><<goto "DEBUG_Kap2_Setup">><</link>> |
+<<link "schweigen">><<set $world.flags.jarek_ausgang to "schweigen">><<goto "DEBUG_Kap2_Setup">><</link>> |
+<<link "schande">><<set $world.flags.jarek_ausgang to "schande">><<goto "DEBUG_Kap2_Setup">><</link>> |
+<<link "Narbe an/aus">><<set $player.flags = $player.flags || {}>><<set $player.flags.jareknarbe to !$player.flags.jareknarbe>><<goto "DEBUG_Kap2_Setup">><</link>>
+
+<h4>Karla</h4>
+<<link "Voller Durchlauf (frei, Umkehrung, eng)">>
+	<<set $npc.karla.memory.flags.verhaftung_seen to false>>
+	<<set $npc.karla.memory.flags.umkehrung_done to true>>
+	<<set $npc.karla.memory.flags.kennt_geheimnis to true>>
+	<<set $npc.karla.trust to true>>
+	<<set $npc.karla.affection to 15>>
+	<<goto "DEBUG_Kap2_Setup">>
+<</link>> |
+<<link "Frei, aber distanziert">>
+	<<set $npc.karla.memory.flags.verhaftung_seen to false>>
+	<<set $npc.karla.memory.flags.umkehrung_done to false>>
+	<<set $npc.karla.trust to false>>
+	<<set $npc.karla.affection to 3>>
+	<<goto "DEBUG_Kap2_Setup">>
+<</link>> |
+<<link "Verhaftet (sperrt Ermittlung & Romanze)">>
+	<<set $npc.karla.memory.flags.verhaftung_seen to true>>
+	<<set $npc.karla.memory.flags.umkehrung_done to false>>
+	<<goto "DEBUG_Kap2_Setup">>
+<</link>>
+
+<h4>Magister Halm</h4>
+<<link "Gunst hoch + Archivzugang">><<set $npc.magister.affection to 6>><<set $edu.archivzugang to true>><<goto "DEBUG_Kap2_Setup">><</link>> |
+<<link "Neutral, kein Zugang">><<set $npc.magister.affection to 0>><<set $edu.archivzugang to false>><<goto "DEBUG_Kap2_Setup">><</link>> |
+<<link "Verbrannt (−6)">><<set $npc.magister.affection to -6>><<set $edu.archivzugang to false>><<goto "DEBUG_Kap2_Setup">><</link>>
+
+<h4>Skill-Preset (nach Kapitel-Squash)</h4>
+<<link "Allrounder">><<run ["pike","crossbow","cannon","medicine"].forEach(function(k){State.variables.player.knowledge[k]=3;}); State.variables.player.knowledge.thievery=2; State.variables.player.knowledge.gossip=3; State.variables.player.stats.scholarship=10>><<goto "DEBUG_Kap2_Setup">><</link>> |
+<<link "Schattenläufer">><<run ["pike","crossbow","cannon","medicine"].forEach(function(k){State.variables.player.knowledge[k]=1;}); State.variables.player.knowledge.thievery=4; State.variables.player.knowledge.gossip=4; State.variables.player.stats.scholarship=6>><<goto "DEBUG_Kap2_Setup">><</link>> |
+<<link "Musterrekrut">><<run State.variables.player.knowledge.pike=4; State.variables.player.knowledge.crossbow=3; State.variables.player.knowledge.cannon=3; State.variables.player.knowledge.medicine=2; State.variables.player.knowledge.thievery=0; State.variables.player.knowledge.gossip=1; State.variables.player.stats.scholarship=14>><<goto "DEBUG_Kap2_Setup">><</link>>
+
+<h4>Spezialisierung (inkl. Waffe)</h4>
+<<link "Pike">><<set $player.spezialisierung to "pike">><<run setup.addWeaponToInventory("pike"), setup.equipWeapon("pike")>><<goto "DEBUG_Kap2_Setup">><</link>> |
+<<link "Armbrust">><<set $player.spezialisierung to "crossbow">><<run setup.addWeaponToInventory("crossbow"), setup.equipWeapon("crossbow")>><<goto "DEBUG_Kap2_Setup">><</link>> |
+<<link "Geschütz">><<set $player.spezialisierung to "cannon">><<run setup.addWeaponToInventory("hand_cannon"), setup.equipWeapon("hand_cannon")>><<goto "DEBUG_Kap2_Setup">><</link>> |
+<<link "Feldscher">><<set $player.spezialisierung to "medicine">><<run setup.addWeaponToInventory("field_knife"), setup.equipWeapon("field_knife")>><<goto "DEBUG_Kap2_Setup">><</link>>
+
+<h4>Sonstiges</h4>
+<<link "Geld: arm (5)">><<set $player.money.copper to 5>><<goto "DEBUG_Kap2_Setup">><</link>> |
+<<link "normal (40)">><<set $player.money.copper to 40>><<goto "DEBUG_Kap2_Setup">><</link>> |
+<<link "wohlhabend (150)">><<set $player.money.copper to 150>><<goto "DEBUG_Kap2_Setup">><</link>> ·
+<<link "Verdacht +10">><<set $player.suspicion to Math.min(100, $player.suspicion + 10)>><<goto "DEBUG_Kap2_Setup">><</link>> ·
+<<link "Ermittlung sofort scharf">><<set $world.day to 367>><<set $world.ermittlung.fruehestens_tag to 0>><<set $npc.luigi.known to true>><<goto "DEBUG_Kap2_Setup">><</link>>
+
+<hr class="trenner-raute">
+
+<h4>Starten</h4>
+[[Regulär: Kapitel-2-Intro (mit Probe & Waffenwahl)|Kap2_Intro]]
+[[Direkt in den Tagesloop (Spezialisierung oben wählen!)|Kap2_Tagesstart]]
+[[Biwag|Biwag_Drill]]
+
+
+:: DEBUG_Menu {"position":"100,300","size":"100,100"}
+<h3>— DEBUG / Quest-Sprungbrett —</h3>
+
+''Jarek-Kette:''
+<<link "Setup S1 (Vorlesung)">>
+  <<set $npc.jarek.memory.flags.s0_done = true>>
+  <<set $npc.magister.known = true>>
+  <<goto "Jarek_S1_Vorlesung">>
+<</link>>
+<<link "Setup S2 (Test)">>
+  <<set $npc.jarek.memory.flags.s1_seen = true>>
+  <<goto "Jarek_S2_Angebot">>
+<</link>>
+<<link "Setup S3 (Lüge)">>
+  <<set $npc.jarek.memory.flags.s2_done = true>>
+  <<goto "Jarek_S3_Start">>
+<</link>>
+<<link "Setup S4 BEFUGT (mit Zeichen)">>
+  <<set $npc.jarek.memory.flags.s3_zugesagt = true>>
+  <<set $edu.archivzugang = true>>
+  <<goto "Jarek_S4_Archiv">>
+<</link>>
+<<link "Setup S4 UNBEFUGT (ohne Zeichen)">>
+  <<set $npc.jarek.memory.flags.s3_zugesagt = true>>
+  <<set $edu.archivzugang = false>>
+  <<goto "Jarek_S4_Archiv">>
+<</link>>
+''S06 Gestehen — Direktsprung:''
+<<link "Gestehen BEFUGT (sofort)">>
+  <<set $edu.archivzugang = true>>
+  <<set $npc.jarek.memory.flags.spaet_gestanden = false>>
+  <<goto "S06_Gestehen">>
+<</link>>
+<<link "Gestehen UNBEFUGT (sofort)">>
+  <<set $edu.archivzugang = false>>
+  <<set $npc.jarek.memory.flags.spaet_gestanden = false>>
+  <<goto "S06_Gestehen">>
+<</link>>
+<<link "Gestehen BEFUGT (verspätet)">>
+  <<set $edu.archivzugang = true>>
+  <<set $npc.jarek.memory.flags.spaet_gestanden = true>>
+  <<goto "S06_Gestehen">>
+<</link>>
+<<link "Gestehen UNBEFUGT (verspätet)">>
+  <<set $edu.archivzugang = false>>
+  <<set $npc.jarek.memory.flags.spaet_gestanden = true>>
+  <<goto "S06_Gestehen">>
+<</link>>
+
+''Stellschrauben:''
+<<link "aloy = 5 (begreift selbst)">><<set $player.knowledge.aloy = 5>><</link>>
+<<link "aloy = 0 (Jarek erklärt)">><<set $player.knowledge.aloy = 0>><</link>>
+<<link "ahnung an">><<set $npc.jarek.memory.flags.ahnung = true>><</link>>
+<<link "combat = 0 / 10">><<set $player.knowledge.combat = 0>><</link>>
+
+<<link "↻ Flags zurücksetzen">>
+  <<set $npc.jarek.memory.flags = {}>>
+  <<goto "DEBUG_Menu">>
+<</link>>
+
+:: Debugger Ermittlung {"position":"950,4925","size":"100,100"}
+<<if not $world>><<set $world = {}>><</if>>
+<<if not $world.flags>><<set $world.flags = {}>><</if>>
+<<if not $edu>><<set $edu = {}>><</if>>
+
+<p><strong>Setze Wissensstand aus Kapitel 1</strong></p>
+
+<p><strong>Ausgang Jarek:</strong></p>
+
+<ul>
+    <li>
+        <<link "Geschwiegen">>
+            <<set $world.flags.jarek_ausgang = "geschwiegen">>
+            <<replace "#jarek-status">>
+                <p>Jarek-Ausgang: <strong>Geschwiegen</strong></p>
+            <</replace>>
+            <<replace "#archivwahl">>
+                <p><strong>Archivzugang?</strong></p>
+
+                <<link "Ja">>
+                    <<set $edu.archivzugang = true>>
+                    <<replace "#archiv-status">>
+                        <p>Archivzugang: <strong>ja</strong></p>
+                    <</replace>>
+                    <<replace "#weiter">>
+                        <p>[[debugrun|Ermittlung_S0_Auftakt]]</p>
+                    <</replace>>
+                <</link>>
+
+                &nbsp;|&nbsp;
+
+                <<link "Nein">>
+                    <<set $edu.archivzugang = false>>
+                    <<replace "#archiv-status">>
+                        <p>Archivzugang: <strong>nein</strong></p>
+                    <</replace>>
+                    <<replace "#weiter">>
+                        <p>[[debugrun|Ermittlung_S0_Auftakt]]</p>
+                    <</replace>>
+                <</link>>
+            <</replace>>
+        <</link>>
+    </li>
+
+    <li>
+        <<link "Schande">>
+            <<set $world.flags.jarek_ausgang = "schande">>
+            <<set $edu.archivzugang = false>>
+            <<replace "#jarek-status">>
+                <p>Jarek-Ausgang: <strong>Schande</strong></p>
+            <</replace>>
+            <<replace "#archivwahl">>
+                <p>Archivzugang: <strong>nein</strong></p>
+            <</replace>>
+            <<replace "#archiv-status">>
+                <p></p>
+            <</replace>>
+            <<replace "#weiter">>
+                <p>[[debugrun|Ermittlung_S0_Auftakt]]</p>
+            <</replace>>
+        <</link>>
+    </li>
+
+    <li>
+        <<link "Gemeldet">>
+            <<set $world.flags.jarek_ausgang = "gemeldet">>
+            <<replace "#jarek-status">>
+                <p>Jarek-Ausgang: <strong>Gemeldet</strong></p>
+            <</replace>>
+            <<replace "#archivwahl">>
+                <p><strong>Archivzugang?</strong></p>
+
+                <<link "Ja">>
+                    <<set $edu.archivzugang = true>>
+                    <<replace "#archiv-status">>
+                        <p>Archivzugang: <strong>ja</strong></p>
+                    <</replace>>
+                    <<replace "#weiter">>
+                        <p>[[debugrun|Ermittlung_S0_Auftakt]]</p>
+                    <</replace>>
+                <</link>>
+
+                &nbsp;|&nbsp;
+
+                <<link "Nein">>
+                    <<set $edu.archivzugang = false>>
+                    <<replace "#archiv-status">>
+                        <p>Archivzugang: <strong>nein</strong></p>
+                    <</replace>>
+                    <<replace "#weiter">>
+                        <p>[[debugrun|Ermittlung_S0_Auftakt]]</p>
+                    <</replace>>
+                <</link>>
+            <</replace>>
+        <</link>>
+    </li>
+</ul>
+
+<hr>
+
+<div id="jarek-status">
+    <p>Jarek-Ausgang: <em>nicht gesetzt</em></p>
+</div>
+
+<div id="archivwahl"></div>
+
+<div id="archiv-status"></div>
+
+<div id="weiter"></div>

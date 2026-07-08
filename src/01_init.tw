@@ -1,0 +1,531 @@
+:: StoryInit {"position":"0,225","size":"100,100"}
+<<include "InitPlayer">>
+<<include "InitNPC">>
+<<include "InitWorld">>
+<<include "InitStudium">>
+<<set setup.studiumVault to JSON.parse(Story.get("StudiumTexte").text)>>
+<<run setup.syncPlayerRel()>>
+<<set setup.trainingsHubTextVault to JSON.parse(Story.get("TrainingsHubTexte").text)>>
+<<set setup.abendappellTextVault to JSON.parse(Story.get("AbendappellTexte").text)>>
+<<include "initEnemy">>
+<<set $showLogo to false>>
+
+:: InitPlayer {"position":"0,325","size":"100,100"}
+<<set $player = {
+    name: "Thomas",
+    fullname: "Thomaso Wabbler",
+    rank: "Zivilist",
+    chosen_activity: "",
+    hasSlept: true,
+    combatXp: 0,
+    flags: {
+        jareknarbe: false
+    },
+
+    money: {
+        copper: 2
+    },
+
+    inventory: {
+    items: [],
+    weapons: ["unarmed", "training_pike"]
+    },
+    equipment: {
+        weapon: "training_pike"
+    },
+    /* Charakter & Haltung (0–100, 50 = neutral) */
+    stats: {
+        mercy: 50,
+        ambition: 50,
+        honesty: 50,
+        discipline: 30,   /* frischer Rekrut – wächst durch Drill, fällt durch Regelbruch */
+        faith: 50,         /* Verhältnis zur Drei-Götter-Kirche: 0 gottlos … 100 fromm */     
+        scholarship: 5
+    },
+
+    /* Erlernte Fertigkeiten (Start niedrig, wachsen mit Übung) */
+    knowledge: {
+        pike: 0,
+        crossbow: 0,
+        cannon: 0,
+        medicine: 0,
+        thievery: 0,
+        gossip: 0,
+        combat: 0,
+        perception: 0,
+    },
+    
+    fightStats: {
+        hp: 12,
+        maxHp: 12,
+        attack: 4,
+        damage: 8,
+        armor: 15,
+        proficiency: 1
+        },
+
+    reputation: {
+        land: 0,
+        ohm: 0,
+        church: 0
+    },
+
+    condition: 40,        
+    suspicion: 0, 
+
+    rumors: [],
+    
+    rel : {
+    karla: 0,
+    jarek: 0,
+    luigi: 0,
+    lenz: 0,
+    wenzl: 0,
+    lars: 0,
+    hannes: 0
+    }   
+}>>
+
+:: InitNPC {"position":"0,425","size":"100,100"}
+<<set $npc = {
+
+    /* ===========================
+       KASERNE / AKADEMIE - OHMS
+       =========================== */
+
+    sergeant: {
+        name: "Sergeant",
+        image: "images/Sergeant.png",
+        known: false,
+        affection: 0,
+        trust: false,
+        isRealPlayer: false,
+        memory: { flags: {}, events: [] },
+        journalEntry: "Der mürrische Protokollant in der Schreibstube der Kaserne. Er führt die Truppenrolle des Corps mit eiserner Bürokratie und versteht absolut keinen Spaß, wenn man die feine Ordnung seiner Listen stört."
+    },
+
+    kurt: {
+        name: "Kurt Brasner",
+        image: "images/Kurt.png",
+        known: false,
+        affection: 0,
+        trust: false,
+        isRealPlayer: false,
+        memory: { flags: {}, events: [] },
+        journalEntry: "Chefausbilder und Fähnrich der Militärakademie zu Ohm und ein grauhaariger Veteran."
+    },
+
+    schinder: {
+        name: "Schinder",
+        image: "images/Schinder.png",
+        known: false,
+        affection: 0,
+        trust: false,
+        isRealPlayer: false,
+        memory: { flags: {}, events: [] },
+        journalEntry: "Der kriegsversehrte Weibel auf dem Exerzierplatz."
+    },
+
+    hauptmann: {
+        name: "Konrad Rindler",
+        image: "images/Hauptmann.png",
+        known: false,
+        affection: 0,
+        trust: false,
+        isRealPlayer: false,
+        memory: { flags: {}, events: [] },
+        journalEntry: "Ein kühler, etwas vornehmer Typ. Pragmatischer Offizier des Corps."
+    },
+    magister: {
+        name: "Magister Cornelius Halm",
+        image: "images/Magister.png",
+        known: false,
+        affection: 0,
+        trust: false,
+        isRealPlayer: false,
+        archivzugang: false,
+        memory: { flags: {}, events: [] },
+        journalEntry: "Der hagere Magister für Staatskunde – Tintenfinger, trockene Stimme, kein Wort zu viel. Hält die Vorlesungen und ist zugleich Archivar der Akademie. Wer in die Schreibstuben oder gar ins Archiv will, kommt an ihm nicht vorbei.",
+        /*
+            PLOTNOTIZ (nicht im Journal):
+            Magister Halm ist Archivar der Akademie zu Ohm. Er verwaltet die
+            Militärakten (-> Karlas Onkel Edric / Transportüberfall) und steht
+            im Briefwechsel mit dem Gründungsarchiv in Grodaus
+            (-> Jareks sechste Unterschrift der Freiheitserklärung).
+            Er ist der Gatekeeper BEIDER Archiv-Sidequests. Gunst erkauft man
+            sich bei ihm nicht mit Gold, sondern mit Gelehrsamkeit (scholarship).
+            Plumpes Nachfragen nach Akten erhöht $player.suspicion.
+        */
+    },
+    
+    /* Kapitel 2*/
+    
+    orenmalk: {
+        name: "Oren Malk",
+        known: false,
+        faction: "Loyalisten",
+        affection: 0,
+        trust: false,
+        isRealPlayer: false,
+        memory: { flags: {}, events: [] },
+        motiv: "",
+        journalEntry: "Schreiber in der Waffenausgabe der Militärakademie zu Ohm – schmal, tintenfleckige Finger, sauber gestutzter Bart, leicht hinkender Gang. Höflich und überkorrekt auf den ersten Blick, doch nervös, aufmerksam und vorsichtig, sobald es um Ausgabelisten, Bestandsmarken oder fehlende Waffen geht."
+
+    },
+
+    /* Echte Spieler */
+
+    hauptmannLenz: {
+        name: "Hauptmann Lenz",
+        image: "images/Lenz.png",
+        known: false,
+        faction: "84. Banner",
+        affection: 0,
+        trust: false,
+        isRealPlayer: true,
+        memory: { flags: {}, events: [] },
+        journalEntry: "Führer des unkonventionellen 84. Banners im 33. Regiment. Ein Mann der seine eigenen Wege geht – und manchmal die seiner Leute auch."
+    },
+
+    weibelWenzel: {
+        name: "Weibel Wenzel",
+         image: "images/Wenzel.jpg",
+        known: false,
+        faction: "84. Banner",
+        affection: 0,
+        trust: false,
+        isRealPlayer: true,
+        memory: { flags: {}, events: [] },
+       journalEntry: "Feldweibel aus Umseck, farbenfrohster Söldner im 84. Banner. Offener Gambeson, Pluderhose, rotes Barett. Knüppel und Dolch immer am Mann. Direkt, vorlaut, gut mit Leuten. Organisiert den Haufen — und schaut gerne zu wenn jemand auf ein Missgeschick zusteuert."
+       /*
+            HINTERGRUND (nicht im Journal – interne Plotlogik):
+            War vor dem Heer Zimmermann – liest Menschen wie Holz: jeder hat
+            eine Stelle, wo er bricht. Hasst den alten aloyer Adel.
+            Tick: kein Abortgang ohne "Piss-Lampenöl"; legt gern frisch
+            geöltes Pflaster aus, um Hochmütige aufs Kreuz zu legen.
+            Verträgt wenig Alkohol – mit Knoblauchöl wieder nüchtern zu kriegen.
+            GEHEIMNISSE:
+            - Hat adeliges Blut (ausgerechnet er) – Widerspruch zu seinem
+              Adelshass; Langzeit-Plotfaden.
+            - Hat einmal eine Leiche unter Bewachung der Drachengarder
+              unbemerkt weggeschafft.
+            - Hat Snori de Albe ein Einhorn auf den Stuhl gelegt – Erasmus von
+              der Than wurde dafür geschlagen.
+            Easteregg: echter Spieler des 84. Banners.
+        */
+    },
+
+    weibelLars: {
+        name: "Lars Spalter",
+        known: false,
+        faction: "84. Banner",
+        affection: 0,
+        trust: false,
+        isRealPlayer: true,
+        memory: { flags: {}, events: [] },
+        journalEntry: "Wachweibl des 84. Banners, einer der drei GWALT-Sprecher im Heer. Roter Mantel, schwarzer Arm, Widder-Dolchscheide — Andenken an die Tiafunter Rammböcke. Groß, gewissenhaft, direkt wenn man ihn reizt. Reibt sich den Nasenrücken wenn das Banner wieder Blödsinn macht — also oft."
+    },
+    vasil: {
+        name: "Vasil Schütze",
+         image: "images/Vasil.jpg",
+        known: false,
+        faction: "84. Banner",
+        affection: 0,
+        trust: false,
+        isRealPlayer: true,
+        memory: { flags: {}, events: [] },
+        journalEntry: "Armbruster und Ballistenschütze im 84. Banner. Groß und breit wie eine versehentlich verbaute Türöffnung, schaut grantiger als er ist — außer er ist grantig. Rot-weiße Söldnerkleidung, Barett, immer Werkzeug am Gurt. Simpel, geradeaus, loyal. Schießt und baut, als wären seine Hände dafür geboren. Reißt entsetzliche Witze und hält sie für ausgezeichnet."
+        /*
+            HINTERGRUND (nicht im Journal – interne Plotlogik):
+            Stammt aus Draust, vor dessen Abspaltung aufs Festland umgesiedelt,
+            seither im Heer. Enge, gewachsene Freundschaft zu Grimmerthann.
+            Schwäche: weiß nicht, wie man mit verbündeten Würdenträgern/Adeligen
+            umgeht – wird in deren Nähe nervös und zurückhaltend.
+            Liebste Erinnerung: Aloyer Freiheitsfeste ("wo gehtsn da zum Krieg?"),
+            der "Amoklauf" gegen die Otzländer auf dem Hirtenfest samt
+            "Headshot des Jahrtausends" gegen deren Anführer.
+            Easteregg: echter Spieler des 84. Banners.
+        */
+    },
+    haddl: {
+        name: "Hartmut Hadde Wurz",
+        known: false,
+        faction: "84. Banner",
+        affection: 0,
+        trust: false,
+        isRealPlayer: true,
+        memory: { flags: {}, events: [] },
+        journalEntry: "Armbruster und Fahnenträger des 84. Banners, Gebirgsmarine-Ausbildung. Kein Bart, lange Haare, große Klappe. Zitiert pausenlos seinen Opa. Trinkt mehr als gut ist und wird dabei nie laut. "
+    },
+
+    diplomatHannes: {
+        name: "Hannes Böttcher",
+        image: "images/Hannes.jpg",
+        known: false,
+        faction: "84. Banner",
+        affection: 0,
+        trust: false,
+        isRealPlayer: true,
+        memory: { flags: {}, events: [] },
+        journalEntry: "Aloyer Diplomat aus Grodaus. Kurzer gepflegter Bart, kleine Narbe rechts neben der Nase. Diplomatenmantel und Amtskette im Dienst, sonst Söldner-Ausgehkleidung. Ruhig und besonnen — erst denken, dann reden, aber dann weit ausholend. Prinzipientreu bis er nicht mehr merkt dass Diplomatie längst keine Option mehr ist."
+    },
+
+    bast: {
+    name: "Bast Lercher",
+     image: "images/Bast.jpg",
+    known: false,
+    faction: "84. Banner",
+    affection: 0,
+    trust: false,
+    isRealPlayer: true,
+    memory: { flags: {}, events: [] },
+    journalEntry: "Diplomat und Offizier aus Vormberg. Roter Bart, rotes Barett, Dokumentenrolle am Gurt. Redet viel, sagt wenig mehr als er will. Pragmatisch, loyal — außer wenn Frauen im Spiel sind."
+
+    },  
+    hansFichtensplitter: {
+        name: "Hans Fichtensplitter",
+        image: "images/Hansbert.png",
+        known: false,
+        faction: "84. Banner",
+        affection: 0,
+        trust: false,
+        isRealPlayer: true,
+        memory: { flags: {}, events: [] },
+        journalEntry: "Ein Name der fällt. Ein Gesicht das auftaucht. Was Hans Fichtensplitter hier zu suchen hat – das weißt du noch nicht."
+    },
+    clausz: {
+    name: "Clausz Andelsmann",
+    image: "images/Clausz.png",
+    known: false,
+    faction: "84. Banner",
+    affection: 0,
+    trust: false,
+    isRealPlayer: true,
+    memory: { flags: {}, events: [] },
+    journalEntry: "Hurenweibel des 84. Banners. Aus Tiafunt, Hafenviertel — die Andelsmänner, ein altes Handelshaus mit noch älterem Standesdünkel, den Clausz selbst verachtet. Gut gekleidet, besser als ein Söldner es sollte. Am Gürtel: Dolch, Lagerbuch, eine Rollenkapsel, Nierentasche, Schnapsbecher. Hat immer Rauchkraut und weiß immer wo was ist — außer wo die Zeit für den Morgenappell bleibt. Mag eingelegtes Obst in Mengen, die man eigentlich nicht mag."
+    },
+
+    rosi: {
+        name: "Rosina Hugendubel",
+        known: false,
+        faction: "84. Banner",
+        affection: 0,
+        trust: false,
+        isRealPlayer: true,
+        memory: { flags: {}, events: [] },
+        journalEntry: "Feldscher des 84. Banners. Rosi aus Tiafunt, Adoptivtochter von Mutti Kreisch, vorher Bedienung im Bumsda. Das Hirnbisla am Barett ist nicht zu übersehen. Fürsorglich bis zur Erschöpfung, redet im Dialekt und pausenlos, haut sich gegen die Stirn wenn's hakt. Hat einmal einen Ritter zum Schmied geschickt weil er über eine Delle in seiner Rüstung gejammert hat. Er war beleidigt. Sie war beschäftigt."
+    },
+
+    tilly: {
+        name: "Tilly",
+        image: "images/Tilly.png",
+        known: false,
+        faction: "84. Banner",
+        affection: 0,
+        trust: false,
+        isRealPlayer: true,
+        memory: { flags: {}, events: [] },
+        journalEntry: "Söldnerin des 84. Banners — offiziell, mit M-Vermerk. Aus Tiafunt. In der Praxis findet man sie fast immer im Tross. Kein Vorwurf, sagen die vom Tross. Eher ein Kompliment. Zwei Zöpfe und viel zu ehrgeizige Stickereien auf der Uniform"
+    },
+
+
+    /* ===========================
+       MITREKRUTEN
+       =========================== */
+
+    karla: {
+        name: "Karla",
+        image: "images/Karla_Kap1.png",
+        imageKap2: "images/Karla_Kap2.jpg",
+        known: false,
+        affection: 0,
+        trust: false,
+        isRealPlayer: false,
+        memory: { flags: {}, events: [] },
+        /* Sichtbares Profil – kein Hinweis auf das Geheimnis */
+        journalEntry: "Rote Haare, breitschultrig, direkt, laut. Hat sich am ersten Abend den Platz am Ofen gesichert und dafür jemanden von seiner Pritsche geworfen. Wirkt wie jemand der fürs Soldatenleben gemacht wurde."
+        /*
+            GEHEIMNIS (nicht im Journal – für interne Plotlogik):
+            Ihr Onkel Edric, ein Fuhrmann aus Umseck, sitzt seit zwei Jahren
+            in Haft – verurteilt als Ortskundiger bei einem Überfall auf einen
+            Militärtransport. Karla weiß: Er war krank, lag mit Fieber im Bett.
+            Der einzige Zeuge hat geschwiegen. Warum – das weiß sie nicht.
+            Sie ist hier wegen der Militärakten. Zugang zu Schreibstuben,
+            Archiv, Verwaltung. Das ist der Plan.
+            Verbindung zu laufendem Plot: "Überfälle auf Militärtransporte"
+        */
+    },
+
+    jarek: {
+        name: "Jarek",
+        image: "images/Jarek.png",
+        known: false,
+        affection: 0,
+        trust: false,
+        isRealPlayer: false,
+        memory: { flags: {}, events: [] },
+        /* Sichtbares Profil – kein Hinweis auf das Geheimnis */
+        journalEntry: "Schmächtig, ruhig, fällt nicht auf. Hat mir am ersten Abend die Pritsche neben sich angeboten und erklärt, dass er hier wegen des Solds ist – Geld für die Familie daheim. Hält sich aus Streitereien raus und beobachtet mehr als er redet. Niemand nimmt ihn besonders ernst."
+        /*
+            GEHEIMNIS (nicht im Journal – für interne Plotlogik):
+            Heimlicher Loyalist, von klein auf indoktriniert.
+            Sucht Zugang zum Gründungsarchiv der Akademie in Grodaus.
+            Ziel: Die sechste, unleserliche Unterschrift der Freiheitserklärung
+            lesbar machen. Seine Familie glaubt: kein Gott hat unterschrieben,
+            sondern ein Adeliger – unter Androhung von Gewalt.
+            Beweis dafür würde die Gründungslegende der Republik erschüttern.
+            Verbindung zu laufendem Plot: "Loyalisten" (Fraktion im Untergrund)
+        */
+    },
+
+    /* ===========================
+       DIPLOMATIE / AUSSENWELT
+       =========================== */
+
+    
+
+    /* ===========================
+       LA FAMILIA
+       =========================== */
+
+    luigi: {
+        name: "Luigi vom Luigi Handelskontor",
+        known: false,
+        faction: "La Familia",
+        affection: 4,
+        trust: false,
+        isRealPlayer: true,
+        memory: { flags: {}, events: [] },
+        journalEntry: "Ein Name. Ein Handelszeichen. Jemand hat sich um dich gekümmert, einmal – in den Bergen Aloys, als du noch klein und krank warst. Wer das war, weißt du nicht mehr genau. Anwalt mit Lizenz in Aloy."
+        /*
+            PLOTNOTIZ:
+            Luigi ist Thomas' Pate. Er taucht nicht persönlich auf –
+            wird nur erwähnt: ein Brief, ein Handelszeichen, ein Name der fällt.
+            Der echte Spieler Luigi soll beim Lesen erkennen:
+            Das ist mein Patenkind.
+        */
+    },
+     vincente: {
+        name: "Vincente",
+        known: false,
+        faction: "La Familia",
+        affection: 0,
+        trust: false,
+        isRealPlayer: true,
+        memory: { flags: {}, events: [] },
+        journalEntry: "Ein Mann fürs grobe. Jemand der nicht nur in de Schatten steht und zuhören kann."
+    },
+     maurice: {
+        name: "Maurice Marie",
+        known: false,
+        faction: "La Familia",
+        affection: 0,
+        trust: false,
+        isRealPlayer: true,
+        memory: { flags: {}, events: [] },
+        journalEntry: "Ein Bretone. mit einem Hang für Würfelspiele."
+
+    },
+} >>
+
+:: InitStudium {"position":"0,625","size":"100,100"}
+/* Defensiv: legt nur an, was fehlt - sicher beim Merge ins Hauptspiel */
+<<if not $player.knowledge>><<set $player.knowledge = {}>><</if>>
+<<if $player.stats.scholarship === undefined>><<set $player.stats.scholarship = 5>><</if>>
+<<run ["splitterlande","aloy","geographie","diplomatie"].forEach(function(k){
+  if (State.variables.player.knowledge[k] === undefined) { State.variables.player.knowledge[k] = 0; }
+})>>
+<<set $edu = {
+  learned: [],
+  archivzugang: false,
+  exam: {
+    queue: [], pos: 0, correct: 0, lastAnswer: null, done: false, score: 0, total: 0,
+    announced: false,
+    dueDay: null,
+    passed: false,
+    attempts: 0
+  }
+}>>
+
+/* ===========================
+   WORLD/ SPIELSTAND
+   =========================== */
+
+:: InitWorld {"position":"0,525","size":"100,100"}
+<<set $world = {
+
+    lastPassage:"",
+    day: 0,
+    weather: "windig",
+    wasPracticing: false,
+    needsDiceGame: true,
+    seenGossip: {},
+    currentGossipStory: "",
+    karla_druck: 0,       
+    jarek_druck: 0,
+    interruptDoneToday: false,
+    interruptHistory: {},
+    appliedPassages : {},
+    visitedChurch : false,
+    kapitel1_gesperrt: false,
+    kapitel2_gesperrt: false,
+    tagesAktionen: 0,
+    decisionLog : [],
+    ermittlung : {
+        spuren: [], 
+        spurenText: {}, 
+        verdacht: {}, 
+        flags: {}
+    }
+
+}>>
+
+
+:: initEnemy {"position":"0,725","size":"100,100"}
+<<set $enemy = {
+    mercenary: {
+        name: "Söldner",
+        type: "fighter",
+        weakness: "pike",
+        xp: 50,
+        weapon: "sabre",
+        fightStats: {
+            hp: 11,
+            maxHp: 11,
+            attack: 1,
+            armor: 13,
+            proficiency: 2
+        }
+    },
+
+    shooter: {
+        name: "Armbrustschütze",
+        type: "archer",
+        weakness: "crossbow",
+        xp: 50,
+        weapon: "light_crossbow",
+        fightStats: {
+            hp: 8,
+            maxHp: 8,
+            attack: 1,
+            armor: 12,
+            proficiency: 2
+        }
+    },
+
+    cannonier: {
+        name: "Kanonier",
+        type: "artillery",
+        weakness: "cannon",
+        xp: 25,
+        weapon: "field_knife",
+        fightStats: {
+            hp: 10,
+            maxHp: 10,
+            attack: 0,
+            armor: 10,
+            proficiency: 2
+        }
+    }
+}>>
+

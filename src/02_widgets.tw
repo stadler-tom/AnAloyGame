@@ -1,0 +1,58 @@
+:: BiwagWidgets [widget] {"position":"2975,4275","size":"100,100"}
+<<widget "biwagCheck">>
+    <<if setup.biwagReady()>>
+        <<replace "#biwag-depart">><span class="weiter-link">[[Der Biwak beginnt->Biwag_Aufbruch]]</span><</replace>>
+    <</if>>
+<</widget>>
+
+:: HubWidgets [widget] {"position":"950,1600","size":"100,100"}
+<<widget "hubOption">>
+<<set _skill to $player.knowledge[_args[0]] || 0>>
+<<set _sub to setup.getRandomText("hubSubtexts", _args[0])>>
+<<if _skill >= 10>>
+<li class="gemeistert">_args[1]<span class="subtext">— Hier gibt es für dich nichts mehr zu lernen. Du beherrschst das.</span></li>
+<<else>>
+<li>[[_args[1]|_args[2]]]<span class="subtext">_sub</span></li>
+<</if>>
+<</widget>>
+
+
+:: InterruptWidgets [widget] {"position":"1925,2125","size":"100,100"}
+<<widget "weiterImTag">>
+<<set _txt to _args.length > 0 ? _args[0] : 'Weiter'>>
+<span class="weiter-link"><<link _txt>><<goto setup.routeFromTags(tags())>><</link>></span>
+<</widget>>
+
+
+:: gedankeWidget [widget] {"position":"0,1700","size":"100,100"}
+<<widget "gedanke" container>>\
+<div class="thought-box"><<= _contents>></div>\
+<</widget>>
+
+<<widget "scene" container>>\
+<div class="scenery-text"><<= _contents>></div>\
+<</widget>>
+
+<<widget "formal" container>>\
+<div class="voice-formal"><<= _contents>></div>\
+<</widget>>
+
+<<widget "beziehung" container>>\
+<div class="beziehung"><<= _contents>></div>\
+<</widget>>
+
+<<widget "dialog" container>>\
+<div class="dialog"><<= _contents>></div>\
+<</widget>>
+
+
+
+
+
+
+
+
+
+
+
+

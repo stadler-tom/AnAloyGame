@@ -1,0 +1,1356 @@
+
+:: StudiumTexte {"position":"1700,525","size":"100,100"}
+{
+  "hubIntros": [
+    "Der Hoersaal der Akademie riecht nach Tinte, kaltem Stein und dem Talg der Leuchter. Nach dem Drill draussen fuehlt sich das Sitzen fast wie eine List an – bis der Magister den Raum betritt und klarmacht, dass auch Stille hier eine Form von Anstrengung ist.",
+    "Man hat euch gesagt, ein Soldat brauche nur seinen Spiess. Der Magister sieht das anders. „Wer nicht weiss, fuer welches Land er stirbt, stirbt fuer gar keins“, pflegt er zu sagen, und schlaegt sein Buch auf. Du suchst dir einen Platz auf den harten Baenken.",
+    "Zwischen Exerzieren und Abendappell schiebt sich die Bildung wie ein Fremdkoerper in den Tag. Doch in Aloy gilt: Wer den Rang will, muss auch den Kopf fuellen. Die Bank ist hart, die Luft stickig, und vorne raeuspert sich bereits der Lehrmeister.",
+    "Du wischst dir den Staub vom Aermel und trittst in den kuehlen Hoersaal. Hier zaehlt nicht, wie schwer dein Arm ist, sondern was du behaeltst. Fuer einen Rekruten aus den Bergen ist das eine ungewohnte Art von Schlachtfeld."
+  ],
+
+  "hubScenery": [
+    "An den Waenden haengen vergilbte Karten der Splitterlande, ein verblasstes Wappen des Rates und eine Tafel voller Kreidespuren, die niemand je ganz wegwischt. Vorne stehen die Pulte der Magister, abgegriffen von Generationen, die hier sassen, bevor sie marschierten.",
+    "Das Tageslicht faellt schraeg durch hohe, schmale Fenster und legt sich in Streifen ueber die Baenke. Irgendwo kratzt eine Feder, irgendwo blaettert jemand zu laut. Der Raum verlangt eine Ruhe, die draussen niemand von dir verlangt haette.",
+    "Ein grosser Globus aus bemaltem Holz steht in der Ecke, daneben Regale voller Schriftrollen und gebundener Baende. Es ist der einzige Ort in dieser Kaserne, an dem mehr Papier liegt als Eisen."
+  ],
+
+  "hubThoughts": [
+    "Wissen ist hier kein Luxus – es ist eine Waffe wie jede andere. Wer das Land versteht, versteht auch die Befehle, die es ihm gibt. Ich sollte mir merken, was ich hier hoere. Frueher oder spaeter wird man mich danach fragen.",
+    "Am Ende des Kapitels steht eine Pruefung. Das hat der Magister mehr als einmal durchblicken lassen. Was ich heute ueberhoere, fehlt mir dann. Also: zuhoeren, behalten, mitschreiben.",
+    "Ich kann nicht alles an einem Tag lernen. Jedes Fach baut auf sich selbst auf – ich komme nur weiter, wenn ich dranbleibe. Eine Vorlesung nach der anderen.",
+    "Mein Kopf ist mueder als meine Beine, und das will etwas heissen. Aber genau hier trennt sich der Soldat vom Offizier. Konzentrier dich."
+  ],
+
+  "hubSubtexts": {
+    "aloy": [
+      "— Wie regiert sich ein Land ohne Koenig? Der Rat, die Drei-Goetter-Kirche, die Akademie. Das Fundament, auf dem alles steht.",
+      "— Vom Bauernkrieg zur Raeterepublik. Wer hier dient, sollte wissen, wessen Ordnung er verteidigt."
+    ],
+    "geographie": [
+      "— Staedte, Grenzen, Gebirge. Wo Aloy verwundbar ist und wo nicht – und warum Ohm das Tor ist, an dem du stehst.",
+      "— Karten lesen heisst ueberleben. Wer das Land kennt, weiss, wohin er marschiert."
+    ],
+    "splitterlande": [
+      "— Aloy ist nicht allein. Nachbarn, Grossreiche, Buendnisse. Die Welt ausserhalb der Berge.",
+      "— Warum sich Aloy aus jedem Krieg heraushaelt – und was das wert ist."
+    ],
+    "diplomatie": [
+      "— Reden statt schlagen. Neutralitaet, Recht und der schmale Grat, auf dem Aloys Diplomaten gehen.",
+      "— Manchmal entscheidet ein Satz mehr als ein Banner. Hier lernst du, welcher."
+    ]
+  },
+
+  "subjects": {
+
+    "aloy": {
+      "name": "Aloyer Staatskunde",
+      "scenery": [
+        "Der Magister fuer Staatskunde ist ein hagerer Mann mit Tintenfingern, der jedes Wort so setzt, als koste es ihn Geld. Er duldet keine Zwischenrufe, aber er beantwortet jede ehrliche Frage.",
+        "Vorne haengt ein grosses Schaubild des Rates – sechsundvierzig Felder, sortiert nach Zuenften, Staedten, Voelkern, Akademie und Glaube. Es sieht aus wie ein Bienenstock, der gelernt hat, abzustimmen.",
+        "Auf dem Pult liegt ein abgegriffenes Exemplar der Freiheitserklaerung – eine Abschrift, versteht sich. Der Magister tippt beim Reden gern mit dem Finger darauf, als sei sie ein Zeuge, den man jederzeit aufrufen koenne."
+      ],
+      "intro": [
+        "„Setzt euch. Heute lernt ihr, wem ihr eigentlich dient – und es ist kein Mann mit einer Krone."
+      ],
+      "lessons": [
+        {
+          "id": "aloy_01",
+          "topic": "Die Staatsform",
+          "teach": "Aloy ist eine Raeterepublik. Es gibt keinen Koenig und keinen Fuersten an der Spitze, sondern einen gewaehlten Rat aus sechsundvierzig Vertretern des Volkes. Hervorgegangen ist diese Ordnung aus einem Bauernkrieg, in dem sich das Land von einem tyrannischen Adelsgeschlecht befreite. Wer in Aloy dient, dient also nicht einem Herrscher, sondern einer Gemeinschaft.",
+          "fact": "Aloy ist eine Raeterepublik mit einem gewaehlten 46-koepfigen Rat – kein Koenig, kein Adel an der Spitze.",
+          "quiz": {
+            "q": "Wie viele Mitglieder hat der Rat von Aloy?",
+            "options": ["46", "12", "100", "7"],
+            "answer": 0
+          }
+        },
+        {
+          "id": "aloy_02",
+          "topic": "Wer im Rat sitzt",
+          "teach": "Die Sitze des Rates sind genau verteilt: zweiundzwanzig fuer die Zuenfte, zwoelf fuer die Staedte, vier fuer die Voelker und acht fuer Akademie und Glaube zusammen. Den Vorsitz fuehrt der Hohepriester der Drei-Goetter-Kirche. Seine Stimme zaehlt im Normalfall wie jede andere – aber bei Stimmengleichheit gibt sein Wort den Ausschlag.",
+          "fact": "Ratssitze: 22 Zuenfte, 12 Staedte, 4 Voelker, 8 Akademie & Glaube. Vorsitz: der Hohepriester (Entscheidungsstimme bei Gleichstand).",
+          "quiz": {
+            "q": "Wer entscheidet im Rat bei Stimmengleichheit?",
+            "options": ["Der Hohepriester der Drei-Goetter-Kirche", "Der Oberste Heerfuehrer", "Die aelteste Zunft", "Es wird neu gewaehlt"],
+            "answer": 0
+          }
+        },
+        {
+          "id": "aloy_03",
+          "topic": "Das Ende des Adels",
+          "teach": "Seit der Gruendung der Republik gibt es in Aloy keinen Adel mehr. Niemand erbt Rang oder Recht durch seine Geburt. Der gesellschaftliche Status bemisst sich allein nach Werk, Verstand, Mut und Leistung. Ein Schmied, der etwas taugt, steht hoeher als ein Muessiggaenger mit altem Namen – jedenfalls dem Gesetz nach.",
+          "fact": "In Aloy gibt es keinen Adel. Status zaehlt nach Leistung – Werk, Verstand, Mut –, nicht nach Geburt.",
+          "quiz": {
+            "q": "Woran bemisst sich gesellschaftlicher Status in Aloy?",
+            "options": ["An Werk, Verstand, Mut und Leistung", "An der Geburt und am Familiennamen", "Am Grundbesitz", "Am Dienstgrad im Heer allein"],
+            "answer": 0
+          }
+        },
+        {
+          "id": "aloy_04",
+          "topic": "Gleichheit der Voelker",
+          "teach": "Vor dem Recht sind in Aloy vier Voelker vollkommen gleichgestellt – in Pflichten wie in Rechten: Menschen, Elfen, Zwerge (im Volksmund Twerke) und Halblinge (die man Hobbits nennt). Ein Zwerg aus den Stollen hat dieselben Pflichten und denselben Anspruch auf Recht wie ein Mensch aus Grodaus.",
+          "fact": "Vier Voelker sind rechtlich gleichgestellt: Menschen, Elfen, Zwerge (Twerke) und Halblinge (Hobbits).",
+          "quiz": {
+            "q": "Welche vier Voelker sind in Aloy rechtlich gleichgestellt?",
+            "options": ["Menschen, Elfen, Zwerge, Halblinge", "Menschen, Orks, Elfen, Zwerge", "Menschen, Elfen, Halblinge, Riesen", "Nur Menschen und Elfen"],
+            "answer": 0
+          }
+        },
+        {
+          "id": "aloy_05",
+          "topic": "Die Drei-Goetter-Kirche",
+          "teach": "Staatsreligion ist der Glaube an die gepriesenen Drei. Limba der Weisse steht fuer Schoepfung und Erfindungsgeist, Miram die Graue fuer Ausgleich und Wandel, und Hortum der Schwarze ist Gott des Krieges und Richter der Unterwelt – er waegt die Taten der Verstorbenen ab. Es gilt Glaubens- und Meinungsfreiheit, solange niemand den Drei oeffentlich spottet.",
+          "fact": "Die Drei: Limba (weiss, Schoepfung), Miram (grau, Ausgleich/Wandel), Hortum (schwarz, Krieg & Richter der Unterwelt).",
+          "quiz": {
+            "q": "Welcher der Drei ist Gott des Krieges und Richter der Unterwelt?",
+            "options": ["Hortum, der Schwarze", "Limba, der Weisse", "Miram, die Graue", "Barsinger, der Spielmann"],
+            "answer": 0
+          }
+        },
+        {
+          "id": "aloy_06",
+          "topic": "Die Akademie",
+          "teach": "Die Aloyer Akademie verwaltet Wissenschaft, Glaube, Militaer und Handwerk in vier Fachbereichen, jeder mit einer eigenen Farbe: Blau fuer Wissenschaft und Magie (Sitz Grodaus), Gruen fuer Religion und Glaube (Grodaus), Rot fuer Militaer und Krieg (Ohm zu Land, Tiafunt zu Wasser) und Braun fuer Handwerk und Handel (dezentral). Eure Soldatenausbildung faellt unter Rot.",
+          "fact": "Akademie, 4 Fachbereiche: Blau Wissenschaft/Magie, Gruen Glaube, Rot Militaer (Ohm & Tiafunt), Braun Handwerk/Handel.",
+          "quiz": {
+            "q": "Welche Farbe und welcher Sitz gehoeren zum Fachbereich Militaer & Krieg?",
+            "options": ["Rot – Ohm (Land) und Tiafunt (Wasser)", "Blau – Grodaus", "Gruen – Grodaus", "Braun – dezentral"],
+            "answer": 0
+          }
+        }
+      ],
+      "exhausted": [
+        "Der Magister wiederholt heute nur, was du laengst weisst. Du nutzt die Zeit, deine Notizen zu ordnen – Rat, Kirche, Akademie, alles sitzt.",
+        "Nichts Neues heute. Du kennst die Ordnung Aloys inzwischen besser als mancher, der hier geboren wurde."
+      ]
+    },
+
+    "geographie": {
+      "name": "Geographie & Landeskunde",
+      "scenery": [
+        "Die Magisterin der Landeskunde rollt eine grosse, von vielen Haenden abgegriffene Karte aus und beschwert die Ecken mit Steinen. „Ein Soldat, der seine Karte nicht lesen kann“, sagt sie, „ist nur ein teurer Wegweiser fuer den Feind.“",
+        "An der Wand haengt ein Querschnitt durch das Gebirge, das Aloy umschliesst, mit eingezeichneten Paessen und Wasserwegen. Der hoelzerne Zeigestab der Magisterin tippt im Reden ueber das Land wie ein wanderndes Schicksal."
+      ],
+      "intro": [
+        "„Heute lernt ihr, wo ihr eigentlich seid. Erstaunlich viele wissen das naemlich nicht."
+      ],
+      "lessons": [
+        {
+          "id": "geo_01",
+          "topic": "Lage und Zugaenge",
+          "teach": "Aloy liegt zwischen den Laendern Morgon und Alfalter, ringsum geschuetzt von einem hohen Gebirgszug. Dieser Wall ist Aloys groesster Verbuendeter: Der einzige Landzugang fuehrt ueber Alfalter. Nur im Suedosten ist das Land zusaetzlich ueber das Meer erreichbar. Wer Aloy zu Lande angreifen will, muss zuerst durch dieses eine Tor.",
+          "fact": "Aloy liegt zwischen Morgon und Alfalter, von Gebirge umschlossen. Einziger Landzugang: ueber Alfalter; im Suedosten Zugang ueber das Meer.",
+          "quiz": {
+            "q": "Ueber welches Nachbarland fuehrt der einzige Landzugang nach Aloy?",
+            "options": ["Alfalter", "Morgon", "Kan Kuzgun", "Kupferstein"],
+            "answer": 0
+          }
+        },
+        {
+          "id": "geo_02",
+          "topic": "Grodaus, die Hauptstadt",
+          "teach": "Grodaus ist mit rund dreissigtausend Einwohnern die groesste Stadt und das Herz des Landes. Hier sitzen der Rat, das hohe Gericht und die Akademie. Man schaetzt in Grodaus Bildung, feine Worte und den klaren Satz – es ist die Stadt der Tinte, nicht des Ambosses.",
+          "fact": "Grodaus (~30.000): Hauptstadt, Sitz von Rat, hohem Gericht und Akademie.",
+          "quiz": {
+            "q": "In welcher Stadt sitzen der Rat, das hohe Gericht und die Akademie?",
+            "options": ["Grodaus", "Ohm", "Tiafunt", "Vormberg"],
+            "answer": 0
+          }
+        },
+        {
+          "id": "geo_03",
+          "topic": "Tiafunt, das Fenster zur Welt",
+          "teach": "Tiafunt ist die groesste Hafenstadt am Meer und Aloys Fenster zur Welt. Bekannt fuer Seehandel, Schiffbauer, Barden und eine laute Schankkultur. Hier sagt man, eine „Tiafunter Wahrheit“ wachse mit jedem Krug Bier – man sollte also nicht alles fuer bare Muenze nehmen, was im Hafen erzaehlt wird.",
+          "fact": "Tiafunt (~16.000): groesste Hafenstadt, Seehandel, Barden, laute Schankkultur – Aloys Fenster zur Welt.",
+          "quiz": {
+            "q": "Welche Stadt ist Aloys groesste Hafenstadt und sein Fenster zur Welt?",
+            "options": ["Tiafunt", "Grodaus", "Umseck", "Weitfurth"],
+            "answer": 0
+          }
+        },
+        {
+          "id": "geo_04",
+          "topic": "Ohm, das Landtor",
+          "teach": "Ohm ist die stark befestigte Grenzstadt und das Landtor Aloys – genau hier stehst du gerade. In Ohm sitzt die grosse Kriegerausbildungsstaette, und man schaetzt hier Puenktlichkeit, Zucht, Ordnung und klare Angaben. Wer in Ohm schlampt, faellt auf.",
+          "fact": "Ohm (~14.000): befestigte Grenzstadt, Landtor Aloys, Sitz der grossen Kriegerausbildung.",
+          "quiz": {
+            "q": "Welche Stadt ist das befestigte Landtor Aloys und Sitz der Kriegerausbildung?",
+            "options": ["Ohm", "Tiafunt", "Grodaus", "Vormberg"],
+            "answer": 0
+          }
+        },
+        {
+          "id": "geo_05",
+          "topic": "Vormberg und Umseck",
+          "teach": "Zwei Staedte versorgen das Land mit dem Noetigsten: Vormberg lebt vom Bergbau, von Schmieden und harter Arbeit und pflegt enge Handelsbeziehungen zu den Zwergen in den Stollen. Umseck ist die traditionsbewusste Kornkammer – der Magen des Landes, gepraegt von Aeckern und Muehlen. Wer Umsecker Bauern verspottet, vergisst, was ein voller Speicher wert ist.",
+          "fact": "Vormberg (~10.000): Bergbau & Schmieden, Handel mit Zwergen. Umseck (~8.000): Kornkammer, der Magen des Landes.",
+          "quiz": {
+            "q": "Welche Stadt gilt als Kornkammer und 'Magen des Landes'?",
+            "options": ["Umseck", "Vormberg", "Tiafunt", "Ohm"],
+            "answer": 0
+          }
+        },
+        {
+          "id": "geo_06",
+          "topic": "Weitfurth am Wald",
+          "teach": "Weitfurth – auch Waidfuath genannt – ist die Holzstadt tief am Rand der grossen Waelder. Ihre Menschen gelten als verschwiegen, standhaft und von altem Widerstandsgeist gepraegt. Wegen der Schmuggler und der Naehe zum tiefen Wald stellt man hier besser nicht zu viele Fragen.",
+          "fact": "Weitfurth/Waidfuath (~5.000): Holzstadt am Waldrand, verschwiegen, alter Widerstandsgeist, Schmugglernaehe.",
+          "quiz": {
+            "q": "Was kennzeichnet Weitfurth am ehesten?",
+            "options": ["Holzstadt am Waldrand, verschwiegen und schmuggelnah", "Groesste Hafenstadt", "Sitz des Rates", "Zentrum des Bergbaus"],
+            "answer": 0
+          }
+        }
+      ],
+      "exhausted": [
+        "Die Karte ist dir vertraut geworden. Du koenntest die sechs Staedte und ihre Eigenheiten im Schlaf herunterbeten.",
+        "Heute nichts Neues – du kennst die Wege, Tore und Grenzen Aloys inzwischen aus dem Gedaechtnis."
+      ]
+    },
+
+    "splitterlande": {
+      "name": "Die Splitterlande",
+      "scenery": [
+        "Der aelteste der Magister kuemmert sich um die weite Welt. Vor ihm liegt eine Karte, auf der Aloy nur ein kleiner Fleck zwischen vielen ist. „Vergesst nie“, sagt er, „dass es ausserhalb dieser Berge Maechte gibt, die von uns noch nie gehoert haben.“",
+        "An der Wand haengen die Wappen fremder Reiche, manche prunkvoll, manche grob. Der Magister deutet im Reden mal auf das eine, mal auf das andere, als blaettere er durch die Nachbarschaft eines ganzen Kontinents."
+      ],
+      "intro": [
+        "„Heute schauen wir ueber den eigenen Tellerrand. Oder besser: ueber die eigenen Berge."
+      ],
+      "lessons": [
+        {
+          "id": "split_01",
+          "topic": "Aloys Platz in der Welt",
+          "teach": "Aloy ist Teil der Splitterlande, einer Welt vieler kleiner und grosser Maechte. Das Besondere an Aloy: Es versucht mit aller Kraft, sich aus den Kriegen der Splitterlande herauszuhalten. Diese Neutralitaet ist kein Zufall, sondern Staatsraison – und sie macht Aloy fuer alle Seiten wertvoll.",
+          "fact": "Aloy ist Teil der Splitterlande und haelt sich grundsaetzlich aus deren Kriegen heraus (Neutralitaet als Staatsraison).",
+          "quiz": {
+            "q": "Welche Haltung nimmt Aloy in den Konflikten der Splitterlande ein?",
+            "options": ["Es haelt sich aus den Kriegen heraus (Neutralitaet)", "Es fuehrt die Kriege an", "Es verbuendet sich immer mit dem Staerksten", "Es greift jeden Nachbarn zuerst an"],
+            "answer": 0
+          }
+        },
+        {
+          "id": "split_02",
+          "topic": "Die direkten Nachbarn",
+          "teach": "Direkt an Aloy grenzen zwei Laender: Morgon und Alfalter. Da der einzige Landweg ueber Alfalter fuehrt, ist das Verhaeltnis zu diesem Nachbarn besonders heikel – durch Alfalter kommt jeder, der zu Lande nach Aloy will, ob als Haendler oder als Heer.",
+          "fact": "Aloys direkte Nachbarn sind Morgon und Alfalter. Der Landweg fuehrt durch Alfalter.",
+          "quiz": {
+            "q": "Wie heissen Aloys zwei direkte Nachbarlaender?",
+            "options": ["Morgon und Alfalter", "Kan Kuzgun und Kupferstein", "Grodaus und Ohm", "Drachengard und Morgon"],
+            "answer": 0
+          }
+        },
+        {
+          "id": "split_03",
+          "topic": "Groessere Maechte",
+          "teach": "Weiter draussen liegen groessere Maechte, mit denen Aloy in Verbindung steht: das Grossreich Kan Kuzgun und das Fuerstentum Kupferstein. Sie sind keine Nachbarn ueber die Berge hinweg, aber sie spielen im Geflecht von Handel, Buendnissen und Soeldnervertraegen eine Rolle, die ein gebildeter Soldat kennen sollte.",
+          "fact": "Wichtige groessere Maechte der Splitterlande: das Grossreich Kan Kuzgun und das Fuerstentum Kupferstein.",
+          "quiz": {
+            "q": "Welches davon ist ein Grossreich der Splitterlande?",
+            "options": ["Kan Kuzgun", "Umseck", "Alfaltermark", "Tiafunt"],
+            "answer": 0
+          }
+        },
+        {
+          "id": "split_04",
+          "topic": "Der neutrale Boden",
+          "teach": "Weil Aloy sich aus Kriegen heraushaelt, kann es etwas anbieten, das selten ist: einen neutralen Ort. Andere Laender nutzen Aloy als Boden fuer ihre Verhandlungen. Diese Rolle als Vermittler ist eine der wichtigsten Saeulen aloyer Aussenpolitik – und ein Grund, warum man das Land in Ruhe laesst.",
+          "fact": "Aloy bietet anderen Laendern neutralen Boden fuer Verhandlungen – eine Kernsaeule seiner Aussenpolitik.",
+          "quiz": {
+            "q": "Welche besondere Rolle spielt Aloy fuer andere Laender?",
+            "options": ["Es bietet neutralen Boden fuer Verhandlungen", "Es stellt den obersten Richter aller Reiche", "Es verleiht Adelstitel", "Es kontrolliert allen Seehandel"],
+            "answer": 0
+          }
+        },
+        {
+          "id": "split_05",
+          "topic": "Drachengard und das Heinrichsfest",
+          "teach": "Auch wenn Aloy neutral bleibt, sind seine Soeldner ueberall in den Splitterlanden im Dienst. Das 84. Banner etwa ist alljaehrlich beim Heinrichsfest in Drachengard zugegen. Drachengard ist damit einer jener Orte ausserhalb Aloys, an denen aloyer Soldaten ein vertrautes Bild sind.",
+          "fact": "Aloyer Soeldner (z.B. das 84. Banner) sind im Ausland im Einsatz – etwa alljaehrlich beim Heinrichsfest in Drachengard.",
+          "quiz": {
+            "q": "Wo ist das 84. Banner alljaehrlich beim Heinrichsfest zugegen?",
+            "options": ["In Drachengard", "In Kan Kuzgun", "In Morgon", "In Umseck"],
+            "answer": 0
+          }
+        }
+      ],
+      "exhausted": [
+        "Die fremden Wappen sagen dir inzwischen etwas. Du weisst, wo Aloy in der Welt steht – und wo nicht.",
+        "Heute keine neue Macht, kein neues Reich. Die Splitterlande sind dir vertraut geworden."
+      ]
+    },
+
+    "diplomatie": {
+      "name": "Diplomatie & Recht",
+      "scenery": [
+        "Der Magister der Diplomatie traegt selbst eine schlichte Amtskette, mehr Andenken als Schmuck. „Eine Klinge“, sagt er, „beendet ein Gespraech. Ein gutes Wort beendet einen Krieg. Ueberlegt euch, was teurer ist.“",
+        "Auf dem Pult liegen Vertragsabschriften und ein Siegelring unter Glas. Der Magister spricht langsam, fast umstaendlich – als demonstriere die Art seines Redens bereits die halbe Lektion."
+      ],
+      "intro": [
+        "„Heute lernt ihr die Waffe, die kein Weibel euch zeigt: das Wort – und das Recht, das dahintersteht."
+      ],
+      "lessons": [
+        {
+          "id": "diplo_01",
+          "topic": "Neutralitaet als Werkzeug",
+          "teach": "Aloys Neutralitaet ist nicht Feigheit, sondern Strategie. Weil das Land sich nicht in fremde Kriege ziehen laesst, bleibt es fuer alle Seiten ein moeglicher Gespraechspartner. Ein aloyer Diplomat verkauft nicht Waffen, sondern Vertrauen – und Vertrauen ist die seltenste Ware der Splitterlande.",
+          "fact": "Aloys Neutralitaet ist ein diplomatisches Werkzeug: Sie macht das Land zum moeglichen Vermittler fuer alle Seiten.",
+          "quiz": {
+            "q": "Warum ist Aloys Neutralitaet diplomatisch wertvoll?",
+            "options": ["Sie macht Aloy zum moeglichen Vermittler fuer alle Seiten", "Sie erlaubt Aloy, jeden anzugreifen", "Sie befreit Aloy von allen Vertraegen", "Sie senkt die Steuern"],
+            "answer": 0
+          }
+        },
+        {
+          "id": "diplo_02",
+          "topic": "Ein Heer, das sich selbst bezahlt",
+          "teach": "Aloy finanziert seine Armee zu grossen Teilen selbst – und zwar, indem es Soeldnerregimenter gegen harte Muenze ins Ausland vermietet. So bleibt das Heer autark, ohne das eigene Volk zu erdruecken. Acht der Regimenter stehen im Soeldnerdienst. Das erklaert, warum aloyer Soldaten so oft fern der Heimat kaempfen.",
+          "fact": "Aloy finanziert sein Heer autark, indem es Soeldnerregimenter ins Ausland vermietet (8 Regimenter im Soeldnerdienst).",
+          "quiz": {
+            "q": "Wie finanziert Aloy sein Heer zu grossen Teilen?",
+            "options": ["Durch Vermietung von Soeldnerregimentern ins Ausland", "Durch eine Kopfsteuer auf alle Buerger", "Durch Tribut der Nachbarn", "Durch Beute aus Eroberungen"],
+            "answer": 0
+          }
+        },
+        {
+          "id": "diplo_03",
+          "topic": "Glaubens- und Meinungsfreiheit",
+          "teach": "In Aloy gilt Glaubens- und Meinungsfreiheit. Jeder darf glauben und sagen, was er will – mit einer Grenze: Den gepriesenen Drei darf nicht oeffentlich gespottet werden. Diese eine Schranke ist eng mit der Justiz verknuepft, denn die Rechtsprechung Aloys ist tief mit dem Glauben verwoben.",
+          "fact": "Es gilt Glaubens- und Meinungsfreiheit – mit einer Grenze: oeffentlicher Spott ueber die Drei ist nicht erlaubt.",
+          "quiz": {
+            "q": "Wo endet in Aloy die Meinungs- und Glaubensfreiheit?",
+            "options": ["Beim oeffentlichen Spott ueber die Drei", "Bei Kritik am Rat", "Bei Liedern ueber den Krieg", "Bei Gespraechen ueber andere Laender"],
+            "answer": 0
+          }
+        },
+        {
+          "id": "diplo_04",
+          "topic": "Das Waffenrecht",
+          "teach": "Ein Grundsatz, der Auswaertige oft ueberrascht: In Aloy hat jeder Buerger das ausdrueckliche Recht, eine Waffe zu tragen – oder es bleiben zu lassen. Beides ist seine freie Entscheidung. Fuer einen Diplomaten ist das wichtig zu wissen: Ein bewaffnetes Gegenueber ist in Aloy keine Drohung, sondern der Normalfall.",
+          "fact": "Jeder Buerger Aloys darf Waffen tragen – oder es lassen. Beides ist sein gutes Recht.",
+          "quiz": {
+            "q": "Was gilt in Aloy beim Tragen von Waffen?",
+            "options": ["Jeder Buerger darf Waffen tragen oder es lassen", "Nur Soldaten duerfen Waffen tragen", "Waffen sind fuer alle verboten", "Nur der Rat darf Waffen erlauben"],
+            "answer": 0
+          }
+        },
+        {
+          "id": "diplo_05",
+          "topic": "Wahrheit vor Ultima",
+          "teach": "Recht und Glaube sind in Aloy untrennbar. Schutzpatronin der Rechtsprechung ist Ultima, die Gerechte; ihr Zeichen ist die Waage, mit der sie Taten gegen Motive abwaegt. In ihren Tempeln und vor ihren Statuen darf nur die absolute Wahrheit gesprochen werden – Luegen straft sie unbarmherzig. Wer in Aloy verhandelt, sollte wissen, wo er besser nicht luegt.",
+          "fact": "Ultima, die Gerechte, ist Schutzpatronin der Rechtsprechung (Zeichen: die Waage). Vor ihren Statuen gilt nur die Wahrheit.",
+          "quiz": {
+            "q": "Vor welcher Gottheit darf nur die absolute Wahrheit gesprochen werden?",
+            "options": ["Ultima, die Gerechte", "Hortum, der Schwarze", "Barsinger, der Spielmann", "Limba, der Weisse"],
+            "answer": 0
+          }
+        }
+      ],
+      "exhausted": [
+        "Der Magister wiederholt Bekanntes. Du faellst innerlich in die Rolle des Pruefers und beantwortest seine Fragen, bevor er sie stellt.",
+        "Nichts Neues – die Grundsaetze aloyer Diplomatie und ihres Rechts sitzen bei dir fest."
+      ]
+    }
+  }
+}
+
+
+:: TrainingsHubTexte {"position":"1000,1325","size":"100,100"}
+{
+  "hubIntros": [
+    "Der Staub des Exerzierplatzes hat sich in deine Poren gefressen und klebt wie eine zweite Haut auf deinen Wangen. Du wischst dir den Schweiß von der Stirn und blickst über das weitläufige Gelände der Akademie. Der Nachmittag ist kurz, und du weißt bereits, dass man hier keine Zeit verschenkt — du wirst nur an einem einzigen Ort wirklich präsent sein können.",
+
+    "Die unbarmherzige Mittagssonne weicht einem drückenden, bleigrauen Nachmittag, der keine Erholung verspricht. Deine Muskeln brennen noch vom Morgenappell, und der Schweiß in deinem Kragen ist längst kalt geworden. Das Lager breitet sich vor dir aus wie ein eigener, lärmender Kosmos — aber deine Energie reicht heute nur noch für einen einzigen Weg.",
+
+    "Das Brüllen der Ausbilder hallt noch in deinen Ohren nach, als sich der Exerzierplatz langsam leert. Du bleibst einen Moment stehen und atmest durch. Vor dir liegen die staubigen Gassen des Lagers mit allem, was sie zu bieten haben — und hinter dir liegt ein Morgen, der dich bereits mehr gekostet hat, als du zugeben willst. Einen Abstecher. Mehr ist heute nicht drin.",
+
+    "Ein langer, zermürbender Tag neigt sich seinem Ende entgegen, und er tut es ohne Gnade. Die Riemen deiner Ausrüstung haben tiefe, rote Striemen in deine Schultern gegraben, und jeder Schritt kostet mehr als der vorherige. Du stehst am Rand des Platzes und weißt, dass dir bis zum Abendappell nur noch eine einzige freie Entscheidung bleibt. Sie sollte die richtige sein.",
+
+    "Der bittere Geschmack von Staub und Schweiß klebt an deinem Gaumen, und kein Schluck Wasser hat ihn bisher vertrieben. Die Formationen haben sich aufgelöst, die Ausbilder sind verschwunden, und für einen kurzen, trügerischen Moment wirkt das Lager fast still. Aber die Zeit läuft. Sie läuft hier immer. Du hast Kraft für einen einzigen Weg — also wähl ihn mit Bedacht."
+  ],
+
+  "hubScenery": [
+    "Der Geruch von verbranntem Pulver, feuchtem Stroh und kochender Brühe liegt schwer in der stickigen Nachmittagsluft und legt sich auf Zunge und Lunge wie ein feuchtes Tuch. Das dumpfe, rhythmische Hämmern aus der Schmiede mischt sich mit dem fernen Brüllen eines Ausbilders, der noch nicht aufgegeben hat.",
+
+    "Ein nasskalter Wind fährt durch die engen Zeltgassen und reißt trockenen Staub in flachen, wirbelnden Bahnen mit sich fort. Irgendwo schlägt eine schlecht gesicherte Holztür in stetigem, nervtötendem Takt gegen ihren Rahmen, und das Klirren von Eisen irgendwo in der Tiefe des Lagers gibt ihr einen unregelmäßigen Gegentakt.",
+
+    "Rauchschwaden aus den Feldküchen ziehen träge und grau über den festgetretenen Platz, als hätte der Himmel selbst keine Lust mehr, sich zu bewegen. Die Rekruten, die ihre freie Stunde haben, suchen den Schatten der Planwagen, während die älteren Männer schweigend und mit geübten Händen ihre Ausrüstung in Ordnung bringen — als wäre es das Einzige, was sie noch interessiert.",
+
+    "Das ständige Wiehern der Zugpferde drückt auf die Stimmung wie ein nasses Tuch auf eine Wunde, untermalt vom harten, monotonen Aufschlagen von Holz auf Holz an den Palisaden. Der Dreck des Lagers klebt an den Stiefeln, an den Hosenbeinen, an den Händen — er gehört bereits dazu, so wie der Lärm und der Geruch und die Erschöpfung.",
+
+    "Die Schatten der Baracken werden länger und kriechen wie dunkle, schwere Finger über den festgetretenen Lehm des Platzes. Fliegen kreisen träge über den Abfallgruben am Rand des Lagers, und das gleichmäßige, fast meditative Schleifen von Klingen an Wetzsteinen zieht sich wie ein leises, unerbittliches Grundrauschen durch den Abend."
+  ],
+
+  "hubThoughts": [
+    "Ich kann nicht überall gleichzeitig sein. Jede Stunde hier hat ihren Preis, und wer sie falsch ausgibt, merkt es spätestens dann, wenn es zu spät ist. Ich muss wählen — und ich muss klug wählen.",
+
+    "Was ich jetzt tue, hinterlässt Spuren. Nicht auf dem Papier, nicht in der Truppenrolle — aber in mir selbst. Die Zeit der Spielereien ist vorbei. Also: wohin?",
+
+    "Meine Knochen verlangen nach Ruhe. Mein Verstand weiß, dass Ruhe hier ein Luxus ist, den die Toten sich leisten. Jeder Vorsprung zählt. Jede Stunde. Also reiß dich zusammen und entscheide.",
+
+    "Jede dieser Stationen formt mich zu einem anderen Soldaten. Wer ich in zwei Jahren sein werde, entscheidet sich nicht auf dem Schlachtfeld — es entscheidet sich hier, in diesen langen, grauen Nachmittagen, in denen niemand hinschaut und trotzdem alles gesehen wird.",
+
+    "Die Zeit rinnt durch meine Finger wie der feine Staub dieses Platzes. Ein verschwendeter Nachmittag ist eine verpasste Chance, und verpasste Chancen sammeln sich — bis sie einen irgendwann einholen. Konzentrier dich. Entscheid dich. Geh."
+  ],
+
+  "hubSubtexts": {
+    "pike": [
+      "— Reihe dich in die eiserne Formation ein. Lerne, was es bedeutet, nicht als Einzelner zu kämpfen, sondern als Teil einer Wand aus Holz und Stahl.",
+      "— Die Infanterie ist das Rückgrat jeder Armee — und das Rückgrat bricht zuerst, wenn es nicht hart genug ist. Hier lernst du, was Standhaftigkeit wirklich bedeutet.",
+      "— Schweiß, Staub und das ewige Gewicht der langen Esche in den Armen. Wer hier überlebt, überlebt auch den Ansturm der Kavallerie.",
+      "— Der hölzerne Igel. Dreißig Männer, dreißig Spitzen, ein einziger Körper. Hier lernst du, deinen Platz in diesem Körper zu finden.",
+      "— Nackte Disziplin und rohes Holz. Spüre das Gewicht der Hellebarde — und begreife, warum Ordnung in der Formation über Leben und Tod entscheidet."
+    ],
+    "cannon": [
+      "— Die Feuerwerker messen Pulver ab wie Apotheker Gift. Lerne, wie man den eisernen Donner der Kanone beherrscht, ohne selbst in Stücke zu fliegen.",
+      "— Bronzerohre, die tonnenschwer auf ihren Lafetten schlafen und auf den richtigen Winkel warten. Hier lernst du, sie aufzuwecken.",
+      "— Schwarzpulver brennt in den Augen und Schwefel in der Lunge. Erfahre, was es wirklich bedeutet, die eiserne Faust der Artillerie zu bedienen.",
+      "— Die Mathematik des Todes ist gnadenlos präzise. Verstehe den tödlichen Winkel, das unberechenbare Wesen der Lunte — und respektiere beides.",
+      "— Ohrenbetäubender Lärm, tonnenschweres Metall und der bittere Qualm verbrannten Pulvers. Hier wird kein Ruhm verdient — nur Überleben."
+    ],
+    "medicine": [
+      "— Wunden werden nicht sauberer, wenn man wegschaut. Beobachte, lerne, halte den Magen ruhig — und vielleicht rettest du damit eines Tages ein Leben.",
+      "— Der Feldscher riecht nach Essig und altem Blut, und seine Hände zittern nie. Schau ihm über die Schulter, solange du noch die Wahl hast, wegzuschauen.",
+      "— Zwischen Schmerzensschreien und Verbandszeug liegt die ruhige, grausame Arbeit des Überlebens. Hier lernt man sie.",
+      "— Das Fleisch ist schwach. Wer weiß, wie man es flickt, hat auf dem Schlachtfeld einen Vorteil, den kein Schwert aufwiegt.",
+      "— Die Kehrseite des Ruhms riecht nach Wundbrand und nassen Verbänden. Wer das hier aushält, hält auch das Schlachtfeld aus."
+    ],
+    "crossbow": [
+      "— Ein Atemzug, ein Herzschlag, ein Bolzen. Die Armbrust verzeiht keine Ungeduld — und belohnt jeden, der sie trotzdem lernt.",
+      "— Stählerne Sehnen und mechanische Präzision. Wer den Bogen beherrscht, tötet aus der Distanz, bevor der Feind auch nur die Klinge zieht.",
+      "— Spannen, zielen, atmen, warten. Die Armbrust ist ein Werkzeug für Menschen mit Nerven aus Draht. Hast du sie?",
+      "— Der lautlose Tod auf hundert Schritt. Verstehe die Mechanik von Winde, Nuss und stählernem Bogen — und was ein einziger Bolzen im richtigen Moment wert ist.",
+      "— Ausatmen. Innehalten. Abdrücken. Kein Muskel, keine Wut, keine Hektik. Nur Kontrolle. Hier lernst du, ob du sie hast."
+    ],
+    "thievery": [
+      "— Wer im Dunkeln die Augen offen hält, sieht mehr als jeder Ausbilder auf dem Exerzierplatz. Was hier geflüstert wird, hat oft mehr Gewicht als jeder Befehl.",
+      "— Die langen Schatten hinter den Stallungen gehören niemandem — und genau deshalb gehören sie jedem, der weiß, wie man sich in ihnen bewegt.",
+      "— Im Lager gibt es eine zweite Ordnung, die in keiner Truppenrolle steht. Wer sie kennt, überlebt länger als mancher Hauptmann.",
+      "— Lose Taschen, wegschauende Wachen und das richtige Timing. Wer hier die Regeln bricht, findet Wege, die kein Ausbilder je gezeigt hat.",
+      "— Zwischen Heuballen und Hehlern spielt sich das wahre Leben des Lagers ab. Manches lässt sich kaufen. Manches lässt sich stehlen. Und manches erfährt man nur, wenn man zuhört."
+    ]
+  },
+
+  "stations": {
+    "pike": {
+      "scenery": [
+        "Die hölzernen Waffengestelle riechen nach billigem Leinöl und verwitterter Esche, einem Geruch, der sich in die Nase bohrt wie ein stumpfer Nagel. Ein mürrischer Korporal treibt eine Reihe schwitzender Rekruten vor sich her, und seine Stimme klingt, als hätte er sie seit Jahren nur für einen einzigen Zweck benutzt: zu brüllen.",
+        "Der Boden rund um die Übungsgestelle ist vom ständigen Stampfen der schweren Stiefel so fest getreten, dass er sich anfühlt wie alter Stein. Eisenbeschläge klirren monoton im Wind, und irgendwo weiter hinten schlägt ein Schaft gegen einen anderen — ein dumpfer, rhythmischer Laut ohne Melodie.",
+        "Reihenweise lehnen die sechs Meter langen Eschenschäfte an den Barrikaden wie ein kahler, toter Wald, aus dem kein Vogel mehr singt. Hier herrscht der Ton der Front — rau, kurz, ohne Raum für Missverständnisse.",
+        "Dicker Schlamm klammert sich an die hölzernen Tritte der Übungsplätze und gibt bei jedem Schritt nach wie frisch umgegrabene Erde. Der süßliche Gestank von billigem Schmalz, mit dem die Schäfte gepflegt werden, hängt schwer und unbeweglich in der Luft.",
+        "Der Wind treibt feinen Exerzierplatz-Staub in dichten Schwaden durch die Reihen der Infanterie-Gestelle, wo Dutzende hölzerne Übungswaffen wie erstarrte Finger in den grauen Himmel ragen und auf Hände warten, die wissen, wie man sie hält."
+      ],
+      "main": {
+        "novice": [
+          "Du greifst nach dem rauen Holz einer Übungs-Pike, und das erste, was du bemerkst, ist das Gewicht — ein Gewicht, das sich nicht gleichmäßig verteilt, sondern zieht und drückt und sich gegen dich stellt wie ein lebendiges Ding. Deine Arme zittern schon nach wenigen Minuten. Als der Trupp im Gleichschritt anzieht, stolperst du über deine eigenen Stiefel, und der Korporal bellt dich an, bis ihm die Spucke vor den Lippen steht und seine Stimme sich überschlägt.",
+
+          "Du rammst die Pike in den Boden, und der Rückstoß fährt dir wie ein Peitschenhieb durch die Schulter, schmerzhaft und abrupt und ohne jede Vorwarnung. Das ungeschliffene Holz reibt bei jeder Bewegung tief in deine ungeschützten Handflächen, und du bemerkst erst jetzt, wie weit du davon entfernt bist, hier irgendetwas richtig zu machen.",
+
+          "Der Ausbilder verpasst dir ohne Ankündigung einen harten Hieb mit dem Exerzierstecken gegen die Innenseite der Knie. 'Tiefer! Du stehst da wie eine Hure beim Sonntagsgottesdienst!' Keuchend sackst du ab, und das Gewicht der Esche presst dir die Wirbelsäule zusammen, als wollte es dich in den Boden treiben.",
+
+          "Gemeinsam mit den anderen Frischlingen versuchst du, den hölzernen Igel zu formen — dreißig Spitzen, die alle in dieselbe Richtung zeigen sollen, gleichmäßig, geschlossen, unüberwindbar. Deine schwankt wie ein Schilfrohr im Sturm. Als die Nachbarpike gegen deine schlägt, verlierst du beinahe den Halt, und die Flüche, die von der Seite kommen, sind alles andere als leise.",
+
+          "Deine Finger krampfen sich um den dicken Schaft, und das Ausrichten der Waffe nach vorn fühlt sich an, als müsstest du einen ausgewachsenen Baumstamm balancieren. Nach einer halben Stunde brennen deine Unterarme so tief und so stetig, dass du nicht mehr sicher bist, ob du die Pike noch einen einzigen weiteren Schritt tragen kannst."
+        ],
+        "medium": [
+          "Das Gewicht der Pike zieht immer noch in den Schultern, aber du hast gelernt, wie man damit umgeht — den Schwerpunkt mit dem Becken abfängt, die Last auf den ganzen Körper verteilt statt auf die Arme allein. Du hältst die Formation. Deine Stiefel finden den Takt im Dreck, und der Stoß nach vorn erfolgt ohne Zögern und ohne die zitternde Unentschlossenheit des ersten Tages.",
+
+          "Der Ausbilder schlägt dir im Vorbeigehen mit einer Eisenstange gegen den Schaft, um deinen Stand zu prüfen. Du weichst nicht zurück. Die frische Hornhaut an deinen Handflächen schützt dich vor den gröbsten Splittern, und zum ersten Mal seit Beginn der Ausbildung fühlt sich die Waffe nicht wie dein Feind an.",
+
+          "Im dumpfen Rhythmus der Trommel senkst du die Pike auf Kniehöhe und wartest das Kommando ab, ohne mit der Spitze zu zucken. Der Schaft liegt ruhig in deinen Händen — schwer noch immer, aber gehorchend. Das ist kein kleiner Unterschied.",
+
+          "Du übst das rasche Schwenken der Formation im Kollektiv. 'Flanke rechts!' Das Holz saust herum, Spitzen gleiten haarscharf aneinander vorbei, und du hältst deinen Abstand zum Vordermann ohne darüber nachzudenken. Das ist der Moment, in dem du begreifst, dass Formation keine Choreographie ist — es ist Überleben.",
+
+          "Der Schweiß läuft dir in den Kragen, aber deine Konzentration steht. Wenn du den Stoß ausführst, nutzt du das Gewicht deines gesamten Körpers, nicht nur der Arme. Ein mechanischer Ablauf, der langsam und unwiderruflich Sinn ergibt."
+        ],
+        "expert": [
+          "Das sechs Meter lange Eschenholz fühlt sich an wie eine verlängerte Gliedmaße — als wärst du damit geboren worden, als gehörte es zu dir so selbstverständlich wie ein Arm. Ohne nachzudenken senkst du die eiserne Spitze im perfekten Winkel, und dein Blick ist ruhig und absolut leer von allem außer dem, was vor dir liegt.",
+
+          "Die Formation bewegt sich um dich herum wie ein einziger, tödlicher Organismus, und du bist ein Teil davon ohne jede Reibung, ohne jedes Zögern. Die komplexen Stiche und Paraden laufen mit einer fast schläfrigen Präzision ab, und der Korporal, der dich in der ersten Woche noch angebrüllt hat bis ihm die Stimme versagte, nickt dir heute schweigend zu.",
+
+          "Als die Übungs-Kavallerie auf eure Reihe zuprescht, zuckst du nicht. Du stemmst den Schuh tief in den Lehm, blockierst den Schaft im Boden und bildest mit deinen Nebenmännern eine Wand, gegen die kein Pferd und kein Reiter bestehen würde — nicht weil du mutiger bist, sondern weil du weißt, was du tust.",
+
+          "Du beherrschst den Wechsel von der Pike zur Hellebarde in der Zeit, die andere brauchen, um sich umzusehen. Der schwere Stahl der Kurzwaffe wirbelt durch deine Hände, nutzt den Schwung des eigenen Gewichts, schlägt mit kontrollierter, dumpfer Wucht in die hölzerne Übungspuppe — und du bist bereits wieder in Position, bevor der Aufprall verhallt.",
+
+          "Deine Muskeln haben das Gewicht der Waffe so vollständig verinnerlicht, dass du sie im Schlaf führen könntest. Du atmest ruhig durch die Nase, stehst im vordersten Glied und spürst die absolute, stille Kontrolle über den Raum vor dir. Wer in deine Reichweite tritt, hat eine schlechte Entscheidung getroffen."
+        ]
+      },
+      "thoughts": {
+        "novice": [
+          "Dieses schwere Holz bringt mich noch um. Auf dem Schlachtfeld bin ich mit diesem zitternden Griff ein wandelndes Ziel — und das weiß jeder hier, der mich ansieht.",
+          "Wenn ein Pferd im vollen Galopp auf mich zukommt, reiße ich mit dieser Technik gar nichts aus. Ich muss schneller besser werden, sonst spießt mich der Feind auf wie Federvieh auf dem Markt.",
+          "Meine Finger bluten, mein Rücken ist gebrochen, und mein Stolz liegt irgendwo im Dreck zwischen den Stiefeln des Korporals. Ist das die glorreiche Infanterie?",
+          "Ein einziger falscher Schritt von mir, und die ganze Reihe gerät ins Stolpern. Der Druck ist physisch und psychisch zugleich — und beides ist gerade zu viel.",
+          "Reiß dich zusammen. Wenn die anderen es halten können, kannst du es auch. Lass dir von diesem Platz nicht den Willen brechen."
+        ],
+        "medium": [
+          "Wir sind keine Einzelkämpfer. Wir sind eine Wand. Ich fange an, meinen Platz in diesem System aus Holz und Stahl wirklich zu begreifen — und was es bedeutet, wenn einer von uns versagt.",
+          "Die Hornhaut wird dicker, der Stand sicherer. Ich bin kein Kanonenfutter mehr. Noch nicht fertig — aber nicht mehr ganz am Anfang.",
+          "Es geht nicht um Kraft. Es geht um Timing, Hebel und Körpergefühl. Wenn man die Physik begreift, wird die Pike plötzlich zu einem Werkzeug statt zu einem Feind.",
+          "Er schreit mich nicht mehr bei jedem Schritt an. Ein kleiner Fortschritt. Aber auf diesem Platz muss man für jeden Handbreit Boden schwitzen.",
+          "Ein simpler Spieß. Und doch hängt das Schicksal ganzer Schlachten an diesen stumpfen Holzstangen. Wenn die Wand hält, bricht uns niemand."
+        ],
+        "expert": [
+          "Bringt mir die Reiter. Ich weiß genau, wo der Spalt zwischen den Rossharnischen liegt, und diese Spitze wird ihn finden.",
+          "Die Ritter mögen glänzen. Aber am Ende zerschellen sie an uns — an der Wand, die niemand romantisiert und ohne die keine Armee einen einzigen Tag steht.",
+          "In meinen Händen ist diese Waffe kein klobiger Ast mehr. Sie ist ein Instrument, und ich bin derjenige, der entscheidet, wohin sie geht.",
+          "Lass das Chaos kommen, lass die Trommeln dröhnen. Ich kenne meinen Platz in der Kette. Ich werde ihn nicht verlassen.",
+          "Ich bin bereit für das Schlachtfeld. Möge der Feind so unklug sein, diese Reihe stürmen zu wollen. Es wird sein letzter Fehler sein."
+        ]
+      },
+      "rewards": { "stat": "ambition", "statValue": 1, "knowledge": "pike", "knowledgeValue": 1 }
+    },
+
+    "cannon": {
+      "scenery": [
+        "Die schweren Bronzerohre der Artillerie ruhen auf ihren hölzernen Lafetten wie träge, schlafende Monster — unbeweglich, schwer und mit einer Geduld, die sich anfühlt wie eine Drohung. Der Geruch von Schwefel ist hier so tief und so dicht, dass er sich in die Kehle legt wie ein Tuch.",
+        "Rauch kriecht aus den Testpfannen der Feuerwerker in flachen, grauen Schwaden über den Boden, und überall liegen schwere gusseiserne Kugeln und hölzerne Kartätschenkisten im Dreck, achtlos und gefährlich wie alles hier.",
+        "Ein markerschütterndes Dröhnen fegt über die Batterie, als eines der kleineren Stücke weiter hinten abgefeuert wird — und der Boden zittert unter deinen Stiefeln nicht wie bei einem Erdbeben, sondern wie bei einem Tier, das sich bewegt."
+      ],
+      "main": {
+        "novice": [
+          "Das grobkörnige Schwarzpulver brennt dir in den Augen, noch bevor du begreifst, was du falsch gemacht hast. Als du den schweren Wischer in das heiße Rohr rammst, hustest du so heftig vom beißenden Qualm, dass dir die Augen tränen — und dahinter, tief und konstant, sitzt die nackte Angst, dass dir das Ding um die Ohren fliegt.",
+
+          "Ein alter Büchsenmeister schlägt dir grob auf die Finger, weil du die Lunte zu nah am Zündloch hältst, und sagt dabei kein einziges Wort. Als das Nachbargeschütz donnert und der Boden bebt, weichen deine Knie, und du hasst dich dafür."
+        ],
+        "medium": [
+          "Du misst das Pulver mit ruhiger Hand ab, und die Begriffe Ladeschaufel, Kartätsche und Schildzapfen sind keine Fremdwörter mehr — sie sind Werkzeuge, die du kennst und benutzt. Du hilfst koordiniert dabei, das tonnenschwere Belagerungsgeschütz mit Hebebäumen auszurichten, und der Büchsenmeister sieht dir dabei zu, ohne etwas zu sagen. Das bedeutet, du machst es richtig.",
+
+          "Der Lärm dröhnt noch immer in den Ohren, aber du zuckst nicht mehr zusammen. Du reinigst das Rohr mit dem nassen Wischer, bereitest den nächsten Schuss vor und arbeitest dabei mit einer Ruhe, die du dir vor zwei Wochen nicht hättest vorstellen können."
+        ],
+        "expert": [
+          "Du berechnest den tödlichen Winkel fast im Kopf, ein kurzer prüfender Blick auf die Pulverqualität, eine kleine Justierung der Keile an der Lafette — und dann wartest du. Nicht aus Nervosität, sondern weil du weißt, wann der richtige Moment ist. Du regierst diese eiserne Bestie mit einer Autorität, die kein Befehl dir gegeben hat.",
+
+          "Die Mathematik des Todes ist dir in Fleisch und Blut übergegangen, so tief, dass du nicht mehr darüber nachdenken musst. Während um dich herum das Chaos der Übung tobt, senkst du die brennende Lunte mit der Ruhe eines Mannes, der weiß, was gleich passiert — und dem das vollkommen recht ist."
+        ]
+      },
+      "thoughts": {
+        "novice": [
+          "Ein Funke am falschen Ort, und wir fliegen alle in Stücke. Das ist kein abstrakter Gedanke hier. Das ist eine reale, gegenwärtige Möglichkeit.",
+          "Ich habe Respekt vor dieser Waffe — den Respekt, den man vor etwas hat, das einen töten kann, ohne böse Absicht zu haben."
+        ],
+        "medium": [
+          "Wer den Winkel beherrscht, beherrscht die Distanz. Und wer die Distanz beherrscht, entscheidet, wer überhaupt nah genug kommt, um zu kämpfen.",
+          "Der Lärm hört auf, mich zu erschrecken. Das ist entweder Gewöhnung oder der Beginn von etwas Besserem."
+        ],
+        "expert": [
+          "Das ist die eigentliche Macht in diesem Krieg. Nicht die Schwerter, nicht die Fahnen, nicht die Reden. Nur das Rohr, der richtige Winkel — und der Donner danach.",
+          "Ich verstehe jetzt, warum die Feuerwerker so wenig sprechen. Was sie wissen, braucht keine Worte."
+        ]
+      },
+      "rewards": { "stat": "ambition", "statValue": 1, "knowledge": "cannon", "knowledgeValue": 1 }
+    },
+
+    "medicine": {
+      "scenery": [
+        "Das Zelt des Feldschers riecht stechend nach Essig, ranzigem Schmalz und dem süßlichen, schweren Dunst von frischem Blut — ein Geruch, der sich festsetzt und nicht wieder loslädt. Aus dem Halbdunkel dringt das Stöhnen eines Mannes, der schon zu erschöpft ist, um laut zu klagen.",
+
+        "Auf dem rohen Holztisch liegt das Handwerk des Überlebens ausgebreitet: Knochensägen mit vergilbten Griffen, gebogene Nadeln an einem Faden, der zu grob aussieht für das, wofür er bestimmt ist, und stumpfe Zangen, die in einem Topf kochendem Wasser klappern wie ein schlechtes Omen.",
+
+        "Ein Gehilfe trägt einen Eimer voller blutiger Verbände nach draußen, ohne den Blick zu heben. Hier wird nicht marschiert, nicht exerziert, nicht befohlen. Hier wird um jeden einzelnen Atemzug gefeilscht, und manchmal verliert man."
+      ],
+      "main": {
+        "novice": [
+          "Der Feldscher nickt dir flüchtig zu und drückt dir einen sauberen Lappen in die Hand, als wäre das Erklärung genug. Du sollst die Wunde eines Infanteristen fixieren, während die Nadel sich durch seine Haut frisst. Sein Schrei hallt in dir nach, lange nachdem er verstummt ist.",
+
+          "Unter deinen ungeschickten Fingern spürst du das Knirschen von gebrochenem Knochen, und dein Magen antwortet darauf bevor dein Verstand kann. Du musst dich zwingen, weiterzumachen — die Schiene anlegen, den Mann ruhig halten, die Hände nicht zittern lassen — und du schaffst es, aber nur knapp."
+        ],
+        "medium": [
+          "Das Flicken von Fleisch verliert seinen Schrecken — nicht weil es weniger schlimm geworden wäre, sondern weil du gelernt hast, es von einer anderen Seite zu sehen. Du reinigst Wunden mit Essigwasser, reißt Verbände mit einer Hand ab und gehst dabei im Kopf bereits die nächsten Schritte durch.",
+
+          "Ein Verwundeter kämpft unter deinen Händen, und du drückst ihn mit festem, ruhigem Griff auf den Tisch — nicht grob, aber unmissverständlich. Die Empathie ist noch da. Aber sie steht jetzt hinter der Konzentration, nicht davor."
+        ],
+        "expert": [
+          "Du führst die Knochensäge mit einer Hand, die nicht zittert. Das Schreien um dich herum ist vorhanden, aber es erreicht dich nicht mehr auf dieselbe Weise — es ist Hintergrund geworden, wie der Wind oder das Feuer, während du arbeitest.",
+
+          "Dein diagnostischer Blick braucht Sekunden, keine Minuten. Im Halbdunkel des Lazaretts sortierst du die hoffnungslosen Fälle von denen, die noch eine Chance haben — nicht mit Kälte, sondern mit der grausamen, notwendigen Effizienz eines Menschen, der verstanden hat, dass Mitgefühl allein hier niemanden rettet."
+        ]
+      },
+      "thoughts": {
+        "novice": [
+          "Das ist der wahre Preis des Krieges. Nicht der Trommelwirbel und die Fahnen — sondern das leise Wimmern im Stroh und die Hände, die zu langsam sind, um zu helfen.",
+          "Ich darf hier nicht wegsehen. Auch wenn alles in mir es verlangt."
+        ],
+        "medium": [
+          "Fleisch flicken wie Zeltstoff. Es ist hart und es ist unromantisch, und ohne diese Arbeit wäre jede Armee nach der ersten Schlacht eine Ansammlung von Sterbenden.",
+          "Die Hände werden ruhiger. Das ist kein schlechtes Zeichen — das ist das Einzige, was hier zählt."
+        ],
+        "expert": [
+          "Das Blut wäscht sich ab. Die Schreie verblassen. Was bleibt, ist das Wissen darüber, wie ein menschlicher Körper funktioniert — und wie er aufhört zu funktionieren. Das lässt sich nicht mehr vergessen.",
+          "Ich rette keine Helden hier. Ich rette Männer. Das ist genug."
+        ]
+      },
+      "rewards": { "stat": "mercy", "statValue": 1, "knowledge": "medicine", "knowledgeValue": 1 }
+    },
+
+    "crossbow": {
+      "scenery": [
+        "Am Schießstand herrscht eine konzentrierte, fast unheimliche Stille — die Stille von Menschen, die alle denselben Punkt in der Ferne anstarren und nichts anderes mehr wahrnehmen. Das harte Peitschen der Stahlsehnen und das dumpfe Einschlagen der Bolzen in Strohscheiben geben ihr einen regelmäßigen, fast beruhigenden Takt.",
+
+        "Die Schützen stehen in perfekter Reihe. Kein Gespräch, kein Geräusch außer dem, was zur Aufgabe gehört. Die Armbrust ist eine Waffe für Menschen, die gelernt haben zu warten — und hier lernt man es, ob man will oder nicht.",
+
+        "Der Wind pfeift durch die hölzernen Schießscharten und macht die Berechnungen komplizierter, als sie ohnehin schon sind. Auf den Tischen liegen Spindelwinden, Fettnäpfchen und Kisten voller gefiederter Bolzen, aufgereiht mit einer Sorgfalt, die zeigt, dass die Leute hier wissen, was sie tun."
+      ],
+      "main": {
+        "novice": [
+          "Du legst die schwere Wippe an die Schulter und stemmst den Fuß in den stählernen Steigbügel. Das Spannen der Sehne kostet mehr Kraft als erwartet — weit mehr — und als sie endlich knackend einrastet, zittern deine Arme. Beim Schuss reißt dir der Rückstoß fast die Waffe aus den Händen, und der Bolzen verschwindet irgendwo weit rechts vom Ziel im Nirgendwo.",
+
+          "Das Visier tanzt, deine Finger sind zu hektisch, und als du schließlich drückst, passiert es einen Herzschlag zu früh. Der Bolzen klatsch in den Dreck, meilenweit an der Scheibe vorbei. Der Ausbilder sagt nichts. Das ist fast schlimmer."
+        ],
+        "medium": [
+          "Das Kurbeln der Spindelwinde wird zur Gewohnheit — eine feste Folge von Bewegungen, die der Körper irgendwann ohne Nachdenken ausführt. Du legst den Schaft an die Wange, fängst den Wind ab, ziehst den Abzug sauber durch. Der Bolzen klatscht mit einem satten, befriedigenden Laut ins Holz der Scheibe.",
+
+          "Finger weg von der Nuss, Bolzen in die Führungsnut, Blick nach vorn, atmen. Die Handgriffe sitzen. Jetzt feilst du an der Geschwindigkeit — und an der Geduld, die der einzige Unterschied zwischen einem guten und einem toten Schützen ist."
+        ],
+        "expert": [
+          "Du atmest flach aus. Hältst inne. Im exakten Moment zwischen zwei Herzschlägen löst sich der Schuss — präzise und ohne Zögern — und der Bolzen durchschlägt das Zentrum der Eichenbohle auf hundert Schritt und spaltet den Treffer vom Vortag.",
+
+          "Die schwere Belagerungsarmbrust fühlt sich in deinen Händen nicht mehr schwer an. Du beherrschst die Ballistik im Schlaf, lädst blind und in Rekordzeit nach — und weißt dabei genau, dass Geschwindigkeit hier nur die halbe Kunst ist. Die andere Hälfte ist die Ruhe, die kein Befehl lehren kann."
+        ]
+      },
+      "thoughts": {
+        "novice": [
+          "Hier zählt kein Brüllen, keine Muskelkraft, kein Wille. Nur die Kontrolle über den eigenen Körper. Und genau die fehlt mir noch vollständig.",
+          "Die Armbrust wartet nicht auf mich. Sie verzeiht nichts. Das ist entweder das Härteste oder das Ehrlichste, was mir diese Ausbildung bisher gegeben hat."
+        ],
+        "medium": [
+          "Kein Zögern, keine Hektik. Ein ruhiger Finger ist mehr wert als jede Muskelkraft auf diesem Stand.",
+          "Ich werde schneller. Aber Schnelligkeit ohne Präzision ist Verschwendung. Beides muss kommen — und es kommt, langsam und unweigerlich."
+        ],
+        "expert": [
+          "Ein Bolzen, der richtige Moment, der richtige Winkel. Mehr braucht es nicht. Das ist eine wunderschöne, rein mechanische Wahrheit.",
+          "Ich schieße nicht mehr. Ich warte, bis der Schuss selbst kommt. Der Unterschied klingt gering. Er ist alles."
+        ]
+      },
+      "rewards": { "stat": "ambition", "statValue": 1, "knowledge": "crossbow", "knowledgeValue": 1 }
+    },
+
+    "thievery": {
+      "scenery": [
+        "Hinter den Stallungen hört der militärische Drill auf wie ein Licht, das man ausdreht. Der beißende Geruch von Pferdemist mischt sich mit dem Rauch billigen Tabaks, und schattenhafte Gestalten drücken sich an die Holzwände mit der geübten Unauffälligkeit von Menschen, die das seit Jahren tun.",
+
+        "Hier patrouillieren keine Wachen — sie meiden diese Ecken aus demselben instinktiven Grund, aus dem man dunkle Gassen meidet: nicht weil sie Angst haben, sondern weil sie wissen, dass manche Dinge reibungsloser laufen, wenn man nicht hinschaut. Das Tuscheln und das dumpfe Rollen von Würfeln auf einem umgedrehten Fass sind die einzigen Geräusche.",
+
+        "Die Zivilisation endet an den Stalltoren. Dahinter gelten andere Regeln — keine, die in einer Truppenrolle stehen, und keine, über die man laut spricht. Aber Regeln sind es trotzdem."
+      ],
+      "main": {
+        "novice": [
+          "Du schleichst dich im Schatten eines Heuwagens entlang und trittst dabei prompt in einen umgekippten Metalleimer. Das Scheppern ist so laut, dass du für einen Moment zu Stein erstarrst und nicht mehr weißt, ob du atmen sollst. Ein Pferd wiehert unruhig. Niemand kommt. Aber es war knapp.",
+
+          "Du versuchst, einem betrunkenen Trossbuben die Geldbörse vom Gürtel zu schneiden. Deine Hände zittern, du rutschst ab, und im letzten Moment, kurz bevor er sich umdreht, ziehst du die Hand zurück. Du gehst mit leeren Händen und mit dem unangenehmen Wissen, dass du noch nicht bereit bist."
+        ],
+        "medium": [
+          "Du bewegst dich durch das tote Sichtfeld der Wachen so lautlos, dass du selbst kaum hörst, wie deine Stiefel den Boden berühren. Deine Augen haben gelernt, die kleinen, nervösen Gesten der Hehler zu lesen — das kurze Augenzwinkern, das leichte Rücken des Ellbogens. Im Vorbeigehen lässt du eine Handvoll Eisennägel und ein schmales Seil in deiner Tasche verschwinden, ohne dass irgendjemand den Kopf dreht.",
+
+          "Hinter einer Holzwand belauschst du ein Gespräch zweier Fourier-Gehilfen über unterschlagene Rationen, die irgendwo zwischen den Lagerbeständen verschwunden sind und die niemand sucht. Du hältst dich flach, atmest flach, bewegst dich nicht. Jedes Wort landet in deinem Gedächtnis, als wäre es eingebrannt."
+        ],
+        "expert": [
+          "Du gleitest durch das nächtliche Lager wie ein Schatten, der vergessen hat, dass er einen Körper hat. Das Knirschen von Kieselsteinen unter deinen Stiefeln fängst du instinktiv ab, noch bevor es entsteht. Die verriegelte Kiste im Quartier des Zahlmeisters öffnet sich unter deinen Fingern, und du bist wieder draußen, bevor der Raum deine Wärme gespürt hat.",
+
+          "Niemand sieht dich, wenn du es nicht willst. Du nutzt die Trägheit der betrunkenen Soldaten, die langen Sichtlinien der müden Wachen, die kurzen Momente der Ablenkung — und am Ende hast du mehr gewonnen als jeden Abend auf dem Exerzierplatz, ohne einen einzigen Befehl befolgt zu haben."
+        ]
+      },
+      "thoughts": {
+        "novice": [
+          "Mein Herz hämmert so laut, dass ich sicher bin, die Wache muss es hören. Wenn sie mich hier erwischen, endet das nicht mit einem Verweis.",
+          "Ich bin noch nicht gut genug für das, was ich hier versuche. Das ist keine Meinung — das ist eine Tatsache, die mich gerade fast erwischt hätte."
+        ],
+        "medium": [
+          "Die Armee hat ihre Ordnung. Aber das wahre Überleben wird im Verborgenen verhandelt — in Flüstern und Blicken und Dingen, die nie aufgeschrieben werden.",
+          "Ich lerne, wer hier die Fäden zieht. Nicht die Offiziere. Nicht die Ausbilder. Die Männer, die man nie beim Namen nennt."
+        ],
+        "expert": [
+          "Ehrlichkeit füllt keinen leeren Magen und schützt nicht vor einem Messer im Rücken. Die Schatten gehören mir — und wer in diesem Lager nicht weiß, wie man in ihnen lebt, kennt das Lager nicht wirklich.",
+          "Ich bewege mich durch diesen Ort wie durch ein Werkzeug, das ich von innen kenne. Jede Wache, jede Lücke, jeder blinde Winkel. Das Lager ist mein Jagdrevier."
+        ]
+      },
+      "rewards": { "stat": "honesty", "statValue": -1, "knowledge": "thievery", "knowledgeValue": 1 }
+    }
+  }
+}
+
+
+:: AbendappellTexte {"position":"750,1950","size":"100,100"}
+{
+  "szenerie": [
+    {
+      "text": "Als das Signalhorn verklungen ist, strömen die Rekruten aus allen Winkeln des Lagers zurück auf den Appellplatz. Stiefel scharren über Kies, Stimmen verstummen nach und nach, und über den Zelten liegt bereits das matte Licht des frühen Abends.",
+      "context": {}
+    },
+    {
+      "text": "Der Abend kommt über das Lager wie eine Erschöpfung, die niemand ausgesprochen hat - langsam, grau, und mit der stillen Gewissheit, dass der nächste Morgen nicht weiter weg ist als ein Schlaf. Die Reihen formen sich zögernd, Schultern hängen tiefer als am Mittag.",
+      "context": {}
+    },
+    {
+      "text": "Über den Palisaden zieht dünner Rauch in langen Streifen gegen den Abend. Die Fackelhalter am Appellplatz werden gerade entzündet, und das flackernde Licht wirft lange, wackelige Schatten über die angetretenen Rekruten.",
+      "context": {}
+    },
+    {
+      "text": "Es riecht nach Pferden, feuchtem Leder und dem bitteren Rauch der Küchenfeuer. Die Nacht kommt früh in Ohm - und sie bringt die Kälte mit, die schon den ganzen Tag über hinter den Bergen gewartet hat.",
+      "context": {}
+    },
+    {
+      "text": "Der Kies knirscht unter dreißig Paar Stiefeln, die sich in die Abendformation schleppen. Niemand spricht. Die Erschöpfung hat eine eigene Sprache - und sie braucht keine Worte.",
+      "context": {}
+    }
+  ],
+  "hauptmann": [
+    {
+      "text": "Ihr habt heute gesehen, dass ein Heer mehr ist als eine Reihe Männer mit Waffen. Manche von euch lernen schnell. Manche lernen langsam. Und manche werden erst begreifen, wenn es zu spät ist. Morgen wird sich zeigen, wer von euch das Zeug für die echten Einheiten hat.",
+      "context": {}
+    },
+    {
+      "text": "Ein Soldat, der nicht weiß warum er kämpft, kämpft für den falschen Mann. Findet bis morgen früh eine Antwort darauf. Die braucht kein Mensch außer ihr selbst.",
+      "context": {}
+    },
+    {
+      "text": "Zwei Transportüberfälle in diesem Monat. Irgendwo in diesem Land gibt es Männer, die glauben, das Heer sei eine leichte Beute. Sie werden eines Besseren belehrt werden. Von Leuten, die ich hier ausbilde.",
+      "context": { "minDay": 3, "maxDay": 10 }
+    },
+    {
+      "text": "Ordnung ist keine Tugend. Ordnung ist eine Überlebenstechnik. Wer das heute noch nicht verstanden hat, wird es auf dem Schlachtfeld verstehen. Sofern er die Gelegenheit bekommt.",
+      "context": {}
+    },
+    {
+      "text": "Ihr werdet in zwei Jahren nicht zu Helden. Ihr werdet zu Soldaten. Der Unterschied ist, dass Soldaten wiederkommen.",
+      "context": {}
+    },
+    {
+      "text": "Ich hab heute drei Rekruten beim Schinder stehen sehen, die nicht wussten wohin mit den Füßen. Das werd ich nicht zweimal sagen müssen.",
+      "context": {}
+    }
+  ],
+  "gedanke": [
+    {
+      "text": "Der Abendwind streicht über den Platz, trägt den Geruch von Rauch, Staub und müden Körpern mit sich. Erst als der Hauptmann sich abwendet, lösen sich die Reihen langsam wieder.",
+      "context": {}
+    },
+    {
+      "text": "Du stehst noch einen Moment länger, als die anderen schon gehen. Nicht aus Ehrgeiz. Nur weil dein Körper vergessen hat, dass der Befehl bereits gefallen ist.",
+      "context": {}
+    },
+    {
+      "text": "Irgendwo hinter dir hustet jemand in die Stille. Der Lärm des Tages zieht sich langsam aus dem Platz zurück, und was bleibt, ist eine Stille, die sich sehr nach Erschöpfung anfühlt.",
+      "context": {}
+    },
+    {
+      "text": "Du denkst kurz daran, was der Hauptmann gesagt hat. Dann hörst du auf damit - nicht weil es unwichtig wäre, sondern weil dein Kopf gerade keinen Platz mehr hat.",
+      "context": {}
+    },
+    {
+      "text": "Die Dunkelheit sammelt sich zwischen den Zelten. Irgendwo wird dünne Suppe ausgeteilt, irgendwo flucht jemand über Blasen an den Füßen. Der Tag hat Spuren hinterlassen - in deinen Händen, in deinen Gedanken.",
+      "context": {}
+    },
+    {
+      "text": "Du hast überlebt. Das klingt nach nichts, und heute Morgen hätte es sich auch nach nichts angehört. Jetzt, mit dem Abendwind im Gesicht und den Beinen voller Blei, klingt es nach mehr.",
+      "context": { "activity": "pike" }
+    },
+    {
+      "text": "Der Schwefelgeruch sitzt noch immer in der Kleidung. Du wirst ihn morgen früh noch riechen, wenn du aufwachst. Vielleicht auch übermorgen.",
+      "context": { "activity": "cannon" }
+    },
+    {
+      "text": "Zwischen den stillstehenden Reihen hörst du plötzlich jedes Husten, jedes unterdrückte Stöhnen deutlicher als zuvor. Das Zelt des Feldschers hat etwas mit deinen Ohren gemacht.",
+      "context": { "activity": "medicine" }
+    },
+    {
+      "text": "Deine Finger sind noch wund vom Spannen der Sehne. Dein Blick bleibt unwillkürlich an Entfernungen hängen - an der Breite des Platzes, an der Linie zwischen dir und dem Hauptmann.",
+      "context": { "activity": "crossbow" }
+    },
+    {
+      "text": "Die Gesprächsfetzen des Tages gehen dir nicht aus dem Kopf. Namen, Andeutungen, halbe Wahrheiten - im Schweigen des Appells wirken sie lauter als zuvor.",
+      "context": { "activity": "gossip" }
+    },
+    {
+      "text": "Deine Augen wandern über Palisaden, Zeltgassen und Postenwege. Wo andere nur Lagerordnung sehen, erkennst du Lücken, tote Winkel und jene kurzen Augenblicke, in denen niemand wirklich hinsieht.",
+      "context": { "activity": "thievery" }
+    }
+  ]
+}
+
+:: GossipTexte {"position":"2575,1800","size":"100,100"}
+{
+  "stories": {
+    "lagerklatsch": [
+      {
+        "id": "lk_001",
+        "minLevel": 0,
+        "maxLevel": 2,
+        "base": "Ich hab gehört, dass es damals im Lager vorm Steigler Wald vor Grodaus einen Drill vom 84sten gab. Nichts Ungewöhnliches, eher Routine. Ausgerechnet in dem Moment, als einige der Söldner im Wald waren, um kurz abzuwässern, sollen Banditen aufgetaucht sein. Wie genau das ablief, sagt jeder anders, aber die Geschichte endet immer gleich: Das Lager habe den Angriff überstanden.",
+        "probe": {
+          "difficulty": 0,
+          "success": "Später kamen der Shek und Snori de Alba ins Lager. Snori stellte sich vor, wie man es von ihm erwartet – laut und selbstsicher. Darauf soll jemand aus dem 84. Banner gesagt haben: ‚In Aloy sind alle Ritter.‘ Ob das wirklich so fiel, weiß keiner genau, aber Snorri hat es angeblich nicht gut aufgenommen. Heute ist der Spruch im 84. ein halber Insider geworden, den man nur hinter vorgehaltener Hand benutzt.",
+          "fail": "Andere winken nur ab und sagen, es sei nichts Besonderes gewesen – Banditen, wie sie eben öfter vorkommen, mehr nicht."
+        },
+        "rumorText": "Snori de Alba nimmt es nicht gut auf wenn man den Ritterstand herabwürdigt."
+      },
+      {
+        "id": "lk_002",
+        "minLevel": 0,
+        "maxLevel": 2,
+        "base": "Jemand vom älteren Jahrgang hat mal erzählt, der Schinder soll früher im Söldnerdienst gewesen sein — nicht als Ausbilder, sondern als Offizier. Irgendwo draußen, weit weg von Aloy. Was genau passiert ist, weiß keiner so genau. Aber danach war er hier. Und seine Hand war weg.",
+        "probe": {
+          "difficulty": 1,
+          "success": "Der Typ, der's erzählt hat, kannte angeblich jemanden aus dem alten 12. Banner. Die sagen, der Schinder hat damals einer ganzen Lanze das Leben gerettet — durch einen Befehl, den er hätte nicht geben dürfen. Er hat es getan. Die Lanze kam heim. Er kam auch heim, aber vor ein Kriegsgericht. Verurteilt wurde er nicht. Warum, weiß keiner. Aber Offizier war er danach keiner mehr.",
+          "fail": "Du hakst nach, aber der Typ zuckt nur mit den Schultern. 'Ich hab's halt irgendwo aufgeschnappt. Vielleicht ist's auch Quatsch.'"
+        },
+        "rumorText": "Der Schinder war früher Offizier. Was ihn hierher gebracht hat, erzählt er nicht.",
+        "npcKey": "schinder"
+      },
+      {
+        "id": "lk_003",
+        "minLevel": 0,
+        "maxLevel": 2,
+        "base": "In Tiafunt soll es ein Freudenhaus geben, das jetzt 'Rosengarten' heißt — früher hieß es die Bumsburg, und der Name erklärt sich von selbst. Irgendein Söldner aus dem 84. soll da stiller Teilhaber sein. Ob das stimmt oder nur eine dieser Geschichten ist, die sich Rekruten erzählen, wenn die Nächte lang werden — wer weiß.",
+        "probe": {
+          "difficulty": 2,
+          "success": "Der Name, den man flüstert, ist Lars. Weibel Lars, einer von denen die manchmal an der Akademie vorbeischauen. Kein Mensch weiß wie er da reingerutscht ist — aber angeblich war's eine Wette. Oder eine Schuld. Oder beides. Er redet selbst nie drüber. Wer ihn fragt, findet seine Stiefel plötzlich sehr interessant.",
+          "fail": "Der Typ grinst nur breit. 'Namen nenn ich keine. Nicht wegen mir — wegen meiner Knie.'"
+        },
+        "rumorText": "Weibel Lars soll stiller Teilhaber eines Freudenhauses in Tiafunt sein. Er redet nicht darüber.",
+        "npcKey": "weibelLars"
+      },
+      {
+        "id": "lk_004",
+        "minLevel": 0,
+        "maxLevel": 2,
+        "base": "Ist dir aufgefallen, dass sich die vom 84. Banner immer öfter mit diesem Grimmerthaner sehen lassen? Ein Ritter, noch dazu aus der Kronmark. Früher hätte man für so was schiefe Blicke geerntet. Ritter und Aloy – das passt doch eigentlich nicht zusammen.",
+        "probe": {
+          "difficulty": 1,
+          "success": "Manche tuscheln schon, das 84. werde langsam weich oder spiele mit den Loyalisten. Andere lachen darüber. Der Grimmerthaner soll zwar ein Ritter sein, aber einer, der mehr Zeit mit Söldnern verbringt als mit Hofschranzen. Einer aus dem 84. meinte nur trocken: 'Der Mann hält sein Wort. Das reicht.' Trotzdem bleiben viele misstrauisch. Ritter ist Ritter.",
+          "fail": "Der Kerl schnaubt nur. 'Vielleicht trinken sie einfach gern zusammen. Nicht hinter jeder Kanne Bier steckt gleich eine Verschwörung.'"
+        },
+        "rumorText": "Das 84. Banner soll sich auffallend gut mit einem Ritter aus der Kronmark verstehen. Manche wittern bereits Loyalisten.",
+        "npcKey": null
+      },
+      {
+        "id": "lk_005",
+        "minLevel": 0,
+        "maxLevel": 2,
+        "base": "Auf einem vergangenen Freiheitsfest soll es einen Wettbewerb gegeben haben: 'Wo geht's denn da zum Krieg?' Ein Spiel für alle, die zeigen wollten, wie viel Mut und Geschick sie haben. Die de Alba selbst konnte natürlich nicht antreten — Stand und Anstand verbieten sowas. Aber sie soll sich köstlich darüber amüsiert haben, wie die großen Kämpfer sich dabei langmachten, und ihr Gefolge angewiesen haben, Aloys Ehre zu vertreten.",
+        "probe": {
+          "difficulty": 2,
+          "success": "Zwei von der de Alba sollen tatsächlich angetreten sein. Zusammen mit drei Aloyern. Viel Eindruck machten sie allerdings nicht. Keiner der Teilnehmer soll weiter als drei Meter gekommen sein. Am meisten erzählt wird aber von einem Weibel, der angeblich so viele Serpentinen gelaufen ist, dass man dachte, er hätte den Weg mit einem Betrunkenen geteilt. Die vom 84. erzählen die Geschichte natürlich besonders gerne.",
+          "fail": "Der Erzähler winkt ab. 'Ach, so ein Fest eben. Die Hälfte davon ist erfunden, die andere Hälfte war noch lustiger.'"
+        },
+        "rumorText": "Beim Freiheitsfest blamierten sich angeblich einige aus dem Gefolge der de Alba bei einem Kriegsspiel. Ein Weibel soll dabei besonders kurvenreich gelaufen sein.",
+        "npcKey": "deAlba"
+      },
+      {
+        "id": "lk_006",
+        "minLevel": 0,
+        "maxLevel": 2,
+        "base": "Die Feldscherin vom 84. Banner soll auf der Taverne zum Fuchsbau einen Auftritt gehabt haben, über den heute noch gelacht wird. Als die Aloyer Söldner dort angegriffen wurden, sollen sie sich mit Unterstützung anderer Menschen ordentlich geschlagen haben. Während vorne gekämpft wurde, hatte die Feldscherin alle Hände voll damit zu tun, die Verwundeten zu versorgen.",
+        "probe": {
+          "difficulty": 1,
+          "success": "Irgendwann wurde ihr ein Mann gebracht, der trotz schwererem Aussehen vor allem über eines klagte: eine Delle in seiner Brustrüstung. Die Feldscherin, mitten zwischen verletzten Kameraden und unter enormem Druck, soll ihn nur angesehen haben und meinte sinngemäß, er solle zum Schmied gehen und sich die Delle aus der Rüstung klopfen lassen, bevor er wieder ihre Zeit verschwende. Der Mann soll sprachlos gewesen sein und beleidigt abgezogen haben. Erst später erfuhr sie, dass der 'Mann mit der Delle' tatsächlich ein Ritter gewesen war.",
+          "fail": "Die meisten lachen nur. 'Ob Ritter oder Knecht, wenn du beim Feldscher ankommst, bist du erstmal nur ein weiterer Verwundeter.' Mehr weiß angeblich niemand."
+        },
+        "rumorText": "Die Feldscherin des 84. schickte einen Ritter wegen einer Rüstungsdelle zum Schmied, während sie seine Kameraden versorgte.",
+        "npcKey": "feldscherin84"
+      },
+      {
+        "id": "lk_007",
+        "minLevel": 4,
+        "maxLevel": 7,
+        "base": "Es gibt Geschichten, die werden in Tiafunt besonders gerne erzählt. Eine davon handelt von einer kleinen Ratssitzung, die angeblich nicht in einem Saal oder einem Amtshaus stattgefunden haben soll, sondern in einem der Hurenzelte der Bumsburg. Die Beteiligung soll überschaubar gewesen sein — was vermutlich der Grund ist, warum sich bis heute jeder daran erinnert.",
+        "probe": {
+          "difficulty": 2,
+          "success": "Angeblich tobte draußen das Wetter, während drinnen der Ofen auf Anschlag lief. Die Herrschaften sollen sich bei Wein und allerlei Verkostungen beraten haben, während der Regen gegen die Zeltwände schlug. Ob es wirklich eine offizielle Sitzung war oder nur ein Treffen, bei dem man zufällig wichtige Dinge besprach — darüber streiten sich die Leute bis heute. Sicher ist nur: Manche Entscheidungen sollen schon an deutlich unbequemeren Orten gefallen sein.",
+          "fail": "Der Wirt lacht nur. 'Wenn du glaubst, der Rat hätte noch nie an seltsameren Orten getagt, kennst du die Leute schlecht.' Mehr will er dazu nicht sagen."
+        },
+        "rumorText": "Eine kleine Ratssitzung soll einst in einem Zelt der Bumsburg stattgefunden haben — bei Ofenwärme, Wein und zweifelhafter Gesellschaft.",
+        "npcKey": null
+      },
+      {
+        "id": "lk_008",
+        "minLevel": 0,
+        "maxLevel": 2,
+        "base": "Beim Heinrichsfest im Jahr 119 nBA soll es einen Zwischenfall gegeben haben, über den heute noch gesprochen wird. Eine Zeichnerin sollte verhaftet werden, weil sie angeblich immer wieder Nackte zeichnete und damit einigen Leuten zu weit ging. Als die KgH schließlich anrückte, um sie abzuführen, wurde aus einer einfachen Festnahme ein ziemlicher Aufruhr.",
+        "probe": {
+          "difficulty": 2,
+          "success": "Angeblich waren einige Aloyer zur Stelle und behaupteten, sie hätten einen Termin mit der Zeichnerin. Ob das stimmte oder nicht, weiß keiner mehr. Aber plötzlich standen Wachen, Söldner und Festbesucher durcheinander, jeder wollte wissen, wer hier eigentlich wen festnimmt. Im Gedränge gingen die Befehle unter, die Reihen brachen auseinander — und als wieder Ordnung herrschte, war die Zeichnerin verschwunden. Manche sagen, sie sei einfach durch die Menge spaziert, während alle noch gestritten haben.",
+          "fail": "Der Erzähler winkt ab. 'Fest, Alkohol und zu viele Leute mit zu viel Meinung. Am Ende weiß keiner mehr, wer wen gesucht hat.'"
+        },
+        "rumorText": "Beim Heinrichsfest 119 nBA entkam eine Zeichnerin der KgH, nachdem Aloyer mit einem angeblichen Termin für Chaos sorgten.",
+        "npcKey": null
+      },
+      {
+        "id": "lk_009",
+        "minLevel": 0,
+        "maxLevel": 2,
+        "base": "Man erzählt sich, dass Weibel Wenzel einmal einen besonders schlechten Scherz auf Kosten von Snori de Alba gemacht haben soll. Angeblich ließ er heimlich ein Einhorn auf den Stuhl von Snori setzen. Wer Snori kennt, weiß: Einhörner gehören zu den wenigen Dingen, die ihn wirklich aus der Fassung bringen.",
+        "probe": {
+          "difficulty": 2,
+          "success": "Der Scherz soll schnell aufgeflogen sein, aber nicht für alle ohne Folgen. Snori soll Erasmus von Than die Schuld gegeben haben, weil dieser nicht aufmerksam genug gewesen sei und so etwas zugelassen habe. Der arme Erasmus soll dafür eine ordentliche Abreibung kassiert haben und dabei sogar einen Zahn verloren haben. Wenzel selbst? Der soll sich bis heute nicht entschuldigt haben. Im 84. wird deshalb gemunkelt, dass man bei Wenzels Streichen besser nicht in der Nähe steht — schon gar nicht, wenn Snori beteiligt ist.",
+          "fail": "Der Erzähler grinst nur. 'Ob es wirklich so war? Keine Ahnung. Aber Erasmus schaut seitdem angeblich sehr genau hin, bevor er sich irgendwo hinsetzt.'"
+        },
+        "rumorText": "Weibel Wenzel soll Snori de Alba mit einem Einhornstreich hereingelegt haben. Erasmus von Than bekam dafür die Schuld und verlor einen Zahn.",
+        "npcKey": "weibelWenzel"
+      },
+      {
+        "id": "lk_010",
+        "minLevel": 0,
+        "maxLevel": 2,
+        "base": "Man erzählt sich, dass Hauptmann Lenz vom 84. Banner auf den vergangenen Heinrichsfesten auffallend viel Zeit in der Gesellschaft einer Adeligen aus dem Norden verbracht haben soll. Wer sie genau war, darüber gehen die Geschichten auseinander. Die einen sagen, es sei nur höfliche Gesellschaft gewesen. Andere meinen, da sei deutlich mehr gewesen.",
+        "probe": {
+          "difficulty": 2,
+          "success": "Beim letzten Heinrichsfest soll Lenz dann plötzlich gefehlt haben — krankheitsbedingt, wie es offiziell hieß. Natürlich dauerte es nicht lange, bis die Gerüchteküche anfing. Einige behaupten, er habe sich den harten Schanker eingefangen. Beweise dafür gibt es keine, aber im Lager wird die Geschichte natürlich besonders gerne erzählt, weil sie so gar nicht zum Bild des ehrenwerten Hauptmanns passen will. Diejenigen, die Lenz kennen, winken meist nur ab und sagen: 'Eine Krankheit macht noch keinen Skandal.'",
+          "fail": "Der Erzähler hebt die Hände. 'Er war krank. Mehr weiß ich nicht. Alles andere ist Gerede von Leuten, die lieber über andere reden als über sich selbst.'"
+        },
+        "rumorText": "Hauptmann Lenz soll auf Heinrichsfesten viel Zeit mit einer Adeligen verbracht haben. Nach seiner Abwesenheit kursieren Gerüchte über eine Krankheit.",
+        "npcKey": "hauptmannLenz"
+      },
+      {
+        "id": "lk_011",
+        "minLevel": 0,
+        "maxLevel": 2,
+        "base": "Vom vergangenen Heinrichsfest erzählt man sich eine Geschichte über einen Mann aus dem 84. Banner, der den Wein wohl etwas zu ernst genommen hat. Anfangs soll alles noch im Rahmen gewesen sein, aber irgendwann war deutlich mehr im Becher als im Kopf. Selbst ein heißer Zuber soll keine Besserung gebracht haben — vor allem, weil der gute Mann danach offenbar vergessen hatte, sich ordentlich abzutrocknen.",
+        "probe": {
+          "difficulty": 1,
+          "success": "Später soll er völlig verloren über das Fest gewankt sein, auf der Suche nach einem Kameraden, dessen Namen er angeblich selbst kaum noch wusste. Schließlich habe er an einem Gebüsch Halt gemacht, um den überschüssigen Wein wieder loszuwerden. Das eigentlich Bemerkenswerte: Währenddessen soll er lautstark immer wieder seinen eigenen Namen gerufen haben, als müsse er sich selbst daran erinnern, wer er war. Seitdem gibt es im 84. den einen oder anderen Spruch über 'die große Suche nach sich selbst'.",
+          "fail": "Der Erzähler winkt ab. 'War halt ein Fest. Wenn jeder erzählen würde, was er da gemacht hat, gäbe es keine Geheimnisse mehr.'"
+        },
+        "rumorText": "Ein Soldat des 84. soll auf dem Heinrichsfest völlig betrunken gewesen sein und laut seinen eigenen Namen gerufen haben, während er den Wein wieder loswurde.",
+        "npcKey": null
+      },
+      {
+        "id": "lk_012",
+        "minLevel": 0,
+        "maxLevel": 2,
+        "base": "Selbst im Hohen Rat geht es wohl nicht immer so würdevoll zu, wie die Leute draußen glauben. Man erzählt sich, dass Hohepriester Kraut einmal die Dekanin Wenkheim während einer Sitzung falsch angesprochen haben soll. Nur ein falscher Name, könnte man meinen — aber bei Leuten, die sonst ganze Reden über Etikette und Anstand halten, reicht so etwas offenbar schon für eine peinliche Angelegenheit.",
+        "probe": {
+          "difficulty": 1,
+          "success": "Der Fehler soll noch schlimmer gewesen sein, als die meisten erzählen. Angeblich hat Kraut nicht nur den Namen verwechselt, sondern eine Anrede benutzt, die einer ganz anderen Person galt. Die Sitzung soll kurz still geworden sein, bevor jemand versuchte, die Situation zu retten. Kraut selbst soll danach so getan haben, als wäre nichts passiert — was natürlich nur dazu führte, dass sich die Geschichte noch schneller verbreitete.",
+          "fail": "Der Erzähler zuckt mit den Schultern. 'Ein falscher Name? Das passiert jedem. Nur bei den hohen Leuten wird aus einem Versprecher gleich eine Staatsaffäre.'"
+        },
+        "rumorText": "Hohepriester Kraut soll Dekanin Wenkheim in einer Ratssitzung falsch benannt haben. Die Peinlichkeit verfolgt ihn bis heute.",
+        "npcKey": null
+      }
+    ],
+    "landesinfos": [
+      {
+        "id": "li_001",
+        "minLevel": 3,
+        "maxLevel": 6,
+        "base": "Schon der zweite Transport in diesem Monat, der nicht angekommen ist. Material, Sold, irgendwas Wichtiges — genau erfährt man das nicht. Oben heißt es, man ermittelt. Unten heißt es, man hat noch niemanden. Ein Mann sitzt dafür schon im Turm — aber ob er's wirklich war, das glauben hier nicht alle.",
+        "probe": {
+          "difficulty": 4,
+          "success": "Der Mann, der sitzt, ist ein Fuhrmann aus Umseck. Edric heißt er. Soll als Ortskundiger für die Räuber gewirkt haben — so steht's im Urteil. Aber es gibt Leute, die sagen: Der hatte zur Tatzeit Fieber, lag im Bett, und der einzige Zeuge hat beim Prozess einfach den Mund gehalten. Warum, weiß niemand. Und die echten Täter — die machen offenbar munter weiter.",
+          "fail": "Der Typ, der's erzählt, wirft einen kurzen Blick zur Tür. 'Ich weiß nicht mehr als du. Und ich will auch nicht mehr wissen.'"
+        },
+        "rumorText": "Ein Fuhrmann aus Umseck sitzt für die Transportüberfälle — aber nicht alle glauben, dass er schuldig ist.",
+        "npcKey": "karla"
+      },
+      {
+        "id": "li_002",
+        "minLevel": 3,
+        "maxLevel": 6,
+        "base": "Es soll Leute geben, die finden, die Republik war von Anfang an ein Fehler. Nicht laut — nicht hier, nicht in der Kaserne. Aber man hört's. In Wirtshäusern. In Kellern. Leute, die glauben, irgendwas an der Gründungsgeschichte stimmt nicht. Dass da eine Lüge drin steckt, tief unten, seit dem ersten Tag.",
+        "probe": {
+          "difficulty": 5,
+          "success": "Die Geschichte geht so: Die Freiheitserklärung — das Original, das im Grodauser Wirtshaus verfasst wurde — hat sechs Unterschriften. Fünf kennt jeder. Die sechste ist unleserlich. Offizielle Lesart: Barsinger höchstselbst, der Spielmanngott. Aber es gibt welche, die sagen, da hat ein Adeliger unterschrieben. Unter Androhung. Als Feigenblatt für Legitimität. Wenn das stimmte — wenn der Name lesbar würde — wäre die Gründung keine Befreiung mehr. Sondern Nötigung.",
+          "fail": "Der Typ schüttelt den Kopf. 'Das ist Wirtshausklatsch von Leuten, die zu viel getrunken haben. Hör nicht drauf.'"
+        },
+        "rumorText": "Manche glauben, die sechste Unterschrift der Freiheitserklärung stammt nicht von einem Gott — sondern von einem Adeligen, der unter Zwang unterschrieb.",
+        "npcKey": "jarek"
+      },
+      {
+        "id": "li_003",
+        "minLevel": 3,
+        "maxLevel": 6,
+        "base": "Die Verlegungen gehen weiter. Regimenter, die seit Jahren an denselben Posten standen, werden auf einmal abgezogen und woanders hingeschickt. Keiner erklärt warum. Oben redet man von Umstrukturierung. Unten sagt man, da braut sich was zusammen — man weiß nur noch nicht wo.",
+        "probe": {
+          "difficulty": 3,
+          "success": "Einer aus dem alten Jahrgang meint, er hat den Namen Alfaltermark aufgeschnappt — im Flur, zwischen zwei Offizieren, die nicht wussten dass jemand zuhört. Alfaltermark ist der einzige Landweg rein nach Aloy. Wenn da was passiert, gibt's keinen Puffer mehr. Ob die Verlegungen damit zusammenhängen — keine Ahnung. Aber die Richtung stimmt.",
+          "fail": "Der Typ lehnt sich zurück. 'Ich weiß nur, dass das 14. verlegt wurde. Mehr hab ich nicht. Und mehr will ich auch nicht wissen.'"
+        },
+        "rumorText": "Die Truppenverlegungen könnten mit Alfaltermark zusammenhängen — dem einzigen Landweg nach Aloy.",
+        "npcKey": null
+      },
+      {
+        "id": "li_004",
+        "minLevel": 3,
+        "maxLevel": 6,
+        "base": "Beim Hirtenfest in Bofeld soll es vor einigen Jahren richtig übel geworden sein. Barbaren aus den Otzlanden haben eine junge Maid als Geisel genommen und sich später mit ihr auf einem Hügel verschanzt. Angeblich wollten sie Bedingungen stellen und auf Augenhöhe verhandeln. Dass sie überhaupt glaubten, Aloy würde mit Geiselnehmern reden, finden heute viele schon den ersten Fehler.",
+        "probe": {
+          "difficulty": 4,
+          "success": "Als schließlich alles still wurde und der Sprecher der Barbaren mit seiner Forderung beginnen wollte, soll einer vom 84. Banner bereits im Anschlag gelegen haben. Noch bevor der Mann den zweiten Satz beenden konnte, traf ihn ein Armbrustbolzen sauber zwischen die Augen. Der Schütze hatte den Redner so präzise anvisiert, dass die dahinter stehende Geisel ebenfalls tödlich getroffen wurde. Seitdem erzählt man sich den Satz: 'Aloy verhandelt nicht.' Manche sagen sogar, genau dafür werde das 84. ausgebildet.",
+          "fail": "Der Alte zuckt mit den Schultern. 'Was genau passiert ist, weiß ich nicht. Aber die Barbaren haben seitdem jedenfalls keine Geiseln mehr nach Bofeld verschleppt.'"
+        },
+        "rumorText": "Beim Hirtenfest von Bofeld erschoss ein Schütze des 84. den Geiselnehmer – und mit ihm die Geisel. Aloy verhandelt nicht.",
+        "npcKey": null
+      },
+      {
+        "id": "li_005",
+        "minLevel": 3,
+        "maxLevel": 6,
+        "base": "Seit einiger Zeit gibt es Streit um eine Kleinigkeit, die für manche gar nicht so klein ist: die Farben Rot-Weiß. Sowohl Aloy als auch die Grimmerthaner aus der Kronmark erheben Anspruch darauf, die echten Rot-Weißen zu sein. Die einen sagen, ihre Farben seien älter und stünden für die Freiheit. Die anderen behaupten, die Zeichen der Kronmark würden ihnen zustehen und Aloy habe sich etwas angeeignet.",
+        "probe": {
+          "difficulty": 4,
+          "success": "Angeblich gibt es ein altes Dokument, versehen mit dem Siegel der Magnifizenz Lexus von Rallersquell. Darin soll eindeutig festgehalten sein: Aloy führt Rot-Weiß, während der Kronmarker Anspruch auf Weiß-Rot erhebt. Für manche ist damit die Sache erledigt. Andere behaupten, ein Siegel mache aus einer Behauptung noch keine Wahrheit. Besonders die Grimmerthaner sollen wenig begeistert davon sein, dass ein einzelnes Stück Pergament ihren Anspruch entscheiden soll.",
+          "fail": "Der Erzähler winkt ab. 'Farben, Streifen, Reihenfolge. Am Ende prügeln sich Leute wegen Stoffstücken, während die Feinde vor der Tür stehen.'"
+        },
+        "rumorText": "Aloy und die Kronmark streiten um die Farben. Ein Dokument von Lexus von Rallersquell soll Aloy Rot-Weiß und der Kronmark Weiß-Rot zusprechen.",
+        "npcKey": null
+      },
+      {
+        "id": "li_006",
+        "minLevel": 3,
+        "maxLevel": 6,
+        "base": "Man hört, dass der Rat zunehmend nervös wegen der sinkenden Geburtenzahlen ist. Angeblich sollen die hohen Herren bereits über Maßnahmen nachdenken, die man lieber nicht laut auf dem Marktplatz erwähnt. Von Strafen für Paare ohne Kinder ist die Rede. Andere behaupten, man habe sogar darüber gesprochen, den Verkauf von Tierdärmen einzuschränken, weil irgendjemand darin eine Lösung für die Geburtenfrage gesehen haben soll. Wer auch immer solche Vorschläge macht, verbringt vermutlich zu viel Zeit im Staatskunst-Institut.",
+        "probe": {
+          "difficulty": 4,
+          "success": "Die Sache mit den Tierdärmen soll tatsächlich aus einer Sitzung stammen — allerdings nicht als fertiger Plan, sondern als völlig missverstandener Vorschlag eines Ratsgelehrten. Der eigentliche Streit ging darum, ob bestimmte Materialien und Handwerke stärker reguliert werden müssten, weil junge Familien angeblich durch Luxus und Bequemlichkeit vom Kinderkriegen abgehalten würden. Am Ende blieb vor allem hängen, dass der Rat überlegt hat, wie man Menschen zum Gebären bringen könnte. Und seitdem macht jeder Witze darüber.",
+          "fail": "Der Erzähler winkt ab. 'Der Rat redet ständig über irgendwelche Maßnahmen. Heute sind es Geburten, morgen Brotpreise und übermorgen die Länge von Laternenpfählen. Am Ende passiert meistens weniger, als alle behaupten.'"
+        },
+        "rumorText": "Der Rat soll wegen sinkender Geburtenzahlen über absurde Maßnahmen nachdenken – von Kinderstrafen bis zum Verbot von Tierdärmen.",
+        "npcKey": null
+      },
+      {
+        "id": "li_007",
+        "minLevel": 3,
+        "maxLevel": 6,
+        "base": "In Vormberg soll etwas passiert sein, über das man in den Werkstätten und Kasernen lieber nicht zu laut spricht. Angeblich sind aus den Arsenalen der Stadt rund 450 Schwerter verschwunden. Die Schmiedezunft soll außer sich sein, nicht nur wegen des Verlusts, sondern wegen der Frage, wo diese Waffen jetzt sind. Einige behaupten, sie könnten bei Gegnern des alten Adels gelandet sein. Vielleicht erklärt das auch, warum in letzter Zeit plötzlich jede Klinge gezählt und jedes Lagerbuch doppelt geprüft wird.",
+        "probe": {
+          "difficulty": 4,
+          "success": "Die Geschichte soll einen wahren Kern haben. Tatsächlich fehlten bei einer Bestandsprüfung mehrere hundert Waffen — allerdings ist unklar, ob sie gestohlen wurden, falsch eingetragen waren oder schon lange vorher an andere Stellen ausgegeben wurden. Verdächtig ist nur, dass ausgerechnet in den Monaten davor mehrere Gruppen nach alten Waffenbeständen gefragt haben. Die Schmiedezunft vermutet Absicht. Der Rat spricht von einem Verwaltungsfehler. Niemand glaubt so recht daran.",
+          "fail": "Der Erzähler schaut sich kurz um. 'In jeder Stadt verschwinden Dinge aus Lagern. Manchmal sind es Schwerter, manchmal Getreidesäcke. Der Unterschied ist nur, dass Schwerter zurückschlagen können.'"
+        },
+        "rumorText": "In Vormberg sollen 450 Schwerter aus den Arsenalen verschwunden sein. Manche fürchten, sie seien bei Feinden des alten Adels gelandet.",
+        "npcKey": null
+      },
+      {
+        "id": "li_008",
+        "minLevel": 3,
+        "maxLevel": 6,
+        "base": "Man hört, dass das 84. Banner im Rat inzwischen genauer beobachtet wird, als man öffentlich zugibt. Besonders die Frage, welche Befugnisse Sera de Alba eigentlich besitzt, soll immer wieder für Diskussionen sorgen. Einige Ratsleute sollen befürchten, dass die Grenzen zwischen Verbündeten, Auftraggebern und eigenen Interessen langsam verschwimmen. Dazu kommt das Misstrauen gegenüber Hauptmann Lenz: Manche fragen sich, ob er in den Verhandlungen mit Komarn wirklich noch neutral handeln kann oder längst zu nah an bestimmten Kreisen steht.",
+        "probe": {
+          "difficulty": 4,
+          "success": "Ein Schreiber aus dem Umfeld des Rates soll gehört haben, dass es weniger um Lenz persönlich geht als um die wachsende Bedeutung des 84. Banners. Sera de Alba erhält offenbar mehr Spielraum, als viele erwartet hatten, und einige Ratsmitglieder fürchten, dass eine Söldnertruppe mit zu viel Einfluss irgendwann eigene Regeln aufstellt. Lenz selbst soll darauf nur erwidert haben, dass man einem Verbündeten nicht gleichzeitig vertrauen und ständig die Hände fesseln könne. Ob das beruhigt hat, weiß niemand.",
+          "fail": "Der Erzähler zieht die Augenbrauen hoch. 'Der Rat misstraut jedem, der nicht im Rat sitzt. Heute sind es die Söldner, morgen die Händler und übermorgen die eigenen Nachbarn.' Mehr weiß er angeblich nicht."
+        },
+        "rumorText": "Der Rat beobachtet das 84. Banner und zweifelt an Sera de Albas Befugnissen sowie an Hauptmann Lenz' Neutralität bei den Verhandlungen mit Komarn.",
+        "npcKey": "hauptmannLenz"
+      },
+      {
+        "id": "li_009",
+        "minLevel": 3,
+        "maxLevel": 6,
+        "base": "Wer den Rat nach Alfalter fragt, bekommt inzwischen auffällig wenig Antworten. Angeblich wurden sämtliche Beschlüsse dazu zur Verschlusssache erklärt. Offiziell heißt es, man müsse erst prüfen und beraten. Inoffiziell erzählen die Leute, der Rat plane dort etwas Größeres: Landnahme, neue Grenzen, vielleicht sogar eine Annexion. Genau weil niemand darüber sprechen darf, wachsen die Geschichten jeden Tag weiter. Für Gerüchtemacher ist Alfalter inzwischen ein Geschenk.",
+        "probe": {
+          "difficulty": 5,
+          "success": "Ein Schreiber aus dem Umfeld des Rates soll verraten haben, dass die Geheimhaltung weniger mit einem fertigen Plan zu tun hat, sondern damit, dass noch mehrere Parteien um Einfluss ringen. Es gibt tatsächlich Karten, Gespräche und Entwürfe — aber nichts davon ist beschlossen. Besonders auffällig: Einige Vertreter aus der Region Alfalter wurden nicht eingeladen, obwohl es eigentlich üblich wäre. Ob das Absicht war oder nur schlechte Verwaltung, darüber streiten sich die Leute.",
+          "fail": "Der Erzähler senkt die Stimme. 'Wenn der Rat etwas geheim hält, heißt das meistens nur, dass er selbst noch nicht weiß, was er tut. Aber erzähl das keinem Ratsmitglied.'"
+        },
+        "rumorText": "Die Beschlüsse zu Alfalter sollen geheim sein. Viele vermuten, der Rat plane dort eine Annexion oder eine neue Grenzregelung.",
+        "npcKey": null
+      }
+    ],
+    "knaller": [
+      {
+        "id": "kn_002",
+        "minLevel": 7,
+        "maxLevel": 99,
+        "base": "Es geht ein Tuscheln durch die Höfe, das nicht so recht in die Kaserne passen will. Die Händlergilde hat einen neuen Namen in ihren Büchern — und was für einen. Don Remirez de Volpe. La Familia. Jene Leute aus dem Süden, von denen man sich erzählt, sie seien Händler, wenn die Sonne scheint, und etwas ganz anderes, wenn sie untergeht. Aufgenommen. Offiziell. Mit Siegel und Handschlag. Und Teile seiner Entourage sollen schon in Aloy unterwegs sein.",
+        "probe": {
+          "difficulty": 6,
+          "success": "Allen voran ein Anwalt, heißt es — ein höflicher Mann mit südlichem Zungenschlag, der für die Familie das Geschäftliche ordnet. Was die Leute aber wirklich nicht verstehen: dass ausgerechnet Ignaz Rothschild das zugelassen hat. Rothschild, der seine Gilde hütet wie ein Habicht sein Nest. Einen wie den Don hineinzulassen — das ist entweder ein Fehler, oder Rothschild weiß etwas, das die anderen nicht wissen. Und dann, leiser noch: Der Anwalt sei mit einem aus dem 84. Banner gut bekannt. Mit Wenzel. Man munkelt, die beiden hätten schon zusammen am Tisch gesessen, lange bevor irgendwer von Gilden sprach.",
+          "fail": "Der Typ winkt ab. 'Südländer in der Gilde, na und. Geld stinkt nicht, Junge. Frag nicht zu laut nach solchen Leuten — das endet selten gut.'"
+        },
+        "rumorText": "Der Don von La Familia wurde in Ignaz Rothschilds Händlergilde aufgenommen. Sein Anwalt ist in Aloy — und offenbar mit Wenzel vom 84. bekannt.",
+        "npcKey": null
+      }
+    ]
+  }
+}
+
+
+:: Kap1_Der_naechste_Tag_Texte {"position":"1250,825","size":"100,100"}
+{
+  "morgen": [
+    { 
+    "text": "Das erste Licht kriecht durch die Ritzen der Baracke wie ein Bote, der weiß, dass er nicht willkommen ist. Es ist noch kein richtiger Tag — nur das blasse Versprechen davon. Draußen beginnt irgendwo ein Horn zu rufen, und das Lager erwacht, langsam und ohne Gnade.", 
+    "context": { "weather": "klar" } },
+    {
+    "text": "Regen gegen das Holz. Gleichmäßig, trocken, gnadenlos. Draußen werden die Stiefel schwer werden vom ersten Schritt an, und der Dreck des Appellplatzes wird heute kein Staub, sondern Matsch sein. Du weißt das, noch bevor du die Augen aufmachst.", "context": { "weather": "regen" } },
+    { "text": "Nebel liegt über dem Lager wie ein zweiter Vorhang, dichter als der erste. Die Baracke riecht nach feuchtem Holz und dem Atem von dreißig Männern. Draußen sind die Konturen der Palisaden verschwommen, und die Wachen klingen weiter weg als sie sind.", "context": { "weather": "neblig" } },
+    { "text": "Die Kälte dieser Nacht hat sich zwischen die Bohlenwände gefressen und hält sich noch fest. Du atmest und siehst deinen Atem. Ein Geräusch wie Holzknacken — das Gebäude selbst, das sich gegen den Frost behauptet. Draußen ist der Exerzierplatz sicher weiß und hart.", "context": { "weather": "frostig" } },
+    { "text": "Wind presst gegen die Baracke von der westlichen Seite. Das Holz gibt nach und federt wieder, ein leises, stetiges Atmen der Wände. Das Horn klingt anders als sonst — zerfetzt, in Fetzen, die der Wind davonträgt bevor sie ankommen.", "context": { "weather": "windig" } },
+    { "text": "Donnern. Nicht das Donnern der Kanonen am Schießstand — tiefer, weiter, ohne Richtung. Ein Gewitter irgendwo hinter den Bergen, das langsam näherwandert. Das Horn ruft trotzdem. Das Horn ruft immer.", "context": { "weather": "gewitter" } },
+    { "text": "Der Morgen kommt ohne Ankündigung, so wie alle Morgen hier. Das Horn. Der Reflex, aufzustehen. Der Körper, der es tut, noch bevor der Kopf gefragt hat. Irgendwann wird das zur zweiten Natur sein. Noch ist es nur Gehorsam.", "context": {} },
+    { "text": "Ein graues Licht kriecht unter die Tür. Es ist nicht schön, aber es ist eindeutig: Der Tag hat begonnen. Du hast keine Wahl, als ihm zu folgen.", "context": {} },
+    { "text": "Der Morgen riecht nach Küchenfeuer — irgendwo wird die Suppe bereits angesetzt. Es ist kein angenehmer Geruch. Aber er bedeutet, dass jemand früher aufgestanden ist als du, und das bedeutet Essen, und das ist genug.", "context": {} }
+  ],
+  "koerper": [
+    { "text": "Deine Handflächen tun noch weh von gestern. Die Pike lässt keine sanften Spuren. Hornhaut bildet sich langsam — aber noch nicht schnell genug.", "context": { "activity": "pike" } },
+    { "text": "Der Schwefelgeruch sitzt noch immer in der Kleidung. Du wirst ihn bis zum nächsten Waschen nicht loswerden. Ein paar der anderen rümpfen die Nase, als du an ihnen vorbeigehst.", "context": { "activity": "cannon" } },
+    { "text": "Du streckst die Finger und prüfst instinktiv die Beugung. Der Wundarzt gestern hatte kalte Hände und einen warmen Blick — du hast beides bemerkt.", "context": { "activity": "medicine" } },
+    { "text": "Die Schulter, an der die Sehne gestern gezogen hat, schmerzt mit einer dumpfen, vertrauten Beharrlichkeit. Armbrust. Du hast keine Ahnung, wie viele Schuss es braucht, bis der Körper aufhört zu klagen.", "context": { "activity": "crossbow" } },
+    { "text": "Du weißt jetzt, welche Wachablösung wann kommt, und welche Lücke zwischen Planwagen und Palisade breit genug ist, um ungesehen zu passieren. Das Wissen sitzt wie ein kleines, stilles Gewicht hinter dem Sternum.", "context": { "activity": "thievery" } },
+    { "text": "Die Gesprächsfetzen des gestrigen Abends kehren zurück, klarer jetzt als im Moment ihres Entstehens. Namen. Andeutungen. Halbe Wahrheiten. Du tust nichts damit — noch nicht.", "context": { "activity": "gossip" } },
+    { "text": "Dein Körper weiß bereits, was ihn erwartet. Er hat aufgehört zu fragen, ob er will.", "context": {} },
+    { "text": "Die Muskeln melden sich. Nicht dramatisch. Nur ein leises, stetiges Brennen, das daran erinnert, dass gestern tatsächlich passiert ist.", "context": {} },
+    { "text": "Du stehst auf, und der Körper tut es mit dir. Das ist mehr, als du nach dem ersten Tag für möglich gehalten hättest.", "context": {} }
+  ],
+  "gedanke": [
+    { "text": "Tag <<= $world.day>> in der Akademie. Ich zähle. Ich weiß, dass ich irgendwann aufhören muss zu zählen — aber noch bin ich nicht so weit.", "context": { "maxDay": 10 } },
+    { "text": "Ich hätte nicht gedacht, dass Erschöpfung eine eigene Struktur hat. Aber sie hat eine. Sie legt sich über alles andere, und darunter liegen dann die echten Gedanken. Irgendwann komme ich zu ihnen.", "context": { "minDay": 3, "maxDay": 20 } },
+    { "text": "Was man hier lernt, ist kein Wissen — es ist Gewohnheit. Gewohnheit brennt sich tiefer ein. Das sagt man. Ich glaube es langsam.", "context": { "minDay": 10 } },
+    { "text": "Niemand hier fragt, woher du kommst. Das ist der erste Unterschied zu allem, was davor war. In den Bergen war ich immer der Junge mit dem Atem. Hier bin ich ein Rekrut. Nichts weiter. Das ist weniger und mehr zugleich.", "context": { "maxDay": 15 } },
+    { "text": "Manchmal frage ich mich, was die anderen über sich denken, wenn niemand hinsieht. Ob Karla zählt. Ob Jarek zählt. Ob jeder hier seine eigene kleine Rechenaufgabe mitschleppt.", "context": {} },
+    { "text": "Ich weiß nicht, ob ich stärker werde. Ich weiß, dass ich müde bin auf eine Art, die nicht mehr dasselbe ist wie am ersten Tag. Vielleicht ist das dieselbe Sache.", "context": {} },
+    { "text": "Der Körper erinnert sich an mehr als der Kopf. Heute Morgen wussten meine Hände bereits, wie man die Riemen bindet, bevor ich daran gedacht hatte.", "context": { "minDay": 5 } }
+  ],
+  "luigi_schatten": [
+    { "text": "", "context": {} },
+    { "text": "", "context": {} },
+    { "text": "", "context": {} },
+    { "text": "<div class=thought-box>Manchmal — selten, und nie wenn ich es erwarte — fällt mir das Siegel ein. Ein Handelszeichen auf einem Brief, den ich als Kind gehalten habe, ohne zu wissen, was es bedeutet. Ich erinnere mich nicht an das Gesicht. Nur an das Zeichen. Und daran, dass jemand sich gekümmert hat.</div>", "context": { "minDay": 3, "maxDay": 20, "luigi_chance": true } },
+    { "text": "<div class=thought-box>Die Berge von Aloy. Ich war jung und krank, und jemand hat mich dorthin gebracht. Hat mir Zeit gegeben, die mein Körper brauchte. Ich weiß nicht mehr, wer. Nur dass es jemand war. Dass es jemanden gab, dem das nicht gleichgültig war.</div>", "context": { "minDay": 7, "maxDay": 40, "luigi_chance": true } },
+    { "text": "<div class=thought-box>Es gibt Menschen, die Spuren hinterlassen, ohne Namen. Man merkt es erst viel später. Wenn man atmen kann. Wenn man läuft, ohne nach Luft zu schnappen. Dann denkt man: Das war nicht immer so. Und: Wer hat das verändert?</div>", "context": { "minDay": 15, "luigi_chance": true } }
+  ]
+}
+
+
+:: kap2_texte_morgen {"position":"2450,4900","size":"100,100"}
+[
+    {
+      "text": "Das erste Licht kriecht durch dieselben Ritzen wie im Jahr zuvor, doch es überrascht dich nicht mehr. Du kennst diesen Streifen auf dem Bohlenboden, kennst seine Wanderung, ehe er sie vollzieht. Draußen ruft das Horn, und dein Körper ist schon halb aufgerichtet, bevor der Ton verklungen ist.",
+      "context": { "weather": "klar" }
+    },
+    {
+      "text": "Regen gegen das Holz, dasselbe trockene, gnadenlose Trommeln wie hundertmal zuvor. Du weißt jetzt, welche Stiefel man wählt, wenn der Appellplatz zu Morast wird, und welche man besser in der Kiste lässt. Wissen, das nichts leichter macht, nur vorhersehbarer.",
+      "context": { "weather": "regen" }
+    },
+    {
+      "text": "Nebel liegt über dem Lager, dicht wie eh und je, doch du gehst inzwischen blind durch ihn hindurch — die Wege der Akademie sind dir eingeschrieben wie eine zweite Haut. Nur die Neuankömmlinge des ersten Jahres tasten sich noch an den Palisaden entlang, wie du es einst getan hast.",
+      "context": { "weather": "neblig" }
+    },
+    {
+      "text": "Der Frost hat sich wieder in die Bohlenwände gefressen, treu wie ein alter Feind, den man mittlerweile beim Namen kennt. Du atmest, siehst deinen Atem, ziehst dir das zweite Wams über, ohne nachzudenken. Der Körper erinnert sich, auch wenn der Kopf noch schläft.",
+      "context": { "weather": "frostig" }
+    },
+    {
+      "text": "Wind presst gegen die Baracke, und das Holz federt mit demselben stetigen Atmen, das dich im ersten Winter noch wachgehalten hat. Heute schläfst du trotzdem durch, bis das Horn dich holt — zerfetzt vom Wind, aber unverkennbar, wie eine Stimme, die man auch durch Lärm erkennt.",
+      "context": { "weather": "windig" }
+    },
+    {
+      "text": "Donnern, weit und ohne Richtung, ein Gewitter, das sich hinter den Bergen sammelt, ehe es seinen Weg hierher findet. Das Horn ruft trotzdem, unbeeindruckt wie eh und je. Du bist längst kein Rekrut mehr, der bei solchem Lärm zusammenzuckt.",
+      "context": { "weather": "gewitter" }
+    },
+    {
+      "text": "Der Morgen kommt ohne Ankündigung, wie er es immer tut. Doch diesmal ist da kein Zögern mehr, kein Moment des Fremdseins zwischen Schlaf und Pflicht. Du stehst auf, weil es Zeit ist, nicht weil man es dir befiehlt — und dieser Unterschied ist größer, als er sich anfühlt.",
+      "context": {}
+    },
+    {
+      "text": "Ein graues Licht kriecht unter die Tür, dasselbe unschöne, eindeutige Zeichen wie an jedem anderen Morgen. Du hast gelernt, es nicht mehr zu hassen — nur noch hinzunehmen, wie man das Wetter hinnimmt.",
+      "context": {}
+    },
+    {
+      "text": "Der Morgen riecht nach Küchenfeuer, nach derselben Suppe, die dir im ersten Jahr noch fremd auf der Zunge lag. Jetzt ist es nur noch Geruch, kein Ereignis. Manche Dinge verlieren ihre Schärfe, wenn man lange genug mit ihnen lebt.",
+      "context": {}
+    },
+    {
+      "text": "Neben dir regt sich Karla, noch ehe das Horn verklungen ist — sie war schon wach, wie so oft in letzter Zeit, den Blick auf die Balken über sich gerichtet, als läse sie dort etwas, das nur sie sehen kann.",
+      "context": {}
+    },
+    {
+      "text": "Ein Jahr an diesem Ort, und der Morgen selbst ist zum vertrauten Gesicht geworden — nicht freundlich, aber bekannt, wie ein Ausbilder, dessen Strenge man inzwischen zu lesen weiß.",
+      "context": {}
+    }
+  ]
+
+  
+:: kap2_texte_drill {"position":"2025,4750","size":"100,100"}
+{
+  "pike": {
+    "scenery": [
+      "Der Schinder lässt die Pikeniere in Doppelreihen antreten. Senken, fangen, stehen — hundertmal, bis die Bewegung kein Gedanke mehr ist, sondern ein Zustand. Der Kies unter deinen Stiefeln ist längst zu einer Rinne getreten.",
+      "Heute Hakenarbeit mit der Hellebarde: Reiterattrappen aus Stroh, die man vom Bock zieht. Es sieht plump aus, bis man es richtig macht — dann ist es ein einziger, fließender Ruck, und das Stroh fliegt.",
+      "Formationsdrill in voller Länge. Wer aus der Reihe ragt, hört es sofort; wer zurückhängt, spürt den Schaft des Hintermanns im Kreuz. Eine Pikenwand ist kein Haufen Männer. Sie ist ein einziges Tier."
+    ],
+    "thought": {
+      "low": "Meine Hände wissen noch nicht, was sie tun sollen. Aber sie fangen an, es wissen zu wollen — das ist neu.",
+      "mid": "Ich klammere nicht mehr. Die Pike liegt, wie Karla es damals gesagt hat: wie ein Vogel. Fest genug. Locker genug.",
+      "high": "Der Schinder korrigiert mich nicht mehr. Er stellt mich neben die Neuen und sagt: schaut hin. Das ist sein ganzes Lob — und es wiegt."
+    }
+  },
+  "crossbow": {
+    "scenery": [
+      "Der Stand liegt still bis auf das trockene Klack der Nuss und das Schnappen der Sehne. Spannen, legen, atmen, lösen. Der Korporal am Stand redet wenig. Hier redet man mit Bolzen.",
+      "Windfähnchen über den Scheiben. Heute wird auf sechzig Schritt geschossen, und der Wind lügt bei jedem dritten Atemzug. Wer ihn nicht liest, sammelt seine Bolzen aus der Hecke.",
+      "Spannübungen bis der Rücken brennt — mit dem Geißfuß, mit der Winde, mit bloßem Gurt. Eine Armbrust belohnt keine Kraft. Sie belohnt Reihenfolge."
+    ],
+    "thought": {
+      "low": "Ich schieße noch, wie ich es eilig habe. Kurt hatte recht: Ich verschwende Bolzen.",
+      "mid": "Es gibt einen Punkt zwischen zwei Herzschlägen, an dem die Hand ganz still ist. Ich fange an, ihn zu finden.",
+      "high": "Ich denke nicht mehr an den Schuss. Ich denke an den Wind, die Distanz, das Ziel — und der Schuss geschieht. Vasil würde einen entsetzlichen Witz dazu reißen."
+    }
+  },
+  "cannon": {
+    "scenery": [
+      "Pulverkammer-Dienst: wiegen, teilen, in Beutel nähen, beschriften. Der alte Stückmeister steht daneben und sagt nur zwei Worte, immer dieselben: 'Reihenfolge, Junge.' Er hat noch alle Finger. Das ist sein Argument.",
+      "Trockenexerzieren am Rohr: wischen, laden, setzen, richten, zünden — ohne Pulver, nur die Handgriffe, bis sie sitzen wie ein Gebet. Wer eine Silbe auslässt, fängt von vorne an.",
+      "Heute wird scharf geschossen, ein einziger Schuss für die ganze Bedienung. Eine Stunde Vorbereitung, ein Donner, der dir durch die Zähne fährt — und dann eine Stunde Reinigung. So ist dieses Handwerk."
+    ],
+    "thought": {
+      "low": "So viele Schritte, und jeder einzelne kann dich töten, wenn du ihn vertauschst. Ich zähle sie nachts im Kopf.",
+      "mid": "Die Reihenfolge sitzt. Jetzt lerne ich das, was dahinter liegt: Winkel, Wind, das Gewicht der Ladung. Rechnen mit Donner.",
+      "high": "Der Stückmeister lässt mich inzwischen richten. Er sagt nichts dabei. Bei ihm ist Schweigen die höchste Auszeichnung, die zu vergeben er bereit ist."
+    }
+  },
+  "medicine": {
+    "scenery": [
+      "Verbandslehre beim Bader: Druckverband, Schienung, das Abbinden, das man nur setzt, wenn nichts anderes bleibt. Geübt wird an den echten Blessuren des Drills — an Nachschub herrscht nie Mangel.",
+      "Heute Nadel und Faden, an Schweinehaut aus der Küche. 'Wer hier zittert', sagt der Bader, 'zittert am Mann erst recht.' Deine ersten Stiche sehen aus wie ein betrunkener Zaun. Die letzten nicht mehr.",
+      "Kräuterkunde und Brandsalben, dann das Sortieren: Wer kann warten, wer nicht, wem hilft nichts mehr. Der Bader nennt es die härteste Lektion des Fachs — nicht das Flicken. Das Wählen."
+    ],
+    "thought": {
+      "low": "Ich habe heute mehr Blut gesehen als im ganzen ersten Jahr. Und ich habe nicht weggesehen. Das ist ein Anfang.",
+      "mid": "Die Handgriffe kommen von selbst jetzt. Was noch nicht von selbst kommt, ist das Ruhigbleiben, wenn einer schreit. Aber es wird.",
+      "high": "Kurt hatte recht: Wer Wunden schließt, entscheidet, wer wieder läuft. Ich verstehe jetzt, warum er gesagt hat — vertu es nicht."
+    }
+  }
+}
+
+
+:: kap2_texte_gedanke {"position":"2650,4900","size":"100,100"}
+[
+  { "text": "Tag <<= $world.day>> im zweiten Jahr. Ich zähle seltener als früher. Vielleicht, weil die Zahl selbst nicht mehr das ist, was mich trägt.", "context": { "maxDay": 10 } },
+  { "text": "Erschöpfung hat eine eigene Struktur, das weiß ich inzwischen. Sie legt sich über alles andere, und darunter liegen die echten Gedanken. Manchmal komme ich noch immer nicht bis zu ihnen durch.", "context": { "minDay": 3, "maxDay": 25 } },
+  { "text": "Was ich im ersten Jahr für Wissen hielt, war nur der Anfang von Gewohnheit. Jetzt merke ich: Die Gewohnheit selbst hat sich verändert. Sie fragt nicht mehr, sie handelt.", "context": { "minDay": 10 } },
+  { "text": "Niemand fragt mehr, woher ich komme. Das war im ersten Jahr schon so, doch jetzt ist es keine Erleichterung mehr, nur noch Tatsache. Ich bin Rekrut. Zweites Jahr. Nichts, worüber man ein zweites Wort verlieren müsste.", "context": { "maxDay": 20 } },
+  { "text": "Manchmal frage ich mich, was Karla zählt, wenn niemand hinsieht. Ob sie überhaupt noch zählt, oder ob sie längst bei etwas anderem angekommen ist als ich.", "context": {} },
+  { "text": "Ich weiß nicht, ob ich stärker geworden bin. Ich weiß, dass ich müde bin auf eine andere Art als im ersten Jahr — nicht mehr die Müdigkeit des Fremden, sondern die des Vertrauten.", "context": {} },
+  { "text": "Der Körper erinnert sich an mehr als der Kopf. Auch jetzt noch. Nur ist es diesmal kein neues Wissen — es ist altes, das ich schon einmal gelernt und dann vergessen zu haben glaubte.", "context": { "minDay": 5 } },
+  { "text": "Ein Jahr ist vergangen, und ich merke es nicht an einer einzelnen Erinnerung, sondern an tausend kleinen, die sich zu etwas summieren, das ich noch nicht benennen kann.", "context": { "minDay": 15 } },
+  { "text": "Manchmal, mitten im Drill, denke ich an das erste Mal, als ich eine Waffe in der Hand hielt und nicht wusste, wohin mit meinen eigenen Füßen. Der Junge von damals käme mir heute fremd vor.", "context": { "minDay": 20 } },
+  { "text": "Es gibt Tage, an denen ich vergesse, dass ich einmal ein anderer war. Und dann gibt es Morgen wie diesen, an denen mir die Erinnerung ohne Vorwarnung wieder einfällt, wie ein Stein, der aus einer Mauer bricht.", "context": {} }
+]
+
+
+:: kap2_texte_koerper {"position":"2550,4900","size":"100,100"}
+[
+  { "text": "Dein Körper weiß bereits, was ihn erwartet. Er hat aufgehört zu fragen, ob er will.", "context": {} },
+  { "text": "Du stehst auf, und der Körper tut es mit dir. Das ist mehr, als du nach dem ersten Tag für möglich gehalten hättest.", "context": {} },
+
+  { "text": "Die Kraft ist da, mühelos fast, als hätte die Nacht nichts von dir verlangt. Du reckst dich, und nichts in dir widerspricht.", "context": { "condition": "bestform" } },
+  { "text": "Ein Jahr Drill hat aus dir gemacht, was du am ersten Morgen nicht warst: einen Menschen, dessen Rücken sich nicht mehr über jede Bewegung beschwert.", "context": { "condition": "bestform" } },
+  { "text": "Du fühlst dich, als könntest du den Tag mit bloßen Händen zerbrechen, wenn er es wagen würde, dir im Weg zu stehen.", "context": { "condition": "bestform" } },
+
+  { "text": "Der Körper gehorcht ohne Widerrede, mechanisch fast, wie ein Werkzeug, das man oft genug in die Hand genommen hat.", "context": { "condition": "fit" } },
+  { "text": "Du bist wach, klar, bereit — nicht überschwänglich, aber verlässlich, so wie ein gut geöltes Scharnier verlässlich ist.", "context": { "condition": "fit" } },
+  { "text": "Nichts zieht, nichts sticht. Nur die gewohnte, angenehme Schwere eines Körpers, der weiß, was von ihm verlangt wird, und es tragen kann.", "context": { "condition": "fit" } },
+
+  { "text": "Die Muskeln melden sich. Nicht dramatisch. Nur ein leises, stetiges Brennen, das daran erinnert, dass gestern tatsächlich passiert ist.", "context": { "condition": "angeschlagen" } },
+  { "text": "Etwas an der linken Schulter zieht, dort, wo die Pike gestern zu lange auf dir lastete. Nichts Ernstes. Nur ein Tag, der sich meldet, ehe der nächste beginnt.", "context": { "condition": "angeschlagen" } },
+  { "text": "Du bist müder, als dir lieb ist, doch es ist eine andere Müdigkeit als im ersten Jahr — keine, die dich fragt, ob du hierher gehörst, nur eine, die einfach vom Tun kommt.", "context": { "condition": "angeschlagen" } },
+
+  { "text": "Der Körper braucht heute länger als sonst, um in Schwung zu kommen, nicht aus Schwäche, nur aus der stillen Erschöpfung vieler Tage, die sich langsam aufsummiert.", "context": { "condition": "erschoepft" } },
+  { "text": "Jeder Handgriff kostet heute mehr, als er sollte. Die Glieder sind schwer, als hätte die Nacht dir nichts zurückgegeben von dem, was der Tag zuvor genommen hat.", "context": { "condition": "erschoepft" } },
+  { "text": "Ein dumpfes Ziehen sitzt in den Beinen, hartnäckig, seit Tagen schon, und du beginnst zu ahnen, dass eine einzelne Nacht Schlaf es nicht mehr wettmachen wird.", "context": { "condition": "erschoepft" } },
+
+  { "text": "Du zwingst dich aus der Pritsche, mit einer Anstrengung, die dir selbst fremd vorkommt. Der Körper hat genug — und muss trotzdem weitermachen.", "context": { "condition": "amlimit" } },
+  { "text": "Ein dumpfer Schmerz sitzt tief in den Knochen, kein einzelner Ort, den man benennen könnte, nur eine allgemeine, zähe Erschöpfung, die sich wie Blei anfühlt.", "context": { "condition": "amlimit" } },
+  { "text": "Die Hände zittern leicht, kaum merklich, während du dir das Wams überstreifst. Der Körper verlangt Schlaf, den er nicht bekommen hat, und beginnt, dir das übelzunehmen.", "context": { "condition": "amlimit" } },
+
+  { "text": "Du erhebst dich, weil du musst, nicht weil der Körper es zulässt. Jede Bewegung fühlt sich an wie durch Wasser gezogen, träge, widerständig, kurz vorm Nachgeben.", "context": { "condition": "zusammenbruch" } },
+  { "text": "Ein Schwindel erfasst dich, kaum dass du stehst. Für einen Moment ist der Raum nicht ganz da, verschwimmt an den Rändern, ehe er sich widerwillig wieder festigt.", "context": { "condition": "zusammenbruch" } },
+  { "text": "Der Körper hat aufgehört, Beschwerde zu führen. Das ist kein gutes Zeichen — es bedeutet nur, dass er zu erschöpft ist, um noch zu protestieren.", "context": { "condition": "zusammenbruch" } }
+]
+
+
+:: Kap2_Pool_Bader {"position":"2350,5350","size":"100,100"}
+[
+  { "text": "Er knetet deine verspannten Schultern mit überraschend sanften Griffen, murmelt etwas über verhärtete Muskeln und schlechte Haltung, und am Ende fühlst du dich, als hättest du eine ganze Nacht durchgeschlafen.", "outcome": null },
+  { "text": "Ein bitterer Sud, den er dir aufzwingt, ehe du protestieren kannst — doch kaum hast du ihn hinuntergewürgt, weicht die Mattigkeit aus deinen Gliedern.", "outcome": null },
+  { "text": "Er verbindet eine Schürfwunde, die du selbst kaum bemerkt hattest, mit der Routine eines Mannes, der das schon tausendmal getan hat, und schickt dich mit einem knappen Nicken wieder hinaus.", "outcome": null }
+]
+
+
+:: Kap2_Pool_Halm_Gelehrsamkeit {"position":"1800,5600","size":"100,100"}
+[
+{
+  "text": "„Ihr kommt also wieder“, sagt Halm, und seine Stimme trägt keine Wärme, nur eine kalte, prüfende Neugier. „Nun gut. Beweist mir, dass Ihr nicht derselbe seid, der Ihr wart. Übersetzt mir diese Passage — fehlerfrei, wohlgemerkt, denn eine schlampige Arbeit wird mich nur in meinem Urteil bestätigen.“",
+  "requires": { "flag": "schande", "npc": "magister", "maxAffection": -5, "notFlag": "hat_thomas_gerufen" },
+  "outcome": { "npc": "magister", "fields": [ { "field": "affection", "value": 2, "chance": 80 }, { "field": "condition", "value": -8, "chance": 100 } ] }
+},
+  { "text": "„Nichts“, sagt Halm, ohne aufzusehen. „Kommt wieder, wenn Ihr etwas mitbringt, das meiner Zeit würdig ist.“", "outcome": null },
+  { "text": "„Ihr wieder“, sagt Halm, und in seiner Stimme liegt weder Wärme noch Ablehnung, nur die trockene Feststellung eines Mannes, der Wiederholung registriert wie eine fehlerhafte Abschrift. „Heute nicht.“", "outcome": null },
+  { "text": "„Ich bin mitten in einer Abschrift, die keinen Aufschub duldet“, sagt Halm. „Ein andermal.“", "outcome": null },
+  { "text": "„Es gibt eine Passage im Register der Militärakten, die neu geordnet werden muss“, sagt Halm. „Stumpfe Arbeit, doch wer sie sorgfältig verrichtet, dem traue ich in Zukunft mehr zu.“", "outcome": { "npc": "magister", "fields": [ { "field": "affection", "value": 1, "chance": 65 }, { "field": "condition", "value": -5, "chance": 100 } ] } },
+  { "text": "„Übersetzt mir diese Zeilen aus dem Lateinischen“, sagt Halm und schiebt dir ein vergilbtes Blatt zu. „Nicht perfekt, nur redlich. Ich will sehen, wie Ihr denkt, nicht nur, was Ihr wisst.“", "outcome": { "npc": "magister", "fields": [ { "field": "affection", "value": 2, "chance": 50 }, { "field": "condition", "value": -6, "chance": 100 } ] } },
+  { "text": "„Es fehlt eine Randnotiz zu einem alten Bestand“, sagt Halm. „Findet die passende Quelle im unteren Regal und tragt sie sauber nach. Wer im Archiv sorgfältig ist, dem öffnet sich das Archiv irgendwann von selbst.“", "outcome": { "npc": "magister", "fields": [ { "field": "affection", "value": 2, "chance": 55 }, { "field": "condition", "value": -4, "chance": 100 } ] } },
+  { "text": "„Setzt Euch“, sagt Halm unvermittelt, „und erklärt mir, was Ihr über die Gründung der Republik wisst. Nicht die Schulbank-Antwort. Die ehrliche.“ Du sprichst, und er hört zu, mit einer Aufmerksamkeit, die dich mehr fordert als jeder Drill.", "outcome": { "npc": "magister", "fields": [ { "field": "affection", "value": 2, "chance": 45 } ] } },
+  { "text": "„Ich brauche eine zweite Abschrift dieses Schreibens, ehe es ins Gründungsarchiv nach Grodaus geht“, sagt Halm. „Fehlerfrei, wohlgemerkt. Ein einziger falscher Buchstabe, und Ihr fangt von vorn an.“", "outcome": { "npc": "magister", "fields": [ { "field": "affection", "value": 1, "chance": 60 }, { "field": "condition", "value": -8, "chance": 100 } ] } },
+  { "text": "Halm reicht dir wortlos einen dünnen Folianten. „Lest. Wenn Ihr wiederkommt, erwarte ich, dass Ihr mehr wisst als vorher — nicht weniger.“", "outcome": { "npc": "magister", "fields": [ { "field": "affection", "value": 1, "chance": 70 } ] } }
+]
+
+
+:: Kap2_Pool_Rindler_Zusatzdienst {"position":"1650,5300","size":"100,100"}
+[
+  { "text": "„Heute nicht, Rekrut“, sagt Rindler, ohne von seinem Schreiben aufzusehen. „Tretet ab.“", "outcome": null },
+  { "text": "Rindler mustert dich kurz, dann schüttelt er den Kopf. „Kein Bedarf. Nutzt Eure Zeit anderswo, ehe sie Euch jemand nimmt.“", "outcome": null },
+  { "text": "Rindler ist bereits im Gespräch mit einem anderen Offizier und winkt dich knapp ab, ohne ein Wort an dich zu verlieren.", "outcome": null },
+  { "text": "„Ihr wieder“, sagt Rindler, und etwas wie müde Belustigung liegt in seiner Stimme. „Heute habe ich nichts. Kommt ein andermal, wenn Ihr so eifrig bleibt.“", "outcome": null },
+  { "text": "Rindler blickt kurz zum Fenster, wo der Regen gegen die Läden schlägt. „Bei diesem Wetter schicke ich keinen Rekruten hinaus, den ich nicht entbehren kann. Geht.“", "outcome": null },
+  { "text": "„Die Dienste sind vergeben“, sagt Rindler knapp. „Der frühe Vogel, Rekrut. Merkt Euch das.“", "outcome": null },
+  { "text": "Rindler sieht dich lange an, sagt dann aber nur: „Nein.“ Kein Wort mehr, keine Erklärung. Du weißt, dass jede Nachfrage ein Fehler wäre.", "outcome": null },
+  { "text": "„Die Nachtwache am Osttor braucht Verstärkung“, sagt Rindler nach kurzem Abwägen. „Meldet Euch beim Korporal. Zeigt, dass Ihr mehr seid als bloß fleißig.“", "outcome": { "npc": "hauptmann", "fields": [ { "field": "affection", "value": 1, "chance": 60 }, { "field": "condition", "value": -10, "chance": 100 } ] } },
+  { "text": "„Ein Kurierritt nach Norden, ehe das Wetter umschlägt“, sagt Rindler. „Wenn Ihr Euch das Reiten bei fast Frost zutraut. Meldet Euch bei der Torwache.“", "outcome": { "npc": "hauptmann", "fields": [ { "field": "affection", "value": 2, "chance": 45 }, { "field": "condition", "value": -15, "chance": 100 } ] } },
+  { "text": "„Die Ställe müssen ausgemistet und die Klepper versorgt werden“, sagt Rindler. „Niedere Arbeit, gewiss. Doch wer sie ohne Murren tut, den merke ich mir ebenso wie den, der sie verweigert.“", "outcome": { "npc": "hauptmann", "fields": [ { "field": "affection", "value": 1, "chance": 70 }, { "field": "condition", "value": -8, "chance": 100 } ] } },
+  { "text": "„Der Waffenmeister braucht Hände beim Schleifen der Klingen“, sagt Rindler. „Stumpfe Arbeit für stumpfe Finger. Aber sie muss getan sein.“", "outcome": { "npc": "hauptmann", "fields": [ { "field": "affection", "value": 1, "chance": 55 }, { "field": "condition", "value": -6, "chance": 100 } ] } },
+  { "text": "„Es gibt Proviant von der Landstraße einzuholen“, sagt Rindler. „Ein Karren, zwei Mann, ein langer Tag. Wenn Ihr einen zweiten findet, der ebenso töricht ist, sich freiwillig zu melden.“", "outcome": { "npc": "hauptmann", "fields": [ { "field": "affection", "value": 2, "chance": 50 }, { "field": "condition", "value": -12, "chance": 100 } ] } },
+  { "text": "„Botengang zum Magister“, sagt Rindler und reicht dir eine versiegelte Rolle. „Nichts, wobei man viel falsch machen könnte. Aber auch nichts, das man verlieren dürfte.“", "outcome": { "npc": "hauptmann", "fields": [ { "field": "affection", "value": 1, "chance": 65 }, { "field": "condition", "value": -4, "chance": 100 } ] } },
+  { "text": "„Ihr sollt beim Drill der Erstjährigen helfen“, sagt Rindler. „Zeigt den grünen Bengeln, wie man eine Pike hält, ohne sich selbst damit aufzuspießen. Wer lehrt, lernt selbst am meisten.“", "outcome": { "npc": "hauptmann", "fields": [ { "field": "affection", "value": 2, "chance": 55 }, { "field": "condition", "value": -8, "chance": 100 } ] } },
+  { "text": "„Sonderdienst?“ Rindler sieht dich an, als wäge er etwas, das du nicht kennst. „Nicht heute. Vielleicht, wenn Ihr Euch als verlässlicher erweist als bisher.“", "outcome": { "npc": "hauptmann", "fields": [ { "field": "affection", "value": -1, "chance": 25 } ] } },
+  { "text": "Rindler runzelt die Stirn, als er dich mustert. „Ihr seht aus, als hättet Ihr selbst Ruhe nötiger als einen Dienst. Kommt wieder, wenn Ihr auf den Beinen steht wie ein Soldat und nicht wie ein nasser Sack.“", "outcome": { "npc": "hauptmann", "fields": [ { "field": "affection", "value": -1, "chance": 30 } ] } },
+  { "text": "„Ein Wort noch, ehe Ihr geht“, sagt Rindler leise, und sein Blick wird schärfer. „Man erzählt sich, Ihr stelltet Fragen, die ein Rekrut nicht zu stellen hat. Hütet Euch. Neugier hat schon manchen den Sold und mehr gekostet.“", "outcome": { "npc": "hauptmann", "fields": [ { "field": "verdacht", "value": 1, "chance": 40 } ] } }
+]
+
+
+:: Kap2_Pool_Schenke_Trinken {"position":"2175,5900","size":"100,100"}
+[
+  { "text": "Das Bier ist dünn und leicht sauer, doch nach dem ersten Schluck spürst du, wie sich etwas in deinen Schultern löst, das den ganzen Tag über festgesessen hat.", "outcome": { "npc": null, "fields": [ { "field": "condition", "value": 4, "chance": 70 } ] } },
+  { "text": "Du trinkst schneller, als es klug wäre, und der Raum beginnt für einen Moment sanft zu schwanken. Als du aufstehst, ist dir schwindliger, als dir lieb ist.", "outcome": { "npc": null, "fields": [ { "field": "condition", "value": -5, "chance": 40 } ] } },
+  { "text": "Ein Fuhrmann am Nebentisch hebt seinen Krug in deine Richtung, ein stummer Gruß unter Fremden, die für diesen einen Abend keine Fremden sind.", "outcome": { "npc": null, "fields": [ { "field": "condition", "value": 3, "chance": 60 } ] } },
+  { "text": "Das Bier schmeckt nach nichts Besonderem, doch die Wärme der Stube und das Gemurmel um dich herum tun ihre eigene, stille Arbeit.", "outcome": { "npc": null, "fields": [ { "field": "condition", "value": 5, "chance": 55 } ] } },
+  { "text": "Du trinkst allein, den Blick auf den Krug gerichtet, und für eine Weile ist auch das eine Art von Ruhe.", "outcome": null }
+]
+
+
+:: Kap2_Pool_Stadt_Encounter {"position":"2050,5525","size":"100,100"}
+[
+	{	"text": "Ein Bettler zupft an deinem Ärmel, mehr aus Gewohnheit als Hoffnung. Du gehst weiter, ohne ihm etwas zu geben.", 
+		"outcome": null,
+		"checkOn": null
+	},
+	{	"text": "Ein Marktschreier preist billiges Zinnwerk an, so laut, dass dir für einen Moment die Ohren dröhnen. Nichts, das dich betrifft.",
+		"outcome": null,
+		"checkOn": null
+	},
+  { "text": "Ein Karren mit Fässern kippt vor dir um, und für einen Augenblick herrscht Chaos aus fluchenden Fuhrleuten und rollendem Holz. Du weichst rechtzeitig aus.", "outcome": null,
+		"checkOn": null },
+	{	"text": "Eine flinke Hand streift deinen Gürtel, ehe du reagieren kannst. Als du nachsiehst, fehlen dir ein paar Münzen — der Dieb ist längst in der Menge verschwunden.", 
+		"outcome": { "npc": null, "fields": [ { "field": "moneyLoss", "value": 8, "chance": 100 } ] },
+		"checkOn": "perception",
+		"checkSuccessText": "Eine flinke Hand streift deinen Gürtel, du bemerkst sie und schlägst sie weg. Also du dich umsiehst ist der Dieb schon wieder in der Menge verschwunden."},
+  { "text": "Ein alter Landsknecht, dem ein Bein fehlt, erzählt dir gegen ein kleines Almosen von seinen Feldzügen. Du hörst zu, länger, als du wolltest, und gibst ihm am Ende mehr, als du eigentlich vorhattest.", "outcome": { "npc": null, "fields": [ { "field": "money", "value": -3, "chance": 100 }, { "field": "condition", "value": 2, "chance": 50 } ] } },
+  { "text": "Ein Kaufmann, dessen Karren im Schlamm feststeckt, bittet dich um eine kräftige Schulter. Du hilfst, und er drückt dir zum Dank ein paar Münzen in die Hand.", "outcome": { "npc": null, "fields": [ { "field": "money", "value": 5, "chance": 70 }, { "field": "condition", "value": -3, "chance": 100 } ] } },
+  { "text": "Zwei Weiber am Brunnen tuscheln über einen Schreiber der Akademie, der neuerdings so nervös sei wie ein Dieb kurz vor der Tat. Du gehst weiter, als hättest du nichts gehört — doch die Worte bleiben in dir hängen.", "outcome": { "npc": "oren", "fields": [ { "field": "verdacht", "value": 0, "chance": 0 } ] } },
+  { "text": "Ein betrunkener Söldner rempelt dich an, mehr aus Unachtsamkeit als Bosheit, murmelt eine Entschuldigung und taumelt weiter.", "outcome": null },
+  { "text": "Eine Streunerkatze folgt dir eine Weile durch die Gassen, als hätte sie beschlossen, dass du ihr Beschützer seist. Du lässt sie gewähren.", "outcome": null },
+  { "text": "Ein Kind drückt dir wortlos eine verwelkte Blume in die Hand und rennt davon, ehe du fragen kannst, warum.", "outcome": null }
+]
+
+
+:: Kap2_Pool_Stadt_Gluecksspiel {"position":"2050,5900","size":"100,100"}
+[
+  { "text": "Die Würfel fallen gegen dich, dreimal in Folge. Der Wirt grinst, während er deine letzten Münzen einstreicht.", "outcome": { "npc": null, "fields": [ { "field": "money", "value": -6, "chance": 100 } ] } },
+  { "text": "Ein glücklicher Wurf, gegen alle Erwartung. Der Tisch raunt, und du streichst mehr ein, als du gesetzt hast.", "outcome": { "npc": null, "fields": [ { "field": "money", "value": 12, "chance": 100 } ] } },
+  { "text": "Ein ausgeglichenes Spiel, Gewinn und Verlust halten sich die Waage, bis du dich schließlich zufrieden zurückziehst.", "outcome": { "npc": null, "fields": [ { "field": "money", "value": 2, "chance": 100 } ] } },
+  { "text": "Ein Mitspieler beschuldigt dich lautstark des Falschspiels — zu Unrecht, doch die Stimmung kippt, ehe du reagieren kannst, und du verlässt den Tisch lieber, ehe es Fäuste setzt.", "outcome": { "npc": null, "fields": [ { "field": "money", "value": -3, "chance": 100 } ] } },
+  { "text": "Ein außergewöhnlicher Abend — dreimal die höchste Zahl, und selbst die erfahrenen Spieler am Tisch sehen dich mit einer Mischung aus Neid und Argwohn an.", "outcome": { "npc": null, "fields": [ { "field": "money", "value": 20, "chance": 100 } ] } }
+]

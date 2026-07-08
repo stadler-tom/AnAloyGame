@@ -1,0 +1,250 @@
+
+
+/* ================================================================
+   SECTION 07  WORLD & TAGESWECHSEL
+   ================================================================ */
+
+setup.weatherConditions = [
+    "sonnig", "klar", "heiter",
+    "wolkig", "bewoelkt", "stark_bewoelkt",
+    "regen", "schauer", "nieselregen",
+    "frostig", "windig", "gewitter", "neblig", "schwuel"
+];
+
+setup.resetDailyVariables = function () {
+    const world = State.variables.world;
+    const player = State.variables.player;
+    world.weather = setup.weatherConditions[Math.floor(Math.random() * setup.weatherConditions.length)];
+    world.wasPracticing = false;
+    world.day += 1;
+
+    // Werte VOR der Änderung merken
+    const condBefore = player.condition;
+    const suspBefore = player.suspicion;
+    const konditionDelta = player.hasSlept ? 10 : -10;
+    player.condition = setup.clamp(player.condition + konditionDelta, 0, 100);
+
+    setup.tickSidequestDruck();
+
+    // Suspicion nur abbauen, wenn sie heute NICHT gestiegen ist
+    const startOfDay = (world.suspicionDayStart !== undefined) ? world.suspicionDayStart : suspBefore;
+    const roseToday = player.suspicion > startOfDay;
+    if (!roseToday) {
+        player.suspicion = setup.clamp(player.suspicion - 2, 0, 100);
+    }
+    // Startwert für den neuen Tag festhalten
+    world.suspicionDayStart = player.suspicion;
+
+    // Tagesbericht ablegen: echte Differenzen (nach dem Clampen)
+    world.tagesbericht = {
+        condition: player.condition - condBefore,
+        suspicion: player.suspicion - suspBefore,
+        hasSlept: player.hasSlept
+    };
+    world.interruptDoneToday = false;
+    world.tagesAktionen = 0;    /* Kap2: zwei freie Unternehmungen pro Tag */
+    world.abendAktion = false;  /* Kap2: eine Abend-Aktion pro Tag */
+    world.schenkeRueckweg = ""; /* Kap2: Schenke-Rücksprung (Tag/Abend) zurücksetzen */
+    setup.tickKarlaDruck();
+};
+
+setup.renderTagesbericht = function () {
+    const b = State.variables.world?.tagesbericht;
+    if (!b) return "";
+
+    let out = "";
+
+    if (b.condition > 0) {
+        out += '<div class="system-alert status-positive">Erholsamer Schlaf — Kondition +' + b.condition + ' (' + setup.getKonditionLabel(State.variables.player.condition) + ')</div>';
+    } else if (b.condition < 0) {
+        out += '<div class="system-alert status-negative">Unruhige Nacht — Kondition ' + b.condition + ' (' + setup.getKonditionLabel(State.variables.player.condition) + ')</div>';
+    }
+
+    if (b.suspicion < 0) {
+        out += '<div class="system-alert status-positive">Du bist eine Weile nicht aufgefallen — Verdacht ' + b.suspicion + '</div>';
+    }
+
+    return out;
+};
+
+/* Autosave nach jedem Passagenwechsel + lastPassage-Tracking */
+postdisplay["world-tracker"] = function () {
+    const forbidden = [
+        "journalAnsicht"
+    ];
+
+    const title = State.current.title;
+
+    if (forbidden.includes(title)) return;
+
+    State.variables.world ||= {};
+    State.variables.world.lastPassage = title;
+
+    try {
+        Save.browser.slot.save(0, "Autosave");
+    }
+    catch (error) {
+        /* Failure.  Handle the error. */
+        console.error(error);
+        UI.alert(error);
+    }
+};
+
+/* Passagen mit Tag "tagesstart" lösen den Tageswechsel aus */
+predisplay["tagesstart"] = function () {
+    if (tags().includes("tagesstart")) {
+        setup.resetDailyVariables();
+    }
+};
+
+/* Journal-Sperrliste */
+setup.noJournalPages = [
+    "Intro",
+    "Das Erwachen",
+    "journalAnsicht",
+    "Nachmittag Pike",
+    "Nachmittag Cannon",
+    "Nachmittag Medicine",
+    "Nachmittag Crossbow",
+    "Nachmittag Thievery"
+];
+
+setup.isJournalBlocked = function () {
+    const p = passage();
+
+    // feste Sperrliste
+    if (setup.noJournalPages.includes(p)) {
+        return true;
+    }
+
+    // dynamisch: Kapitel 1, Kapitel 2, ...
+    if (p.startsWith("Kapitel")) {
+        return true;
+    }
+
+    return false;
+};
+
+
+/* ================================================================
+   SECTION 08  GELD
+   ================================================================ */
+
+setup.money = {
+    copperPerSilver: 7,
+    silverPerGold: 10
+};
+
+setup.getMoney = function (copper) {
+    let silver = Math.floor(copper / setup.money.copperPerSilver);
+    let gold = Math.floor(silver / setup.money.silverPerGold);
+
+    silver = silver % setup.money.silverPerGold;
+    copper = copper % setup.money.copperPerSilver;
+
+    return {
+        gold,
+        silver,
+        copper
+    };
+};
+
+setup.canAffordMoney = function (copperAmount) {
+    const player = State.variables.player;
+    return !!(player && player.money && player.money.copper >= Math.abs(copperAmount));
+};
+
+setup.addMoney = function (copperAmount) {
+    const player = State.variables.player;
+    if (!player || !player.money || typeof player.money.copper !== "number") {
+        console.warn("player.money.copper nicht gefunden");
+        return "";
+    }
+
+    player.money.copper = Math.max(0, player.money.copper + Math.abs(copperAmount));
+
+    const m = setup.getMoney(Math.abs(copperAmount));
+    const parts = [];
+    if (m.gold > 0) parts.push(m.gold + " Gold");
+    if (m.silver > 0) parts.push(m.silver + " Silber");
+    if (m.copper > 0 || parts.length === 0) parts.push(m.copper + " Kupfer");
+
+    return '<div class="system-alert status-positive">' + parts.join(", ") + " erhalten</div>";
+};
+
+setup.removeMoney = function (copperAmount) {
+    const player = State.variables.player;
+    if (!player || !player.money || typeof player.money.copper !== "number") {
+        console.warn("player.money.copper nicht gefunden");
+        return "";
+    }
+
+    const amount = Math.abs(copperAmount);
+    const affordable = setup.canAffordMoney(amount);
+
+    player.money.copper = Math.max(0, player.money.copper - amount);
+
+    const m = setup.getMoney(amount);
+    const parts = [];
+    if (m.gold > 0) parts.push(m.gold + " Gold");
+    if (m.silver > 0) parts.push(m.silver + " Silber");
+    if (m.copper > 0 || parts.length === 0) parts.push(m.copper + " Kupfer");
+
+    if (!affordable) {
+        return '<div class="system-alert status-negative">Nicht genug Geld — ' + parts.join(", ") + " wären nötig gewesen, das meiste ausgegeben</div>";
+    }
+    return '<div class="system-alert status-negative">' + parts.join(", ") + " ausgegeben</div>";
+};
+
+/* Geld verlieren (nur was da ist, ohne Vorwurf) */
+setup.loseMoneyBak = function (copperAmount) {
+    const player = State.variables.player;
+    if (!player || !player.money || typeof player.money.copper !== "number") {
+        console.warn("player.money.copper nicht gefunden");
+        return "";
+    }
+
+    const amount = Math.abs(copperAmount);
+    const actuallyLost = Math.min(amount, player.money.copper);
+
+    player.money.copper = Math.max(0, player.money.copper - amount);
+
+    if (actuallyLost <= 0) {
+        return ""; // nichts zu verlieren, keine Meldung nötig
+    }
+
+    const m = setup.getMoney(actuallyLost);
+    const parts = [];
+    if (m.gold > 0) parts.push(m.gold + " Gold");
+    if (m.silver > 0) parts.push(m.silver + " Silber");
+    if (m.copper > 0 || parts.length === 0) parts.push(m.copper + " Kupfer");
+
+    return '<div class="system-alert status-negative">' + parts.join(", ") + " verloren</div>";
+};
+
+setup.loseMoney = function (copperAmount) {
+    const player = State.variables.player;
+
+    if (!player?.money || typeof player.money.copper !== "number") {
+        console.warn("player.money.copper nicht gefunden");
+        return "";
+    }
+
+    const amount = Math.abs(copperAmount);
+    const actuallyLost = Math.min(amount, player.money.copper);
+
+    console.log
+
+    player.money.copper -= actuallyLost;
+
+    if (actuallyLost <= 0) return "";
+
+    const m = setup.getMoney(actuallyLost);
+
+    const parts = [];
+    if (m.gold > 0) parts.push(m.gold + " Gold");
+    if (m.silver > 0) parts.push(m.silver + " Silber");
+    if (m.copper > 0 || parts.length === 0) parts.push(m.copper + " Kupfer");
+
+    return `<div class="system-alert status-negative">${parts.join(", ")} verloren</div>`;
+};
