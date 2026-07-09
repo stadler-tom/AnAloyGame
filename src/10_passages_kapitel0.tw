@@ -40,7 +40,6 @@ Er kommt nicht und geht wieder — er liegt auf dem kahlen Gelände der Akademie
 <<silently>>
 	<<set $player.rank = "Rekrut">>
 <</silently>>
-<hr class="trenner-raute">
 [["Ein junger Mann, bereit für die Ausbildung."->Das Erwachen]]
 
 :: Sergent aushorchen [layout] {"position":"600,300","size":"100,100"}
