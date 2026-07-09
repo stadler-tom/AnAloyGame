@@ -5189,7 +5189,7 @@ setup.dev = {
 
     }
 
-};</script><tw-tag name="nach_morgen" color="red"></tw-tag><tw-tag name="interrupt" color="purple"></tw-tag><tw-tag name="kapitel-opener" color="red"></tw-tag><tw-tag name="nach_Kap2_morgen" color="green"></tw-tag><tw-tag name="script" color="purple"></tw-tag><tw-tag name="einmalig" color="red"></tw-tag><tw-tag name="header" color="blue"></tw-tag><tw-tag name="nach_Kap2_abend" color="yellow"></tw-tag><tw-tag name="pruefung" color="green"></tw-tag><tw-tag name="layout" color="green"></tw-tag><tw-tag name="journal" color="orange"></tw-tag><tw-tag name="widget" color="blue"></tw-tag><tw-tag name="nach_stube" color="orange"></tw-tag><tw-tag name="nach_appell" color="yellow"></tw-tag><tw-tag name="studium" color="yellow"></tw-tag><tw-tag name="nach_Kap2_tag" color="green"></tw-tag><tw-tag name="startup-debug" color="purple"></tw-tag><tw-tag name="nach_hub" color="green"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="0,225" size="100,100">&lt;&lt;include &quot;InitPlayer&quot;&gt;&gt;
+};</script><tw-tag name="script" color="purple"></tw-tag><tw-tag name="widget" color="blue"></tw-tag><tw-tag name="einmalig" color="red"></tw-tag><tw-tag name="interrupt" color="purple"></tw-tag><tw-tag name="layout" color="green"></tw-tag><tw-tag name="header" color="blue"></tw-tag><tw-tag name="startup-debug" color="purple"></tw-tag><tw-tag name="nach_appell" color="yellow"></tw-tag><tw-tag name="nach_Kap2_morgen" color="green"></tw-tag><tw-tag name="nach_hub" color="green"></tw-tag><tw-tag name="journal" color="orange"></tw-tag><tw-tag name="nach_stube" color="orange"></tw-tag><tw-tag name="nach_morgen" color="red"></tw-tag><tw-tag name="studium" color="yellow"></tw-tag><tw-tag name="pruefung" color="green"></tw-tag><tw-tag name="kapitel-opener" color="red"></tw-tag><tw-tag name="nach_Kap2_tag" color="green"></tw-tag><tw-tag name="nach_Kap2_abend" color="yellow"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="0,225" size="100,100">&lt;&lt;include &quot;InitPlayer&quot;&gt;&gt;
 &lt;&lt;include &quot;InitNPC&quot;&gt;&gt;
 &lt;&lt;include &quot;InitWorld&quot;&gt;&gt;
 &lt;&lt;include &quot;InitStudium&quot;&gt;&gt;
@@ -9928,9 +9928,15 @@ Wenn irgendwer in dieser Akademie weiß, was sie bedeuten, dann der Mann, der ü
 
 	&lt;p&gt;Du gehst an den Regalen entlang, an denen sich Jahrzehnte in Leder und Pergament stapeln, bis du bei den Verwaltungsschriften der Zeugstuben ankommst — trockene, endlose Listen von Beständen, Kammern, Bezeichnungen, die niemand außer den Schreibern selbst je zu lesen pflegt.&lt;/p&gt;
 
+	&lt;&lt;if setup.ermMit()&gt;&gt;
 	&lt;&lt;gedanke&gt;&gt;
 	&lt;p&gt;Karla muss diesmal nicht neben mir stehen. Muss keine Ablenkung ersinnen, keine Lüge vorbereiten. Ich kann einfach suchen, in aller Ruhe, ohne dass irgendjemand fragt, warum.&lt;/p&gt;
 	&lt;&lt;/gedanke&gt;&gt;
+	&lt;&lt;else&gt;&gt;
+	&lt;&lt;gedanke&gt;&gt;
+	&lt;p&gt;Diesmal steht niemand neben mir. Kein Blick, der die Regale schneller liest als meiner, keine geflüsterte Warnung. Ich kann in aller Ruhe suchen, ohne dass irgendjemand fragt, warum — der einzige leichte Schritt auf diesem ganzen Weg. Und er fühlt sich falsch an, weil ich ihn allein tue.&lt;/p&gt;
+	&lt;&lt;/gedanke&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
 
 	&lt;p&gt;Es dauert eine Weile — länger, als dir lieb ist, mit dem Wissen, dass jede Stunde hier eine Stunde ist, die Jarek und sein Netzwerk für sich haben —, doch schließlich findest du es: ein Verzeichnis der Bezugsstellen für auswärtige Waffenprüfungen, fein säuberlich nach Namen geordnet.&lt;/p&gt;
 
@@ -9951,6 +9957,8 @@ Wenn irgendwer in dieser Akademie weiß, was sie bedeuten, dann der Mann, der ü
 	[[Weiter -&gt;Ermittlung_S5_Karla_Bericht]]
 
 &lt;&lt;elseif $world.flags.jarek_ausgang isnot &quot;schande&quot;&gt;&gt;
+
+&lt;&lt;if setup.ermMit()&gt;&gt;
 
 	&lt;&lt;scene&gt;&gt;
 	&lt;p&gt;Die Schreibstuben liegen im ältesten Flügel der Akademie, dort, wo die Fenster schmaler sind als anderswo und das Licht selbst durch sie hindurch schon wie durch ein Sieb gefiltert wirkt. Am Ende des Ganges wartet Magister Cornelius Halm — hager, tintenfingrig, mit einer Stimme, von der man sagt, sie habe seit Jahren kein überflüssiges Wort mehr gesprochen.&lt;/p&gt;
@@ -10014,6 +10022,74 @@ Wenn irgendwer in dieser Akademie weiß, was sie bedeuten, dann der Mann, der ü
 	&lt;&lt;/gedanke&gt;&gt;
 
 	[[Weiter -&gt;Ermittlung_S5_Karla_Bericht]]
+
+&lt;&lt;else&gt;&gt;
+/* ===== FUER-MODUS — Thomas fragt Halm allein und improvisiert selbst. ===== */
+
+	&lt;&lt;scene&gt;&gt;
+	&lt;p&gt;Die Schreibstuben liegen im ältesten Flügel der Akademie, dort, wo die Fenster schmaler sind als anderswo und das Licht selbst durch sie hindurch schon wie durch ein Sieb gefiltert wirkt. Am Ende des Ganges wartet Magister Cornelius Halm — hager, tintenfingrig, mit einer Stimme, von der man sagt, sie habe seit Jahren kein überflüssiges Wort mehr gesprochen.&lt;/p&gt;
+	&lt;&lt;/scene&gt;&gt;
+
+	&lt;&lt;beziehung&gt;&gt;
+	&lt;&lt;if $npc.magister.affection &gt;= 5&gt;&gt;
+		&lt;p&gt;Er kennt dich, und mehr noch: Er hat für dich etwas übrig, das man bei ihm kaum Zuneigung nennen würde, eher eine stille Anerkennung, wie sie ein Gelehrter für einen Schüler empfindet, der sich nicht dumm anstellt. Als du eintrittst, hebt er den Blick, ohne Überraschung, fast wie erwartet.&lt;/p&gt;
+	&lt;&lt;elseif $npc.magister.affection &gt;= 1&gt;&gt;
+		&lt;p&gt;Er kennt dich aus dem vergangenen Jahr, flüchtig, wie man Namen auf einer langen Liste kennt. Kein Wohlwollen, aber auch kein Argwohn — nur die neutrale Aufmerksamkeit eines Mannes, der jeden gleich behandelt, bis sich zeigt, ob er es verdient.&lt;/p&gt;
+	&lt;&lt;else&gt;&gt;
+		&lt;p&gt;Er sieht auf, mustert dich mit der abwägenden Geduld eines Mannes, der Besucher grundsätzlich erst einmal für eine Störung hält, ehe sie ihm das Gegenteil beweisen.&lt;/p&gt;
+	&lt;&lt;/if&gt;&gt;
+	&lt;&lt;/beziehung&gt;&gt;
+
+	&lt;&lt;dialog&gt;&gt;
+	&lt;p&gt;„Magister“, beginnst du, „ich bin auf eine Bezeichnung gestoßen, die ich nicht einzuordnen weiß: ‚Übungsbestand C‘. Und einen Ort, ‚Westhof‘. Ich hoffte, Ihr könntet mir Auskunft geben.“&lt;/p&gt;
+	&lt;&lt;/dialog&gt;&gt;
+
+	&lt;p&gt;Halm legt die Feder beiseite, langsam, mit der Umständlichkeit eines Mannes, der jede Bewegung als kleine Verhandlung versteht.&lt;/p&gt;
+
+	&lt;&lt;dialog&gt;&gt;
+	&lt;p&gt;„Eine merkwürdige Frage“, sagt er. „Die Verwaltung der Zeugstuben obliegt dem Schreiber Malk, nicht mir. Warum fragt Ihr nicht ihn?“&lt;/p&gt;
+	&lt;&lt;/dialog&gt;&gt;
+
+	&lt;&lt;gedanke&gt;&gt;
+	&lt;p&gt;Weil ich Oren nicht trauen kann, ohne dass er weiß, wonach ich suche. Das kann ich Halm nicht sagen. Also brauche ich eine andere Wahrheit, eine, die trägt, ohne zu lügen — und diesmal ist niemand da, der sie für mich zurechtlegt. Ich muss improvisieren, so, wie sie es getan hätte.&lt;/p&gt;
+	&lt;&lt;/gedanke&gt;&gt;
+
+	&lt;&lt;beziehung&gt;&gt;
+	&lt;&lt;set _modifier = Math.floor($npc.magister.affection / 4)&gt;&gt;
+	&lt;&lt;set _r to setup.skillCheck(&quot;thievery&quot;, 14, -_modifier)&gt;&gt;
+	&lt;&lt;= setup.skillCheckAlert(_r)&gt;&gt;
+	&lt;&lt;if _r.success&gt;&gt;
+		&lt;&lt;dialog&gt;&gt;
+		&lt;p&gt;„Weil ein Schreiber, den man um Auskunft über die eigene Buchführung bittet, selten unbefangen antwortet“, sagst du, und du wunderst dich selbst, wie ruhig es herauskommt. „Ich dachte, ein Mann von Eurer Gelehrsamkeit könnte mir die Bezeichnung erklären, ohne dass ich Malk erst um Erlaubnis bitten muss, seine eigene Arbeit zu verstehen.“&lt;/p&gt;
+		&lt;&lt;/dialog&gt;&gt;
+		&lt;p&gt;Halm mustert dich, und für einen Moment liegt in seinem Blick etwas, das fast Zustimmung sein könnte — die Anerkennung eines Mannes, der selbst weiß, wie wenig manche Auskünfte wert sind, wenn man sie von der falschen Stelle erbittet.&lt;/p&gt;
+		&lt;&lt;gedanke&gt;&gt;
+		&lt;p&gt;Ich habe es geschafft. Nicht gelogen — nur eine Wahrheit gewählt, die er hören konnte, ohne dass sie mich verrät. Sie wäre stolz gewesen. Oder hätte so getan, als wäre es selbstverständlich.&lt;/p&gt;
+		&lt;&lt;/gedanke&gt;&gt;
+	&lt;&lt;else&gt;&gt;
+		&lt;&lt;dialog&gt;&gt;
+		&lt;p&gt;„Ich …“, beginnst du, doch die Erklärung, die du dir zurechtgelegt hast, gerät ins Stocken, eine Spur zu lang, ehe du weitersprichst. „Ich wollte niemanden von der Zeugstube unnötig behelligen.“&lt;/p&gt;
+		&lt;&lt;/dialog&gt;&gt;
+		&lt;p&gt;Halm sagt nichts dazu, doch sein Blick verweilt auf dir einen Atemzug länger, als es eine zufriedenstellende Antwort erfordert hätte. Er wird die Frage nicht vergessen, ebenso wenig wie die Art, wie sie beantwortet wurde.&lt;/p&gt;
+		&lt;&lt;print setup.setNpcsuspicion(&quot;magister&quot;, 1)&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
+	&lt;&lt;/beziehung&gt;&gt;
+
+	&lt;&lt;dialog&gt;&gt;
+	&lt;p&gt;„Übungsbestand C“, sagt Halm, und seine Stimme nimmt jenen Ton an, den er wohl auch vor einem Hörsaal voller Rekruten anschlüge, „bezeichnet, mein junger Freund, keine Waffe, sondern einen Zustand: Schaden am Eisen selbst. Ein Sprung in der Klinge, eine Fehlhärtung, eine Waffe die sich verbogen hat, ein Riss, den kein Ölstein und kein Lederriemen der Welt zu heilen vermag. Solche Stücke verlassen die Akademie — zur Ausbesserung oder für Ersatz.“&lt;/p&gt;
+	&lt;&lt;/dialog&gt;&gt;
+
+	&lt;&lt;dialog&gt;&gt;
+	&lt;p&gt;„Und Westhof“, fügt er an, ehe du fragen musst, mit der Genugtuung eines Mannes, der sein Wissen gern vollständig entfaltet, „ist ein Gehöft an der Nordstraße, vor Jahren zur Schmiede umgebaut. Ein gewisser Anselm Krebs führt es, seit — warte — vier Jahren nun, meine ich. Er diente einst in der Garnison zu Ohm, ehe er sich dem Handwerk zuwandte. Ein solider Mann, soweit meine Kenntnis reicht. Dorthin gehen die Klingen, deren Eisen selbst die Schuld trägt.“&lt;/p&gt;
+	&lt;&lt;/dialog&gt;&gt;
+
+	&lt;&lt;gedanke&gt;&gt;
+	&lt;p&gt;Ein Name. Ein Ort. Mehr, als ich zu hoffen gewagt hatte, und mehr, als ich mir wünsche, jetzt zu wissen, ohne zu wissen, was ich damit anfangen soll.&lt;/p&gt;
+	&lt;&lt;/gedanke&gt;&gt;
+
+	[[Weiter -&gt;Ermittlung_S5_Karla_Bericht]]
+
+&lt;&lt;/if&gt;&gt;
 
 &lt;&lt;else&gt;&gt;
 
@@ -10088,7 +10164,8 @@ Wenn irgendwer in dieser Akademie weiß, was sie bedeuten, dann der Mann, der ü
 &lt;p&gt;Jetzt heißt es warten, bis die nächste Fuhre angesetzt wird — und die Hände heben, ehe es ein anderer tut.&lt;/p&gt;
 &lt;&lt;/gedanke&gt;&gt;
 
-&lt;&lt;weiterImTag &quot;Weiter&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="116" name="Ermittlung_S5_Westhof" tags="einmalig interrupt" position="300,5700" size="100,100">&lt;&lt;scene&gt;&gt;
+&lt;&lt;weiterImTag &quot;Weiter&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="116" name="Ermittlung_S5_Westhof" tags="einmalig interrupt" position="300,5700" size="100,100">&lt;&lt;if setup.ermMit()&gt;&gt;
+&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Der Karren rumpelt seit dem frühen Morgen über die Nordstraße, deren Furchen der Frost hart und ungnädig gemacht hat, und mit jeder Meile weicht die Enge der Akademie einem Land, das karger und stiller wird. Kein Wachfeuer mehr, keine Pechfackeln — nur Ackerland unter grauem Himmel, hier und da ein Gehöft, dessen Rauch senkrecht in die kalte Luft steigt, weil kein Wind ihn beugt. Karla sitzt neben dir auf der Ladefläche, zwischen Kisten mit stumpfen Übungsklingen und einem Fass Öl, das bei jedem Schlagloch dumpf gegen das Holz schlägt.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
 
@@ -10168,11 +10245,92 @@ Wenn irgendwer in dieser Akademie weiß, was sie bedeuten, dann der Mann, der ü
 &lt;p&gt;Eine Spur, die sich als Sackgasse erweist, ist noch immer eine Spur. Sie zeigt nur nicht mehr nach Westhof — sie zeigt zurück, auf denselben Mann, den wir die ganze Zeit hätten verdächtigen sollen.&lt;/p&gt;
 &lt;&lt;/gedanke&gt;&gt;
 
+&lt;&lt;else&gt;&gt;
+/* ===== FUER-MODUS — Thomas fährt allein nach Westhof (zweiter Begleitschutz ist ein Fremder). ===== */
+
+&lt;&lt;scene&gt;&gt;
+&lt;p&gt;Der Karren rumpelt seit dem frühen Morgen über die Nordstraße, deren Furchen der Frost hart und ungnädig gemacht hat, und mit jeder Meile weicht die Enge der Akademie einem Land, das karger und stiller wird. Kein Wachfeuer mehr, keine Pechfackeln — nur Ackerland unter grauem Himmel, hier und da ein Gehöft, dessen Rauch senkrecht in die kalte Luft steigt, weil kein Wind ihn beugt. Neben dir auf der Ladefläche hockt ein Rekrut aus einem anderen Zug, den der Zufall zum zweiten Begleitschutz gemacht hat — ein stiller Bursche, der die halbe Fahrt verschläft und von nichts weiß.&lt;/p&gt;
+&lt;&lt;/scene&gt;&gt;
+
+&lt;p&gt;Der Auftrag selbst war die reinste Beiläufigkeit: Ein Korporal rief am Vortag nach Freiwilligen für den turnusmäßigen Transport, zwei Mann als Begleitschutz, nichts, wofür sich ein Rekrut sonst gemeldet hätte. Du hast die Hand gehoben, ehe ein anderer es tun konnte, mit einer Beiläufigkeit, die geübt genug war, um niemandem aufzufallen.&lt;/p&gt;
+
+&lt;&lt;gedanke&gt;&gt;
+&lt;p&gt;Kein erschlichener Vorwand, keine Lüge, die auffliegen könnte — nur die richtige Hand zur richtigen Zeit gehoben. Sie hätte es genauso gemacht. Ich wünschte nur, sie säße neben mir statt dieses schlafenden Fremden.&lt;/p&gt;
+&lt;&lt;/gedanke&gt;&gt;
+
+&lt;&lt;gedanke&gt;&gt;
+&lt;p&gt;Wenn Krebs etwas weiß, dann werde ich es an seinem Gesicht sehen, ehe er ein Wort spricht. Männer wie er lügen schlecht. Und wenn er nichts weiß — dann war der Weg hierher wenigstens keine Lüge, die man mir eines Tages vorhalten kann.&lt;/p&gt;
+&lt;&lt;/gedanke&gt;&gt;
+
+&lt;p&gt;Westhof liegt am Ende eines schmalen Weges, der sich zwischen kahlen Weißdornhecken hindurchwindet — kein prunkvolles Gut, sondern ein nüchterner Gebäudekomplex, aus dem der Lärm mehrerer Essen schon von weitem zu hören ist: das rhythmische Schlagen von Hämmern auf Amboss, das Fauchen der Blasebälge, hier und da ein gebrülltes Wort zwischen den Schmieden.&lt;/p&gt;
+
+&lt;&lt;scene&gt;&gt;
+&lt;p&gt;Der Hof riecht nach Ruß und glühendem Eisen, nach Pferdemist und dem beißenden Schweiß schwerer Arbeit. Mehrere Gesellen hantieren an den Essen, jeder mit dem Blick eines Mannes, der seine eigene Klinge kennt wie ein zweites Gesicht. In ihrer Mitte, größer als alle anderen, steht Anselm Krebs — ein Hüne mit schwarzem Haar unter der Bundhaube, ein dichter Vollbart, der sein Kinn verschluckt, buschige Brauen über Augen, die jeden Ankömmling mit der gleichen mürrischen Gründlichkeit mustern wie ein Stück fehlerhaftes Eisen.&lt;/p&gt;
+&lt;&lt;/scene&gt;&gt;
+
+&lt;&lt;beziehung&gt;&gt;
+&lt;p&gt;Er kennt dich nicht, hat nie einen Grund gehabt, dich zu kennen — kein Vorfall aus dem ersten Jahr reicht bis hierher, in dieses Gehöft fernab der Akademie. Was auch immer zwischen dir und Jarek, Karla oder dem Hauptmann geschah, es endet an diesen Hecken. Hier bist du nur ein Rekrut mit einem Karren voll Übungsklingen, nichts weiter.&lt;/p&gt;
+&lt;&lt;/beziehung&gt;&gt;
+
+&lt;&lt;dialog&gt;&gt;
+&lt;p&gt;„Fracht für die Ausbesserung“, sagt der Fuhrmann, der euch begleitet hat, und Krebs nickt knapp, ohne ein Wort des Grußes zu verschwenden.&lt;/p&gt;
+&lt;&lt;/dialog&gt;&gt;
+
+&lt;p&gt;Du hilfst beim Abladen, schleppst Kisten, die schwerer sind, als sie aussehen, und wartest auf einen Moment, in dem Krebs nicht mit einem seiner Gesellen spricht. Der Moment kommt, als der letzte Sack Kohle abgeladen ist und der Fuhrmann sich mit dem Verwalter über die Rückfracht bespricht. Du trittst an Krebs heran, mit einer Direktheit, die zu einem Mann wie ihm besser passt als jede Umschweifigkeit — ihre Direktheit, die du dir borgst, und du hoffst, dass sie in deinem Mund nicht wie Unhöflichkeit klingt.&lt;/p&gt;
+
+&lt;&lt;dialog&gt;&gt;
+&lt;p&gt;„Meister Krebs“, sagst du. „Ich suche einen Dolch. Übungsbestand C, zur Nachprüfung hierher überstellt, vor einigen Monaten. Erinnert Ihr Euch daran?“&lt;/p&gt;
+&lt;&lt;/dialog&gt;&gt;
+
+&lt;p&gt;Krebs sieht dich an, lange, mit dem unbewegten Gesicht eines Mannes, der nicht aus Berechnung schweigt, sondern weil er jedes Wort erst wägt, ehe er es hergibt. Dann schüttelt er den Kopf, einmal, entschieden.&lt;/p&gt;
+
+&lt;&lt;gedanke&gt;&gt;
+&lt;p&gt;Kein Zögern. Kein Blick, der zur Seite huscht, wie bei Oren, wenn man ihm zu nahe kommt. Nur die schlichte, unverstellte Sicherheit eines Mannes, der genau weiß, was durch seine Hände gegangen ist und was nicht.&lt;/p&gt;
+&lt;&lt;/gedanke&gt;&gt;
+
+&lt;&lt;dialog&gt;&gt;
+&lt;p&gt;„Nie gesehen“, sagt Krebs, seine Stimme wie ein Erdrutsch, jedes Wort einzeln und schwer. „Ich vergess keine Klinge, die durch meine Esse geht. Ein Dolch aus der Akademie, im letzten Jahr — das wäre mir geblieben.“&lt;/p&gt;
+&lt;p&gt;„Seid Ihr sicher?“&lt;/p&gt;
+&lt;p&gt;„Ich führ ein Buch, Rekrut. Wollt Ihr&#39;s sehen?“&lt;/p&gt;
+&lt;&lt;/dialog&gt;&gt;
+
+&lt;&lt;formal&gt;&gt;
+&lt;p&gt;Auch auswärtige Werkstätten, die im Dienst der Akademie standen, waren zur eigenen Buchführung verpflichtet — eine Gegenkontrolle, die Missbrauch der Zeugverwaltung erschweren sollte. Zwei Bücher, die denselben Vorgang widersprüchlich vermerken, gelten als schwerwiegender Beleg für ein Vergehen.&lt;/p&gt;
+&lt;&lt;/formal&gt;&gt;
+
+&lt;p&gt;Krebs führt dich, ohne eine weitere Frage abzuwarten, in eine kleine Kammer neben der Haupt-Esse, wo ein zerschlissenes, aber sauber geführtes Buch auf einem Pult liegt. Er blättert selbst, mit Fingern, die trotz ihrer Größe erstaunlich sicher über die Seiten gleiten, bis er die entsprechende Woche findet.&lt;/p&gt;
+
+&lt;&lt;gedanke&gt;&gt;
+&lt;p&gt;Ich beuge mich über die Seite, das Herz auf einmal wieder so laut wie in jener Nacht in der Waffenausgabe. Doch was ich finde, ist kein Eintrag, sondern eine Lücke — ein leerer Raum zwischen zwei anderen Vorgängen, an genau der Stelle, an der ein Dolch aus Ohm hätte stehen müssen.&lt;/p&gt;
+&lt;&lt;/gedanke&gt;&gt;
+
+&lt;&lt;dialog&gt;&gt;
+&lt;p&gt;„Seht selbst“, sagt Krebs. „Kein Dolch. Keine Klinge aus Ohm in jener Woche, nicht einmal ein Beschlag. Wer Euch das andere Buch gezeigt hat, hat Euch angelogen — oder das Buch selbst lügt.“&lt;/p&gt;
+&lt;&lt;/dialog&gt;&gt;
+
+&lt;p&gt;Du starrst auf die leere Stelle, und die Erkenntnis setzt sich schwer in dir fest, ohne dass ein Blick daneben wäre, der sie mit dir teilte. Die Spur, der du seit Wochen gefolgt bist, endet hier, an diesem sauberen, ehrlichen Buch, das keine Lüge kennt.&lt;/p&gt;
+
+&lt;&lt;gedanke&gt;&gt;
+&lt;p&gt;Kein Dolch ist je hier angekommen. Es gab nie einen Grund für Krebs, ihn zu verstecken oder zu leugnen — es gab schlicht nichts zu verbergen. Jarek hat die Klinge die ganze Zeit selbst getragen, bis zu jener Nacht, in der er sie gegen mich zog. Westhof war nie mehr als ein Wort in einem Buch, hingeschrieben, um eine Lücke zu füllen, die sonst jedem aufgefallen wäre.&lt;/p&gt;
+&lt;&lt;/gedanke&gt;&gt;
+
+&lt;p&gt;Auf der Rückfahrt sprichst du kein Wort. Der schlafende Rekrut neben dir schnarcht leise, ahnungslos, und der Karren rumpelt über dieselben Furchen wie am Morgen, doch das Land, das an dir vorbeizieht, wirkt jetzt kälter, leerer, ohne die Hoffnung, die dich hierher getragen hat.&lt;/p&gt;
+
+&lt;&lt;gedanke&gt;&gt;
+&lt;p&gt;Es war nie eine Nachprüfung. Nur ein Wort, das jemand in ein Buch geschrieben hat, damit niemand fragt, wo die Klinge wirklich blieb. Jarek hatte sie die ganze Zeit bei sich. Und Oren hat gewusst, dass sie fehlt — er hat die Lücke nicht erklärt, er hat sie versteckt. Wie gern hätte ich das jetzt mit ihr geteilt, im Flüsterton, bis es einen Sinn ergibt. Stattdessen trage ich es allein den ganzen langen Weg zurück.&lt;/p&gt;
+&lt;&lt;/gedanke&gt;&gt;
+
+&lt;&lt;gedanke&gt;&gt;
+&lt;p&gt;Eine Spur, die sich als Sackgasse erweist, ist noch immer eine Spur. Sie zeigt nur nicht mehr nach Westhof — sie zeigt zurück, auf denselben Mann, den ich die ganze Zeit hätte verdächtigen sollen.&lt;/p&gt;
+&lt;&lt;/gedanke&gt;&gt;
+
+&lt;&lt;/if&gt;&gt;
+
 &lt;&lt;set _out = &quot;&quot;&gt;&gt;
 &lt;&lt;set _out += setup.setNpcsuspicion(&quot;orenmalk&quot;, 1)&gt;&gt;
 &lt;&lt;print _out&gt;&gt;
 
-&lt;p&gt;Was auch immer als Nächstes zu tun ist — Westhof hat euch keine neue Fährte gegeben, nur die alte bestätigt, härter und unwiderruflicher, als sie zuvor war. Oren Malk hat gelogen. Die Frage ist nicht mehr, ob, sondern warum, und was er noch zu verbergen hat.&lt;/p&gt;
+&lt;p&gt;Was auch immer als Nächstes zu tun ist — Westhof hat &lt;&lt;if setup.ermMit()&gt;&gt;euch&lt;&lt;else&gt;&gt;dir&lt;&lt;/if&gt;&gt; keine neue Fährte gegeben, nur die alte bestätigt, härter und unwiderruflicher, als sie zuvor war. Oren Malk hat gelogen. Die Frage ist nicht mehr, ob, sondern warum, und was er noch zu verbergen hat.&lt;/p&gt;
 
 [[Ermittlung_S6_Sackgasse]]</tw-passagedata><tw-passagedata pid="117" name="Ermittlung_S6_Beschluss" tags="nach_Kap2_abend" position="25,5825" size="100,100">&lt;&lt;set $world.ermittlung.flags.westhof_done to true&gt;&gt;
 
@@ -12159,7 +12317,6 @@ Er kommt nicht und geht wieder — er liegt auf dem kahlen Gelände der Akademie
 &lt;&lt;silently&gt;&gt;
 	&lt;&lt;set $player.rank = &quot;Rekrut&quot;&gt;&gt;
 &lt;&lt;/silently&gt;&gt;
-&lt;hr class=&quot;trenner-raute&quot;&gt;
 [[&quot;Ein junger Mann, bereit für die Ausbildung.&quot;-&gt;Das Erwachen]]</tw-passagedata><tw-passagedata pid="207" name="Sergent aushorchen" tags="layout" position="600,300" size="100,100">&lt;div class=&quot;voice-aggressive&quot;&gt;BIN ICH EINE KLATSCHTANTE???&quot;&lt;/div&gt;
 &lt;div class=&quot;voice-aggressive dialog&quot;&gt;„Du hast einen Befehl erhalten und der war nicht mit mir zu reden, also sieh zu dass du Land gewinnst sonst schmeiss ich dich in den Turm bevor deine Ausbildung angefangen hat!!!“&lt;/div&gt;
 
