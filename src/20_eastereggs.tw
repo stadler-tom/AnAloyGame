@@ -10,6 +10,7 @@
 <p>Dein interesse ist geweckt.</p>
 
 <p>Setzt du dich zu der Gestalt oder gehst du in die Bänke zu deinen Kammeraden</p>
+<hr class="trenner-raute">
 
 [[Zu den Kammeraden->05_Sidequest_Hansbert_Abbruch]] 
 [[Setz dich zu dem Fremden->05_Sidequest_Hansbert_Hinsetzen]]
@@ -18,6 +19,7 @@
 :: 05_Sidequest_Hansbert_Abbruch [layout] {"position":"250,2500","size":"100,100"}
 <p>Du gehst weiter. Du willst dich am Gottesdienst beteiligen.</p>
 <p>Das ist hier nicht die passende Umgebung für seltsame Begegnungen.</p>
+<hr class="trenner-raute">
 
 [[Neben den anderen Rekruten Platz nehmen->Story005_Gottesdienst]]
 
@@ -94,6 +96,7 @@ Ein dritter.<br>
 <p>Seine Augen sind gerötet, sein Bart wirkt als hätte er Bekanntschaft mit mehreren Krügen Bier gemacht.</p>
 
 <p>Was willst du? Kann man sich hier in den hochheiligen Hallen nicht einmal ganz kurz ausruhen?</p>
+<hr class="trenner-raute">
 
 [[Entschuldigt. Ich wollte nicht stören.->Hansbert_Hoeflich]]
 [[Ein Söldner beim Gottesdienst? Das sieht man selten.->Hansbert_Neugierig]]
@@ -105,6 +108,7 @@ Ein dritter.<br>
 <<set $npc.hansFichtensplitter.known = true>>
 <<run setup.setNpcAffection("hansFichtensplitter", 2)>>
 <<run setup.setPlayerStat("faith",5)>>
+<hr class="trenner-raute">
 [[Die Kirche verlassen|Nachmittag Hub]]
 
 :: Hansbert_Frech [layout] {"position":"200,2625","size":"100,100"}
@@ -129,6 +133,7 @@ Ein dritter.<br>
 <p>Sein Händedruck ist fest.</p>
 
 <div class="dialog">"Barsinger segnet meine Arbeit regelmäßig."</div>
+<hr class="trenner-raute">
 
 [[Er holt Luft ->05_Sidequest_Hansbert_Barsinger]]
 
@@ -147,6 +152,7 @@ Ein dritter.<br>
 <p>Sein Händedruck ist fest.</p>
 
 <div class="dialog">"Barsingers Diener, wenn man den Gerüchten glauben darf."</div>
+<hr class="trenner-raute">
 
 [[Er holt Luft ->05_Sidequest_Hansbert_Barsinger]]
 
@@ -166,6 +172,7 @@ Wer sagt denn, dass ich wegen des Gottesdienstes hier bin?"</div>
 <p>Er tippt sich gegen die Brust.</p>
 
 <div class="dialog">"Hansbert."</div>
+<hr class="trenner-raute">
 
 [[Er holt Luft ->05_Sidequest_Hansbert_Barsinger]]
 
@@ -189,6 +196,7 @@ Wer sagt denn, dass ich wegen des Gottesdienstes hier bin?"</div>
 <div class="thought-box">Zwei vom einem Banner, dem Klang nach. Keine feinen Herren — die reden wie Leute, die zusammen im Dreck gelegen haben. Aber worüber, das krieg ich von hier nicht zusammen. Halbe Sätze, ein Frühjahr, ein Salz, irgendwer der Zettel liest. Brocken ohne Faden.</div>
 <p>In deinen Händen: ein verkorkter Krug und ein versiegelter Brief. Beides muss rein.</p>
 
+<hr class="trenner-raute">
 <span id="flur-wahl">
 <div><<link "Eintreten und abliefern">>
     <<replace "#flur-wahl">><<goto "04_Sidequest_diplomaten_Eintreten">><</replace>>
@@ -278,6 +286,7 @@ Wer sagt denn, dass ich wegen des Gottesdienstes hier bin?"</div>
 
 <p>Eine Hand schließt sich um deinen Oberarm — nicht grob, aber ohne jeden Zweifel daran, dass du jetzt mitkommst. Krug und Brief bleiben stehen, wo sie stehen.</p>
 
+<hr class="trenner-raute">
 [[Mitgehen ->04_Sidequest_diplomaten_Kurt]]
 
 
@@ -316,35 +325,42 @@ Wer sagt denn, dass ich wegen des Gottesdienstes hier bin?"</div>
 
 
 :: 04_Sidequest_diplomaten_Lauschen {"position":"1200,150","size":"100,100"}
-<div class="scenery-text">Du bleibst stehen, atmest flach und lässt die Brocken nicht mehr einzeln vorbeiziehen, sondern legst sie nebeneinander, bis sie ein Bild ergeben.</div>
+<div class="scenery-text">
+Du bleibst stehen, atmest flach und lässt die Brocken nicht mehr einzeln vorbeiziehen, sondern legst sie nebeneinander, bis sie ein Bild ergeben.
+</div>
+
+<<= setup.setPlayerKnowledge("thievery", 1)>>
+
 <p>Es geht um Transporte. Zwei, die nicht ankamen. Beide an Stellen, wo kein Räuber zufällig wartet. Und um den Gedanken, den Hannes umkreist und Bast in einen Satz presst: dass keiner von außen so genau weiß, wo ein Transport schwach ist — dass einer die Wege vorher liest, bevor sie gefahren werden.</p>
 
 <<set _wissen to setup.ueberfallWissen()>>
 <<set _out to "">>
 <<if _wissen gte 2>>
-<div class="thought-box">Ich weiß genau, wovon sie reden. Karla hat mir alles erzählt: Edric, das Fieber, der Zeuge der schwieg. Und jetzt sagen es zwei vom Banner mit denselben Worten — von oben, mit Karten und Wegen. Dieselbe Sache von zwei Seiten. Und in der Mitte einer, der die Zettel vorher liest.</div>
-<<set _out += setup.setPlayerStat("scholarship", 1)>>
-<<set _out += setup.addRumor("Oben und unten dieselbe Geschichte: Die Überfälle saßen zu genau für Zufall — einer liest die Wege vorher, von innen. Und Edric im Turm passt nicht ins Bild.")>>
-<<elseif _wissen gte 1>>
-<div class="thought-box">Transportüberfälle — das hab ich unten schon mal aufgeschnappt, damals nur ein Halbsatz. Jetzt sagen zwei vom Banner, es sei einer von innen. Also ist mehr dran, als ich dachte.</div>
-<<set _out += setup.setPlayerKnowledge("gossip", 1)>>
-<<set _out += setup.addRumor("Zwei Diplomaten vom Banner sind sich sicher: Die Transportüberfälle gehen auf einen Innentäter zurück, der die Wege vorher kennt. Deckt sich mit dem Gerede unten.")>>
-<<else>>
-<div class="thought-box">Überfallene Transporte. Einer, der von innen die Wege durchsticht. Davon hab ich noch nie gehört — aber so wie die zwei das sagen, ist da was dran. Das behalte ich.</div>
-<<set _out += setup.setPlayerKnowledge("gossip", 1)>>
-<<set _out += setup.addRumor("Zwei Diplomaten vom Banner reden leise über die Transportüberfälle — sie glauben, einer von innen liest die Wege vorher aus.")>>
+    <div class="thought-box">Ich weiß genau, wovon sie reden. Karla hat mir alles erzählt: Edric, das Fieber, der Zeuge der schwieg. Und jetzt sagen es zwei vom Banner mit denselben Worten — von oben, mit Karten und Wegen. Dieselbe Sache von zwei Seiten. Und in der Mitte einer, der die Zettel vorher liest.</div>
+    <<set _out += setup.setPlayerStat("scholarship", 1)>>
+    <<set _out += setup.addRumor("Oben und unten dieselbe Geschichte: Die Überfälle saßen zu genau für Zufall — einer liest die Wege vorher, von innen. Und Edric im Turm passt nicht ins Bild.")>>
+    <<elseif _wissen gte 1>>
+    <div class="thought-box">Transportüberfälle — das hab ich unten schon mal aufgeschnappt, damals nur ein Halbsatz. Jetzt sagen zwei vom Banner, es sei einer von innen. Also ist mehr dran, als ich dachte.</div>
+    <<set _out += setup.setPlayerKnowledge("gossip", 1)>>
+    <<set _out += setup.addRumor("Zwei Diplomaten vom Banner sind sich sicher: Die Transportüberfälle gehen auf einen Innentäter zurück, der die Wege vorher kennt. Deckt sich mit dem Gerede unten.")>>
+    <<else>>
+    <div class="thought-box">Überfallene Transporte. Einer, der von innen die Wege durchsticht. Davon hab ich noch nie gehört — aber so wie die zwei das sagen, ist da was dran. Das behalte ich.</div>
+    <<set _out += setup.setPlayerKnowledge("gossip", 1)>>
+    <<set _out += setup.addRumor("Zwei Diplomaten vom Banner reden leise über die Transportüberfälle — sie glauben, einer von innen liest die Wege vorher aus.")>>
 <</if>>
-<<set _out += setup.setPlayerKnowledge("thievery", 1)>>
+
+
 <<if $world._lauschCrit>>
 <div class="scenery-text">Du bleibst eine Spur länger, als klug ist — und erwischst den Moment, in dem Hannes verstummt und Bast nicht nachsetzt. Kein Wort mehr, nur zwei Männer, die zusammen genug gesehen haben, um zu wissen, was es heißt, wenn der Verrat aus den eigenen Reihen kommt. Es ist die Stille, die dir mehr sagt als alles davor: Die beiden haben keine Angst vor Räubern. Sie haben Angst vor jemandem, den sie kennen.</div>
-<<set _out += setup.pushNpcMemory("diplomatHannes", "Thomas hat ihre Sorge gesehen, ohne erwischt zu werden")>>
+    <<set _out += setup.pushNpcMemory("diplomatHannes", "Thomas hat ihre Sorge gesehen, ohne erwischt zu werden")>>
 <</if>>
 <div class="outcome-box"> 
 <div class="outcome-title">Du nimmst etwas mit</div>
 <<= _out>>
 </div>
-<div class="thought-box">Und ich steh hier immer noch mit Krug und Brief. Die müssen trotzdem rein.</div>
+<p> Dir wird bewusst, dass  du immer noch mit Krug und Brief da stehst. Die müssen trotzdem rein.</p>
 
+<hr class="trenner-raute">
 [[Eintreten und abliefern ->04_Sidequest_diplomaten_Eintreten]]
 
 
@@ -394,6 +410,8 @@ Wer sagt denn, dass ich wegen des Gottesdienstes hier bin?"</div>
 <<set $npc.diplomatHannes.known = true>>
 <<set $npc.bast.memory.flags.sidequest04Complete = true>>
 <<set $npc.diplomatHannes.memory.flags.sidequest04Complete = true>>
+
+<hr class="trenner-raute">
 [[Die Glocken rufen zum Unterricht->Studium Hub]]
 
 
@@ -670,14 +688,21 @@ Wer sagt denn, dass ich wegen des Gottesdienstes hier bin?"</div>
 <p>In der hinteren Ecke sitzen zwei Männer.</p>
 
 <p>Der Größere lehnt mit dem Rücken zur Wand — roter Mantel, der rechte Arm schwarz abgesetzt, ein auffälliges Wappenschild auf der Brust</p>
-<<if setup.isFactionKnown("84. Banner")>>
-	<div class="scenery-text">Der Haubentaucher!</div>
-    <<set $story002_knownSoeldner = setup.getRandomKnownNpcByFaction("84. Banner")>>
-    <div class="thought-box">Den habe ich schon bei $story002_knownSoeldner gesehen</div>
-<<else>>
-<p>//Aber du kannst es nicht einordnen.</p>
 
+<<beziehung>>
+<<if setup.isFactionKnown("84. Banner")>>
+	<<scene>>
+        <p>Der Haubentaucher!</p>
+    <</scene>> 
+    <<set $story002_knownSoeldner = setup.getRandomKnownNpcByFaction("84. Banner")>>
+    <<gedanke>>
+        <p>Den habe ich schon bei $story002_knownSoeldner gesehen</p>
+    <</gedanke>>
+<<else>>
+<p>Aber du kannst es nicht einordnen.</p>
 <</if>>
+<</beziehung>>
+
 <p>Er hört zu, die Arme vor der Brust verschränkt, und reibt sich dabei langsam den Nasenrücken. Das Gesicht eines Mannes dem das hier nicht der erste schwierige Nachmittag ist.</p>
 <p>Der andere — kein Bart, lange Haare, eine rot-weiße Hose die nach Gebirge aussieht — redet. Mit den Händen, mit dem Oberkörper, mit dem halben Becher der dabei gefährlich schwappt. Was er sagt geht im Lärm des Raumes unter.</p>
 
@@ -728,39 +753,300 @@ Wer sagt denn, dass ich wegen des Gottesdienstes hier bin?"</div>
 <<weiterImTag "Tswu .. viel... lang... verdammt!">>
 
 
+:: EE_Tross_Intro [kap1] {"position":"725,750","size":"100,100"}
+<p>Der Schinder hat dich am Morgen zur Seite genommen — keine große Sache, nur eine Besorgung. 
+Irgendetwas fehlt im Lager, irgendjemand braucht irgendetwas aus der Stadt, und du bist der, der gerade keinen Grund hat nein zu sagen.</p>
+
+<p>Du hast einen Zettel in der Hand und eine ungefähre Vorstellung wo die Gasse sein soll. 
+Die Stadt ist laut, eng, und riecht nach Fisch und Pferden und dem Rauch von hundert Herden gleichzeitig. 
+Du findest die Gasse. Du findest das Haus. Du klopfst.</p>
+
+<p>Niemand öffnet.</p>
+
+<p>Du wartest. Du klopfst nochmal. Nichts.</p>
+
+<p>Der Zettel hilft dir nicht weiter. Du schaust dich um.</p>
+
+<p>Unter dem Vordach des Nachbargebäudes hat sich eine kleine Welt eingerichtet.</p>
+
+[[Nachschauen|EE_Tross]]
 
 :: EE_Tross {"position":"725,875","size":"100,100"}
-<p>Du hörst sie bevor du sie siehst.</p>
+<p>Du hörst sie, bevor du sie siehst.</p>
 
-<div class="scenery-text">Eine Frauenstimme — Dialekt, warm, schnell — erklärt gerade jemandem mit großer Sachkenntnis und wenig Geduld, 
-dass eine Wunde die man selbst aufkratzt keine Wunde mehr ist sondern eine Dummheit. 
-Ein zweites Wort, tiefer, männlich, antwortet mit der Gelassenheit eines Mannes dem die Welt gerade genau so gefällt wie sie ist. 
-Eine dritte Stimme — weiblich, knapper — sagt nur: „Stimmt."</div>
+<div class="scenery-text">Eine Frauenstimme — Dialekt, warm, schnell — erklärt gerade
+jemandem mit großer Sachkenntnis und noch größerer Ungeduld, dass eine Wunde, die man
+selber aufkratzt, keine Wunde mehr ist, sondern eine Dummheit. Eine zweite Stimme,
+tiefer, gemächlich, antwortet halb kauend, als ließe sie sich durch nichts auf der Welt
+aus der Ruhe bringen, am wenigsten durchs Reden. Eine dritte — weiblich, knapp — sagt
+nur: „Stimmt."</div>
 
 <p>Du biegst um die Ecke.</p>
 
-<p>Vor einer Taverne deren Schild schief hängt hat sich eine kleine Welt breitgemacht. Ein Klapptisch auf dem unebenen Pflaster. Darauf: ein offenes Lagerbuch, ein Krug, eine Schüssel mit etwas das nach Weinbrand riecht und nach Pflaumen aussieht, Verbandszeug — und eine Wasserpfeife aus der träge ein dünner Faden Rauch steigt.</p>
+<p>Vor einer Taverne, deren Schild schief hängt, hat sich eine kleine Welt breitgemacht.
+Ein Klapptisch auf dem unebenen Pflaster. Darauf: ein offenes Lagerbuch, ein Krug, eine
+Schüssel mit etwas, das nach Weinbrand riecht und nach Pflaumen aussieht, Verbandszeug —
+und eine Wasserpfeife, aus der träge ein dünner Faden Rauch steigt.</p>
 
-<p>Der Mann am Tisch hat ein Barett und einen Gürtel der allein schon mehr kostet als deine Jahresration. Er hält das Mundstück der Wasserpfeife locker in der Hand und schaut dich an mit der Ruhe von jemandem dem Eile grundsätzlich fremd ist.</p>
+<p>Der Mann am Tisch trägt ein Barett und einen Gürtel, so üppig verziert, dass im ganzen
+Banner keiner ein zweites solches Prunkstück haben dürfte. Er fischt sich eine Pflaume aus
+der Schüssel, schiebt sie sich in den Mund und mustert dich dabei freundlich, ohne jede
+Eile — eher so, wie man einen Nachbarn mustert, nicht einen Untergebenen.</p>
 
-<p>Die Frau neben ihm trägt ein kleines Hirnbisla auf dem Barett wie einen Orden und näht ohne aufzusehen. 
-Auf einer umgedrehten Kiste daneben lehnt eine dritte Gestalt, die Beine lang von sich gestreckt. 
-Zwei geflochtene Zöpfe mit ausgeblichenen Schleifen hängen ihr über die Schultern.
-Ihre Augen sind halb geschlossen, als koste es Kraft, sie überhaupt offen zu halten.</p>
+<p>Die Frau neben ihm trägt ein kleines Hirnbisla auf dem Barett wie einen Orden und näht,
+ohne aufzusehen. Auf einer umgedrehten Kiste lehnt eine dritte Gestalt, die Beine lang von
+sich gestreckt, zwei geflochtene Zöpfe mit ausgeblichenen Schleifen über den Schultern.
+Ihre Augen sind halb geschlossen, als koste es Kraft, sie offen zu halten.</p>
 
-<div class="dialog">"Der Mann hebt das Kinn. „Rekrut. Setz dich kurz."</div>
+<p>Der Gürtel des Mannes sticht dir ins Auge. Fein gearbeitet und reich verziert. Und da ist ein
+Wappen an dem Gürtel. Ein Tier.</p>
+<<beziehung>>
+<<if setup.isFactionKnown("84. Banner")>>
+	<<scene>>
+        <p>Der Haubentaucher!</p>
+    <</scene>> 
+    <<set $story002_knownSoeldner = setup.getRandomKnownNpcByFaction("84. Banner")>>
+    <<gedanke>>
+        <p>Den habe ich schon bei $story002_knownSoeldner gesehen</p>
+    <</gedanke>>
+<<else>>
+<p>Aber du kannst es nicht einordnen.</p>
+<</if>>
+<</beziehung>>
 
-<p>Keine Frage. Kein Angebot. Einfach so.
-Du sitzt.</p>
+<hr class="trenner-raute">
 
-<p>Er greift nach dem Krug, schenkt einen Becher ein und stellt ihn vor dich — alles in einer Bewegung, 
-ohne dich dabei anzusehen. Dann erst schaut er dich an.</p>
+<div class="dialog">Der Mann hebt das Kinn. „Ah. Rekrut. Setz dich, setz dich — steh nicht
+so rum, davon krieg ich Zustände."</div>
 
-<div class="dialog">„Was brauchst?"</div>
+<p>Er greift nach dem Krug, schenkt einen Becher ein und schiebt ihn dir mit zwei Fingern
+zu. Dann sucht er kurz nach Worten, findet keine besseren und sagt einfach:</p>
+
+<div class="dialog">„Also. Was brauchst?"</div>
+
+<hr class="trenner-raute">
 
 [[Ich such' eine Adresse. Die Gasse hier oben stimmt irgendwie nicht|EE_Tross_Adresse]]
 [[Ich weiß es selbst nicht genau|EE_Tross_Ehrlich]]
 
+:: EE_Tross_Adresse {"position":"575,1000","size":"100,100"}
+<p>Du hältst ihm den Zettel hin.</p>
+
+<p>Er nimmt ihn, dreht ihn einmal um, hält ihn kurz gegen das Licht — und nickt schon,
+bevor er ihn wieder hinlegt. Der Mann weiß, wo in dieser Stadt was steht; das sieht man
+ihm sofort an.</p>
+
+<div class="dialog">„Gasse stimmt. Haus nicht. Der Färber ist vor drei Wochen zwei Straßen
+weiter gezogen." Er deutet mit der Pflaume in die ungefähre Richtung. „Geradeaus, dann
+links, wo's nach Lavendel riecht. Zweites Haus, blaue Tür."</div>
+
+<div class="dialog">„Blaue Tür stimmt", sagt die Frau, ohne aufzusehen. „Aber klopf fei
+laut, der ist schwerhörig."</div>
+
+<div class="dialog">Die Gestalt auf der Kiste öffnet ein Auge. „Sehr schwerhörig."</div>
+
+<p>Kurze Pause.</p>
+
+<div class="dialog">„Sehr."</div>
+
+
+<p>Die Gestalt richtet sich ein Stück auf, sichtlich bemüht, den Eindruck zu erwecken, sie
+hätte die ganze Zeit aufmerksam zugehört. </p>
+
+<<dialog>>
+    <p>„Ich bin übrigens Tilly", sagt sie in einem
+    Tonfall, der nach Offizier klingen soll und eher nach jemandem klingt, der das Wort zum
+    ersten Mal ausprobiert. „Söldnerin. Vierundachtzigstes Banner. Offiziellll." Sie hält inne,
+    als müsste sie selbst erst überlegen, was als Nächstes kommt, und wechselt dann ohne
+    Übergang in den Ton einer Markthändlerin: „Und wenn du eh grad hin willst — der mit der
+    blauen Tür kauft dir gebrauchte Stiefel ab, falls du welche über hast."</p>
+<</dialog>>
+
+<hr class="trenner-raute">
+
+<span id="entscheidungs-bereich">
+  <<link "Verbessern: Offiziell">>
+    <<replace "#entscheidungs-bereich">>
+
+      <<dialog>>  
+      <p>"Nein" sagt Tilly und macht den Eindruck als hättest du gerade etwas Dummes gesagt.</p>
+      <</dialog>>
+
+      <p>Die Feldscherin ruft dazwischen. </p>
+
+      <<dialog>>
+      „A guter Preis, fei! A ganz a Guter!"
+      <</dialog>>
+
+        <p>Beim Aufstehen tritt Tilly gegen den Klapptisch. Der Krug wackelt bedenklich — und
+        Clausz fängt ihn mit einer Hand, ohne die Pflaume aus der anderen zu legen, so beiläufig,
+        als wäre genau das die Hauptaufgabe eines Lagerweibels: dafür sorgen, dass nichts umfällt,
+        was noch gebraucht wird.</p>
+
+        <p>Du willst dich verabschieden. Clausz macht eine kleine, gemütliche Handbewegung.
+        Bleib noch.</p>
+
+        <p>Und dann schaut die Frau von ihrer Nadel auf — nicht ins Gesicht, tiefer, sachlicher.
+        Der Blick eines Menschen, der gelernt hat, Körper zu lesen wie andere Leute Wetterfahnen.</p>
+
+        <div class="dialog">„Des da." Sie zeigt ohne Umschweife auf die Stelle, die du seit Tagen
+        ignorierst. „Zeig mal her."</div>
+
+        <<= setup.setNpcAffection("clausz", 2)>>
+        <<= setup.setNpcAffection("tilly", 1)>>
+        <hr class="trenner-raute">
+
+        [[Weiter|EE_Tross_Rosi]]
+    <</replace>>
+  <</link>> 
+  
+  <<link "Nichts anmerken">>
+    <<replace "#entscheidungs-bereich">>
+      <div class="dialog">„A guter Preis, fei!", ruft die Feldscherin dazwischen.</div>
+
+        <p>Beim Aufstehen tritt Tilly gegen den Klapptisch. Der Krug wackelt bedenklich — und
+        Clausz fängt ihn mit einer Hand, ohne die Pflaume aus der anderen zu legen, so beiläufig,
+        als wäre genau das die Hauptaufgabe eines Lagerweibels: dafür sorgen, dass nichts umfällt,
+        was noch gebraucht wird.</p>
+
+        <p>Du willst dich verabschieden. Clausz macht eine kleine, gemütliche Handbewegung.
+        Bleib noch.</p>
+
+        <p>Und dann schaut die Frau von ihrer Nadel auf — nicht ins Gesicht, tiefer, sachlicher.
+        Der Blick eines Menschen, der gelernt hat, Körper zu lesen wie andere Leute Wetterfahnen.</p>
+
+        <div class="dialog">„Des da." Sie zeigt ohne Umschweife auf die Stelle, die du seit Tagen
+        ignorierst. „Zeig mal her."</div>
+
+        <<= setup.setNpcAffection("clausz", 2)>>
+        <<= setup.setNpcAffection("tilly", 2)>>
+        <hr class="trenner-raute">
+
+        [[Weiter|EE_Tross_Rosi]]    
+    <</replace>>
+  <</link>>
+</span>
+
+
+
+
+
+
+:: EE_Tross_Ehrlich {"position":"875,1000","size":"100,100"}
+<p>Er sieht dich an. Nickt einmal, kurz.</p>
+
+<div class="dialog">„Ehrliche Antwort. Mag ich. Mit den meisten kommt man eh weiter, wenn
+man nicht so tut, als wüsst man alles."</div>
+
+<p>Er zieht das Lagerbuch heran und kritzelt etwas hinein — diesmal wirklich —, schiebt
+sich zwischendurch eine Pflaume in den Mund und nimmt ab und an einen Zug von der
+Wasserpfeife, ohne dass daraus je eine große Geste würde. Es wird nicht viel geredet, und
+das scheint allen recht.</p>
+
+<p>Auf der Kiste rührt sich die dritte Gestalt, blinzelt in deine Richtung und kommt
+offenbar zu dem Schluss, dass ein ehrlicher Rekrut es verdient hat, wenigstens kurz
+begrüßt zu werden. „Tilly", sagt sie mit einem Nicken, das sie erkennbar für würdevoll
+hält. „Söldnerin. Vierundachtzigstes Banner." Dann, nach einer Pause, die wohl
+bedeutungsschwer sein soll: „Offiziell." Einen Moment lang klingt sie tatsächlich wie
+jemand, der weiß, wovon er redet — bis sie sich zurücklehnt, den Tintentopf mit dem
+Ellbogen streift und ihn gerade noch auffängt, ohne den Blick von dir zu nehmen, als wäre
+nichts gewesen.</p>
+
+<hr class="trenner-raute">
+
+<span id="entscheidungs-bereich">
+  <<link "Verbessern: Offiziell">>
+    <<replace "#entscheidungs-bereich">>
+
+      <<dialog>>  
+      <p>"Nein" sagt Tilly und macht den Eindruck als hättest du gerade etwas Dummes gesagt.</p>
+      <</dialog>>
+
+      <p>Nach einer Weile schaut die Frau von ihrer Nadel auf — nicht ins Gesicht, tiefer,
+        sachlicher. Der Blick eines Menschen, der gelernt hat, Körper zu lesen wie andere Leute
+        Wetterfahnen.</p>
+
+        <div class="dialog">„Des da." Sie zeigt ohne Umschweife auf die Stelle, die du seit Tagen
+        ignorierst. „Zeig mal her."</div>
+
+        <<= setup.setNpcAffection("clausz", 2)>>
+        <<= setup.setNpcAffection("tilly", 1)>>
+        <hr class="trenner-raute">
+
+        [[Weiter|EE_Tross_Rosi]]
+    <</replace>>
+  <</link>> 
+  
+  <<link "Nichts anmerken">>
+    <<replace "#entscheidungs-bereich">>
+      <p>Nach einer Weile schaut die Frau von ihrer Nadel auf — nicht ins Gesicht, tiefer,
+        sachlicher. Der Blick eines Menschen, der gelernt hat, Körper zu lesen wie andere Leute
+        Wetterfahnen.</p>
+
+        <div class="dialog">„Des da." Sie zeigt ohne Umschweife auf die Stelle, die du seit Tagen
+        ignorierst. „Zeig mal her."</div>
+
+        <<= setup.setNpcAffection("clausz", 2)>>
+        <<= setup.setNpcAffection("tilly", 2)>>
+        <hr class="trenner-raute">
+
+        [[Weiter|EE_Tross_Rosi]] 
+    <</replace>>
+  <</link>>
+</span>
+
+
+
+
+:: EE_Tross_Rosi {"position":"725,1125","size":"100,100"}
+<p>Du willst sagen, dass es nichts ist. Sie lässt dich nicht.</p>
+
+<div class="dialog">„Setz dich da hin. Rosi. Feldscher. Und jetz halt fei still."</div>
+
+<div class="scenery-text">Was folgt, ist eine ruhige, gründliche Angelegenheit. Sie reinigt,
+prüft, versorgt — und redet dabei ohne Punkt und Komma, halb Unterricht, halb einfach, weil
+ihr das Reden Freude macht. Warum sie so reinigt und nicht anders. Was sie dabei sucht.
+Woran man erkennt, ob's sich entzündet. Was man dann tut, und was man auf gar keinen Fall
+tut.</div>
+
+<div class="dialog">„Des Kraut da — wie hoaßt's nomal —" Sie haut sich mit dem Handballen
+gegen die Stirn, als müsste man das Denken nur fest genug anstoßen. „— ah, wurscht, kommt
+scho wieder. Riecht nach Kampfer, des reicht."</div>
+
+<p>Clausz schenkt ihr nebenbei einen Becher ein, ohne zu fragen, und schiebt ihr die
+Pflaumenschüssel hin. Sie nimmt beides, ohne aufzusehen.</p>
+
+<div class="dialog">„Die Faulpelz-Gestalt auf der Kiste is übrigens mei Schwester. Adoptiert
+— aber fei genauso ein Dickschädel wie die ganze Sippschaft Kreisch. Mutti Kreisch hat uns
+beide großzogen."</div>
+
+<div class="dialog">„Ich hör des", sagt Tilly, ohne die Augen zu öffnen.</div>
+
+<div class="dialog">„Sollst es ja."</div>
+
+<div class="dialog">„Merkst du dir das?", fragt Rosi und meint die Wunde, nicht die
+Schwester.</div>
+
+<p>Du nickst.</p>
+
+<div class="dialog">„Gut." Sie schneidet den Faden ab. „Beim nächsten Mal machst du's selber.
+Und kratzt fei nicht dran!"</div>
+
+<p>Clausz zieht einmal an der Wasserpfeife und grinst. „Sie hat mal einen Ritter zum
+Schmied geschickt."</p>
+
+<div class="dialog">„Woher hätt ich's wissen solln", sagt Rosi und zuckt die Achseln. „Der
+hat mitten im Gefecht, neben lauter echten Verwundeten, wegen einer Delle in der Brustplatte
+gejammert. Also hab ich gsagt, er soll sich die Delle beim Schmied rausklöppeln lassen und
+mich net volljammern. Dass des a Ritter war, hab ich erst hinterher erfahren."</div>
+
+<div class="dialog">Clausz nickt zufrieden. „Bestes Stück Feldscherei, das ich je gsehn
+hab."</div>
+
+<<= setup.setNpcAffection("rosi", 3)>>
+<hr class="trenner-raute">
+
+[[Weiter.->EE_Tross_Abgang]]
 
 :: EE_Tross_Abgang [nach_hub] {"position":"550,1150","size":"100,100"}
 <p>Du gehst.</p>
@@ -773,143 +1059,9 @@ Und dann, eine Idee zu laut, wie um sicherzugehen, dass du es auch noch hörst:
 „Sehr guter Rekrut! Fand ich auch!" 
 Eine kurze Pause. „Ich fand's zumindest sehr souverän, wie ich das vorhin rübergebracht hab." Niemand widerspricht ihr. Niemand bestätigt es auch.</p>
 
-<<set $npc.klausz.known to true>>
+<<set $npc.clausz.known to true>>
 <<set $npc.tilly.known to true>>
 <<set $npc.rosi.known to true>>
 
+<hr class="trenner-raute">
 <<weiterImTag "Zurück zum Tagesgeschehen">>
-
-
-:: EE_Tross_Adresse {"position":"575,1000","size":"100,100"}
-<p>Du hältst ihm den Zettel hin.</p>
-
-<p>Er nimmt ihn, dreht ihn einmal um, hält ihn kurz gegen das Licht. Dann legt er ihn auf den Tisch und hält dir das Mundstück der Wasserpfeife hin.</p>
-
-<div class="dialog">„Zug?"</div>
-
-<p>Du nimmst an oder nicht. Er wartet so oder so.</p>
-
-<div class="dialog">„Die Gasse stimmt. Das Haus nicht. Der Färber ist vor drei Wochen zwei Straßen weiter gezogen." 
-Er zeigt mit dem Mundstück in die ungefähre Richtung. „Geradeaus, dann links wo's nach Lavendel riecht. Zweites Haus, blaue Tür."</div>
-
-<div class="dialog">„Blaue Tür stimmt", sagt die Frau ohne aufzusehen. „Aber klopf fei laut, der ist schwerhörig."</div>
-
-<div class="dialog">Die Person auf der Kiste öffnet ein Auge. „Sehr schwerhörig."</div>
-
-<p>Kurze Pause.</p>
-
-<div class="dialog">„Sehr."</div>
-
-<p>Die Gestalt auf der Kiste richtet sich ein Stück auf, offenbar bemüht, den Eindruck zu erwecken, sie hätte die ganze Zeit aufmerksam zugehört. 
-„Ich bin übrigens Tilly", sagt sie und versucht dabei einen Tonfall, der nach Offizier klingen soll und eher nach jemandem klingt, 
-der das Wort zum ersten Mal ausprobiert. „Söldnerin. Vierundachtzigstes Banner. Offiziell." 
-Sie hält kurz inne, als müsste sie selbst erst überlegen, was als Nächstes kommt, und wechselt dann, ohne Übergang, in einen Ton, 
-der eher zur Markthändlerin passt als zur Söldnerin: „Und wenn du eh grad in der Gasse bist — 
-der mit der blauen Tür kauft dir auch gebrauchte Stiefel ab, falls du mal welche über hast." 
-Die Feldscherin nickt.
-„Fei a Guter Preis!" 
-Beim Aufstehen, um sich zu strecken, tritt sie gegen den Klapptisch, und der Krug wackelt bedenklich, 
-bevor Clausz ihn ohne hinzusehen mit einer Hand auffängt.</p>
-
-<p>Du willst aufstehen. Clausz macht eine kleine, beiläufige Handbewegung. Bleib kurz.</p>
-
-<p>Und dann schaut die Frau von ihrer Nadel auf — nicht ins Gesicht, tiefer, sachlicher. 
-Der Blick eines Menschen der gelernt hat Körper zu lesen wie andere Leute Wetterfahnen lesen.</p>
-
-<div class="dialog">„Das da." Sie zeigt ohne Umschweife auf die Stelle die du seit Tagen ignorierst. „Zeig das mal her."</div>
-
-<<= setup.setNpcAffection("clausz", 2)>>
-<<= setup.setNpcAffection("tilly", 1)>>
-
-[[Weiter|EE_Tross_Rosi]]
-
-
-:: EE_Tross_Ehrlich {"position":"875,1000","size":"100,100"}
-<p>Er sieht dich an. Nickt einmal, kurz, anerkennend.</p>
-
-<div class="dialog">„Das ist die richtige Antwort."</div>
-
-<p>Er greift nach der Wasserpfeife und hält dir das Mundstück hin.</p>
-
-<div class="dialog">„Zug?"</div>
-
-<p>Du nimmst an oder nicht. Er wartet so oder so.</p>
-
-<p>Es wird nicht viel geredet. Er schreibt ins Lagerbuch — diesmal wirklich. 
-Die Frau näht. Auf der Kiste rührt sich die dritte Gestalt, blinzelt einmal in deine Richtung und scheint zu dem Schluss zu kommen, 
-dass ehrliche Rekruten es verdient haben, wenigstens kurz begrüßt zu werden. 
-„Tilly", sagt sie, mit einem Nicken, das sie erkennbar für würdevoll hält. 
-„Söldnerin. Vierundachtzigstes Banner." Dann, nach einer Pause, die vermutlich als bedeutungsschwer gemeint ist: „Offiziell." 
-Sie klingt einen Moment lang tatsächlich wie jemand, der weiß, wovon er redet — 
-bis sie beim Zurücklehnen mit dem Ellbogen den Tintentopf des Lagerbuchs streift und ihn gerade noch mit der freien Hand auffängt, 
-ohne den Blick von dir zu nehmen, als wäre nichts gewesen. Der Rauch der Wasserpfeife steigt derweil träge in den Nachmittag.</p>
-
-<p>Nach einer Weile schaut die Frau von ihrer Nadel auf — nicht ins Gesicht, tiefer, sachlicher. 
-Der Blick eines Menschen der gelernt hat Körper zu lesen wie andere Leute Wetterfahnen lesen.</p>
-
-<div class="dialog">„Das da." Sie zeigt ohne Umschweife auf die Stelle die du seit Tagen ignorierst. „Zeig mal her."</div>
-
-<<= setup.setNpcAffection("clausz", 2)>>
-<<= setup.setNpcAffection("tilly", 1)>>
-
-[[Weiter|EE_Tross_Rosi]]
-
-
-:: EE_Tross_Intro [kap1] {"position":"725,750","size":"100,100"}
-<p>Der Schinder hat dich am Morgen zur Seite genommen — keine große Sache, nur eine Besorgung. Irgendetwas fehlt im Lager, irgendjemand braucht irgendetwas aus der Stadt, und du bist der, der gerade keinen Grund hat nein zu sagen.</p>
-
-<p>Du hast einen Zettel in der Hand und eine ungefähre Vorstellung wo die Gasse sein soll. Die Stadt ist laut, eng, und riecht nach Fisch und Pferden und dem Rauch von hundert Herden gleichzeitig. Du findest die Gasse. Du findest das Haus. Du klopfst.</p>
-
-<p>Niemand öffnet.</p>
-
-<p>Du wartest. Du klopfst nochmal. Nichts.</p>
-
-<p>Der Zettel hilft dir nicht weiter. Du schaust dich um.</p>
-
-<p>Unter dem Vordach des Nachbargebäudes hat sich eine kleine Welt eingerichtet.</p>
-
-[[Nachschauen|EE_Tross]]
-
-
-:: EE_Tross_Rosi {"position":"725,1125","size":"100,100"}
-<p>Du willst sagen dass es nichts ist. Sie lässt dich nicht.</p>
-
-<div class="dialog">„Setz dich da hin. Fei, ich schau's mir an."</div>
-
-<div class="scenery-text">Was dann folgt ist eine ruhige, gründliche Angelegenheit. 
-Sie reinigt, prüft, versorgt — und erklärt dabei jeden Schritt mit einer Selbstverständlichkeit als wärst du ein Lehrling und nicht zufällig vorbeigelaufen.
- Warum sie so reinigt und nicht anders. Was sie dabei sucht. Wie man erkennt ob es sich entzündet. Was man dann tut und was man auf keinen Fall tut.</div>
-
-<p>Clausz schenkt ihr nebenbei einen Becher ein ohne zu fragen. Sie nimmt ihn ohne aufzusehen.</p>
-
-<div class="dialog">„Merkst du dir das?"</div>
-
-<p>Du nickst.</p>
-
-<div class="dialog">„Gut." Sie schneidet den Faden ab. „Beim nächsten Mal machst du's selber. Und kratzt fei nicht dran!"</div>
-
-<p>Clausz zieht einmal an der Wasserpfeife. „Sie hat fei mal einen Ritter zum Schmied geschickt."</p>
-
-<div class="dialog">„Der hat eine Delle in der Rüstung gehabt", sagt sie. „Was soll ich mit einer Delle?"</div>
-
-<div class="dialog">„Er war Ritter...."</div>
-
-<div class="dialog">"Deswegen kann ich fei trotzdem keine Dellen nähen, schmieren, oder sonst wie heilen!"</div>
-
-<p>Tilly, die bislang mit dem Rücken gegen die Häuserwand gelehnt hatte, 
-kommt herüber, offenbar der Meinung, ihre Hilfe sei jetzt gefragt. 
-„Ich kann assistieren", verkündet sie mit einem Ernst, der besser zu einem Feldscher-Lehrmeister passen würde als zu jemandem,
- der im selben Moment eine Rolle Verbandszeug fallen lässt, sich danach bückt, sich dabei den Kopf am Tisch stößt und sich mit einem Lächeln wieder aufrichtet, 
- als sei genau das der Plan gewesen. Rosi nimmt ihr das Verbandszeug wortlos aus der Hand, ohne aufzuschauen. 
- „Setz dich, Tilly." — „Ich sitz eh schon fast", antwortet Tilly und setzt sich, diesmal tatsächlich, 
- auf die Kiste zurück, wo sie mit einer Selbstverständlichkeit weiterredet, als hätte ihr Beitrag gerade den Unterschied gemacht: 
- „Mein Vater war übrigens auch mal beim Militär. Ein Adliger, aus dem Ausland. Hat mal die Bumsburg besucht, ganz sicher." 
- Rosi verdreht die Augen, ohne dabei den Faden zu verlieren. Clausz sagt gar nichts, was bei ihm ungefähr einem Kommentar gleichkommt.</p>
-
-<<= setup.pushNpcMemory("tilly", "hat sich als Feldscher-Assistenz angeboten (erfolglos)")>>
-<<= setup.setNpcAffection("rosi", 3)>>
-<<= setup.setPlayerKnowledge("medicine", 1)>>
-<<= setup.pushNpcMemory("rosi", "hat Thomas versorgt")>>
-<<run setup.addRumor("Tillys Vater war Adliger, aus dem Ausland. Hat mal die Bumsburg besucht.")>>
-
-[[Weiter. ->EE_Tross_Abgang]]

@@ -40,6 +40,7 @@ Er kommt nicht und geht wieder — er liegt auf dem kahlen Gelände der Akademie
 <<silently>>
 	<<set $player.rank = "Rekrut">>
 <</silently>>
+<hr class="trenner-raute">
 [["Ein junger Mann, bereit für die Ausbildung."->Das Erwachen]]
 
 :: Sergent aushorchen [layout] {"position":"600,300","size":"100,100"}
@@ -48,6 +49,7 @@ Er kommt nicht und geht wieder — er liegt auf dem kahlen Gelände der Akademie
 
 <<= setup.setNpcAffection("sergeant", -5)>>
 
+<hr class="trenner-raute">
 [[Befehl befolgen und direkt zum Kasernenhof gehen->Der Kasernenhof]]
 [[Sich heimlich von der Truppe absetzen und die Akademie-Hallen auskundschaften->Hallen erkunden]]
 
@@ -69,6 +71,7 @@ Er kommt nicht und geht wieder — er liegt auf dem kahlen Gelände der Akademie
 
 <<=setup.setNpcAffection("kurt", -5)>><<set $npc.kurt.known = true>>
 <<=setup.setPlayerStat("honesty", -3)>>
+<hr class="trenner-raute">
 [[Zähneknirschend auf den Hof zerren lassen.->Der Kasernenhof]]
 
 
@@ -85,6 +88,7 @@ Er kommt nicht und geht wieder — er liegt auf dem kahlen Gelände der Akademie
 
 <div class="scenery-text">Du lehnst dich ein Stück zu weit vor, um mehr zu verstehen – und prompt knarrt eine morsche Holzdiele laut unter deinem Stiefel. Drinnen herrscht schlagartig eisige Stille.."</div>
 
+<hr class="trenner-raute">
 [[Hastig herumwirbeln und zur Treppe am anderen Ende des Flurs sprinten! ->Treppe runterrennen]]
 [[Stehen bleiben und versuchen, sich irgendwie herauszureden. ->Rausreden Versuch]]
 
@@ -114,6 +118,7 @@ Nur ein Mann, dem der Krieg etwas genommen hat — und der trotzdem noch hier st
 <p>Irgendwo hinter dir schließt sich das Tor der Akademie mit einem dumpfen, endgültigen Laut.</p>
 <p>Du bist jetzt drin.</p>
 
+<hr class="trenner-raute">
 [[Beginne deine Ausbildung->Kap01_RekrutenKennenlernen]]
 
 
@@ -133,7 +138,7 @@ Nur ein Mann, dem der Krieg etwas genommen hat — und der trotzdem noch hier st
 <p>Ihre flache Hand trifft deine Schulter mit einem Klang, der durch die halbe Stube hallt.</p>
 <div class="dialog">„Ich bin Karla. Wenn du im Schlamm genauso zäh bist wie im Offiziersflügel, werden wir beide hier verdammt viel Spaß haben." Sie nickt auf die freie Pritsche neben ihrer. „Schnapp sie dir, bevor es ein anderer tut."</div>
 
-
+<hr class="trenner-raute">
 [[Bei Karla einrichten->Stube: Bei Karla einrichten]]
 [[Ihr Angebot ablehnen und einen eigenen Platz suchen->Stube: Eigene Pritsche suchen][$npc.karla.affection -= 5]]
 
@@ -143,6 +148,7 @@ Nur ein Mann, dem der Krieg etwas genommen hat — und der trotzdem noch hier st
 <p>Vor dir steht ein schlanker, sehniger Rekrut mit wachen, dunklen Augen und dem ruhigen Gesicht eines Menschen, dem Lärm noch nie viel bedeutet hat. Er trägt dieselbe rot-weiße Rekrutenkleidung wie du, wirkt darin aber seltsam gefasst — als hätte er sich mit dem Chaos um ihn herum bereits abgefunden, noch bevor es begann. Mit einer knappen Geste deutet er auf ein freies Stockbett nahe der Tür, weit genug von Karla entfernt, um unsichtbar zu bleiben.</p>
 <div class="dialog">„Lass gut sein", sagt er mit leiser Stimme. „Wer am ersten Tag den dicken Max markiert, fängt sich beim Schinder als Erster den Schaft ein." Er streckt dir die Hand hin. „Ich bin Jarek. Sieht so aus, als müssten wir uns diese Holzkiste für die nächsten zwei Jahre teilen."</div>
 
+<hr class="trenner-raute">
 [[Jareks Hand schütteln und das obere Bett für sich beanspruchen. ->Stube: Jarek anfreunden]]
 [[Jarek ignorieren und stattdessen eine eigene Pritsche suchen. ->Stube: Eigene Pritsche suchen]]
 
@@ -161,6 +167,7 @@ Nur ein Mann, dem der Krieg etwas genommen hat — und der trotzdem noch hier st
 <p>Du liegst in deiner neuen Welt.</p>
 <<= setup.setNpcAffection("karla", 4)>>
 
+<hr class="trenner-raute">
 [[Dich hinlegen und auf den Schlaf warten. ->Stube: Jarek kommt vorbei]]
 
 
@@ -179,6 +186,7 @@ Nur ein Mann, dem der Krieg etwas genommen hat — und der trotzdem noch hier st
 <p>Morgen beginnt es.</p>
 <p>Heute Nacht bist du noch einfach nur müde.</p>
 
+<hr class="trenner-raute">
 [[Versuchen, zur Ruhe zu kommen. ->Stube: Jarek kommt vorbei]]
 
 
@@ -193,6 +201,7 @@ Nur ein Mann, dem der Krieg etwas genommen hat — und der trotzdem noch hier st
 <div class="dialog">„Ich hoffe, auf dich ist Verlass, wenn wir erst im Schildwall stehen."</div>
 <p>Es ist keine Drohung. Keine Prüfung. Nur eine ehrliche Frage von jemandem, der weiß, dass die Antwort darauf irgendwann zählen wird.</p>
 
+<hr class="trenner-raute">
 [[Ihm versichern, dass er auf dich zählen kann. ->Nachtruhe 1][$npc.jarek.affection += 2]]
 [[Dich einfach wortlos hinlegen und das Gespräch beenden. ->Nachtruhe 1]]
 
@@ -216,6 +225,7 @@ Nur ein Mann, dem der Krieg etwas genommen hat — und der trotzdem noch hier st
 
 <p>Er macht keine Anstalten zu gehen, und er wartet auch auf nichts. Aber da ist dieser Moment, in dem du etwas sagen könntest — oder eben nicht.</p>
 
+<hr class="trenner-raute">
 [[Ihm von früher erzählen — davon, dass auch du nicht immer stark warst. ->Stube: Thomas erzählt]]
 [[Auch schweigen. Zwei, die nichts hermachen aus dem, was sie tragen. ->Stube: Schweigen mit Jarek]]
 
@@ -233,6 +243,7 @@ Nur ein Mann, dem der Krieg etwas genommen hat — und der trotzdem noch hier st
 
 <<= setup.setNpcAffection("jarek", 2)>>
 
+<hr class="trenner-raute">
 [[Die Augen schließen. ->Nachtruhe 1]]
 
 
@@ -249,6 +260,7 @@ Nur ein Mann, dem der Krieg etwas genommen hat — und der trotzdem noch hier st
 
 <<= setup.setNpcAffection("jarek", 1)>>
 
+<hr class="trenner-raute">
 [[Die Augen schließen. ->Nachtruhe 1]]
 
 
@@ -263,6 +275,7 @@ Nur ein Mann, dem der Krieg etwas genommen hat — und der trotzdem noch hier st
 <p>Es bleiben noch exakt einhundert und vier Wochen.</p>
 <p>Du schließt die Augen.</p>
 
+<hr class="trenner-raute">
 [[Der nächste Morgen: Der erste Tag vergeht... ->Das Training: Erster Tag]]
 
 :: Das Erwachen [layout] {"position":"675,150","size":"100,100"}
@@ -285,6 +298,7 @@ Nur ein Mann, dem der Krieg etwas genommen hat — und der trotzdem noch hier st
 
 <<set $npc.sergeant.known = true>>
 
+<hr class="trenner-raute">
 [[Befehl befolgen und direkt zum Kasernenhof gehen->Der Kasernenhof]]
 [[Sich heimlich von der Truppe absetzen und die Akademie-Hallen auskundschaften->Hallen erkunden]]
 [[Den Sergeant nach neuen Gerüchten ausfragen->Sergent aushorchen]]
@@ -347,22 +361,26 @@ Nur ein Mann, dem der Krieg etwas genommen hat — und der trotzdem noch hier st
 <p>Er hebt den Holzschaft und deutet auf die Lücke hinter dir.</p>
 <p>Der Schinder steht vor dir. Sein Auge wartet.</p>
 
+
 <<if $npc.karla.affection gt 0>>
-<p>@@.beziehung;Karlas Stimme trifft dich von der Seite — kaum mehr als ein Zischen, aber scharf genug um anzukommen. „Beweg dich, Frischling.“@@</p>
-<<elseif $npc.jarek.affection gt 0>>
-<p>@@.beziehung;Jarek rührt sich nicht. Aber sein rechter Fuß verschiebt sich einen halben Schritt — langsam, bewusst, so dass du es siehst. Eine stille Anweisung, mehr nicht.@@</p>
-<<else>>
-<p>@@.beziehung;Du blickst dich suchend nach vertrauten Gesichtern aus deiner Stube um. Du entdeckst Jarek und Karla, aber beide ignorieren dich starr.@@</p>
+    <p>@@.beziehung;Karlas Stimme trifft dich von der Seite — kaum mehr als ein Zischen, aber scharf genug um anzukommen. „Beweg dich, Frischling.“@@</p>
+    <<elseif $npc.jarek.affection gt 0>>
+    <p>@@.beziehung;Jarek rührt sich nicht. Aber sein rechter Fuß verschiebt sich einen halben Schritt — langsam, bewusst, so dass du es siehst. Eine stille Anweisung, mehr nicht.@@</p>
+    <<else>>
+    <p>@@.beziehung;Du blickst dich suchend nach vertrauten Gesichtern aus deiner Stube um. Du entdeckst Jarek und Karla, aber beide ignorieren dich starr.@@</p>
 <</if>>
+<hr class="trenner-raute">
 <<if $npc.karla.affection gt 0 or $npc.jarek.affection gt 0>>
-<<link "Dich dank des Hinweises sofort ausrichten — du weißt, was zu tun ist.">>
-<<if $npc.karla.affection gt 0>><<set $player.rel.karla += 1>><</if>>
-<<if $npc.jarek.affection gt 0>><<set $player.rel.jarek += 1>><</if>>
-<<set $player.chosen_activity to "zeigt_eigeninitiative">>
-<<goto "Appell: Ausrichten">>
-<</link>>
+
+    <<link "Dich dank des Hinweises sofort ausrichten — du weißt, was zu tun ist.">>
+    <<if $npc.karla.affection gt 0>><<set $player.rel.karla += 1>><</if>>
+    <<if $npc.jarek.affection gt 0>><<set $player.rel.jarek += 1>><</if>>
+    <<set $player.chosen_activity to "zeigt_eigeninitiative">>
+    <<goto "Appell: Ausrichten">>
+    <</link>>
 <</if>>
-[[Warten, bis er es dir befiehlt. ->Appell: Ausrichten][$player.chosen_activity to "ist_befehlstreu"]]
+
+    [[Warten, bis er es dir befiehlt. ->Appell: Ausrichten][$player.chosen_activity to "ist_befehlstreu"]]
 <<if $npc.karla.affection lte 0 and $npc.jarek.affection lte 0>>
 	[[Auf gut Glück versuchen dich auszurichten — du rätst, was verlangt ist. ->Appell: Ausrichten][$player.chosen_activity to "ist_panisch"]]
 <</if>>
@@ -401,4 +419,5 @@ Nur ein Mann, dem der Krieg etwas genommen hat — und der trotzdem noch hier st
 <p>Das Talglicht flackert.</p>
 <p>Du schließt die Augen, noch bevor jemand es löscht.</p>
 
+<hr class="trenner-raute">
 [[Der nächste Tag. ->Kapitel 1]]

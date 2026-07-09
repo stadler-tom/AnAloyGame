@@ -39,3 +39,15 @@ setup.ermStufeFertig = function (n) {
     if (n > e.stufe) e.stufe = n;
     return "";
 };
+
+/* Ist Karla gerade verfügbar (Hubs, allgemeine Kap-2-Texte)? — Live-Check */
+setup.karlaDa = function () {
+    return State.variables.npc.karla.memory.flags.verhaftung_seen !== true;
+};
+
+/* Ermittlungs-Modus, beim Auftakt eingefroren — für ALLE Ermittlungs-Texte */
+setup.ermMit = function () {
+    var e = State.variables.world.ermittlung;
+    return !!e && e.flags.modus === "mit";
+};
+

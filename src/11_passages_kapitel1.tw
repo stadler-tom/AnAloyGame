@@ -25,6 +25,7 @@
 <hr class="trenner-raute">
 <div class="thought-box"><<= setup.executeStationRewards("cannon", "thoughts")>></div>
 <hr class="trenner-raute">
+
 [[Zurück zum Appellplatz ->Abendappell]]
 
 
@@ -127,6 +128,7 @@
 <div class="thought-box">Ein Fuß in den Schreibstuben. Militärakten, Prozessrollen, alte Verträge – sogar Abschriften aus dem Gründungsarchiv in Grodaus sollen hier durchlaufen. Wenn jemand etwas Bestimmtes suchen würde ... aber wer sollte das schon.</div>
 <div class="system-alert status-positive">Archivzugang erhalten — die Schreibstuben der Akademie stehen dir offen.</div>
 
+<hr class="trenner-raute">
 <span class="weiter-link">[[Weiter ->Studium Hub]]</span>
 
 
@@ -158,6 +160,7 @@
 <div class="scenery-text">Du wagst einen Einwand – und für einen Moment hebt Halm tatsächlich eine Augenbraue. Ihr ringt um einen einzigen Satz aus der Freiheitserklärung, bis er die Hand hebt. „Falsch begründet“, sagt er. „Aber nicht dumm gedacht. Das ist mehr, als ich von den meisten hier sagen kann.“</div>
 <div class="system-alert status-positive"><<= _namen[_fach]>> um 1 gestiegen</div>
 <div class="thought-box">Er streitet gern – solange das Gegenüber etwas zu sagen hat. Das werde ich mir merken.</div>
+<hr class="trenner-raute">
 <span class="weiter-link">[[Zurück ->Studium Magister]]</span>
 
 
@@ -222,6 +225,7 @@
 <</if>>
 </ul>
 
+<hr class="trenner-raute">
 <span class="weiter-link">[[Zurück in den Hörsaal ->Studium Hub]]</span>
 
 
@@ -240,6 +244,7 @@
 
 <p>Halm schlägt sein Buch auf. „Genug der Vorrede. Wer etwas wissen will, fragt. Wer etwas erbittet, zahlt – und zwar nicht in Kupfer.“</p>
 
+<hr class="trenner-raute">
 [[Ihm offen in die Augen sehen und nicken. ->Studium Hub][$npc.magister.affection += 1]]
 [[Den Blick senken und einfach mitschreiben. ->Studium Hub]]
 
@@ -276,6 +281,7 @@
 <<run setup.markExamResult(_g.pct)>>
 <<= setup.examRewardHTML(_g.pct)>>
 <</if>>
+<hr class="trenner-raute">
 <<weiterImTag "Den Prüfungssaal verlassen">>
 
 
@@ -312,6 +318,7 @@
 <</if>>
 <<link "Weiter">>
 <<run setup.nextExam()>>
+<hr class="trenner-raute">
 <<if $edu.exam.done>><<goto "Pruefung Ergebnis">><<else>><<goto "Pruefung Frage">><</if>>
 <</link>>
 <</if>>
@@ -322,6 +329,7 @@
 <p>Abschlusspruefung – Kapitel 1</p>
 <div class="scenery-text">Der Hoersaal ist heute anders. Kein Gemurmel, kein Scharren. Vor jedem Platz liegt ein Bogen Papier, und vorne steht der Magister mit dem Gesicht eines Mannes, der heute keine Ausreden hoeren will. „Ihr habt zugehoert oder ihr habt es nicht“, sagt er. „Gleich wissen wir, was davon stimmt."</div>
 
+<hr class="trenner-raute">
 <<if _anzahl === 0>>
 <div class="system-alert status-negative">Du hast bisher keine einzige Vorlesung wirklich verfolgt. Es gibt nichts, was man dich fragen koennte – und das ist die schlechteste aller Antworten.</div>
 [[Den Hoersaal beschaemt verlassen ->Pruefung Ergebnis]]
@@ -401,7 +409,9 @@
 </div>
 </span>
 
+
 <span id="gd-weiter" style="display:none">
+<hr class="trenner-raute">
 <<weiterImTag "Das war ein antrengender Tag. Zum Appell">>
 </span>
 
@@ -423,8 +433,9 @@
 <p>Keine Gedanken über morgen. Keine Pläne. Nur das leise Knacken des Holzes, das Atmen von dreißig Menschen, und das langsam nachlassende Pochen in deinen Beinen.</p>
 
 <div class="scenery-text">Draußen ist der Wind noch immer da. Er wird morgen auch noch da sein. Du wirst auch noch da sein.</div>
-<div class="thought-box">Das zählt.</div>---
+<div class="thought-box">Das zählt.</div
 
+<hr class="trenner-raute">
 <<weiterImTag "Das war ein antrengender Tag. Auf die Stube">>
 
 
@@ -445,6 +456,7 @@
 
 <div class="thought-box">Das ist ungewohnt. Meistens denkst du an zu viel auf einmal. Aber der Körper, wenn er müde genug ist, macht den Kopf still. Das ist vielleicht die ehrlichste Form der Ruhe.</div>
 
+<hr class="trenner-raute">
 [[Weiter->Story003_Abend]]
 
 
@@ -465,6 +477,7 @@
 <div class="thought-box">Früher war das nicht selbstverständlich.</div>
 <p>Jemand stößt im Vorbeigehen gegen deine Pritsche. Keine Absicht. Einfach zu wenig Platz und zu viel Morgenmüdigkeit.</p>
 
+<hr class="trenner-raute">
 [[Du stehst auf.->Story003_Fruehstueck]]
 
 
@@ -482,6 +495,7 @@
 
 <p>Wie du den Morgen angehst – das entscheidest du jetzt, ohne groß darüber nachzudenken. Meistens sind das die Entscheidungen, die zählen.</p>
 
+<hr class="trenner-raute">
 [[Schweigend essen und in Ruhe lassen wollen->Story003_Stille]]
 [[Den Blickkontakt suchen – irgendjemanden ansprechen->Story003_Kontakt]]
 
@@ -504,6 +518,7 @@
 
 <<= setup.setNpcAffection("karla", 1)>>
 
+<hr class="trenner-raute">
 [[Weiter->Story003_Drill]]
 
 
@@ -523,6 +538,7 @@
 
 <<= setup.setNpcAffection("jarek", 1)>>
 
+<hr class="trenner-raute">
 [[Weiter->Story003_Drill]]
 
 
@@ -716,6 +732,7 @@
 <div class="system-alert status-positive">KAPITEL 1 ABGESCHLOSSEN — Die Grundausbildung ist beendet. Aus dem kranken Jungen in den Bergen ist ein Soldat geworden.</div>
 <<run setup.kapitel1Abschliessen()>>
 
+<hr class="trenner-raute">
 [[ "Was kommt, kommt."|Kapitel 2]]
 
 
@@ -735,6 +752,7 @@
 
 <<set $npc.diplomatHannes.known = true>>
 
+<hr class="trenner-raute">
 [[Befehl befolgen und direkt zum Kasernenhof gehen->Der Kasernenhof]]
 
 
@@ -788,6 +806,7 @@
         <</if>>
 <p>Du stehst auf und wackelst in Richtung deiner Pritsche</p>
 
+<hr class="trenner-raute">
         [[Aufhören->Kap1_Tagesstart]] 
     <</timed>>
 <<else>>   
@@ -835,7 +854,7 @@
 [[Dein ganzes Kupfer auf den Tisch legen->Wuerfel_AllIn]]
 <<else>>
 <p>Wie viel willst du setzen?</p>
-
+<hr class="trenner-raute">
 [[1 Kupfer->Wuerfel_Set_1]]
 [[2 Kupfer->Wuerfel_Set_2]]
 [[5 Kupfer->Wuerfel_Set_5]]
@@ -859,6 +878,7 @@
 
 <p>Bevor du reagieren kannst, packt sie dich am Kragen und zieht dich zurück an den Tisch.<<set $sendByKarla = true>></p>
 
+<hr class="trenner-raute">
 [[Der Würfel klackt auf Holz->Wuerfel_Start]] 
 
 <<else>>
@@ -889,6 +909,7 @@
 <p>Niemand sagt etwas dagegen.</p>
 <p>In einer Kaserne schläft jeder irgendwann irgendwo ein.</p>
     
+    <hr class="trenner-raute">
     [[schlafen->Kap1_Tagesstart]]
 <</timed>>
 <</if>>
@@ -909,6 +930,7 @@
 <p>die dieselben müden Geschichten erzählen.</p>
         <div class="thought-box">Ich kenne diese Gesichter langsam. Aber ihre Geheimnisse hab ich noch nicht alle.
         </div>
+        <hr class="trenner-raute">
         [[Schlafen ->Kap1_Tagesstart]]
     <<else>>
         <div class="scenery-text">Ein paar Kerzen flackern. Jemand lehnt sich vor.
@@ -922,10 +944,13 @@
             <<set _probeThought = setup.getProbeThoughtText(_gossipSkill, _gossipDiff)>>
             <<if _probeThought !== null>>
                 <div class="thought-box"><<= _probeThought>></div>
-                <<set _label to 'Nachhaken' + setup.checkHint('gossip', _gossipDiff,3)>>
-                <<link _label>><<goto 'Event_Geschichte_Probe'>><</link>>
+            <<else>>
+                <div class="thought-box">Schwer zu sagen, ob da mehr zu holen ist — aber ein Versuch ist's wert.</div>
             <</if>>
+                <<set _label to 'Nachhaken' + setup.checkHint('gossip', 13, _gossipDiff)>>
+                <<link _label>><<goto 'Event_Geschichte_Probe'>><</link>>           
         <</if>>
+        <hr class="trenner-raute">
         [[Schlafen ->Kap1_Tagesstart]]
     <</if>>
 <</if>>
@@ -941,8 +966,10 @@
     <<if _gossipStory.probe>>
         <div class="thought-box">Moment… die Geschichte kenn ich doch. Vielleicht ist da doch mehr dran.
         </div>
+        <hr class="trenner-raute">
         [[Nachfragen ->Event_Geschichte_Probe]] 
     <</if>>
+    <hr class="trenner-raute">
     [[Schlafen ->Kap1_Tagesstart]]
 <<else>>
     <div class="thought-box">Das ist alles nur uninteressanter Tratsch. Ich hau ab...
@@ -953,14 +980,17 @@
 
 :: Event_Geschichte_Probe {"position":"2400,1900","size":"100,100"}
 <<set _gossipStory = $world.currentGossipStory>>
-<<set _r = setup.skillCheckXp("gossip", _gossipStory.probe.difficulty,3)>>
-<<if _r.skill <= 3>>
-    <div class="scenery-text">Du hakst nach, etwas forsch.</div>
-<<elseif _r.skill <= 7>>
-    <div class="scenery-text">Du hakst nach. Beiläufig. So, als wäre es keine echte Frage.</div>
-<<else>>
-    <div class="scenery-text">Du musst nicht mal wirklich fragen und der Tratsch beginnt.</div>
-<</if>>
+<<set _r = setup.skillCheckXp("gossip", 13, _gossipStory.probe.difficulty)>>
+
+<<scene>>
+    <<if $player.knowledge.gossip <= 3>>
+        <p>Du hakst nach, etwas forsch.</p>
+    <<elseif $player.knowledge.gossip <= 7>>
+        <p>Du hakst nach. Beiläufig. So, als wäre es keine echte Frage.</p>
+    <<else>>
+        <p>Du musst nicht mal wirklich fragen und der Tratsch beginnt.</p>
+    <</if>>
+<</scene>>
 
 <<if _r.success>>
     <<= setup.getSuccessThought($player.knowledge.gossip, _r.skill)>>
@@ -985,6 +1015,7 @@
 <</if>>
 
 <<set $world.currentGossipStory = null>>
+<hr class="trenner-raute">
 [[Schlafen ->Kap1_Tagesstart]]
 
 
@@ -994,6 +1025,7 @@
 <<elseif $player.knowledge.combat == 10>>
 <p>Zwei Rekruten gehen sich an die Gurgel — doch als du dich aufrichtest, verstummen sie. Vor deiner Kampferfahrung haben sie Respekt.</p>
     
+    <hr class="trenner-raute">
     [[Zur Pritsche gehen ->Kap1_Tagesstart]]
 <<else>>
     <div class="thought-box">Zwei Rekruten streiten lautstark. Du könntest dazwischengehen — ob du sie auseinanderbekommst, hängt von deiner Kampferfahrung ab.</div>
@@ -1011,21 +1043,25 @@
                 <<if _r.outcome == 'crit'>>
 <p>Ein einziger harter Schlag, perfekt ins Ziel – und es ist vorbei. Die ganze Stube hat es gesehen.</p>
                     <<= setup.setPlayerKnowledge('combat', 1)>>
+                    <hr class="trenner-raute">
                     [[Stolz geschwellt zur Pritsche gehen ->Kap1_Tagesstart]]
                 <<elseif _r.success>>
 <p>Fäuste fliegen, beide Seiten stecken ein und teilen aus. Am Ende bleibst du stehen.</p>
                     <<= setup.setPlayerKnowledge('combat', 1)>>
+                    <hr class="trenner-raute">
                     [[Zur Pritsche gehen ->Kap1_Tagesstart]]
                 <<elseif _r.outcome == 'fumble'>>
 <p>Du greifst voll daneben und gehst selbst zu Boden, ehe ein Weibel dazwischenfährt.</p>
                     <<= setup.setPlayerCondition(-5)>>
                     <<= setup.setPlayerStat('discipline', -2)>>
                     <<= setup.setPlayerStat('ambition', -1)>>
+                    <hr class="trenner-raute">
                     [[Unter Lachen der Anderen zur Pritsche gehen ->Kap1_Tagesstart]]
                 <<else>>
 <p>Es misslingt – du fängst ein paar Hiebe, ein Weibel reißt euch auseinander.</p>
                     <<= setup.setPlayerCondition(-2)>>
                     <<= setup.setPlayerStat('discipline', -1)>>
+                    <hr class="trenner-raute">
                     [[Zur Pritsche humpeln ->Kap1_Tagesstart]]
                 <</if>>
             <</replace>>
@@ -1052,6 +1088,7 @@
 
 <<else>>
 
+<hr class="trenner-raute">
 [[Mitspielen->Wuerfel_Start]] 
 [[Zuschauen->Wuerfel_Zuschauen]]
 <</if>>
@@ -1077,6 +1114,7 @@
 <<include _event>>
  <</if>>
 	
+    <hr class="trenner-raute">
     [[Zuhören, was geredet wird ->Event_Geschichte]]
     [[Schlafen->Kap1_Tagesstart]]
     
@@ -1103,6 +1141,7 @@
   <<goto setup.sidequests[_q].start>>
 <</if>>
 
+<hr class="trenner-raute">
 [[Auf Stube gehen ->Auf Stube]]
 
 
@@ -1126,6 +1165,7 @@
     <div class="thought-box">
 <p>Zeit, sich dem Studium zu widmen.</p>
     </div>
+    <hr class="trenner-raute">
     [[Die Glocken zuStudium läuten ->Studium Hub]]
     <<else>>
       <div class="scenery-text">Nach dem Frühstück gab es heute Vormittag lediglich einen kurzen Drill.
@@ -1142,6 +1182,7 @@
 <p>Nach dem Frühstück wurde der reguläre Unterricht überraschend abgesagt. Offenbar waren mehrere Dozenten anderweitig beschäftigt. Die meisten Studenten nutzten die unerwartete Freizeit, um ihren eigenen Angelegenheiten nachzugehen.</p>
       <</if>>
       <div class="thought-box">Einfach mal in Ruhe los ziehen...</div>
+      <hr class="trenner-raute">
         [[Die Akkademie auf eigene Faust erkunden ->Nachmittag Hub]]
     <</if>>
 <</if>>
@@ -1155,6 +1196,7 @@
 <div class="thought-box"><<= setup.getNaechsterTagText("gedanke")>></div>
 <<= setup.getNaechsterTagText("luigi_schatten")>>
 
+<hr class="trenner-raute">
 [[Sieh was der Tag bringt->Kap1_Der nächste Tag]]
 
 

@@ -1,0 +1,460 @@
+:: Duell_S0_Fruehstueck [interrupt einmalig]
+
+<<if not $world.duell or $world.duell.done>>
+    <<set $world.duell = {
+        active: true,
+        done: false,
+        finalized: false,
+
+        tension: 1,
+        pavel_trust: 0,
+        bronko_trust: 0,
+        zdenka_trust: 0,
+
+        breakfast_reaction: "",
+        s1_method: "",
+        s2_method: "",
+        preparation: "",
+        prep_matches_specialization: false,
+        side: "",
+        outcome: "",
+
+        facts: {
+            rabenfurt_feud: false,
+            zdenka_fear: false,
+            public_discipline: false,
+            old_bridge: false
+        },
+
+        flags: {}
+    }>>
+<</if>>
+
+<<set _spec = $player.spezialisierung>>
+
+<<scene>>
+<p>Der Morgen riecht nach Graupenbrei, Zwiebeln, nassem Wollstoff und kalter Asche.</p>
+
+<p>In der Halle sitzen die Waffenträger enger beieinander als im ersten Jahr, aber nicht friedlicher. Waffenriemen liegen über den Bänken, Helme unter den Tischen, und jedes Mal, wenn einer den Ellbogen zu hastig bewegt, schlägt irgendwo Metall gegen Holz.</p>
+
+<p>Der Lärm ist niedrig und zäh: Löffel in Schalen, Stiefel unter Bänken, Husten, halbe Stimmen, das Scharren eines Schemels. Am Eingang steht ein Korporal mit roten Augen und tut so, als sei Müdigkeit eine Form von Wachsamkeit.</p>
+<</scene>>
+
+<p>Du sitzt mit der Schale zwischen den Händen. Der Brei ist heiß genug, um dir die Finger zu wärmen, aber nicht gut genug, um dich dankbar zu machen.</p>
+
+<p>Am anderen Ende des Tisches fällt Pavels Name.</p>
+
+<p>Nicht laut. Nicht deutlich. Nur ein Wort, halb in den Brei gesprochen.</p>
+
+<p>Und trotzdem kauen mehrere Männer langsamer.</p>
+
+<<dialog>>
+<p>„Pipovic hat wieder angefangen“, murmelt einer neben der Brotschüssel.</p>
+<p>„Pavel?“</p>
+<p>„Welcher sonst.“</p>
+<p>Ein anderer schnaubt leise.</p>
+<p>„Dann fehlt nur noch ein Kulitcka, und Rabenfurt brennt wieder.“</p>
+<</dialog>>
+
+<p>Rabenfurt. Den Namen kennst du. Ein Dorf am Waid, ein Stück von Waidfurth flussabwärts, mit einer einzigen Holzbrücke, die seit drei Generationen mehr Hass trägt als Wagen.</p>
+
+<<dialog>>
+<p>„Worum ging's diesmal?“ fragt jemand.</p>
+<p>„Worum geht's bei denen schon?“</p>
+<p>„Mühle?“</p>
+<p>„Brücke.“</p>
+<p>„Schafe.“</p>
+<p>„Ein Mädchen.“</p>
+
+<p>Das letzte Wort fällt leiser als die anderen.</p>
+
+<p>Für einen Atemzug kratzt kein Löffel.</p>
+
+<p>„Halt dein Maul“, sagt jemand.</p>
+<</dialog>>
+
+<p>Etwas in dir will wissen, welches der Worte stimmt. Vielleicht, weil keins davon nach der ganzen Wahrheit klingt.</p>
+
+<p>Du suchst Pavel zwischen den Köpfen und Schultern.</p>
+
+<p>Pavel Pipovic sitzt drei Tische weiter. Den Kopf gesenkt, die Schale unberührt vor sich. Seine Schultern sind ruhig, aber seine Hand neben der Schale ist zur Faust geworden.</p>
+
+<p>Bronko Kulitcka sitzt an der Wandseite. Breiter als Pavel, still genug, dass man ihn fast übersehen könnte — wenn nicht alle so täten, als sähen sie ihn nicht. Er hält einen Becher mit beiden Händen. Er trinkt nicht.</p>
+
+<p>Er sieht nicht zu Pavel hinüber.</p>
+
+<p>Gerade deshalb merkt jeder, dass er es könnte.</p>
+
+<<if _spec is "pike">>
+    <<beziehung>>
+    <p>Seit du mit Pike und Hellebarde arbeitest, siehst du Abstände anders. Zwischen Pavel und Bronko liegt die halbe Halle — und doch wirkt sie schmal wie ein Steg über tiefem Wasser. Macht einer den ersten Schritt, bleibt für den zweiten kaum noch Raum.</p>
+    <</beziehung>>
+<<elseif _spec is "cannon">>
+    <<beziehung>>
+    <p>Beim Geschütz lernt man, der Lunte zuzuhören, bevor sie das Pulver findet — das kurze Zischen, das ankündigt, was gleich losbricht. Hier riechst du kein Pulver, und trotzdem liegt genau dieses Zischen in der Luft zwischen den beiden, als glimme irgendwo schon ein Docht, den keiner mehr löschen will.</p>
+    <</beziehung>>
+<<elseif _spec is "crossbow">>
+    <<beziehung>>
+    <p>Die Armbrust hat dir Geduld beigebracht. Nicht die friedliche Art — die andere, bei der man wartet, bis ein Blick eine Spur zu lange hält. Bronko hebt den Kopf einmal. Pavel sieht nicht weg.</p>
+    <</beziehung>>
+<<elseif _spec is "medicine">>
+    <<beziehung>>
+    <p>Seit du beim Feldscher gelernt hast hinzusehen, fallen dir andere Dinge zuerst auf. Pavels Finger sind zu steif. Bronkos Kiefer arbeitet einmal zu viel. Und Zdenka, zwei Bänke weiter, ist blasser, als eine alte Dorfgeschichte rechtfertigt.</p>
+    <</beziehung>>
+<</if>>
+
+<p>Zdenka Hrusa sitzt nicht bei Pavel. Auch nicht bei Bronko.</p>
+
+<p>Du kennst sie flüchtig — eine Rekrutin aus Rabenfurt, ruhig, mit scharfem Blick und einer Art zu schweigen, die nicht leer wirkt.</p>
+
+<p>Heute hält sie ihre Schale mit beiden Händen fest. Sie isst nicht.</p>
+
+<<dialog>>
+<p>„Siehst du Zdenka?“ fragt der Waffenträger neben dir.</p>
+<p>„Was ist mit ihr?“</p>
+<p>Er hebt das Kinn kaum merklich in ihre Richtung.</p>
+<p>„Sitzt nicht bei Pavel. Nicht bei Bronko.“</p>
+<p>„Sollte sie?“</p>
+<p>Er kratzt mit dem Löffel über den Boden seiner Schale.</p>
+<p>„Gestern hat Bronko Pavel vor allen einen Lügner genannt.“</p>
+<p>„Wegen der Fehde?“</p>
+<p>„Bei Rabenfurt ist alles wegen der Fehde.“</p>
+<p>Er sieht kurz zu Zdenka hinüber.</p>
+<p>„Aber diesmal hat sie's gehört.“</p>
+<</dialog>>
+
+<p>Danach kommt nichts Ganzes mehr. Nur Bruchstücke.</p>
+
+<p>Pavel habe Bronko nach dem Abendappell erwartet. Bronko habe nicht geantwortet. Einer habe den Namen Pipovic ausgespuckt, einer den Namen Kulitcka. Jemand habe von der Brücke gesprochen. Jemand von einer Scheune, die einmal gebrannt hat. Jemand von einer alten Schuld—</p>
+
+<<set $world.duell.facts.rabenfurt_feud = true>>
+<<set $world.duell.facts.zdenka_fear = true>>
+
+[[Weiter zum Vormittag->Duell_S1_Vormittag]]
+
+
+:: Duell_S1_Vormittag
+
+<<set _spec = $player.spezialisierung>>
+
+<<scene>>
+<p>Der Übungshof liegt noch im Schatten der Ostmauer, der Boden hart gefroren unter der dünnen Kruste aus Reif. Paare stehen im Abstand von zwei Schritten, stumpfe Kurzspieße in den Fäusten, Atem, der in weißen Fahnen aufsteigt und sich mit dem Geruch von Schweiß und altem Leder mischt.</p>
+
+<p>„Wechsel!“, brüllt der Waffenmeister, und die Reihen drehen sich, Paar für Paar, wie ein Mühlrad aus Menschen.</p>
+<</scene>>
+
+<p>Deine eigene Runde ist gerade vorbei. Du stehst mit hängenden Armen, die Lunge brennt, und wartest auf den nächsten Ruf, als dein Blick über den Hof wandert und an einem Paar hängen bleibt, das sich gerade erst gefunden hat.</p>
+
+<p>Pavel Pipovic. Bronko Kulitcka.</p>
+
+<p>Zwei Schritte Abstand. Stumpfe Spitzen, die einander mustern wie scharfe.</p>
+
+<<if _spec is "pike">>
+    <<beziehung>>
+    <p>Du kennst diesen Abstand aus dem eigenen Körper. Zwei Schritte sind kein Abstand für eine Übung. Zwei Schritte sind ein Abstand für einen ersten Ausfall.</p>
+    <</beziehung>>
+<<elseif _spec is "crossbow">>
+    <<beziehung>>
+    <p>Dein Auge hat gelernt, Linien zu lesen, bevor sie sich bewegen. Bronkos Stange zeigt eine Handbreit zu tief. Das ist kein Fehler. Das ist eine Entscheidung, die er noch nicht ausgesprochen hat.</p>
+    <</beziehung>>
+<<elseif _spec is "cannon">>
+    <<beziehung>>
+    <p>Beim Geschütz lernt man, der Lunte zuzuhören, bevor sie das Pulver findet — das kurze Zischen, das ankündigt, was gleich losbricht. Hier riechst du kein Pulver, und trotzdem liegt genau dieses Zischen in der Luft zwischen den beiden, als glimme irgendwo schon ein Docht, den keiner mehr löschen will.</p>
+    <</beziehung>>
+<<elseif _spec is "medicine">>
+    <<beziehung>>
+    <p>Dein Blick geht zuerst zu den Griffen, nicht zu den Gesichtern. Pavels Knöchel sind weiß. Ein Griff, der schon zuschlagen will, bevor der Befehl dazu fällt.</p>
+    <</beziehung>>
+<</if>>
+
+<p>„Antreten, Übung acht“, ruft der Waffenmeister, schon zwei Paare weiter, den Rücken halb gedreht.</p>
+
+<p>Pavel greift an. Der Stoß ist sauber, vorschriftsmäßig, genau so, wie man es hundertmal geübt hat.</p>
+
+<p>Bronko pariert nicht.</p>
+
+<<gedanke>>
+<p>Er wird parieren. Das muss er. Sonst—</p>
+<</gedanke>>
+
+<p>Er lässt den Stoß kommen. Im letzten Moment dreht er die eigene Stange, nicht zur Abwehr, sondern zum Gegenschlag, und plötzlich ist es keine Übung mehr, die zwischen den beiden steht, sondern nur noch Rabenfurt, die Brücke, ein Name, den keiner von ihnen laut sagt.</p>
+
+<p>Zwei Herzschläge. Vielleicht drei.</p>
+
+<p>So lange hast du.</p>
+
+[[Dazwischengehen – die Stange abfangen->Duell_S1_Dazwischengehen]]
+[[Nichts tun, nur genau hinsehen->Duell_S1_Beobachten]]
+[[Zurücktreten und danach die anderen fragen->Duell_S1_Nachfragen]]
+
+
+:: Duell_S1_Dazwischengehen
+
+<<set $world.duell.tension += 1>>
+
+<p>Du denkst nicht nach. Deine Füße bewegen sich, bevor der Gedanke fertig ist.</p>
+
+<p>Du stößt dich zwischen die beiden Stangen, packst Bronkos Schaft mit beiden Händen und drückst ihn zur Seite, im selben Moment, in dem er hätte zuschlagen können. Das Holz schlägt gegen deinen Unterarm, hart genug, dass dir für einen Atemzug die Sicht flackert.</p>
+
+<p>Stille. Dann Bewegung ringsum — Köpfe drehen sich, jemand ruft etwas, das du nicht verstehst.</p>
+
+<<dialog>>
+<p>„Aus dem Weg, Rekrut!“ Der Waffenmeister ist plötzlich da, sein Griff um deine Schulter hart genug, um zu schmerzen.</p>
+<</dialog>>
+
+<p>Er stellt sich zwischen Pavel und Bronko, als wärst du gar nicht dort gewesen. Aber du warst dort. Das wissen jetzt alle.</p>
+
+<p>Pavel starrt dich an, nicht dankbar. Bronko sieht dich gar nicht an — was schlimmer ist.</p>
+
+<<beziehung>>
+	<p>„Die Brücke gehört keinem. Und beiden. Die Pipovics verlangen Wegzoll für jeden Kulitcka-Karren, der rüber will — seit einem Streit um die Mühle, vor Jahren. Die Kulitckas zahlen nicht. Also blockieren sie die Furt unterhalb, wenn's ihnen passt.“</p>
+	<<set _r to setup.skillCheckXp("combat", 13)>>
+	<<if _r.success>>
+		<<= setup.skillCheckAlert(_r)>>
+		<<run setup.addRumor("Bronko und Pavel wollten beim Drill aufeinander losgehen.")>>
+	<</if>>
+<</beziehung>>
+
+<<gedanke>>
+<p>Ich habe verhindert, dass einer von ihnen heute Morgen blutet. Das war richtig. Warum fühlt es sich dann an, als hätte ich etwas kaputtgemacht, das nicht mir gehörte?</p>
+<</gedanke>>
+
+<<set $world.duell.tension -= 1>>
+<<set $world.duell.facts.public_discipline = true>>
+<<set $world.duell.pavel_trust -= 1>>
+<<set $world.duell.bronko_trust -= 1>>
+<<set $world.duell.s1_method = "eingreifen">>
+
+<p>Der Waffenmeister brüllt die Reihen wieder in Ordnung. Aber sein Blick bleibt noch einen Moment auf Pavel und Bronko hängen, als würde er sich die Namen für später merken.</p>
+
+[[Weiter zum Mittag->Duell_S2_Mittag]]
+
+
+:: Duell_S1_Beobachten
+
+<p>Du rührst dich nicht.</p>
+
+<p>Es ist der falsche Moment, um zu handeln, sagt etwas in dir — und der richtige, um zu sehen.</p>
+
+<p>Bronkos Gegenschlag trifft. Nicht hart, nicht sauber, aber er trifft — die stumpfe Spitze streift Pavels Wange, reißt die Haut auf, ein dünner roter Faden läuft ihm sofort zum Kinn.</p>
+
+<p>Erst jetzt schreit jemand. Erst jetzt kommt Bewegung in den Hof, Stiefel, die über den gefrorenen Boden schlagen, der Waffenmeister, der die beiden auseinanderreißt, zu spät für das, was schon passiert ist.</p>
+
+<p>Aber du hast etwas gesehen, das niemand sonst gesehen hat.</p>
+
+<p>In der Sekunde, bevor Bronko traf, ist etwas über sein Gesicht gegangen, das kein Zorn war. Ein Zucken, klein, fast verschluckt. Als hätte ein Teil von ihm den Schlag zurückgerufen, während der andere Teil ihn längst losgelassen hatte.</p>
+
+<<beziehung>>
+	<p>„Die Brücke gehört keinem. Und beiden. Die Pipovics verlangen Wegzoll für jeden Kulitcka-Karren, der rüber will — seit einem Streit um die Mühle, vor Jahren. Die Kulitckas zahlen nicht. Also blockieren sie die Furt unterhalb, wenn's ihnen passt.“</p>
+	<<set _r to setup.skillCheckXp("perception", 13)>>
+	<<if _r.success>>
+		<<= setup.skillCheckAlert(_r)>>
+		<<run setup.addRumor("Bronko wollte Pavel nicht ernsthaft treffen oder verletzen.")>>
+	<</if>>
+<</beziehung>>
+
+<<gedanke>>
+<p>Das war keine Freude. Das war kein Sieg. Für einen Herzschlag hat er ausgesehen, als würde er sich selbst dabei zusehen, etwas zu zerstören, das er nicht zerstören wollte.</p>
+<</gedanke>>
+
+<<set $world.duell.tension += 1>>
+<<set $world.duell.flags.bronko_zoegert = true>>
+<<set $world.duell.s1_method = "beobachten">>
+
+<p>Pavel hält sich die Wange, mehr überrascht als verletzt. Der Waffenmeister brüllt beide zur Wand, wo sie stehen bleiben, ohne einander anzusehen, während der Drill um sie herum weitergeht, als wäre nichts gewesen.</p>
+
+[[Weiter zum Mittag->Duell_S2_Mittag]]
+
+
+:: Duell_S1_Nachfragen
+
+<p>Du trittst einen halben Schritt zurück.</p>
+
+<p>Nicht aus Angst — oder nicht nur. Sondern weil dir in diesem Moment klarer ist, was du nicht verstehst, als was du tun könntest.</p>
+
+<p>Der Waffenmeister ist schneller, als du erwartet hast. Er reißt die beiden Stangen auseinander, bevor Metall — oder Holz — wirklich Schaden anrichtet, und brüllt Pavel und Bronko in getrennte Reihen, mit der Routine eines Mannes, der solche Funken schon oft ausgetreten hat, bevor sie zu Feuer wurden.</p>
+
+<p>Der Drill läuft weiter. Niemand spricht darüber. Alle wissen davon.</p>
+
+<p>In der nächsten Pause schiebst du dich neben einen Waffenträger aus der hinteren Reihe, der die ganze Zeit über zu Rabenfurt geredet hat.</p>
+
+<<dialog>>
+<p>„Was ist das eigentlich, mit der Brücke?“, fragst du, so beiläufig du kannst.</p>
+
+<p>Er zuckt mit den Schultern, aber er erzählt trotzdem — die meisten erzählen gern, wenn man nur fragt, als wolle man wirklich wissen.</p>
+
+<<beziehung>>
+	<p>„Die Brücke gehört keinem. Und beiden. Die Pipovics verlangen Wegzoll für jeden Kulitcka-Karren, der rüber will — seit einem Streit um die Mühle, vor Jahren. Die Kulitckas zahlen nicht. Also blockieren sie die Furt unterhalb, wenn's ihnen passt.“</p>
+	<<set _r to setup.skillCheckXp("gossip", 13)>>
+	<<if _r.success>>
+		<<= setup.skillCheckAlert(_r)>>
+		<<run setup.addRumor("Pavel und Bronko streiten sich um die Brücke. Eine absolut belanglose und dumme Fehde.")>>
+	<</if>>
+<</beziehung>>
+
+<p>„Und deshalb das hier?“</p>
+
+<p>Er sieht kurz zu Pavel und Bronko hinüber, die beide stumm an der Wand stehen.</p>
+
+<p>„Die Brücke ist nur der Teil, über den man reden darf.“</p>
+<</dialog>>
+
+<<set $world.duell.facts.old_bridge = true>>
+<<set $world.duell.s1_method = "nachfragen">>
+
+<p>Der letzte Satz bleibt bei dir hängen, länger als der Rest.</p>
+
+[[Weiter zum Mittag->Duell_S2_Mittag]]
+
+
+:: Duell_S2_Mittag
+
+<<set _spec = $player.spezialisierung>>
+
+<<scene>>
+<p>Der Markt vor dem Nordtor riecht nach nassem Kohl, Fischtran und dem Rauch der Garküchen.
+Zwischen den Ständen drängen sich Mägde, Fuhrleute, zwei Mönche, die um den Preis für Kerzenwachs feilschen.
+Die Mittagsglocke hat euch für eine knappe Stunde freigegeben — genug Zeit für einen Kanten Brot und zu wenig,
+um sie zu vergeuden.</p>
+<</scene>>
+
+<p>Du kaust im Gehen, als du sie siehst.</p>
+
+<p>Zdenka Hrusa steht abseits, am Brunnenrand, die Arme um sich geschlungen, als wäre es kälter als es ist.
+Sie kauft nichts. Sie redet mit niemandem. In ihrer Faust steckt ein zusammengefaltetes Stück Papier, das sie mal
+zum Brunnenrand hebt, als wollte sie es hineinfallen lassen, mal wieder an sich drückt, als gehöre es niemandem sonst.</p>
+
+<<if _spec is "medicine">>
+    <<beziehung>>
+    <p>Ihre Atemzüge sind zu kurz für jemanden, der nur in der Kälte steht. Das ist kein Frieren.
+    Das ist ein Körper, der sich gegen etwas wehrt, das von innen kommt.</p>
+    <</beziehung>>
+<<elseif _spec is "crossbow">>
+    <<beziehung>>
+    <p>Ihr Blick geht alle paar Atemzüge zum Nordtor, dann zurück zum Papier in ihrer Faust.
+    Sie prüft einen Fluchtweg, den sie selbst noch nicht gehen will.</p>
+    <</beziehung>>
+<<elseif _spec is "pike">>
+    <<beziehung>>
+    <p>Sie steht wie einer, der auf einen Schlag wartet, den er nicht abwehren kann.
+    Die Schultern hochgezogen, das Gewicht auf beiden Füßen gleich verteilt — bereit, ihn zu nehmen, nicht ihm auszuweichen.</p>
+    <</beziehung>>
+<<elseif _spec is "cannon">>
+    <<beziehung>>
+    <p>Papier in der Faust, ein Brunnen, eine Entscheidung, die sie seit Stunden vor sich herschiebt.
+    Manche Lunten brennen laut. Ihre brennt so leise, dass man sie fast übersieht.</p>
+    <</beziehung>>
+<</if>>
+
+<p>Etwas in dir will wissen, was auf dem Papier steht. Und etwas anderes weiß bereits, dass es dich nichts angeht.</p>
+
+<<gedanke>>
+<p>Ich könnte einfach weitergehen. Meinen Brotkanten essen und so tun, als hätte ich sie nicht gesehen.
+Aber wenn sie es ins Wasser wirft, ist es weg — und mit ihm vielleicht die einzige Antwort, die heute noch zählt.</p>
+<</gedanke>>
+
+<p>Zdenka steht da wie ein Tier, das schon einmal in eine Falle getreten ist — jede zu plötzliche Bewegung,
+und sie ist weg, das Papier mit ihr. Und der Markt redet ohnehin. Er hat den ganzen Vormittag über Rabenfurt
+geredet, ohne dass du auch nur ein Wort danach fragen musstest.</p>
+
+<<gedanke>>
+<p>Vielleicht muss ich sie gar nicht fragen. Vielleicht reicht es, nah genug bei den Ständen zu bleiben und den
+Mund zu halten. Was die Leute einander erzählen, wenn sie glauben, es höre niemand zu, ist oft ehrlicher als das,
+was sie einem ins Gesicht sagen.</p>
+<</gedanke>>
+
+[[Sie ansprechen->Duell_S2_Zdenka_Ansprechen]]
+[[Abstand halten und nur zuhören, was am Markt geredet wird->Duell_S2_Zuhoeren]]
+
+
+:: Duell_S2_Zdenka_Ansprechen
+
+<p>Du gehst hinüber, langsamer als sonst, als könntest du sie mit zu schnellen Schritten verscheuchen wie einen Vogel vom Zaun.</p>
+
+<<dialog>>
+<p>„Zdenka.“</p>
+
+<p>Sie zuckt zusammen, schiebt das Papier in den Ärmel, bevor du es richtig gesehen hast.</p>
+
+<p>„Was willst du.“ Keine Frage. Eine Mauer.</p>
+
+<p>„Nichts. Ich hab dich nur stehen sehen.“</p>
+
+<p>Sie lacht, kurz und ohne jede Freude. „Alle sehen mich heute stehen.“</p>
+<</dialog>>
+
+<<beziehung>>
+	<p>„Es geht doch immer nur um dieselbe Brücke“, sagst du, so beiläufig du kannst.
+	„Mühle, Wegzoll, alte Väter.“</p>
+	<<set _r to setup.skillCheckXp("gossip", 14)>>
+	<<if _r.success>>
+		<<= setup.skillCheckAlert(_r)>>
+		<p>Zdenka sieht dich an, zum ersten Mal richtig. Etwas in ihrem Gesicht gibt für einen Herzschlag nach.</p>
+		<<dialog>>
+		<p>„Glaub das nicht“, sagt sie leise. „Glaub nicht, dass es je um die Brücke ging.“</p>
+		<p>Sie schließt die Hand fester um ihren Ärmel, um das Papier darin.</p>
+		<p>„Frag mich nicht weiter. Nicht heute.“</p>
+		<</dialog>>
+		<<run setup.addRumor("Zdenka Hrusa behauptet, die Fehde zwischen Pavel und Bronko habe nie mit der Brücke zu tun gehabt.")>>
+		<<set $world.duell.flags.zdenka_hinweis = true>>
+		<<set $world.duell.zdenka_trust += 1>>
+	<<else>>
+		<<= setup.skillCheckAlert(_r)>>
+		<<dialog>>
+		<p>„Frag die, die glauben, sie wüssten was.“ Sie tritt einen Schritt zurück. „Ich weiß gar nichts.“</p>
+		<</dialog>>
+		<p>Das ist die erste Lüge, die du sie heute sagen hörst. Es wird nicht die letzte sein.</p>
+		<<set $world.duell.zdenka_trust -= 1>>
+	<</if>>
+<</beziehung>>
+
+<<set $world.duell.s2_method = "ansprechen">>
+
+<p>Sie geht, bevor du noch etwas fragen kannst — nicht hastig, aber endgültig,
+wie jemand, der eine Tür nur einen Spalt geöffnet hat und sie jetzt selbst wieder zudrückt.</p>
+
+[[Weiter zum Nachmittag->Duell_S3_Nachmittag]]
+
+
+:: Duell_S2_Zuhoeren
+
+<p>Du bleibst, wo du bist, den Brotkanten halb aufgegessen in der Hand, und lässt den Markt für dich arbeiten.</p>
+
+<p>Zwischen zwei Ständen unterhalten sich zwei Weiber über den Preis von Salz und, ohne die Stimme zu senken,
+über alles andere auch.</p>
+
+<<dialog>>
+<p>„Die von Rabenfurt sind alle gleich stur“, sagt die eine.
+„Mein Vetter hat da mal einen Karren verloren, weil die Kulitckas die Furt versperrt haben.“</p>
+
+<p>„Wegen der Brücke?“</p>
+
+<p>„Wegen der Brücke, wegen der Mühle, wegen was auch immer diese Woche gerade dran ist.“
+Sie schnaubt. „Als hätten die nichts Besseres zu tun.“</p>
+<</dialog>>
+
+<<beziehung>>
+	<<set _r to setup.skillCheckXp("perception", 12)>>
+	<<if _r.success>>
+		<<= setup.skillCheckAlert(_r)>>
+		<p>Doch etwas an der Art, wie die zweite Frau kurz zu Boden sieht, bevor sie weiterredet,
+		stimmt nicht zur Beiläufigkeit ihrer Worte.</p>
+		<<dialog>>
+		<p>„Ist doch nicht mehr nur die Brücke“, murmelt sie. „Seit dem Fest letztes Jahr nicht mehr.“</p>
+		<p>„Welches Fest?“</p>
+		<p>Die erste Frau stößt ihr den Ellbogen in die Seite, und das Gespräch wechselt so schnell das Thema,
+		dass es fast wie Zufall aussieht.</p>
+		<</dialog>>
+		<<set $world.duell.facts.old_bridge = true>>
+		<<set $world.duell.flags.musterungsfest_erwaehnt = true>>
+	<<else>>
+		<<= setup.skillCheckAlert(_r)>>
+		<p>Mehr als Marktgerede wird daraus nicht. Die beiden ziehen weiter, mit ihrem Salz und ihrer Neugier,
+		und lassen dich mit nichts als einem alten Namen für einen alten Streit zurück.</p>
+		<<set $world.duell.facts.old_bridge = true>>
+	<</if>>
+<</beziehung>>
+
+<<set $world.duell.s2_method = "zuhoeren">>
+
+[[Weiter zum Nachmittag->Duell_S3_Nachmittag]]

@@ -41,7 +41,7 @@
 }
 .passage:has(.chapter-screen) { max-width: none; margin-inline: 0; }
 
-.passage p { margin: 0 0 1em; }
+.passage p { margin: 1em 0; }
 
 .dialog { display: block; margin: 0.4em 0; text-indent: 0; padding-left: 0.6em; }
 
@@ -49,6 +49,7 @@
 .dialog,
 .scenery-text,
 .thought-box { font-family: var(--font-prose); }
+.thought-box p { margin: 0; }
 
 .trenner {
     border: 0; height: 1px; margin: 2em auto; width: 70%;

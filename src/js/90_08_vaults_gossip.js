@@ -290,6 +290,9 @@ setup.getGossipStory = function () {
     const allStories = setup.getAllGossipStories();
     const seen = State.variables.world.seenGossip || {};
 
+
+    /*
+    Altes System
     const available = allStories.filter(function (story) {
         if (Object.prototype.hasOwnProperty.call(seen, story.id)) {
             return false;
@@ -301,6 +304,13 @@ setup.getGossipStory = function () {
             return false;
         }
         return true;
+    });*/
+
+    const available = allStories.filter(function (story) {
+        if (Object.prototype.hasOwnProperty.call(seen, story.id)) return false;
+        var diff = (story.probe && typeof story.probe.difficulty === "number")
+            ? story.probe.difficulty : 0;
+        return diff - gossipLevel <= 3;   // max. 3 über dem Gossip-Level, keine Obergrenze
     });
 
     if (available.length === 0) {
@@ -317,22 +327,14 @@ setup.getFailedGossipStory = function () {
     const seen = State.variables.world.seenGossip || {};
 
     const failed = allStories.filter(function (story) {
-        const entry = seen[story.id];
+    const entry = seen[story.id];
+    if (!entry) return false;
+    if (entry.success === true) return false;
+    var diff = (story.probe && typeof story.probe.difficulty === "number")
+        ? story.probe.difficulty : 0;
+    return diff - gossipLevel <= 3;
+});
 
-        if (!entry) {
-            return false;
-        }
-        if (entry.success === true) {
-            return false;
-        }
-        if (gossipLevel < story.minLevel) {
-            return false;
-        }
-        if (gossipLevel > story.maxLevel) {
-            return false;
-        }
-        return true;
-    });
 
     if (failed.length === 0) {
         return null;

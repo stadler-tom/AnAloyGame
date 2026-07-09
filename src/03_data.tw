@@ -927,6 +927,83 @@
         },
         "rumorText": "Hohepriester Kraut soll Dekanin Wenkheim in einer Ratssitzung falsch benannt haben. Die Peinlichkeit verfolgt ihn bis heute.",
         "npcKey": null
+      },
+      {
+        "id": "lk_013",
+        "base": "Beim Einhornschießen vom Ordo Carolus, drüben auf dem Heinrichsfest, soll einer vom 84. mit dem Scorpio angetreten sein — so ein schweres Ding, mehr Belagerungswaffe als Armbrust. Die einhornförmige Zielscheibe hat er tatsächlich runtergeholt. Nur eben nicht beim ersten Schuss. Und auch nicht beim zweiten.",
+        "probe": {
+          "difficulty": 1,
+          "success": "Snorri de Alba war's. Beim dritten Bolzen hat's die Scheibe zerlegt, und er hat sich dabei aufgeführt, als hätte er's von Anfang an so geplant. Till und Lars standen daneben und sammelten als Marktschreier Kupfer ein — die haben an den Fehlschüssen mehr verdient als am Treffer. Gewonnen hat das Turnier am Ende ein gewisser Vasil. Erzählt wird bis heute nur von den ersten beiden Bolzen.",
+          "fail": "Der Alte winkt ab. 'Frag nicht mich. Frag den Scorpio. Der hat's gesehen.'"
+        },
+        "rumorText": "Snorri de Alba holte beim Einhornschießen die Zielscheibe mit dem Scorpio ab — erst beim dritten Schuss.",
+        "npcKey": null
+      },
+      {
+        "id": "lk_014",
+        "base": "Es hängt eine Bekanntmachung aus, die selbst die Büttel nur mit hochgezogener Braue vorlesen: Am ersten Wochentag ist es verboten, seine Notdurft in Bächen und Flüssen zu verrichten. Grund? Mittwochs wird gebraut. Nach dem Brautag, heißt es, werde das Verbot wieder aufgehoben.",
+        "probe": {
+          "difficulty": 0,
+          "success": "Ein Brauknecht klärt dich grinsend auf: Das Verbot ist bitterernst gemeint. Einmal soll ein ganzer Sud gekippt sein, weil oben am Bach jemand … nun ja. Seither wacht die Zunft am Brautag über jede Uferböschung wie ein Habicht, und der Rat hat es lieber gleich zu Pergament gebracht, als sich das nochmal erklären zu müssen.",
+          "fail": "'Frag im Wirtshaus', sagt der Mann. 'Aber nicht am Mittwoch. Da haben die anderes im Kopf.'"
+        },
+        "rumorText": "Am Brautag (Mittwoch) ist die Notdurft in Bächen und Flüssen verboten — wegen eines einst gekippten Suds.",
+        "npcKey": null
+      },
+      {
+        "id": "lk_015",
+        "base": "Man erzählt sich, ein Banner sei einmal dafür bezahlt worden, zwei Herrschaften Manieren beizubringen — mit Nachdruck, versteht sich. Ein gewisser Don F. soll den Auftrag gegeben haben, weil ihm zwei Kerle namens MM und Carl-Gustav gehörig auf die Nerven gingen.",
+        "probe": {
+          "difficulty": 2,
+          "success": "Das 84. war's, wer sonst. Und das Beste kommt zum Schluss: Kaum hatten sie die Ärmel hochgekrempelt, ließ ein Baron — Lexus von Rallersquell — den Auftrag abblasen. Die Prügel gab's also nie. Das Geld durften sie trotzdem größtenteils behalten. Es gibt Söldner, die nennen das den saubersten Sold ihres Lebens.",
+          "fail": "'Namen? Nein.' Der Söldner tippt sich an die Nase. 'Aber wenn du je dafür bezahlt wirst, jemanden NICHT zu verprügeln — nimm das Geld.'"
+        },
+        "rumorText": "Das 84. Banner wurde einst für eine Züchtigung bezahlt, die Baron von Rallersquell abblies — den Sold behielten sie.",
+        "npcKey": null
+      },
+      {
+        "id": "lk_016",
+        "base": "Hauptmann Lenz vom 84. soll neulich spazieren gegangen sein. An sich nichts Besonderes — außer dass die Dame an seiner Seite einen Namen trug, so lang wie ein Ratsbeschluss: Katharina Sofia Leandra Amalia de Alba. Und dass zwei seiner Männer in diskretem Abstand hinterhertrotteten.",
+        "probe": {
+          "difficulty": 2,
+          "success": "Lars und Hans waren die beiden Schatten — nicht als Wache, eher als Anstandshüter wider Willen, die krampfhaft in die andere Richtung schauten. Man sagt, Lenz habe für diese Dame schon einmal einen Termin im Komarner Lager sausen lassen, bloß weil er sie von Weitem mit jemand anderem reden sah und das Gespräch 'nicht unterbrechen' wollte. Der Rat war darüber ungefähr so erfreut, wie man es sich vorstellt.",
+          "fail": "'Der Hauptmann und sein Herz', seufzt der Erzähler. 'Darüber redet man nicht. Höchstens Lars. Und der schweigt für zwei.'"
+        },
+        "rumorText": "Hauptmann Lenz hat ein Auge auf Katharina de Alba — für sie versäumte er sogar einen Komarner Termin.",
+        "npcKey": "hauptmannLenz"
+      },
+      {
+        "id": "lk_017",
+        "base": "Im Boten gibt's eine Ecke, die halb Ratgeber, halb Volksbelustigung ist: 'Medicus Sommer'. Da schreiben Leute ihre Herzensnöte hin, und der Medicus antwortet — trocken, direkt und ohne jede höfische Schnörkelei.",
+        "probe": {
+          "difficulty": 0,
+          "success": "Der berühmteste Fall ist ein Knecht namens Leuwin, der nicht wusste, wie er der Magd Alwine seine Gefühle gestehen soll. Er hatte sich wohl irgendwelche geschwollenen Heroldsworte zurechtgelegt. Medicus Sommers Rat, sinngemäß: Lass den Unfug, sag's ihr gerade heraus, wie dir der Schnabel gewachsen ist. Halb Aloy zitiert das heute noch, wenn ein Bursche zu lange um den heißen Brei redet.",
+          "fail": "'Kauf dir den Boten', sagt die Magd und lacht. 'Steht alles drin. Und noch mehr, was nicht drinstehen sollte.'"
+        },
+        "rumorText": "Die Boten-Kolumne 'Medicus Sommer' gibt derbe Lebensratschläge — berühmt ist der Rat an den Knecht Leuwin.",
+        "npcKey": null
+      },
+      {
+        "id": "lk_018",
+        "base": "Auf dem Anschlagbrett klebt wieder ein frischer Bote. Über der Kopfzeile prangt in dicken Lettern der Wahlspruch, auf den das Blatt sichtlich stolz ist: 'Die unabhängisten Nachrichten Aloys! Seit 125 Jahren!'",
+        "probe": {
+          "difficulty": 0,
+          "success": "Ein Schreiber grinst, als du auf das 'unabhängisten' zeigst. 'Ja, das ist Absicht. Oder war's zumindest, bis es keiner mehr ändern wollte.' Der Bote nimmt sich selbst ungefähr so ernst wie ein Barsinger nach dem dritten Krug: laut, meinungsstark, und wenn die Wahrheit der guten Geschichte im Weg steht, hat die Geschichte Vorfahrt. Genau darum liest ihn jeder.",
+          "fail": "'Steht so drauf, seit ich lesen kann', brummt ein Alter. 'Wird schon stimmen. Oder auch nicht. Ist ja der Bote.'"
+        },
+        "rumorText": "Der Aloyer Bote wirbt mit 'Die unabhängisten Nachrichten Aloys, seit 125 Jahren' — Satire mit Ansage.",
+        "npcKey": null
+      },
+      {
+        "id": "lk_019",
+        "base": "Es gab wohl eine Zeit, da hat der Hohe Rat allen Ernstes über Käse debattiert. Nicht über Krieg, nicht über Steuern — über Käse. Man nennt es heute nur noch die Käsekrise, und wer dabei war, verzieht bei dem Wort noch immer das Gesicht.",
+        "probe": {
+          "difficulty": 1,
+          "success": "So genau will es keiner erklären, aber es ging um Preise, Zünfte und die Frage, wessen Laib wo verkauft werden darf. Eine Sitzung soll sich derart festgefahren haben, dass ein Ratsherr entnervt vorschlug, man solle die Sache doch beim gemeinsamen Essen klären. Prompt landete tags darauf ein Rezept für Käsesuppe im Boten — halb Spott, halb Friedensangebot. Ob's geholfen hat, sagt die Geschichte nicht.",
+          "fail": "'Käse', seufzt der Mann und schüttelt den Kopf. 'Frag nicht. Manche Wunden brauchen Zeit.'"
+        },
+        "rumorText": "Der Hohe Rat verzettelte sich einst in der 'Käsekrise' — prompt erschien ein Käsesuppen-Rezept im Boten.",
+        "npcKey": null
       }
     ],
     "landesinfos": [
@@ -1046,6 +1123,39 @@
         },
         "rumorText": "Die Beschlüsse zu Alfalter sollen geheim sein. Viele vermuten, der Rat plane dort eine Annexion oder eine neue Grenzregelung.",
         "npcKey": null
+      },
+      {
+        "id": "li_010",
+        "base": "Aus dem Rat dringt, dass die Halblinge einen eigenen Sitz für Baldsingen gefordert haben — einen Bürgermeisterratssitz, mit allem, was dazugehört. Die Forderung wurde abgelehnt. Ruhe gegeben haben sie deswegen nicht.",
+        "probe": {
+          "difficulty": 3,
+          "success": "Die Sache ist heikler, als sie klingt. Aloy rühmt sich der Gleichheit aller Bürger — Menschen, Elfen, Zwerge, Halblinge. Genau darauf berufen sich die Baldsinger: Wenn alle gleich sind, warum dann kein Sitz? Der Rat mauert, weil ein Präzedenzfall Türen öffnet, die man lieber zu ließe. Einer dieser Fälle, in denen das schöne Wort 'Freiheit' und die nüchterne Ratspolitik sich unangenehm im Weg stehen.",
+          "fail": "'Politik', winkt der Mann ab. 'Die Kleinen wollen ihren Sitz, die Großen wollen ihre Ruhe. Wird noch dauern.'"
+        },
+        "rumorText": "Die Halblinge fordern für Baldsingen einen Ratssitz — der Rat lehnt ab und beruft sich lieber nicht auf die eigene Gleichheitsformel.",
+        "npcKey": null
+      },
+      {
+        "id": "li_011",
+        "base": "Aloy hat neue Freunde: die Kronmark. Und wie besiegelt man so etwas? Nicht mit Verträgen allein — das 84. Banner soll die Kronmark bei ihrer Tourney vom Einhorn unterstützt haben. Waffen zeigen, Fahne zeigen, Freundschaft zeigen.",
+        "probe": {
+          "difficulty": 4,
+          "success": "Es ist aloysche Außenpolitik in Reinform: Diplomatie über Feste, Turniere und Handelsrouten statt über Throne. Wo andere Länder Gesandte mit Siegelringen schicken, schickt Aloy ein Banner, das auf dem Turnierplatz eine gute Figur macht und abends die halbe Taverne freihält. Man lacht darüber — aber es funktioniert. Geneigte Nachbarn sind auf dem Landweg mehr wert als jeder Vertrag.",
+          "fail": "'Kronmark, ja.' Der Mann nickt. 'Neue Freunde. Mehr weiß ich nicht, ich zähl nur die Handelskarren, die jetzt öfter durchkommen.'"
+        },
+        "rumorText": "Aloy pflegt eine neue Beziehung zur Kronmark — besiegelt unter anderem durch die Unterstützung ihrer Tourney vom Einhorn.",
+        "npcKey": null
+      },
+      {
+        "id": "li_012",
+        "base": "Wer aus Drachengard kommt, bringt Namen mit, die nach Adel klingen. Einer fällt öfter: Baron Lexus von Rallersquell. Ein Mann, dessen Wort offenbar genügt, um Aufträge zu geben — und wieder abzublasen.",
+        "probe": {
+          "difficulty": 4,
+          "success": "In Drachengard sitzt der Adel noch fest im Sattel, anders als hier. Für Aloyer ist das eine seltsame Welt: Man behandelt so einen Baron höflich, gewiss — aber sich beugen? Kein freier Bürger Aloys käme auf die Idee. Genau daran reiben sich die Geschäfte. Rallersquell soll die aloysche Art, ihm auf Augenhöhe zu begegnen, mal als erfrischend, mal als Unverschämtheit empfinden — je nach Laune und Weinmenge.",
+          "fail": "'Ein Baron aus Drachengard', sagt der Händler achselzuckend. 'Zahlt gut, redet viel. Mehr merkt man sich als Fremder nicht.'"
+        },
+        "rumorText": "In Drachengard hat der Adel noch Gewicht — Baron Lexus von Rallersquell etwa; Aloyer begegnen ihm höflich, aber ohne Kniefall.",
+        "npcKey": null
       }
     ],
     "knaller": [
@@ -1060,6 +1170,17 @@
           "fail": "Der Typ winkt ab. 'Südländer in der Gilde, na und. Geld stinkt nicht, Junge. Frag nicht zu laut nach solchen Leuten — das endet selten gut.'"
         },
         "rumorText": "Der Don von La Familia wurde in Ignaz Rothschilds Händlergilde aufgenommen. Sein Anwalt ist in Aloy — und offenbar mit Wenzel vom 84. bekannt.",
+        "npcKey": null
+      },
+      {
+        "id": "kn_003",
+        "base": "Ganz oben, wo man nur flüstert, geht die Rede von einer Rüge. Das 84. Banner — dasselbe, das man sonst als Aushängeschild herumreicht — soll vom Rat einen Tadel kassiert haben. Öffentlich sagt das niemand. Aber die Art, wie man das Thema wechselt, sobald es aufkommt, sagt genug.",
+        "probe": {
+          "difficulty": 6,
+          "success": "Es geht um Diplomatie, die keiner in Auftrag gegeben hat. Hauptmann Lenz soll rund um Komarn, Sera de Alba und die Ereignisse auf dem Heinrichsfest Dinge entschieden haben, die eigentlich dem Rat zustehen — Termine versäumt, Gespräche geführt, Nähe gesucht. Nichts davon war Verrat. Aber ein Banner, das auf eigene Faust Außenpolitik macht, ist dem Rat ein Dorn im Auge, so nützlich es sonst sein mag. Der Tadel war die sanfte Erinnerung daran, wer in Aloy die Fäden zieht — und wer sie nur trägt.",
+          "fail": "Der Alte wird ungewöhnlich still. 'Über die da oben und ihre Rügen redet man nicht am offenen Tisch. Lass es gut sein, Junge.'"
+        },
+        "rumorText": "Der Rat soll das 84. Banner wegen eigenmächtiger Diplomatie um Komarn und Sera de Alba gerügt haben — leise, aber deutlich.",
         "npcKey": null
       }
     ]

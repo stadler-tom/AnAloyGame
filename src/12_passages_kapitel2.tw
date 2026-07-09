@@ -731,11 +731,12 @@ Der Feldscher. Keine Waffe. Hände, die heilen statt schlagen. Der Gedanke fühl
 
 :: Stadt_Geruechte {"position":"2475,5600","size":"100,100"}
 <<scene>>
-<p>Am Marktbrunnen versammeln sich, wie jeden Nachmittag, jene, die mehr reden als arbeiten — Mägde, Handelsburschen, ein müder Wächter, der seine Runde vergessen zu haben scheint.</p>
+<p>Am Marktbrunnen versammeln sich, wie jeden Nachmittag, jene, die mehr reden als arbeiten — Mägde, Handelsburschen, ein müder Wächter, 
+der seine Runde vergessen zu haben scheint.</p>
 <</scene>>
 
 <<gedanke>>
-<p>Im Lärm der Gaststube verwischt sich jedes Wort — man muss es fast erraten, mehr als hören.</p>
+<p>Im Lärm der Gassen verwischt sich jedes Wort — man muss es fast erraten, mehr als hören.</p>
 <</gedanke>>
 
 
@@ -744,25 +745,32 @@ Der Feldscher. Keine Waffe. Hände, die heilen statt schlagen. Der Gedanke fühl
 	<p><<= _story.base>></p>
 
 	<<if _story.probe>>
+
+
 		<<set _stadtModifier = 3>>
-		<<set _erfolg = setup.skillCheckXp("gossip", _story.probe.difficulty + _stadtModifier)>>
-		<<if _erfolg.success>>      
+		<<set _erfolg = setup.skillCheckXp("gossip", 13 ,_story.probe.difficulty + _stadtModifier)>>
+		<<if _erfolg.success>> 
+			<<= setup.skillCheckAlert(_erfolg)>>     
         	<<dialog>>
               <p>„Was sagen sie?“, flüstert Karla.</p>
               <p>„Moment! Da ist noch was!.“</p>
-          <</dialog>>
-            <<= _story.probe.success>><br>
-            <<= setup.addRumor(_story.rumorText)>>
-            <<run setup.markGossipSeen(_story.id, _erfolg)>>
+          	<</dialog>>
+				<<= _story.probe.success>><br>
+				<<= setup.addRumor(_story.rumorText)>>
+				<<run setup.markGossipSeen(_story.id, true)>>
 		<<else>>
 			<<dialog>>
               <p>„Was sagen sie?“, flüstert Karla.</p>
               <p>„Ich weiß nicht genau. Zu viele Stimmen auf einmal.“</p>
-          <</dialog>>
+			<</dialog>>
+			  	<<if _erfolg.fumble>>
+					<<= setup.setPlayerSuspicion(5)>>
+				<<else>>
+					<<= setup.setPlayerSuspicion(2)>>
+				<</if>>					
+					<<run setup.markGossipSeen(_story.id, false)>>        
 		<</if>>
-	<<else>>
-		<<run setup.markGossipSeen(_story.id, true)>>
-		<<run setup.addRumor(_story.base)>>
+
 	<</if>>
 <<else>>
 	<p>Heute hörst du nichts, das du nicht schon wüsstest — nur das übliche Gemurmel über Wetter, Preise und fremde Gesichter.</p>
@@ -1299,7 +1307,7 @@ Der Feldscher. Keine Waffe. Hände, die heilen statt schlagen. Der Gedanke fühl
 
 
 
-:: Halm_S1_Ruft_Thomas [interrupt einmalig nach_Kap2_tag] {"position":"1850,5500","size":"100,100"}
+:: Halm_S1_Ruft_Thomas [interrupt einmalig nach_Kap2_tag ] {"position":"1850,5500","size":"100,100"}
 <<scene>>
 <p>Die Schreibstube liegt im Nachmittagslicht anders da als sonst — kein Staub tanzt in den schmalen Sonnenstreifen, kein Blättern von Seiten unterbricht die Stille. Magister Cornelius Halm sitzt hinter seinem Tisch, die Hände gefaltet, kein Buch, keine Feder vor sich. Er hat nicht auf dich gewartet, wie ein Mann auf einen Besucher wartet. Er hat auf dich gewartet, wie ein Jäger auf ein Wild wartet, das er längst gesehen hat, ehe es selbst wusste, dass es beobachtet wird.</p>
 <</scene>>
@@ -1547,14 +1555,14 @@ Seine Stimme bleibt eben, und gerade das macht sie kaum erträglich.
 „Ich hab hundertmal geübt, sie zu schließen. In dem einen Augenblick, der zählte, habe ich es nicht getan. Und er auch nicht.“</p>
 <</dialog>>
 
-<<if $npc.kurt.memory.flags.kurt_gelesen>>
 <<gedanke>>
+<<if $npc.kurt.memory.flags.kurt_gelesen>>
     <p>Da ist es. Das, was ich an jenem Abend am Übungsplatz nur ahnte — der Verlust, den er mit sich schleppt. Jetzt hat er einen Namen.</p>
 <<else>>
     <p>Ich habe nichts kommen sehen. Der Mann, der uns über den Platz treibt, bis wir kotzen, 
     und plötzlich hält er einen Kinderhelm in der Hand und redet von einem Toten, als wäre es gestern gewesen.</p>
-<</gedanke>>
 <</if>>
+<</gedanke>>
 
 <<set _r to setup.skillCheckXp("perception", 13)>>
 <<if _r.success>>
@@ -1610,3 +1618,4 @@ Er wird dich weiter drillen, hart und korrekt — aber die Tür, die sich einen 
 <</switch>>
 <<set $npc.kurt.memory.flags.kurt_stufe to 3>>
 <<weiterImTag "Zurück in den Tag">>
+

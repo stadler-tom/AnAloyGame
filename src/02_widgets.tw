@@ -45,6 +45,9 @@
 <div class="dialog"><<= _contents>></div>\
 <</widget>>
 
+<<widget "trenner">>\
+<hr class="trenner-raute">\
+<</widget>>
 
 
 

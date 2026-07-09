@@ -350,20 +350,47 @@ setup.interruptCond["Halm_S1_Ruft_Thomas"] = w => {
 };
 setup.interruptPrio["Halm_S1_Ruft_Thomas"] = 90;
 
+
+setup.interruptCond["Kurt_Bead_1"] = w => {
+    if (w.kapitel1_gesperrt !== true) return false;              
+    var f = State.variables.npc.kurt.memory.flags;
+    return !f.kurt_stufe && w.day >= 372;
+};
+setup.interruptCond["Kurt_Faden_2"] = w => {
+    if (w.kapitel1_gesperrt !== true) return false;
+    var f = State.variables.npc.kurt.memory.flags;
+    return f.kurt_stufe === 1 && w.day >= (f.kurt_stufe1_tag || 0) + 4;
+};
+setup.interruptCond["Kurt_Faden_3"] = w => {
+    if (w.kapitel1_gesperrt !== true) return false;
+    var f = State.variables.npc.kurt.memory.flags;
+    return f.kurt_stufe === 2 && w.day >= (f.kurt_stufe2_tag || 0) + 4;
+};
+
+
+setup.interruptCond["Duell_S0_Fruehstueck"] = w => {
+    if (w.kapitel1_gesperrt !== true) return false;                 
+    return  w.day >= 382;
+}
+    
+    
+
+
+
 /* ===== ERMITTLUNG "DIE SECHSTE HAND" — Interrupt-Takt =====
    Voraussetzung: Jarek fort (Katastrophe) UND Karla frei.
    Karla verhaftet => Strang gesperrt. */
 
 setup.interruptCond["Ermittlung_S0_Auftakt"] = w => {
     var je = State.variables.npc.jarek.memory.flags;
-    var ke = State.variables.npc.karla.memory.flags;
     var e = w.ermittlung || { flags: {} };
     return je.katastrophe === true
-        && ke.verhaftung_seen !== true
         && e.gesperrt !== true
         && w.day >= (e.fruehestens_tag || 367);
 };
 setup.interruptPrio["Ermittlung_S0_Auftakt"] = 58;
+
+
 
 setup.interruptCond["Ermittlung_S1_Intro_in_Waffenstube"] = w => {
     var h = w.interruptHistory;

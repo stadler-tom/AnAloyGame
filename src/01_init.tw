@@ -455,6 +455,7 @@
 <<set $world = {
 
     lastPassage:"",
+    debug: false,
     day: 0,
     weather: "windig",
     wasPracticing: false,
