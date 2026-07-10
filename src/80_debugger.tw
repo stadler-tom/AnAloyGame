@@ -2,7 +2,7 @@
         DEV AREA
 ================================================ */
 
-:: DevLogin {"position":"1100,4150","size":"100,100"}
+:: DevLoginBak {"position":"1100,4150","size":"100,100"}
 <h2>Developer Login</h2>
 
 <input id="devpw" type="password">
@@ -15,8 +15,411 @@
 	)>>
 <</button>>
 
+:: DevLogin {"position":"1100,4150","size":"100,100"}
+<h2>Developer Login</h2>
+
+<form id="dev-login-form">
+    <input id="devpw" type="password" autocomplete="off">
+    <button type="submit">Login</button>
+</form>
+
+<script>
+(function () {
+    $("#dev-login-form").off("submit.devlogin").on("submit.devlogin", function (ev) {
+        ev.preventDefault();
+
+        const pw = $("#devpw").val();
+
+        if (pw === "fleischens") {
+            SugarCube.Engine.play("DEBUG_Kap2_Setup");
+        }
+        else {
+            alert("Falsches Passwort.");
+            $("#devpw").val("").focus();
+        }
+    });
+
+    setTimeout(function () {
+        $("#devpw").focus();
+    }, 0);
+})();
+</script>
 
 :: DEBUG_Kap2_Setup {"position":"1375,4250","size":"100,100"}
+
+<<run setup.ermInit()>>
+
+<<if not $world.flags>>
+    <<set $world.flags = {}>>
+<</if>>
+
+<<if not $player.flags>>
+    <<set $player.flags = {}>>
+<</if>>
+
+<<if not $edu>>
+    <<set $edu = {}>>
+<</if>>
+
+<<if not $world._dbgKap2>>
+<<silently>>
+    <<set $world._dbgKap2 to true>>
+    <<set $world.day to 365>>
+    <<set $player.rank to "Waffenträger">>
+    <<set $player.condition to 70>>
+    <<set $player.suspicion to 0>>
+    <<set $player.money.copper to 40>>
+
+    <<set $npc.karla.known to true>>
+    <<set $npc.jarek.known to true>>
+    <<set $npc.magister.known to true>>
+    <<set $npc.hauptmann.known to true>>
+    <<set $npc.kurt.known to true>>
+    <<set $npc.schinder.known to true>>
+
+    <<set $npc.jarek.memory.flags.katastrophe to true>>
+    <<set $world.flags.jarek_ausgang to "geschwiegen">>
+    <<set $world.flags.jarek_ausgang_tag to 360>>
+    <<set $npc.karla.memory.flags.kapitel1_ende_seen to true>>
+
+    <<run ["pike","crossbow","cannon","medicine","thievery","gossip","combat"].forEach(function(k){
+        State.variables.player.knowledge[k] = 2;
+    })>>
+
+    <<set $player.stats.scholarship to 8>>
+
+    <<run setup.kapitel1Abschliessen()>>
+<</silently>>
+<</if>>
+
+<h3>DEBUG: Kapitel-2-Einstieg</h3>
+
+<div class="outcome-box">
+    <div class="outcome-title">Aktueller Zustand</div>
+
+    <p>
+        Tag: <b>$world.day</b> ·
+        Jarek-Ausgang: <b>$world.flags.jarek_ausgang</b> ·
+        Narbe: <b><<= $player.flags && $player.flags.jareknarbe ? "ja" : "nein">></b><br>
+    </p>    
+    <p>
+        Karla: <b><<= $npc.karla.memory.flags.verhaftung_seen ? "VERHAFTET" : "frei">></b> ·
+        Umkehrung: <b><<= $npc.karla.memory.flags.umkehrung_done ? "ja" : "nein">></b> ·
+        Zuneigung: <b>$npc.karla.affection</b><br>
+    </p>
+    <p>
+        Magister: Zuneigung <b>$npc.magister.affection</b> ·
+        Archivzugang: <b><<= $edu.archivzugang ? "ja" : "nein">></b><br>
+    </p>
+    <p>
+        Skills:
+        Pike $player.knowledge.pike ·
+        Armbrust $player.knowledge.crossbow ·
+        Geschütz $player.knowledge.cannon ·
+        Heilkunde $player.knowledge.medicine ·
+        Schatten $player.knowledge.thievery ·
+        Gerüchte $player.knowledge.gossip ·
+        Kampf $player.knowledge.combat ·
+        Gelehrsamkeit $player.stats.scholarship<br>
+    </p>
+    <p>
+        Spezialisierung:
+        <b><<= $player.spezialisierung || "— (noch nicht gewählt)">></b> ·
+        Waffe:
+        <b><<= $player.equipment && $player.equipment.weapon ? $player.equipment.weapon : "—">></b> ·
+        Kupfer: <b>$player.money.copper</b> ·
+        Kondition: <b>$player.condition</b> ·
+        Verdacht: <b>$player.suspicion</b><br>
+    </p>
+    <p>
+        Ermittlung frühestens Tag:
+        <b><<= $world.ermittlung.fruehestens_tag>></b> ·
+        Luigi bekannt:
+        <b><<= $npc.luigi && $npc.luigi.known ? "ja" : "nein">></b>
+    </p>
+</div>
+
+<hr class="trenner-raute">
+
+<div class="outcome-box">
+    <div class="outcome-title">Debug-Zustand setzen</div>
+
+    <p>
+        <label for="dbg-jarek"><b>Jarek-Ausgang</b></label><br>
+        <select id="dbg-jarek">
+            <option value="gemeldet">
+                gemeldet
+            </option>
+            <option value="geschwiegen" >
+                geschwiegen
+            </option>
+            <option value="schweigen" >
+                schweigen
+            </option>
+            <option value="schande">
+                schande
+            </option>
+        </select>
+    </p>
+
+    <p>
+        <label for="dbg-narbe"><b>Jarek-Narbe</b></label><br>
+        <select id="dbg-narbe">
+            <option value="false">
+                nein
+            </option>
+            <option value="true">
+                ja
+            </option>
+        </select>
+    </p>
+
+    <p>
+        <label for="dbg-karla"><b>Karla-Zustand</b></label><br>
+        <select id="dbg-karla">
+            <option value="unchanged">unverändert</option>
+            <option value="full">Voller Durchlauf: frei, Umkehrung, eng</option>
+            <option value="distant">Frei, aber distanziert</option>
+            <option value="arrested">Verhaftet: sperrt Ermittlung & Romanze</option>
+        </select>
+    </p>
+
+    <p>
+        <label for="dbg-magister"><b>Magister Halm</b></label><br>
+        <select id="dbg-magister">
+            <option value="unchanged">unverändert</option>
+            <option value="high">Gunst hoch + Archivzugang</option>
+            <option value="neutral">Neutral, kein Zugang</option>
+            <option value="burned">Verbrannt (-6)</option>
+        </select>
+    </p>
+
+    <p>
+        <label for="dbg-skills"><b>Skill-Preset nach Kapitel-Squash</b></label><br>
+        <select id="dbg-skills">
+            <option value="unchanged">unverändert</option>
+            <option value="allrounder">Allrounder</option>
+            <option value="shadow">Schattenläufer</option>
+            <option value="model">Musterrekrut</option>
+        </select>
+    </p>
+
+    <p>
+        <label for="dbg-spec"><b>Spezialisierung inklusive Waffe</b></label><br>
+        <select id="dbg-spec">
+            <option value="unchanged">unverändert</option>
+            <option value="pike" >
+                Pike
+            </option>
+            <option value="crossbow" >
+                Armbrust
+            </option>
+            <option value="cannon" >
+                Geschütz
+            </option>
+            <option value="medicine" >
+                Feldscher
+            </option>
+        </select>
+    </p>
+
+    <p>
+        <label for="dbg-money"><b>Geld</b></label><br>
+        <select id="dbg-money">
+            <option value="unchanged">unverändert</option>
+            <option value="5">arm: 5 Kupfer</option>
+            <option value="40">normal: 40 Kupfer</option>
+            <option value="150">wohlhabend: 150 Kupfer</option>
+        </select>
+    </p>
+
+    <p>
+        <label for="dbg-suspicion"><b>Verdacht</b></label><br>
+        <select id="dbg-suspicion">
+            <option value="unchanged">unverändert</option>
+            <option value="0">0</option>
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="75">75</option>
+        </select>
+    </p>
+
+    <p>
+        <label for="dbg-ermittlung"><b>Ermittlung</b></label><br>
+        <select id="dbg-ermittlung">
+            <option value="unchanged">unverändert</option>
+            <option value="normal">normal: frühestens aktueller Tag + 3</option>
+            <option value="now">sofort scharf</option>
+        </select>
+    </p>
+
+    <<button "Debug-Zustand anwenden">>
+        <<run (function () {
+            const V = State.variables;
+
+            if (!V.world.flags) {
+                V.world.flags = {};
+            }
+
+            if (!V.player.flags) {
+                V.player.flags = {};
+            }
+
+            if (!V.edu) {
+                V.edu = {};
+            }
+
+            if (!V.world.ermittlung) {
+                setup.ermInit();
+            }
+
+            const jarek = $("#dbg-jarek").val();
+            const narbe = $("#dbg-narbe").val();
+            const karla = $("#dbg-karla").val();
+            const magister = $("#dbg-magister").val();
+            const skills = $("#dbg-skills").val();
+            const spec = $("#dbg-spec").val();
+            const money = $("#dbg-money").val();
+            const suspicion = $("#dbg-suspicion").val();
+            const ermittlung = $("#dbg-ermittlung").val();
+
+            /* Jarek */
+            V.world.flags.jarek_ausgang = jarek;
+            V.player.flags.jareknarbe = narbe === "true";
+
+            /* Karla */
+            if (karla === "full") {
+                V.npc.karla.memory.flags.verhaftung_seen = false;
+                V.npc.karla.memory.flags.umkehrung_done = true;
+                V.npc.karla.memory.flags.kennt_geheimnis = true;
+                V.npc.karla.trust = true;
+                V.npc.karla.affection = 15;
+            }
+            else if (karla === "distant") {
+                V.npc.karla.memory.flags.verhaftung_seen = false;
+                V.npc.karla.memory.flags.umkehrung_done = false;
+                V.npc.karla.trust = false;
+                V.npc.karla.affection = 3;
+            }
+            else if (karla === "arrested") {
+                V.npc.karla.memory.flags.verhaftung_seen = true;
+                V.npc.karla.memory.flags.umkehrung_done = false;
+                V.npc.karla.trust = false;
+            }
+
+            /* Magister */
+            if (magister === "high") {
+                V.npc.magister.affection = 6;
+                V.edu.archivzugang = true;
+            }
+            else if (magister === "neutral") {
+                V.npc.magister.affection = 0;
+                V.edu.archivzugang = false;
+            }
+            else if (magister === "burned") {
+                V.npc.magister.affection = -6;
+                V.edu.archivzugang = false;
+            }
+
+            /* Skill-Presets */
+            if (skills === "allrounder") {
+                ["pike", "crossbow", "cannon", "medicine"].forEach(function (k) {
+                    V.player.knowledge[k] = 3;
+                });
+
+                V.player.knowledge.thievery = 2;
+                V.player.knowledge.gossip = 3;
+                V.player.stats.scholarship = 10;
+            }
+            else if (skills === "shadow") {
+                ["pike", "crossbow", "cannon", "medicine"].forEach(function (k) {
+                    V.player.knowledge[k] = 1;
+                });
+
+                V.player.knowledge.thievery = 4;
+                V.player.knowledge.gossip = 4;
+                V.player.stats.scholarship = 6;
+            }
+            else if (skills === "model") {
+                V.player.knowledge.pike = 4;
+                V.player.knowledge.crossbow = 3;
+                V.player.knowledge.cannon = 3;
+                V.player.knowledge.medicine = 2;
+                V.player.knowledge.thievery = 0;
+                V.player.knowledge.gossip = 1;
+                V.player.stats.scholarship = 14;
+            }
+
+            /* Spezialisierung + Waffe */
+            if (spec !== "unchanged") {
+                V.player.spezialisierung = spec;
+
+                const weaponMap = {
+                    pike: "pike",
+                    crossbow: "crossbow",
+                    cannon: "hand_cannon",
+                    medicine: "field_knife"
+                };
+
+                const weaponId = weaponMap[spec];
+
+                if (weaponId) {
+                    setup.addWeaponToInventory(weaponId);
+                    setup.equipWeapon(weaponId);
+                }
+            }
+
+            /* Geld */
+            if (money !== "unchanged") {
+                V.player.money.copper = Number(money);
+            }
+
+            /* Verdacht */
+            if (suspicion !== "unchanged") {
+                V.player.suspicion = Number(suspicion);
+            }
+
+            /* Ermittlung */
+            if (ermittlung === "normal") {
+                V.world.ermittlung.fruehestens_tag = V.world.day + 3;
+                V.npc.luigi.known = true;
+            }
+            else if (ermittlung === "now") {
+                V.world.day = Math.max(V.world.day, 367);
+                V.world.ermittlung.fruehestens_tag = 0;
+
+                if (V.npc.luigi) {
+                    V.npc.luigi.known = true;
+                }
+            }
+        })()>>
+        <<goto "DEBUG_Kap2_Setup">>
+    <</button>>
+</div>
+
+<hr class="trenner-raute">
+
+<h4>Starten</h4>
+
+<ul class="sandbox-menu">
+    <li>
+        [[Regulär: Kapitel-2-Intro mit Probe & Waffenwahl -> Kap2_Intro]]
+        <span class="subtext">— Voller Einstieg in Kapitel 2.</span>
+    </li>
+
+    <li>
+        [[Direkt in den Tagesloop -> Kap2_Tagesstart]]
+        <span class="subtext">— Vorher oben eine Spezialisierung wählen.</span>
+    </li>
+
+    <li>
+        [[Biwag -> Biwag_Drill]]
+        <span class="subtext">— Direkt zum Biwag-Test.</span>
+    </li>
+</ul>
+
+:: DEBUG_Kap2_Setupbak {"position":"1375,4250","size":"100,100"}
 <<run setup.ermInit()>>
 <<if not $world.flags>><<set $world.flags = {}>><</if>>
 

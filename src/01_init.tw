@@ -217,6 +217,7 @@
 
     weibelLars: {
         name: "Lars Spalter",
+        image: "images/Lars.png",
         known: false,
         faction: "84. Banner",
         affection: 0,
@@ -235,17 +236,6 @@
         isRealPlayer: true,
         memory: { flags: {}, events: [] },
         journalEntry: "Armbruster und Ballistenschütze im 84. Banner. Groß und breit wie eine versehentlich verbaute Türöffnung, schaut grantiger als er ist — außer er ist grantig. Rot-weiße Söldnerkleidung, Barett, immer Werkzeug am Gurt. Simpel, geradeaus, loyal. Schießt und baut, als wären seine Hände dafür geboren. Reißt entsetzliche Witze und hält sie für ausgezeichnet."
-        /*
-            HINTERGRUND (nicht im Journal – interne Plotlogik):
-            Stammt aus Draust, vor dessen Abspaltung aufs Festland umgesiedelt,
-            seither im Heer. Enge, gewachsene Freundschaft zu Grimmerthann.
-            Schwäche: weiß nicht, wie man mit verbündeten Würdenträgern/Adeligen
-            umgeht – wird in deren Nähe nervös und zurückhaltend.
-            Liebste Erinnerung: Aloyer Freiheitsfeste ("wo gehtsn da zum Krieg?"),
-            der "Amoklauf" gegen die Otzländer auf dem Hirtenfest samt
-            "Headshot des Jahrtausends" gegen deren Anführer.
-            Easteregg: echter Spieler des 84. Banners.
-        */
     },
     haddl: {
         name: "Hartmut Hadde Wurz",
@@ -271,15 +261,15 @@
     },
 
     bast: {
-    name: "Bast Lercher",
-     image: "images/Bast.jpg",
-    known: false,
-    faction: "84. Banner",
-    affection: 0,
-    trust: false,
-    isRealPlayer: true,
-    memory: { flags: {}, events: [] },
-    journalEntry: "Diplomat und Offizier aus Vormberg. Roter Bart, rotes Barett, Dokumentenrolle am Gurt. Redet viel, sagt wenig mehr als er will. Pragmatisch, loyal — außer wenn Frauen im Spiel sind."
+        name: "Bast Lercher",
+        image: "images/Bast.jpg",
+        known: false,
+        faction: "84. Banner",
+        affection: 0,
+        trust: false,
+        isRealPlayer: true,
+        memory: { flags: {}, events: [] },
+        journalEntry: "Diplomat und Offizier aus Vormberg. Roter Bart, rotes Barett, Dokumentenrolle am Gurt. Redet viel, sagt wenig mehr als er will. Pragmatisch, loyal — außer wenn Frauen im Spiel sind."
 
     },  
     hansFichtensplitter: {
@@ -294,15 +284,15 @@
         journalEntry: "Ein Name der fällt. Ein Gesicht das auftaucht. Was Hans Fichtensplitter hier zu suchen hat – das weißt du noch nicht."
     },
     clausz: {
-    name: "Clausz Andelsmann",
-    image: "images/Clausz.png",
-    known: false,
-    faction: "84. Banner",
-    affection: 0,
-    trust: false,
-    isRealPlayer: true,
-    memory: { flags: {}, events: [] },
-    journalEntry: "Hurenweibel des 84. Banners. Aus Tiafunt, Hafenviertel — die Andelsmänner, ein altes Handelshaus mit noch älterem Standesdünkel, den Clausz selbst verachtet. Gut gekleidet, besser als ein Söldner es sollte. Am Gürtel: Dolch, Lagerbuch, eine Rollenkapsel, Nierentasche, Schnapsbecher. Hat immer Rauchkraut und weiß immer wo was ist — außer wo die Zeit für den Morgenappell bleibt. Mag eingelegtes Obst in Mengen, die man eigentlich nicht mag."
+        name: "Clausz Andelsmann",
+        image: "images/Clausz.png",
+        known: false,
+        faction: "84. Banner",
+        affection: 0,
+        trust: false,
+        isRealPlayer: true,
+        memory: { flags: {}, events: [] },
+        journalEntry: "Hurenweibel des 84. Banners. Aus Tiafunt, Hafenviertel — die Andelsmänner, ein altes Handelshaus mit noch älterem Standesdünkel, den Clausz selbst verachtet. Gut gekleidet, besser als ein Söldner es sollte. Am Gürtel: Dolch, Lagerbuch, eine Rollenkapsel, Nierentasche, Schnapsbecher. Hat immer Rauchkraut und weiß immer wo was ist — außer wo die Zeit für den Morgenappell bleibt. Mag eingelegtes Obst in Mengen, die man eigentlich nicht mag."
     },
 
     rosi: {
@@ -337,6 +327,7 @@
         name: "Karla",
         image: "images/Karla_Kap1.png",
         imageKap2: "images/Karla_Kap2.jpg",
+        imageVerhaftet: "images/Karla_verhaftet.png",
         known: false,
         affection: 0,
         trust: false,
@@ -359,6 +350,7 @@
     jarek: {
         name: "Jarek",
         image: "images/Jarek.png",
+        imageKap2: "images/Jarek_Kap2.png",
         known: false,
         affection: 0,
         trust: false,
@@ -389,8 +381,9 @@
        =========================== */
 
     luigi: {
-        name: "Luigi vom Luigi Handelskontor",
+        name: "Luigi",
         known: false,
+        image: "images/Luigi.png",
         faction: "La Familia",
         affection: 4,
         trust: false,

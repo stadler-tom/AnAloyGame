@@ -433,7 +433,7 @@
 <p>Keine Gedanken über morgen. Keine Pläne. Nur das leise Knacken des Holzes, das Atmen von dreißig Menschen, und das langsam nachlassende Pochen in deinen Beinen.</p>
 
 <div class="scenery-text">Draußen ist der Wind noch immer da. Er wird morgen auch noch da sein. Du wirst auch noch da sein.</div>
-<div class="thought-box">Das zählt.</div
+<div class="thought-box">Das zählt.</div>
 
 <hr class="trenner-raute">
 <<weiterImTag "Das war ein antrengender Tag. Auf die Stube">>
@@ -980,7 +980,7 @@
 
 :: Event_Geschichte_Probe {"position":"2400,1900","size":"100,100"}
 <<set _gossipStory = $world.currentGossipStory>>
-<<set _r = setup.skillCheckXp("gossip", 13, _gossipStory.probe.difficulty)>>
+<<set _r = setup.skillCheckXp("gossip", 12, _gossipStory.probe.difficulty)>>
 
 <<scene>>
     <<if $player.knowledge.gossip <= 3>>
@@ -1127,7 +1127,9 @@
 
 <p>Der Hauptmann schreitet die Front ab. Seine Stiefel knirschen gleichmäßig im Kies, sein Blick bleibt nie lange auf einem Gesicht liegen und scheint doch jedes einzelne zu wiegen. Neben dir steht Karla, aufrecht wie ein eingeschlagener Pflock. Sie sieht nicht zu dir herüber.</p>
 
-<<formal>><<= setup.getAbendappellText("hauptmann")>><</formal>>
+<<formal>>
+    <<= setup.getAbendappellText("hauptmann")>>
+<</formal>>
 
 <p>Niemand antwortet. Niemand muss.</p>
 

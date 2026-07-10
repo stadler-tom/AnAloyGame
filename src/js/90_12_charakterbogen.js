@@ -596,6 +596,7 @@ setup.renderPersonList = function (list, emptyMsg) {
 setup.resolveNpcImage = function (n) {
     if (!n) return "";
     var kap2 = State.variables.world.kapitel1_gesperrt === true;
+    if (n.name === "Karla" && n.memory.flags.verhaftung_seen) return n.imageVerhaftet || "";
     if (kap2 && n.imageKap2) return n.imageKap2;
     return n.image || "";
 };
@@ -628,4 +629,56 @@ setup.notizbuch = function (seite) {
         Dialog.open();
     }
     return "";
+};
+
+
+setup.migrateNpcImages = function () {
+    const npc = State.variables.npc;
+
+    if (!npc) {
+        return;
+    }
+
+    if (npc.karla) {
+        npc.karla.image = npc.karla.image || "images/Karla_Kap1.png";
+        npc.karla.imageKap2 = npc.karla.imageKap2 || "images/Karla_Kap2.jpg";
+        npc.karla.imageVerhaftet = npc.karla.imageVerhaftet || "images/Karla_verhaftet.png";
+    }
+
+    if (npc.jarek) {
+        npc.jarek.image = npc.jarek.image || "images/Jarek.png";
+
+        /*
+           Jareks Kapitel-2-Bild IST das Fluchtbild.
+        */
+        npc.jarek.imageKap2 = npc.jarek.imageKap2 || "images/Jarek_Kap2.png";
+    }
+};
+
+setup.addNpcJournalEntry = function (npcId, text, options = {}) {
+    const npc = State.variables.npc?.[npcId];
+
+    if (!npc) {
+        console.warn("NPC nicht gefunden:", npcId);
+        return false;
+    }
+
+    if (!text) {
+        return false;
+    }
+
+    if (npc.journalEntry == null) {
+        npc.journalEntry = "";
+    }
+
+    const separator = options.separator ?? "<br><br>";
+    const avoidDuplicate = options.avoidDuplicate ?? true;
+
+    if (avoidDuplicate && npc.journalEntry.includes(text)) {
+        return false;
+    }
+
+    npc.journalEntry += separator + text;
+
+    return true;
 };

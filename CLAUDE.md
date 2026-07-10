@@ -18,7 +18,7 @@ Beispiel:
 
 Die Wahrnehmung, Gedanken und Gefühle gehören Thomas. Der Leser erlebt die Welt ausschließlich durch seine Sinne.
 
-Gedankenblöcke von Thomas werden jedoch in der Ich-Form geschrieben.
+Gedankenblöcke von Thomas werden jedoch in der Ich-Form geschrieben. als Monolog.
 
 Beispiel:
 „Ich hätte weglaufen sollen. Schon beim ersten Schlag hätte ich wissen müssen, dass ich hier nicht bestehen werde.“
@@ -61,6 +61,10 @@ Nicht:
 Sondern:
 „Deine Finger finden den Griff des Messers, obwohl du weißt, dass es dir gegen ihn nichts nützen würde.“
 
+scene tags fassen die Athmosfähre der Szene ein.
+Hier wird beschrieben wie die Umgebung aussieht, welches wetter herrscht, was leute machen, der gkleichen. 
+hier kommen keionne dia oder monologe, keine gedanken oder sonstiges rein
+
 ## Schreibregeln
 
 * Keine langen Erklärblöcke über die Welt.
@@ -70,6 +74,7 @@ Sondern:
 * Jede Szene braucht einen Konflikt, eine Spannung oder eine emotionale Veränderung.
 * Beschreibe Gewalt realistisch und mit Konsequenzen.
 * Zeige Erschöpfung, Hunger, Kälte, Schmerzen und Angst körperlich.
+* vor auswahl blöcken steht ein <<trenner>> tag
 
 ## Thomas' Charakter
 
@@ -98,12 +103,14 @@ Jede Szene soll enthalten:
 
 Schreibe keine Zusammenfassung. Schreibe Szenen.
 
+Mache bei allen Zeilen bei ungefähr bei Zeichen 130, je nachdem wo es in den Satz passt, einen Zeilenumpruch. Damit der Text in VS Code ohne scrollen lesbar bleibt
+
 ## Qualitätskontrolle vor jeder Ausgabe
 
 Prüfe:
 
 * Ist die Perspektive konsequent Du-Form?
-* Sind Gedankenblöcke in Ich-Form?
+* Sind Gedankenblöcke in Ich-Form? und als monolog verfasst
 * Ist alles im Präsens?
 * Werden Gefühle gezeigt statt erklärt?
 * Klingt der Text wie ein Roman und nicht wie eine Beschreibung eines Spiels oder einer Anleitung?

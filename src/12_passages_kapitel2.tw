@@ -3,12 +3,17 @@
 <<if $world.abendAktion === undefined>><<set $world.abendAktion to false>><</if>>
 <<set $player.hasSlept to true>>
 
-<<scene>>Die Glocke über dem Torhaus schlägt die letzte Stunde des Dienstes. Über den Dächern der Akademie verglimmt das Licht, die Höfe leeren sich, und aus der Küche zieht der Geruch von dünner Suppe und Brot herüber. Der Dienst ist vorbei — aber der Abend gehört noch dir.<</scene>>
+<<scene>>Die Glocke über dem Torhaus schlägt die letzte Stunde des Dienstes. 
+
+Über den Dächern der Akademie verglimmt das Licht, die Höfe leeren sich, 
+und aus der Küche zieht der Geruch von dünner Suppe und Brot herüber. 
+Der Dienst ist vorbei — aber der Abend gehört noch dir.<</scene>>
 
 <<if not $world.abendAktion>>
 
 <p>Talglichter flackern hinter den Fenstern der Baracken auf. Noch ist Zeit für eines, ehe die Müdigkeit gewinnt.</p>
 
+<<trenner>>
 <<set _options = setup.kap2AbendStorylets.filter(function(s) { return s.available(); })>>
 <ul class="menu">
 <<for _i = 0; _i < _options.length; _i++>>
@@ -115,6 +120,7 @@
 
 <<gedanke>>Drill am Morgen, danach meine Zeit. Die Stadt, die Leute, die eigenen Vorhaben. Ein Jahr lang hat man mir jede Stunde vorgeschrieben. Mal sehen, was ich tue, wenn es keiner mehr tut.<</gedanke>>
 
+<<trenner>>
 [[Der erste freie Tag beginnt. ->Kap2_Tagesstart]]
 
 
@@ -349,6 +355,8 @@ Oder Scham.</p>
 
 <p>Nur neu vermessen.</p>
 
+<<trenner>>
+
 [[Weiter ->Kapitel 2: Rekrutenhof]]
 
 
@@ -368,10 +376,6 @@ Oder Scham.</p>
 :: Kap2_Intro {"position":"500,4750","size":"100,100"}
 <<set $player.rank = "Waffenträger">>
 
-<<set $npc.karla.memory.flags.verhaftung_seen to false>>
-
-
-
 Das Lager ist dasselbe geblieben, und doch ist es ein anderer Ort.
 
 <<scene>> Die Zelte stehen noch immer in ihren Reihen. Der Exerzierplatz trägt noch immer dieselben Narben aus Schlamm, Kies und festgetretenem Staub. Am Morgen riecht es nach Rauch, dünner Suppe und nassem Leder.<</scene>>
@@ -384,17 +388,25 @@ Das macht es nicht leichter<br>
 Es bedeutet nur, dass man jetzt selbst wissen soll, wohin man gehört.</p>
 
 <<if $npc.karla.memory.flags.verhaftung_seen>>
-<<beziehung>>Manchmal, wenn eine rote Strähne im Gedränge aufblitzt oder jemand Karlas Namen nur ähnlich ausspricht, zieht sich etwas in dir zusammen.<br>
-Dann falckert die Erinnerung auf an das Mädchen, dass du hast alleine gelassen.
-Die nach der Wahrheit gesucht hat oder zumindest für das was ihr als die Wahrheit erschien.
-Das Mädchen das einen Freund hätte gebrauchen können. Oder zumindest jemanden der ihr Deckung gegeben hätte.<</beziehung>>
+<<beziehung>>
+	Manchmal, wenn eine rote Strähne im Gedränge aufblitzt oder jemand Karlas Namen nur ähnlich ausspricht, zieht sich etwas in dir zusammen.<br>
+	Dann falckert die Erinnerung auf an das Mädchen, dass du hast alleine gelassen.
+	Die nach der Wahrheit gesucht hat oder zumindest für das was ihr als die Wahrheit erschien.
+	Das Mädchen das einen Freund hätte gebrauchen können. Oder zumindest jemanden der ihr Deckung gegeben hätte.
+<</beziehung>>
 
-<<gedanke>>Nicht jetzt....
-Nicht daran denken.
-Der Drill ist einfacher. Der Drill fragt nicht, wen man verloren hat.<</gedanke>>
+<<gedanke>>
+	Nicht jetzt....
+	Nicht daran denken.
+	Der Drill ist einfacher. Der Drill fragt nicht, wen man verloren hat.
+<</gedanke>>
 
 <<else>>
-<<beziehung>>Aber ganz auf dich selbst bist du nicht gestellt. Du hast Karla. Im letzten Jahr habt ihr euch erst kennen und dann vertrauen gelernt. Ihr ward beide füreinander da als der jeweils andere jemadnen brauchte. Diese Rückendeckung nimmt euch keiner und es macht den Alltag sehr viel einfacher, wenn man weis, dass es hier drinnen zumindest einen Menschen gibt, der auf deiner Seite steht.<</beziehung>>
+	<<beziehung>>Aber ganz auf dich selbst bist du nicht gestellt. Du hast Karla. Im letzten Jahr habt ihr euch erst 		
+	kennen und dann vertrauen gelernt. Ihr ward beide füreinander da als der jeweils andere jemadnen brauchte. 
+	Diese Rückendeckung nimmt euch keiner und es macht den Alltag sehr viel einfacher, wenn man weis, dass es hier drinnen zumindest 
+	einen Menschen gibt, der auf deiner Seite steht.
+	<</beziehung>>
 <</if>>
 
 <p>Am dritten Morgen des neuen Ausbildungsjahres lässt Kurt die Waffenträger auf dem Platz antreten.</p>
@@ -415,6 +427,7 @@ Der Drill ist einfacher. Der Drill fragt nicht, wen man verloren hat.<</gedanke>
 
 <<dialog>>„Vortreten.“<</dialog>>
 
+<<trenner>>
 [[Vortreten ->Kap2_Die_Probe]]
 
 
@@ -448,7 +461,6 @@ Der Drill ist einfacher. Der Drill fragt nicht, wen man verloren hat.<</gedanke>
 
 <</if>>
 
-<<link "🛠 DEBUG: +1 Tag" "Kap2_Tagesstart">><</link>>
 
 
 :: Kap2_Tagesstart [tagesstart] {"position":"2350,4900","size":"100,100"}
@@ -460,11 +472,14 @@ Der Drill ist einfacher. Der Drill fragt nicht, wen man verloren hat.<</gedanke>
 <br>
 <<gedanke>><<= setup.getKap2NaechsterTagText("gedanke")>><</gedanke>>
 
+<<trenner>>
 [[Sieh was der Tag bringt->Kap2_Tageshub]]
 
 
 :: Kap2_Waffenwahl {"position":"1150,4750","size":"100,100"}
-<<scene>>Der Morgen ist grau und kalt. Reif liegt dünn auf dem Kies, und der Atem der Waffenträger steht in kleinen Wolken über der Reihe. Niemand spricht. Jeder trägt die Nacht im Gesicht, in der er nicht geschlafen hat.<</scene>>
+<<scene>>Der Morgen ist grau und kalt. Reif liegt dünn auf dem Kies, und der Atem der Waffenträger steht in kleinen Wolken über der Reihe.
+	
+ Niemand spricht. Jeder trägt die Nacht im Gesicht, in der er nicht geschlafen hat.<</scene>>
 
 <p>Kurt steht vor euch, eine Liste in der Hand, einen stumpfen Kohlestift dahinter.</p>
 
@@ -532,6 +547,7 @@ Warum habe ich das Gefühl, dass er sich gemerkt hat, was ich gewählt habe?<</g
 
 <p>Dann ist der Moment vorbei. Die Reihe löst sich auf, der Tag beginnt, und mit ihm das zweite Jahr — diesmal mit einem Weg, den du selbst gewählt hast.</p>
 
+<<trenner>>
 [[Weiter ->Kap2_Ausbildung]]
 
 
@@ -609,6 +625,8 @@ Der Feldscher. Keine Waffe. Hände, die heilen statt schlagen. Der Gedanke fühl
 
 <p>Irgendwann schläfst du ein, ohne entschieden zu haben.</p>
 
+<<trenner>>
+
 [[Der Morgen kommt. ->Kap2_Waffenwahl]]
 
 
@@ -624,7 +642,7 @@ Der Feldscher. Keine Waffe. Hände, die heilen statt schlagen. Der Gedanke fühl
 <</dialog>>
 
 <<beziehung>>
-	<<set _r to setup.skillCheck("combat", 12)>>
+	<<set _r to setup.skillCheckXp("combat", 12)>>
     <<= setup.skillCheckAlert(_r)>>
 	<<if _r.success>>
       <p>Du packst zu, Fass um Fass, den Rücken bald schmerzend, doch deine Kraft reicht, ohne dass du nachlässt. Der Kaufmann nickt zufrieden, als die letzte Ladung im Speicher verstaut ist, und zählt dir den Lohn ohne Feilschen in die Hand.</p>
@@ -716,13 +734,17 @@ Der Feldscher. Keine Waffe. Hände, die heilen statt schlagen. Der Gedanke fühl
 
 <p>Heute reden sie nur vom Wetter und von schlechten Straßen — nichts, das du nicht schon wüsstest.</p>
 
-<<if not $npc.karla.memory.flags.verhaftung_seen and not $world.ermittlung.spuren.includes("fuhrmann_hinweis")>>
+<<if not $world.ermittlung.spuren.includes("fuhrmann_hinweis")>>
 	<<if random(1,100) <= 8>>
-		<p>Ein alter Fuhrmann, dessen Hände von Zügeln und Kälte gleichermaßen gegerbt sind, erzählt beiläufig, fast im Vorübergehen, von einer Nacht vor einigen Wochen — einem Karren, der außerhalb der üblichen Stunde das Nordtor passierte, ohne dass jemand danach fragte, wessen Fracht er trug. Er selbst hielt es nicht für erwähnenswert. Für dich klingt es wie ein Stein, der gerade erst ins Wasser gefallen ist.</p>
+		<p>Ein alter Fuhrmann, dessen Hände von Zügeln und Kälte gleichermaßen gegerbt sind, erzählt beiläufig, fast im Vorübergehen, 
+		von einer Nacht vor einigen Wochen — einem Karren, der außerhalb der üblichen Stunde das Nordtor passierte, 
+		ohne dass jemand danach fragte, wessen Fracht er trug. Er selbst hielt es nicht für erwähnenswert. 
+		Für dich klingt es wie ein Stein, der gerade erst ins Wasser gefallen ist.</p>
 		<<gedanke>>
-		<p>Ein Karren. Zur falschen Stunde. Niemand, der fragte. Das könnte nichts bedeuten — oder alles.</p>
+			<p>Ein Karren. Zur falschen Stunde. Niemand, der fragte. Das könnte nichts bedeuten — oder alles.</p>
 		<</gedanke>>
-		<<print setup.ermFund("fuhrmann_hinweis", "Ein Fuhrmann erwähnte beiläufig einen Karren, der zur falschen Stunde durchs Nordtor fuhr, ohne dass die Wache nach der Fracht fragte.")>>
+		<<print setup.ermFund("fuhrmann_hinweis", "Ein Fuhrmann erwähnte beiläufig einen Karren, der zur falschen Stunde durchs Nordtor fuhr, 
+		ohne dass die Wache nach der Fracht fragte.")>>
 	<</if>>
 <</if>>
 
@@ -750,19 +772,34 @@ der seine Runde vergessen zu haben scheint.</p>
 		<<set _stadtModifier = 3>>
 		<<set _erfolg = setup.skillCheckXp("gossip", 13 ,_story.probe.difficulty + _stadtModifier)>>
 		<<if _erfolg.success>> 
-			<<= setup.skillCheckAlert(_erfolg)>>     
-        	<<dialog>>
-              <p>„Was sagen sie?“, flüstert Karla.</p>
-              <p>„Moment! Da ist noch was!.“</p>
-          	<</dialog>>
+			<<= setup.skillCheckAlert(_erfolg)>>  
+			<<if not $npc.karla.memory.flags.verhaftung_seen>>   
+				<<dialog>>
+					<p>„Was sagen sie?“, flüstert Karla.</p>
+					<p>„Moment! Da ist noch was!.“</p>
+				<</dialog>>
+			<<else>>
+				<<gedanke>>
+					<p>Was sagen sie? ...</p>
+					<p>Moment! Da ist noch was!.</p>
+				<</gedanke>>
+			<</if>>
 				<<= _story.probe.success>><br>
 				<<= setup.addRumor(_story.rumorText)>>
 				<<run setup.markGossipSeen(_story.id, true)>>
 		<<else>>
-			<<dialog>>
-              <p>„Was sagen sie?“, flüstert Karla.</p>
-              <p>„Ich weiß nicht genau. Zu viele Stimmen auf einmal.“</p>
-			<</dialog>>
+			<<if not $npc.karla.memory.flags.verhaftung_seen>>   
+				<<dialog>>
+					<p>„Was sagen sie?“, flüstert Karla.</p>
+					<p>„Ich weiß nicht genau. Zu viele Stimmen auf einmal.“</p>
+				<</dialog>>
+			<<else>>
+				<<gedanke>>
+					<p>Was sagen sie? ...</p>
+					<p>Ich verstehe nichts. Zu viele Stimmen auf einmal.</p>
+				<</gedanke>>
+			<</if>> 
+
 			  	<<if _erfolg.fumble>>
 					<<= setup.setPlayerSuspicion(5)>>
 				<<else>>
@@ -885,84 +922,82 @@ der seine Runde vergessen zu haben scheint.</p>
 	</li>
 </ul>
 
-<hr class="trenner-raute">
-<p>Zwischen den Ständen hat sich ein Krämer eingerichtet, dessen Tisch aussieht, als hätte er von allem eines: Bänder, Steine, Tüten, Töpfchen. Dein Blick bleibt an ein paar Dingen hängen — nicht für dich.</p>
+<<if not $npc.karla.memory.flags.verhaftung_seen>>
+	<hr class="trenner-raute">
+	<p>Zwischen den Ständen hat sich ein Krämer eingerichtet, dessen Tisch aussieht, als hätte er von allem eines: Bänder, Steine, Tüten, Töpfchen. Dein Blick bleibt an ein paar Dingen hängen — nicht für dich.</p>
 
-<ul class="sandbox-menu">
-	<li>
-    <<if setup.canAffordMoney(4)>>
-		<<link "Gebrannte Mandeln (4 Kupfer)">>
-			<<print setup.removeMoney(4)>>
-			<<set $world.tmpKauf to "mandeln">>
-			<<goto "Stadt_Markt">>
-		<</link>>
-	<<else>>
-		<span class="stat-empty">Gebrannte Mandeln (4 Kupfer) — dafür reicht dein Beutel nicht</span>
-	<</if>>
-    	<span class="subtext">— Süß und knackig. Ein Leckerbissen und eine willkommene Abwechslung zum Aloyer Allerley.</span>
-    </li>
-   
-    <li>
-    <<if not setup.hasItem("Feiner Wetzstein")>>
-    	<<set _g to setup.karlaGeschenke["wetzstein"]>>
-        <<if setup.canAffordMoney(_g.preis)>>
-            <<link "Ein feiner Wetzstein (1Silber 5 Kupfer)">>
-            	<<print setup.removeMoney(_g.preis)>>
-                <<= setup.addItem(_g.item)>>
-                <<goto "Stadt_Markt">>
-            <</link>>
-        <<else>>
-            <span class="stat-empty">Feiner Wetzstein (1Silber 5 Kupfer) — dafür reicht dein Beutel nicht</span>
-        <</if>>
-     <</if>>   
-         	<span class="subtext">— Ein sehr fein gearbeiteter Wetzstein, nichtt so klobig wie andere. Damit bekommt man eine richtig scharfen und sauberen Schliff.</span>
-    </li>
-    
-        <li>
-    <<if not setup.hasItem("Rotes Haarband") and not $npc.karla.memory.flags.haarband_getragen>>
-        <<if setup.canAffordMoney(14)>>
-        <<set _g to setup.karlaGeschenke["haarband"]>>
-            <<link "Ein rotes Haarband (2 Silber)">>
-            	<<print setup.removeMoney(_g.preis)>>
-                <<= setup.addItem(_g.item)>>
-                <<goto "Stadt_Markt">>
-            <</link>>
-        <<else>>
-            <span class="stat-empty">Ein rotes Haarband (2Silber) — dafür reicht dein Beutel nicht</span>
-        <</if>>
-     <</if>> 
-         	<span class="subtext">— Ein Rotes Haarband aus feinem Stoff. Ein schickes Etwas. Man braucht es nicht, aber es ist etwas besonderes.</span>
-    </li>
-    
-        <li>
-    <<if not setup.hasItem("Wallwurz-Salbe") and not $npc.karla.memory.flags.salbe_angenommen>>
-        <<if setup.canAffordMoney(7)>>
-        <<set _g to setup.karlaGeschenke[ "salbe"]>>
-            <<link "Wallwurz-Salbe (1Silber)">>
-            	<<print setup.removeMoney(_g.preis)>>
-                <<= setup.addItem(_g.item)>>
-                <<goto "Stadt_Markt">>
-            <</link>>
-        <<else>>
-            <span class="stat-empty">Wallwurz-Salbe (1Silber) — dafür reicht dein Beutel nicht</span>
-        <</if>>
-     <</if>>   
-     <<if $player.spezialisierung === "medicine">>
-         	<span class="subtext">— Beinwell-Salbe wirkt stark schmerzstillend, entzündungshemmend und abschwellend.. Die Heilpflanze fördert zudem die Geweberegeneration. Sie wird typischerweise zur äußerlichen Behandlung von stumpfen Verletzungen wie Prellungen, Zerrungen und Verstauchungen sowie bei Muskel- und Gelenkbeschwerden, Arthrose und Sehnenscheidenentzündungen eingesetzt. </span>
-     <<else>>
-     		         	<span class="subtext">— Die Gute Wallwurz Salbe. Sie ist zwar teuer, aber wirkt bei zahlreichen verletzungen.</span>
-      <</if>>
-    </li>
-    
-    
-    
-    
-</ul>
-
+	<ul class="sandbox-menu">
+		<li>
+		<<if setup.canAffordMoney(4)>>
+			<<link "Gebrannte Mandeln (4 Kupfer)">>
+				<<print setup.removeMoney(4)>>
+				<<set $world.tmpKauf to "mandeln">>
+				<<goto "Stadt_Markt">>
+			<</link>>
+		<<else>>
+			<span class="stat-empty">Gebrannte Mandeln (4 Kupfer) — dafür reicht dein Beutel nicht</span>
+		<</if>>
+			<span class="subtext">— Süß und knackig. Ein Leckerbissen und eine willkommene Abwechslung zum Aloyer Allerley.</span>
+		</li>
+	
+		<li>
+		<<if not setup.hasItem("Feiner Wetzstein")>>
+			<<set _g to setup.karlaGeschenke["wetzstein"]>>
+			<<if setup.canAffordMoney(_g.preis)>>
+				<<link "Ein feiner Wetzstein (1Silber 5 Kupfer)">>
+					<<print setup.removeMoney(_g.preis)>>
+					<<= setup.addItem(_g.item)>>
+					<<goto "Stadt_Markt">>
+				<</link>>
+			<<else>>
+				<span class="stat-empty">Feiner Wetzstein (1Silber 5 Kupfer) — dafür reicht dein Beutel nicht</span>
+			<</if>>
+		<</if>>   
+				<span class="subtext">— Ein sehr fein gearbeiteter Wetzstein, nichtt so klobig wie andere. Damit bekommt man eine richtig scharfen und sauberen Schliff.</span>
+		</li>
+		
+			<li>
+		<<if not setup.hasItem("Rotes Haarband") and not $npc.karla.memory.flags.haarband_getragen>>
+			<<if setup.canAffordMoney(14)>>
+			<<set _g to setup.karlaGeschenke["haarband"]>>
+				<<link "Ein rotes Haarband (2 Silber)">>
+					<<print setup.removeMoney(_g.preis)>>
+					<<= setup.addItem(_g.item)>>
+					<<goto "Stadt_Markt">>
+				<</link>>
+			<<else>>
+				<span class="stat-empty">Ein rotes Haarband (2Silber) — dafür reicht dein Beutel nicht</span>
+			<</if>>
+		<</if>> 
+				<span class="subtext">— Ein Rotes Haarband aus feinem Stoff. Ein schickes Etwas. Man braucht es nicht, aber es ist etwas besonderes.</span>
+		</li>
+		
+			<li>
+		<<if not setup.hasItem("Wallwurz-Salbe") and not $npc.karla.memory.flags.salbe_angenommen>>
+			<<if setup.canAffordMoney(7)>>
+			<<set _g to setup.karlaGeschenke[ "salbe"]>>
+				<<link "Wallwurz-Salbe (1Silber)">>
+					<<print setup.removeMoney(_g.preis)>>
+					<<= setup.addItem(_g.item)>>
+					<<goto "Stadt_Markt">>
+				<</link>>
+			<<else>>
+				<span class="stat-empty">Wallwurz-Salbe (1Silber) — dafür reicht dein Beutel nicht</span>
+			<</if>>
+		<</if>>   
+		<<if $player.spezialisierung === "medicine">>
+				<span class="subtext">— Beinwell-Salbe wirkt stark schmerzstillend, entzündungshemmend und abschwellend.. Die Heilpflanze fördert zudem die Geweberegeneration. Sie wird typischerweise zur äußerlichen Behandlung von stumpfen Verletzungen wie Prellungen, Zerrungen und Verstauchungen sowie bei Muskel- und Gelenkbeschwerden, Arthrose und Sehnenscheidenentzündungen eingesetzt. </span>
+		<<else>>
+							<span class="subtext">— Die Gute Wallwurz Salbe. Sie ist zwar teuer, aber wirkt bei zahlreichen verletzungen.</span>
+		<</if>>
+		</li>  
+	</ul>
+<</if>>
 
 [[Zurück in die Stadt|Tageshub_Stadt]]
 
 
+/*Depricated orphaned?*/
 :: Stadt_Markt_Kauf {"position":"2425,5875","size":"100,100"}
 <<set _g to setup.karlaGeschenke[$world.tmpKauf]>>
 <<if setup.canAffordMoney(_g.preis)>>
@@ -1229,10 +1264,17 @@ der seine Runde vergessen zu haben scheint.</p>
 <p>Hinter dem Nordtor der Akademie beginnt eine andere Welt. Die Gassen sind eng, das Pflaster uneben, überall drängen sich Fuhrleute, Marktweiber und Handwerksburschen aneinander vorbei, während der Geruch von Fischständen, frisch gebackenem Brot und dem beißenden Rauch der Schmieden sich zu einem einzigen, dichten Gemenge vermengt. Hier fragt niemand nach deinem Rang. Hier zählt, was in deinem Beutel klimpert.</p>
 <</scene>>
 
-<<= setup.getNpcInteraction("Kap2_Pool_Stadt_Encounter")>>
+<<beziehung>>
+	<<= setup.getNpcInteraction("Kap2_Pool_Stadt_Encounter")>>
+<</beziehung>>
 
-<p>Karla wartet an der Ecke zur Fischgasse, die Arme verschränkt, ungeduldig wie stets, wenn sie nicht weiß, wie du deine Zeit verbringen willst.</p>
+<<if not $npc.karla.memory.flags.verhaftung_seen>>
+	<p>Karla wartet an der Ecke zur Fischgasse, die Arme verschränkt, ungeduldig wie stets, wenn sie nicht weiß, wie du deine Zeit verbringen willst.</p>
+<<else>>
+	<p>Du schlenderst an der Ecke zur Fischgasse vorbei, die Arme verschränkt, ungeduldig wie stets, wenn du nicht weißt, wie du deine Zeit verbringen willst.</p>
+<</if>>
 
+<<trenner>>
 <ul class="sandbox-menu">
 <<if $world.stadtActivitiesUsed < 2>>
 	<li>

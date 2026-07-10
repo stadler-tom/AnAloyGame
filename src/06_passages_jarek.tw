@@ -38,6 +38,7 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 
 <p>Dann ist er fort, bevor du fragen kannst, wie er das gemeint hat.</p>
 
+<<trenner>>
 [[Die Vorlesung endet. ->Studium Hub]]
 
 
@@ -53,6 +54,7 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 
 <div class="thought-box">Er hat mich nicht gebraucht. Er hat geprüft. Und ich hab eine Tür zugemacht, von der ich nicht mal wusste, dass sie offen stand.</div>
 
+<<trenner>>
 [[zurück in die Stube ->Jarek_S2_finalize]]
 
 
@@ -66,6 +68,7 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 
 <div class="thought-box">Er hat mir die Tür offen gelassen. Ich bin nur nicht durchgegangen. Das ist nicht dasselbe wie ein Nein — aber es ist auch kein Ja.</div>
 
+<<trenner>>
 [[zurück in die Stube ->Jarek_S2_finalize]]
 
 
@@ -82,6 +85,7 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 
 <div class="dialog">„Es ist kein Gefallen", sagt er, fast schroff. „Ich brauch jemanden, der nicht quatscht. Das bist du. Mehr ist es nicht." Dann, ruhiger, als hätte er sich selbst zurückgepfiffen: „Es ist trocken und warm da drin. Besser als Exerzieren im Schlamm. Kommst du mit?"</div>
 
+<<trenner>>
 [[Mitgehen. Warum nicht. ->Jarek_S2_Schreibstube]]
 [[Ablehnen. Du hast genug zu tun. ->Jarek_S2_Ablehnung]]
 
@@ -101,6 +105,7 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 
 <div class="thought-box">Ich hab es benannt. Und genau das war der Fehler. Nicht das Sehen — das Aussprechen. Wer Jarek ansieht, soll nichts sehen. Das hab ich gerade vergessen.</div>
 
+<<trenner>>
 [[zurück in die Stube ->Jarek_S2_finalize]]
 
 
@@ -121,6 +126,7 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 
 <div class="thought-box">Er will, dass dieser Band nicht in die Kiste kommt. Und der Schreiber sieht gleich, dass er nicht zerfallen ist. Sag ich was — oder lass ich es?</div>
 
+<<trenner>>
 [[Den Schreiber ablenken. Irgendetwas sagen, damit sein Blick von Jarek weggeht. ->Jarek_S2_Schweigen]]
 [[Jarek darauf ansprechen, was du gerade gesehen hast. ->Jarek_S2_Ansprechen]]
 
@@ -138,6 +144,7 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 
 <div class="thought-box">Eine ruhige Stunde, ein bisschen Wärme, ein Danke. Mehr war es nicht. Vielleicht musste es auch nicht mehr sein.</div>
 
+<<trenner>>
 [[zurück in die Stube ->Jarek_S2_finalize]]
 
 
@@ -152,6 +159,7 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 
 <p>Du könntest die Arbeit einfach herunterreißen und an deine Pritsche denken. Oder du könntest darauf achten, was Jarek hier eigentlich tut.</p>
 
+<<trenner>>
 [[Einfach arbeiten. Sortieren, schweigen, fertig werden. ->Jarek_S2_Arbeit_Passiv]]
 [[Arbeiten — aber genau darauf achten, was Jarek tut. ->Jarek_S2_Arbeit_Aktiv]]
 [[Doch keine Lust. Einen Vorwand finden und gehen. ->Jarek_S2_Ablehnung_Spaet]]
@@ -179,6 +187,7 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 
 <div class="thought-box">Ich weiß nicht, was ich da rausgetragen hab unter seinem Kittel. Und vielleicht ist es besser so. Was ich weiß: Eben hat sich etwas verschoben. Leise. Aber es hat sich verschoben.</div>
 
+<<trenner>>
 [[zurück in die Stube ->Jarek_S2_finalize]]
 
 
@@ -208,6 +217,7 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 <<if $edu.archivzugang>>
 <div class="dialog">„— du gehst in den Schreibstuben ein und aus. Mit deinem Zeichen fällt niemandem auf, wenn du etwas länger zwischen den Regalen stehst." Er legt dir kurz die Hand auf den Arm. „Ich verlang nicht, dass du was stiehlst. Nur dass du suchst. Ein Name, ein Blatt. Das ist alles."</div>
 
+<<trenner>>
 [[Ich schau mich um. Für dich. ->Jarek_S3_Zusage]]
 [[Und wenn ich erwischt werde? ->Jarek_S3_Zweifel]]
 <<else>>
@@ -215,6 +225,7 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 
 <div class="thought-box">Er meint Magister Halm. Wer sich dort nützlich macht — wer genug Gelehrsamkeit zeigt — dem öffnet er die Schreibstuben. Jarek kommt da nicht rein. Ich vielleicht schon.</div>
 
+<<trenner>>
 [[Ich versuch, an dieses Zeichen zu kommen. ->Jarek_S3_Zusage]]
 [[Und wenn ich erwischt werde? ->Jarek_S3_Zweifel]]
 <</if>>
@@ -235,6 +246,7 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 <p>Zuerst musst du an das Archivzeichen kommen — und das führt über den Magister.</p>
 <</if>>
 
+<<trenner>>
 [[Schlafen. Morgen ist ein langer Tag. ->Auf Stube]]
 
 
@@ -245,6 +257,8 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 
 <p>Er wartet. Er drängt nicht. Er weiß, dass die Frage längst entschieden ist — du hast nur noch nicht ja gesagt.</p>
 
+
+<<trenner>>
 [[Schon gut. Ich mach's. ->Jarek_S3_Zusage]]
 [[Lass mich eine Nacht drüber schlafen. ->Auf Stube]]
 
@@ -261,12 +275,12 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 <p>Du hast das Zeichen des Magisters. Damit darfst du nachts hier sein — niemand wird dich aufhalten. Aber das Zeichen hat eine Kehrseite: Wer es vorzeigt, hinterlässt eine Spur. Halm wüsste, dass *du* hier warst.</p>
 
 <div class="thought-box">Mit dem Zeichen bin ich legal hier — und nachweisbar. Ohne das Zeichen bin ich ein Schatten — und in Gefahr. Was ist mir lieber?</div>
-
+<<trenner>>
 [[Das Zeichen nutzen. Du gehörst hierher. ->Jarek_S4_Befugt]]
 [[Das Zeichen stecken lassen. Lieber ein Schatten als ein Name in einem Buch. ->Jarek_S4_Unbefugt]]
 <<else>>
 <p>Du hast kein Zeichen. Es gibt nur einen Weg: lautlos rein, lautlos raus, und beten, dass die Stunde reicht.</p>
-
+<<trenner>>
 [[Hinein, solange der Gang leer ist. ->Jarek_S4_Unbefugt]]
 <</if>>
 
@@ -290,7 +304,7 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 
 <div class="thought-box">Das war zu knapp. Er wird sich erinnern, dass der Frischling mit dem Zeichen dort gewühlt hat, wo er nicht sollte. Solche Dinge sickern nach oben.</div>
 <</if>>
-
+<<trenner>>
 [[Weitersuchen. ->Jarek_S4_Fund]]
 
 
@@ -302,7 +316,7 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 <p>Du hältst es in den Händen und spürst, dass es schwerer ist, als Papier sein dürfte. Etwas an diesem Blatt stimmt nicht mit der Geschichte überein, die Jarek dir erzählt hat — du kannst noch nicht sagen, was.</p>
 
 <div class="thought-box">Ein Familienname in einer alten Schuld, hat er gesagt. Aber warum liegt dieser Name *hier*, zwischen Pergamenten, die mit Schulden nichts zu tun haben?</div>
-
+<<trenner>>
 [[Jarek das Blatt zeigen. ->Jarek_S5_Begreifen]]
 
 
@@ -325,7 +339,7 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 <div class="thought-box">Um ein Haar. Jarek hat nicht gezögert, keine Sekunde — als wäre Sich-Verstecken etwas, das er im Schlaf beherrscht. Daran denke ich jetzt besser nicht.</div>
 <p>Als die Wache wieder abgezogen ist macht ihr euch weiter an die Suche nach dem Dokument weswegen ihr hier seid.</p>
 <</if>>
-
+<<trenner>>
 [[Suchen, schnell, bevor die nächste Runde kommt. ->Jarek_S4_Fund]]
 
 
@@ -365,7 +379,7 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 <</if>>
 
 <p>Du stehst da, das Schweigen zwischen euch so schwer, dass es im Hals sitzt. Der Junge, dem du deine kranke Kindheit anvertraut hast, der dir „Schlaf gut" gesagt hat — den gibt es nicht. Hat es nie gegeben.</p>
-
+<<trenner>>
 [[Warum ich? ->Jarek_S6_Bruch]]
 
 
@@ -401,6 +415,8 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 <</if>>
 
 <p>Du sitzt im Halbdunkel der Schreibstube, allein, mit dem Wissen, das du nie wieder loswirst — und mit der Frage, was du jetzt damit tust. Schritte werden bald kommen. Du hast nur Augenblicke.</p>
+<<run setup.addNpcJournalEntry("jarek", "Er hat mich benutzt um an die Freiheiserklärung zu kommen. Ich habe ihm geglaubt. Ich habe ihn reingebracht. Als er sie hatte hat er mich angegriffen und ist geflohen.")>>
+<<trenner>>
 [[Alarm schlagen. Sollen sie ihn jagen — und erfahren, was er gestohlen hat. ->Jarek_S6_Gemeldet]]
 [[Schweigen. Du lässt ihn laufen und trägst das allein. ->Jarek_S6_Geschwiegen]]
 
@@ -416,7 +432,7 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 <p>Niemand sieht zu dir herüber. Noch nicht. Aber du warst mit Jarek in jenen Schreibstuben, und es ist nur eine Frage der Zeit, bis sich jemand daran erinnert.</p>
 
 <div class="thought-box">Ich könnte immer noch schweigen. Vielleicht fällt nie ein Verdacht auf mich. Oder ich gehe jetzt, aus eigenem Antrieb — bevor man mich holt.</div>
-
+<<trenner>>
 [[Weiter schweigen. Sollen sie rätseln. ->Jarek_S6_Endgueltig_Schweigen]]
 [[Zum Sergeant gehen und erzählen, was du weißt. ->S06_Gestehen][$npc.jarek.memory.flags.spaet_gestanden = true]]
 
@@ -430,6 +446,7 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 <<set $npc.jarek.memory.flags.katastrophe to true>>
 <<set $world.flags.jarek_ausgang_tag to $world.day>>
 <<set $world.flags.jarek_ausgang to "schweigen">>
+<<trenner>>
 [[Den Kopf senken und weitermachen. ->Auf Stube]]
 
 
@@ -474,6 +491,7 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 <<set $npc.jarek.memory.flags.katastrophe to true>>
 <<set $world.flags.jarek_ausgang_tag to $world.day>>
 <<set $world.flags.jarek_ausgang to "gemeldet">>
+<<trenner>>
 [[Auf die Stube gehen ->Kap1_Tagesstart]]
 
 
@@ -491,6 +509,7 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 <<set $npc.jarek.memory.flags.katastrophe to true>>
 <<set $world.flags.jarek_ausgang_tag to $world.day>>
 <<set $world.flags.jarek_ausgang to "geschwiegen">>
+<<trenner>>
 [[Den Schnitt verbinden und den Rest der Nacht überstehen. ->Kap1_Tagesstart]]
 
 
@@ -534,4 +553,5 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 <<set $npc.jarek.memory.flags.katastrophe to true>>
 <<set $world.flags.jarek_ausgang_tag to $world.day>>
 <<set $world.flags.jarek_ausgang to "schande">>
+<<trenner>>
 [[Die Strafe annehmen und tragen. ->Kap1_Der nächste Tag]]

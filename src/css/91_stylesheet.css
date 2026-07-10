@@ -720,3 +720,24 @@
 }
 #ui-dialog-body.notizbuch-dialog { padding: 1.2em 1.5em; }
 
+.hud-item a,
+.hud-item a.link-internal {
+    display: inline !important;
+    background: none !important;
+    border: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    color: inherit !important;
+    font: inherit !important;
+    text-decoration: none !important;
+    transform: none !important;
+}
+
+.hud-item a:hover,
+.hud-item a.link-internal:hover {
+    color: var(--accent-gold) !important;
+    background: none !important;
+    border: 0 !important;
+    transform: none !important;
+    cursor: pointer;
+}

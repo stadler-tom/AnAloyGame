@@ -87,12 +87,53 @@ setup.routeTags = {
 setup.routeFromTags = function (tagList) {
     const player = State.variables.player;
     const kap2 = State.variables.world.kapitel1_gesperrt === true;
-    for (const t of tagList) {
-        player.hasSlept = (t !== "nach_morgen");
-        if (t === "nach_abend" && kap2) return "Kap2_Abend";   /* Abendszene: Tag endet, normal geschlafen */
-        if (t === "nach_morgen") return kap2 ? "Kap2_Tagesstart" : setup.routeTags[t];
-        if (setup.routeTags[t]) return kap2 ? "Kap2_Tageshub" : setup.routeTags[t];
+        for (const t of tagList) {
+        if (t === "nach_Kap2_tag") {
+            player.hasSlept = true;
+            return "Kap2_Tageshub";
+        }
+
+        if (t === "nach_Kap2_abend") {
+            player.hasSlept = true;
+            return "Kap2_Abend";
+        }
+
+        if (t === "nach_Kap2_morgen") {
+            player.hasSlept = true;
+            return "Kap2_Tagesstart";
+        }
+
+        if (t === "nach_hub") {
+            player.hasSlept = true;
+            return kap2 ? "Kap2_Tageshub" : "Nachmittag Hub";
+        }
+
+        if (t === "nach_appell") {
+            player.hasSlept = true;
+            return kap2 ? "Kap2_Abend" : "Abendappell";
+        }
+
+        if (t === "nach_stube") {
+            player.hasSlept = true;
+            return kap2 ? "Kap2_Abend" : "Auf Stube";
+        }
+
+        if (t === "nach_morgen") {
+            player.hasSlept = false;
+            return kap2 ? "Kap2_Tagesstart" : "Kap1_Tagesstart";
+        }
+
+        if (t === "nach_abend") {
+            player.hasSlept = true;
+            return kap2 ? "Kap2_Abend" : "Abendappell";
+        }
+
+        if (setup.routeTags[t]) {
+            player.hasSlept = true;
+            return setup.routeTags[t];
+        }
     }
+
     player.hasSlept = true;
     return kap2 ? "Kap2_Tageshub" : "Nachmittag Hub";
 };
@@ -344,7 +385,7 @@ setup.interruptCond["Halm_S1_Ruft_Thomas"] = w => {
     if (!e || !wf) return false;
     const verdachtOren = (e.verdacht && e.verdacht.orenmalk) || 0;
     const f = State.variables.npc.magister.memory.flags;
-    return verdachtOren > 3
+    return verdachtOren >= 3
         && wf.jarek_ausgang === "schande"
         && f.hat_thomas_gerufen !== true;
 };
@@ -432,7 +473,10 @@ setup.interruptCond["Ermittlung_S5_Westhof"] = w => {
     var h = w.interruptHistory;
     return f.westhof_plan === true
         && f.westhof_done !== true
-        && w.day >= (h["Ermittlung_S4_Magister_Halm"] || 0) + 4;
+        && f.s7_done !== true
+        && f.s8_done !== true
+        && f.s9_done !== true
+        && w.day >= (h["Ermittlung_S4_Magister_Halm"] || 0) + 3;
 };
 setup.interruptPrio["Ermittlung_S5_Westhof"] = 58;
 
@@ -453,6 +497,27 @@ Object.keys(setup.ermS7Passage).forEach(function (weg) {
     };
     setup.interruptPrio[name] = 58;
 });
+
+
+setup.interruptCond["Ermittlung_S8_Zugang"] = w => {
+    const f = (w.ermittlung && w.ermittlung.flags) || {};
+    const h = w.interruptHistory || {};
+
+    return f.s7_done === true
+        && f.s8_done !== true
+        && w.day >= (h["Ermittlung_S7_Erkenntnis"] || 0) + 2;
+};
+setup.interruptPrio["Ermittlung_S8_Zugang"] = 58;
+
+setup.interruptCond["Ermittlung_S9_Nachtfuhre"] = w => {
+    const f = (w.ermittlung && w.ermittlung.flags) || {};
+
+    return f.s8_done === true
+        && f.s9_done !== true
+        && typeof f.naechste_fuhre_tag === "number"
+        && w.day >= f.naechste_fuhre_tag;
+};
+setup.interruptPrio["Ermittlung_S9_Nachtfuhre"] = 58;
 
 /* ===== ERMITTLUNG – La-Familia-Faden (nur Story, liefert Gerüchte, keinen Kopf) =====
    "Wort an Luigi schicken" setzt: $world.ermittlung.flags.familia_kontaktiert = true
@@ -475,3 +540,12 @@ setup.interruptCond["Ermittlung_Nachspiel_Grodaus"] = w => {
         && w.day >= (e.flags.s10_tag || 0) + 3;
 };
 setup.interruptPrio["Ermittlung_Nachspiel_Grodaus"] = 88;
+
+/* --- Karla-Rueckkehr: Freilassung eingelöst, ein paar Tage nach dem Nachspiel (nur fuer-Pfad) --- */
+setup.interruptCond["Ermittlung_Karla_Rueckkehr"] = w => {
+    var f = (w.ermittlung && w.ermittlung.flags) || {};
+    return f.karla_befreit === true
+        && f.karla_rueckkehr_seen !== true
+        && w.day >= (f.karla_befreit_tag || 0) + 4;
+};
+setup.interruptPrio["Ermittlung_Karla_Rueckkehr"] = 86;

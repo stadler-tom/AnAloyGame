@@ -17,6 +17,7 @@
 
 <<set $npc.karla.memory.flags.s1_done to true>>
 
+<<trenner>>
 [[Es ausprobieren — den Griff lockern. ->karla_S1_annehmen]]
 [[Abwinken — du bist müde, das reicht für heute. ->karla_S1_abwinken]]
 
@@ -90,6 +91,7 @@
 
 <div class="system-alert status-positive">Karla war für dich da, so wie du für sie da warst. Was ihr verbindet, hat den Namen Freundschaft längst hinter sich gelassen — es ist etwas, das hält.</div>
 
+<<trenner>>
 <<weiterImTag "Weiter">>
 
 
@@ -105,6 +107,7 @@
 <div class="thought-box">Vielleicht war das eine vertane Gelegenheit. Vielleicht auch nicht. Bei ihr ist das schwer zu sagen.</div>
 
 <<= setup.setNpcAffection("karla", 1)>>
+<<trenner>>
 <<weiterImTag "Zum Appell gehen">>
 
 
@@ -125,6 +128,7 @@
 
 <<= setup.setNpcAffection("karla", 3)>>
 <<= setup.pushNpcMemory("karla", "training_angenommen")>>
+<<trenner>>
 <<weiterImTag "Zum Appell gehen">>
 
 
@@ -163,6 +167,7 @@
 
 <<set $npc.karla.memory.flags.s1b_seen to true>>
 <<set $npc.karla.memory.flags.s1b_done to true>>
+<<trenner>>
 <<weiterImTag "Weiter">>
 
 
@@ -189,6 +194,7 @@
 <div class="thought-box">Kein Bitte. Kein Warum. Eine Tatsache, die jetzt im Raum steht wie ein Werkzeug, das man entweder anfasst oder liegen lässt.</div>
 <<set $npc.karla.memory.flags.s2_done to true>>
 
+<<trenner>>
 [[Mitmachen und genau beobachten, wie sie kämpft. ->karla_S2_aktiv]]
 [[Die Lanze auffangen und trotzdem ablehnen. ->karla_S2_ablehnen]]
 
@@ -211,6 +217,7 @@
 <div class="thought-box">Sie hat nicht widersprochen. Aber sie hat auch nichts vergessen.</div>
 
 <<= setup.setNpcAffection("karla", -1)>>
+<<trenner>>
 <<weiterImTag "Auf die Stube gehen">>
 
 
@@ -239,6 +246,7 @@
   <</beziehung>>
 <</if>>
 
+<<trenner>>
 [[Komm, alte Gewohnheiten macht stetes üben wett! ->karla_S2_schweigen]]
 [[Woher kommt dein zurückzucken, was ist passiert? ->karla_S2_ansprechen]]
 
@@ -263,6 +271,7 @@
 <div class="thought-box">Ich hab es richtig benannt. Und genau das war der Fehler. Nicht das Sehen — das Sagen.</div>
 
 <<= setup.setNpcAffection("karla", 1)>>
+<<trenner>>
 <<weiterImTag "Auf die Stube gehen">>
 
 
@@ -289,6 +298,7 @@
 
 <<= setup.setNpcAffection("karla", 6)>>
 <<= setup.pushNpcMemory("karla", "hat_geschwiegen")>>
+<<trenner>>
 <<weiterImTag "Auf die Stube gehen">>
 
 
@@ -319,6 +329,7 @@
 
 <p>Du hast die Wahl. Und du hast sie nur einmal.</p>
 
+<<trenner>>
 [[Soll ich aufpassen?|karla_S3_licht]]
 [[Was machst du da?|karla_S3_frage]]
 
@@ -341,6 +352,7 @@
 <<= setup.setNpcAffection("karla", -2)>>
 <<set $npc.karla.memory.flags.p2_zweiter_anlauf to true>>
 <<set $npc.karla.memory.flags.p2_zweiter_anlauf_tag to $world.day>>
+<<trenner>>
 [[Auf die Stube gehen.|Kap1_Tagesstart]]
 
 
@@ -357,6 +369,7 @@
 
 <<= setup.setNpcAffection("karla", 10)>>
 <<set $npc.karla.memory.flags.kennt_geheimnis to true>>
+<<trenner>>
 <<weiterImTag "Die Nacht ist vorbei">>
 
 
@@ -390,6 +403,7 @@
 <p>Du könntest jetzt vieles sagen. Aber du spürst, dass die wichtigste Antwort keine Worte braucht.</p>
 <<set $npc.karla.memory.flags.s3_done to true>>
 
+<<trenner>>
 [[Die Tür hinter dir schließen und ihr beim Suchen helfen. ->karla_S3_helfen]]
 [[Ihr versprechen zu schweigen — aber sie warnen, dass das hier gefährlich ist. ->karla_S3_warnen]]
 
@@ -411,6 +425,7 @@
 
 <<= setup.setNpcAffection("karla", 8)>>
 <<set $npc.karla.memory.flags.kennt_geheimnis to true>>
+<<trenner>>
 <<weiterImTag "Die Nacht ist vorbei">>
 
 
@@ -431,6 +446,7 @@ Aber du weißt auch, was sie dort draußen sucht, und du weißt, dass sie es all
 
 <div class="thought-box">Beim letzten Mal hab ich gefragt, statt zu helfen. Wenn ich aufstehe, muss ich es diesmal richtig machen. Ich krieg keine dritte Gelegenheit.</div>
 
+<<trenner>>
 [[Aufstehen und ihr nach.|karla_S3b_folgen]]
 [[Liegen bleiben. Sie hat klar gemacht, dass sie dich nicht will.|karla_S3b_bleiben]]
 
@@ -448,6 +464,7 @@ Aber du weißt auch, was sie dort draußen sucht, und du weißt, dass sie es all
 <<set $npc.karla.memory.flags.p2_quest_zu_tag to $world.day>>
 <div class="system-alert status-info">Du bist liegen geblieben. Karla trägt die Sache mit ihrem Onkel allein weiter — ohne dich.</div>
 
+<<trenner>>
 <<weiterImTag "Weiter">>
 
 
@@ -460,6 +477,7 @@ Aber du weißt auch, was sie dort draußen sucht, und du weißt, dass sie es all
 
 <p>Du bleibst stehen. Du weißt, dass ein falsches Wort jetzt alles endgültig zumacht. Kein Verhör. Keine Frage. Beim letzten Mal hast du gefragt — das war der Fehler.</p>
 
+<<trenner>>
 [[Ich frag nicht, was du tust. Ich frag, ob du eine zweite Person für die Tür brauchst.|karla_S3b_gelingt]]
 [[Ich weiß, was du suchst. Wegen deinem Onkel, oder?|karla_S3b_misslingt]]
 
@@ -488,6 +506,7 @@ Aber du weißt auch, was sie dort draußen sucht, und du weißt, dass sie es all
 <<= setup.setNpcAffection("karla", 8)>>
 <<set $npc.karla.memory.flags.s3_done to true>>
 <<set $npc.karla.memory.flags.kennt_geheimnis to true>>
+<<trenner>>
 <<weiterImTag "Weiter">>
 
 
@@ -510,6 +529,7 @@ Aber du weißt auch, was sie dort draußen sucht, und du weißt, dass sie es all
 <<= setup.setNpcAffection("karla", -4)>>
 <<set $npc.karla.memory.flags.p2_quest_zu to true>>
 <<set $npc.karla.memory.flags.p2_quest_zu_tag to $world.day>>
+<<trenner>>
 <<weiterImTag "Weiter">>
 
 
@@ -531,6 +551,7 @@ Aber du weißt auch, was sie dort draußen sucht, und du weißt, dass sie es all
 <<if _hatWeg>>
 <div class="thought-box">Es gibt einen Weg. Vielleicht sogar mehr als einen. Ich muss nur entscheiden, welchen ich gehe.</div>
 
+<<trenner>>
 <<if _archiv>>[[Über mein Archivzeichen — ich komme an die Gerichtsprotokolle.|karla_S4_archiv]]<</if>>
 <<if _wissen>>[[Nicht die Militärakten — die Ladungslisten. Ich weiß, wo die liegen.|karla_S4_wissen]]<</if>>
 <<if _magister>>[[Magister Halm. Er ist Archivar — vielleicht sieht er für mich nach.|karla_S4_magister]]<</if>>
@@ -540,17 +561,18 @@ Aber du weißt auch, was sie dort draußen sucht, und du weißt, dass sie es all
 <<if $npc.karla.memory.flags.s4_vertroestet >= 4>>
 <<goto "karla_S4_karla_loest_selbst">>
 <<else>>
-<div class="thought-box">Sie hat recht — ich komme rum. Aber im Moment fällt mir kein Weg ein, der nicht sofort auffliegt. Ich brauche etwas, das ich noch nicht habe: einen Zugang, eine Idee, eine Tür, die mir jemand öffnet.</div>
+  <div class="thought-box">Sie hat recht — ich komme rum. Aber im Moment fällt mir kein Weg ein, der nicht sofort auffliegt. Ich brauche etwas, das ich noch nicht habe: einen Zugang, eine Idee, eine Tür, die mir jemand öffnet.</div>
 
-<div class="dialog">„Ich weiß noch nicht, wie", sagst du. „Aber ich find was. Gib mir Zeit."</div>
+  <div class="dialog">„Ich weiß noch nicht, wie", sagst du. „Aber ich find was. Gib mir Zeit."</div>
 
-<p>Karla nickt langsam. Es ist kein zufriedenes Nicken, aber auch kein enttäuschtes. Eher das Nicken von jemandem, der gelernt hat, dass „ich find was" manchmal das Ehrlichste ist, das man bekommen kann.</p>
+  <p>Karla nickt langsam. Es ist kein zufriedenes Nicken, aber auch kein enttäuschtes. Eher das Nicken von jemandem, der gelernt hat, dass „ich find was" manchmal das Ehrlichste ist, das man bekommen kann.</p>
 
-<div class="dialog">„Zeit hab ich", sagt sie. „Edric auch — noch." Sie stößt sich von der Mauer ab. „Aber nicht ewig."</div>
+  <div class="dialog">„Zeit hab ich", sagt sie. „Edric auch — noch." Sie stößt sich von der Mauer ab. „Aber nicht ewig."</div>
 
-<div class="thought-box">Ich sollte einen Weg in die Akten finden. Das Archiv. Das Recht. Oder jemanden, der die Türen für mich aufmacht. Irgendwo muss der Name dieses Zeugen stehen.</div>
+  <div class="thought-box">Ich sollte einen Weg in die Akten finden. Das Archiv. Das Recht. Oder jemanden, der die Türen für mich aufmacht. Irgendwo muss der Name dieses Zeugen stehen.</div>
 
-<<weiterImTag "Weiter">>
+  <<trenner>>
+  <<weiterImTag "Weiter">>
 <</if>>
 <</if>>
 
@@ -563,6 +585,7 @@ Aber du weißt auch, was sie dort draußen sucht, und du weißt, dass sie es all
 <p>Du liest, bis du die Stelle findest. Der geladene Zeuge, der die Krankheit hätte bestätigen können. Sein Name steht da, schwarz auf vergilbtem Papier — und daneben, in der knappen Sprache des Protokolls, der Vermerk: *erschienen, doch zur Sache nichts ausgesagt.*</p>
 
 <div class="thought-box">Da ist er. Der Mann, der mit einem einzigen Satz alles hätte ändern können — und der geschwiegen hat. Jetzt hat er einen Namen.</div>
+
 
 <<include "karla_S4_finalize">>
 
@@ -584,6 +607,7 @@ Aber du weißt auch, was sie dort draußen sucht, und du weißt, dass sie es all
 
 <<set $npc.karla.memory.flags.s4_done to true>>
 <<set $npc.karla.memory.flags.zeuge_gefunden to true>>
+<<trenner>>
 <<weiterImTag "Weiter">>
 
 
@@ -642,6 +666,7 @@ Aber du weißt auch, was sie dort draußen sucht, und du weißt, dass sie es all
 <<set $npc.karla.memory.flags.s4_done to true>>
 <<= setup.setNpcAffection("karla", 2)>>
 
+<<trenner>>
 <<weiterImTag "Weiter">>
 
 
@@ -724,8 +749,10 @@ Aber du weißt auch, was sie dort draußen sucht, und du weißt, dass sie es all
 
 <<set $npc.karla.memory.flags.dilemma_done to true>>
 <<set $npc.karla.memory.flags.brief_gesendet to true>>
+<<set $npc.karla.memory.flags.s5_done to true>>
 <<set $npc.karla.memory.flags.brief_tag to $world.day>>
 
+<<trenner>>
 <<weiterImTag "Weiter">>
 
 
@@ -758,6 +785,7 @@ Aber du weißt auch, was sie dort draußen sucht, und du weißt, dass sie es all
 
 <div class="thought-box">Ein Mann in den besten Jahren, normale Statur, ein kurzer Vollbart, ein freundliches, wettergegerbtes Gesicht. Ich kenne ihn nicht — und doch zieht sich etwas in meiner Brust zusammen, als wäre ein Teil von mir schneller als mein Kopf.</div>
 
+<<trenner>>
 [[Näher treten.|karla_S7_erkennung]]
 
 
@@ -790,6 +818,7 @@ Aber du weißt auch, was sie dort draußen sucht, und du weißt, dass sie es all
 <div class="dialog">„Thomaso Wabbler", sagt er. Er legt die Betonung auf eine Art, die du noch nie gehört hast — das gerollte, weiche Ende deines Namens, südländisch, warm. „Buongiorno. Es iste gute, dich endlich zu sehen mite eigene Augen, eh? Endlich. Nach so viele, viele Briefe."</div>
 <div class="dialog">„Du haste geschrieben", sagt er leise, nur für dich. „Und Luigi — Luigi komme. Immer." Er hebt eine Hand, deutet beiläufig auf die drei hinter sich. „Aber non heute allein, eh? Heute habe ich ... wie sagt man ... compagnia mitgebracht. Gesellschaft."</div>
 
+<<trenner>>
 [[Weiter|karla_S7_gespraech]]
 
 
@@ -818,6 +847,7 @@ Aber du weißt auch, was sie dort draußen sucht, und du weißt, dass sie es all
 <<set $npc.karla.memory.flags.luigi_aufgetaucht to true>>
 <<set $npc.karla.memory.flags.s7_done to true>>
 
+<<trenner>>
 <<weiterImTag "Zurück auf die Stube">>
 
 
@@ -834,6 +864,7 @@ Aber du weißt auch, was sie dort draußen sucht, und du weißt, dass sie es all
 
 <div class="thought-box">Erst Wenzel, jetzt ein Diplomat des Städtebunds. Dieser Mann zieht an Fäden, von denen ich nicht einmal wusste, dass es sie gibt.</div>
 
+<<trenner>>
 [[Was gibt es Neues?|karla_S8_bericht]]
 
 
@@ -852,6 +883,7 @@ Aber du weißt auch, was sie dort draußen sucht, und du weißt, dass sie es all
 
 <div class="dialog">„Du fragste dich, warum ein Mann plötzlich redete, der zwei Jahre lang nichts gesagt hate." Er dreht sich halb um, zu den beiden hinter ihm. „Das ... das erzählene dir besser meine Freunde. Sie warene dabei."</div>
 
+<<trenner>>
 [[Weiter|karla_S8_zeugen]]
 
 
@@ -877,6 +909,7 @@ Aber du weißt auch, was sie dort draußen sucht, und du weißt, dass sie es all
 <<set $npc.karla.memory.flags.aufloesung_done to true>>
 <<set $npc.karla.memory.flags.s8_done to true>>
 
+<<trenner>>
 <<weiterImTag "Ihnen noch eine Weile nachsehen bevor du dich wieder an den Dienst machst.">>
 
 
@@ -897,6 +930,7 @@ Aber du weißt auch, was sie dort draußen sucht, und du weißt, dass sie es all
 
 <p>Vincente tritt wieder zurück in den Schatten, lautlos, wie er gekommen ist. Maurice verbeugt sich knapp, das Lächeln nie ganz weg.</p>
 
+<<trenner>>
 [[Weiter|karla_S8_prognose]]
 
 
@@ -946,11 +980,14 @@ Aber du weißt auch, was sie dort draußen sucht, und du weißt, dass sie es all
 
 <div class="system-alert status-positive">Karla weiß nun alles — vom Brief, von Luigi, von der Wahrheit über ihren Onkel. Was zwischen euch ist, hat sich für immer verändert.</div>
 
+<<trenner>>
 <<weiterImTag "Weiter">>
 
 
 :: karla_S_Verhaftung [interrupt einmalig nach_hub kapitel-opener kap1] {"position":"1025,3150","size":"100,100"}
 <<set $npc.karla.memory.flags.verhaftung_seen to true>>
+<<run setup.addNpcJournalEntry("karla", "Karla wurde nach Grodaus gebracht. Die Anklage lautet Spionage.")>>
+
 <p>Es ist ein Morgen wie jeder andere, bis er es nicht mehr ist.</p>
 
 <p>Auf dem Appellplatz steht ein Wagen, der nicht hierhergehört — schwer, vergittert, mit dem Wappen des Landgerichts zu Grodaus an der Seite. Daneben zwei Gardisten in fremder Montur und der Hauptmann, dessen Miene nichts verrät. Die Reihen sind angetreten, aber niemand hat zum Drill gerufen. Etwas anderes liegt in der Luft.</p>
@@ -983,6 +1020,7 @@ Aber du weißt auch, was sie dort draußen sucht, und du weißt, dass sie es all
 
 <div class="system-alert status-info">Karla wurde verhaftet und nach Grodaus überstellt. Ihr Weg und deiner trennen sich hier. Was aus ihr und ihrem Onkel wird, liegt nicht mehr in deiner Hand.</div>
 
+<<trenner>>
 <<weiterImTag "Weiter">>
 
 
