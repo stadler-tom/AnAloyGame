@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Biwag/Story/Biwag_Drill.md",
+                "file": "Biwag/Story/Biwag_Tag1_Schonen.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Biwag_Drill"
+              "title": "Biwag_Tag1_Schonen"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Biwag/Story/Biwag_Drill.md",
+                "file": "Biwag/Story/Biwag_Tag1_Schonen.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": false
               },
               "icon": "links-coming-in",
-              "title": "Rückverweise auf Biwag_Drill"
+              "title": "Rückverweise auf Biwag_Tag1_Schonen"
             }
           },
           {
@@ -169,7 +169,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -184,12 +185,27 @@
   },
   "active": "2e86e795bfe20ffd",
   "lastOpenFiles": [
+    "Biwag/Story/Biwag_Tag4_Hart.md",
+    "Biwag/Story/Biwag_Tag7.md",
+    "Biwag/Story/Biwag_Tag7_Forcieren.md",
+    "Biwag/Story/Biwag_Tag7_Wuerdig.md",
+    "Biwag/Story/Biwag_Tag4_Wenzel.md",
+    "Biwag/Story/Biwag_Tag4_Strecken.md",
+    "Biwag/Story/Biwag_Tag3_Rasten.md",
+    "Biwag/Story/Biwag_Tag1_Schonen.md",
+    "Biwag/Werte/biwagTag1Tempo.md",
+    "Biwag/Ablaufplan.canvas",
+    "Biwag/Story/Biwag_Tag1.md",
+    "Biwag/Story/Biwag_Aufbruch.md",
+    "Aloy Landesinfos/06_Aloy_Splitterlande.md",
+    "Aloy Landesinfos/05_Aloy_Pantheon.md",
+    "Aloy Landesinfos/10_Aloy_Aloyer_Bote.md",
+    "Aloy Landesinfos/11_Aloy_Lieder_und_Ingame_Texte.md",
+    "Biwag/Story/Biwag_Drill.md",
     "Biwag/Story/Biwag_Debrief_Ehrlich.md",
     "Biwag/Story/Biwag_Debrief_Beschoenigen.md",
     "Biwag/Story/Biwag_Debrief.md",
-    "Biwag/Story/Biwag_Aufbruch.md",
     "Duell/Ablaufplan.canvas",
-    "Biwag/Ablaufplan.canvas",
     "Unbenannt.canvas",
     "Biwag/Werte/biwagBeatsDone.md",
     "Biwag/Werte/biwagWacheBemerkt.md",
@@ -198,21 +214,6 @@
     "Biwag/Werte/biwagBond_wenzel.md",
     "Biwag/Werte/biwagReiberei.md",
     "Biwag/Werte/biwagTierfaehrte.md",
-    "Biwag/Werte/biwagTag1Tempo.md",
-    "Biwag/Werte/biwagStil.md",
-    "Biwag/Werte/biwagLast.md",
-    "Biwag/Werte/biwagEquipment.md",
-    "Biwag/Werte/biwagTag.md",
-    "Biwag/Werte/biwagProviant.md",
-    "Biwag/Werte/biwagMoral.md",
-    "Biwag/Story/Biwag_Tag7_Wuerdig.md",
-    "Biwag/Story/Biwag_Tag7_Forcieren.md",
-    "Biwag/Story/Biwag_Tag7_Ankunft.md",
-    "Biwag/Story/Biwag_Tag7.md",
-    "Biwag/Story/Biwag_Tag6_Zurueck.md",
-    "Biwag/Story/Biwag_Tag6_Ziehen.md",
-    "Biwag/Story/Biwag_Tag6_Wache.md",
-    "Biwag/Story/Biwag_Tag6_Verschlafen.md",
     "Biwag/Story",
     "Biwag/Werte",
     "Biwag",

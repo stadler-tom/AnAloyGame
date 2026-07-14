@@ -139,6 +139,7 @@ setup.clearDecisionLog = function () {
 /* Diegetische Datumsanzeige statt nackter Tageszahl */
 setup.wochentage = ["Manda", "Irda", "Migga", "Pfinsta", "Freida", "Samsda", "Sunda"];
 
+
 setup.datumAnzeige = function () {
     var d = Math.max(1, State.variables.world.day);
     var jahr = Math.floor((d - 1) / 365) + 1;

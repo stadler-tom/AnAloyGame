@@ -1182,8 +1182,123 @@ in den Ärmeln, der dich schon eine Weile betrachtet haben muss.</p>
 <</if>>
 [[Zurück zum Markt|Stadt_Markt]]
 
+:: Stadt_Schenke_MitMesser
+<<set $world.schenkeEncounter to true>>
+<<scene>>
+<p>„Zum Grauen Wolf“ liegt tief im Gassengewirr, ihr Schild so verwittert, dass der namensgebende Wolf kaum mehr zu erkennen ist. 
+Drinnen erwartet dich eine Wand aus Wärme, Talglicht und dem beißenden Rauch billigen Tabaks, vermengt mit dem säuerlichen Duft von verschüttetem Bier und feuchtem Stroh, das den Boden bedeckt. An den Tischen sitzen Fuhrleute, ein paar Söldner ohne Banner, ein Weib, das Karten mischt, als wäre es ihr Handwerk.</p>
+<</scene>>
+
+<p>Der Wirt, ein Mann mit einer Narbe quer über der Nase, mustert dich kurz, ohne sonderliches Interesse. 
+Solange du zahlst, bist du hier willkommen — mehr fragt er nicht.</p>
+
+<<dialog>>
+	<p>„Ein wirklich schönes Messer hast du da kleiner!“ Ein bulliger Mann am Nebentisch grinst dich an.</p>
+	<p>„Ich hab's mir selbst gekauft. Ich hab's mir verdient.“</p>
+	<p>„Schon gut schon gut, Kleiner!“ Der Mann hebt die Hände beschwichtigend. „Ich wollte nur ein Kompliment machen.“</p>
+	<p>„Na dann, Danke.“ Du lächelst, und der Mann nickt zufrieden.</p>
+<</dialog>>
+
+<<gedanke>>
+	<p>Ich habe das Messer nicht gekauft, um Komplimente zu bekommen. Aber es ist schön, dass es jemandem gefällt.</p>
+	<p>„Was ein seltsamer Kerl.“</p>
+<</gedanke>>
+
+<<trenner>>
+[[Wieder zur Theke drehen|Stadt_Schenke]]
+[[Die Schenke verlassen|VorDerSchenke]]
+
+
+:: VorDerSchenke
+
+<<scene>>
+<p>Die Tür fällt hinter dir zu, und mit ihr Wärme, Licht und Stimmen. Die Gasse liegt schmal und nass im
+Dunkeln, das Kopfsteinpflaster glänzt vom Nieselregen, der seit dem Nachmittag nicht aufgehört hat. Irgendwo
+tropft Wasser von einer Dachtraufe, gleichmäßig, wie ein Zählwerk.</p>
+<</scene>>
+
+<<if $world.schenkeEncounter and not $world.schenkeEncounterVorbei>>
+
+<p>Du bist keine zehn Schritte weit gekommen, als sich vor dir eine Gestalt aus dem Schatten eines Torbogens
+löst. Der Bullige aus der Schenke. Hinter dir Schritte — ein zweiter, den du drinnen gar nicht bemerkt hast.</p>
+
+<<dialog>>
+<p>„Das Messer, Kleiner.“ Keine Frage. Kein Grinsen mehr, wie an seinem Tisch. „Freundlich gefragt, einmal.“</p>
+<</dialog>>
+
+<<gedanke>>
+<p>Ich hätte auf das Kompliment nichts geben sollen. Er hat nicht bewundert, was ich habe — er hat es abgeschätzt.</p>
+<</gedanke>>
+
+<p>Deine Hand findet den Griff des Messers am Gürtel, ohne dass du es ihr befohlen hättest.</p>
+
+
+<div id="sandbox-menu">
+	<ul class="sandbox-menu">
+		<li>
+			<<link "Das wird ein Harter Kampf">>
+				<<replace "#sandbox-menu">>						
+					<<trenner>>
+					<<goto "VorDerSchenke_Kampf">>
+				<</replace>>
+			<</link>>
+			<span class="subtext">— Zwei gegen einen, in einer nassen Gasse. Keine guten Zahlen. <<= setup.checkHint("combat", 15)>></span>
+		</li>
+	</ul>
+</div>	
+
+<<else>>
+
+<p>Die Gasse liegt ruhig vor dir. Kein Schatten, der sich löst, keine Schritte außer deinen eigenen.</p>
+
+[[Zurück zum Tageshub->Tageshub_Stadt]]
+
+<</if>>
+
+
+:: VorDerSchenke_Kampf
+
+<<set $world.schenkeEncounterVorbei to true>>
+<<set $world.schenkeEncounter to false>>
+<div class="system-alert status-positive">🎲 Probe auf Kampfkraft — gelungen</div>
+
+<p>Du ziehst das Messer, nicht weil du glaubst, dass es reicht, sondern weil leere Hände in dieser Gasse
+noch weniger wert sind.</p>
+
+	
+<p>Der Bullige kommt zu schnell, zu sicher, als hätte er das schon oft gemacht. Aber er hat es mit Betrunkenen
+oft gemacht, nicht mit jemandem, der gerade erst vom Drill kommt.</p>
+<p>Du weichst der ersten Pranke aus, näher,
+als dir lieb ist. Du hast kein Momentum in deiner Messerhand, also schlägst du mit der anderen in seinen Rippenbogen.</p>
+
+<p>Schmerz surchzuckt deine Hand, aber auch seinen Torso. Er taumelt zurück als du gerade nach vorne nachsetzen willst hörst du das
+scharben der Stiefel des anderen, der sich jetzt von hinten auf dich stürtzt. Du drehst dich um und gest sofort in die Parade. Der Drill lügt nicht. 
+Dein Körper bewegt sich, du scheinst zu folgen. Dein Arm weist seinen Schlag ab und er steht offen. Du stößt das Messer nach vorne.
+Nicht auf seinen Hals oder seine Brust, sondern auf die schulter, wo er nicht blocken kann. </p>
+
+<<dialog>>
+	<p>Er taumelt zurück, die Hand an der Seite, und was aus seinem Gesicht spricht, ist nicht mehr Gier. Der
+	Zweite hinter dir zögert — und Zögern reicht in dieser Gasse schon als Entscheidung.</p>
+	<p>„Nicht das Blut wert“, murmelt er, und beide verschwinden in den Schatten der Gassen.</p>
+<</dialog>>
+
+<p>Du zitterst erst, als sie fort sind. Aber stehst noch, das Messer noch in der Hand, 
+und das ist mehr, als du vor einem Jahr von dir erwartet hättest.</p>
+
+<<= setup.setPlayerCondition(-6)>>
+<<= setup.gainSkillXp("combat", 15)>>
+
+
+<<trenner>>
+[[Zurück zum Tageshub->Tageshub_Stadt]]
+
+
 
 :: Stadt_Schenke {"position":"2100,5625","size":"100,100"}
+<<if setup.hasItem("field_knife")>>
+	<<goto "Stadt_Schenke_MitMesser">> 
+<</if>>
+
 <<scene>>
 <p>„Zum Grauen Wolf“ liegt tief im Gassengewirr, ihr Schild so verwittert, dass der namensgebende Wolf kaum mehr zu erkennen ist. Drinnen erwartet dich eine Wand aus Wärme, Talglicht und dem beißenden Rauch billigen Tabaks, vermengt mit dem säuerlichen Duft von verschüttetem Bier und feuchtem Stroh, das den Boden bedeckt. An den Tischen sitzen Fuhrleute, ein paar Söldner ohne Banner, ein Weib, das Karten mischt, als wäre es ihr Handwerk.</p>
 <</scene>>
