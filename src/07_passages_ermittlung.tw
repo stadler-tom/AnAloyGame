@@ -1,5 +1,5 @@
 
-:: Ermittlung_S0_Auftakt [einmalig interrupt] {"position":"625,4975","size":"100,100"}
+:: Ermittlung_S0_Auftakt [einmalig interrupt kapitel-opener] {"position":"625,4975","size":"100,100"}
 
 
 <<run setup.ermInit()>>
@@ -249,7 +249,7 @@
 <<weiterImTag "Weiter">>
 
 
-:: Ermittlung_S1_Intro_in_Waffenstube [einmalig interrupt] {"position":"850,5075","size":"100,100"}
+:: Ermittlung_S1_Intro_in_Waffenstube [einmalig interrupt kapitel-opener] {"position":"850,5075","size":"100,100"}
 <<scene>>
 <p>Hinter dem Ausgabetisch, auf einem Hocker, der zu niedrig für ihn scheint, sitzt ein schmaler Mann mit tintenfleckigen Fingern und einem Bart, 
 so ordentlich gestutzt, als traue er der Unordnung nicht über den Weg. Die Rekruten treten nacheinander vor, 
@@ -364,7 +364,7 @@ Du sagst noch nichts davon. Aber der Gedanke sitzt in dir wie ein Splitter, den 
 <<trenner>>
 <<weiterImTag "Weiter">>
 
-:: Ermittlung_S2_Einbruch [interrupt einmalig] {"position":"750,5275","size":"100,100"}
+:: Ermittlung_S2_Einbruch [interrupt einmalig kapitel-opener] {"position":"750,5275","size":"100,100"}
 <<if setup.ermMit()>>
 	<<scene>>
 	<p>Die Nacht, die ihr euch ausgesucht habt, ist eine ohne Mond — Karla hat drei Abende lang den Himmel beobachtet, ehe sie diesen für richtig befand. Kein Licht außer den Wachfeuern an den Toren, kein Laut außer dem Wind, der durch die leeren Übungshöfe streicht und die losen Läden der Waffenausgabe gegen ihre Rahmen schlagen lässt, immer und immer wieder, bis das Geräusch selbst zur Stille gehört.</p>
@@ -449,8 +449,8 @@ Du sagst noch nichts davon. Aber der Gedanke sitzt in dir wie ein Splitter, den 
 	<p>Das Buch liegt noch offen zwischen euren Händen, der Eintrag halb entziffert, die Tür zwischen euch und der Entdeckung nur noch wenige Herzschläge entfernt. Reicht die Zeit um es zurückzulegen und zu verschwinden?</p>
 
 	<<trenner>>
-	[[1. Das Buch rasch zurücklegen und durch den Laden fliehen|Ermittlung_S2_Einbruch_Flucht]]
-	[[2. Sich hinter den Waffengestellen verstecken und abwarten|Ermittlung_S2_Einbruch_Versteck]]
+	[[Das Buch rasch zurücklegen und durch den Laden fliehen|Ermittlung_S2_Einbruch_Flucht]]
+	[[Sich hinter den Waffengestellen verstecken und abwarten|Ermittlung_S2_Einbruch_Versteck]]
 
 <<else>>
 	/* ===== FUER-MODUS — Thomas bricht allein ein. Check + Flags gespiegelt. ===== */
@@ -1111,7 +1111,7 @@ Und die Einzige, die mit mir darüber hätte flüstern können, sitzt zwei Tages
 <</if>>
 
 
-:: Ermittlung_S2_Verwaltungstrick [einmalig interrupt] {"position":"1125,5275","size":"100,100"}
+:: Ermittlung_S2_Verwaltungstrick [einmalig interrupt ] {"position":"1125,5275","size":"100,100"}
 
 //kann nur mit Karla passieren
 
@@ -1342,7 +1342,7 @@ Also finde ich zuerst heraus, was sie bedeuten. Nur — wer erklärt einem einze
 <<weiterImTag "Weiter">>
 
 
-:: Ermittlung_S4_Magister_Halm [interrupt einmalig] {"position":"950,5750","size":"100,100"}
+:: Ermittlung_S4_Magister_Halm [interrupt einmalig kapitel-opener] {"position":"950,5750","size":"100,100"}
 <<gedanke>>
 <p>Übungsbestand C. Westhof. Zwei Worte, die eine Tür bewachen, hinter der ich nicht sehen kann. 
 Wenn irgendwer in dieser Akademie weiß, was sie bedeuten, dann der Mann, der über jedes Schriftstück wacht, das hier je verfasst wurde.</p>
@@ -1802,7 +1802,7 @@ zwei Freiwillige — das ist mein Weg nach Westhof. Für sie.</p>
 <<weiterImTag "Weiter">>
 
 
-:: Ermittlung_S5_Westhof [einmalig interrupt] {"position":"300,5700","size":"100,100"}
+:: Ermittlung_S5_Westhof [einmalig interrupt kapitel-opener] {"position":"300,5700","size":"100,100"}
 <<if setup.ermMit()>>
 <<scene>>
 <p>Der Karren rumpelt seit dem frühen Morgen über die Nordstraße, deren Furchen der Frost hart und ungnädig gemacht hat, und mit jeder Meile weicht die Enge der Akademie einem Land, das karger und stiller wird. Kein Wachfeuer mehr, keine Pechfackeln — nur Ackerland unter grauem Himmel, hier und da ein Gehöft, dessen Rauch senkrecht in die kalte Luft steigt, weil kein Wind ihn beugt. Karla sitzt neben dir auf der Ladefläche, zwischen Kisten mit stumpfen Übungsklingen und einem Fass Öl, das bei jedem Schlagloch dumpf gegen das Holz schlägt.</p>
@@ -2154,7 +2154,7 @@ Wie ist er tatsächlich hinausgekommen? Mit einem gestohlenen Dokument, mitten i
 <<weiterImTag "Weiter">>
 
 
-:: Ermittlung_S7_Route_Ablaufen [interrupt einmalig] {"position":"175,5975","size":"100,100"}
+:: Ermittlung_S7_Route_Ablaufen [interrupt einmalig kapitel-opener] {"position":"175,5975","size":"100,100"}
 <<scene>>
 <<if setup.ermMit()>>
 <p>Ihr geht den Weg, den Jarek gegangen sein muss, in derselben Stunde, in der er ihn ging — nach der zweiten Nachtwache, wenn die Ablösung durch ist und die Höfe für eine Weile niemandem gehören. Von den Schreibstuben aus, wo alles begann, Schritt für Schritt, und Karla zählt die Möglichkeiten ab wie Posten auf einer Liste.</p>
@@ -2232,7 +2232,7 @@ Wie ist er tatsächlich hinausgekommen? Mit einem gestohlenen Dokument, mitten i
 [[Den Gedanken zu Ende denken|Ermittlung_S7_Erkenntnis]]
 
 
-:: Ermittlung_S7_Wachposten_Befragung [interrupt einmalig] {"position":"300,5900","size":"100,100"}
+:: Ermittlung_S7_Wachposten_Befragung [interrupt einmalig kapitel-opener] {"position":"300,5900","size":"100,100"}
 <<scene>>
 <<if setup.ermMit()>>
 <p>Es kostet Karla drei Tage und ein Dutzend beiläufiger Fragen, den Namen zusammenzutragen: Bolte, ein Waffenknecht mit grauem Bartstoppel und einem Kreuz, das von zwanzig Jahren Wachdienst krumm ist. Er stand in der Fluchtnacht am Tor, und er trinkt — nicht viel, aber verlässlich, jeden freien Abend in derselben Schenke in der Stadt, am selben Tisch, mit demselben Blick ins Leere.</p>
@@ -2311,7 +2311,7 @@ Wie ist er tatsächlich hinausgekommen? Mit einem gestohlenen Dokument, mitten i
 [[Den Gedanken zu Ende denken|Ermittlung_S7_Erkenntnis]]
 
 
-:: Ermittlung_S7_Wachprotokolle [interrupt einmalig] {"position":"75,6100","size":"100,100"}
+:: Ermittlung_S7_Wachprotokolle [interrupt einmalig kapitel-opener] {"position":"75,6100","size":"100,100"}
 <<if $player.spezialisierung === "pike">>
 <<beziehung>>Du bist Spießer <</beziehung>>
 	<<scene>>
@@ -2578,7 +2578,7 @@ Aber scharfe Bolzen hinter einem Riegel, der nicht öffnet, sind für einen Waff
 [[Was das Buch verrät|Ermittlung_S8_Muster]]
 
 
-:: Ermittlung_S8_Zugang [interrupt einmalig] {"position":"250,6300","size":"100,100"}
+:: Ermittlung_S8_Zugang [interrupt einmalig kapitel-opener] {"position":"250,6300","size":"100,100"}
 <<scene>>
 <p>Die Waffenpflege ist ein guter Vorwand, weil sie ein wahrer ist: Riemenzeug will geölt, Klingen wollen gewetzt, und niemand hebt eine Braue, wenn ein Waffenträger eine Stunde in der Ausgabestube verbringt. Es riecht nach Leinöl und kaltem Eisen, nach dem Staub alter Register, und in dem schmalen Licht, das durch die hohen Fenster fällt, liegt das Ausgabebuch offen auf dem Pult, als hätte es nur auf dich gewartet.</p>
 <</scene>>
@@ -2691,7 +2691,7 @@ Nur habe ich jetzt statt drei Beweisen einen, und der liegt eine Tagesreise entf
 
 
 
-:: Ermittlung_S9_Nachtfuhre [interrupt einmalig] {"position":"775,6275","size":"100,100"}
+:: Ermittlung_S9_Nachtfuhre [interrupt einmalig kapitel-opener] {"position":"775,6275","size":"100,100"}
 <<if ($world.ermittlung.verdacht.orenmalk || 0) gte 6>>
 	<<scene>>
 	<p><<if setup.ermMit()>>
@@ -2884,7 +2884,7 @@ was ein flüchtiger Beobachter übersähe, und dein Gedächtnis hält es fest.</
 <<trenner>>
 [[Alles zusammentragen und Hauptmann Rindler vorlegen|Ermittlung_S10_Rindler]]
 
-:: Ermittlung_Familia_Antwort [einmalig interrupt] {"position":"350,5450","size":"100,100"}
+:: Ermittlung_Familia_Antwort [einmalig interrupt kapitel-opener] {"position":"350,5450","size":"100,100"}
 <<= setup.ermInit()>>\
 <<silently>>
 <<set $world.ermittlung.flags.familia_antwort to true>>
@@ -3329,7 +3329,7 @@ um einen Schreiber zu versetzen und ein Fach durchsuchen zu lassen. Es reicht, u
 
 
 
-:: Ermittlung_Karla_Rueckkehr [interrupt einmalig nach_Kap2_tag]
+:: Ermittlung_Karla_Rueckkehr [interrupt einmalig nach_Kap2_tag kapitel-opener]
 <<scene>>
 <p>Über den Hof läuft ein Raunen, ehe der Wagen überhaupt durchs Tor gerollt ist — Mägde, die im Schritt innehalten,
 ein Wächter, der die Hand über die Augen legt, ein Kopfnicken, das von Reihe zu Reihe weitergereicht wird.

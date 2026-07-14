@@ -1,4 +1,4 @@
-:: Duell_S0_Fruehstueck [interrupt einmalig]
+:: Duell_S0_Fruehstueck [interrupt einmalig kapitel-opener]
 
 <<if not $world.duell or $world.duell.done>>
     <<set $world.duell = {
@@ -1585,7 +1585,7 @@ davon hören, und Rabenfurt wird nicht schweigen.</p>
 <<weiterImTag "In die Nacht hinein">>
 
 
-:: Duell_Nachwirkung [interrupt einmalig nach_Kap2_tag]
+:: Duell_Nachwirkung [interrupt einmalig nach_Kap2_tag kapitel-opener]
 
 <<set _e to setup.duellEinfluss()>>
 <<if $player.reputation.Rabenfurth === undefined>>

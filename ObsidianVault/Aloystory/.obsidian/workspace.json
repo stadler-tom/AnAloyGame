@@ -11,14 +11,17 @@
             "id": "2e86e795bfe20ffd",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "canvas",
               "state": {
-                "file": "Biwag/Story/Biwag_Tag1_Schonen.md",
-                "mode": "source",
-                "source": false
+                "file": "Biwag/Ablaufplan.canvas",
+                "viewState": {
+                  "x": 9411.773402223309,
+                  "y": 10189.036847492105,
+                  "zoom": 0.6666666666666667
+                }
               },
-              "icon": "lucide-file",
-              "title": "Biwag_Tag1_Schonen"
+              "icon": "lucide-layout-dashboard",
+              "title": "Ablaufplan"
             }
           }
         ]
@@ -185,6 +188,7 @@
   },
   "active": "2e86e795bfe20ffd",
   "lastOpenFiles": [
+    "Biwag/Story/Biwag_Tag1_Schonen.md",
     "Biwag/Story/Biwag_Tag4_Hart.md",
     "Biwag/Story/Biwag_Tag7.md",
     "Biwag/Story/Biwag_Tag7_Forcieren.md",
@@ -192,7 +196,6 @@
     "Biwag/Story/Biwag_Tag4_Wenzel.md",
     "Biwag/Story/Biwag_Tag4_Strecken.md",
     "Biwag/Story/Biwag_Tag3_Rasten.md",
-    "Biwag/Story/Biwag_Tag1_Schonen.md",
     "Biwag/Werte/biwagTag1Tempo.md",
     "Biwag/Ablaufplan.canvas",
     "Biwag/Story/Biwag_Tag1.md",

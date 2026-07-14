@@ -14,7 +14,7 @@
 <span class="weiter-link">[[Der erste Tag->Biwag_Tag1]]</span>
 
 
-:: Biwag_Debrief [layout] {"position":"4325,3600","size":"100,100"}
+:: Biwag_Debrief    {"position":"4325,3600","size":"100,100"}
 <<scene>>
 <p>„Nun, Biwakweibel“, sagt Rindler. „Erzählt. Und bedenkt: Ich sehe Eure Männer, ehe ich Euren Worten glaube.“</p>
 <</scene>>
@@ -22,21 +22,21 @@
 [[Die Woche beschönigen|Biwag_Debrief_Beschoenigen]]
 
 
-:: Biwag_Debrief_Beschoenigen [layout] {"position":"4200,3450","size":"100,100"}
+:: Biwag_Debrief_Beschoenigen    {"position":"4200,3450","size":"100,100"}
 <<scene>>
 <p>Du malst die Woche in helleren Farben, als sie war.<<if $world.biwagWenzelWeg or ($world.biwagMoral lt 55)>> Doch Rindlers Blick wandert über die müden, mürrischen Gesichter deiner Truppe, und ein leises Lächeln, das keines ist, sagt dir: Er sieht durch dich hindurch.<<else>> Deine Männer stehen ordentlich genug, dass die Geschichte trägt.<</if>></p>
 <</scene>>
 [[Das Urteil|Biwag_Ergebnis]]
 
 
-:: Biwag_Debrief_Ehrlich [layout] {"position":"4375,3425","size":"100,100"}
+:: Biwag_Debrief_Ehrlich    {"position":"4375,3425","size":"100,100"}
 <<scene>>
 <p>Du berichtest, wie es war — die Pannen wie die Erfolge, ohne Beschönigung. Rindler nickt knapp; ein Mann, der die Wahrheit hört, auch wenn sie unbequem ist, verdient sich wenigstens Vertrauen.</p>
 <</scene>>
 [[Das Urteil|Biwag_Ergebnis]]
 
 
-:: Biwag_Drill {"position":"2900,4425","size":"100,100"}
+:: Biwag_Drill[interrupt einmalig kapitel-opener] {"position":"2900,4425","size":"100,100"}
 <<scene>>
 <p>Rindler steht vor der angetretenen Reihe, die Hände auf dem Rücken verschränkt,
  und lässt seinen Blick einmal über die Gesichter wandern, als wöge er jedes einzeln auf einer unsichtbaren Waage.
@@ -119,7 +119,7 @@ wenn es am wenigsten passt.</p>
 <span class="weiter-link">[[Den Karren beladen->Biwag_Loadout]]</span>
 
 
-:: Biwag_Ergebnis [layout] {"position":"4275,3275","size":"100,100"}
+:: Biwag_Ergebnis    {"position":"4275,3275","size":"100,100"}
 <<set _stufe to setup.biwagVerdikt()>>
 <<scene>>
 <p>Rindler wechselt einen Blick mit Kurt, ehe er das Urteil spricht.</p>
@@ -583,7 +583,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 <</if>>
 
 
-:: Biwag_Tag3 [layout] {"position":"4425,3800","size":"100,100"}
+:: Biwag_Tag3    {"position":"4425,3800","size":"100,100"}
 <<if setup.biwagBeatOnce("tagN_start")>><<= setup.biwagTagStart()>><</if>>
 
 <<scene>>
@@ -593,7 +593,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 [[Rasten — das Ärgste vorüberziehen lassen|Biwag_Tag3_Rasten]]
 
 
-:: Biwag_Tag3_Abend [layout] {"position":"3625,3700","size":"100,100"}
+:: Biwag_Tag3_Abend    {"position":"3625,3700","size":"100,100"}
 <<scene>>
 <p>Gegen Morgen hustet einer der Männer schwer, ein anderer fiebert leicht. Die Nässe hat ihren Tribut gefordert, und es liegt an dir<<if $player.spezialisierung eq "medicine">> — dem Feldscher der Truppe —<</if>>, dass aus einer feuchten Nacht keine kranke Woche wird.</p>
 <</scene>>
@@ -610,7 +610,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 [[Der vierte Tag|Biwag_Tag4]]
 
 
-:: Biwag_Tag3_Enge [layout] {"position":"3775,3775","size":"100,100"}
+:: Biwag_Tag3_Enge    {"position":"3775,3775","size":"100,100"}
 <<scene>>
 <p>Ihr rückt zusammen, Rücken an Rücken unter den Planen, die ihr habt. <<if $world.biwagEquipment.zelte>>Die Zelte halten dicht — es geht.<<elseif $world.biwagEquipment.decken>>Die Wolldecken halten wenigstens die Wärme.<<else>>Es hilft wenig; ehe die Nacht vorüber ist, ist jeder bis auf die Haut durchnässt.<</if>></p>
 <</scene>>
@@ -620,7 +620,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 [[Die Nacht überstehen|Biwag_Tag3_Abend]]
 
 
-:: Biwag_Tag3_Lager [layout] {"position":"4100,3875","size":"100,100"}
+:: Biwag_Tag3_Lager    {"position":"4100,3875","size":"100,100"}
 <<scene>>
 <p>Als ihr haltet, steht die Frage im Raum, wie ihr die nasse Nacht übersteht. Ein ordentlicher Unterstand kostet Mühe und braucht Gerät — oder ihr rückt einfach eng zusammen und hofft, dass der Regen nachlässt.</p>
 <</scene>>
@@ -628,7 +628,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 [[Zusammenrücken|Biwag_Tag3_Enge]]
 
 
-:: Biwag_Tag3_Rasten [layout] {"position":"4275,3925","size":"100,100"}
+:: Biwag_Tag3_Rasten    {"position":"4275,3925","size":"100,100"}
 <<scene>>
 <p>Du lässt halten und die Truppe unter die Bäume rücken. Es ist die vernünftige Wahl — doch ein verlorener Tag bleibt ein verlorener Tag, und das Murren mischt sich bald ins Trommeln des Regens.</p>
 <</scene>>
@@ -638,7 +638,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 [[Ein Lager schlagen|Biwag_Tag3_Lager]]
 
 
-:: Biwag_Tag3_Unterstand [layout] {"position":"3900,3850","size":"100,100"}
+:: Biwag_Tag3_Unterstand    {"position":"3900,3850","size":"100,100"}
 <<scene>>
 <p><<if $world.biwagEquipment.zelte>>Ihr spannt die Zelte und Planen, und binnen kurzem sitzt die Truppe im Trockenen.<<elseif $world.biwagEquipment.schanzzeug>>Mit Spaten, Beil und Seil zimmert ihr aus Ästen und Planen einen brauchbaren Unterstand — nicht bequem, aber trocken genug.<<else>>Ohne rechtes Gerät bleibt euer Unterstand Stückwerk; der Regen findet jede Lücke.<</if>></p>
 <</scene>>
@@ -648,7 +648,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 [[Die Nacht überstehen|Biwag_Tag3_Abend]]
 
 
-:: Biwag_Tag3_Weiterziehen [layout] {"position":"3950,3725","size":"100,100"}
+:: Biwag_Tag3_Weiterziehen    {"position":"3950,3725","size":"100,100"}
 <<scene>>
 <p>Ihr stemmt euch gegen Regen und Schlamm. Das Karrenrad sinkt bis zur Nabe, und jeder Schritt will erkämpft sein — doch stillzustehen wäre schlimmer.</p>
 <</scene>>
@@ -664,7 +664,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 [[Ein Lager schlagen|Biwag_Tag3_Lager]]
 
 
-:: Biwag_Tag4 [layout] {"position":"4650,3700","size":"100,100"}
+:: Biwag_Tag4    {"position":"4650,3700","size":"100,100"}
 <<if setup.biwagBeatOnce("tagN_start")>><<= setup.biwagTagStart()>><</if>>
 
 <<scene>>
@@ -675,7 +675,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 [[Die Rationen strecken|Biwag_Tag4_Strecken]]
 
 
-:: Biwag_Tag4_Abend [layout] {"position":"4825,4875","size":"100,100"}
+:: Biwag_Tag4_Abend    {"position":"4825,4875","size":"100,100"}
 <<scene>>
 <p>Deine erste eigene Wache. Die Nacht ist klar und kalt, jedes Knacken im Unterholz zwingt dich, genau hinzuhören — wach zu bleiben, wenn der Schlaf an dir zerrt.</p>
 <</scene>>
@@ -692,7 +692,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 [[Der fünfte Tag|Biwag_Tag5]]
 
 
-:: Biwag_Tag4_Ansprechen [layout] {"position":"4700,4600","size":"100,100"}
+:: Biwag_Tag4_Ansprechen    {"position":"4700,4600","size":"100,100"}
 <<scene>>
 <p>Du setzt dich zu ihm, ohne Vorwurf, und lässt ihn reden. Von zu Hause, von der Angst, zu versagen, von der Nacht, die noch so lang scheint.</p>
 <</scene>>
@@ -709,7 +709,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 [[Zur Nachtruhe|Biwag_Tag4_Abend]]
 
 
-:: Biwag_Tag4_Hart [layout] {"position":"4925,4625","size":"100,100"}
+:: Biwag_Tag4_Hart    {"position":"4925,4625","size":"100,100"}
 <<scene>>
 <p>Du fährst ihn an: kein Platz für Heimweh im Feld, er solle sich zusammenreißen wie ein Mann. Er zuckt zusammen, verstummt — und etwas in seinem Blick schließt sich, das sich so leicht nicht wieder öffnet.</p>
 <</scene>>
@@ -720,7 +720,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 [[Zur Nachtruhe|Biwag_Tag4_Abend]]
 
 
-:: Biwag_Tag4_Ignorieren [layout] {"position":"4800,4675","size":"100,100"}
+:: Biwag_Tag4_Ignorieren    {"position":"4800,4675","size":"100,100"}
 <<scene>>
 <p>Du lässt ihn sitzen. Vielleicht braucht er nur Zeit; vielleicht ist es nicht deine Sache. Der Junge bleibt allein mit dem, was ihn drückt.</p>
 <</scene>>
@@ -728,7 +728,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 [[Zur Nachtruhe|Biwag_Tag4_Abend]]
 
 
-:: Biwag_Tag4_Jagd [layout] {"position":"4725,4350","size":"100,100"}
+:: Biwag_Tag4_Jagd    {"position":"4725,4350","size":"100,100"}
 <<scene>>
 <p>Du nimmst zwei ruhige Männer, den Wind im Gesicht, und schlägst dich ins Unterholz. <<if $player.spezialisierung eq "crossbow">>Als Armbruster ist dies deine Stunde.<<elseif $player.spezialisierung eq "pike">>Mit der Pike ist Jagd eine ungewohnte Kunst.<</if>></p>
 <</scene>>
@@ -745,7 +745,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 [[Zurück ins Lager|Biwag_Tag4_Wenzel]]
 
 
-:: Biwag_Tag4_Strecken [layout] {"position":"4950,4350","size":"100,100"}
+:: Biwag_Tag4_Strecken    {"position":"4950,4350","size":"100,100"}
 <<scene>>
 <p>Du ordnest halbe Rationen an. Es ist vernünftig — und unbeliebt. Die Männer essen schweigend und mit leeren Augen, und die Stimmung sinkt mit dem Pegel im Kessel.</p>
 <</scene>>
@@ -756,7 +756,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 [[Zurück ins Lager|Biwag_Tag4_Wenzel]]
 
 
-:: Biwag_Tag4_Wenzel [layout] {"position":"4800,4450","size":"100,100"}
+:: Biwag_Tag4_Wenzel    {"position":"4800,4450","size":"100,100"}
 <<scene>>
 <p>Am Abend findest du Wenzel abseits des Feuers, das Gesicht in Richtung Heimat gewandt. Der Junge hat rote Augen, und du weißt, dass eine falsche Behandlung jetzt in ein paar Nächten zum Problem werden kann.</p>
 <</scene>>
@@ -765,7 +765,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 [[Ihn in Ruhe lassen|Biwag_Tag4_Ignorieren]]
 
 
-:: Biwag_Tag5 [layout] {"position":"5100,4600","size":"100,100"}
+:: Biwag_Tag5    {"position":"5100,4600","size":"100,100"}
 <<if setup.biwagBeatOnce("tagN_start")>><<= setup.biwagTagStart()>><</if>>
 
 <<scene>>
@@ -775,7 +775,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 [[Ruhen lassen|Biwag_Tag5_Ruhe]]
 
 
-:: Biwag_Tag5_Abend [layout] {"position":"5125,4375","size":"100,100"}
+:: Biwag_Tag5_Abend    {"position":"5125,4375","size":"100,100"}
 <<if setup.biwagBeatOnce("tag5_kaelte")>>
 	<<= setup.biwagMoral(setup.biwagKaelteMalus())>>
 <</if>>
@@ -787,14 +787,14 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 [[Früh schlafen schicken|Biwag_Tag5_Frueh]]
 
 
-:: Biwag_Tag5_Drill [layout] {"position":"5425,4575","size":"100,100"}
+:: Biwag_Tag5_Drill    {"position":"5425,4575","size":"100,100"}
 <<scene>>
 <p>Du lässt antreten und die Handgriffe üben, bis sie sitzen. Mitten in der Übung splittert etwas — <<if $player.spezialisierung eq "pike">>ein Pikenschaft bricht<<elseif $player.spezialisierung eq "crossbow">>eine Armbrustsehne reißt<<elseif $player.spezialisierung eq "cannon">>ein Zündeisen versagt<<else>>ein Riemenzeug reißt<</if>>, und plötzlich geht es nicht mehr ums Üben, sondern ums Flicken.</p>
 <</scene>>
 [[Das Gerät instand setzen|Biwag_Tag5_Reparatur]]
 
 
-:: Biwag_Tag5_Feuer [layout] {"position":"5300,4375","size":"100,100"}
+:: Biwag_Tag5_Feuer    {"position":"5300,4375","size":"100,100"}
 <<scene>>
 <p>Du bleibst mit ihnen am Feuer, und irgendwann fällt der Blick auf dich: eine Geschichte, ein Wort, das die Kälte kleiner macht.</p>
 <</scene>>
@@ -811,7 +811,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 [[Der sechste Tag|Biwag_Tag6]]
 
 
-:: Biwag_Tag5_Frueh [layout] {"position":"5225,4100","size":"100,100"}
+:: Biwag_Tag5_Frueh    {"position":"5225,4100","size":"100,100"}
 <<scene>>
 <p>Du schickst sie früh in die Decken. Kein Feuerzauber, keine Geschichten — aber ausgeruhte Männer, wenn der Morgen kommt.</p>
 <</scene>>
@@ -822,7 +822,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 [[Der sechste Tag|Biwag_Tag6]]
 
 
-:: Biwag_Tag5_Reparatur [layout] {"position":"5250,4575","size":"100,100"}
+:: Biwag_Tag5_Reparatur    {"position":"5250,4575","size":"100,100"}
 <<if setup.biwagBeatOnce("tag5_reparatur")>>
 	<<set _r to setup.biwagCheck($player.spezialisierung, 13, setup.biwagItemMod("waffenpflege"))>>
 	<<= setup.skillCheckAlert(_r)>>
@@ -836,7 +836,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 [[Der Abend naht|Biwag_Tag5_Abend]]
 
 
-:: Biwag_Tag5_Ruhe [layout] {"position":"5250,4225","size":"100,100"}
+:: Biwag_Tag5_Ruhe    {"position":"5250,4225","size":"100,100"}
 <<scene>>
 <p>Du gibst den Tag frei. Die Männer flicken Kleider, dösen in der Sonne, lachen wieder — es tut ihnen gut. Ob es sie weicher macht, wird sich zeigen.</p>
 <</scene>>
@@ -847,7 +847,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 [[Der Abend naht|Biwag_Tag5_Abend]]
 
 
-:: Biwag_Tag6 [layout] {"position":"5625,3750","size":"100,100"}
+:: Biwag_Tag6    {"position":"5625,3750","size":"100,100"}
 <<if setup.biwagBeatOnce("tagN_start")>><<= setup.biwagTagStart()>><</if>>
 
 <<scene>>
@@ -856,7 +856,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 [[Weiter durch den Regen|Biwag_Tag6_Marsch]]
 
 
-:: Biwag_Tag6_Abend [layout] {"position":"5600,4100","size":"100,100"}
+:: Biwag_Tag6_Abend    {"position":"5600,4100","size":"100,100"}
 <<scene>>
 <p>Die Stimmung ist am Tiefpunkt: nass, müde, und ein Platz am Feuer bleibt leer<<if not $world.biwagWenzelWeg>> — oder wäre leer geblieben, hättest du nicht gehandelt<</if>>. Wenn je ein Wort der Führung gebraucht wurde, dann jetzt.</p>
 <</scene>>
@@ -873,7 +873,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 [[Der siebte Tag|Biwag_Tag7]]
 
 
-:: Biwag_Tag6_Desertion [layout] {"position":"5750,4375","size":"100,100"}
+:: Biwag_Tag6_Desertion    {"position":"5750,4375","size":"100,100"}
 <<scene>>
 <p>Du stellst ihn am Waldrand. Wenzel dreht sich um, das Gesicht nass von Regen und mehr — ein Junge, gefangen zwischen Furcht und Fahnenflucht. Was jetzt geschieht, liegt bei dir.</p>
 <</scene>>
@@ -882,7 +882,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 [[Ihn ziehen lassen|Biwag_Tag6_Ziehen]]
 
 
-:: Biwag_Tag6_Gewalt [layout] {"position":"5775,4050","size":"100,100"}
+:: Biwag_Tag6_Gewalt    {"position":"5775,4050","size":"100,100"}
 <<if setup.biwagBeatOnce("tag6_ausgang")>>
 	<<set _r to setup.biwagCheck("combat", 13)>>
 	<<= setup.skillCheckAlert(_r)>>
@@ -896,7 +896,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 [[Zurück ins Lager|Biwag_Tag6_Abend]]
 
 
-:: Biwag_Tag6_Lager [layout] {"position":"5675,3925","size":"100,100"}
+:: Biwag_Tag6_Lager    {"position":"5675,3925","size":"100,100"}
 <<if setup.biwagBeatOnce("tag6_wetter")>>
 	<<= setup.biwagMoral(setup.biwagWetterMalus(false))>>
 <</if>>
@@ -913,7 +913,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 [[Die Nachtwache|Biwag_Tag6_Wache]]
 
 
-:: Biwag_Tag6_Marsch [layout] {"position":"6000,4025","size":"100,100"}
+:: Biwag_Tag6_Marsch    {"position":"6000,4025","size":"100,100"}
 <<if setup.biwagBeatOnce("tag6_marsch")>>
 	<<set _r to setup.biwagCheck("combat", 13, setup.biwagItemMod("schanzzeug"))>>
 	<<= setup.skillCheckAlert(_r)>>
@@ -926,7 +926,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 [[Das Lager schlagen|Biwag_Tag6_Lager]]
 
 
-:: Biwag_Tag6_Verschlafen [layout] {"position":"5525,4225","size":"100,100"}
+:: Biwag_Tag6_Verschlafen    {"position":"5525,4225","size":"100,100"}
 <<scene>>
 <p>Am Morgen ist eine Decke leer und kalt. Wenzel ist fort, mit seinem Bündel und einem Teil der Vorräte, und niemand hat ihn gehen sehen. Ein Deserteur unter deiner Wache — das wiegt schwer.</p>
 <</scene>>
@@ -938,7 +938,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 [[Weiter|Biwag_Tag6_Abend]]
 
 
-:: Biwag_Tag6_Wache [layout] {"position":"5600,4375","size":"100,100"}
+:: Biwag_Tag6_Wache    {"position":"5600,4375","size":"100,100"}
 <<scene>>
 <p>Tief in der Nacht, als der Regen zum Nieseln wird, ist da ein Geräusch am Rand des Lagers — leise, vorsichtig, das Geräusch eines Mannes, der nicht gehört werden will.</p>
 <</scene>>
@@ -956,7 +956,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 <</if>>
 
 
-:: Biwag_Tag6_Ziehen [layout] {"position":"5725,4200","size":"100,100"}
+:: Biwag_Tag6_Ziehen    {"position":"5725,4200","size":"100,100"}
 <<scene>>
 <p>Du trittst zur Seite. Vielleicht ist es Gnade, vielleicht Schwäche — aber du lässt ihn gehen, hinein in den Regen, nach Hause. Am Morgen wird die Truppe wissen, dass ihr Weibel einen Deserteur ziehen ließ.</p>
 <</scene>>
@@ -968,7 +968,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 [[Zurück ins Lager|Biwag_Tag6_Abend]]
 
 
-:: Biwag_Tag6_Zurueck [layout] {"position":"5850,4250","size":"100,100"}
+:: Biwag_Tag6_Zurueck    {"position":"5850,4250","size":"100,100"}
 <<if setup.biwagBeatOnce("tag6_ausgang")>>
 	<<set _r to setup.biwagCheck("gossip", ($world.biwagBond_wenzel ? 11 : 13))>>
 	<<= setup.skillCheckAlert(_r)>>
@@ -984,7 +984,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 [[Zurück ins Lager|Biwag_Tag6_Abend]]
 
 
-:: Biwag_Tag7 [layout] {"position":"4725,3850","size":"100,100"}
+:: Biwag_Tag7    {"position":"4725,3850","size":"100,100"}
 <<if setup.biwagBeatOnce("tagN_start")>><<= setup.biwagTagStart()>><</if>>
 
 <<scene>>
@@ -994,14 +994,14 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 [[Würdevoll heimführen|Biwag_Tag7_Wuerdig]]
 
 
-:: Biwag_Tag7_Ankunft [layout] {"position":"4825,3675","size":"100,100"}
+:: Biwag_Tag7_Ankunft    {"position":"4825,3675","size":"100,100"}
 <<scene>>
 <p>Im Hof erwarten euch Hauptmann Rindler und Kurt, die Hände im Rücken, die Blicke prüfend. Sie mustern die Truppe, die du zurückbringst — und dann dich.</p>
 <</scene>>
 [[Bericht erstatten|Biwag_Debrief]]
 
 
-:: Biwag_Tag7_Forcieren [layout] {"position":"5000,3650","size":"100,100"}
+:: Biwag_Tag7_Forcieren    {"position":"5000,3650","size":"100,100"}
 <<scene>>
 <p>Du treibst zur Eile. Ihr erreicht Ohm noch vor der Dämmerung — doch die letzten Meilen brechen den Männern das Kreuz, und sie schleppen sich mehr, als dass sie marschieren.</p>
 <</scene>>
@@ -1011,7 +1011,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 [[Ankunft in Ohm|Biwag_Tag7_Ankunft]]  
 
 
-:: Biwag_Tag7_Wuerdig [layout] {"position":"4475,3575","size":"100,100"}
+:: Biwag_Tag7_Wuerdig    {"position":"4475,3575","size":"100,100"}
 <<scene>>
 <p>Du lässt sie in Ordnung marschieren, Schritt und Haltung, so müde sie auch sind. Als das Nordtor in Sicht kommt, richten sie sich von selbst auf — sie wollen als Soldaten heimkehren, nicht als Häuflein.</p>
 <</scene>>
