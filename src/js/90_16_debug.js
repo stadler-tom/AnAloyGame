@@ -143,7 +143,7 @@ setup.datumAnzeige = function () {
     var d = Math.max(1, State.variables.world.day);
     var jahr = Math.floor((d - 1) / 365) + 1;
     var tagImJahr = ((d - 1) % 365) + 1;
-    var woche = Math.ceil(tagImJahr / 7);
+    var woche = Math.ceil(tagImJahr / 3);   // +1 alle 3 Tage
     var wtag = setup.wochentage[d % 7];
     return jahr + ". Jahr · Woche " + woche + " · " + wtag;
 };

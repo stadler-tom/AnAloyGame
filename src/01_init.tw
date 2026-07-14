@@ -21,6 +21,7 @@
     flags: {
         jareknarbe: false
     },
+    spezialisierung: "",
 
     money: {
         copper: 2
@@ -39,7 +40,7 @@
         ambition: 50,
         honesty: 50,
         discipline: 30,   /* frischer Rekrut – wächst durch Drill, fällt durch Regelbruch */
-        faith: 50,         /* Verhältnis zur Drei-Götter-Kirche: 0 gottlos … 100 fromm */     
+        faith: 20,         /* Verhältnis zur Drei-Götter-Kirche: 0 gottlos … 100 fromm */     
         scholarship: 5
     },
 
@@ -406,17 +407,18 @@
         trust: false,
         isRealPlayer: true,
         memory: { flags: {}, events: [] },
-        journalEntry: "Ein Mann fürs grobe. Jemand der nicht nur in de Schatten steht und zuhören kann."
+        journalEntry: "Ein Mann fürs grobe. Muskulöse Statur, Hut mit Krempe, vorlaut. Hat immer einen Zahnstocher im Mund."
     },
      maurice: {
         name: "Maurice Marie",
         known: false,
+        image: "images/MM.png",
         faction: "La Familia",
         affection: 0,
         trust: false,
         isRealPlayer: true,
         memory: { flags: {}, events: [] },
-        journalEntry: "Ein Bretone. mit einem Hang für Würfelspiele."
+        journalEntry: "Ein Bretone. Mit einem Hang für Würfelspiele. Redselig, aber nicht dumm. Versteht sich gut darauf Leuten dinge einzureden die sie nicht wollen."
 
     },
 } >>
@@ -454,6 +456,7 @@
     wasPracticing: false,
     needsDiceGame: true,
     seenGossip: {},
+    wuerfelSpiel: { cheat: 0, gespielt: 0 },
     currentGossipStory: "",
     karla_druck: 0,       
     jarek_druck: 0,

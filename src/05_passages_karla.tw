@@ -757,27 +757,39 @@ Aber du weißt auch, was sie dort draußen sucht, und du weißt, dass sie es all
 
 
 :: karla_S7 [interrupt einmalig nach_stube kap1] {"position":"1175,3150","size":"100,100"}
-<p>Sechs Tage. Du hast aufgehört zu zählen, ehrlich gesagt — der Brief unter deinem Strohlager ist längst fort, einem Händler mitgegeben, und mit jedem Tag ohne Antwort ist die Hoffnung kleiner geworden, bis sie sich anfühlte wie etwas, das du dir nur eingebildet hast. Du hast den Drill, das Studium, den Alltag. Du hast fast vergessen, dass du je geschrieben hast.</p>
+<p>Sechs Tage. Du hast aufgehört zu zählen, ehrlich gesagt — der Brief unter deinem Strohlager ist längst fort, 
+einem Händler mitgegeben, und mit jedem Tag ohne Antwort ist die Hoffnung kleiner geworden, 
+bis sie sich anfühlte wie etwas, das du dir nur eingebildet hast. Du hast den Drill, das Studium, den Alltag. 
+Du hast fast vergessen, dass du je geschrieben hast.</p>
 
 <p>Bis zu diesem Nachmittag.</p>
 
-<p>Du kommst vom Exerzierplatz, der Nacken steif, die Hände wund, den Kopf noch beim letzten Kommando des Schinders — und biegst um die Ecke zum Verwaltungstrakt.</p>
+<p>Du kommst vom Exerzierplatz, der Nacken steif, die Hände wund, 
+den Kopf noch beim letzten Kommando des Schinders — und biegst um die Ecke zum Verwaltungstrakt.</p>
 
 <p>Und bleibst stehen.</p>
 
-<div class="scenery-text">Im Hof stehen vier Männer, die nicht hierhergehören. Keine Rekruten, keine Ausbilder. Reisende, dem Staub auf ihren Stiefeln nach, aber gut gekleidet — zu gut für diese Gegend. Ein Pferd und ein beladener Karren warten am Tor. Ein paar Rekruten haben sich in sicherem Abstand aufgebaut und gaffen.</div>
+<div class="scenery-text">Im Hof stehen vier Männer, die nicht hierhergehören. Keine Rekruten, keine Ausbilder. Reisende, 
+dem Staub auf ihren Stiefeln nach, aber gut gekleidet — zu gut für diese Gegend. Ein Pferd und ein beladener Karren warten am Tor. 
+Ein paar Rekruten haben sich in sicherem Abstand aufgebaut und gaffen.</div>
 
 <<if $npc.weibelWenzel.known>> 
-<p>Einen der vier kennst du. Weibel Wenzel vom 84. Banner — das rote Barett, die Pluderhose, die laute Art, mit der er gerade auf einen der Fremden einredet und dabei lacht. Du hast ihn schon einmal im Lager gesehen.</p>
+<p>Einen der vier kennst du. Weibel Wenzel vom 84. Banner — das rote Barett, die Pluderhose, die laute Art,
+ mit der er gerade auf einen der Fremden einredet und dabei lacht. Du hast ihn schon einmal im Lager gesehen.</p>
 <p>Die anderen drei nicht.</p>
   <<else>>
 <p>Drei in Zivil und einer in Söldnertracht.</p>
 <p>Du erkennst niemanden von ihnen.</p>
 <</if>>
 
-<p>Ein hagerer Mann mit wachen Augen steht etwas abseits und lässt den Blick langsam über den Hof wandern — über die Mauern, die Ausgänge, die gaffenden Rekruten —, als zähle er etwas, das nur er sehen kann. Er sagt nichts. Er muss nichts sagen.</p>
+<p>Ein hagerer Mann mit wachen Augen steht etwas abseits und lässt den Blick langsam über den Hof wandern — über die Mauern, 
+die Ausgänge, die gaffenden Rekruten —, als zähle er etwas, das nur er sehen kann. Er sagt nichts. Er muss nichts sagen.</p>
 
-<p>Daneben ein zweiter, jünger, lebhafter, der mit den Händen redet und den Weibel offenbar an alte Zeiten erinnert, denn er schlägt ihm gerade lachend auf die Schulter.</p>
+<p>Daneben ein zweiter, lebhafter, der mit den Händen redet, als wären ihm Worte allein zu wenig. Eben hat er
+gegen den Weibel gewürfelt und verloren — man sieht es daran, wie er lachend die Hände hebt und ein paar Münzen
+hinüberschiebt, ohne die geringste Verstimmung, als sei das Verlieren der halbe Spaß an der Sache. Dann streift sein
+Blick über den Hof, über dich, und bleibt einen Herzschlag zu lang hängen, mit einem Schmunzeln, als hätte man ihm
+von dir erzählt.</p>
 
 <p>Und der vierte —</p>
 
@@ -852,7 +864,8 @@ Aber du weißt auch, was sie dort draußen sucht, und du weißt, dass sie es all
 
 
 :: karla_S8 [interrupt einmalig nach_hub kap1] {"position":"1175,3550","size":"100,100"}
-<p>Ein paar Tage sind vergangen, und du hast dich beinahe damit abgefunden, dass das Treffen im Hof alles war — ein Versprechen, das vielleicht im Sand verläuft, wie so viele Versprechen.</p>
+<p>Ein paar Tage sind vergangen, und du hast dich beinahe damit abgefunden, dass das Treffen im Hof alles war — ein Versprechen, 
+das vielleicht im Sand verläuft, wie so viele Versprechen.</p>
 
 <p>Dann stehen sie wieder da.</p>
 
@@ -860,7 +873,9 @@ Aber du weißt auch, was sie dort draußen sucht, und du weißt, dass sie es all
 
 <p>Luigi sieht dich, hebt die Hand zum Gruß und kommt herüber. Hinter ihm die beiden anderen — der lebhafte Jüngere mit dem wachen Lächeln, der schweigsame Hagere, der wie beim ersten Mal den Hof abtastet.</p>
 
-<div class="dialog">„Thomaso." Luigi klingt zufrieden. „Diesmal brauche ich keinen Weibel, der mich hereinbringt, eh. Wir habene jetzte ein eigenes Papier — von einem Diplomaten Hannes. Ein höflicher Mann." Er klopft sich auf die Brusttasche. „Luigi findete immer einen Weg. Mal so, mal so."</div>
+<div class="dialog">„Thomaso." Luigi klingt zufrieden. „Diesmal brauche ich keinen Weibel, der mich hereinbringt, eh. 
+Wir habene jetzte ein eigenes Papier — von einem Diplomaten Hannes. Ein höflicher Mann." Er klopft sich auf die Brusttasche. 
+„Luigi findete immer einen Weg. Mal so, mal so."</div>
 
 <div class="thought-box">Erst Wenzel, jetzt ein Diplomat des Städtebunds. Dieser Mann zieht an Fäden, von denen ich nicht einmal wusste, dass es sie gibt.</div>
 
@@ -881,7 +896,8 @@ Aber du weißt auch, was sie dort draußen sucht, und du weißt, dass sie es all
 
 <p>Du musst die Frage nicht aussprechen. Luigi sieht sie dir an, und etwas Verschmitztes legt sich in seine Miene.</p>
 
-<div class="dialog">„Du fragste dich, warum ein Mann plötzlich redete, der zwei Jahre lang nichts gesagt hate." Er dreht sich halb um, zu den beiden hinter ihm. „Das ... das erzählene dir besser meine Freunde. Sie warene dabei."</div>
+<div class="dialog">„Du fragste dich, warum ein Mann plötzlich redete, der zwei Jahre lang nichts gesagt hate." 
+Er dreht sich halb um, zu den beiden hinter ihm. „Das ... das erzählene dir besser meine Freunde. Sie warene dabei."</div>
 
 <<trenner>>
 [[Weiter|karla_S8_zeugen]]
@@ -914,11 +930,15 @@ Aber du weißt auch, was sie dort draußen sucht, und du weißt, dass sie es all
 
 
 :: karla_S8_zeugen {"position":"1175,3800","size":"100,100"}
-<p>Der lebhafte tritt vor, und zum ersten Mal hörst du ihn richtig sprechen — eine andere Färbung als Luigi, weicher, näselnder, mit gerolltem Tonfall, der die Worte tänzeln lässt.</p>
+<p>Der lebhafte tritt vor, und zum ersten Mal hörst du ihn richtig sprechen — eine andere Färbung als Luigi,
+ weicher, näselnder, mit gerolltem Tonfall, der die Worte tänzeln lässt.</p>
 
-<div class="dialog">„Maurice", stellt er sich vor und legt eine Hand aufs Herz, als wäre das Wort schon eine Höflichkeit. „Mon ami, die Sache war ... wie sagt man ... eine Frage des Gespräches. Wir habn den Monsieur Zeugen besucht. Ein nervöser Mann, sehr nervös. Lebt allein, schlechte Schlaf, eh? Man sieht so etwas."</div>
+<div class="dialog">„Maurice", stellt er sich vor und legt eine Hand aufs Herz, als wäre das Wort schon eine Höflichkeit.
+ „Mon ami, die Sache war ... wie sagt man ... eine Frage des Gespräches. Wir habn den Monsieur Zeugen besucht. 
+ Ein nervöser Mann, sehr nervös. Lebt allein, schlechte Schlaf, eh? Man sieht so etwas."</div>
 
-<p>Er lächelt, und das Lächeln ist charmant und kalt zugleich.</p>
+<p>Er lächelt, und das Lächeln ist charmant und kalt zugleich — als säße man beim Wein zusammen und nicht bei der
+Frage, wie man einen verängstigten Mann bricht.</p>
 
 <div class="dialog">„Wir habn uns gesetzt. Wir habn geredet. Über das Wetter, über die Ernte, über die Sorgen, die ein Mann so hat in diese unsichere Zeiten. Und irgendwann — ganz natürlisch — sind wir gekommen auf die Frage, wer ihm eigentlisch mehr Angst macht, hm? Die Männer von früher, die ihm habn gedroht ..." Maurice breitet die Hände aus. „... oder die Männer, die jetzt in seine Stube sitzen."</div>
 
@@ -926,9 +946,18 @@ Aber du weißt auch, was sie dort draußen sucht, und du weißt, dass sie es all
 
 <div class="dialog">„Vincente redete nicht viel", sagt Maurice fast zärtlich. „Aber er hat eine ... présence. Eine Wirkung. Der Monsieur Zeuge hat sehr schnell verstanden, dass die alten Drohungen ihn nicht mehr schützen. Dass es jetzt klüger iste, die Wahrheit zu sagen, als sie weiter zu verstecken." Er zwinkert. „Wir habn ihm nur geholfen, die rischtige Wahl zu treffen, eh? Ganz ohne ... Unannehmlichkeiten."</div>
 
-<div class="thought-box">Sie haben ihm nichts getan. Das ist das Unheimliche daran. Sie mussten nichts tun. Sie sind einfach gekommen, haben sich hingesetzt — und der Mann hat begriffen, dass die Loyalisten nicht mehr die Gefährlichsten in seinem Leben sind. Das ist eine Welt, von der ich nichts wusste. Und sie steht hinter meinem Paten.</div>
+<div class="dialog">„Luigi redet von dir. Oft in letzter Zeit. Also bist du
+auch ein bisschen meine Sache." Er grinst und klopft auf einen Beutel am Gürtel, in dem es hölzern klackt. „Ein Rat,
+mon ami: Wenn wir uns wiedersehen, bring Würfel mit.</div>
+
+<div class="thought-box">Er meint es freundlich, und ich glaube ihm sogar. Aber ich habe eben gesehen, was diese Männer
+mit Freundlichkeit anrichten — und frage mich, ob es einen Unterschied macht, auf welcher Seite davon man steht.
+ Das ist eine Welt, von der ich nichts wusste. Und sie steht hinter meinem Paten.</div>
 
 <p>Vincente tritt wieder zurück in den Schatten, lautlos, wie er gekommen ist. Maurice verbeugt sich knapp, das Lächeln nie ganz weg.</p>
+
+<<set $npc.maurice.known to true>>
+<<set $npc.vincente.known to true>>
 
 <<trenner>>
 [[Weiter|karla_S8_prognose]]

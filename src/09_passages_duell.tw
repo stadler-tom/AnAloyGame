@@ -19,11 +19,23 @@
         side: "",
         outcome: "",
 
+		ereignis: {},
+
         facts: {
             rabenfurt_feud: false,
-            zdenka_fear: false,
+            zdenka_angst: false,
             public_discipline: false,
             old_bridge: false
+        },
+
+        wissen: {
+            fehde: false,
+            ahnt_mehr: false,
+            fest: false,
+            wahrheit_bronko: false,
+            wahrheit_pavel: false,
+            brief: false,
+            bronko_reue: false
         },
 
         flags: {}
@@ -125,14 +137,15 @@
 
 <p>Danach kommt nichts Ganzes mehr. Nur Bruchstücke.</p>
 
-<p>Pavel habe Bronko nach dem Abendappell erwartet. Bronko habe nicht geantwortet. Einer habe den Namen Pipovic ausgespuckt, einer den Namen Kulitcka. Jemand habe von der Brücke gesprochen. Jemand von einer Scheune, die einmal gebrannt hat. Jemand von einer alten Schuld—</p>
+<p>Pavel habe Bronko nach dem Abendappell erwartet. Bronko habe nicht geantwortet. Einer habe den Namen Pipovic ausgespuckt, 
+einer den Namen Kulitcka. Jemand habe von der Brücke gesprochen. Jemand von einer Scheune, die einmal gebrannt hat. Jemand von einer alten Schuld—</p>
 
-<<set $world.duell.facts.rabenfurt_feud = true>>
-<<set $world.duell.facts.zdenka_fear = true>>
+<<set $world.duell.wissen.fehde = true>>
+<<set $world .duell.facts.zdenka_angst = true>>
 
+<<trenner>>
 [[Weiter zum Vormittag->Duell_S1_Vormittag]]
 
-[[Kap2_Tageshub]]
 
 
 :: Duell_S1_Vormittag
@@ -209,7 +222,8 @@
 <p>Pavel starrt dich an, nicht dankbar. Bronko sieht dich gar nicht an — was schlimmer ist.</p>
 
 <<beziehung>>
-	<p>„Die Brücke gehört keinem. Und beiden. Die Pipovics verlangen Wegzoll für jeden Kulitcka-Karren, der rüber will — seit einem Streit um die Mühle, vor Jahren. Die Kulitckas zahlen nicht. Also blockieren sie die Furt unterhalb, wenn's ihnen passt.“</p>
+	<p>„Die Brücke gehört keinem. Und beiden. Die Pipovics verlangen Wegzoll für jeden Kulitcka-Karren, der rüber will — seit einem Streit um die Mühle, 
+    vor Jahren. Die Kulitckas zahlen nicht. Also blockieren sie die Furt unterhalb, wenn's ihnen passt.“</p>
 	<<set _r to setup.skillCheckXp("combat", 13)>>
 	<<if _r.success>>
 		<<= setup.skillCheckAlert(_r)>>
@@ -222,10 +236,11 @@
 <</gedanke>>
 
 <<set $world.duell.tension -= 1>>
-<<set $world.duell.facts.public_discipline = true>>
 <<set $world.duell.pavel_trust -= 1>>
 <<set $world.duell.bronko_trust -= 1>>
-<<set $world.duell.s1_method = "eingreifen">>
+<<set $world.duell.ereignis.s1eingegriffen = true>>
+
+
 
 <p>Der Waffenmeister brüllt die Reihen wieder in Ordnung. Aber sein Blick bleibt noch einen Moment auf Pavel und Bronko hängen, als würde er sich die Namen für später merken.</p>
 
@@ -260,8 +275,8 @@
 <</gedanke>>
 
 <<set $world.duell.tension += 1>>
-<<set $world.duell.flags.bronko_zoegert = true>>
-<<set $world.duell.s1_method = "beobachten">>
+<<set $world.duell.ereignis.bronko_zoegert = true>>
+<<set $world.duell.ereignis.s1beobachten = true>>
 
 <p>Pavel hält sich die Wange, mehr überrascht als verletzt. Der Waffenmeister brüllt beide zur Wand, wo sie stehen bleiben, ohne einander anzusehen, während der Drill um sie herum weitergeht, als wäre nichts gewesen.</p>
 
@@ -301,8 +316,9 @@
 <p>„Die Brücke ist nur der Teil, über den man reden darf.“</p>
 <</dialog>>
 
-<<set $world.duell.facts.old_bridge = true>>
-<<set $world.duell.s1_method = "nachfragen">>
+<<set $world.duell.wissen.ahnt_mehr = true>>
+<<set $world.duell.ereignis.s1nachfragen = true>>
+
 
 <p>Der letzte Satz bleibt bei dir hängen, länger als der Rest.</p>
 
@@ -356,8 +372,7 @@ Aber wenn sie es ins Wasser wirft, ist es weg — und mit ihm vielleicht die ein
 <</gedanke>>
 
 <p>Zdenka steht da wie ein Tier, das schon einmal in eine Falle getreten ist — jede zu plötzliche Bewegung,
-und sie ist weg, das Papier mit ihr. Und der Markt redet ohnehin. Er hat den ganzen Vormittag über Rabenfurt
-geredet, ohne dass du auch nur ein Wort danach fragen musstest.</p>
+und sie ist weg, das Papier mit ihr. Neben dir beginnen zwei Frauen über die Kulickas aus Rabenfurth zu sprechen.</p>
 
 <<gedanke>>
 <p>Vielleicht muss ich sie gar nicht fragen. Vielleicht reicht es, nah genug bei den Ständen zu bleiben und den
@@ -366,7 +381,7 @@ was sie einem ins Gesicht sagen.</p>
 <</gedanke>>
 
 [[Sie ansprechen->Duell_S2_Zdenka_Ansprechen]]
-[[Abstand halten und nur zuhören, was am Markt geredet wird->Duell_S2_Zuhoeren]]
+[[Abstand halten und zuhören, was geredet wird->Duell_S2_Zuhoeren]]
 
 
 :: Duell_S2_Zdenka_Ansprechen
@@ -388,17 +403,21 @@ was sie einem ins Gesicht sagen.</p>
 <<beziehung>>
 	<p>„Es geht doch immer nur um dieselbe Brücke“, sagst du, so beiläufig du kannst.
 	„Mühle, Wegzoll, alte Väter.“</p>
-	<<set _r to setup.skillCheckXp("gossip", 14)>>
+    <<set _dc to 0>>
+    <<if $world.duell.wissen.ahnt_mehr>>
+        <<set _dc to -3>>
+    <</if>>
+	<<set _r to setup.skillCheckXp("gossip", 14, _dc)>>
 	<<if _r.success>>
 		<<= setup.skillCheckAlert(_r)>>
 		<p>Zdenka sieht dich an, zum ersten Mal richtig. Etwas in ihrem Gesicht gibt für einen Herzschlag nach.</p>
 		<<dialog>>
-		<p>„Glaub das nicht“, sagt sie leise. „Glaub nicht, dass es je um die Brücke ging.“</p>
+		<p>„Glaub das nicht“, sagt sie leise. „Glaub nicht, dass es je um die Brücke ging. Marja hat mir geschrieben.“</p>
 		<p>Sie schließt die Hand fester um ihren Ärmel, um das Papier darin.</p>
 		<p>„Frag mich nicht weiter. Nicht heute.“</p>
 		<</dialog>>
 		<<run setup.addRumor("Zdenka Hrusa behauptet, die Fehde zwischen Pavel und Bronko habe nie mit der Brücke zu tun gehabt.")>>
-		<<set $world.duell.flags.zdenka_hinweis = true>>
+		<<set $world.duell.wissen.ahnt_mehr = true>>
 		<<set $world.duell.zdenka_trust += 1>>
 	<<else>>
 		<<= setup.skillCheckAlert(_r)>>
@@ -406,6 +425,7 @@ was sie einem ins Gesicht sagen.</p>
 		<p>„Frag die, die glauben, sie wüssten was.“ Sie tritt einen Schritt zurück. „Ich weiß gar nichts.“</p>
 		<</dialog>>
 		<p>Das ist die erste Lüge, die du sie heute sagen hörst. Es wird nicht die letzte sein.</p>
+        <<set $world.duell.wissen.ahnt_mehr = true>>
 		<<set $world.duell.zdenka_trust -= 1>>
 	<</if>>
 <</beziehung>>
@@ -415,7 +435,7 @@ was sie einem ins Gesicht sagen.</p>
 <p>Sie geht, bevor du noch etwas fragen kannst — nicht hastig, aber endgültig,
 wie jemand, der eine Tür nur einen Spalt geöffnet hat und sie jetzt selbst wieder zudrückt.</p>
 
-[[Weiter zum Nachmittag->Duell_S3_Nachmittag]]
+[[Weiter zum Nachmittag->Duell_S3_Ereignisse]]
 
 
 :: Duell_S2_Zuhoeren
@@ -447,16 +467,1187 @@ Sie schnaubt. „Als hätten die nichts Besseres zu tun.“</p>
 		<p>Die erste Frau stößt ihr den Ellbogen in die Seite, und das Gespräch wechselt so schnell das Thema,
 		dass es fast wie Zufall aussieht.</p>
 		<</dialog>>
-		<<set $world.duell.facts.old_bridge = true>>
-		<<set $world.duell.flags.musterungsfest_erwaehnt = true>>
+		<<set $world.duell.wissen.ahnt_mehr = true>>
+		<<set $world.duell.wissen.fest = true>>
 	<<else>>
 		<<= setup.skillCheckAlert(_r)>>
 		<p>Mehr als Marktgerede wird daraus nicht. Die beiden ziehen weiter, mit ihrem Salz und ihrer Neugier,
 		und lassen dich mit nichts als einem alten Namen für einen alten Streit zurück.</p>
-		<<set $world.duell.facts.old_bridge = true>>
+		<<set $world.duell.wissen.ahnt_mehr = true>>
 	<</if>>
 <</beziehung>>
 
 <<set $world.duell.s2_method = "zuhoeren">>
 
-[[Weiter zum Nachmittag->Duell_S3_Nachmittag]]
+[[Weiter zum Nachmittag->Duell_S3_Ereignisse]]
+
+
+:: Duell_S3_Ereignisse
+
+<<set _spec to $player.spezialisierung>>
+
+<<scene>>
+<p>Der Nachmittag legt sich grau über den Hof. Der Drill ist vorbei, die Waffen weggeräumt, die Reihen aufgelöst —
+und doch bleibt etwas in der Luft hängen, das keiner ausspricht. Männer stehen in kleinen Trauben zusammen, die
+Köpfe zu nah beieinander für ein belangloses Gespräch. Zwischen den Gruppen ein Streifen leeren Bodens, wie eine
+Grenze, die niemand gezogen hat und alle kennen.</p>
+<</scene>>
+
+<<gedanke>>
+<p>Die Brücke ist das Wort, über das man reden darf. Aber ich habe den ganzen Tag Gesichter gesehen, die zu keiner
+Brücke passen — Zdenkas Papier in der Faust, Bronkos Zögern beim Schlag, Pavels Hand, die zur Faust wird, wenn nur
+sein Name fällt. Bis der Tag sich zum Abend neigt, habe ich Zeit, herauszufinden, worum es wirklich geht. Oder zu
+entscheiden, dass es mich nichts angeht und den Rest den drei überlasse, die schon zu tief drinstecken, um noch umzukehren.</p>
+<</gedanke>>
+
+<p>Drei Menschen tragen die Wahrheit zwischen sich auf — und keiner davon trägt sie gern. Die Sonne steht schon tief.</p>
+
+<ul class="sandbox-menu">
+<li>[[Zdenka suchen — sie hält mehr in der Faust als ein Stück Papier->Duell_S3_ZdenkaNachhaken]]</li>
+<li>[[Pavel stellen — den, der nichts vergisst->Duell_S3_PavelNachhaken]]</li>
+<li>[[Bronko stellen — den, der heute Morgen den Schlag zurückgerufen hat->Duell_S3_BronkoNachhaken]]</li>
+</ul>
+
+
+:: Duell_S3_ZdenkaNachhaken
+
+<<set _spec to $player.spezialisierung>>
+
+<<scene>>
+<p>Hinter dem Waschhaus hängt der Dampf so dicht in der Luft, dass die Mauer dahinter nur ein Schatten ist.
+Es riecht nach Lauge, nasser Wolle und dem Rauch unter den Kesseln. Hier kommt niemand her, der nicht muss —
+und niemand bleibt, der nicht warten will.</p>
+
+<p>Zdenka steht an der Rückwand, halb im Nebel, die Arme um sich geschlungen. In ihrer Faust steckt das Papier,
+das sie am Mittag noch versteckt hat. Sie hat es nicht weggeworfen. Sie hat es nur eng gehalten, den ganzen Tag.</p>
+<</scene>>
+
+/* Basis: dass auf dem Fest etwas vorfiel, rückt sie immer heraus. */
+<<set $world.duell.wissen.fest to true>>
+
+<<if $world.duell.zdenka_trust gte 1>>
+	<<dialog>>
+	<p>Sie hört dich kommen, bevor du im Dampf bist, und dreht den Kopf nicht.</p>
+	<p>„Du gibst nicht auf.“ Es klingt nicht wie ein Vorwurf. Eher müde. „Den ganzen Tag suchen sie eine Seite.
+	Pavels Leute, Bronkos Leute. Alle wollen wissen, wer recht hat.“</p>
+	<p>Jetzt sieht sie dich an, und ihr Blick ist scharf genug, um zu schneiden.</p>
+	<p>„Willst du das auch? Eine Seite? Oder hältst du aus, was dazwischen liegt.“</p>
+	<</dialog>>
+	<<set _offen to true>>
+<<else>>
+	<<dialog>>
+	<p>Sie fährt herum, als du aus dem Dampf trittst, das Papier sofort im Rücken verschwunden.</p>
+	<p>„Was willst du hier.“ Keine Frage. Eine Warnung.</p>
+	<</dialog>>
+	<<gedanke>>
+	<p>Sie redet nicht, weil ich sie darum bitte. Sie redet nur, wenn sie glaubt, dass ich das Gewicht tragen kann,
+	das sie loswerden will. Alles andere macht es für sie nur schlimmer.</p>
+	<</gedanke>>
+	<<beziehung>>
+	<<set _r to setup.skillCheckXp("gossip", 14)>>
+	<<= setup.skillCheckAlert(_r)>>
+	<<set _offen to _r.success>>
+	<</beziehung>>
+<</if>>
+
+<<if _offen>>
+	<<dialog>>
+	<p>Sie schweigt lange. Der Dampf zieht zwischen euch hindurch.</p>
+	<p>„Es war nie die Brücke“, sagt sie schließlich. „Es war Marja. Pavels Schwester. Sie und Bronko, ein Jahr lang,
+	heimlich. Ein Kulitcka und eine Pipovic — das darf es nicht geben. Auf dem Freiheitsfest sind sie unvorsichtig geworden.“</p>
+	<</dialog>>
+	<<dialog>>
+	<p>„Marja ist schwanger“, sagt Zdenka, und die Worte kommen jetzt schneller, als hätte sie sie zu lange gehalten.
+	„Als es aufkam, haben die Pipovics sie fortgebracht. Über Nacht. Um den Namen zu wahren.“</p>
+	<p>„Pavel gibt Bronko die Schuld. Bronko gibt sie sich selbst — deshalb hat er heute Morgen den Schlag zurückgehalten.
+	Er glaubt, er hat jede Strafe verdient, die kommt.“</p>
+	<</dialog>>
+	<<beziehung>>
+	<p>Sie öffnet die Faust. Das Papier ist oft gefaltet, das Siegel längst gebrochen, die Kanten weich vom Tragen.</p>
+	<</beziehung>>
+	<<dialog>>
+	<p>„Von Marja. An mich. Sie lebt, sie ist in Sicherheit, es geht ihr gut. Und sie verflucht Bronko nicht — im Gegenteil.“</p>
+	<p>„Sie bittet um zwei Dinge. Bronko auszurichten, dass alles gut ist. Und Pavel nichts zu sagen. Nichts. Sie kennt
+	ihren Bruder. Er würde es nur schlimmer machen.“</p>
+	<p>Sie faltet das Papier wieder zusammen, sorgsam, entlang der alten Brüche.</p>
+	<p>„Von mir nimmt Pavel keine Wahrheit an. Von keinem aus Rabenfurt. Von einem Fremden vielleicht.“</p>
+	<</dialog>>
+	<<gedanke>>
+	<p>Jetzt liegt es offen vor mir. Ein Bruder, der glaubt, seine Schwester verloren zu haben. Ein Mann, der sich
+	nicht verzeiht, was er nicht ändern kann. Und ein Stück Papier, das beiden widerspricht — wenn es nur der Richtige liest.
+	Rabenfurt hat genug Blut gesehen.</p>
+	<</gedanke>>
+
+	<<set $world.duell.wissen.brief to true>>
+	<<set $world.duell.wissen.bronko_reue to true>>
+	<<set $world.duell.zdenka_trust += 1>>
+	<<run setup.addRumor('Marja Pipovic und Bronko liebten sich heimlich; auf dem Freiheitsfest wurde sie schwanger und die Pipovics brachten sie fort. Marja lebt, ist in Sicherheit und verflucht Bronko nicht — Zdenka hat ihren Brief.')>>
+
+	<<trenner>>
+	[[Bronko stellen — mit dem, was du jetzt weißt->Duell_S3_BronkoKonfrontieren]]
+	[[Pavel stellen — mit dem, was du jetzt weißt->Duell_S3_PavelKonfrontieren]]
+<<else>>
+	<<dialog>>
+	<p>Sie schiebt das Papier tiefer in den Ärmel und tritt an dir vorbei in den Dampf.</p>
+	<p>„Frag Rabenfurt“, sagt sie über die Schulter. „Da wissen sie alles und sagen nichts. Du passt gut dazu.“</p>
+	<</dialog>>
+	<<gedanke>>
+	<p>Sie hält die Antwort buchstäblich in der Faust, und ich habe ihr nicht genug gegeben, um die Hand zu öffnen.
+	Nur das eine weiß ich jetzt: Seit dem Fest ist nichts mehr wie zuvor. Der Rest bleibt hinter ihrem Schweigen.</p>
+	<</gedanke>>
+
+	<<trenner>>
+	<<if random(1, 2) is 1>>
+		[[Der Abend kommt->Duell_S4_Abend_mit_Pavel_reden_keine_Wahrheit]]
+	<<else>>
+		[[Der Abend kommt->Duell_S4_Abend_mit_Bronko_reden_keine_Wahrheit]]
+	<</if>>	
+<</if>>
+
+
+
+
+
+:: Duell_S3_BronkoNachhaken
+
+<<set _spec to $player.spezialisierung>>
+
+<<scene>>
+<p>Hinter den Küchen liegt der Holzplatz, grau und windstill, den Boden aus Rinde und altem Schnee, der nie
+ganz vergeht. Aus dem Kamin der Garküche kriecht Rauch, zu müde, um zu steigen, und legt sich flach über die Scheite.</p>
+
+<p>Bronko steht am Hauklotz. Die Axt hebt und fällt, hebt und fällt, in einem Takt, der nichts mit Wärme zu tun
+hat und alles mit dem Bedürfnis, die Hände zu beschäftigen. Um ihn herum liegt ein Ring aus leerem Boden, den
+niemand betritt. Gespaltenes Holz häuft sich zu seinen Füßen, mehr, als eine Küche in einer Woche verbrennt.</p>
+<</scene>>
+
+<p>Du bleibst am Rand des Rings stehen, dort, wo die Blicke der anderen enden. Er spricht mit niemandem.
+Er hat den ganzen Tag mit niemandem gesprochen.</p>
+
+<<beziehung>>
+<<set _p to setup.skillCheckXp("perception", 13)>>
+<<= setup.skillCheckAlert(_p)>>
+<<if _p.success>>
+	<<if _spec is "medicine">>
+	<p>Du siehst, was die anderen übersehen: Es ist keine Wut, die ihn das Holz zerschlagen lässt. Seine Schläge
+	sind zu gleichmäßig für Wut. Das ist ein Mann, der etwas übertönt, das lauter ist als die Axt.</p>
+	<<else>>
+	<p>Etwas an der Art, wie er die Axt führt — zu stetig, zu lange —, verrät dir, dass er nicht Holz spaltet,
+	sondern flieht. Vor etwas, das keine Kälte ist. Du gehst behutsamer, als du gekommen bist.</p>
+	<</if>>
+	<<set _gmod to -3>>
+<<else>>
+	<p>Du siehst nur einen großen, stummen Mann mit einer Axt. Was in ihm vorgeht, bleibt hinter der Arbeit verborgen.
+	Du sprichst ihn an, wie man einen Fremden anspricht.</p>
+	<<set _gmod to 0>>
+<</if>>
+<</beziehung>>
+
+<<set _gmod to _gmod - $world.duell.bronko_trust>>   /* Vertrauen senkt die Hürde, Misstrauen hebt sie */
+
+<<dialog>>
+<p>„Bronko.“</p>
+<p>Die Axt hält oben, einen Herzschlag zu lang, bevor sie fällt. Er sieht dich nicht an.</p>
+<p>„Geh weiter“, sagt er. „Hier gibt's nichts zu sehen.“</p>
+<</dialog>>
+
+<<beziehung>>
+<<set _r to setup.skillCheckXp("gossip", 13, _gmod)>>
+<<= setup.skillCheckAlert(_r)>>
+<</beziehung>>
+
+<<if not _r.success>>
+	<<dialog>>
+	<p>Was du auch sagst, es prallt an ihm ab wie an nasser Rinde. Er spaltet weiter, gleichmäßig, unerbittlich,
+	bis das Schweigen dich fortschickt.</p>
+	<p>„Geh“, sagt er noch einmal. Diesmal fragt keiner mehr nach.</p>
+	<</dialog>>
+	<<trenner>>
+	[[Du gehst — mit weniger, als du wolltest->Duell_S3_Bronko_erzaehlt_nichts]]
+<<else>>
+	<<dialog>>
+	<p>Du sagst nichts über die Brücke. Nichts über Pavel. Du bleibst nur stehen und lässt ihn wissen, dass du
+	nicht zum Gaffen gekommen bist.</p>
+	<p>Die Axt fällt langsamer. Dann gar nicht mehr. Er stützt sie auf den Klotz und sieht dich zum ersten Mal an —
+	müde bis auf den Grund.</p>
+	<p>„Was willst du wissen.“</p>
+	<</dialog>>
+	<<trenner>>
+	<<if $world.duell.wissen.fest>>
+	[[Nach dem Fest fragen->Duell_S3_BronkoFestBefragen]]
+	<<else>>
+	[[Fragen, was wirklich zwischen ihm und Pavel steht->Duell_S3_Bronko_erzaehlt]]
+	<</if>>
+<</if>>
+
+:: Duell_S3_BronkoFestBefragen
+
+<<set _spec to $player.spezialisierung>>
+
+<<dialog>>
+<p>„Es ging nie um die Brücke“, sagst du. „Es ging um das Fest.“</p>
+<</dialog>>
+
+<p>Das Wort trifft ihn wie ein Schlag, den er nicht pariert. Die Hand, die schon wieder nach der Axt greifen
+wollte, hält inne und sinkt. Er lehnt die Axt an den Stapel, langsam, als wäre sie plötzlich schwerer geworden,
+und setzt sich auf den Hauklotz — die Unterarme auf den Knien, die Hände ineinander. Große Hände, aufgesprungen
+von der Kälte. Er betrachtet sie, als gehörten sie einem anderen.</p>
+
+<<dialog>>
+<p>„Wer hat geredet.“ Es ist keine Frage. Nur eine müde Feststellung, dass es jetzt jemand weiß.</p>
+<p>„Niemand, der dir schaden wollte“, sagst du.</p>
+<</dialog>>
+
+<<dialog>>
+<p>„Marja“, sagt er. Nur der Name. Er legt ihn hin wie etwas, das man nicht fallen lassen darf.</p>
+<p>„Pavels Schwester.“</p>
+<p>Er lässt die Worte stehen, bis sie schwer genug sind.</p>
+<p>„Ein Kulitcka und eine Pipovic. So etwas darf es nicht geben. Wir wussten es. Wir haben es trotzdem getan —
+heimlich, ein Jahr lang. Auf dem Freiheitsfest sind wir unvorsichtig geworden.“</p>
+<</dialog>>
+
+<<if _spec is "medicine">>
+	<<beziehung>>
+	<p>Du hast am Feldschertisch gelernt, wann ein Mensch die Wahrheit sagt: nicht an den Worten, an dem, was
+	sie ihn kosten. Bronko zahlt mit jedem Satz, und er handelt nicht nach unten.</p>
+	<</beziehung>>
+<<elseif _spec is "crossbow">>
+	<<beziehung>>
+	<p>Du beobachtest ihn, wie du eine Linie beobachtest, bevor sie sich bewegt. Nichts an ihm weicht aus.
+	Ein Mann, der lügt, sucht deinen Blick. Bronko sucht nur den Boden.</p>
+	<</beziehung>>
+<</if>>
+
+<<dialog>>
+<p>„Sie trägt mein Kind“, sagt er, und zum ersten Mal hebt er den Kopf. „Im siebten Mond. Bald acht.“</p>
+<p>Er sagt es im Präsens. Als wäre irgendwo ein Kind, das noch geboren wird, und er nur zu weit weg, um dabei zu sein.</p>
+<p>„Als es aufkam, haben sie sie geholt. Über Nacht. Ich hab geschlafen wie ein Ochse, und am Morgen war sie fort.
+Kein Brief. Kein Wort. Niemand sagt mir, wohin.“</p>
+<</dialog>>
+
+<p>Seine Stimme bricht nicht. Das ist fast das Schlimmste daran — wie fest er sie hält, als hätte er lange geübt,
+das alles zu sagen, ohne daran zu zerbrechen.</p>
+
+<<dialog>>
+<p>„Ich hätte sie schützen müssen. Das war das Einzige, was zählte, und ich habe es nicht getan.“</p>
+<p>Er sieht kurz zum Übungshof hinüber, wo Pavel irgendwo zwischen den anderen steht.</p>
+<p>„Pavel hasst mich. Er hat recht damit. Ich habe seine Schwester genommen und konnte sie nicht halten.
+An seiner Stelle würde ich denselben Mann suchen, den er sucht.“</p>
+<</dialog>>
+
+<<gedanke>>
+<p>Das ist nicht der Mann aus der Geschichte über die Brücke. Kein sturer Bauernsohn, der um einen Wegzoll
+streitet. Das ist einer, der eine Frau und ein Kind verloren hat und die Schuld dafür bei keinem sucht außer
+bei sich. Und der die Faust eines anderen für gerechter hält als die eigene Unschuld.</p>
+<</gedanke>>
+
+<p>Er nimmt die Axt wieder auf. Das Gespräch ist vorbei, das siehst du an seinem Rücken, noch bevor er sich abwendet.</p>
+
+<<set $world.duell.wissen.wahrheit_bronko to true>>
+<<set $world.duell.wissen.bronko_reue to true>>
+<<set $world.duell.bronko_trust += 2>>
+<<run setup.addRumor('Bronko und Marja Pipovic liebten sich heimlich. Auf dem Freiheitsfest wurde sie schwanger; als es aufkam, brachten die Pipovics sie fort. Bronko gibt allein sich die Schuld.')>>
+
+<<trenner>>
+[[Der Abend kommt — und mit ihm Pavel->Duell_S4_Abend_mit_Pavel_reden_hat_Wahrheit]]
+
+:: Duell_S3_Bronko_erzaehlt
+
+<<set _spec to $player.spezialisierung>>
+
+<<dialog>>
+<p>„Was steht wirklich zwischen dir und Pavel?“, fragst du. „Es ist nicht die Brücke. Das war es nie.“</p>
+<</dialog>>
+
+<p>Er sieht dich an, und für einen Moment glaubst du, er setzt sich, so wie ein Mann sich setzt, der lange
+reden will. Dann fällt sein Blick zurück auf das Holz, und du siehst die Tür sich wieder schließen, noch bevor
+sie ganz offen war.</p>
+
+<<dialog>>
+<p>„Nein“, sagt er. „Es ist nicht die Brücke.“</p>
+<p>Er greift nach der Axt, nicht um zu spalten — nur um etwas in den Händen zu halten.</p>
+<p>„Es war eine von seinen. Eine Pipovic.“ Ein Muskel an seinem Kiefer arbeitet. „Mein Fehler. Etwas, das nie
+hätte geschehen dürfen. Jetzt trägt Pavel es mir nach, und er hat sein Recht dazu.“</p>
+<p>„Mehr gibt's nicht zu erzählen.“</p>
+<</dialog>>
+
+<p>Es ist die Wahrheit, so viel spürst du. Aber es ist eine Wahrheit mit Kanten, an denen man merkt, dass etwas
+weggebrochen wurde, bevor sie dir gereicht wurde.</p>
+
+<<if _spec is "medicine" or _spec is "crossbow">>
+	<<beziehung>>
+	<p>Du kennst das Schweigen zwischen den Worten. Da ist mehr — etwas, das schwerer wiegt als ein Fehler und
+	tiefer sitzt als Scham. Aber er legt es nicht in deine Hand, und heute wirst du es ihm nicht entreißen.</p>
+	<</beziehung>>
+<</if>>
+
+<<gedanke>>
+<p>Er nennt es einen Fehler und lässt es dabei. Aber ein Fehler macht keinen Mann so still. Was immer zwischen
+ihm und dieser Frau steht, es ist größer als das eine Wort, das er mir gibt. Vielleicht reicht es Pavel trotzdem.
+Vielleicht auch nicht.</p>
+<</gedanke>>
+
+<<set $world.duell.wissen.wahrheit_bronko to true>>
+<<set $world.duell.bronko_trust += 1>>
+<<run setup.addRumor('Zwischen Bronko und Pavel steht kein Streit um die Brücke, sondern eine Frau aus Pavels Familie. Bronko nennt es seine Schuld — mehr sagt er nicht.')>>
+
+<<trenner>>
+[[Der Abend kommt — und mit ihm Pavel->Duell_S4_Abend_mit_Pavel_reden_hat_Wahrheit]]
+
+:: Duell_S3_Bronko_erzaehlt_nichts
+
+<p>Du gehst, weil Bleiben nichts mehr ändert. Hinter dir fällt die Axt wieder in ihren Takt, hebt und fällt,
+als hättest du nie neben ihm gestanden.</p>
+
+<<gedanke>>
+<p>Was auch immer ihn heute Morgen den Schlag hat zurückhalten lassen — er trägt es allein weiter, und mich
+lässt er nicht heran. Am Abend werde ich vor Pavel stehen, ohne das eine, das vielleicht alles erklärt hätte.</p>
+<</gedanke>>
+
+<p>Der Rauch der Garküche legt sich hinter dir über den Holzplatz und verschluckt den Klang der Axt, lange
+bevor du den Hof erreichst.</p>
+
+<<trenner>>
+[[Der Abend kommt — und mit ihm Pavel->Duell_S4_Abend_mit_Pavel_reden_keine_Wahrheit]]
+
+
+:: Duell_S3_BronkoKonfrontieren
+
+<<set _spec to $player.spezialisierung>>
+
+<<scene>>
+<p>Die Dämmerung frisst die Farben vom Holzplatz. Grau wird zu Blau, Blau wird zu nichts, und mit dem Licht
+geht auch die letzte Wärme des Tages. Der Rauch über der Garküche ist dünn geworden, kaum mehr als ein Faden,
+und über den gespaltenen Scheiten legt sich der erste Reif wie feiner Salzstaub.</p>
+
+<p>Bronko steht nicht mehr. Er sitzt auf dem Hauklotz, die Axt neben sich im Boden, den Kopf über die Hände
+gebeugt, als suche er in den eigenen Handflächen nach etwas, das dort nicht ist. Sein Atem geht in weißen
+Wolken, langsam, schwer. Um ihn herum ist es so still, dass du das Knistern des Frosts auf der Rinde hörst.</p>
+<</scene>>
+
+<p>Du gehst zu ihm hinüber, und der gefrorene Boden bricht unter deinen Schritten mit einem Geräusch wie
+splitternde Knochen. Er hebt den Kopf nicht. Er weiß, dass jemand kommt. Er hat aufgehört, sich davor zu fürchten.</p>
+
+<<gedanke>>
+<p>Ich könnte schweigen. Ich könnte ihm den Frieden lassen, den ein Mann hat, der glaubt, alles verloren zu haben —
+denn dann bleibt nichts mehr, das man ihm nehmen kann. Aber ich halte in der Hand, was er am meisten braucht.
+Und ich glaube nicht, dass Schweigen hier noch eine Gnade ist.</p>
+<</gedanke>>
+
+<<dialog>>
+<p>„Ich habe mit Zdenka gesprochen“, sagst du.</p>
+
+<p>Seine Schultern werden hart. Sonst rührt sich nichts.</p>
+
+<p>„Dann weißt du's“, sagt er in seine Hände hinein. Die Stimme klingt, als käme sie von weit unten. „Gut.
+Dann brauch ich's nicht mehr zu sagen.“</p>
+
+<p>„Bronko.“ Du wartest, bis er den Blick hebt. „Marja geht es gut.“</p>
+<</dialog>>
+
+<p>Etwas in seinem Gesicht geht auf und zu, wie eine Tür im Wind. Er starrt dich an, und zum ersten Mal seit
+heute Morgen ist da kein Panzer mehr, nur ein Mann, der ein Wort gehört hat, das er sich seit Wochen nicht mehr
+zu denken erlaubt hat.</p>
+
+<<dialog>>
+<p>„Sie ist in Sicherheit. Es geht ihr gut.“ Du sprichst leise, damit die Worte nicht zerbrechen. „Und sie
+verflucht dich nicht. Im Gegenteil. Sie hat Zdenka gebeten, dir auszurichten, dass alles gut ist.“</p>
+<</dialog>>
+
+<p>Es dauert einen Herzschlag. Dann noch einen. Du siehst zu, wie das Wort in ihn hineinfällt, tiefer und
+tiefer, bis es den Grund erreicht, auf dem er sich all die Wochen festgehalten hat — und diesen Grund unter
+ihm wegzieht.</p>
+
+<p>Der große Mann bricht ohne einen Laut.</p>
+
+<p>Zuerst nur die Hände, die sich ins eigene Gesicht graben. Dann ein Zittern, das durch die breiten Schultern
+läuft wie ein Riss durch Eis. Dann kommt der erste Laut, und es ist kein Laut, den man einem Mann wie ihm zutraut —
+roh, hoch, erstickt, das Geräusch von etwas, das viel zu lange unter zu viel Gewicht gelegen hat und jetzt mit
+allem herausbricht, was sich daran festgeklammert hat.</p>
+
+<p>Er weint, wie Männer weinen, die es verlernt haben: hässlich, ohne Anmut, mit Rotz und Wasser und einem Körper,
+der nicht weiß, wohin mit sich. Die Axt fällt um. Er merkt es nicht. Seine Fäuste drücken gegen die Augen, als
+könnte er die Tränen zurückzwingen, aber es ist zu spät, der Damm ist fort, und alles, was er zurückgehalten hat,
+strömt jetzt in die kalte, blaue Luft.</p>
+
+<<if _spec is "medicine">>
+	<<beziehung>>
+	<p>Männer die sterben, machen weniger Lärm als dieser hier, der endlich aufhört, gegen
+	sich selbst zu kämpfen. Was aus ihm bricht, ist keine Schwäche. Es ist das, was ihn am Leben gehalten hat,
+	solange er es nicht hinausließ.</p>
+	<</beziehung>>
+<</if>>
+
+<<dialog>>
+<p>„Ich hab sie geliebt“, sagt er, zwischen den Stößen, die Worte zerrissen. „Ein Jahr lang. Heimlich. Wir wussten,
+was es kostet, und wir haben's trotzdem getan, weil — weil es das Einzige war, das sich nicht falsch angefühlt hat.“</p>
+
+<p>Er ringt nach Luft.</p>
+
+<p>„Sie trägt mein Kind. Im siebten Mond, bald acht. Und ich war nicht da, als sie kamen. Ich hab geschlafen,
+verstehst du das? Ich hab geschlafen wie ein Vieh, und sie haben sie mir aus dem Dorf geholt, über Nacht, und
+ich hab nicht mal die Tür gehört.“</p>
+
+<p>Seine Stimme kippt.</p>
+
+<p>„Eine Frau. Ein Kind. Beide fort, in einer einzigen Nacht, und ich hab dagelegen und nichts getan.“</p>
+<</dialog>>
+
+<p>Er lässt die Hände sinken. Sein Gesicht ist nass und offen und gänzlich ohne Schutz, und in der letzten
+Helligkeit des Tages sieht er älter aus, als er ist, und zugleich wie ein Junge, der sich verlaufen hat.</p>
+
+<<dialog>>
+<p>„Pavel hasst mich, und er hat recht damit. Ich hab ihm die Schwester genommen und konnte sie nicht halten.“</p>
+
+<p>Er schüttelt den Kopf, langsam, als müsse er ein Gewicht darin verschieben.</p>
+
+<p>„Aber er hat sie auch verloren. Das vergesse ich immer. Er hat auch eine Schwester verloren, und er weiß nicht
+mal, dass sie lebt. Er trägt dasselbe wie ich und schlägt damit um sich, weil ihm keiner gesagt hat, dass er
+nicht trauern muss.“</p>
+
+<p>Er sieht dich an, und in seinen Augen liegt etwas, das den ganzen Tag nicht dort war. Nicht Hoffnung. Aber
+die Erschöpfung eines Mannes, der zum ersten Mal seit langem nicht mehr allein ist mit dem, was er trägt.</p>
+
+<p>„Sie lebt“, sagt er noch einmal, ganz leise, mehr zu sich als zu dir. Wie ein Mann, der ein Wort prüft,
+ob es hält.</p>
+<</dialog>>
+
+<<gedanke>>
+<p>Ich bin hergekommen mit einer Wahrheit wie mit einer Klinge, und ich weiß immer noch nicht, ob ich ihn damit
+geheilt oder aufgeschnitten habe. Vielleicht ist es dasselbe. Ein Mann, der nichts mehr zu verlieren glaubte,
+hat gerade erfahren, dass er doch noch etwas hat. Was er damit anfängt, liegt nicht mehr in meiner Hand.
+Aber vielleicht liegt es jetzt auch nicht mehr allein in Pavels.</p>
+<</gedanke>>
+
+<p>Er hebt die Axt aus dem Reif auf, aber er spaltet kein Holz mehr. Er hält sie nur, als wüsste er nicht mehr,
+wozu sie da ist. Die Dämmerung schließt sich über dem Holzplatz, und irgendwo hinter den Mauern läutet die
+erste Glocke des Abends.</p>
+
+<<set $world.duell.bronko_trust += 2>>
+<<set $world.duell.wissen.wahrheit_bronko to true>>
+<<set $world.duell.flags.bronko_erreicht to true>>   /* Bronko hat Marjas Botschaft erhalten -> am Ende bereit, die Fehde niederzulegen (Voraussetzung Bronko-Seite von Ende A) */
+<<run setup.addRumor('Bronko weiß jetzt, dass Marja lebt und ihn nicht verflucht. Zum ersten Mal seit dem Fest hat er die Fehde für einen Moment vergessen.')>>
+
+<<trenner>>
+[[Der Abend kommt — jetzt fehlt nur noch Pavel->Duell_S4_Abend_mit_Pavel_reden_hat_Wahrheit]]
+
+:: Duell_S3_PavelNachhaken
+
+<<set _spec to $player.spezialisierung>>
+
+<<scene>>
+<p>Unter dem Vordach der Waffenkammer sitzt Pavel allein auf einem umgedrehten Fass, eine Klinge quer über den
+Knien. Er zieht den Wetzstein am Stahl entlang, langsam, gleichmäßig, ein Strich nach dem anderen — schrapp,
+schrapp —, als hinge sein Leben davon ab, dass jeder Strich dem letzten gleicht.</p>
+
+<p>Wer vorbeigeht, macht einen Bogen. Nicht aus Scheu, wie bei Bronko. Bei Pavel geht man weiter, weil man weiß,
+dass etwas in ihm nur auf einen Anlass wartet, und niemand will der Anlass sein.</p>
+<</scene>>
+
+<p>Du bleibst stehen, bis er dich bemerkt. Er hört nicht auf zu wetzen.</p>
+
+/* Sich Pavel zuzuwenden heißt, sich seiner Seite zu nähern — das kostet bei Bronko. */
+<<set $world.duell.pavel_trust += 1>>
+<<set $world.duell.bronko_trust -= 1>>
+
+<<dialog>>
+<p>„Du auch“, sagt er, ohne aufzusehen. Es ist keine Frage. „Den ganzen Tag kommen sie und wollen wissen, was los ist.“</p>
+<p>Schrapp. Schrapp.</p>
+<p>„Als wär's ein Rätsel. Dabei ist es das Einfachste der Welt. Ein Kulitcka nimmt sich, was ihm nicht gehört,
+und wir sollen so tun, als sei nichts geschehen.“</p>
+<</dialog>>
+
+<<beziehung>>
+<<set _gmod to 0 - $world.duell.pavel_trust>>   /* Vertrauen senkt die Hürde, Misstrauen hebt sie */
+<<set _r to setup.skillCheckXp("gossip", 13, _gmod)>>
+<<= setup.skillCheckAlert(_r)>>
+<</beziehung>>
+
+<<if not _r.success>>
+	<<dialog>>
+	<p>Der Wetzstein hält inne. Pavel sieht dich an, und sein Blick ist so glatt und kalt wie die Klinge in seiner Hand.</p>
+	<p>„Es gibt nichts zu verstehen. Er hat genommen, was uns gehört, und dafür wird er bezahlen. Das ist alles.“</p>
+	<p>Er senkt den Kopf wieder über den Stahl. Für ihn ist das Gespräch vorbei.</p>
+	<</dialog>>
+	<<trenner>>
+	[[Du lässt ihn mit seinem Zorn allein->Duell_S3_Pavel_erzaehlt_nichts]]
+<<else>>
+	<<dialog>>
+	<p>Etwas an der Art, wie du fragst, trifft eine Stelle, die der Zorn noch nicht ganz zugedeckt hat. Der Wetzstein
+	kommt langsamer. Dann legt er ihn beiseite, die Klinge aber behält er in der Hand.</p>
+	<p>„Willst du's wirklich wissen“, sagt er, „oder willst du nur nicken und weitererzählen wie die anderen.“</p>
+	<</dialog>>
+	<<trenner>>
+	<<if $world.duell.wissen.fest>>
+	[[Nach dem Fest fragen->Duell_S3_PavelFestBefragen]]
+	<<else>>
+	[[Fragen, was wirklich hinter der Fehde steckt->Duell_S3_Pavel_erzaehlt]]
+	<</if>>
+<</if>>
+
+:: Duell_S3_PavelKonfrontieren
+
+<<set _spec to $player.spezialisierung>>
+
+<<scene>>
+<p>Pavel wetzt immer noch, als wärst du nie weg gewesen und der Tag nie vergangen. Das Licht unter dem Vordach ist
+blau geworden, die Klinge ein kalter Streifen in der Dämmerung. Schrapp. Schrapp. Der einzige Laut, der Rabenfurt
+in ihm noch bändigt.</p>
+<</scene>>
+
+/* Kosten: sich Pavel mit dem Wissen zu stellen, geht auf Bronkos Vertrauen. */
+<<set $world.duell.bronko_trust -= 1>>
+
+<<gedanke>>
+<p>Ich weiß jetzt alles. Die Liebe, das Fest, das Kind. Und ich trage einen Brief bei mir, in dem seine Schwester
+mich anfleht, ihn ihm niemals zu zeigen. Ein Wort von Marja, und Pavels ganzer Zorn hätte keinen Grund mehr —
+und genau davor hat sie Angst. Ich stehe zwischen dem, was ihn heilen könnte, und dem, worum sie mich gebeten hat.</p>
+<</gedanke>>
+
+<<dialog>>
+<p>„Du warst bei Zdenka“, sagt Pavel. Der Wetzstein hält. „Ich seh's dir an. Was hat sie dir aufgetischt.“</p>
+<p>„Vielleicht die Wahrheit“, sagst du.</p>
+<p>Er lacht, kurz und ohne Wärme. „Die von Rabenfurt und ihre Wahrheiten. Jeder hütet eine, und keine davon
+bringt mir zurück, was er genommen hat.“</p>
+<</dialog>>
+
+<<beziehung>>
+<<set _gmod to 0 - $world.duell.pavel_trust>>
+<<set _r to setup.skillCheckXp("gossip", 14, _gmod)>>
+<<= setup.skillCheckAlert(_r)>>
+<</beziehung>>
+
+<<if _r.success>>
+	<<dialog>>
+	<p>Doch etwas in seiner Haltung gibt nach — nicht viel, nur ein Fingerbreit. Der Zorn bekommt Risse, und durch
+	die Risse siehst du für einen Moment, was darunter liegt: kein Hass, sondern ein Bruder, dem man etwas genommen hat.</p>
+	<</dialog>>
+<<else>>
+	<<dialog>>
+	<p>Aber er lässt dich nicht näher. Die Klinge hebt sich einen Zoll, kaum merklich, und der Blick, den er dir
+	zuwirft, macht jede weitere Frage zu einer schlechten Idee.</p>
+	<</dialog>>
+<</if>>
+
+<<gedanke>>
+<p>Jetzt liegt es an mir. Ich könnte ihm sagen, dass Marja lebt. Dass sie ihn nicht hasst. Dass es kein Grund mehr
+gibt für das, was er vorhat. Ein einziger Satz. Und ich würde damit jedes Versprechen brechen, das in diesem Brief steht.</p>
+<</gedanke>>
+
+<<trenner>>
+[[Ihm von Marja und dem Brief erzählen->Duell_S3_PavelVomBriefErzaehlen]]
+<<if _r.success>>
+[[Den Brief für dich behalten — ihn nur seine Seite erzählen lassen->Duell_S3_Pavel_erzaehlt]]
+<<else>>
+[[Den Brief für dich behalten und gehen->Duell_S3_Pavel_erzaehlt_nichts]]
+<</if>>
+
+:: Duell_S3_Pavel_erzaehlt
+
+<<set _spec to $player.spezialisierung>>
+
+<<dialog>>
+<p>„Es geht um Ehre“, sagt Pavel. „Um Blut. Um einen Namen, den mein Vater und sein Vater sauber gehalten haben,
+und den einer wie Bronko in den Dreck zieht, als wär er nichts wert.“</p>
+<p>Die Klinge liegt still über seinen Knien. Seine Finger ruhen darauf, aber sie sind nicht ruhig.</p>
+<p>„Er hat sich genommen, was einem Pipovic gehört. Und dann hat er dagestanden und uns ausgelacht, als könnten
+wir nichts dagegen tun.“</p>
+<</dialog>>
+
+<<dialog>>
+<p>„Was genau hat er genommen?“, fragst du.</p>
+<p>Für einen Moment ist da etwas in seinem Gesicht, das kein Zorn ist — schnell, verletzlich, sofort wieder fort.</p>
+<p>„Das geht keinen an außer uns.“ Er greift wieder nach dem Wetzstein. „Merk dir nur eins: Wir haben nicht angefangen.
+Aber wir werden es beenden.“</p>
+<</dialog>>
+
+<<if _spec is "medicine" or _spec is "perception">>
+	<<beziehung>>
+	<p>Du kennst diese Art Zorn. Es ist der, den man sich anlegt wie einen Panzer, damit niemand sieht, was er
+	bedeckt. Was Bronko genommen hat, war mehr als Ehre. Aber das wird Pavel dir heute nicht sagen.</p>
+	<</beziehung>>
+<</if>>
+
+<<gedanke>>
+<p>Er redet von Blut und Namen, aber nicht von dem, was wirklich weh tut. Da ist ein Loch in seiner Geschichte,
+genau an der Stelle, wo der Schmerz sitzt. Er umgeht es so sorgfältig, dass ich weiß: Er trägt dieselbe Wunde
+wie Bronko. Nur nennt er sie anders.</p>
+<</gedanke>>
+
+<<set $world.duell.wissen.wahrheit_pavel to true>>
+<<run setup.addRumor('Pavel sagt, Bronko habe seiner Familie Schande und Blut geschuldet — mehr als die Brücke stehe zwischen ihnen. Was genau, spricht er nicht aus.')>>
+
+<<trenner>>
+[[Der Abend kommt — jetzt fehlt Bronkos Seite->Duell_S4_Abend_mit_Bronko_reden_hat_Wahrheit]]
+
+:: Duell_S3_PavelFestBefragen
+
+<<set _spec to $player.spezialisierung>>
+
+<<dialog>>
+<p>„Auf dem Fest“, sagst du. „Es ist auf dem Freiheitsfest passiert.“</p>
+<</dialog>>
+
+<p>Der Wetzstein hält mitten im Strich. Pavel wird ganz still, die Art von Stille, die schlimmer ist als jeder
+Ausbruch. Als er weiterspricht, ist seine Stimme leiser und viel kälter geworden.</p>
+
+<<dialog>>
+<p>„Marja“, sagt er. „Meine Schwester.“</p>
+<p>Er legt die Klinge beiseite, ganz langsam, als traue er sich selbst nicht mit Stahl in der Hand.</p>
+<p>„Ein Jahr lang hat dieser Kulitcka sich an sie herangemacht, hinter unserem Rücken. Und auf dem Fest, als alle
+getrunken und getanzt haben, hat er bekommen, worauf er die ganze Zeit aus war. Er hat sie geschwängert.“</p>
+<</dialog>>
+
+<<dialog>>
+<p>„Weißt du, was das heißt für eine Familie wie unsere? Eine Pipovic, die ein Kulitcka-Kind trägt. Wir mussten
+sie fortbringen, über Nacht, damit nicht das ganze Land mit dem Finger auf uns zeigt. Meine eigene Schwester,
+weggeschafft wie eine Schande, seinetwegen.“</p>
+<p>Seine Hand schließt sich um nichts.</p>
+<</dialog>>
+
+<<dialog>>
+<p>„Und komm mir nicht mit Liebe.“ Er spuckt das Wort aus wie etwas Verdorbenes. „Einer wie er weiß nicht, was
+das ist. Er hat genommen, was er wollte, und den Rest tragen wir. So war es immer mit den Kulitckas. So wird es immer sein.“</p>
+<</dialog>>
+
+<<if _spec is "medicine">>
+	<<beziehung>>
+	<p>Du siehst den Deckel, den er auf etwas hält, das kochen will. Er nennt es Ehre, damit er es nicht Kummer
+	nennen muss. Aber es ist ein Bruder, der eine Schwester verloren hat — und das trägt er genauso wie der Mann am Holzplatz.</p>
+	<</beziehung>>
+<</if>>
+
+<<gedanke>>
+<p>Es ist dieselbe Nacht, dasselbe Kind, dieselbe fortgebrachte Frau. Und doch klingt es aus Pavels Mund wie eine
+ganz andere Geschichte. Zwei Männer, dasselbe Unglück, und jeder hat den anderen zum Ungeheuer gemacht, damit
+er den eigenen Schmerz ertragen kann.</p>
+<</gedanke>>
+
+<<set $world.duell.wissen.wahrheit_pavel to true>>
+<<set $world.duell.pavel_trust += 1>>
+<<run setup.addRumor('Pavel: Bronko hat seine Schwester Marja auf dem Fest geschwängert und die Familie beschämt; die Pipovics brachten sie fort. Für Pavel ist Bronko ein Verführer, der Blut schuldet — von Liebe will er nichts hören.')>>
+
+<<trenner>>
+[[Der Abend kommt — jetzt fehlt Bronkos Seite->Duell_S4_Abend_mit_Bronko_reden_hat_Wahrheit]]
+
+:: Duell_S3_Pavel_erzaehlt_nichts
+
+<p>Du gehst, und hinter dir setzt der Wetzstein wieder ein — schrapp, schrapp —, gleichmäßig, geduldig, als
+schleife er nicht eine Klinge, sondern die Stunden, bis er sie brauchen wird.</p>
+
+<<gedanke>>
+<p>Er hat mir nichts gegeben als seinen Zorn, und Zorn kenne ich schon. Was darunter liegt, hütet er wie der
+letzte Besitz, der ihm geblieben ist. Am Abend werde ich vor Bronko stehen, ohne zu wissen, was Pavel wirklich treibt.</p>
+<</gedanke>>
+
+<p>Der Klang des Stahls folgt dir über den halben Hof, bis das Dämmern ihn verschluckt.</p>
+
+<<trenner>>
+[[Der Abend kommt — Bronkos Seite fehlt->Duell_S4_Abend_mit_Bronko_reden_keine_Wahrheit]]
+
+:: Duell_S3_PavelVomBriefErzaehlen
+
+<<set _spec to $player.spezialisierung>>
+
+<<dialog>>
+<p>„Marja lebt“, sagst du.</p>
+<</dialog>>
+
+<p>Der Wetzstein fällt. Pavel steht so schnell auf, dass das Fass hinter ihm umkippt, und für einen Herzschlag
+glaubst du, er greift nach der Klinge. Doch er greift nach dir — packt deinen Kragen, zieht dein Gesicht an seines.</p>
+
+<<dialog>>
+<p>„Sag das noch mal.“</p>
+<p>„Sie lebt. Es geht ihr gut. Sie erwartet das Kind. Zdenka hat einen Brief von ihr.“ Die Worte sind draußen,
+bevor du sie zurückholen kannst. „Sie wollte nur, dass du weißt —“</p>
+<p>„Dass ich weiß?“ Seine Stimme überschlägt sich. „Sie tragen das Kind eines Kulitckas durch mein Blut, verstecken
+sie vor mir wie einen Schatz, und du sagst mir, sie wollte, dass ich es weiß?“</p>
+<</dialog>>
+
+<p>Er lässt dich los, stößt dich von sich, und was jetzt in sein Gesicht tritt, ist schlimmer als der Zorn von
+vorhin. Der Zorn hatte keinen Ort. Dieser hat einen.</p>
+
+<<dialog>>
+<p>„Sie ist am Leben. Also kann ich sie zurückholen. Und ihn“ — er sieht zum Holzplatz hinüber, wo Bronko im
+Dunkeln steht — „ihn brauche ich jetzt nicht mehr zu schonen. Kein Gerede mehr über eine Fehde, die keiner versteht.
+Jetzt gibt es einen Grund, den jeder versteht.“</p>
+<</dialog>>
+
+<<gedanke>>
+<p>Ich habe geglaubt, die Wahrheit würde ihn beruhigen. Marja wusste es besser. Sie hat mich angefleht, genau das
+niemals zu tun, und ich habe es trotzdem getan — und aus einem alten, müden Hass ein frisches, lebendiges Ziel gemacht.
+Bis morgen wissen alle, wer geredet hat. Zdenka. Bronko. Und keiner wird mir noch ein Wort glauben.</p>
+<</gedanke>>
+
+<<set $world.duell.wissen.wahrheit_pavel to true>>
+<<set $world.duell.flags.verrat to true>>   /* Marjas Geheimnis an Pavel verraten -> Bronko & Zdenka feindselig; treibt Richtung Katastrophe (Ende C) */
+<<set $world.duell.bronko_trust to -3>>
+<<set $world.duell.zdenka_trust to -3>>
+<<set $world.duell.tension += 2>>
+<<run setup.addRumor('Thomas hat Pavel von Marjas Brief erzählt. Jetzt weiß Pavel, dass seine Schwester lebt und Bronkos Kind erwartet — und er will die Schande mit Blut tilgen.')>>
+
+<<trenner>>
+[[Der Abend kommt — und niemand steht mehr auf deiner Seite->Duell_S4_Abend_zero_Trust]]
+
+:: Duell_S4_Abend_mit_Pavel_reden_hat_Wahrheit
+
+<<set _spec to $player.spezialisierung>>
+
+<<scene>>
+<p>Der Appell ist verklungen, die Ausbilder in ihren Stuben, und über dem Hof liegt die Art von Stille, die keine
+Ruhe ist, sondern Warten. Irgendwo im Dunkeln, hinter den Ställen, wo kein Fackellicht hinreicht, werden sich Pavel
+und Bronko heute Nacht gegenüberstehen. Bis dahin sind es keine Stunden mehr.</p>
+<</scene>>
+
+<p>Du findest Pavel an der Ostmauer, den Rücken gegen den kalten Stein, das Gesicht der Dunkelheit zugewandt,
+in der es geschehen wird. Du trägst Bronkos Seite in dir wie einen Stein. Was dir fehlt, ist seine.</p>
+
+<<gedanke>>
+<p>Ein Streit hat zwei Seiten, und mir bleibt nur diese eine Stunde, die andere zu holen. Wenn ich mich heute Nacht
+dazwischenstellen will, muss ich Pavel verstehen — nicht die Anklage, den Menschen darunter.</p>
+<</gedanke>>
+
+<<beziehung>>
+<<set _gmod to 0 - $world.duell.pavel_trust>>
+<<set _r to setup.skillCheckXp("gossip", 14, _gmod)>>
+<<= setup.skillCheckAlert(_r)>>
+<</beziehung>>
+
+<<if _r.success>>
+	<<dialog>>
+	<p>Er redet, weil es dunkel ist und weil du nicht drängst. Kein Zorn diesmal — nur ein Bruder, der eine Schwester
+	verloren hat und nicht weiß, wohin mit dem Loch, das sie hinterließ.</p>
+	<</dialog>>
+	<<set $world.duell.pavel_trust += 1>>
+	<<set $world.duell.wissen.wahrheit_pavel to true>>
+	<<trenner>>
+	[[Du hast beide Seiten — die Nacht wartet->Duell_S4_Abend_Wahrheit]]
+<<else>>
+	<<dialog>>
+	<p>Aber er lässt dich nicht an sich heran. Zu viele haben ihn heute ausgefragt; du bist nur noch einer davon.
+	Er stößt sich von der Mauer und geht der Dunkelheit entgegen, ehe du mehr hörst als die alte Anklage.</p>
+	<</dialog>>
+	<<trenner>>
+	[[Nur eine Seite in der Hand — die Nacht wartet->Duell_S4_Abend_Kennt_Bronkos_Geschichte]]
+<</if>>
+
+:: Duell_S4_Abend_Wahrheit
+
+<<scene>>
+<p>Du stehst am Rand des Hofes, wo die Fackeln enden und das Dunkel beginnt. Die Kälte kriecht durch die Sohlen.
+Von den Ställen her hörst du schon Schritte, mehr als zwei Paar — es hat sich herumgesprochen, wie es das immer tut.</p>
+<</scene>>
+
+<<gedanke>>
+<p>Ich trage jetzt alles. Bronkos Liebe und seine Schuld, Pavels Trauer unter dem Zorn, Marjas Brief, der beweist,
+dass nichts von dem, wofür sie gleich bluten wollen, noch nötig ist. Ich habe alles, um es zu beenden — und noch
+keine Ahnung, ob mir irgendwer glaubt, wenn ich gleich zwischen die beiden trete.</p>
+<</gedanke>>
+
+<<trenner>>
+[[Hinaus in die Nacht->Duell_S5_Nacht]]
+
+
+:: Duell_S4_Abend_mit_Bronko_reden_hat_Wahrheit
+
+<<set _spec to $player.spezialisierung>>
+
+<<scene>>
+<p>Der Appell ist verklungen. Über dem Hof steht die Stille des Wartens, und hinter den Ställen, im Dunkeln, wird
+sich heute Nacht entscheiden, was seit dem Fest gärt. Bis dahin bleibt dir eine knappe Stunde.</p>
+<</scene>>
+
+<p>Du findest Bronko dort, wo er den ganzen Tag war — am Holzplatz, die Axt längst beiseite, die Hände leer. Du
+trägst Pavels Seite in dir. Was dir fehlt, ist seine.</p>
+
+<<gedanke>>
+<p>Ich kenne Pavels Zorn. Aber ein Zorn hat immer ein Gegenüber, und Bronkos Wahrheit habe ich noch nicht gehört —
+nicht die Schuld, die er sich gibt, sondern das, was darunter liegt. Ohne sie stehe ich nachher mit einer halben
+Geschichte zwischen zwei Männern.</p>
+<</gedanke>>
+
+<<beziehung>>
+<<set _gmod to 0 - $world.duell.bronko_trust>>
+<<set _r to setup.skillCheckXp("gossip", 14, _gmod)>>
+<<= setup.skillCheckAlert(_r)>>
+<</beziehung>>
+
+<<if _r.success>>
+	<<dialog>>
+	<p>Er redet, weil es Nacht ist und weil du nicht drängst. Von Marja. Vom Fest. Vom Kind, das er nie halten wird.
+	Und zum ersten Mal hörst du nicht die Trotzigkeit eines Kulitcka, sondern die Trauer eines Mannes, der liebte und verlor.</p>
+	<</dialog>>
+	<<set $world.duell.wissen.wahrheit_bronko to true>>
+	<<set $world.duell.wissen.bronko_reue to true>>
+	<<set $world.duell.bronko_trust += 1>>
+	<<trenner>>
+	[[Du hast beide Seiten — die Nacht wartet->Duell_S4_Abend_Wahrheit]]
+<<else>>
+	<<dialog>>
+	<p>Aber er lässt dich nicht hinein. „Geh“, sagt er, mehr müde als hart. „Es gibt nichts, das du richten kannst.“
+	Und er wendet sich ab, ehe du mehr bekommst als sein Schweigen.</p>
+	<</dialog>>
+	<<trenner>>
+	[[Nur Pavels Seite in der Hand — die Nacht wartet->Duell_S4_Abend_Kennt_Pavels_Geschichte]]
+<</if>>
+
+
+:: Duell_S4_Abend_mit_Pavel_reden_keine_Wahrheit
+
+<<set _spec to $player.spezialisierung>>
+
+<<scene>>
+<p>Die Nacht kommt schnell und kalt. Du hast den ganzen Tag an der Oberfläche gekratzt und nichts in der Hand als
+einen alten Namen für einen alten Streit. Bald stehen sich die beiden hinter den Ställen gegenüber. Eine letzte
+Chance, zu verstehen, worum es wirklich geht.</p>
+<</scene>>
+
+<p>Pavel steht an der Ostmauer, die Klinge fort, den Blick im Dunkeln. Wenn einer von beiden heute noch redet,
+dann er — Zorn ist gesprächiger als Scham.</p>
+
+<<beziehung>>
+<<set _gmod to 0 - $world.duell.pavel_trust>>
+<<set _r to setup.skillCheckXp("gossip", 14, _gmod)>>
+<<= setup.skillCheckAlert(_r)>>
+<</beziehung>>
+
+<<if _r.success>>
+	<<dialog>>
+	<p>Und er redet. Von seiner Schwester, von der Schande, von dem, was Bronko genommen hat. Nicht die ganze
+	Wahrheit — seine. Aber zum ersten Mal weißt du, dass es nie um die Brücke ging.</p>
+	<</dialog>>
+	<<set $world.duell.wissen.wahrheit_pavel to true>>
+	<<set $world.duell.pavel_trust += 1>>
+	<<trenner>>
+	[[Pavels Seite in der Hand — die Nacht wartet->Duell_S4_Abend_Kennt_Pavels_Geschichte]]
+<<else>>
+	<<dialog>>
+	<p>Aber er hat genug geredet für heute. „Frag die Toten von Rabenfurt“, sagt er. „Die wissen mehr als ich.“
+	Und damit lässt er dich stehen.</p>
+	<</dialog>>
+	<<trenner>>
+	[[Mit leeren Händen in die Nacht->Duell_S4_Abend_Dunkel]]
+<</if>>
+
+
+:: Duell_S4_Abend_mit_Bronko_reden_keine_Wahrheit
+
+<<set _spec to $player.spezialisierung>>
+
+<<scene>>
+<p>Die Nacht kommt schnell und kalt, und du hast nichts in der Hand als Bruchstücke. Bald stehen sich die beiden
+hinter den Ställen gegenüber. Bleibt dir noch die stillere der beiden Türen: der Mann am Holzplatz.</p>
+<</scene>>
+
+<p>Bronko sitzt im Dunkeln, die Axt beiseite. Er redet mit niemandem. Aber vielleicht redet er mit dir, wenn du
+den Mund hältst und einfach bleibst.</p>
+
+<<beziehung>>
+<<set _gmod to 0 - $world.duell.bronko_trust>>
+<<set _r to setup.skillCheckXp("gossip", 14, _gmod)>>
+<<= setup.skillCheckAlert(_r)>>
+<</beziehung>>
+
+<<if _r.success>>
+	<<dialog>>
+	<p>Und er redet. Leise, stockend, von Marja und dem Fest und dem Kind. Kein Kulitcka-Trotz — nur ein Mann,
+	der sich die Schuld gibt an allem, was er verloren hat.</p>
+	<</dialog>>
+	<<set $world.duell.wissen.wahrheit_bronko to true>>
+	<<set $world.duell.wissen.bronko_reue to true>>
+	<<set $world.duell.bronko_trust += 1>>
+	<<trenner>>
+	[[Bronkos Seite in der Hand — die Nacht wartet->Duell_S4_Abend_Kennt_Bronkos_Geschichte]]
+<<else>>
+	<<dialog>>
+	<p>Aber er hebt nur den Kopf, sieht dich an und schüttelt ihn. Kein Wort. Manche Türen öffnen sich nicht,
+	nur weil man davorsteht.</p>
+	<</dialog>>
+	<<trenner>>
+	[[Mit leeren Händen in die Nacht->Duell_S4_Abend_Dunkel]]
+<</if>>
+
+
+:: Duell_S4_Abend_zero_Trust
+
+<<scene>>
+<p>Du hast Pavel gesagt, was du wusstest, und der Brief hat seine Wirkung getan — die falsche. Jetzt ist die
+Nacht da, und mit ihr ein Zorn, den du selbst frisch entfacht hast. Hinter den Ställen wartet keine Frage mehr,
+nur noch eine Klinge.</p>
+<</scene>>
+
+<<gedanke>>
+<p>Marja hat mich um das eine gebeten, und ich habe genau das getan, was sie fürchtete. Bronko weiß es inzwischen.
+Zdenka auch. Ich habe Pavels Seite in der Hand — und sonst niemanden mehr auf meiner.</p>
+<</gedanke>>
+
+<<trenner>>
+[[Hinaus in die Nacht->Duell_S4_Abend_Kennt_Pavels_Geschichte]]
+
+
+:: Duell_S4_Abend_Kennt_Pavels_Geschichte
+
+<<scene>>
+<p>Du stehst am Rand des Hofes, wo die Fackeln enden. Von den Ställen her hörst du Schritte, mehr als zwei Paar.
+Es hat sich herumgesprochen, wie es das immer tut.</p>
+<</scene>>
+
+<<gedanke>>
+<p>Ich kenne Pavels Wahrheit, aber nicht Bronkos. Ich weiß, wogegen er kämpft, aber nicht, was in dem anderen
+vorgeht, der ihm gleich gegenübersteht. Eine halbe Geschichte. Vielleicht reicht sie. Vielleicht auch nicht.</p>
+<</gedanke>>
+
+<<trenner>>
+[[Hinaus in die Nacht->Duell_S5_Nacht]]
+
+
+:: Duell_S4_Abend_Kennt_Bronkos_Geschichte
+
+<<scene>>
+<p>Du stehst am Rand des Hofes, wo die Fackeln enden. Von den Ställen her hörst du Schritte. Es hat sich
+herumgesprochen, wie es das immer tut.</p>
+<</scene>>
+
+<<gedanke>>
+<p>Ich kenne Bronkos Wahrheit — seine Liebe, seine Schuld. Aber ich habe keinen Beweis in der Hand, der Pavel
+umstimmt, und weiß nicht, wie tief sein Zorn wirklich sitzt. Ich trage eine Wahrheit, der vielleicht niemand glaubt.</p>
+<</gedanke>>
+
+<<trenner>>
+[[Hinaus in die Nacht->Duell_S5_Nacht]]
+
+
+:: Duell_S4_Abend_Dunkel
+
+<<scene>>
+<p>Du stehst am Rand des Hofes, wo die Fackeln enden und das Dunkel beginnt. Von den Ställen her hörst du Schritte.
+Du bist gekommen, ohne etwas in der Hand zu haben, das zählt.</p>
+<</scene>>
+
+<<gedanke>>
+<p>Die Brücke. Ein alter Name. Das ist alles, was ich habe. Ich weiß nicht, warum die beiden sich wirklich
+gegenüberstehen — und wer nichts weiß, kann nichts richten. Was gleich geschieht, geschieht ohne mich.</p>
+<</gedanke>>
+
+<<trenner>>
+[[Hinaus in die Nacht->Duell_S5_Nacht]]
+
+
+:: Duell_S5_Nacht
+
+<<set _spec to $player.spezialisierung>>
+
+<<scene>>
+<p>Hinter den Ställen liegt ein Streifen gestampfter Erde, den kein Fackellicht erreicht. Der Reif knirscht unter
+den Sohlen der wenigen, die gekommen sind, um zuzusehen, ihr Atem weiß in der Luft. In der Mitte, drei Schritte
+voneinander, stehen Pavel und Bronko. Der eine mit der Klinge. Der andere mit leeren Händen.</p>
+<</scene>>
+
+<<set _e to setup.duellEnde()>>
+<<set $world.duell.outcome to _e.variante>>
+<<set $world.duell.tier to _e.tier>>
+<<set $world.duell.done to true>>
+<<set $world.duell.ende_tag to $world.day>>
+
+<<gedanke>>
+<p>Jetzt zählt nur noch, was ich in der Hand halte. Und ob es genug ist.</p>
+<</gedanke>>
+
+<<trenner>>
+<<if _e.tier is "A">>
+[[Du trittst zwischen sie->Duell_Ende_A]]
+<<elseif _e.tier is "B">>
+[[Du trittst zwischen sie->Duell_Ende_B]]
+<<else>>
+[[Du kannst nur zusehen->Duell_Ende_C]]
+<</if>>
+
+
+:: Duell_Ende_A [nach_Kap2_morgen]
+
+<<switch $world.duell.outcome>>
+<<case "A_versoehnt">>
+	<<scene>>
+	<p>Du trittst in den Kreis aus Reif und Atem, zwischen die beiden Klingen — die eine gezückt, die andere nie
+	erhoben. Zdenka ist neben dir, blass, den Brief in der Faust.</p>
+	<</scene>>
+	<<dialog>>
+	<p>„Pavel“, sagst du. „Bevor du zuschlägst, hör ihn an. Ein einziges Mal.“</p>
+	<</dialog>>
+	<p>Und du lässt Bronko reden — den Mann, der den ganzen Tag geschwiegen hat. Von Marja. Vom Fest. Vom Kind.
+	Nicht als Kulitcka, der sich verteidigt, sondern als Mann, der alles verloren hat und es zum ersten Mal laut
+	sagt. Zdenka legt den Brief in Pavels Hand — Marjas Schrift, Marjas Bitte, ihn nicht zu hassen.</p>
+	<<gedanke>>
+	<p>Ich sehe, wie es Pavel trifft. Wie der Zorn, den er so lange getragen hat, keinen Halt mehr findet. Man kann
+	einen Feind hassen. Aber keinen weinenden Mann, der dieselbe Frau liebt, um die man selbst trauert.</p>
+	<</gedanke>>
+	<p>Die Klinge sinkt in den Reif. Pavel findet keine Worte für das, was in ihm zerbricht und sich neu zusammensetzt.
+	Aber er senkt den Stahl, und das ist mehr als jedes Wort. Die Fehde stirbt nicht in dieser Nacht — aber sie hat
+	aufgehört zu wachsen, zum ersten Mal seit Generationen.</p>
+<<case "A_kuehl">>
+	<<scene>>
+	<p>Du trittst in den Kreis, zwischen die beiden, ehe der erste Hieb fällt. Du hast keinen Brief, keine Tränen —
+	nur das, was du weißt. Also sagst du es, laut, damit alle es hören.</p>
+	<</scene>>
+	<<dialog>>
+	<p>„Marja lebt. Sie ist in Sicherheit. Sie trägt ein Kind. Alles, wofür ihr hier bluten wollt, ist längst
+	entschieden — und keiner von euch war dabei.“</p>
+	<</dialog>>
+	<p>Es ist keine Versöhnung, nur eine Tatsache, kalt und schwer, die sich zwischen die beiden legt wie ein Stein.
+	Pavel senkt die Klinge — nicht weil sein Herz nachgibt, sondern weil selbst sein Zorn keinen Sinn mehr findet.</p>
+	<<gedanke>>
+	<p>Kein Handschlag. Keine Umarmung. Nur zwei Männer, die auseinandergehen, weil das Weitermachen sinnlos geworden
+	ist. Es ist kein Frieden. Aber es ist auch kein Blut. Heute muss das genügen.</p>
+	<</gedanke>>
+<<default>>
+	<p>Die Nacht endet ohne Blut.</p>
+<</switch>>
+
+<<weiterImTag "Zurück auf die Stube">>
+
+
+:: Duell_Ende_B [nach_Kap2_morgen]
+
+<<scene>>
+<p>Du kommst zu spät, um es aufzuhalten. Der erste Hieb ist schon gefallen, ehe du im Kreis bist.</p>
+<</scene>>
+
+<<switch $world.duell.outcome>>
+<<case "B_bronko_reue">>
+	<p>Pavel kämpft, und Bronko lässt es geschehen. Er hebt die Klinge nicht, deckt sich kaum. Ein Hieb trifft,
+	ein zweiter, und Bronko geht auf die Knie, das Gesicht offen, ohne Furcht.</p>
+	<<dialog>>
+	<p>Pavel holt aus zum letzten Streich — und hält inne. In Bronkos Gesicht ist kein Trotz, keine Feigheit,
+	nur eine Trauer, so tief, dass Pavel sie erkennt wie in einem Spiegel.</p>
+	<</dialog>>
+	<p>Die Klinge fällt in den Reif. Pavel dreht sich weg. Bronko lebt. Zwischen den beiden ist nichts geheilt —
+	aber zum ersten Mal hat Pavel gesehen, dass der andere dasselbe trägt wie er.</p>
+<<case "B_bronko">>
+	<p>Sie kämpfen, und Bronko wehrt sich nicht richtig. Er fängt sich einen Hieb, ehe die Wachen, vom Lärm geweckt,
+	die beiden auseinanderreißen. Er lebt, blutend, stumm.</p>
+	<<gedanke>>
+	<p>Ich kannte seine Schuld, aber nie sein Herz — und ohne das hatte ich Pavel nichts zu geben, das ihn aufgehalten
+	hätte. Keiner ist tot. Aber keiner ist heute klüger geworden. Die Fehde brennt weiter, um eine Narbe reicher.</p>
+	<</gedanke>>
+<<case "B_pavel">>
+	<p>Sie kämpfen. Du kannst Pavels Zorn ein wenig bremsen — du verstehst ihn, und das reicht, um ihn im letzten
+	Moment zögern zu lassen. Die Wachen kommen dazwischen. Blut ist geflossen, aber keiner ist gefallen.</p>
+	<<gedanke>>
+	<p>Ich kannte Pavels Trauer, aber Bronkos Wahrheit blieb mir verschlossen — und damit auch ihm. Er geht als
+	bitterer Mann vom Platz. Er wird nie erfahren, dass der andere sie liebte.</p>
+	<</gedanke>>
+<<case "B_pavel_verrat">>
+	<p>Sie kämpfen, und Pavel kämpft wie ein Rasender — du hast ihm den Brief gegeben, und der Zorn darüber, dass
+	man Marja vor ihm verbarg, treibt jeden Hieb. Bronko blutet aus mehreren Wunden, ehe—</p>
+	<<dialog>>
+	<p>Pavel hält inne. Ausgerechnet das, was du verraten hast, hält seine Klinge auf: Marja lebt. Ein totes Kind
+	hätte einen toten Vater. Und sie würde ihm nie verzeihen.</p>
+	<</dialog>>
+	<p>Bronko überlebt, schwer gezeichnet. Aber Bronko wie Zdenka wissen, wer geredet hat. In ihren Augen bist du
+	kein Vermittler mehr, sondern der, der Marjas letztes Geheimnis verkauft hat.</p>
+<<default>>
+	<p>Sie kämpfen, bis die Wachen sie trennen. Keiner stirbt, aber nichts ist gut.</p>
+<</switch>>
+
+<<weiterImTag "Zurück auf die Stube">>
+
+
+:: Duell_Ende_C [nach_Kap2_morgen]
+
+<<scene>>
+<p>Du hast nichts in der Hand, das zählt, und niemand hört auf den, der nichts weiß. Du kannst nur am Rand stehen,
+während der Reif knirscht und der erste Hieb fällt.</p>
+<</scene>>
+
+<<set _wer to random(1, 2)>>
+<<if _wer is 1>>
+	<<set $world.duell.flags.bronko_tot to true>>
+	<<dialog>>
+	<p>Es geht schnell und hässlich. Pavels Klinge findet, was sie sucht, und Bronko sinkt in den Reif, ohne je
+	die Hand gegen ihn erhoben zu haben. Sein Blut dampft in der Kälte.</p>
+	<</dialog>>
+<<else>>
+	<<set $world.duell.flags.pavel_tot to true>>
+	<<dialog>>
+	<p>Es geht schnell und hässlich. Im Gerangel dreht sich die Klinge, und es ist Pavel, der fällt — der Angreifer,
+	von der eigenen Wut überholt. Bronko steht über ihm, entsetzt über das, was seine Hände getan haben.</p>
+	<</dialog>>
+<</if>>
+
+<<gedanke>>
+<p>Ich hätte hinter die Brücke sehen müssen, hinter den Namen, hinter den Zorn. Jetzt liegt einer im Reif, und die
+Fehde hat endlich das Blut bekommen, nach dem sie all die Jahre verlangt hat.</p>
+<</gedanke>>
+
+<p>Fackeln, Rufe, Stiefel im Dunkeln. Der Überlebende wird abgeführt, noch ehe der Morgen graut. Rabenfurt wird
+davon hören, und Rabenfurt wird nicht schweigen.</p>
+
+<<weiterImTag "In die Nacht hinein">>
+
+
+:: Duell_Nachwirkung [interrupt einmalig nach_Kap2_tag]
+
+<<set _e to setup.duellEinfluss()>>
+<<if $player.reputation.Rabenfurth === undefined>>
+	<<set $player.reputation.Rabenfurth to 0>>
+<</if>>	
+
+<<scene>>
+<p>Sechs Tage sind vergangen. Ein Bote aus Rabenfurt bringt Nachricht, und sie geht durch die Stuben wie ein
+kalter Zug.</p>
+<</scene>>
+
+<<switch $world.duell.tier>>
+<<case "A">>
+	<<if $world.duell.outcome is "A_versoehnt">>
+		<p>Die Nachricht klingt fast ungläubig: zwei Rabenfurter, die sich nicht die Köpfe eingeschlagen haben.
+		Die Wahrheit ist heraus, bei Pavel wie bei den Alten. Der Streit um die Brücke läuft weiter — Papier stirbt
+		langsamer als Hass —, doch zum ersten Mal seit Generationen sitzen ein Pipovic und ein Kulitcka an einem Tisch.
+		Marja muss ihr Kind nicht auf einem fremden Schiff zur Welt bringen; es bekommt einen Namen und zwei Familien,
+		die lernen müssen, damit zu leben.</p>
+	<<else>>
+		<p>Die beiden leben, und keiner sitzt vor Gericht. Aber sie meiden einander, und der Frieden ist kalt und
+		brüchig. Marja bleibt in Sicherheit, doch fern; ob sie je zurückkehrt, weiß niemand.</p>
+	<</if>>
+	<<switch _e.band>>
+	<<case "friedensstifter">><p>Und man spricht von dir wie von einem, der das Unmögliche gedreht hat. Zdenka gelingt in Rabenfurt, was sie sich vorgenommen hat.</p>
+	<<case "gemischt">><p>Der Frieden hält, aber niemand traut ihm ganz.</p>
+	<<default>><p>Doch was zwischen dir und den Beteiligten steht, trübt selbst diesen Ausgang.</p>
+	<</switch>>
+<<case "B">>
+	<p>Es floss Blut, aber keiner starb. Vor der Akademie steht Disziplinarisches — ein Duell bleibt ein Duell —,
+	vor Rabenfurt die alte Fehde, unverändert, nur um eine Wunde reicher.</p>
+	<<switch $world.duell.outcome>>
+	<<case "B_bronko_reue">><p>Was Pavel in Bronkos Gesicht sah, lässt ihn nicht los. Sechs Tage später fragt er zum ersten Mal selbst nach — leise, misstrauisch, aber er fragt. Ein Riss im Panzer.</p>
+	<<case "B_pavel_verrat">><p>Pavel weiß jetzt: Marja lebt, sie trägt Bronkos Kind. Aus der alten Fehde wird eine Jagd. Marja hat einen letzten Brief geschickt und die Flucht nach Tiafunt gewagt — nur weg. Bronko und Zdenka verachten dich.</p>
+	<<default>><p>Die Fehde brennt weiter, jetzt mit frischem Blut als Brennstoff. Keine Erkenntnis, kein Frieden — nur zwei Familien, die sich noch tiefer eingraben.</p>
+	<</switch>>
+<<default>>
+	<p>Der Überlebende steht vor dem Malefizgericht. In Rabenfurt sind die Familien in offener, blutiger
+	Auseinandersetzung — mehrere Tote. Die Sache kommt vor den Rat; die Brückenadministration wird zum Staatsakt,
+	die Familienoberhäupter werden malefizgerichtlich belangt. Das Wort „Umsiedlung“ steht im Raum, um den Frieden
+	zu erzwingen.</p>
+	<<if $world.duell.flags.bronko_tot>>
+		<p>Marja hat einen letzten Abschiedsbrief an Zdenka geschickt und die Flucht nach Tiafunt gewagt — sie wird
+		ein Schiff besteigen, irgendeines, egal wohin, nur weg von Aloy, den Pipovics und den Kulitckas.</p>
+	<<else>>
+		<p>Zdenka ist die Einzige, die bezeugen kann, dass Bronko beim Drill Schläge zurückhielt und das Duell nicht
+		von ihm ausging. Entlastet sie ihn, rettet sie ihn vor dem Strick — und wird bei den Pipovics zur Verräterin.
+		Schweigt sie, trägt sie Mitschuld an seinem Tod.</p>
+	<</if>>
+	<p>Zdenka quittiert den Dienst an der Akademie und kehrt nach Rabenfurt zurück, nicht als Soldatin, sondern
+	als Trümmerfrau.</p>
+<</switch>>
+
+<<if $world.duell.zdenka_trust lte -2>>
+	<p>Zdenka gibt dir die Alleinschuld an dem, was geschah. Sie spuckt vor dir aus und macht dich bei den
+	gemäßigten Kräften zur Persona non grata.</p>
+	<<set $player.reputation.Rabenfurth -= 5>>
+<<else>>
+	<p>Zdenka verabschiedet sich von dir und dankt dir für deine Teilhabe — was auch immer daraus geworden ist.</p>
+	<<set $player.reputation.Rabenfurth += 1>>
+<</if>>
+
+<<set $world.duell.nachwirkung_done to true>>
+
+<<weiterImTag "Weiter">> 

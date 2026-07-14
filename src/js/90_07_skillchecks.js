@@ -154,3 +154,19 @@ setup.checkHint = function (skillKey, difficulty, modifier) {
     const label = setup.chanceLabel(pct);
     return '<span class="check-hint"> Wurf auf ' + name + ' — ' + label + '</span>';
 };
+
+/* Faith-Probe: stats.faith (0–100) -> 0–10-Wert, dann wie ein Skill gegen die DC gewürfelt. */
+setup.faithCheck = function (difficulty, modifier) {
+    var faith = (State.variables.player.stats.faith) || 0;
+    var skill = Math.round(faith / 10);              /* 100er-Wert -> 10er-Wert */
+    var dc = difficulty + (modifier || 0);
+    var roll = random(1, 20);
+    var total = roll + skill;
+    var outcome;
+    if (roll === 20) outcome = "crit";
+    else if (roll === 1) outcome = "fumble";
+    else if (total >= dc) outcome = "success";
+    else outcome = "fail";
+    return { outcome: outcome, success: (outcome === "success" || outcome === "crit"),
+             roll: roll, skill: skill, skillKey: "faith", skillName: "Glaube", total: total, dc: dc };
+};

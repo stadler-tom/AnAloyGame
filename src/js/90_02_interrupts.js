@@ -88,50 +88,50 @@ setup.routeFromTags = function (tagList) {
     const player = State.variables.player;
     const kap2 = State.variables.world.kapitel1_gesperrt === true;
         for (const t of tagList) {
-        if (t === "nach_Kap2_tag") {
-            player.hasSlept = true;
-            return "Kap2_Tageshub";
-        }
+            if (t === "nach_Kap2_tag") {
+                player.hasSlept = true;
+                return "Kap2_Tageshub";
+            }
 
-        if (t === "nach_Kap2_abend") {
-            player.hasSlept = true;
-            return "Kap2_Abend";
-        }
+            if (t === "nach_Kap2_abend") {
+                player.hasSlept = true;
+                return "Kap2_Abend";
+            }
 
-        if (t === "nach_Kap2_morgen") {
-            player.hasSlept = true;
-            return "Kap2_Tagesstart";
-        }
+            if (t === "nach_Kap2_morgen") {
+                player.hasSlept = true;
+                return "Kap2_Tagesstart";
+            }
 
-        if (t === "nach_hub") {
-            player.hasSlept = true;
-            return kap2 ? "Kap2_Tageshub" : "Nachmittag Hub";
-        }
+            if (t === "nach_hub") {
+                player.hasSlept = true;
+                return kap2 ? "Kap2_Tageshub" : "Nachmittag Hub";
+            }
 
-        if (t === "nach_appell") {
-            player.hasSlept = true;
-            return kap2 ? "Kap2_Abend" : "Abendappell";
-        }
+            if (t === "nach_appell") {
+                player.hasSlept = true;
+                return kap2 ? "Kap2_Abend" : "Abendappell";
+            }
 
-        if (t === "nach_stube") {
-            player.hasSlept = true;
-            return kap2 ? "Kap2_Abend" : "Auf Stube";
-        }
+            if (t === "nach_stube") {
+                player.hasSlept = true;
+                return kap2 ? "Kap2_Abend" : "Auf Stube";
+            }
 
-        if (t === "nach_morgen") {
-            player.hasSlept = false;
-            return kap2 ? "Kap2_Tagesstart" : "Kap1_Tagesstart";
-        }
+            if (t === "nach_morgen") {
+                player.hasSlept = false;
+                return kap2 ? "Kap2_Tagesstart" : "Kap1_Tagesstart";
+            }
 
-        if (t === "nach_abend") {
-            player.hasSlept = true;
-            return kap2 ? "Kap2_Abend" : "Abendappell";
-        }
+            if (t === "nach_abend") {
+                player.hasSlept = true;
+                return kap2 ? "Kap2_Abend" : "Abendappell";
+            }
 
-        if (setup.routeTags[t]) {
-            player.hasSlept = true;
-            return setup.routeTags[t];
-        }
+            if (setup.routeTags[t]) {
+                player.hasSlept = true;
+                return setup.routeTags[t];
+            }
     }
 
     player.hasSlept = true;
@@ -408,12 +408,16 @@ setup.interruptCond["Kurt_Faden_3"] = w => {
     return f.kurt_stufe === 2 && w.day >= (f.kurt_stufe2_tag || 0) + 4;
 };
 
+/* ===== DUELL ===== */
 
 setup.interruptCond["Duell_S0_Fruehstueck"] = w => {
     if (w.kapitel1_gesperrt !== true) return false;                 
     return  w.day >= 382;
 }
-    
+  
+setup.interruptCond["Duell_Nachwirkung"] = w =>
+    w.duell && w.duell.done && !w.duell.nachwirkung_done
+    && w.day >= (w.duell.ende_tag + 6);
     
 
 
@@ -436,7 +440,7 @@ setup.interruptPrio["Ermittlung_S0_Auftakt"] = 58;
 setup.interruptCond["Ermittlung_S1_Intro_in_Waffenstube"] = w => {
     var h = w.interruptHistory;
     return (h["Ermittlung_S0_Auftakt"] || 0) > 0
-        && w.day >= h["Ermittlung_S0_Auftakt"] + 4;
+        && w.day >= h["Ermittlung_S0_Auftakt"] + 2;
 };
 setup.interruptPrio["Ermittlung_S1_Intro_in_Waffenstube"] = 58;
 
@@ -453,7 +457,7 @@ Object.keys(setup.ermS2Passage).forEach(function (weg) {
         var h = w.interruptHistory;
         return f.s2_weg === weg
             && f.s2_done !== true
-            && w.day >= (h["Ermittlung_S1_Intro_in_Waffenstube"] || 0) + 3;
+            && w.day >= (h["Ermittlung_S1_Intro_in_Waffenstube"] || 0) + 2;
     };
     setup.interruptPrio[name] = 58;
 });
@@ -464,7 +468,7 @@ setup.interruptCond["Ermittlung_S4_Magister_Halm"] = w => {
     var vorher = setup.ermS2Passage[f.s2_weg];
     return f.s2_done === true
         && f.s4_done !== true
-        && w.day >= ((vorher && h[vorher]) || 0) + 3;
+        && w.day >= ((vorher && h[vorher]) || 0) + 2;
 };
 setup.interruptPrio["Ermittlung_S4_Magister_Halm"] = 58;
 
@@ -476,7 +480,7 @@ setup.interruptCond["Ermittlung_S5_Westhof"] = w => {
         && f.s7_done !== true
         && f.s8_done !== true
         && f.s9_done !== true
-        && w.day >= (h["Ermittlung_S4_Magister_Halm"] || 0) + 3;
+        && w.day >= (h["Ermittlung_S4_Magister_Halm"] || 0) + 2;
 };
 setup.interruptPrio["Ermittlung_S5_Westhof"] = 58;
 
@@ -493,7 +497,7 @@ Object.keys(setup.ermS7Passage).forEach(function (weg) {
         var h = w.interruptHistory;
         return f.s7_weg === weg
             && f.s7_done !== true
-            && w.day >= (h["Ermittlung_S5_Westhof"] || 0) + 3;
+            && w.day >= (h["Ermittlung_S5_Westhof"] || 0) + 1;
     };
     setup.interruptPrio[name] = 58;
 });
@@ -546,6 +550,13 @@ setup.interruptCond["Ermittlung_Karla_Rueckkehr"] = w => {
     var f = (w.ermittlung && w.ermittlung.flags) || {};
     return f.karla_befreit === true
         && f.karla_rueckkehr_seen !== true
-        && w.day >= (f.karla_befreit_tag || 0) + 4;
+        && w.day >= (f.karla_befreit_tag || 0) + 3;
 };
 setup.interruptPrio["Ermittlung_Karla_Rueckkehr"] = 86;
+
+
+setup.interruptCond["Kapitel2_Ende"] = w =>
+       w.ermittlung && w.ermittlung.flags && w.ermittlung.flags.nachspiel_done   // Ermittlung gelöst
+    && w.duell && w.duell.done && w.duell.nachwirkung_done                // Duell durch
+    && w.biwagDone                                                        // Biwak-Beurteilung erhalten
+    && w.day >= (w.biwagDoneDay + 6);                                     // +6 Tage nach dem Biwak

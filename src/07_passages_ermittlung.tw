@@ -2639,7 +2639,7 @@ Je länger ich hier sitze und nichts tue, desto länger sieht er mir dabei zu.</
 		<li>
 			<<link "Unter seinen Augen zählen">>
 				<<replace "#sandbox-menu">>
-					<<goto "Ermittlung_S9_Deckung">>
+					<<goto "Ermittlung_S8_Zaehlen">>
 				<</replace>>
 			<</link>>
 
@@ -2683,7 +2683,7 @@ Nur habe ich jetzt statt drei Beweisen einen, und der liegt eine Tagesreise entf
 	<<set $world.ermittlung.flags.s9_tag to $world.day>>
 <</if>>
 <<trenner>>
-<<weiterImTag "Weiter">>
+[[Alles zusammentragen und Hauptmann Rindler vorlegen -> Ermittlung_S10_Rindler]]
 
 
 
@@ -2707,7 +2707,7 @@ Nur habe ich jetzt statt drei Beweisen einen, und der liegt eine Tagesreise entf
 	<</scene>>
 
 	<<gedanke>>
-	<	p>Er hat es gemerkt. Natürlich hat er es gemerkt — ich habe zu oft im Buch gewühlt, zu deutlich, 
+	<p>Er hat es gemerkt. Natürlich hat er es gemerkt — ich habe zu oft im Buch gewühlt, zu deutlich, 
 	und ein Mann wie Oren zählt nicht nur Bolzen, er zählt Blicke. Es gibt heute keine Fuhre. Vielleicht für lange keine. 
 	Er hat den Kanal geschlossen, ehe <<if setup.ermMit()>>wir ihn schließen konnten<<else>>ich ihn schließen konnte<</if>>.</p>
 	<</gedanke>>
@@ -2715,7 +2715,13 @@ Nur habe ich jetzt statt drei Beweisen einen, und der liegt eine Tagesreise entf
 	[[Was uns bleibt|Ermittlung_S9_Aufgeraeumt]]
 <<else>>
 	<<scene>>
-	<p><<if setup.ermMit()>>Die Nacht ist mondlos und kalt, und ihr liegt im Schatten des Holzstapels gegenüber der Waffenausgabe, Karla und du, die Blicke auf die Rampe geheftet.<<else>>Die Nacht ist mondlos und kalt, und du liegst allein im Schatten des Holzstapels gegenüber der Waffenausgabe, den Blick auf die Rampe geheftet.<</if>> Das Buch hat die Stunde verraten, und das Buch hat nicht gelogen: Als die Akademie längst schläft, öffnet sich das Seitentor, und ein Karren rollt heraus, das Rad in Lumpen gewickelt, damit es leiser läuft. Ein Fuhrmann auf dem Bock, ein Wachmann mit einer Blende vor der Laterne, und auf der Ladefläche Kisten — lange Kisten, sorgsam verzurrt.</p>
+	<p><<if setup.ermMit()>>Die Nacht ist mondlos und kalt, und ihr liegt im Schatten des Holzstapels gegenüber der Waffenausgabe, 
+
+	Karla und du, die Blicke auf die Rampe geheftet.<<else>>Die Nacht ist mondlos und kalt, und du liegst allein im Schatten des 
+		Holzstapels gegenüber der Waffenausgabe, den Blick auf die Rampe geheftet.<</if>> Das Buch hat die Stunde verraten, und das 
+		Buch hat nicht gelogen: Als die Akademie längst schläft, öffnet sich das Seitentor, und ein Karren rollt heraus, das Rad in 
+		Lumpen gewickelt, damit es leiser läuft. Ein Fuhrmann auf dem Bock, ein Wachmann mit einer Blende vor der Laterne, und auf der
+		 Ladefläche Kisten — lange Kisten, sorgsam verzurrt.</p>
 	<</scene>>
 	<<gedanke>>
 	<p>Da ist sie. Kein Gerücht mehr, kein Eintrag auf Papier, sondern Holz und Eisen und ein Mann, der etwas hinausfährt, das bei Tag niemand hinausfahren würde. Ein Wort gegen Orens Wort ist nichts. Aber das hier — gesehen, festgehalten, mit Krebs' Gegenbuch zusammengelegt — das ist etwas, das er nicht mehr wegschreiben kann. Wenn ich nah genug herankomme.</p>
@@ -3085,11 +3091,13 @@ was ein flüchtiger Beobachter übersähe, und dein Gedächtnis hält es fest.</
 <</if>>
 
 <<if not $world.ermittlung.flags.s10_done>>
-	<<= setup.ermFund("kopf_entkommt", "Im beschlagnahmten Frachtgut lag ein unbekanntes Siegel — der eigentliche Kopf des Kanals sitzt außerhalb der Akademie und ist entkommen.")>>
+	<<= setup.ermFund("kopf_entkommt", "Im beschlagnahmten Frachtgut lag ein unbekanntes Siegel — der eigentliche Kopf des Kanals sitzt außerhalb der 
+	Akademie und ist entkommen.")>>
 	<<set $world.ermittlung.flags.s10_done to true>>
 	<<set $world.ermittlung.flags.abgeschlossen to true>>
 	<<set $world.ermittlung.active to false>>
 	<<set $world.flags.kap3_saat to true>>
+	<<set $world.ermittlung.flags.s10_tag to $world.day>>
 <</if>>
 
 [[Später, am Holzstapel|Ermittlung_S10_Rueckblick]]
@@ -3275,12 +3283,15 @@ von dem ich nicht weiß, wie breit er ist.</p>
 <<run setup.ermInit()>>
 <<set _staerke to setup.ermFallStaerke()>>
 <<scene>>
-<p>Rindler blättert selbst — dem richtigen Buch, denn er ist kein Mann, den man mit einem falschen Band abspeist. Er findet die Daten, legt Krebs' Gegenbuch daneben, folgt der Lücke mit dem Finger, Zeile um Zeile, Monat um Monat. Seine Miene verändert sich mit keiner Regung, und doch spürst du den Augenblick, in dem aus einer Vermutung eine Gewissheit wird.</p>
+<p>Rindler blättert selbst — dem richtigen Buch, denn er ist kein Mann, den man mit einem falschen Band abspeist. 
+Er findet die Daten, legt Krebs' Gegenbuch daneben, folgt der Lücke mit dem Finger, Zeile um Zeile, Monat um Monat.
+ Seine Miene verändert sich mit keiner Regung, und doch spürst du den Augenblick, in dem aus einer Vermutung eine Gewissheit wird.</p>
 <</scene>>
 
 <<if $world.ermittlung.spuren.includes("westhof_ladung")>>
 <<dialog>>
-<p>„Und jede dieser Kisten“, sagt Rindler leise, den Finger auf einer Zeile, „in seiner eigenen Hand abgezeichnet. Ein Schreiber, der seine Fälschungen selbst gegenzeichnet. Das ist keine Nachlässigkeit. Das ist ein System.“</p>
+<p>„Und jede dieser Kisten“, sagt Rindler leise, den Finger auf einer Zeile, „in seiner eigenen Hand abgezeichnet. 
+Ein Schreiber, der seine Fälschungen selbst gegenzeichnet. Das ist keine Nachlässigkeit. Das ist ein System.“</p>
 <</dialog>>
 <</if>>
 
@@ -3304,7 +3315,9 @@ von dem ich nicht weiß, wie breit er ist.</p>
 <</dialog>>
 <<case "duenn">>
 <<dialog>>
-<p>„Es ist dünn“, sagt Rindler, ohne Wärme. „Zwei Bücher, ein Verdacht, mehr habt Ihr nicht. Für ein Gericht wäre es zu wenig.“ Er legt das Gegenbuch beiseite. „Aber ich brauche kein Gericht, um einen Schreiber zu versetzen und ein Fach durchsuchen zu lassen. Es reicht, um zu handeln. Nicht, um Euch zu danken.“</p>
+<p>„Es ist dünn“, sagt Rindler, ohne Wärme. „Zwei Bücher, ein Verdacht, mehr habt Ihr nicht. 
+Für ein Gericht wäre es zu wenig.“ Er legt das Gegenbuch beiseite. „Aber ich brauche kein Gericht, 
+um einen Schreiber zu versetzen und ein Fach durchsuchen zu lassen. Es reicht, um zu handeln. Nicht, um Euch zu danken.“</p>
 <</dialog>>
 <</switch>>
 

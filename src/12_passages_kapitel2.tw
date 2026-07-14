@@ -449,6 +449,12 @@ Es bedeutet nur, dass man jetzt selbst wissen soll, wohin man gehört.</p>
 <p>Der Nachmittag neigt sich. Zeit für eine letzte Unternehmung.</p>
 <</if>>
 
+<<if $world.ermittlung.flags.westhof_done === true>>
+	<div class="info-box">
+		Luigi! Er hat Kontakte und könnte etwas in Erfahrung bringen. Aber kann ich ihn schon wieder um Hilfe bitten oder überreize ich den Bogen?
+	</div>
+<</if>>
+
 <<set _options = setup.kap2Storylets.filter(function(s) { return s.available(); })>>
 <ul class="menu">
 <<for _i = 0; _i < _options.length; _i++>>
@@ -560,7 +566,7 @@ Warum habe ich das Gefühl, dass er sich gemerkt hat, was ich gewählt habe?<</g
 
     <div class="center-link">
         <<timed 4500ms>>
-            [[Weiter|bye]] 
+            [[Weiter|Kap2_Intro]] 
         <</timed>>
     </div>
 </div>
@@ -685,9 +691,6 @@ Der Feldscher. Keine Waffe. Hände, die heilen statt schlagen. Der Gedanke fühl
 <</dialog>>
 
 <<if $world.ermittlung.flags.westhof_done === true>>
-    <<gedanke>>
-    Luigi! Er hat Kontakte und könnte etwas in Erfahrung bringen. Aber kann ich ihn schon wieder um Hilfe bitten oder überreize ich den Bogen?
-    <</gedanke>>
 
     <<dialog>>
     <p>„Ein Brief nach Grodaus. In das Kontor von Ramirez de Volpe. Was kostet mich das?“</p>
@@ -697,6 +700,7 @@ Der Feldscher. Keine Waffe. Hände, die heilen statt schlagen. Der Gedanke fühl
     		<<link "Einen Brief an Luigi schicken (8 Kupfer)">>
 			<<print setup.removeMoney(8)>>
             <<set $world.ermittlung.flags.sendLetterToLuigi to true>>
+			<<set $world.ermittlung.flags.familia_kontakt_tag to $world.day>>
 			<<goto "Tageshub_Stadt">>
 		<</link>>
     <<else>>
@@ -817,62 +821,230 @@ der seine Runde vergessen zu haben scheint.</p>
 
 
 :: Stadt_Gluecksspiel {"position":"2050,5800","size":"100,100"}
-<<set _enoughMoney = setup.canAffordMoney(3)>>
-<<if _enoughMoney>>
-	<<print setup.removeMoney(3)>>
+<<if $world.wuerfelSpiel === undefined>>
+	<<set $world.wuerfelSpiel to { cheat: 0, gespielt: 0 }>>
+<</if>>
+
+<<if $world.wuerfelSpiel.cheat gte 2>>
+	<<scene>>
+	<p>Du hast dich zu oft an den Würfeln versucht, und die Spieler haben dich längst durchschaut.
+	Sie lassen dich nicht mehr an den Tisch.</p>
+	<</scene>>
+	<<dialog>>
+	<p>„Zieh Leine, bevor noch was passiert, du Betrüger!“</p>
+	<</dialog>>
+	<<trenner>>
+	[[Zurückdrehen zur Theke|Stadt_Schenke]]
+
+<<elseif not setup.canAffordMoney(3)>>
+	<<scene>>
+	<p>Du tastest nach deinem Beutel und findest ihn zu leicht. Kein Mann an diesem Tisch nimmt dich ohne Einsatz auf —
+	wer nichts zu verlieren hat, hat auch nichts, worauf man setzen könnte.</p>
+	<</scene>>
+	<<trenner>>
+	[[Vom Tisch aufstehen|Stadt_Schenke]]
+
+<<elseif $world.wuerfelSpiel.gespielt gte 2>>
+
+	<<gedanke>>
+		<p>„Für heute hab ich genug gedaddelt.“</p>
+	<</gedanke>>
+	<<trenner>>
+	[[Zurückdrehen zur Theke|Stadt_Schenke]]
+
+<<else>>
+	<<set _potSize to random(1, 7)>>
 	<<scene>>
 	<p>Ein Tisch in der Ecke zieht dich mit dem Klappern der Würfel förmlich an.</p>
 	<</scene>>
-	<<= setup.getNpcInteraction("Kap2_Pool_Stadt_Gluecksspiel")>>
-<<else>>
-	<<scene>>
-	<p>Du tastest nach deinem Beutel und findest ihn zu leicht. Kein Mann an diesem Tisch nimmt dich ohne Einsatz auf — wer nichts zu verlieren hat, hat auch nichts, worauf man setzen könnte.</p>
-	<</scene>>
+	<<dialog>>
+	<p>„Was wird gespielt?“ sagst du nur der Form halber und setzt dich zu den Spielern.</p>
+	<</dialog>>
+
+	<div id="sandbox-menu">
+	<ul class="sandbox-menu">
+		<li><<link "Einfach nur spielen (3 Kupfer)">>
+			<<replace "#sandbox-menu">>
+				<<run setup.removeMoney(3)>>
+				<<set $world.wuerfelSpiel.gespielt += 1>>
+				<p>Ihr lacht, ihr würfelt und ihr spielt. Die Würfel rollen, die Münzen klappern,
+				und für einen Moment ist es, als gäbe es die Welt draußen nicht.</p>
+				<<= setup.getNpcInteraction("Kap2_Pool_Stadt_Gluecksspiel")>>
+				<<set _r to setup.skillCheckXp("gossip", 13)>>
+				<<= _r.lernHTML>>
+				<<if _r.outcome === "crit">>
+					<p>Deine Art zu erzählen beeindruckt die Runde und bleibt ihnen im Kopf.</p>
+					<<= setup.setPlayerReputation("ohm", 1)>>
+				<</if>>
+				<<trenner>>
+				<<if $world.wuerfelSpiel.cheat lt 2>>[[Noch eine Runde|Stadt_Gluecksspiel]]<</if>>
+				[[Vom Tisch aufstehen|Stadt_Schenke]]
+			<</replace>>
+		<</link>></li>
+
+		<li><<link "Versuche zu betrügen (3 Kupfer)">>
+			<<replace "#sandbox-menu">>
+				<<run setup.removeMoney(3)>>
+				<<set $world.wuerfelSpiel.gespielt += 1>>
+				<<set _r to setup.skillCheckXp("thievery", 12, _potSize)>>
+				<<= _r.lernHTML>>
+				<<if _r.success>>
+					<p>Ein bisschen unbemerkt klopfen, ein bisschen stupsen, und schon zeigen die Würfel andere Augen.</p>
+					<<set _copperWon to _potSize>>
+					<<if _r.outcome === "crit">>
+						<<set _extraBet to random(1, 4)>>
+						<p>Du legst noch eine Extrawette über _extraBet Kupfer nach — und gewinnst, natürlich.</p>
+						<<set _copperWon += _extraBet>>
+					<</if>>
+					<<= setup.addMoney(_copperWon)>>
+				<<elseif _r.outcome === "fumble">>
+					<<set $world.wuerfelSpiel.cheat += 2>>
+					<p>Du greifst nach den Würfeln, doch ein Spieler sieht es — und wirft dich vom Tisch.</p>
+					<<= setup.setPlayerReputation("ohm", -3)>>
+				<<else>>
+					<<set $world.wuerfelSpiel.cheat += 1>>
+					<p>Du versuchst, die Würfel zu drehen, aber ein Spieler bemerkt es.</p>
+					<<if $world.wuerfelSpiel.cheat lt 2>>
+						<<dialog>>
+						<p>„Mach das nicht noch einmal, Bürschlein!“ Einer packt dich am Ärmel.</p>
+						<</dialog>>
+						<<= setup.setPlayerReputation("ohm", -1)>>
+					<<else>>
+						<<dialog>>
+						<p>„Ich hab dich gewarnt!“ Man packt dich und schafft dich unsanft vom Tisch.</p>
+						<</dialog>>
+						<<= setup.setPlayerReputation("ohm", -1)>>
+					<</if>>
+				<</if>>
+				<<trenner>>
+				<<if $world.wuerfelSpiel.cheat lt 2>>[[Noch eine Runde|Stadt_Gluecksspiel]]<</if>>
+				[[Vom Tisch aufstehen|Stadt_Schenke]]
+			<</replace>>
+		<</link>>
+		<span class="subtext">— Versuche das Ergebnis zu manipulieren. <<= setup.checkHint("thievery", 12, _potSize)>></span>
+		</li>
+	</ul>
+	</div>
 <</if>>
 
-<<if _enoughMoney>>
-[[Noch eine Runde|Stadt_Gluecksspiel]]
-<</if>>
-[[Vom Tisch aufstehen|Stadt_Schenke]]
 
 
 :: Stadt_Kirche {"position":"2575,5375","size":"100,100"}
-<<scene>>
-<p>Die Kapelle ist klein, kühl, von Weihrauch und altem Stein durchdrungen. Kerzenlicht flackert vor einem schlichten Altar, und für einen Moment ist es, als hielte selbst der Lärm der Stadt draußen den Atem an.</p>
-<</scene>>
 
-<ul class="sandbox-menu">
-	<li>
-	<<link "Eine Weile still verweilen (ohne Spende)">>
-		<<print setup.setPlayerStat("faith", 1)>>
-		<<goto "Stadt_Kirche_Ende">>
-	<</link>>
-	<span class="subtext">— Nichts kostet weniger als Schweigen, und manchmal ist es genug.</span>
-	</li>
-	<li>
-	<<if setup.canAffordMoney(5)>>
-		<<link "Eine Kerze stiften (5 Kupfer)">>
-			<<print setup.removeMoney(5)>>
-			<<print setup.setPlayerStat("faith", 3)>>
-			<<goto "Stadt_Kirche_Ende">>
-		<</link>>
-	<<else>>
-		<span class="stat-empty">Eine Kerze stiften (5 Kupfer) — dafür reicht dein Beutel nicht</span>
-	<</if>>
-	<span class="subtext">— Ein kleines Opfer, sichtbar für jeden, der danach hier betet.</span>
-	</li>
-</ul>
+		/* Standard Scene*/
+		<<scene>>
+		<p>Die Kirche ist kühl und von Weihrauch und altem Stein durchdrungen. Kerzenlicht flackert vor einem schlichten Altar, und für einen Moment ist es, 
+		als hielte selbst der Lärm der Stadt draußen den Atem an.</p>
+		<</scene>>
 
-[[Zurück in die Stadt|Tageshub_Stadt]]
+
+
+		<ul class="sandbox-menu">
+			<li>
+			<<link "Eine Weile still verweilen (ohne Spende)">>
+				<<print setup.setPlayerStat("faith", 1)>>
+				<<goto "Stadt_Kirche_Ende">>
+			<</link>>
+			<span class="subtext">— Nichts kostet weniger als Schweigen, und manchmal ist es genug.</span>
+			</li>
+			<li>
+			<<if setup.canAffordMoney(5)>>
+				<<link "Eine Kerze stiften (5 Kupfer)">>
+					<<print setup.removeMoney(5)>>
+					<<print setup.setPlayerStat("faith", 3)>>
+					<<goto "Stadt_Kirche_Ende">>
+				<</link>>
+			<<else>>
+				<span class="stat-empty">Eine Kerze stiften (5 Kupfer) — dafür reicht dein Beutel nicht</span>
+			<</if>>
+			<span class="subtext">— Ein kleines Opfer, sichtbar für jeden, der danach hier betet.</span>
+			</li>
+			<<if not $world.flags.kirche_andacht_done>>
+			<li>
+			<<link "Am Seitenaltar niederknien und beten">>
+				<<goto "Stadt_Kirche_Andacht">>
+			<</link>>
+			<span class="subtext">— Nicht aus Pflicht. Aus etwas, das du selbst nicht ganz benennen kannst.</span>
+			</li>
+			<</if>>
+		</ul>
+
+		<<trenner>>
+		[[Zurück in die Stadt|Tageshub_Stadt]]
 
 
 :: Stadt_Kirche_Ende {"position":"2575,5275","size":"100,100"}
 <<gedanke>>
-<p>Ich weiß nicht, ob es etwas ändert, dort draußen, wo die Dinge entschieden werden, die mich betreffen. Aber für diesen einen Moment fühlt es sich an, als wöge die Welt ein wenig weniger schwer.</p>
+<p>Ich weiß nicht, ob es etwas ändert, dort draußen, wo die Dinge entschieden werden, die mich betreffen. 
+Aber für diesen einen Moment fühlt es sich an, als wöge die Welt ein wenig weniger schwer.</p>
 <</gedanke>>
 
 [[Zurück in die Stadt|Tageshub_Stadt]]
 
+
+:: Stadt_Kirche_Andacht
+<<set $world.flags.kirche_andacht_done to true>>
+<<set _r to setup.faithCheck(13)>>
+<<scene>>
+<p>Du kniest vor den drei Standbildern nieder — Limba mit der offenen Hand, Miram mit der Waage im Gleichgewicht,
+Hortum mit gesenktem Schwert — und lässt für einen Moment alles hinter dir: den Drill, die Stadt, das Gewicht der
+letzten Wochen. Das Kerzenlicht wirft die steinernen Gesichter in ein weiches, wanderndes Flackern.</p>
+<</scene>>
+
+<<= setup.skillCheckAlert(_r)>>
+
+<p>Du bemerkst ihn erst, als sein Schatten über die Fliesen fällt: ein Geistlicher der Drei, grau gewandet, die Hände
+in den Ärmeln, der dich schon eine Weile betrachtet haben muss.</p>
+
+<<if _r.outcome === "crit">>
+	<<dialog>>
+	<p>„Selten kniet hier ein Soldat, ohne dass ihn die Angst treibt“, sagt er leise. „Bei dir ist es keine Angst. Das
+	sieht man.“ Er legt dir zwei Finger auf die Stirn, eine knappe, aufrichtige Segnung. „Geh mit dem Gleichmaß Mirams.
+	Du wirst es brauchen.“</p>
+	<</dialog>>
+	<<print setup.setPlayerStat("faith", 5)>>
+<<elseif _r.success>>
+	<<dialog>>
+	<p>„Du bist ehrlich hier“, sagt der Geistliche, beinahe überrascht. „Das ist mehr, als die meisten mitbringen, die
+	durch diese Tür treten.“ Ein knappes Nicken, fast ein Segen. „Die Drei sehen, wer kommt und warum.“</p>
+	<</dialog>>
+	<<print setup.setPlayerStat("faith", 3)>>
+<<elseif _r.outcome === "fumble">>
+	<<dialog>>
+	<p>„Ein Mann kniet, doch sein Herz steht.“ Der Geistliche mustert dich ohne Wärme. „Hortum wägt die Taten, Rekrut,
+	nicht die Gesten. Komm wieder, wenn du weißt, warum.“</p>
+	<</dialog>>
+	<<gedanke>>
+	<p>Er hat recht, und das ist das Unangenehme daran. Ich bin nicht hergekommen, weil ich glaube. Ich bin hergekommen,
+	weil ich nicht wusste, wohin sonst.</p>
+	<</gedanke>>
+<<else>>
+	<<dialog>>
+	<p>„Die Kerzen stehen jedem offen“, sagt der Geistliche kühl, „auch dem, der nur den Weihrauch sucht und nicht die
+	Drei.“ Damit wendet er sich ab und lässt dich allein mit dem flackernden Licht.</p>
+	<</dialog>>
+<</if>>
+
+<<if $npc.hansFichtensplitter.known and not $world.flags.barsinger_spur>>
+	<<scene>>
+	<p>Als du dich erheben willst, fällt dein Blick in die Nische hinter Hortums Sockel, wo der Stein einen fingerbreiten
+	Spalt lässt. Etwas steckt darin, klein und unscheinbar: ein Würfel aus dunklem Holz, die Augen nicht gepunktet,
+	sondern eingekerbt, und statt der Sechs ein eingeritztes Zeichen — Weinreebe.</p>
+	<</scene>>
+	<<gedanke>>
+	<p>Ich kenne dieses Zeichen. Hans hat es getragen. Barsingers Mal — mitten im Tempel
+	der Drei, hinter dem Gott des Krieges versteckt, wo kein Geweihter je nachsieht. Jemand hat dem Spielmann hier
+	geopfert, unter den Augen einer Kirche, die ihn nicht duldet. Und wer das Zeichen findet und versteht, gehört wohl
+	selbst schon halb dazu.</p>
+	<</gedanke>>
+	<p>Du lässt den Würfel, wo er liegt. Aber du wirst ihn nicht vergessen — und irgendwo, das ahnst du, wird man nicht
+	vergessen, dass du ihn gesehen hast.</p>
+	<<set $world.flags.barsinger_spur to true>>
+	<<set $world.flags.barsinger_spur_tag to $world.day>>
+<</if>>
+
+<<trenner>>
+[[Weiter|Stadt_Kirche_Ende]]
 
 :: Stadt_Markt {"position":"2425,5750","size":"100,100"}
 <<scene>>
@@ -882,19 +1054,20 @@ der seine Runde vergessen zu haben scheint.</p>
 <p>Ein Händler mit ledriger Haut und geflickter Schürze breitet seine Ware auf einem groben Tuch aus.</p>
 
 <ul class="sandbox-menu">
-	<li>
-	<<if setup.canAffordMoney(35)>>
-		<<link "Ein wunderschönes Feldmesser erstehen (5 Silber)">>
-			<<print setup.removeMoney(35)>>
-			<<print setup.addWeaponToInventory("field_knife")>>
-			<<goto "Stadt_Markt">>
-		<</link>>
-	<<else>>
-		<span class="stat-empty">Ein wunderschönes Feldmesser (5 Silber) — dafür reicht dein Beutel nicht</span>
+	<<if !setup.hasItem("field_knife")>>
+		<li>
+		<<if setup.canAffordMoney(35)>>
+			<<link "Ein wunderschönes Feldmesser erstehen (5 Silber)">>
+				<<print setup.removeMoney(35)>>
+				<<print setup.addItem("field_knife")>>
+				<<goto "Stadt_Markt">>
+			<</link>>
+		<<else>>
+			<span class="stat-empty">Ein wunderschönes Feldmesser (5 Silber) — dafür reicht dein Beutel nicht</span>
+		<</if>>
+		<span class="subtext">— Kurz, aber verlässlich. Wunderschön gearbeitet. Nützt auch abseits des Gefechts.</span>
+		</li>
 	<</if>>
-	<span class="subtext">— Kurz, aber verlässlich. Wunderschön gearbeitet. Nützt auch abseits des Gefechts.</span>
-	</li>
-
 	<li>
 	<<if setup.canAffordMoney(4)>>
 		<<link "Ein Stück geräuchertes Fleisch kaufen (4 Kupfer)">>
@@ -924,73 +1097,74 @@ der seine Runde vergessen zu haben scheint.</p>
 
 <<if not $npc.karla.memory.flags.verhaftung_seen>>
 	<hr class="trenner-raute">
-	<p>Zwischen den Ständen hat sich ein Krämer eingerichtet, dessen Tisch aussieht, als hätte er von allem eines: Bänder, Steine, Tüten, Töpfchen. Dein Blick bleibt an ein paar Dingen hängen — nicht für dich.</p>
+	<p>Zwischen den Ständen hat sich ein Krämer eingerichtet, dessen Tisch aussieht, als hätte er von allem eines: Bänder, Steine, Tüten, Töpfchen. 
+	Dein Blick bleibt an ein paar Dingen hängen — nicht für dich.</p>
 
 	<ul class="sandbox-menu">
 		<li>
 		<<if setup.canAffordMoney(4)>>
 			<<link "Gebrannte Mandeln (4 Kupfer)">>
 				<<print setup.removeMoney(4)>>
-				<<set $world.tmpKauf to "mandeln">>
+				<<= setup.addItem("Gebrannte Mandeln")>>
 				<<goto "Stadt_Markt">>
 			<</link>>
+			<span class="subtext">— Süß und knackig. Ein Leckerbissen und eine willkommene Abwechslung zum Aloyer Allerley.</span>
 		<<else>>
 			<span class="stat-empty">Gebrannte Mandeln (4 Kupfer) — dafür reicht dein Beutel nicht</span>
 		<</if>>
-			<span class="subtext">— Süß und knackig. Ein Leckerbissen und eine willkommene Abwechslung zum Aloyer Allerley.</span>
 		</li>
-	
+
 		<li>
 		<<if not setup.hasItem("Feiner Wetzstein")>>
 			<<set _g to setup.karlaGeschenke["wetzstein"]>>
 			<<if setup.canAffordMoney(_g.preis)>>
-				<<link "Ein feiner Wetzstein (1Silber 5 Kupfer)">>
-					<<print setup.removeMoney(_g.preis)>>
-					<<= setup.addItem(_g.item)>>
+				<<link "Ein feiner Wetzstein (1 Silber 5 Kupfer)">>
+					<<print setup.removeMoney(setup.karlaGeschenke["wetzstein"].preis)>>
+					<<= setup.addItem(setup.karlaGeschenke["wetzstein"].item)>>
 					<<goto "Stadt_Markt">>
 				<</link>>
 			<<else>>
-				<span class="stat-empty">Feiner Wetzstein (1Silber 5 Kupfer) — dafür reicht dein Beutel nicht</span>
+				<span class="stat-empty">Feiner Wetzstein (1 Silber 5 Kupfer) — dafür reicht dein Beutel nicht</span>
 			<</if>>
-		<</if>>   
-				<span class="subtext">— Ein sehr fein gearbeiteter Wetzstein, nichtt so klobig wie andere. Damit bekommt man eine richtig scharfen und sauberen Schliff.</span>
-		</li>
-		
-			<li>
-		<<if not setup.hasItem("Rotes Haarband") and not $npc.karla.memory.flags.haarband_getragen>>
-			<<if setup.canAffordMoney(14)>>
-			<<set _g to setup.karlaGeschenke["haarband"]>>
-				<<link "Ein rotes Haarband (2 Silber)">>
-					<<print setup.removeMoney(_g.preis)>>
-					<<= setup.addItem(_g.item)>>
-					<<goto "Stadt_Markt">>
-				<</link>>
-			<<else>>
-				<span class="stat-empty">Ein rotes Haarband (2Silber) — dafür reicht dein Beutel nicht</span>
-			<</if>>
-		<</if>> 
-				<span class="subtext">— Ein Rotes Haarband aus feinem Stoff. Ein schickes Etwas. Man braucht es nicht, aber es ist etwas besonderes.</span>
-		</li>
-		
-			<li>
-		<<if not setup.hasItem("Wallwurz-Salbe") and not $npc.karla.memory.flags.salbe_angenommen>>
-			<<if setup.canAffordMoney(7)>>
-			<<set _g to setup.karlaGeschenke[ "salbe"]>>
-				<<link "Wallwurz-Salbe (1Silber)">>
-					<<print setup.removeMoney(_g.preis)>>
-					<<= setup.addItem(_g.item)>>
-					<<goto "Stadt_Markt">>
-				<</link>>
-			<<else>>
-				<span class="stat-empty">Wallwurz-Salbe (1Silber) — dafür reicht dein Beutel nicht</span>
-			<</if>>
-		<</if>>   
-		<<if $player.spezialisierung === "medicine">>
-				<span class="subtext">— Beinwell-Salbe wirkt stark schmerzstillend, entzündungshemmend und abschwellend.. Die Heilpflanze fördert zudem die Geweberegeneration. Sie wird typischerweise zur äußerlichen Behandlung von stumpfen Verletzungen wie Prellungen, Zerrungen und Verstauchungen sowie bei Muskel- und Gelenkbeschwerden, Arthrose und Sehnenscheidenentzündungen eingesetzt. </span>
-		<<else>>
-							<span class="subtext">— Die Gute Wallwurz Salbe. Sie ist zwar teuer, aber wirkt bei zahlreichen verletzungen.</span>
+			<span class="subtext">— Ein sehr fein gearbeiteter Wetzstein, nicht so klobig wie andere. Damit bekommt man einen richtig scharfen und sauberen Schliff.</span>
 		<</if>>
-		</li>  
+		</li>
+
+		<li>
+		<<if not setup.hasItem("Rotes Haarband") and not $npc.karla.memory.flags.haarband_getragen>>
+			<<set _g to setup.karlaGeschenke["haarband"]>>
+			<<if setup.canAffordMoney(_g.preis)>>
+				<<link "Ein rotes Haarband (2 Silber)">>
+					<<print setup.removeMoney(setup.karlaGeschenke["haarband"].preis)>>
+					<<= setup.addItem(setup.karlaGeschenke["haarband"].item)>>
+					<<goto "Stadt_Markt">>
+				<</link>>
+			<<else>>
+				<span class="stat-empty">Ein rotes Haarband (2 Silber) — dafür reicht dein Beutel nicht</span>
+			<</if>>
+			<span class="subtext">— Ein rotes Haarband aus feinem Stoff. Ein schickes Etwas. Man braucht es nicht, aber es ist etwas Besonderes.</span>
+		<</if>>
+		</li>
+
+		<li>
+		<<if not setup.hasItem("Wallwurz-Salbe") and not $npc.karla.memory.flags.salbe_angenommen>>
+			<<set _g to setup.karlaGeschenke["salbe"]>>
+			<<if setup.canAffordMoney(_g.preis)>>
+				<<link "Wallwurz-Salbe (1 Silber)">>
+					<<print setup.removeMoney(setup.karlaGeschenke["salbe"].preis)>>
+					<<= setup.addItem(setup.karlaGeschenke["salbe"].item)>>
+					<<goto "Stadt_Markt">>
+				<</link>>
+			<<else>>
+				<span class="stat-empty">Wallwurz-Salbe (1 Silber) — dafür reicht dein Beutel nicht</span>
+			<</if>>
+			<<if $player.spezialisierung === "medicine">>
+				<span class="subtext">— Beinwell-Salbe wirkt stark schmerzstillend, entzündungshemmend und abschwellend und fördert die Geweberegeneration. Typischerweise für stumpfe Verletzungen wie Prellungen, Zerrungen und Verstauchungen sowie bei Muskel- und Gelenkbeschwerden, Arthrose und Sehnenscheidenentzündungen.</span>
+			<<else>>
+				<span class="subtext">— Die gute Wallwurz-Salbe. Zwar teuer, aber wirkt bei zahlreichen Verletzungen.</span>
+			<</if>>
+		<</if>>
+		</li>
 	</ul>
 <</if>>
 
@@ -1039,11 +1213,25 @@ der seine Runde vergessen zu haben scheint.</p>
 
 
 :: Stadt_Trinken {"position":"2175,5800","size":"100,100"}
-<<if setup.canAffordMoney(2)>>
+<<if $player.trinken === undefined>><<set $player.trinken to 0>><</if>>
+
+<<if $player.trinken gte 3>>
+	<<scene>>
+	<p>Du greifst nach dem nächsten Krug, doch der Wirt schiebt ihn dir aus der Reichweite. „Für heute ist's
+	genug, Freund. Geh, ehe dich deine Beine im Stich lassen — sonst zahlst du mir noch das Stroh, auf dem du landest.“</p>
+	<</scene>>
+
+<<elseif setup.canAffordMoney(2)>>
 	<<print setup.removeMoney(2)>>
+	<<set $player.trinken += 1>>
+
 	<<if random(1,20) === 1>>
 		<<scene>>
-		<p>Der zweite Schluck trifft dich stärker, als der erste es ahnen ließ — ein warmer Ruck, der durch die Glieder fährt wie ein Windstoß, der ein lange still liegendes Schiff endlich vorwärtstreibt. Irgendwo, du kannst nicht sagen woher, meinst du eine Flöte zu hören, ein einfaches, eingängiges Stück, das dir ein tiefes, unvermitteltes Gefühl von Zufriedenheit schenkt. Du siehst dich um. Kein Spielmann weit und breit — nur Gesichter, gerötet vom Bier, die dich merkwürdig erwartungsvoll ansehen.</p>
+		<p>Der zweite Schluck trifft dich stärker, als der erste es ahnen ließ — ein warmer Ruck, der durch die Glieder
+		fährt wie ein Windstoß, der ein lange still liegendes Schiff endlich vorwärtstreibt. Irgendwo, du kannst nicht
+		sagen woher, meinst du eine Flöte zu hören, ein einfaches, eingängiges Stück, das dir ein tiefes, unvermitteltes
+		Gefühl von Zufriedenheit schenkt. Du siehst dich um. Kein Spielmann weit und breit — nur Gesichter, gerötet vom
+		Bier, die dich merkwürdig erwartungsvoll ansehen.</p>
 		<</scene>>
 		<<gedanke>>
 		<p>Was ist hier los? Kann es sein, dass sie alle darauf gewartet haben?</p>
@@ -1052,14 +1240,49 @@ der seine Runde vergessen zu haben scheint.</p>
 		<<dialog>>
 		<<formal>>„Barsinger!“<</formal>>
 		<</dialog>>
-		<p>Für einen kurzen Atemzug sehen dich alle Anwesenden ungläubig an — dann erheben sich ein Dutzend Krüge, und der Ruf hallt zurück, dreifach, zehnfach, bis die ganze Schenke in einen Sturm des Feierns ausbricht, als hätten sie nur auf dieses eine Wort gewartet.</p>
-        <<print setup.setPlayerStat("faith", 10)>>
+		<p>Für einen kurzen Atemzug sehen dich alle ungläubig an — dann erheben sich ein Dutzend Krüge, und der Ruf hallt
+		zurück, dreifach, zehnfach, bis die ganze Schenke in einen Sturm des Feierns ausbricht, als hätten sie nur auf
+		dieses eine Wort gewartet.</p>
+		<<print setup.setPlayerStat("faith", 10)>>
+
 	<<else>>
+		<<scene>>
+		<p>Du trinkst, und der Krug wärmt von innen. Um dich her wird geredet, lauter mit jedem Becher — und wer mittrinkt,
+		hört Dinge, die nüchtern niemand ausspricht.</p>
+		<</scene>>
 		<<= setup.getNpcInteraction("Kap2_Pool_Schenke_Trinken")>>
+
+		<<set _story to setup.getGossipStory()>>
+		<<if _story>>
+			<p><<= _story.base>></p>
+			<<if _story.probe>>
+				<<set _erfolg to setup.skillCheckXp("gossip", 13, _story.probe.difficulty - 2 + $player.trinken)>>
+				<<= setup.skillCheckAlert(_erfolg)>>
+				<<if _erfolg.success>>
+					<<= _story.probe.success>><br>
+					<<= setup.addRumor(_story.rumorText)>>
+					<<run setup.markGossipSeen(_story.id, true)>>
+				<<else>>
+					<<gedanke>>
+					<p>Zu viele Stimmen, zu viel Bier — das Wort zerfließt dir, ehe du es fassen kannst.</p>
+					<</gedanke>>
+					<<run setup.markGossipSeen(_story.id, false)>>
+				<</if>>
+			<<else>>
+				<<= setup.addRumor(_story.rumorText)>>
+				<<run setup.markGossipSeen(_story.id, true)>>
+			<</if>>
+		<<else>>
+			<<gedanke>>
+			<p>Heute ist nichts Neues zu holen — nur das alte Gerede, das jeder längst kennt.</p>
+			<</gedanke>>
+		<</if>>
 	<</if>>
+
 <<else>>
 	<<scene>>
-	<p>Du tastest nach deinem Beutel und findest ihn leichter, als dir lieb ist. Für einen Krug reicht es nicht — und der Wirt ist nicht der Mann, der auf Kredit ausschenkt.</p>
+	<p>Du tastest nach deinem Beutel und findest ihn leichter, als dir lieb ist. Für einen Krug reicht es nicht —
+	und der Wirt ist nicht der Mann, der auf Kredit ausschenkt.</p>
 	<</scene>>
 <</if>>
 
@@ -1069,23 +1292,26 @@ der seine Runde vergessen zu haben scheint.</p>
 
 :: Suspicion_Rapport_Ausrede [nach_Kap2_tag] {"position":"1425,5075","size":"100,100"}
 <<scene>>
-<p>Du wählst die Lüge — glatt, beiläufig, mit dem unschuldigen Gesicht eines Rekruten, der nicht begreift, warum man ihn überhaupt gerufen hat. Ein Missverständnis, sagst du. Ein Auftrag, den man dir gab. Ein Weg, den du nur abgekürzt hast.</p>
+<p>Du wählst die Lüge — glatt, beiläufig, mit dem unschuldigen Gesicht eines Rekruten, der nicht begreift, warum man ihn überhaupt gerufen hat.
+ Ein Missverständnis, sagst du. Ein Auftrag, den man dir gab. Ein Weg, den du nur abgekürzt hast.</p>
 <</scene>>
 
-<<set _r to setup.skillCheckXp("gossip", 13, setup.suspicionMod())>>
+<<set _r to setup.skillCheckXp("gossip", 14)>>
 <<= setup.skillCheckAlert(_r)>>
 
 <<if _r.success>>
-<<dialog>>
-<p>Rindler kneift die Augen zusammen, doch er findet keinen Riss in deiner Geschichte. „Dann achtet künftig genauer darauf, wo Ihr Euch aufhaltet“, sagt er knapp. Die Tür steht dir offen.</p>
-<</dialog>>
-<<gedanke>>
-<p>Er hat es nicht geglaubt. Aber er kann es nicht widerlegen, und das genügt — für heute.</p>
-<</gedanke>>
-<<= setup.setPlayerSuspicion(-35)>>
+	<<dialog>>
+	<p>Rindler kneift die Augen zusammen, doch er findet keinen Riss in deiner Geschichte. „Nun gut. Aber achtet künftig genauer darauf, wo Ihr Euch aufhaltet“, 
+	sagt er knapp. Die Tür steht dir offen.</p>
+	<</dialog>>
+	<<gedanke>>
+	<p>Er hat es geglaubt! </p>
+	<</gedanke>>
+	<<= setup.setPlayerSuspicion(-35)>>
 <<else>>
 <<dialog>>
-<p>Rindler lässt dich nicht einmal ausreden. „Genug“, sagt er, und seine Stimme ist kälter als zuvor. „Ich weiß, wann ein Mann lügt. Beweisen kann ich es nicht — noch nicht. Aber ich werde es aufschreiben. Und ich vergesse nichts, was ich aufschreibe.“</p>
+<p>Rindler lässt dich nicht einmal ausreden. „Genug“, sagt er, und seine Stimme ist kälter als zuvor. „Ich weiß, wann ein Mann lügt. 
+Beweisen kann ich es nicht — noch nicht. Aber ich werde es aufschreiben. Und ich vergesse nichts, was ich aufschreibe.“</p>
 <</dialog>>
 <<gedanke>>
 <p>Ein Eintrag. Ein Name in einem Buch, das ich nicht einsehen kann. Von nun an bin ich für ihn kein Rekrut mehr, sondern ein Fall.</p>
@@ -1102,7 +1328,8 @@ der seine Runde vergessen zu haben scheint.</p>
 
 :: Suspicion_Rapport_Ehrlich [nach_Kap2_tag] 
 <<scene>>
-<p>Du entscheidest dich für die Wahrheit — nicht die ganze, aber genug, dass kein Wort sich später gegen dich wenden kann. Du sprichst von Jarek, von den Fragen, die seit seinem Verschwinden offen sind, von dem Bedürfnis, zu verstehen, was mit einem Kameraden geschah.</p>
+<p>Du entscheidest dich für die Wahrheit — nicht die ganze, aber genug, dass kein Wort sich später gegen dich wenden kann. Du sprichst von Jarek, 
+von den Fragen, die seit seinem Verschwinden offen sind, von dem Bedürfnis, zu verstehen, was mit einem Kameraden geschah.</p>
 <</scene>>
 
 <p>Rindler hört zu, ohne zu unterbrechen. Als du endest, mustert er dich lange.</p>
@@ -1125,54 +1352,82 @@ der seine Runde vergessen zu haben scheint.</p>
 
 :: Suspicion_Rapport_Rindler [interrupt] {"position":"1350,4950","size":"100,100"}
 <<scene>>
-<p>Der Bote findet dich zwischen zwei Übungen, und die Worte lassen keinen Zweifel: Hauptmann Rindler wünscht dich zu sehen. Sofort. Nicht in der Schreibstube, sondern in dem kahlen Raum neben der Wachstube, in dem sonst nur Verhöre und Verweise stattfinden.</p>
+<p>Der Bote findet dich zwischen zwei Übungen, und die Worte lassen keinen Zweifel: Hauptmann Rindler wünscht dich zu sehen. Sofort. 
+Nicht in der Schreibstube, sondern in dem kahlen Raum neben der Wachstube, in dem sonst nur Verhöre und Verweise stattfinden.</p>
 <</scene>>
 
-<p>Rindler steht am Fenster, als du eintrittst, die Hände auf dem Rücken verschränkt. Er dreht sich nicht sofort um. Erst als die Tür ins Schloss fällt, wendet er dir das Gesicht zu — ruhig, prüfend, ohne Wärme.</p>
+<p>Rindler steht am Fenster, als du eintrittst, die Hände auf dem Rücken verschränkt. Er dreht sich nicht sofort um. Erst als die Tür ins Schloss fällt,
+ wendet er dir das Gesicht zu — ruhig, prüfend, ohne Wärme.</p>
 
 <<dialog>>
-<p>„Ihr fallt auf, Waffenträger“, sagt er ohne Umschweife. „Ein Mann, der Fragen stellt, die ihn nichts angehen. Der in Büchern liest, die nicht für ihn geführt werden. Der an Türen steht, hinter denen er nichts zu suchen hat.“</p>
+<p>„Ihr fallt auf, Waffenträger“, sagt er ohne Umschweife. „Ein Mann, der Fragen stellt, die ihn nichts angehen. 
+Der in Büchern liest, die nicht für ihn geführt werden. Der an Türen steht, hinter denen er nichts zu suchen hat.“</p>
 <</dialog>>
 
 <<gedanke>>
-<p>Er hat keine Beweise — sonst säße ich bereits in Ketten. Aber er hat genug gehört, um mich in diesen Raum zu rufen. Was ich jetzt sage, entscheidet, ob aus einem Verdacht eine Akte wird.</p>
+<p>Er hat keine Beweise — sonst säße ich bereits in Ketten. Aber er hat genug gehört, um mich in diesen Raum zu rufen. 
+Was ich jetzt sage, entscheidet, ob aus einem Verdacht eine Akte wird.</p>
 <</gedanke>>
 
 <<dialog>>
 <p>„Ich frage Euch nur einmal“, sagt Rindler. „Was treibt Ihr?“</p>
 <</dialog>>
 
-<ul>
-<li>[[Ruhig bei der Wahrheit bleiben, so weit du kannst->Suspicion_Rapport_Ehrlich]]</li>
-<li>[[Eine Ausrede wagen->Suspicion_Rapport_Ausrede]]</li>
-</ul>
+
+<div id="sandbox-menu">
+	<ul class="sandbox-menu">
+		<li>
+		<<link "Ruhig bei der Wahrheit bleiben, so weit du kannst">>
+			<<replace "#sandbox-menu">>
+				<<trenner>>
+				<<goto "Suspicion_Rapport_Ehrlich">>
+			<</replace>>
+		<</link>>
+		</li>
+
+		<li>
+		<<link "Eine Ausrede wagen">>
+			<<replace "#sandbox-menu">>
+				<<set _r to setup.skillCheckXp("gossip", 14)>>		
+				<<trenner>>
+				<<goto "Suspicion_Rapport_Ausrede">>
+			<</replace>>
+		<</link>>
+		<span class="subtext">— Versuche Rindler eine Ausrede zu präsentieren. <<= setup.checkHint("gossip", 15)>>></span>
+		</li>
+	</ul>
+	</div>
+
 
 
 :: Suspicion_Spinddurchsuchung [interrupt nach_Kap2_tag] {"position":"1650,4975","size":"100,100"}
 <<scene>>
-<p>Es geschieht ohne Vorwarnung. Als die Truppe vom Nachmittagsdrill zurückkehrt, stehen zwei Weibel an der Tür der Stube, und ein dritter Mann — einer von Rindlers Leuten — hat bereits begonnen, die Spinde zu öffnen. Deinen zuerst.</p>
+<p>Es geschieht ohne Vorwarnung. Als die Truppe vom Nachmittagsdrill zurückkehrt, stehen zwei Weibel an der Tür der Stube,
+ und ein dritter Mann — einer von Rindlers Leuten — hat bereits begonnen, die Spinde zu öffnen. Deinen zuerst.</p>
 <</scene>>
 
-<p>Du stehst reglos, während fremde Hände dein Weniges durchwühlen. Jeder Blick der anderen Rekruten brennt in deinem Rücken. Es gibt nichts zu tun, als zu warten, was sie finden.</p>
+<p>Du stehst reglos, während fremde Hände dein Weniges durchwühlen. Jeder Blick der anderen Rekruten brennt in deinem Rücken. 
+Es gibt nichts zu tun, als zu warten, was sie finden.</p>
 
 <<if setup.hatBelastendes()>>
-<<dialog>>
-<p>Der Mann richtet sich auf, ein Bündel Papiere in der Hand — deine Aufzeichnungen, Namen, Daten, Fuhren, in deiner eigenen Schrift. Etwas, das dort niemals hätte liegen dürfen. Er sagt kein Wort. Er muss es nicht.</p>
-<</dialog>>
-<<gedanke>>
-<p>Es ist vorbei. Nicht heute vielleicht, nicht in diesem Augenblick — aber sie haben es in der Hand, und nichts, was ich sage, macht es ungeschehen.</p>
-<</gedanke>>
-<<set $world.flags.akteneintrag to true>>
-<<= setup.setNpcAffection("hauptmann", -6)>>
-<<= setup.setPlayerSuspicion(10)>>
+	<<dialog>>
+	<p>Der Mann richtet sich auf, ein Bündel Papiere in der Hand — deine Aufzeichnungen, Namen, Daten, Fuhren, in deiner eigenen Schrift. Etwas, das dort niemals hätte liegen dürfen. Er sagt kein Wort. Er muss es nicht.</p>
+	<</dialog>>
+	<<gedanke>>
+	<p>Es ist vorbei. Nicht heute vielleicht, nicht in diesem Augenblick — aber sie haben es in der Hand, und nichts, was ich sage, macht es ungeschehen.</p>
+	<</gedanke>>
+
+	<<set $world.flags.akteneintrag to true>>
+	<<= setup.setNpcAffection("hauptmann", -3)>>
+	<<= setup.setPlayerSuspicion(10)>>
 <<else>>
-<<dialog>>
-<p>Der Mann schließt den Spind, ohne gefunden zu haben, wonach er suchte. „Diesmal“, sagt er nur, ehe er sich abwendet — ein Wort, das mehr Drohung ist als jede Anklage.</p>
-<</dialog>>
-<<gedanke>>
-<p>Sie haben nichts. Aber sie haben mir gezeigt, dass sie kommen können, wann immer sie wollen. Von nun an muss ich sauber sein — sauberer, als ich es je war.</p>
-<</gedanke>>
-<<= setup.setPlayerSuspicion(-20)>>
+	<<dialog>>
+	<p>Der Mann schließt den Spind, ohne gefunden zu haben, wonach er suchte. „Diesmal“, sagt er nur, ehe er sich abwendet — ein Wort, das mehr Drohung ist als jede Anklage.</p>
+	<</dialog>>
+	<<gedanke>>
+	<p>Sie haben nichts. Aber sie haben mir gezeigt, dass sie kommen können, wann immer sie wollen. Von nun an muss ich sauber sein — sauberer, als ich es je war.</p>
+	<</gedanke>>
+	<<= setup.setPlayerSuspicion(-20)>>
 <</if>>
 
 <<set $world.tagesAktionen += 1>>
@@ -1661,3 +1916,173 @@ Er wird dich weiter drillen, hart und korrekt — aber die Tür, die sich einen 
 <<set $npc.kurt.memory.flags.kurt_stufe to 3>>
 <<weiterImTag "Zurück in den Tag">>
 
+
+
+
+:: Kapitel2_Ende [interrupt einmalig nach_Kap2_tag] {"position":"200,7000","size":"100,100"}
+<<set $npc.karla.memory.flags.kapitel2_ende_seen to true>>
+<<set _spec to $player.spezialisierung>>
+<<set _lvl to ($player.knowledge[_spec] || 0)>>
+<<set _aff to ($npc.hauptmann.affection || 0)>>
+<<set _susp to ($player.suspicion || 0)>>
+<<set _biwak to setup.biwagVerdikt()>>
+
+<<scene>>
+<p>Der Marschbefehl kommt bei Tagesanbruch, wie solche Dinge immer kommen — ohne Vorwarnung und doch von allen
+erwartet. Auf dem Appellplatz steht die Kompanie in Reih und Glied, die Karren beladen, die Banner schwer in der
+kalten Morgenluft. Das zweite Jahr ist vorüber. Was jenseits des Tors liegt, ist kein Drill mehr und kein Biwak.</p>
+<</scene>>
+
+<<gedanke>>
+<p>Zwei Jahre hinter diesen Mauern. Ich weiß nicht mehr genau, wann aus dem kranken Jungen der Mann wurde, der
+hier steht und wartet, dass sich das Tor öffnet. Aber ich weiß, dass es geschehen ist. Und dass es keinen Weg
+zurück gibt.</p>
+<</gedanke>>
+
+/* ---- RINDLER: der rote Faden — Zuneigung + Verdacht ---- */
+<<dialog>>
+<<if _aff gte 10>>
+<p>Rindler geht die Reihe ab und bleibt vor dir stehen, länger als vor den anderen. „Von hundert Rekruten“, sagt
+er ruhig, „behalte ich eine Handvoll. Ihr gehört dazu, Waffenträger.“ Aus dem Mund dieses Mannes ist das beinahe Wärme.</p>
+<<elseif _aff gte 1>>
+<p>Rindler bleibt kurz vor dir stehen, mustert dich sachlich. „Ihr habt Euch gehalten“, sagt er. „Nicht mehr,
+nicht weniger. Das ist im Feld mehr wert, als die meisten glauben.“ Ein knappes Nicken, korrekt, ohne Härte.</p>
+<<elseif _aff lte -5>>
+<p>Rindler geht an dir vorbei, ohne den Schritt zu verlangsamen. Was zwischen euch stand, hat sich nie geglättet.
+Er entlässt dich in den Krieg, weil er muss — nicht, weil er Euch etwas wünscht.</p>
+<<else>>
+<p>Rindler mustert dich im Vorbeigehen, ohne Regung. Ihr wart nie warm miteinander, aber er hat dich auch nie
+fallen lassen. Pflicht, sauber erfüllt, auf beiden Seiten.</p>
+<</if>>
+<</dialog>>
+
+<<if _susp gte 40>>
+<<gedanke>>
+<p>Und doch — sein Blick bleibt einen Herzschlag zu lang auf mir. Er hat nie ganz aufgehört, mich zu beobachten.
+Ich marschiere hinaus mit einem Schatten, den ich nicht abgelegt habe. Wer weiß, ob er mit mir zieht.</p>
+<</gedanke>>
+<<else>>
+<<gedanke>>
+<p>Was auch immer sie über mich gemunkelt haben in diesem Jahr — es haftet nicht mehr an mir. Ich gehe mit
+reiner Weste durch dieses Tor. Das ist mehr, als mancher von sich sagen kann.</p>
+<</gedanke>>
+<</if>>
+
+/* ---- ERMITTLUNG ---- */
+<<if $world.ermittlung.flags.beweis_stark>>
+<p>An der Waffenausgabe steht ein Fremder. Oren Malk ist fort — vor den Rat gezerrt, sein Buchwerk aufgeschlagen
+wie eine offene Wunde. Was du zusammengetragen hast, hat gehalten. Ein paar Männer der Kompanie sehen dir nach,
+und in ihren Blicken liegt etwas, das kein Vorgesetzter befehlen kann: Respekt.</p>
+<<else>>
+<p>An der Waffenausgabe steht noch immer Oren Malk, unangetastet, und als die Kolonne anrollt, hebt er kaum den
+Blick. Er hat den Kanal geschlossen, ehe du zugreifen konntest. Du weißt, was er ist. Beweisen wirst du es nie.
+Dieses Wissen marschiert mit dir, schwerer als jeder Tornister.</p>
+<</if>>
+
+<<set _staerke to setup.ermFallStaerke()>>
+<<switch _staerke>>
+	<<case "stark">>
+		<p>An der Waffenausgabe steht ein Fremder. Oren Malk ist fort — vor den Rat gezerrt, sein Buchwerk aufgeschlagen
+		wie eine offene Wunde. Was du zusammengetragen hast, war mehr als genug. Einige Männer der Kompanie sehen dir nach,
+		und in ihren Blicken liegt etwas, das kein Vorgesetzter befehlen kann: Respekt.</p>
+	<<case "indizien">>
+		<p>An der Waffenausgabe steht ein Fremder. Oren Malk ist fort — vor den Rat gezerrt, sein Buchwerk aufgeschlagen
+		wie eine offene Wunde. Was du zusammengetragen hast, hat gehalten. Ein paar Männer der Kompanie sehen dir nach,
+		und in ihren Blicken liegt etwas, das kein Vorgesetzter befehlen kann: Respekt.</p>
+	<<case "duenn">>
+		<p>An der Waffenausgabe steht ein Fremder. Oren Malk ist fort — vor den Rat gezerrt, sein Buchwerk aufgeschlagen
+		wie eine offene Wunde. Was du zusammengetragen hast, war fragil. Rindler hat es aus ihm rausgepresst. Immerhin war es dein
+		Anstubsen das Rindler zum Handeln brachte.</p>
+<</switch>>
+
+/* ---- DUELL ---- */
+<<switch $world.duell.tier>>
+<<case "A">>
+<p>Weiter hinten in der Reihe stehen Pavel und Bronko — beide, lebend, und wenn sie einander auch nicht ansehen,
+so heben sie doch keine Hand mehr gegeneinander. Was zwischen Rabenfurt und Rabenfurt lag, hast du nicht geheilt.
+Aber du hast verhindert, dass es Blut trägt. Sie ziehen in denselben Krieg wie du, und das ist genug.</p>
+<<case "B">>
+<p>Pavel und Bronko marschieren mit, beide gezeichnet von jener Nacht, der Frieden zwischen ihnen brüchig wie
+Eis im Tauwetter. Keiner ist gefallen — das bleibt dein Verdienst. Ob es hält, wird der Krieg entscheiden, nicht du.</p>
+<<default>>
+<p>Drei Plätze in der Reihe bleiben leer, und alle wissen, wessen. Die Fehde von Rabenfurt hat ihr Blut bekommen,
+und du bist dabeigewesen, als es floss. Ein Tag, solche Auswirkungen.</p>
+<</switch>>
+
+/* ---- KARLA ---- */
+<<if not setup.karlaDa()>>
+<p>Karla ist nicht unter den Marschierenden. Wo sie jetzt ist, weißt du besser als die meisten — und dass ihr
+Platz leer bleibt, ist eine Wunde, die kein Befehl schließt.</p>
+<<elseif $npc.karla.memory.flags.paar>>
+<<dialog>>
+<p>Karla tritt neben dich, die Lanze über der Schulter, und für einen Moment berührt ihre Hand deine. „Dann also
+zusammen“, sagt sie leise, ohne zu lächeln, weil Lächeln zu klein wäre. Ihr geht durch dasselbe Tor, in denselben Krieg.</p>
+<</dialog>>
+<<elseif ($npc.karla.romanze || 0) gte 8>>
+<p>Karla fängt deinen Blick über die Reihen hinweg. Zwischen euch steht etwas, das nie ganz ausgesprochen wurde —
+und das der Krieg jetzt entweder zerbrechen oder schmieden wird. Sie nickt dir zu. Es ist ein Versprechen, kein Abschied.</p>
+<<elseif ($npc.karla.affection || 0) gte 10>>
+<p>Karla marschiert ein paar Glieder entfernt, und als sich eure Blicke treffen, hebt sie zwei Finger an die
+Schläfe — der knappe Gruß von Kameraden, die durch mehr gegangen sind, als sie je in Worte fassen werden.</p>
+<<elseif ($npc.karla.affection || 0) gte 5>>
+<p>Karla ist irgendwo in der Kolonne, eine vertraute Gestalt unter vielen. Ihr habt zusammen gekämpft, geschwiegen,
+überlebt. Mehr braucht es zwischen Soldaten nicht.</p>
+<<else>>
+<p>Karla marschiert weit vorn und sieht sich nicht um. Was zwischen euch hätte werden können, ist nie geworden.
+Vielleicht war die Zeit zu knapp. Vielleicht wart ihr es.</p>
+<</if>>
+
+/* ---- BIWAK: Rang / Kommando ---- */
+<<switch _biwak>>
+<<case "ausgezeichnet">>
+<p>Rindler hat dein Biwak nicht vergessen. Als die Marschordnung verlesen wird, fällt dein Name unter denen, die
+ein eigenes Kommando führen. Männer, die dir folgen sollen, sehen dich an — und wenden den Blick nicht ab.</p>
+<<case "bestanden">>
+<p>Dein Biwak hat sich in die Akten geschrieben, ordentlich, ohne Glanz. Man traut dir ein paar Männer zu, wenn
+es hart wird. Kein Kommando, aber auch kein bloßer Spießträger mehr.</p>
+<<case "knapp">>
+<p>Was im Feld geschah, hängt dir nach. Man hat dich heimgebracht, aber niemand vergisst, wie knapp es war.
+Du marschierst als einer von vielen — beweisen musst du dich noch.</p>
+<<default>>
+<p>Das Biwak steht wie ein Mahnmal hinter dir. Man gibt dir keine Verantwortung, die man nicht muss. Im Krieg,
+das weißt du, wird man dir eine zweite Chance geben — ob du willst oder nicht.</p>
+<</switch>>
+
+/* ---- SPEZIALISIERUNG + LEVEL ---- */
+<<set _meister to (_lvl gte 7)>>
+<<switch _spec>>
+<<case "pike">>
+<p>Der Spieß liegt in deiner Faust, als hätte er nie woanders gelegen.<<if _meister>> Zwei Jahre haben aus dir
+einen gemacht, der die Distanz beherrscht wie kaum ein anderer im Glied.<<elseif _lvl gte 4>> Du kennst dein
+Handwerk — sicher, verlässlich, kein Anfänger mehr.<<else>> Noch sitzt nicht jeder Griff, aber der Anfang ist gemacht.<</if>></p>
+<<case "crossbow">>
+<p>Die Armbrust hängt dir vertraut über der Schulter.<<if _meister>> Dein Auge liest die Distanz, ehe die anderen
+sie überhaupt sehen — im Krieg wird das Leben retten, deins und andere.<<elseif _lvl gte 4>> Du triffst, was du
+anvisierst, meistens beim ersten Bolzen.<<else>> Deine Hand ist noch nicht ruhig genug, aber sie wird es.<</if>></p>
+<<case "cannon">>
+<p>Das Geschütz ist dein Handwerk geworden.<<if _meister>> Du hörst der Lunte zu wie andere einem Gespräch —
+und weißt auf den Herzschlag genau, wann sie das Pulver findet.<<elseif _lvl gte 4>> Du bedienst das Rohr sicher,
+ohne dir selbst gefährlich zu werden.<<else>> Noch respektierst du das Pulver mehr, als dass du es beherrschst.<</if>></p>
+<<case "medicine">>
+<p>Die Feldschertasche trägst du wie einen Teil deiner selbst.<<if _meister>> Was andere für verloren halten,
+hast du schon zurückgeholt — im Krieg wird man dich mehr brauchen als jede Klinge.<<elseif _lvl gte 4>> Du weißt,
+wie man eine Wunde schließt und einen Mann am Leben hält.<<else>> Noch zittert dir die Hand am offenen Fleisch,
+aber du siehst nicht mehr weg.<</if>></p>
+<<default>>
+<p>Was für ein Soldat du bist, wird sich erst draußen zeigen. Zwei Jahre haben dich geformt — der Krieg wird
+zeigen, wozu.</p>
+<</switch>>
+
+<<gedanke>>
+<p>Durch dieses Tor bin ich einmal gekommen, kaum von den Bergen zusammengeflickt. Jetzt
+gehe ich hindurch — hinaus, dem entgegen, wofür sie mich gehärtet haben. Was ich in diesen Mauern getan habe,
+gut und schlecht, marschiert mit. Ich trage es weiter. Ich habe keine Wahl. Ich will auch keine.</p>
+<</gedanke>>
+
+<<trenner>>
+[[Hinaus, dem Abenteuer entgegen->Kapitel3_Start]]
+
+
+:: Kapitel3_Start
+
+TO BE DONE

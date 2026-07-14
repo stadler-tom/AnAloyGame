@@ -1,0 +1,7 @@
+[[wahrheit]]:[]
+[[pavel_trust]]:[0]
+[[bronko_trust]]:[0]
+[[zdenka_trust]]:[0]
+[[bronko_reue]]:[]
+[[ahnt_mehr]]:[]
+[[fest]]:[]

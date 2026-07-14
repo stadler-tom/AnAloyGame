@@ -186,6 +186,8 @@
 <<set _fresh = setup.maybeAnnounceExam()>>
 <<if _fresh>><div class="system-alert status-info">Der Magister hat soeben die Abschlusspruefung angekuendigt.</div><</if>>
 
+<<= setup.examHubHTML()>>
+
 <<= setup.getStudiumHubText("hubIntros")>>
 
 <div class="scenery-text"><<= setup.getStudiumHubText("hubScenery")>></div>
@@ -198,9 +200,6 @@
     <li>[[Beim Magister vorsprechen ->Studium Magister]]<span class="subtext">— Gelehrsamkeit einsetzen. Aktuell: <b><<= setup.scholarship()>></b></span></li>
 </ul>
 <div class="thought-box"><<= setup.getStudiumHubText("hubThoughts")>></div>
-
-
-<<= setup.examHubHTML()>>
 
 
 :: Studium Magister [studium] {"position":"1775,100","size":"100,100"}
@@ -422,7 +421,7 @@
 <p>Das ist, wie du inzwischen verstehst, bereits eine Leistung.</p>
 
 <div class="scenery-text">Der Hauptmann spricht. Du hörst die Worte ohne sie vollständig aufzunehmen. Deine Beine stehen, dein Rücken ist gerade, deine Augen sind geradeaus gerichtet. Das reicht. Das ist heute alles was verlangt wird und alles was du geben kannst.</div>
-<<= setup.setPlayerStat('amition', 1)>>
+<<= setup.setPlayerStat('ambition', 1)>>
 <p>Dann: entlassen.</p>
 <hr class="trenner-raute">
 
@@ -1156,8 +1155,8 @@
     <<goto _interrupt>>
 <<else>>
     
- <<if random(1, 100) <= 50>>
-      <div class="scenery-text">Kaum hast du dein Frühstück beendet, erklingt das vertraute Läuten der Glocken über den Dächern der Akademie. 
+ <<if not ($edu.exam.passed and $edu.archivzugang) and random(1, 100) <= 50>>
+      <div class="scenery-text">Kaum hast du dein Frühstück beendet, erklingt das vertraute Läuten der Glocken über den Dächern der Akademie.
 <p>Ihr Klang hallt durch Höfe und Korridore und ruft Studenten wie Lehrmeister gleichermaßen zu ihren Pflichten.</p>
         
 <p>Überall setzen sich Gruppen in Bewegung, Bücher werden unter die Arme geklemmt und Gespräche verstummen.</p>
@@ -1208,10 +1207,8 @@
 
 
 :: bye {"position":"1050,4475","size":"100,100"}
-<p>Danke fürs Spielen!</p>
 
-<p>Das wars fürs erste.</p>
+<p>Kapitel 2 Wartet auf dich!</p>
 
-<p>Mehr Content wird sicher irgendwann kommen.</p>
-
+[[Tauche weiter ein->Kapitel 2]]
 

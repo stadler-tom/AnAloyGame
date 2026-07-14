@@ -1,0 +1,1 @@
+spieler hat pavel vom Brief erzählt und Zdenka verraten

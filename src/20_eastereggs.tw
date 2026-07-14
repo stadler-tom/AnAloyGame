@@ -608,7 +608,7 @@ Du bleibst stehen, atmest flach und lässt die Brocken nicht mehr einzeln vorbei
 
 
 :: Story002_Bier_Ausgeben {"position":"2225,2675","size":"100,100"}
-<<set $player.gold -= 8>>
+<<set $player.copper -= 8>>
 <<= setup.setNpcAffection("weibelLars", 1)>>
 <<= setup.pushNpcMemory("weibelLars","Hat Bier ausgegeben")>>
 <<= setup.setNpcAffection("haddl", 1)>>

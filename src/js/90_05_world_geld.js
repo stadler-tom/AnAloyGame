@@ -22,7 +22,15 @@ setup.resetDailyVariables = function () {
     const condBefore = player.condition;
     const suspBefore = player.suspicion;
     const konditionDelta = player.hasSlept ? 10 : -10;
-    player.condition = setup.clamp(player.condition + konditionDelta, 0, 100);
+    var konditionDeltaBinge = 0;
+    switch (player.trinken) {
+        case 1: konditionDeltaBinge = -5; break;
+        case 2: konditionDeltaBinge = -10; break;
+        case 3: konditionDeltaBinge = -15; break;
+        default: konditionDeltaBinge = 0; break;
+    }
+    
+    player.condition = setup.clamp(player.condition + konditionDelta + konditionDeltaBinge, 0, 100);
 
     setup.tickSidequestDruck();
 
@@ -45,6 +53,10 @@ setup.resetDailyVariables = function () {
     world.tagesAktionen = 0;    /* Kap2: zwei freie Unternehmungen pro Tag */
     world.abendAktion = false;  /* Kap2: eine Abend-Aktion pro Tag */
     world.schenkeRueckweg = ""; /* Kap2: Schenke-Rücksprung (Tag/Abend) zurücksetzen */
+    world.wuerfelSpiel.gespielt = 0; /* Kap2: WürfelspielCounter zurücksetzen */
+    world.wuerfelSpiel.cheat = 0; /* Kap2: WürfelspielCheat zurücksetzen */
+    world.kirchenBesuch = false; /* Kap2: Kirchenbesuch zurücksetzen */
+    player.trinken = 0; /* Kap2: Trinken zurücksetzen */
     setup.tickKarlaDruck();
 };
 

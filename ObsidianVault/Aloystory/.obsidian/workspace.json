@@ -1,0 +1,228 @@
+{
+  "main": {
+    "id": "3f9bb67166a49c21",
+    "type": "split",
+    "children": [
+      {
+        "id": "60716ce52311377c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "2e86e795bfe20ffd",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Biwag/Story/Biwag_Drill.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Biwag_Drill"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "e9352e297b15c853",
+    "type": "split",
+    "children": [
+      {
+        "id": "75df1465fe5d064e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "bcd41d9fdeee085f",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": true
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Dateiexplorer"
+            }
+          },
+          {
+            "id": "a8f95e4d98a03cf4",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Suchen"
+            }
+          },
+          {
+            "id": "917ffaba4d83a144",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Lesezeichen"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "6a790dd3bfd08434",
+    "type": "split",
+    "children": [
+      {
+        "id": "900b5d778226c365",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ddb72b15581149d4",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Biwag/Story/Biwag_Drill.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": false
+              },
+              "icon": "links-coming-in",
+              "title": "Rückverweise auf Biwag_Drill"
+            }
+          },
+          {
+            "id": "b8625f48bda3b019",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Unbenannt.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Ausgehende Links von Unbenannt öffnen"
+            }
+          },
+          {
+            "id": "eafd3d69a2807fc9",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "57dd604ea02021db",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "Alle Eigenschaften"
+            }
+          },
+          {
+            "id": "7130b0ff73620dbe",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Unbenannt.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Gliederung von Unbenannt"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Schnellauswahl öffnen": false,
+      "graph:Graph-Ansicht öffnen": false,
+      "canvas:Neuen Canvas erstellen": false,
+      "daily-notes:Heutige Notiz öffnen": false,
+      "templates:Vorlage einfügen": false,
+      "command-palette:Befehlspalette öffnen": false,
+      "bases:Neue Base erstellen": false
+    }
+  },
+  "active": "2e86e795bfe20ffd",
+  "lastOpenFiles": [
+    "Biwag/Story/Biwag_Debrief_Ehrlich.md",
+    "Biwag/Story/Biwag_Debrief_Beschoenigen.md",
+    "Biwag/Story/Biwag_Debrief.md",
+    "Biwag/Story/Biwag_Aufbruch.md",
+    "Duell/Ablaufplan.canvas",
+    "Biwag/Ablaufplan.canvas",
+    "Unbenannt.canvas",
+    "Biwag/Werte/biwagBeatsDone.md",
+    "Biwag/Werte/biwagWacheBemerkt.md",
+    "Biwag/Werte/biwagWenzelWeg.md",
+    "Biwag/Werte/biwagWenzelHart.md",
+    "Biwag/Werte/biwagBond_wenzel.md",
+    "Biwag/Werte/biwagReiberei.md",
+    "Biwag/Werte/biwagTierfaehrte.md",
+    "Biwag/Werte/biwagTag1Tempo.md",
+    "Biwag/Werte/biwagStil.md",
+    "Biwag/Werte/biwagLast.md",
+    "Biwag/Werte/biwagEquipment.md",
+    "Biwag/Werte/biwagTag.md",
+    "Biwag/Werte/biwagProviant.md",
+    "Biwag/Werte/biwagMoral.md",
+    "Biwag/Story/Biwag_Tag7_Wuerdig.md",
+    "Biwag/Story/Biwag_Tag7_Forcieren.md",
+    "Biwag/Story/Biwag_Tag7_Ankunft.md",
+    "Biwag/Story/Biwag_Tag7.md",
+    "Biwag/Story/Biwag_Tag6_Zurueck.md",
+    "Biwag/Story/Biwag_Tag6_Ziehen.md",
+    "Biwag/Story/Biwag_Tag6_Wache.md",
+    "Biwag/Story/Biwag_Tag6_Verschlafen.md",
+    "Biwag/Story",
+    "Biwag/Werte",
+    "Biwag",
+    "Unbenannt.base",
+    "Unbenannt 1.canvas",
+    "Duell/Kanon.md.tmp.41676.2443ff23506c",
+    "Duell/Kanon.md.tmp.41676.94c8e7fa08fe",
+    "Aloy Landesinfos/Charackterinfos",
+    "Aloy Landesinfos",
+    "Duell/Kanon.md.tmp.33544.32cf70f1e319",
+    "Optionen/Duell_S3_PavelVomBriefErzaehlen.md.tmp.38732.d786d16bd2c4"
+  ]
+}

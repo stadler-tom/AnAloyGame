@@ -89,12 +89,12 @@ Aus dem Ärmel zieht er ein Bündel dünner Zweige, ungleich gekürzt, die Enden
 
 <p>Ein anderer, einer der Kanoniere, spuckt zur Seite und sagt nichts, 
 aber sein Blick bleibt an dir hängen, prüfend, abwartend, als würde er bereits Wetten gegen dich abschließen. 
-<<if $player.spezialisation neq "medicine">>
+<<if $player.spezialisierung neq "medicine">>
   Der Feldscher allein nickt dir kurz zu, ein knappes, fast freundliches Zeichen, das mehr wiegt als alle Worte der anderen zusammen.
 <</if>>
 </p>
 
-<<switch $player.spezialisation>>
+<<switch $player.spezialisierung>>
 <<case "pike">><<gedanke>><p>Ein Marsch macht aus einem Mann entweder einen Soldaten oder einen Krüppel, 
   das hat man dich am Spieß gelehrt. Es kommt darauf an, wer die Linie hält, wenn die Beine schon längst nicht mehr wollen. 
   Diesmal bist du es, der dafür sorgen muss, dass sie hält.</p><</gedanke>>
@@ -135,6 +135,30 @@ wenn es am wenigsten passt.</p>
 <<dialog>><p>„Das“, sagt Rindler leise, „war ein Versagen. Zermürbte Männer, verlorene Ordnung. Im Feld hätte Euch das Köpfe gekostet — nicht nur Euren.“</p><</dialog>>
 <</switch>>
 <<gedanke>><p>Was auch immer sie in ihre Akten schreiben — diese Woche wirst du nicht vergessen. Und sie dich nicht.</p><</gedanke>>
+
+<div class="biwag-protokoll">
+<h3>Die Woche im Feld</h3>
+<<= setup.biwagLogRender()>>
+</div>
+
+<<set $world.biwagDone to true>>
+<<set $world.biwagDoneDay to $world.day>>
+
+<<scene>>
+<p>Ehe Rindler euch entlässt, hält er noch einen Atemzug inne, den Blick über die Palisade hinaus,
+als läge dort schon der nächste Weg.</p>
+<</scene>>
+
+<<dialog>>
+<p>„Und merkt es euch“, sagt er, mehr zur Reihe als zu dir. „Das zweite Jahr neigt sich. Noch ein paar Tage
+hinter diesen Mauern — dann ist die Zeit der Übungen vorbei, und was danach kommt, ist kein Biwak mehr.“</p>
+<</dialog>>
+
+<<gedanke>>
+<p>Noch ein paar Tage. Ich spüre es seit Wochen: Etwas geht zu Ende. Und dahinter wartet etwas,
+das keiner von uns beim Namen nennt.</p>
+<</gedanke>>
+
 [[Auf die Stube gehen|Kap2_Abend]]
 
 
@@ -305,14 +329,50 @@ säuerlich, kaum merklich. Vielleicht nichts. Vielleicht der Anfang von etwas, d
 <</gedanke>>
 
 <ul>
-<li><<link "Die Vorräte gründlich durchsehen">>
-	<<set $world.biwagProviantGeprueft to true>>
-	<<goto "Biwag_Tag1_Abend">>
-<</link>></li>
-<li><<link "Es dabei belassen — die Männer sind müde">>
-	<<goto "Biwag_Tag1_Abend">>
-<</link>></li>
+<li>[[Die Vorräte gründlich durchsehen->Biwag_Tag1_Vorraete_Pruefen]]</li>
+<li>[[Es dabei belassen — die Männer sind müde->Biwag_Tag1_Vorraete_Belassen]]</li>
 </ul>
+
+
+:: Biwag_Tag1_Vorraete_Pruefen
+<<if setup.biwagBeatOnce("tag1_proviant")>>
+	<<= setup.biwagVerzug(1)>>
+	<<= setup.biwagLogPush("Vorräte gründlich geprüft, Verdorbenes aussortiert — Zeit gekostet")>>
+<</if>>
+<<scene>>
+<p>Während die anderen sich ans Feuer hocken, ziehst du die Proviantsäcke vom Karren und schnürst sie auf, einen nach
+dem anderen, im Schein der niedergebrannten Glut. Die Finger werden klamm, hinter dir murrt ein Mann über die verlorene
+Ruhe. Beim dritten Sack findest du, was die Nase versprochen hat: Unter der obersten Lage hat sich das Pökelfleisch grau
+verfärbt, schmierig und von weißem Flaum überzogen. Du trägst es weit hinaus und wirfst es in die Dunkelheit, ehe die
+Fäulnis das Übrige ansteckt.</p>
+<</scene>>
+
+<<gedanke>>
+<p>Eine Stunde, die ich nicht mehr einhole, und Männer, die mich dafür heute Nacht verfluchen. Aber ein Kessel voll
+verdorbenem Fleisch, und in drei Tagen krümmt sich das halbe Lager mit Krämpfen im Dreck. Lieber müde als krank.</p>
+<</gedanke>>
+
+<span class="weiter-link">[[Ans Feuer, ehe die Nacht ganz fällt->Biwag_Tag1_Abend]]</span>
+
+
+:: Biwag_Tag1_Vorraete_Belassen
+<<if setup.biwagBeatOnce("tag1_proviant")>>
+	<<= setup.biwagProviant(-1)>>
+	<<= setup.biwagLogPush("Vorräte ungeprüft gelassen — ein Sack verdarb, eine Ration verloren", false)>>
+<</if>>
+<<scene>>
+<p>Du lässt die Säcke, wie sie sind, und winkst die Männer in die Decken. Bis auf die Knochen müde rollen sie sich
+zusammen, einer nach dem anderen, und das Feuer sinkt zu einer roten Ader in der Asche. Nur der säuerliche Hauch aus
+dem Karren bleibt, dünn und hartnäckig, und mischt sich in den Geruch von Rauch und nassem Gras.</p>
+<</scene>>
+
+<<gedanke>>
+<p>Vielleicht ist es nichts. Vielleicht kippt der Sack in zwei Tagen, und dann werfen wir eine Tagesration in den Graben —
+auf einem Weg, der ohnehin knapp bemessen ist. Ich schiebe den Gedanken fort, dorthin, wo die anderen Sorgen warten.
+Heute nicht.</p>
+<</gedanke>>
+
+<span class="weiter-link">[[Ans Feuer, ehe die Nacht ganz fällt->Biwag_Tag1_Abend]]</span>
 
 
 :: Biwag_Tag1_Schonen 
@@ -353,6 +413,7 @@ Die Höhen sind mühsam, doch von oben sieht man, was kommt. Deins ist die Wahl.
 
 
 :: Biwag_Tag2_Fluss {"position":"3975,4200","size":"100,100"}
+<<if setup.biwagBeatOnce("tag2_route")>><<= setup.biwagVerzug(1)>><</if>>
 <<scene>>
 <p>Ihr folgt dem Wasser. Der Boden gibt unter den Stiefeln nach, Mücken hängen in der Luft, 
 doch der Fluss plaudert freundlich vor sich hin, und die Männer werden leichter im Schritt. 
@@ -396,7 +457,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 <</scene>>
 
 <<if setup.biwagBeatOnce("tag2_fund_muschel")>>
-	<<set $world.biwagFund_muschel to true>>
+	<<= setup.biwagVerzug(1)>>
 	<<= setup.addItem("seltsam geformte Muschel")>>
 <</if>>
 
@@ -405,13 +466,15 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 
 :: Biwag_Tag2_Fluss_Waldrand {"position":"4025,4325","size":"100,100"}
 <<scene>>
-<p>Du lässt das Glitzern Glitzern sein und führst die Männer den festeren Waldrand entlang. Ein trockener Streifen, gut zu gehen — aber außer einem verlassenen Vogelnest und altem Reisig gibt der Saum nichts her. Zeit gespart, nichts gewonnen.</p>
+<p>Du lässt das Glitzern Glitzern sein und führst die Männer den festeren Waldrand entlang. Ein trockener Streifen, gut zu gehen — aber außer einem verlassenen Vogelnest und altem Reisig gibt der Saum nichts her. Zeit gespart, nichts gewonnen — und die Männer, die auf einen kurzen Halt gehofft hatten, gehen ein wenig mürrischer weiter.</p>
 <</scene>>
+<<if setup.biwagBeatOnce("tag2_saum")>><<= setup.biwagMoral(-1)>><</if>>
 
 <span class="weiter-link">[[Weiter, ehe die Sonne steigt->Biwag_Tag2_Jagd]]</span>
 
 
 :: Biwag_Tag2_Huegel {"position":"4100,4200","size":"100,100"}
+<<if setup.biwagBeatOnce("tag2_route")>><<= setup.biwagMoral(-1)>><</if>>
 <<scene>>
 <p>Ihr nehmt die Höhen. Der Aufstieg zerrt an Waden und Atem, der Karren muss geschoben werden, und einer der Männer flucht leise vor sich hin. Doch oben öffnet sich das Land bis zum Horizont, klar und weit, und für einen Atemzug fühlt ihr euch weniger verloren in der Wildnis. Am Grat, wo der Wind das Gras flach drückt, geht dein Blick über den Boden.</p>
 <</scene>>
@@ -445,7 +508,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 <</scene>>
 
 <<if setup.biwagBeatOnce("tag2_fund_geweih")>>
-	<<set $world.biwagFund_geweih to true>>
+	<<= setup.biwagVerzug(1)>>
 	<<= setup.addItem("abgeworfene Geweihstange")>>
 <</if>>
 
@@ -454,8 +517,9 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 
 :: Biwag_Tag2_Huegel_Grat {"position":"4275,4325","size":"100,100"}
 <<scene>>
-<p>Du bleibst auf dem Kamm und lässt den Blick über den offenen Grat wandern. Weite, Wind, ein kreisender Bussard — schön anzusehen, aber der Fels gibt nichts her als Fels. Ihr geht weiter, die Hände leer.</p>
+<p>Du bleibst auf dem Kamm und lässt den Blick über den offenen Grat wandern. Weite, Wind, ein kreisender Bussard — schön anzusehen, aber der Fels gibt nichts her als Fels. Ihr geht weiter, die Hände leer, und die Männer tauschen Blicke über den Umweg, der nichts gebracht hat.</p>
 <</scene>>
+<<if setup.biwagBeatOnce("tag2_grat")>><<= setup.biwagMoral(-1)>><</if>>
 
 <span class="weiter-link">[[Weiter, ehe die Sonne steigt->Biwag_Tag2_Jagd]]</span>
 
@@ -531,7 +595,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 
 :: Biwag_Tag3_Abend [layout] {"position":"3625,3700","size":"100,100"}
 <<scene>>
-<p>Gegen Morgen hustet einer der Männer schwer, ein anderer fiebert leicht. Die Nässe hat ihren Tribut gefordert, und es liegt an dir<<if $player.spezialisation eq "medicine">> — dem Feldscher der Truppe —<</if>>, dass aus einer feuchten Nacht keine kranke Woche wird.</p>
+<p>Gegen Morgen hustet einer der Männer schwer, ein anderer fiebert leicht. Die Nässe hat ihren Tribut gefordert, und es liegt an dir<<if $player.spezialisierung eq "medicine">> — dem Feldscher der Truppe —<</if>>, dass aus einer feuchten Nacht keine kranke Woche wird.</p>
 <</scene>>
 <<if setup.biwagBeatOnce("tag3_gesund")>>
 	<<set _r to setup.biwagCheck("medicine", 13, setup.biwagItemMod("feldscher"))>>
@@ -666,10 +730,10 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 
 :: Biwag_Tag4_Jagd [layout] {"position":"4725,4350","size":"100,100"}
 <<scene>>
-<p>Du nimmst zwei ruhige Männer, den Wind im Gesicht, und schlägst dich ins Unterholz. <<if $player.spezialisation eq "crossbow">>Als Armbruster ist dies deine Stunde.<<elseif $player.spezialisation eq "pike">>Mit der Pike ist Jagd eine ungewohnte Kunst.<</if>></p>
+<p>Du nimmst zwei ruhige Männer, den Wind im Gesicht, und schlägst dich ins Unterholz. <<if $player.spezialisierung eq "crossbow">>Als Armbruster ist dies deine Stunde.<<elseif $player.spezialisierung eq "pike">>Mit der Pike ist Jagd eine ungewohnte Kunst.<</if>></p>
 <</scene>>
 <<if setup.biwagBeatOnce("tag4_jagd")>>
-	<<set _r to setup.biwagCheck($player.spezialisation, 13, setup.biwagAngel())>>
+	<<set _r to setup.biwagCheck($player.spezialisierung, 13, setup.biwagAngel())>>
 	<<= setup.skillCheckAlert(_r)>>
 	<<if _r.success>>
 		<p>Ein sauberer Schuss, ein kurzer Kampf, und ihr kehrt mit Beute ins Lager zurück. Heute Abend riecht es nach Braten.</p>
@@ -725,7 +789,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 
 :: Biwag_Tag5_Drill [layout] {"position":"5425,4575","size":"100,100"}
 <<scene>>
-<p>Du lässt antreten und die Handgriffe üben, bis sie sitzen. Mitten in der Übung splittert etwas — <<if $player.spezialisation eq "pike">>ein Pikenschaft bricht<<elseif $player.spezialisation eq "crossbow">>eine Armbrustsehne reißt<<elseif $player.spezialisation eq "cannon">>ein Zündeisen versagt<<else>>ein Riemenzeug reißt<</if>>, und plötzlich geht es nicht mehr ums Üben, sondern ums Flicken.</p>
+<p>Du lässt antreten und die Handgriffe üben, bis sie sitzen. Mitten in der Übung splittert etwas — <<if $player.spezialisierung eq "pike">>ein Pikenschaft bricht<<elseif $player.spezialisierung eq "crossbow">>eine Armbrustsehne reißt<<elseif $player.spezialisierung eq "cannon">>ein Zündeisen versagt<<else>>ein Riemenzeug reißt<</if>>, und plötzlich geht es nicht mehr ums Üben, sondern ums Flicken.</p>
 <</scene>>
 [[Das Gerät instand setzen|Biwag_Tag5_Reparatur]]
 
@@ -760,7 +824,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 
 :: Biwag_Tag5_Reparatur [layout] {"position":"5250,4575","size":"100,100"}
 <<if setup.biwagBeatOnce("tag5_reparatur")>>
-	<<set _r to setup.biwagCheck($player.spezialisation, 13, setup.biwagItemMod("waffenpflege"))>>
+	<<set _r to setup.biwagCheck($player.spezialisierung, 13, setup.biwagItemMod("waffenpflege"))>>
 	<<= setup.skillCheckAlert(_r)>>
 	<<if _r.success>>
 		<p>Mit ruhiger Hand bringst du das Gerät wieder in Ordnung, und die Männer sehen, dass ihr Weibel sein Handwerk versteht. Das zählt mehr als jeder Drill.</p>
@@ -837,7 +901,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 	<<= setup.biwagMoral(setup.biwagWetterMalus(false))>>
 <</if>>
 <<scene>>
-<p>Ein nasses, freudloses Lager. <<if $player.spezialisation eq "medicine">>Als Feldscher gehst du von Mann zu Mann,<</if>> und wieder gilt es, die Kränkelnden über die Nacht zu bringen.</p>
+<p>Ein nasses, freudloses Lager. <<if $player.spezialisierung eq "medicine">>Als Feldscher gehst du von Mann zu Mann,<</if>> und wieder gilt es, die Kränkelnden über die Nacht zu bringen.</p>
 <</scene>>
 <<if setup.biwagBeatOnce("tag6_gesund")>>
 	<<set _r to setup.biwagCheck("medicine", 13, setup.biwagItemMod("feldscher"))>>
