@@ -15,3 +15,10 @@ $(document).on(':passagedisplay', function (ev) {
         );
     }
 });
+
+// Hier kein <script>-Tag verwenden, sondern den Code direkt so:
+var script = document.createElement('script');
+script.setAttribute('data-goatcounter', 'https://stadler-tom.goatcounter.com/count');
+script.setAttribute('async', 'true');
+script.setAttribute('src', '//gc.zgo.at/count.js');
+document.head.appendChild(script);
