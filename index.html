@@ -1619,6 +1619,18 @@ $(document).on(':passagedisplay', function (ev) {
     s.src = '//gc.zgo.at/count.js';
     document.head.appendChild(s);
 })();
+
+(function () {
+  var url = 'https://aloystorycounter.stadler-tom.workers.dev/';
+  try {
+    if (!localStorage.getItem('anAloyGezaehlt')) {
+      fetch(url, { keepalive: true });
+      localStorage.setItem('anAloyGezaehlt', '1');
+    }
+  } catch (e) {
+    try { fetch(url, { keepalive: true }); } catch (e2) {}
+  }
+})();
 /* twine-user-script #3: "90_02_interrupts.js" */
 
 /* ================================================================
@@ -5583,7 +5595,7 @@ setup.duellEinfluss = function () {
     return { wert: wert, band: band };
 };
 
-</script><tw-tag name="nach_Kap2_abend" color="yellow"></tw-tag><tw-tag name="widget" color="blue"></tw-tag><tw-tag name="interrupt" color="purple"></tw-tag><tw-tag name="nach_Kap2_tag" color="green"></tw-tag><tw-tag name="pruefung" color="green"></tw-tag><tw-tag name="nach_Kap2_morgen" color="green"></tw-tag><tw-tag name="startup-debug" color="purple"></tw-tag><tw-tag name="nach_stube" color="orange"></tw-tag><tw-tag name="nach_hub" color="green"></tw-tag><tw-tag name="header" color="blue"></tw-tag><tw-tag name="nach_appell" color="yellow"></tw-tag><tw-tag name="studium" color="yellow"></tw-tag><tw-tag name="kapitel-opener" color="red"></tw-tag><tw-tag name="layout" color="green"></tw-tag><tw-tag name="journal" color="orange"></tw-tag><tw-tag name="script" color="purple"></tw-tag><tw-tag name="einmalig" color="red"></tw-tag><tw-tag name="nach_morgen" color="red"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="0,225" size="100,100">&lt;&lt;include &quot;InitPlayer&quot;&gt;&gt;
+</script><tw-tag name="script" color="purple"></tw-tag><tw-tag name="pruefung" color="green"></tw-tag><tw-tag name="nach_Kap2_tag" color="green"></tw-tag><tw-tag name="journal" color="orange"></tw-tag><tw-tag name="nach_Kap2_abend" color="yellow"></tw-tag><tw-tag name="startup-debug" color="purple"></tw-tag><tw-tag name="nach_appell" color="yellow"></tw-tag><tw-tag name="kapitel-opener" color="red"></tw-tag><tw-tag name="layout" color="green"></tw-tag><tw-tag name="nach_stube" color="orange"></tw-tag><tw-tag name="einmalig" color="red"></tw-tag><tw-tag name="interrupt" color="purple"></tw-tag><tw-tag name="studium" color="yellow"></tw-tag><tw-tag name="nach_Kap2_morgen" color="green"></tw-tag><tw-tag name="header" color="blue"></tw-tag><tw-tag name="widget" color="blue"></tw-tag><tw-tag name="nach_hub" color="green"></tw-tag><tw-tag name="nach_morgen" color="red"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="0,225" size="100,100">&lt;&lt;include &quot;InitPlayer&quot;&gt;&gt;
 &lt;&lt;include &quot;InitNPC&quot;&gt;&gt;
 &lt;&lt;include &quot;InitWorld&quot;&gt;&gt;
 &lt;&lt;include &quot;InitStudium&quot;&gt;&gt;
