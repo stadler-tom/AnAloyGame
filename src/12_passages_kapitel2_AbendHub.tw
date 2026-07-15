@@ -1,0 +1,292 @@
+:: Kap2_Abend {"position":"2750,3800","size":"100,100"}
+<<if $world.abendAktion === undefined>><<set $world.abendAktion to false>><</if>>
+<<set $player.hasSlept to true>>
+
+<<scene>>Die Glocke über dem Torhaus schlägt die letzte Stunde des Dienstes. 
+
+Über den Dächern der Akademie verglimmt das Licht, die Höfe leeren sich, 
+und aus der Küche zieht der Geruch von dünner Suppe und Brot herüber. 
+Der Dienst ist vorbei — aber der Abend gehört noch dir.<</scene>>
+
+<<if not $world.abendAktion>>
+
+	<p>Talglichter flackern hinter den Fenstern der Baracken auf. Noch ist Zeit für eines, ehe die Müdigkeit gewinnt.</p>
+
+	<<trenner>>
+	<<set _options = setup.kap2AbendStorylets.filter(function(s) { return s.available(); })>>
+	<ul class="menu">
+	<<for _i = 0; _i < _options.length; _i++>>
+		<<capture _i>>
+			<li><<link ` _options[_i].text` `_options[_i].target`>><<set $world.abendAktion to true>><</link>></li>
+		<</capture>>
+	<</for>>
+	<li>[[Früh schlafen gehen|Kap2_Abend_FruehSchlafen]]</li> 
+	</ul>
+
+	<<else>>
+
+	<p>Der Abend ist verbraucht. Die Baracke atmet schon im Takt der Schlafenden, und deine Pritsche ruft lauter als alles andere.</p>
+
+	<<link "Schlafen">>
+		<<if random(1, 100) lte 7>>
+			<<goto "Kap2_Abend_Alptraum">>
+		<<else>>
+			<<goto "Kap2_Tagesstart">>
+		<</if>>
+	<</link>>
+
+<</if>>
+
+
+:: Kap2_Abend_FruehSchlafen {"position":"2900,3800","size":"100,100"}
+<p>Keine Schenke, kein Licht, keine Pläne. Du liegst als Erster auf der Pritsche, und zum ersten Mal seit Tagen ist das Einschlafen kein Fallen, sondern ein Ankommen.</p>
+
+<<= setup.setPlayerCondition(5)>>
+
+<<gedanke>>Der Schinder hat im ersten Jahr immer gesagt: Schlaf ist die halbe Ausbildung. Der Mann hatte in mehr Dingen recht, als mir damals lieb war.<</gedanke>>
+
+	<<link "Schlafen">>
+		<<if random(1, 100) lte 7>>
+			<<goto "Kap2_Abend_Alptraum">>
+		<<else>>
+			<<goto "Kap2_Tagesstart">>
+		<</if>>
+	<</link>>
+
+
+:: Kap2_Abend_Alptraum
+
+<<set _verlust to 5>>
+
+<<scene>>
+<p>Die Baracke atmet im Schlaf — zwei Dutzend Männer, das Knarren der Pritschen, irgendwo ein Husten, der nicht enden will. Du fällst in den Schlaf wie in kaltes Wasser, und er hält nicht, was er verspricht. Er trägt dich hinunter, an einen Ort, den du bei Tag nicht zu betreten wagst.</p>
+<</scene>>
+
+
+<<if $npc.jarek.memory.flags.s6_done and not $player.flags.jarekTraum>>
+	<<gedanke>>
+	<p>Ich kenne diesen Gang. Ich bin ihn schon gegangen, wach und schlafend. Und ich weiß, wer am Ende steht.</p>
+	<</gedanke>>
+	<<if $player.flags.jareknarbe>>
+			<p>Jarek. Er steht da, wie er damals stand, das Gesicht halb im Schatten, und in seiner Hand liegt die Klinge, die dir die Narbe geschnitten hat. Im Traum ist alles langsamer und schneller zugleich — du siehst den Stich kommen, kannst dich nicht rühren, und die Haut brennt, als geschähe es zum ersten Mal. „Es tut mir leid", sagt er, wie er es nie gesagt hat, und stößt trotzdem zu.</p>
+	<<else>>
+		<p>Jarek ohne Gesicht drängt sich um dich, Hände, die greifen, ein Gang ohne Ende. In deiner Hand die Freiheitserklärung</p>
+	<</if>>	
+
+	<<set $player.flags.jarekTraum to true>>
+	<<set $player.flags.jarekTraumDay to $world.day>>
+<</if>>
+
+
+<<if $world.duell and $world.duell.done and $player.flags.jarekTraum and $player.flags.jarekTraumDay lt $world.day and not $player.flags.duellTraum>>
+	<<if $world.duell.tier is "C">>
+		<p>Der Reif knirscht, der Platz hinter den Ställen, und im Dunkeln liegt einer im eigenen Blut — <<if $world.duell.flags.bronko_tot>>Bronko, die Augen offen, ohne Vorwurf, was das Schlimmste daran ist<<else>>Pavel, und über ihm steht Bronko, entsetzt über die eigenen Hände<</if>>. Du stehst am Rand, wie du am Rand gestanden hast, und wieder kannst du nichts tun.</p>
+	<<elseif $world.duell.flags.verrat>>
+		<p>Und dann hältst du einen Brief in der Hand, Marjas Brief, und Zdenkas Augen sehen dich an, wie sie dich ansahen, als sie wussten, dass du geredet hast. „Ein einziges Versprechen", sagt sie, „und du hast es verkauft." Im Traum wiegt die Schuld schwerer als wach.</p>
+	<<else>>
+		<p>Und dann sind es Pavel und Bronko, Rücken an Rücken im Nebel, und du weißt nicht mehr, ob du sie befriedet oder nur aufgeschoben hast, was zwischen ihnen liegt.</p>
+	<</if>>
+	<<set $player.flags.duellTraum to true>>
+<</if>>
+
+<p>Etwas reißt — und du fährst hoch.</p>
+
+<<scene>>
+<p>Dunkelheit. Deine eigene Pritsche, der Schweiß kalt auf der Stirn, das Herz ein Hammer gegen die Rippen.
+<<if $player.flags.jareknarbe>> Die Narbe brennt, obwohl da längst nur noch vernarbte Haut ist.<</if>> Um dich her schlafen 
+die anderen weiter. Was in dir tobt, tobt allein.</p>
+<</scene>>
+
+
+
+<<if setup.karlaDa()>>
+	<<if $npc.karla.memory.flags.paar>>
+		<p>Eine Hand findet deine in der Dunkelheit — Karla, wach geworden von deinem Keuchen. Sie sagt nichts, fragt nichts. Sie hält nur, bis dein Atem sich beruhigt, und diese schweigende Nähe nimmt dem Traum die Hälfte seiner Macht.</p>
+		<<set _verlust to 2>>
+	<<elseif ($npc.karla.romanze || 0) gte 8>>
+		<p>Im Dunkeln tastet deine Hand ins Leere, wie von selbst, als suchte sie jemanden, der nicht da ist. Karla schläft ein paar Pritschen entfernt, und du denkst an sie, ohne zu wissen, warum gerade jetzt. Der Gedanke wärmt und schmerzt zugleich.</p>
+		<<set _verlust to 3>>
+	<<elseif $npc.karla.affection gte 10>>
+		<p>Du denkst an Karla — an ihr trockenes Lachen, an die Art, wie sie Unsinn beim Namen nennt. Kein Trost, den man anfassen kann, aber genug, um den Atem zu finden.</p>
+		<<set _verlust to 4>>
+	<<else>>
+		<p>Du liegst wach in der eigenen Dunkelheit, und niemand ist da, der fragt. So ist es, seit du denken kannst.</p>
+	<</if>>
+<<else>>
+	<p>Wo Karla einmal war, ist jetzt eine Leere, und im Halbschlaf triffst du sie wie eine zweite Wunde. Wo sie ist, weißt du. Dass sie nicht hier ist, macht die Nacht nur länger.</p>
+<</if>>
+
+<<gedanke>>
+<p>Der Krieg hat noch nicht begonnen, und schon holen mich die Toten und die Beinahe-Toten im Schlaf. Ich frage mich, wie viele Gesichter noch dazukommen, ehe das hier vorbei ist — und ob eines Nachts kein Erwachen mehr kommt, das sie vertreibt.</p>
+<</gedanke>>
+
+<<set $player.condition to setup.clamp($player.condition - _verlust, 0, 100)>>
+<div class="system-alert status-negative">Unruhige Nacht — die Kondition leidet<<if _verlust lte 3>>, doch du warst nicht allein<</if>>.</div>
+
+[[Versuchen weiter zu schlafen|Kap2_Tagesstart]]
+
+
+:: Kap2_Abend_Karla {"position":"3025,3425","size":"100,100"}
+<<run setup.romanzeInit()>>
+<<scene>>Sie ist schon oben, an der Stelle über dem Osttor, an der der Wind beißt und die Wache nie lange steht. Du erkennst ihre Silhouette gegen den Nachthimmel, die Beine über der Kante, und sie rückt zur Seite, ehe du ein Wort gesagt hast — als hätte sie den Platz freigehalten.<</scene>>
+
+<p>Unter euch macht das Lager seine Nachtgeräusche. Über euch stehen mehr Sterne, als ein Mensch zählen könnte, und Karla schweigt, wie nur sie schweigen kann: nicht leer, sondern voll.</p>
+
+[[Das Schweigen halten.|Kap2_Abend_Karla_Schweigen]]
+[[Leise erzählen — vom Tag, von früher.|Kap2_Abend_Karla_Reden]]
+
+
+:: Kap2_Abend_Karla_Reden {"position":"2925,3575","size":"100,100"}
+<p>Du erzählst leise — vom Drill, von den Bergen, von dem, was der Tag übrig gelassen hat. 
+Karla hört zu, den Blick bei den Sternen, und wirft nur hin und wieder einen trockenen Satz dazwischen, der genau an der richtigen Stelle sitzt.</p>
+
+<<if setup.hasNpcMemory("karla", "Hat Jungen mit Salbe geholfen")>>
+	<<dialog>>
+	<p>„Der Junge heute. Mit der Salbe." Karla sagt es beiläufig, aber sie sieht dich dabei an. „Du hast nicht gefeilscht, nicht überlegt, ob sich's lohnt. Einfach gemacht."</p>
+	<p>Sie zuckt mit den Schultern. „Hätt ich dir nicht zugetraut. Das war ein Kompliment, falls du's überhört hast."</p>
+	<</dialog>>
+	<<gedanke>>
+	<p>Von Karla ist das so viel wie eine Umarmung. Man muss nur wissen, wie man sie liest.</p>
+	<</gedanke>>
+	<<= setup.setNpcAffection("karla", 1)>>
+	<<run setup.removeNpcMemory("karla", "Hat Jungen mit Salbe geholfen")>>
+<<elseif setup.hasNpcMemory("karla", "Fehde unblutig beendet")>>
+	<<dialog>>
+	<p>„Man erzählt sich, du hättest die zwei aus Rabenfurt auseinandergebracht. Ohne dass einer geblutet hat." Karla mustert dich, als sähe sie dich zum ersten Mal richtig. „Weißt du, wie selten das ist? Männer bringen einander um für eine Ehre, die keiner mehr benennen kann. Du bist dazwischengestanden und hast sie leben lassen."</p>
+	<p>Sie sucht kurz nach einem Wort, findet keins, zuckt mit den Schultern. „Das war richtig. Einfach richtig. Davon gibt's zu wenig."</p>
+	<</dialog>>
+	<<= setup.setNpcAffection("karla", 2)>>
+	<<run setup.removeNpcMemory("karla", "Fehde unblutig beendet")>>
+
+<<elseif setup.hasNpcMemory("karla", "Hat Zdenka verraten")>>
+	<<dialog>>
+	<p>„Ich hab gehört, was du getan hast." Ihre Stimme ist ruhig, und genau das macht sie schlimm. „Ein Geheimnis, das dir jemand anvertraut hat — und du hast es weitergetragen. An genau den, vor dem man es verstecken wollte."</p>
+	<p>Ihr Blick wird hart. „Ich hab einen Onkel, der sitzt, weil einer geredet hat, der hätte schweigen sollen. Also verzeih, wenn ich dir gerade nicht in die Augen sehe."</p>
+	<</dialog>>
+	<<gedanke>>
+	<p>Ich weiß nicht, was ich sagen soll. Es gibt nichts zu sagen. Sie hat recht, und wir wissen es beide.</p>
+	<</gedanke>>
+	<<= setup.setNpcAffection("karla", -3)>>
+	<<run setup.removeNpcMemory("karla", "Hat Zdenka verraten")>>
+
+<<elseif setup.hasNpcMemory("karla", "Fehde ohne Tote")>>
+	<<dialog>>
+	<p>„Die Rabenfurter Sache." Karla schnaubt. „Sie haben sich geprügelt, aber keiner ist geblieben. Hätt übler kommen können — kommt bei denen meistens übler."</p>
+	<p>Ein Schulterzucken, fast anerkennend. „Kein Held-Getue. Aber auch kein Blut an deinen Händen. Damit kann ich leben. Und du wohl auch."</p>
+	<</dialog>>
+	<<= setup.setNpcAffection("karla", 1)>>
+	<<run setup.removeNpcMemory("karla", "Fehde ohne Tote")>>
+
+<<elseif setup.hasNpcMemory("karla", "Fehde mit Totem")>>
+	<<if $world.duell.flags.bronko_tot>>
+		<<set _toter to "Bronko">>
+	<<else>>
+		<<set _toter to "Pavel">>
+	<</if>>
+	<<dialog>>
+	<p>„Der Tote von Rabenfurt. <<= _toter>>, ja?" Karla sagt es leise, ohne einen Funken Vorwurf. „Ich kenn das Gefühl, danebenzustehen und nichts tun zu können. 
+	Es frisst dich, wenn du's lässt."</p>
+	<p>Sie legt dir kurz die Hand auf die Schulter — rau, unbeholfen, aber echt. 
+	„Du hast getan, was du konntest. Manchmal reicht das nicht. Das ist nicht deine Schuld, auch wenn's sich heute Nacht so anfühlt."</p>
+	<</dialog>>
+	<<run setup.removeNpcMemory("karla", "Fehde mit Totem")>>
+
+<<elseif setup.hasNpcMemory("karla", "Hat den Frischling als Erster markiert")>>
+	<<dialog>>
+	<p>„Weißt du, was mir am ersten Tag aufgefallen ist? 
+	Du. Unter all den verängstigten Gesichtern der kranke, weiche Kerl, dem keiner eine Woche gegeben hat." 
+	Karla grinst schief. „Ich schon. Irgendwas an dir hat gesagt: der bleibt. Und schau dich an — du bist noch da."</p>
+	<</dialog>>
+	<<= setup.setNpcAffection("karla", 1)>>
+	<<run setup.removeNpcMemory("karla", "Hat den Frischling als Erster markiert")>>
+
+<<elseif setup.hasNpcMemory("karla", "Hab beim Würfeln geholfen")>>
+	<<dialog>>
+	<p>„Damals beim Würfeln, in der ersten Nacht — 
+	Du wolltest aufstehen und weglaufen! Weist du noch? Aber ich hab dich wieder hingesetzt. Und gewonnen hast du auch. Wenn ichs mir so überlege, schuldest du mir was."</p>
+	<</dialog>>
+	<<run setup.removeNpcMemory("karla", "Hab beim Würfeln geholfen")>>
+
+<<elseif setup.hasNpcMemory("karla", "Sind am ersten Tag zusammengesessen")>>
+	<<dialog>>
+	<p>„Der erste Tag, weißt du noch? Wir zwei auf derselben Bank, und keiner hat ein Wort rausgekriegt, 
+	weil alle Angst hatten, das Falsche zu sagen." Ein kurzes, trockenes Lachen. 
+	„Zwei Jahre her. Kommt mir vor wie ein anderes Leben. War's ja auch."</p>
+	<</dialog>>
+	<<= setup.setNpcAffection("karla", 1)>>
+	<<run setup.removeNpcMemory("karla", "Sind am ersten Tag zusammengesessen")>>
+
+<<else>>
+<div class="dialog">„Du redest zu viel“, sagt sie schließlich. Ihre Stimme sagt das Gegenteil.</div>
+<</if>>
+
+
+[[Hinunter zur Baracke. ->Kap2_Abend]]
+
+
+:: Kap2_Abend_Karla_Schweigen {"position":"2775,3450","size":"100,100"}
+<p>Ihr sitzt, bis die Kälte durch den Stoff kriecht und keiner von euch es zugeben will. Irgendwann lehnt ihre Schulter an deiner — vielleicht die Kälte, vielleicht nicht — und keiner rückt ab.</p>
+
+<div class="dialog">„Gleiche Zeit morgen?“, fragt sie beim Aufstehen, so beiläufig, als wäre nichts gefragt worden.</div>
+
+
+
+[[Hinunter zur Baracke. ->Kap2_Abend]]
+
+
+:: Kap2_Abend_Lesen {"position":"2525,3750","size":"100,100"}
+<<scene>>Ein Stumpen Talglicht, ein geliehenes Bändchen aus der Schreibstube, die Pritsche als Lesepult. Um dich herum fällt die Baracke in Schlaf, Atemzug um Atemzug, während du liest — über Feldzüge, Provinzen, alte Verträge, was immer die Seiten hergeben.<</scene>>
+
+<<if $world.flags.barsinger_spur>>
+	<p>Dir kommt es vor als würdest du Flötentöne hören und fröhliches Lachen. </p>
+
+	<p>Du gehst zum Fenster und schaust ob draußen etwas ist. Aber die Baracke ist still, und die Nacht ist still, und nur die Sterne über der Stadt leuchten.</p>
+
+	<p>Als du wieder zu deiner Pritsche kommst, ist das Buch zugeschlagen. Und es wirkt so als hätte jemand auf deiner Pritsche gesessen. </p>
+
+	<p>Du nimmst das Buch und siehst darunter einen hölzernen Würfel. Und statt der sechs eine Rebe.</p>
+
+	<<gedanke>>
+		<p>Barsinger! Ich hab sein Zeichen in der Kirche gefunden und jetzt hat er mich gefunden!</p>
+	<</gedanke>>
+	<<= setup.setPlayerStat("faith", 20)>>
+<<else>>
+	<p>Als das Licht niederbrennt, sind deine Augen trocken und dein Kopf voller als zuvor. Der Morgen wird früh kommen, 
+	und er wird es dich spüren lassen. Aber das hier nimmt dir keiner mehr.</p>
+
+	<<gedanke>>Halm hat einmal gesagt, das Archiv vergisst niemanden, der wirklich wissen wollte. 
+
+	Vielleicht liest deshalb ein Waffenträger nachts bei Talglicht — damit irgendwer sich erinnert, dass er mehr war als eine Waffe mit Beinen.
+	<</gedanke>>
+
+	<<= setup.setPlayerStat("scholarship", 1)>>
+<</if>>
+
+<<= setup.setPlayerCondition(-5)>>
+
+[[Das Licht löschen. ->Kap2_Abend]]
+
+
+:: Kap2_Abend_Schenke {"position":"2875,4050","size":"100,100"}
+<<set $world.schenkeRueckweg to "Kap2_Abend">>
+<<scene>>Die Stadt bei Nacht ist eine andere Stadt. Die Marktstände sind verrammelt, dafür fällt aus den Gassen um den Grauen Wolf warmes Licht auf das Pflaster, und mit ihm Stimmen, Würfelklappern und der Geruch von Bier und Talg. Um diese Stunde sitzt hier jeder, der einen Grund hat, nicht zu schlafen — und jeder, der einen sucht.<</scene>>
+
+[[Eintreten. ->Stadt_Schenke]]
+
+
+:: Kap2_Abend_Waffenpflege {"position":"2425,3950","size":"100,100"}
+<<scene>>Du sitzt auf der Bank vor der Baracke, die Waffe über den Knien, und arbeitest dich durch die Handgriffe, die dir das erste Jahr eingebläut hat — Schneide, Schaft, Riemen, jede Schraube, jede Naht.<</scene>>
+
+<p>Es ist stumpfe Arbeit, und genau das ist ihr Wert: Die Hände tun, was sie können, und der Kopf sortiert derweil den Tag. Als du fertig bist, liegt das Zeug bereit wie für eine Parade — und morgen wird jeder Handgriff einen Fingerbreit leichter gehen.</p>
+
+<<if setup.hasItem("Ölstein und Lappen")>>
+	<<run setup.removeItem("Ölstein und Lappen")>>
+	<<set $world.sehr_gut_vorbereitet to true>>
+	<p>Du hast Öl und Lappen vom Markt mitgebracht. Die Waffe glänzt, und du weißt, dass sie morgen förmlich für dich arbeiten wird.</p>
+	<div class="system-alert status-info">Ölstein und Lappen verbraucht — die Waffe glänzt wie neu. Der nächste Gattungsdrill bringt <b>deutlich</b> mehr Fortschritt.</div>
+<<else>>
+	<<set $world.gut_vorbereitet to true>>
+	<div class="system-alert status-info">Gut vorbereitet — der nächste Gattungsdrill wird sicher Fortschritt bringen.</div>
+<</if>>
+
+[[Zurück zur Baracke. ->Kap2_Abend]]

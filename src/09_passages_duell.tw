@@ -1184,6 +1184,7 @@ Bis morgen wissen alle, wer geredet hat. Zdenka. Bronko. Und keiner wird mir noc
 <<set $world.duell.bronko_trust to -3>>
 <<set $world.duell.zdenka_trust to -3>>
 <<set $world.duell.tension += 2>>
+<<run setup.pushNpcMemory("karla", "Hat Zdenka verraten")>>
 <<run setup.addRumor('Thomas hat Pavel von Marjas Brief erzählt. Jetzt weiß Pavel, dass seine Schwester lebt und Bronkos Kind erwartet — und er will die Schande mit Blut tilgen.')>>
 
 <<trenner>>
@@ -1503,6 +1504,8 @@ voneinander, stehen Pavel und Bronko. Der eine mit der Klinge. Der andere mit le
 	<p>Die Nacht endet ohne Blut.</p>
 <</switch>>
 
+<<run setup.pushNpcMemory("karla", "Fehde unblutig beendet")>>
+
 <<weiterImTag "Zurück auf die Stube">>
 
 
@@ -1549,6 +1552,8 @@ voneinander, stehen Pavel und Bronko. Der eine mit der Klinge. Der andere mit le
 	<p>Sie kämpfen, bis die Wachen sie trennen. Keiner stirbt, aber nichts ist gut.</p>
 <</switch>>
 
+<<run setup.pushNpcMemory("karla", "Fehde ohne Tote")>>
+
 <<weiterImTag "Zurück auf die Stube">>
 
 
@@ -1566,6 +1571,7 @@ während der Reif knirscht und der erste Hieb fällt.</p>
 	<p>Es geht schnell und hässlich. Pavels Klinge findet, was sie sucht, und Bronko sinkt in den Reif, ohne je
 	die Hand gegen ihn erhoben zu haben. Sein Blut dampft in der Kälte.</p>
 	<</dialog>>
+	
 <<else>>
 	<<set $world.duell.flags.pavel_tot to true>>
 	<<dialog>>
@@ -1581,6 +1587,8 @@ Fehde hat endlich das Blut bekommen, nach dem sie all die Jahre verlangt hat.</p
 
 <p>Fackeln, Rufe, Stiefel im Dunkeln. Der Überlebende wird abgeführt, noch ehe der Morgen graut. Rabenfurt wird
 davon hören, und Rabenfurt wird nicht schweigen.</p>
+
+<<run setup.pushNpcMemory("karla", "Fehde mit Totem")>>
 
 <<weiterImTag "In die Nacht hinein">>
 

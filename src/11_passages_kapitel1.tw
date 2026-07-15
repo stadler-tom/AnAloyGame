@@ -516,6 +516,7 @@
 <p>Du nimmst ein Stück Brot.</p>
 
 <<= setup.setNpcAffection("karla", 1)>>
+<<run setup.pushNpcMemory("karla", "Sind am ersten Tag zusammengesessen")>>
 
 <hr class="trenner-raute">
 [[Weiter->Story003_Drill]]
@@ -800,6 +801,7 @@
 <p>Dein Herz schlägt bis zum Hals.</p>
         <<if $sendByKarla>>
 <p>Karla schlägt dir auf die Schulter "Schau an, du solltest öfter auf mich hören!"</p>
+<<run setup.pushNpcMemory("karla", "Hab beim Würfeln geholfen")>>
         <<else>>
 <p>Das Spiel ist vorbei. Du hast gewonnen, der Rausch des Moments lässt dich noch immer zittern.</p>
         <</if>>
@@ -1124,7 +1126,8 @@
 
 <p>Die Reihen schließen sich. Nicht ordentlich genug, um schön zu sein — aber ordentlich genug, dass niemand sofort angeschrien wird.</p>
 
-<p>Der Hauptmann schreitet die Front ab. Seine Stiefel knirschen gleichmäßig im Kies, sein Blick bleibt nie lange auf einem Gesicht liegen und scheint doch jedes einzelne zu wiegen. Neben dir steht Karla, aufrecht wie ein eingeschlagener Pflock. Sie sieht nicht zu dir herüber.</p>
+<p>Der Hauptmann schreitet die Front ab. Seine Stiefel knirschen gleichmäßig im Kies, sein Blick bleibt nie lange auf einem Gesicht liegen und scheint doch jedes einzelne zu wiegen.
+ Neben dir steht Karla, aufrecht wie ein eingeschlagener Pflock. Sie sieht nicht zu dir herüber.</p>
 
 <<formal>>
     <<= setup.getAbendappellText("hauptmann")>>

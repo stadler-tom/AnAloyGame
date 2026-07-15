@@ -414,7 +414,7 @@
         trust: false,
         isRealPlayer: true,
         memory: { flags: {}, events: [] },
-        journalEntry: "Hohe Herrin der Kronmark und kämpfende Ritterin — eine Frau in Rüstung, die ihr Handwerk versteht. Heinrichs Frau, ebenso volksnah, ebenso auf 'Du'. Stratege, wortgeannt, ruhig, loyal. Wenn man mit ihr redet merkt man, dass sie Interlektuell über einem steht. Sie ist eine Frau, aber wer das als anlass nimt sie zu unterschätzen, der irrt und wird das baldigst spühren. Sie hat die Tourney vom Einhorn gewonnen."
+        journalEntry: "Hohe Herrin der Kronmark und Ritter — eine Frau in Rüstung, die ihr Handwerk versteht. Heinrichs Frau, ebenso volksnah, ebenso auf 'Du'. Stratege, wortgeannt, ruhig, loyal. Wenn man mit ihr redet merkt man, dass sie Interlektuell über einem steht. Sie ist eine Frau, aber wer das als anlass nimt sie zu unterschätzen, der irrt und wird das baldigst spühren. Sie hat die Tourney vom Einhorn gewonnen."
     },
     
 

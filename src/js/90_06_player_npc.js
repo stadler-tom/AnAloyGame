@@ -273,6 +273,17 @@ setup.hasNpcMemory = function (npcKey, event) {
     return npc.memory.events.includes(event);
 };
 
+setup.removeNpcMemory = function (npcKey, event) {
+    const npc = State.variables.npc?.[npcKey];
+    if (!npc?.memory || !Array.isArray(npc.memory.events)) return false;
+
+    const i = npc.memory.events.indexOf(event);
+    if (i === -1) return false;
+    npc.memory.events.splice(i, 1);
+    return true;
+};
+
+
 setup.setNpcsuspicion = function (npcKey, modifier) {
     const npc = State.variables.npc?.[npcKey];
     if (!npc) { console.warn("NPC nicht gefunden:", npcKey); return ""; }

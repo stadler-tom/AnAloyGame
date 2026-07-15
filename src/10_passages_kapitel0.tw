@@ -165,6 +165,7 @@ Nur ein Mann, dem der Krieg etwas genommen hat — und der trotzdem noch hier st
 <p>Die Talglichtflammen zucken im Zugwind. Irgendwo in der Stube hustet jemand. Das Stroh unter dir ist hart und riecht nach altem Heu und fremden Körpern.</p>
 <p>Du liegst in deiner neuen Welt.</p>
 <<= setup.setNpcAffection("karla", 4)>>
+<<run setup.pushNpcMemory("karla", "Hat den Frischling als Erster markiert")>>
 
 <hr class="trenner-raute">
 [[Dich hinlegen und auf den Schlaf warten. ->Stube: Jarek kommt vorbei]]
