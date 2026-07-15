@@ -143,8 +143,19 @@ setup.syncPlayerRel = function () {
     });
 };
 
+setup.migrateWorld = function () {
+    var w = State.variables.world;
+    if (!w) return;
+
+    if (!w.flags) w.flags = {};
+
+    /* künftige Nachrüstungen einfach hier ergänzen, z.B.: */
+    /* if (w.wuerfelGesamt === undefined) w.wuerfelGesamt = 0; */
+};
+
 $(document).on(":passagestart", function () {
     setup.syncPlayerRel();
+    setup.migrateWorld();
 });
 
 /* --- Inventar --- */

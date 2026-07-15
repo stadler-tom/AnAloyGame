@@ -43,10 +43,12 @@ docs/graphs/mmd/
 node_modules/
 
 # Build / Scratch
+CLAUDE.md
 build/
 package.json
 tools/
 storyformats/
+.storyformats/
 include/
 Aloy/
 Notes/
