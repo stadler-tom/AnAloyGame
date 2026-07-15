@@ -415,3 +415,27 @@ setup.dev = {
     }
 
 };
+
+/* Konsole: setup.debugAlleGossipsBekannt() */
+setup.debugAlleGossipsBekannt = function () {
+    var stories = setup.getAllGossipStories();
+    stories.forEach(function (s) {
+        setup.markGossipSeen(s.id, true);      // gesehen + Probe bestanden
+        if (s.rumorText) setup.addRumor(s.rumorText);   // Notizbuch-Eintrag
+    });
+    console.log("[debug] " + stories.length + " Gossips als bekannt gesetzt.");
+    return stories.length + " Gossips als bekannt gesetzt.";
+};
+
+/* Konsole: setup.debugAlleNpcBekannt() */
+setup.debugAlleNpcBekannt = function () {
+    var npc = State.variables.npc, n = 0;
+    for (var k in npc) {
+        if (npc[k] && typeof npc[k] === "object" && "known" in npc[k]) {
+            npc[k].known = true;
+            n++;
+        }
+    }
+    console.log("[debug] " + n + " NPC auf known gesetzt.");
+    return n + " NPC auf known gesetzt.";
+};

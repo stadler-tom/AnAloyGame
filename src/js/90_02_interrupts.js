@@ -554,6 +554,12 @@ setup.interruptCond["Ermittlung_Karla_Rueckkehr"] = w => {
 };
 setup.interruptPrio["Ermittlung_Karla_Rueckkehr"] = 86;
 
+
+setup.interruptCond["Besuch_S1_Ankunft"] = w => {
+    if (w.kapitel1_gesperrt !== true) return false;                 
+    return  w.day >= 390;
+}
+
 setup.interruptCond["Biwag_Drill"] = w => {
     if (w.kapitel1_gesperrt !== true) return false;                 
     return  w.day >= 394;

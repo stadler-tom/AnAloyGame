@@ -430,7 +430,9 @@ var LZString=function(){var r=String.fromCharCode,o="ABCDEFGHIJKLMNOPQRSTUVWXYZa
     .fade-trigger, .chapter-title, .chapter-time { animation: none; opacity: 1; }
 }
 
-.kapitel-opener p:first-of-type::first-letter {
+/* Nur der allererste Absatz der Opener-Passage bekommt den Initial */
+.kapitel-opener > :first-child p:first-of-type::first-letter,
+.kapitel-opener > p:first-child::first-letter {
     font-size: 3.2em; float: left; line-height: 0.8;
     padding: 0.05em 0.1em 0 0; color: var(--accent-gold);
 }
@@ -846,6 +848,35 @@ var LZString=function(){var r=String.fromCharCode,o="ABCDEFGHIJKLMNOPQRSTUVWXYZa
     border: 0 !important;
     transform: none !important;
     cursor: pointer;
+}
+
+/* === Gossip-Nachfrage: aufgeklärte Antworten === */
+#gossip-antworten { margin-top: 0.4em; }
+
+.gossip-antwort {
+    margin: 0.7em 0;
+    padding: 0.7em 1em;
+    border-left: 3px solid var(--accent-gold);
+    background: rgba(255, 255, 255, 0.035);
+    border-radius: 0 6px 6px 0;
+    animation: gossipReveal 0.35s ease-out;
+}
+
+.gossip-antwort .gossip-frage {
+    margin: 0 0 0.5em 0;
+    padding-bottom: 0.4em;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    font-style: italic;
+    opacity: 0.7;
+    font-size: 0.95em;
+}
+
+.gossip-antwort .gossip-erklaerung { margin: 0; line-height: 1.5; }
+.gossip-antwort .gossip-erklaerung b { color: var(--accent-gold); }
+
+@keyframes gossipReveal {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: translateY(0); }
 }</style><script role="script" id="twine-user-script" type="text/twine-javascript">/* twine-user-script #1: "0_11_kampf.js" */
 
 
@@ -2138,6 +2169,17 @@ setup.interruptCond["Ermittlung_Karla_Rueckkehr"] = w => {
 setup.interruptPrio["Ermittlung_Karla_Rueckkehr"] = 86;
 
 
+setup.interruptCond["Besuch_S1_Ankunft"] = w => {
+    if (w.kapitel1_gesperrt !== true) return false;                 
+    return  w.day >= 390;
+}
+
+setup.interruptCond["Biwag_Drill"] = w => {
+    if (w.kapitel1_gesperrt !== true) return false;                 
+    return  w.day >= 394;
+}
+
+
 setup.interruptCond["Kapitel2_Ende"] = w =>
        w.ermittlung && w.ermittlung.flags && w.ermittlung.flags.nachspiel_done   // Ermittlung gelöst
     && w.duell && w.duell.done && w.duell.nachwirkung_done                // Duell durch
@@ -2850,6 +2892,48 @@ setup.getRandomKnownNpcByFaction = function (factionString) {
     if (known.length === 0) return null;
     return known[Math.floor(Math.random() * known.length)].name;
 };
+
+/* Der bekannte 84.-Banner-Mann mit der höchsten affection holt Thomas ins Lager. */
+setup.bannerHolt = function () {
+    var npc = State.variables.npc, best = null;
+    for (var k in npc) {
+        var n = npc[k];
+        if (n && n.faction === "84. Banner" && n.known === true) {
+            if (best === null || n.affection > npc[best].affection) best = k;
+        }
+    }
+    return best;   // npc-Key oder null
+};
+
+/* Erfolgreich aufgedeckte Gossips, die an eine bestimmte Person geknüpft sind. */
+setup.gossipsFuerNpc = function (npcKey) {
+    return setup.getAllGossipStories().filter(function (s) {
+        if (s.npcKey !== npcKey) return false;
+        return setup.wasGossipSuccessful(s.id)
+            || (State.variables.player.rumors || []).includes(s.rumorText);
+    });
+};
+
+/* Alle „ansprechbaren" Gossips für die am Feuer Anwesenden. */
+setup.gossipsFuerAnwesende = function (npcKeys) {
+    var out = [];
+    npcKeys.forEach(function (k) {
+        setup.gossipsFuerNpc(k).forEach(function (s) { out.push({ npc: k, story: s }); });
+    });
+    return out;
+};
+
+
+/* Alle 84.-Banner-Söldner, die Thomas noch nicht kennt. */
+setup.unbekannteSoeldner = function () {
+    var npc = State.variables.npc, out = [];
+    for (var k in npc) {
+        if (npc[k] && npc[k].faction === "84. Banner" && npc[k].known !== true) {
+            out.push(k);
+        }
+    }
+    return out;
+};
 /* twine-user-script #8: "90_07_skillchecks.js" */
 
 /* ================================================================
@@ -3416,6 +3500,22 @@ setup.getSuccessThought = function (skill, difficulty) {
     }
 
     return '<div class="thought-box">' + result + '</div>';
+};
+
+setup.gossips84Bekannt = function () {
+    var npc = State.variables.npc;
+    var pool = setup.getAllGossipStories().filter(function (s) {
+        if (!s.npcKey) return false;
+        var n = npc[s.npcKey];
+        if (!n || n.faction !== "84. Banner") return false;
+        return setup.wasGossipSuccessful(s.id)
+            || (State.variables.player.rumors || []).includes(s.rumorText);
+    });
+    for (var i = pool.length - 1; i > 0; i--) {          // mischen
+        var j = Math.floor(Math.random() * (i + 1));
+        var t = pool[i]; pool[i] = pool[j]; pool[j] = t;
+    }
+    return pool.slice(0, 4);                               // max. 4
 };
 /* twine-user-script #10: "90_09_studium.js" */
 
@@ -5377,6 +5477,30 @@ setup.dev = {
     }
 
 };
+
+/* Konsole: setup.debugAlleGossipsBekannt() */
+setup.debugAlleGossipsBekannt = function () {
+    var stories = setup.getAllGossipStories();
+    stories.forEach(function (s) {
+        setup.markGossipSeen(s.id, true);      // gesehen + Probe bestanden
+        if (s.rumorText) setup.addRumor(s.rumorText);   // Notizbuch-Eintrag
+    });
+    console.log("[debug] " + stories.length + " Gossips als bekannt gesetzt.");
+    return stories.length + " Gossips als bekannt gesetzt.";
+};
+
+/* Konsole: setup.debugAlleNpcBekannt() */
+setup.debugAlleNpcBekannt = function () {
+    var npc = State.variables.npc, n = 0;
+    for (var k in npc) {
+        if (npc[k] && typeof npc[k] === "object" && "known" in npc[k]) {
+            npc[k].known = true;
+            n++;
+        }
+    }
+    console.log("[debug] " + n + " NPC auf known gesetzt.");
+    return n + " NPC auf known gesetzt.";
+};
 /* twine-user-script #17: "90_18_duell_ende.js" */
 /* ===== DUELL: Ende-Berechnung & Nachwirkung ===== */
 
@@ -5411,7 +5535,7 @@ setup.duellEinfluss = function () {
              : wert >= 0 ? "gemischt"
              :             "verbrannt";
     return { wert: wert, band: band };
-};</script><tw-tag name="pruefung" color="green"></tw-tag><tw-tag name="nach_Kap2_morgen" color="green"></tw-tag><tw-tag name="header" color="blue"></tw-tag><tw-tag name="interrupt" color="purple"></tw-tag><tw-tag name="studium" color="yellow"></tw-tag><tw-tag name="widget" color="blue"></tw-tag><tw-tag name="nach_Kap2_abend" color="yellow"></tw-tag><tw-tag name="kapitel-opener" color="red"></tw-tag><tw-tag name="layout" color="green"></tw-tag><tw-tag name="nach_Kap2_tag" color="green"></tw-tag><tw-tag name="script" color="purple"></tw-tag><tw-tag name="nach_stube" color="orange"></tw-tag><tw-tag name="nach_morgen" color="red"></tw-tag><tw-tag name="nach_appell" color="yellow"></tw-tag><tw-tag name="journal" color="orange"></tw-tag><tw-tag name="startup-debug" color="purple"></tw-tag><tw-tag name="nach_hub" color="green"></tw-tag><tw-tag name="einmalig" color="red"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="0,225" size="100,100">&lt;&lt;include &quot;InitPlayer&quot;&gt;&gt;
+};</script><tw-tag name="layout" color="green"></tw-tag><tw-tag name="nach_Kap2_morgen" color="green"></tw-tag><tw-tag name="nach_stube" color="orange"></tw-tag><tw-tag name="einmalig" color="red"></tw-tag><tw-tag name="nach_appell" color="yellow"></tw-tag><tw-tag name="studium" color="yellow"></tw-tag><tw-tag name="nach_Kap2_abend" color="yellow"></tw-tag><tw-tag name="startup-debug" color="purple"></tw-tag><tw-tag name="widget" color="blue"></tw-tag><tw-tag name="nach_morgen" color="red"></tw-tag><tw-tag name="kapitel-opener" color="red"></tw-tag><tw-tag name="nach_hub" color="green"></tw-tag><tw-tag name="journal" color="orange"></tw-tag><tw-tag name="nach_Kap2_tag" color="green"></tw-tag><tw-tag name="header" color="blue"></tw-tag><tw-tag name="script" color="purple"></tw-tag><tw-tag name="interrupt" color="purple"></tw-tag><tw-tag name="pruefung" color="green"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="0,225" size="100,100">&lt;&lt;include &quot;InitPlayer&quot;&gt;&gt;
 &lt;&lt;include &quot;InitNPC&quot;&gt;&gt;
 &lt;&lt;include &quot;InitWorld&quot;&gt;&gt;
 &lt;&lt;include &quot;InitStudium&quot;&gt;&gt;
@@ -5724,6 +5848,25 @@ setup.duellEinfluss = function () {
         memory: { flags: {}, events: [] },
         journalEntry: &quot;Söldnerin des 84. Banners — offiziell, mit M-Vermerk. Aus Tiafunt. In der Praxis findet man sie fast immer im Tross. Kein Vorwurf, sagen die vom Tross. Eher ein Kompliment. Zwei Zöpfe und viel zu ehrgeizige Stickereien auf der Uniform&quot;
     },
+    tobalt: {
+        name: &quot;Tobalt&quot;,
+        image: &quot;images/Tobalt.png&quot;,
+        known: false,
+        faction: &quot;84. Banner&quot;,
+        affection: 0,
+        trust: false,
+        isRealPlayer: true,
+        memory: { flags: {}, events: [] },
+        journalEntry: &quot;Söldner des 84. Banners, 1. Lanze, aus einem Dorf nahe Weitfurth — Holzfällersohn, klein und kräftig, mit einem schelmischen Grinsen, das selten weicht. Aloyer Farben, praktisch getragen, Messer und Trinkgefäß am Gurt und ein kleiner Holzlöffel mit graviertem Auge. Freundlich, loyal, trinkfest. Redet lieber in Geschichten als in Antworten — und erzählt derer zu viele. Bringt jeden zum Reden, plaudert dabei selbst oft zu viel, und weiß am Ende doch mehr, als er zugibt. &#39;Ja mei, dann machen wir mal.&#39;&quot;
+        /*
+            HINTERGRUND (nicht im Journal):
+            Sorgloser, als er wirkt — überspielt Ernst mit Witzen, nimmt aber viel wahr.
+            Oft &quot;zufällig&quot; dort, wo Informationen fallen; Bote/Verbindungsmann.
+            Barsinger-Gläubiger (Trinken, Geselligkeit, Glück des Augenblicks).
+            Wird still und direkt, wenn man seine Kameraden schlecht behandelt.
+            Easteregg: echter Spieler des 84. Banners.
+        */
+    },
 
 
     /* ===========================
@@ -5781,6 +5924,28 @@ setup.duellEinfluss = function () {
        DIPLOMATIE / AUSSENWELT
        =========================== */
 
+    heinrich: {
+        name: &quot;Heinrich von Grimmerthann&quot;,
+        image: &quot;images/Heinrich.png&quot;,
+        known: false,
+        faction: &quot;Kronmark&quot;,
+        affection: 0,
+        trust: false,
+        isRealPlayer: true,
+        memory: { flags: {}, events: [] },
+        journalEntry: &quot;Ritter aus der Kronmark, Freund des 84. Banners. Kämpfer, kein Höfling — besteht auf &#39;Du&#39;, und ist trotz Adelsschlags in Aloy geachtet. Verbündeter im Krieg gegen Komarn. Vorlaut, von sich selbst Überzeugt. Hört sich gerne reden. Singt gerne, steht sehr gern im mittelpunkt. Ruhiger wenn seine Frau Silva dabei ist. Aber ein loyaler Kerl. Wer ihn als Freund hat hat eine Eiche an seiner Seite. Hat die Carolus Dux Tourney 2 mal gewonnen.&quot;
+    },
+    silva: {
+        name: &quot;Silva von Rosenschlag&quot;,
+        image: &quot;images/Silva.png&quot;,
+        known: false,
+        faction: &quot;Kronmark&quot;,
+        affection: 0,
+        trust: false,
+        isRealPlayer: true,
+        memory: { flags: {}, events: [] },
+        journalEntry: &quot;Hohe Herrin der Kronmark und kämpfende Ritterin — eine Frau in Rüstung, die ihr Handwerk versteht. Heinrichs Frau, ebenso volksnah, ebenso auf &#39;Du&#39;. Stratege, wortgeannt, ruhig, loyal. Wenn man mit ihr redet merkt man, dass sie Interlektuell über einem steht. Sie ist eine Frau, aber wer das als anlass nimt sie zu unterschätzen, der irrt und wird das baldigst spühren. Sie hat die Tourney vom Einhorn gewonnen.&quot;
+    },
     
 
     /* ===========================
@@ -5827,6 +5992,7 @@ setup.duellEinfluss = function () {
         journalEntry: &quot;Ein Bretone. Mit einem Hang für Würfelspiele. Redselig, aber nicht dumm. Versteht sich gut darauf Leuten dinge einzureden die sie nicht wollen.&quot;
 
     },
+    
 } &gt;&gt;</tw-passagedata><tw-passagedata pid="4" name="InitStudium" tags="" position="0,625" size="100,100">/* Defensiv: legt nur an, was fehlt - sicher beim Merge ins Hauptspiel */
 &lt;&lt;if not $player.knowledge&gt;&gt;&lt;&lt;set $player.knowledge = {}&gt;&gt;&lt;&lt;/if&gt;&gt;
 &lt;&lt;if $player.stats.scholarship === undefined&gt;&gt;&lt;&lt;set $player.stats.scholarship = 5&gt;&gt;&lt;&lt;/if&gt;&gt;
@@ -6729,7 +6895,9 @@ setup.duellEinfluss = function () {
           &quot;success&quot;: &quot;Später kamen der Shek und Snori de Alba ins Lager. Snori stellte sich vor, wie man es von ihm erwartet – laut und selbstsicher. Darauf soll jemand aus dem 84. Banner gesagt haben: ‚In Aloy sind alle Ritter.‘ Ob das wirklich so fiel, weiß keiner genau, aber Snorri hat es angeblich nicht gut aufgenommen. Heute ist der Spruch im 84. ein halber Insider geworden, den man nur hinter vorgehaltener Hand benutzt.&quot;,
           &quot;fail&quot;: &quot;Andere winken nur ab und sagen, es sei nichts Besonderes gewesen – Banditen, wie sie eben öfter vorkommen, mehr nicht.&quot;
         },
-        &quot;rumorText&quot;: &quot;Snori de Alba nimmt es nicht gut auf wenn man den Ritterstand herabwürdigt.&quot;
+        &quot;rumorText&quot;: &quot;Snori de Alba nimmt es nicht gut auf wenn man den Ritterstand herabwürdigt.&quot;,
+        &quot;npcKey&quot;: &quot;clausz&quot;,
+        &quot;erklaerung&quot;: &quot;Also, ich hab ja ned gewusst, dass der Snorri so empfindlich is. Aber der Spruch, stimmt ja auch. In Aloy sind wir alle Ritter. Und Adlige. Aber a bissl Angst hatt ich schon. Der Snorri is ja kein kleiner Ritter.&quot;
       },
       {
         &quot;id&quot;: &quot;lk_002&quot;,
@@ -6755,7 +6923,8 @@ setup.duellEinfluss = function () {
           &quot;fail&quot;: &quot;Der Typ grinst nur breit. &#39;Namen nenn ich keine. Nicht wegen mir — wegen meiner Knie.&#39;&quot;
         },
         &quot;rumorText&quot;: &quot;Weibel Lars soll stiller Teilhaber eines Freudenhauses in Tiafunt sein. Er redet nicht darüber.&quot;,
-        &quot;npcKey&quot;: &quot;weibelLars&quot;
+        &quot;npcKey&quot;: &quot;weibelLars&quot;,
+        &quot;erklaerung&quot;: &quot;Ich weis gar nicht wo das herkommt! Ich hab ja garkeiene Zeit mich um a Bordell zu kümmern, ich bin ja nie im Land, gefühlt.&quot;
       },
       {
         &quot;id&quot;: &quot;lk_004&quot;,
@@ -6768,7 +6937,7 @@ setup.duellEinfluss = function () {
           &quot;fail&quot;: &quot;Der Kerl schnaubt nur. &#39;Vielleicht trinken sie einfach gern zusammen. Nicht hinter jeder Kanne Bier steckt gleich eine Verschwörung.&#39;&quot;
         },
         &quot;rumorText&quot;: &quot;Das 84. Banner soll sich auffallend gut mit einem Ritter aus der Kronmark verstehen. Manche wittern bereits Loyalisten.&quot;,
-        &quot;npcKey&quot;: null
+        &quot;npcKey&quot;: &quot;heinrich&quot;
       },
       {
         &quot;id&quot;: &quot;lk_005&quot;,
@@ -6794,7 +6963,8 @@ setup.duellEinfluss = function () {
           &quot;fail&quot;: &quot;Die meisten lachen nur. &#39;Ob Ritter oder Knecht, wenn du beim Feldscher ankommst, bist du erstmal nur ein weiterer Verwundeter.&#39; Mehr weiß angeblich niemand.&quot;
         },
         &quot;rumorText&quot;: &quot;Die Feldscherin des 84. schickte einen Ritter wegen einer Rüstungsdelle zum Schmied, während sie seine Kameraden versorgte.&quot;,
-        &quot;npcKey&quot;: &quot;feldscherin84&quot;
+        &quot;npcKey&quot;: &quot;rosi&quot;,
+        &quot;erklaerung&quot;: &quot;Des stimmt genau so! Ich hab fei nur mei Arbeit gmacht. Ich hab ja ned gwusst, dass des ein Ritter war. Ich hab ja nur dacht, er soll sei Rüstung fei richten lassen, bevor er wieder mei Zeit verschwendt.&quot;
       },
       {
         &quot;id&quot;: &quot;lk_007&quot;,
@@ -6820,7 +6990,8 @@ setup.duellEinfluss = function () {
           &quot;fail&quot;: &quot;Der Erzähler winkt ab. &#39;Fest, Alkohol und zu viele Leute mit zu viel Meinung. Am Ende weiß keiner mehr, wer wen gesucht hat.&#39;&quot;
         },
         &quot;rumorText&quot;: &quot;Beim Heinrichsfest 119 nBA entkam eine Zeichnerin der KgH, nachdem Aloyer mit einem angeblichen Termin für Chaos sorgten.&quot;,
-        &quot;npcKey&quot;: null
+        &quot;npcKey&quot;: &quot;vasil&quot;,
+        &quot;erklaerung&quot;: &quot;Stimmt! Hab ich schon fast vergessen. Ja da habens sau bleed gschaut die KgHler. Als da alle durcheinander und gaaanz zufällig im Weg gestanden sind.&quot;
       },
       {
         &quot;id&quot;: &quot;lk_009&quot;,
@@ -6833,7 +7004,8 @@ setup.duellEinfluss = function () {
           &quot;fail&quot;: &quot;Der Erzähler grinst nur. &#39;Ob es wirklich so war? Keine Ahnung. Aber Erasmus schaut seitdem angeblich sehr genau hin, bevor er sich irgendwo hinsetzt.&#39;&quot;
         },
         &quot;rumorText&quot;: &quot;Weibel Wenzel soll Snori de Alba mit einem Einhornstreich hereingelegt haben. Erasmus von Than bekam dafür die Schuld und verlor einen Zahn.&quot;,
-        &quot;npcKey&quot;: &quot;weibelWenzel&quot;
+        &quot;npcKey&quot;: &quot;weibelWenzel&quot;,
+        &quot;erklaerung&quot;: &quot;Also so direkt möchti ich das jetzt nicht bestätigen. Weil ichs nimmer genau weis. Aber es hört sich nach mir an.&quot;
       },
       {
         &quot;id&quot;: &quot;lk_010&quot;,
@@ -6846,7 +7018,8 @@ setup.duellEinfluss = function () {
           &quot;fail&quot;: &quot;Der Erzähler hebt die Hände. &#39;Er war krank. Mehr weiß ich nicht. Alles andere ist Gerede von Leuten, die lieber über andere reden als über sich selbst.&#39;&quot;
         },
         &quot;rumorText&quot;: &quot;Hauptmann Lenz soll auf Heinrichsfesten viel Zeit mit einer Adeligen verbracht haben. Nach seiner Abwesenheit kursieren Gerüchte über eine Krankheit.&quot;,
-        &quot;npcKey&quot;: &quot;hauptmannLenz&quot;
+        &quot;npcKey&quot;: &quot;hauptmannLenz&quot;,
+        &quot;erklaerung&quot;:&quot;Einzige Regel: sie durft sich nicht aufs Schafsfell legen! Spaß beiseite. Wir haben nur über diplomatische verkettungen geredet und waren zu keiner Zeit in privaterem Umfeld.&quot;
       },
       {
         &quot;id&quot;: &quot;lk_011&quot;,
@@ -6887,13 +7060,13 @@ setup.duellEinfluss = function () {
       },
       {
         &quot;id&quot;: &quot;lk_014&quot;,
-        &quot;base&quot;: &quot;Es hängt eine Bekanntmachung aus, die selbst die Büttel nur mit hochgezogener Braue vorlesen: Am ersten Wochentag ist es verboten, seine Notdurft in Bächen und Flüssen zu verrichten. Grund? Mittwochs wird gebraut. Nach dem Brautag, heißt es, werde das Verbot wieder aufgehoben.&quot;,
+        &quot;base&quot;: &quot;Es hängt eine Bekanntmachung aus, die selbst die Büttel nur mit hochgezogener Braue vorlesen: Am ersten Wochentag ist es verboten, seine Notdurft in Bächen und Flüssen zu verrichten. Grund? Am Migga wird gebraut. Nach dem Brautag, heißt es, werde das Verbot wieder aufgehoben.&quot;,
         &quot;probe&quot;: {
           &quot;difficulty&quot;: 0,
           &quot;success&quot;: &quot;Ein Brauknecht klärt dich grinsend auf: Das Verbot ist bitterernst gemeint. Einmal soll ein ganzer Sud gekippt sein, weil oben am Bach jemand … nun ja. Seither wacht die Zunft am Brautag über jede Uferböschung wie ein Habicht, und der Rat hat es lieber gleich zu Pergament gebracht, als sich das nochmal erklären zu müssen.&quot;,
-          &quot;fail&quot;: &quot;&#39;Frag im Wirtshaus&#39;, sagt der Mann. &#39;Aber nicht am Mittwoch. Da haben die anderes im Kopf.&#39;&quot;
+          &quot;fail&quot;: &quot;&#39;Frag im Wirtshaus&#39;, sagt der Mann. &#39;Aber nicht am Migga. Da haben die anderes im Kopf.&#39;&quot;
         },
-        &quot;rumorText&quot;: &quot;Am Brautag (Mittwoch) ist die Notdurft in Bächen und Flüssen verboten — wegen eines einst gekippten Suds.&quot;,
+        &quot;rumorText&quot;: &quot;Am Brautag (Migga) ist die Notdurft in Bächen und Flüssen verboten — wegen eines einst gekippten Suds.&quot;,
         &quot;npcKey&quot;: null
       },
       {
@@ -6916,7 +7089,7 @@ setup.duellEinfluss = function () {
           &quot;fail&quot;: &quot;&#39;Der Hauptmann und sein Herz&#39;, seufzt der Erzähler. &#39;Darüber redet man nicht. Höchstens Lars. Und der schweigt für zwei.&#39;&quot;
         },
         &quot;rumorText&quot;: &quot;Hauptmann Lenz hat ein Auge auf Katharina de Alba — für sie versäumte er sogar einen Komarner Termin.&quot;,
-        &quot;npcKey&quot;: &quot;hauptmannLenz&quot;
+        &quot;npcKey&quot;: &quot;null&quot;
       },
       {
         &quot;id&quot;: &quot;lk_017&quot;,
@@ -7003,7 +7176,8 @@ setup.duellEinfluss = function () {
           &quot;fail&quot;: &quot;Der Alte zuckt mit den Schultern. &#39;Was genau passiert ist, weiß ich nicht. Aber die Barbaren haben seitdem jedenfalls keine Geiseln mehr nach Bofeld verschleppt.&#39;&quot;
         },
         &quot;rumorText&quot;: &quot;Beim Hirtenfest von Bofeld erschoss ein Schütze des 84. den Geiselnehmer – und mit ihm die Geisel. Aloy verhandelt nicht.&quot;,
-        &quot;npcKey&quot;: null
+        &quot;npcKey&quot;: &quot;vasil&quot;,
+        &quot;erklaerung&quot;: &quot;Da war auf einmal a riesen Tamtam und wir haben garned gwusst was da los ist. Im endeffekt hat einer gmeint Vasil, den triffst du nie. Der Rest ist Geschichte&quot;
       },
       {
         &quot;id&quot;: &quot;li_005&quot;,
@@ -7055,7 +7229,7 @@ setup.duellEinfluss = function () {
           &quot;fail&quot;: &quot;Der Erzähler zieht die Augenbrauen hoch. &#39;Der Rat misstraut jedem, der nicht im Rat sitzt. Heute sind es die Söldner, morgen die Händler und übermorgen die eigenen Nachbarn.&#39; Mehr weiß er angeblich nicht.&quot;
         },
         &quot;rumorText&quot;: &quot;Der Rat beobachtet das 84. Banner und zweifelt an Sera de Albas Befugnissen sowie an Hauptmann Lenz&#39; Neutralität bei den Verhandlungen mit Komarn.&quot;,
-        &quot;npcKey&quot;: &quot;hauptmannLenz&quot;
+        &quot;npcKey&quot;: null
       },
       {
         &quot;id&quot;: &quot;li_009&quot;,
@@ -8894,7 +9068,7 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 &lt;&lt;set $world.flags.jarek_ausgang_tag to $world.day&gt;&gt;
 &lt;&lt;set $world.flags.jarek_ausgang to &quot;schande&quot;&gt;&gt;
 &lt;&lt;trenner&gt;&gt;
-[[Die Strafe annehmen und tragen. -&gt;Kap1_Der nächste Tag]]</tw-passagedata><tw-passagedata pid="98" name="Ermittlung_S0_Auftakt" tags="einmalig interrupt" position="625,4975" size="100,100">&lt;&lt;run setup.ermInit()&gt;&gt;
+[[Die Strafe annehmen und tragen. -&gt;Kap1_Der nächste Tag]]</tw-passagedata><tw-passagedata pid="98" name="Ermittlung_S0_Auftakt" tags="einmalig interrupt kapitel-opener" position="625,4975" size="100,100">&lt;&lt;run setup.ermInit()&gt;&gt;
 &lt;&lt;if $world.ermittlung.flags.modus == null&gt;&gt;
 	&lt;&lt;set $world.ermittlung.flags.modus to setup.karlaDa() ? &quot;mit&quot; : &quot;fuer&quot;&gt;&gt;
 &lt;&lt;/if&gt;&gt;
@@ -9122,7 +9296,7 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 &lt;&lt;set $world.tagesAktionen += 1&gt;&gt;
 
 &lt;&lt;trenner&gt;&gt;
-&lt;&lt;weiterImTag &quot;Weiter&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="103" name="Ermittlung_S1_Intro_in_Waffenstube" tags="einmalig interrupt" position="850,5075" size="100,100">&lt;&lt;scene&gt;&gt;
+&lt;&lt;weiterImTag &quot;Weiter&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="103" name="Ermittlung_S1_Intro_in_Waffenstube" tags="einmalig interrupt kapitel-opener" position="850,5075" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Hinter dem Ausgabetisch, auf einem Hocker, der zu niedrig für ihn scheint, sitzt ein schmaler Mann mit tintenfleckigen Fingern und einem Bart, 
 so ordentlich gestutzt, als traue er der Unordnung nicht über den Weg. Die Rekruten treten nacheinander vor, 
 jeder mit dem Stück, das er sich am Morgen genommen hat, und jedes Mal dasselbe Ritual: Nummer nennen, Waffe reichen, warten, 
@@ -9230,7 +9404,7 @@ Du sagst noch nichts davon. Aber der Gedanke sitzt in dir wie ein Splitter, den 
 &lt;p&gt;Also warten. Drill, Appell, Dienst — Tage, die aussehen müssen wie alle anderen, während die Sache in dir arbeitet. Das Schwerste am Ermitteln, lernst du gerade, ist nicht das Wagnis. Es ist das Stillhalten davor.&lt;/p&gt;
 
 &lt;&lt;trenner&gt;&gt;
-&lt;&lt;weiterImTag &quot;Weiter&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="105" name="Ermittlung_S2_Einbruch" tags="interrupt einmalig" position="750,5275" size="100,100">&lt;&lt;if setup.ermMit()&gt;&gt;
+&lt;&lt;weiterImTag &quot;Weiter&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="105" name="Ermittlung_S2_Einbruch" tags="interrupt einmalig kapitel-opener" position="750,5275" size="100,100">&lt;&lt;if setup.ermMit()&gt;&gt;
 	&lt;&lt;scene&gt;&gt;
 	&lt;p&gt;Die Nacht, die ihr euch ausgesucht habt, ist eine ohne Mond — Karla hat drei Abende lang den Himmel beobachtet, ehe sie diesen für richtig befand. Kein Licht außer den Wachfeuern an den Toren, kein Laut außer dem Wind, der durch die leeren Übungshöfe streicht und die losen Läden der Waffenausgabe gegen ihre Rahmen schlagen lässt, immer und immer wieder, bis das Geräusch selbst zur Stille gehört.&lt;/p&gt;
 	&lt;p&gt;Ihr habt die Tage zuvor genutzt, wie man einen Feind vor der Schlacht auskundschaftet. Du hast beobachtet, wann Oren geht — jeden Abend zur selben Stunde, kein einziges Mal später, ein Mann, der seine eigene Pünktlichkeit wie eine Tugend trägt. Karla hat sich Tür, Fenster, Schlüssel und Wachwege eingeprägt, ohne ein Wort darüber zu verlieren, bis sie es dir an diesem Abend flüsternd vorlegt wie eine Karte, die nur in ihrem Kopf existiert.&lt;/p&gt;
@@ -9314,8 +9488,8 @@ Du sagst noch nichts davon. Aber der Gedanke sitzt in dir wie ein Splitter, den 
 	&lt;p&gt;Das Buch liegt noch offen zwischen euren Händen, der Eintrag halb entziffert, die Tür zwischen euch und der Entdeckung nur noch wenige Herzschläge entfernt. Reicht die Zeit um es zurückzulegen und zu verschwinden?&lt;/p&gt;
 
 	&lt;&lt;trenner&gt;&gt;
-	[[1. Das Buch rasch zurücklegen und durch den Laden fliehen|Ermittlung_S2_Einbruch_Flucht]]
-	[[2. Sich hinter den Waffengestellen verstecken und abwarten|Ermittlung_S2_Einbruch_Versteck]]
+	[[Das Buch rasch zurücklegen und durch den Laden fliehen|Ermittlung_S2_Einbruch_Flucht]]
+	[[Sich hinter den Waffengestellen verstecken und abwarten|Ermittlung_S2_Einbruch_Versteck]]
 
 &lt;&lt;else&gt;&gt;
 	/* ===== FUER-MODUS — Thomas bricht allein ein. Check + Flags gespiegelt. ===== */
@@ -10182,7 +10356,7 @@ Also finde ich zuerst heraus, was sie bedeuten. Nur — wer erklärt einem einze
 &lt;&lt;/gedanke&gt;&gt;
 
 &lt;&lt;trenner&gt;&gt;
-&lt;&lt;weiterImTag &quot;Weiter&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="111" name="Ermittlung_S4_Magister_Halm" tags="interrupt einmalig" position="950,5750" size="100,100">&lt;&lt;gedanke&gt;&gt;
+&lt;&lt;weiterImTag &quot;Weiter&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="111" name="Ermittlung_S4_Magister_Halm" tags="interrupt einmalig kapitel-opener" position="950,5750" size="100,100">&lt;&lt;gedanke&gt;&gt;
 &lt;p&gt;Übungsbestand C. Westhof. Zwei Worte, die eine Tür bewachen, hinter der ich nicht sehen kann. 
 Wenn irgendwer in dieser Akademie weiß, was sie bedeuten, dann der Mann, der über jedes Schriftstück wacht, das hier je verfasst wurde.&lt;/p&gt;
 &lt;&lt;/gedanke&gt;&gt;
@@ -10621,7 +10795,7 @@ zwei Freiwillige — das ist mein Weg nach Westhof. Für sie.&lt;/p&gt;
 &lt;p&gt;Jetzt heißt es warten, bis die nächste Fuhre angesetzt wird — und die Hände heben, ehe es ein anderer tut.&lt;/p&gt;
 &lt;&lt;/gedanke&gt;&gt;
 
-&lt;&lt;weiterImTag &quot;Weiter&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="116" name="Ermittlung_S5_Westhof" tags="einmalig interrupt" position="300,5700" size="100,100">&lt;&lt;if setup.ermMit()&gt;&gt;
+&lt;&lt;weiterImTag &quot;Weiter&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="116" name="Ermittlung_S5_Westhof" tags="einmalig interrupt kapitel-opener" position="300,5700" size="100,100">&lt;&lt;if setup.ermMit()&gt;&gt;
 &lt;&lt;scene&gt;&gt;
 &lt;p&gt;Der Karren rumpelt seit dem frühen Morgen über die Nordstraße, deren Furchen der Frost hart und ungnädig gemacht hat, und mit jeder Meile weicht die Enge der Akademie einem Land, das karger und stiller wird. Kein Wachfeuer mehr, keine Pechfackeln — nur Ackerland unter grauem Himmel, hier und da ein Gehöft, dessen Rauch senkrecht in die kalte Luft steigt, weil kein Wind ihn beugt. Karla sitzt neben dir auf der Ladefläche, zwischen Kisten mit stumpfen Übungsklingen und einem Fass Öl, das bei jedem Schlagloch dumpf gegen das Holz schlägt.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
@@ -10962,7 +11136,7 @@ Wie ist er tatsächlich hinausgekommen? Mit einem gestohlenen Dokument, mitten i
 &lt;&lt;/gedanke&gt;&gt;
 
 &lt;&lt;trenner&gt;&gt;
-&lt;&lt;weiterImTag &quot;Weiter&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="119" name="Ermittlung_S7_Route_Ablaufen" tags="interrupt einmalig" position="175,5975" size="100,100">&lt;&lt;scene&gt;&gt;
+&lt;&lt;weiterImTag &quot;Weiter&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="119" name="Ermittlung_S7_Route_Ablaufen" tags="interrupt einmalig kapitel-opener" position="175,5975" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;&lt;if setup.ermMit()&gt;&gt;
 &lt;p&gt;Ihr geht den Weg, den Jarek gegangen sein muss, in derselben Stunde, in der er ihn ging — nach der zweiten Nachtwache, wenn die Ablösung durch ist und die Höfe für eine Weile niemandem gehören. Von den Schreibstuben aus, wo alles begann, Schritt für Schritt, und Karla zählt die Möglichkeiten ab wie Posten auf einer Liste.&lt;/p&gt;
 &lt;&lt;else&gt;&gt;
@@ -11036,7 +11210,7 @@ Wie ist er tatsächlich hinausgekommen? Mit einem gestohlenen Dokument, mitten i
 &lt;&lt;/if&gt;&gt;
 
 &lt;&lt;trenner&gt;&gt;
-[[Den Gedanken zu Ende denken|Ermittlung_S7_Erkenntnis]]</tw-passagedata><tw-passagedata pid="120" name="Ermittlung_S7_Wachposten_Befragung" tags="interrupt einmalig" position="300,5900" size="100,100">&lt;&lt;scene&gt;&gt;
+[[Den Gedanken zu Ende denken|Ermittlung_S7_Erkenntnis]]</tw-passagedata><tw-passagedata pid="120" name="Ermittlung_S7_Wachposten_Befragung" tags="interrupt einmalig kapitel-opener" position="300,5900" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;&lt;if setup.ermMit()&gt;&gt;
 &lt;p&gt;Es kostet Karla drei Tage und ein Dutzend beiläufiger Fragen, den Namen zusammenzutragen: Bolte, ein Waffenknecht mit grauem Bartstoppel und einem Kreuz, das von zwanzig Jahren Wachdienst krumm ist. Er stand in der Fluchtnacht am Tor, und er trinkt — nicht viel, aber verlässlich, jeden freien Abend in derselben Schenke in der Stadt, am selben Tisch, mit demselben Blick ins Leere.&lt;/p&gt;
 &lt;&lt;else&gt;&gt;
@@ -11111,7 +11285,7 @@ Wie ist er tatsächlich hinausgekommen? Mit einem gestohlenen Dokument, mitten i
 
 
 &lt;&lt;trenner&gt;&gt;
-[[Den Gedanken zu Ende denken|Ermittlung_S7_Erkenntnis]]</tw-passagedata><tw-passagedata pid="121" name="Ermittlung_S7_Wachprotokolle" tags="interrupt einmalig" position="75,6100" size="100,100">&lt;&lt;if $player.spezialisierung === &quot;pike&quot;&gt;&gt;
+[[Den Gedanken zu Ende denken|Ermittlung_S7_Erkenntnis]]</tw-passagedata><tw-passagedata pid="121" name="Ermittlung_S7_Wachprotokolle" tags="interrupt einmalig kapitel-opener" position="75,6100" size="100,100">&lt;&lt;if $player.spezialisierung === &quot;pike&quot;&gt;&gt;
 &lt;&lt;beziehung&gt;&gt;Du bist Spießer &lt;&lt;/beziehung&gt;&gt;
 	&lt;&lt;scene&gt;&gt;
 	&lt;p&gt;Für die anderen Gattungen ist die Torwache ein Los, das man zieht oder dem man ausweicht. Für Pikeniere ist sie Dienstplan. Wer die Linie hält, hält auch das Tor — so war es immer, und so steht dein Name in dieser Woche ganz von selbst auf der Liste, ohne dass jemand auch nur einen Finger dafür hätte rühren müssen.&lt;/p&gt;
@@ -11352,7 +11526,7 @@ Aber scharfe Bolzen hinter einem Riegel, der nicht öffnet, sind für einen Waff
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/beziehung&gt;&gt;
 &lt;&lt;trenner&gt;&gt;
-[[Was das Buch verrät|Ermittlung_S8_Muster]]</tw-passagedata><tw-passagedata pid="127" name="Ermittlung_S8_Zugang" tags="interrupt einmalig" position="250,6300" size="100,100">&lt;&lt;scene&gt;&gt;
+[[Was das Buch verrät|Ermittlung_S8_Muster]]</tw-passagedata><tw-passagedata pid="127" name="Ermittlung_S8_Zugang" tags="interrupt einmalig kapitel-opener" position="250,6300" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Die Waffenpflege ist ein guter Vorwand, weil sie ein wahrer ist: Riemenzeug will geölt, Klingen wollen gewetzt, und niemand hebt eine Braue, wenn ein Waffenträger eine Stunde in der Ausgabestube verbringt. Es riecht nach Leinöl und kaltem Eisen, nach dem Staub alter Register, und in dem schmalen Licht, das durch die hohen Fenster fällt, liegt das Ausgabebuch offen auf dem Pult, als hätte es nur auf dich gewartet.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
 
@@ -11450,7 +11624,7 @@ Nur habe ich jetzt statt drei Beweisen einen, und der liegt eine Tagesreise entf
 	&lt;&lt;set $world.ermittlung.flags.s9_tag to $world.day&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;trenner&gt;&gt;
-[[Alles zusammentragen und Hauptmann Rindler vorlegen -&gt; Ermittlung_S10_Rindler]]</tw-passagedata><tw-passagedata pid="129" name="Ermittlung_S9_Nachtfuhre" tags="interrupt einmalig" position="775,6275" size="100,100">&lt;&lt;if ($world.ermittlung.verdacht.orenmalk || 0) gte 6&gt;&gt;
+[[Alles zusammentragen und Hauptmann Rindler vorlegen -&gt; Ermittlung_S10_Rindler]]</tw-passagedata><tw-passagedata pid="129" name="Ermittlung_S9_Nachtfuhre" tags="interrupt einmalig kapitel-opener" position="775,6275" size="100,100">&lt;&lt;if ($world.ermittlung.verdacht.orenmalk || 0) gte 6&gt;&gt;
 	&lt;&lt;scene&gt;&gt;
 	&lt;p&gt;&lt;&lt;if setup.ermMit()&gt;&gt;
 		Ihr liegt im Schatten des Holzstapels gegenüber der Waffenausgabe, Karla und du, und wartet auf eine Fuhre, die nicht kommt. 
@@ -11628,7 +11802,7 @@ was ein flüchtiger Beobachter übersähe, und dein Gedächtnis hält es fest.&l
 &lt;&lt;/gedanke&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;trenner&gt;&gt;
-[[Alles zusammentragen und Hauptmann Rindler vorlegen|Ermittlung_S10_Rindler]]</tw-passagedata><tw-passagedata pid="133" name="Ermittlung_Familia_Antwort" tags="einmalig interrupt" position="350,5450" size="100,100">&lt;&lt;= setup.ermInit()&gt;&gt;\
+[[Alles zusammentragen und Hauptmann Rindler vorlegen|Ermittlung_S10_Rindler]]</tw-passagedata><tw-passagedata pid="133" name="Ermittlung_Familia_Antwort" tags="einmalig interrupt kapitel-opener" position="350,5450" size="100,100">&lt;&lt;= setup.ermInit()&gt;&gt;\
 &lt;&lt;silently&gt;&gt;
 &lt;&lt;set $world.ermittlung.flags.familia_antwort to true&gt;&gt;
 &lt;&lt;set $world.ermittlung.flags.logistik_bestaetigt to true&gt;&gt;
@@ -12042,7 +12216,7 @@ um einen Schreiber zu versetzen und ein Fach durchsuchen zu lassen. Es reicht, u
 &lt;p&gt;Am folgenden Tag lässt Rindler nach Oren Malk schicken.&lt;/p&gt;
 &lt;&lt;/gedanke&gt;&gt;
 
-[[Der Zugriff|Ermittlung_S10_Koda]]</tw-passagedata><tw-passagedata pid="140" name="Ermittlung_Karla_Rueckkehr" tags="interrupt einmalig nach_Kap2_tag" position="1225,1725" size="100,100">&lt;&lt;scene&gt;&gt;
+[[Der Zugriff|Ermittlung_S10_Koda]]</tw-passagedata><tw-passagedata pid="140" name="Ermittlung_Karla_Rueckkehr" tags="interrupt einmalig nach_Kap2_tag kapitel-opener" position="1225,1725" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Über den Hof läuft ein Raunen, ehe der Wagen überhaupt durchs Tor gerollt ist — Mägde, die im Schritt innehalten,
 ein Wächter, der die Hand über die Augen legt, ein Kopfnicken, das von Reihe zu Reihe weitergereicht wird.
 Am Brunnen sammelt sich eine kleine Menge, die sich um diese Stunde nicht sammeln sollte, und über allem
@@ -12106,17 +12280,17 @@ habe — endlich kann ich sie dem einen Menschen erzählen, für den sie bestimm
 &lt;p&gt;Bei Tagesanbruch rollt der Karren durchs Nordtor, neun Männer und du dahinter, das Lager von Ohm im Rücken. Was ihr habt, habt ihr. Was ihr vergessen habt, werdet ihr draußen vermissen.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
 
-&lt;span class=&quot;weiter-link&quot;&gt;[[Der erste Tag-&gt;Biwag_Tag1]]&lt;/span&gt;</tw-passagedata><tw-passagedata pid="142" name="Biwag_Debrief" tags="layout" position="4325,3600" size="100,100">&lt;&lt;scene&gt;&gt;
+&lt;span class=&quot;weiter-link&quot;&gt;[[Der erste Tag-&gt;Biwag_Tag1]]&lt;/span&gt;</tw-passagedata><tw-passagedata pid="142" name="Biwag_Debrief" tags="" position="4325,3600" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;„Nun, Biwakweibel“, sagt Rindler. „Erzählt. Und bedenkt: Ich sehe Eure Männer, ehe ich Euren Worten glaube.“&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
 [[Ehrlich berichten|Biwag_Debrief_Ehrlich]]
-[[Die Woche beschönigen|Biwag_Debrief_Beschoenigen]]</tw-passagedata><tw-passagedata pid="143" name="Biwag_Debrief_Beschoenigen" tags="layout" position="4200,3450" size="100,100">&lt;&lt;scene&gt;&gt;
+[[Die Woche beschönigen|Biwag_Debrief_Beschoenigen]]</tw-passagedata><tw-passagedata pid="143" name="Biwag_Debrief_Beschoenigen" tags="" position="4200,3450" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Du malst die Woche in helleren Farben, als sie war.&lt;&lt;if $world.biwagWenzelWeg or ($world.biwagMoral lt 55)&gt;&gt; Doch Rindlers Blick wandert über die müden, mürrischen Gesichter deiner Truppe, und ein leises Lächeln, das keines ist, sagt dir: Er sieht durch dich hindurch.&lt;&lt;else&gt;&gt; Deine Männer stehen ordentlich genug, dass die Geschichte trägt.&lt;&lt;/if&gt;&gt;&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
-[[Das Urteil|Biwag_Ergebnis]]</tw-passagedata><tw-passagedata pid="144" name="Biwag_Debrief_Ehrlich" tags="layout" position="4375,3425" size="100,100">&lt;&lt;scene&gt;&gt;
+[[Das Urteil|Biwag_Ergebnis]]</tw-passagedata><tw-passagedata pid="144" name="Biwag_Debrief_Ehrlich" tags="" position="4375,3425" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Du berichtest, wie es war — die Pannen wie die Erfolge, ohne Beschönigung. Rindler nickt knapp; ein Mann, der die Wahrheit hört, auch wenn sie unbequem ist, verdient sich wenigstens Vertrauen.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
-[[Das Urteil|Biwag_Ergebnis]]</tw-passagedata><tw-passagedata pid="145" name="Biwag_Drill" tags="" position="2900,4425" size="100,100">&lt;&lt;scene&gt;&gt;
+[[Das Urteil|Biwag_Ergebnis]]</tw-passagedata><tw-passagedata pid="145" name="Biwag_Drill" tags="interrupt einmalig kapitel-opener" position="2900,4425" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Rindler steht vor der angetretenen Reihe, die Hände auf dem Rücken verschränkt,
  und lässt seinen Blick einmal über die Gesichter wandern, als wöge er jedes einzeln auf einer unsichtbaren Waage.
   Niemand rührt sich. Irgendwo hinter der Palisade schlägt eine Axt gleichmäßig und gedankenlos gegen Holz. 
@@ -12195,7 +12369,7 @@ wenn es am wenigsten passt.&lt;/p&gt;
 
 &lt;p&gt;Die anderen acht warten. Sie warten auf dich.&lt;/p&gt;
 
-&lt;span class=&quot;weiter-link&quot;&gt;[[Den Karren beladen-&gt;Biwag_Loadout]]&lt;/span&gt;</tw-passagedata><tw-passagedata pid="146" name="Biwag_Ergebnis" tags="layout" position="4275,3275" size="100,100">&lt;&lt;set _stufe to setup.biwagVerdikt()&gt;&gt;
+&lt;span class=&quot;weiter-link&quot;&gt;[[Den Karren beladen-&gt;Biwag_Loadout]]&lt;/span&gt;</tw-passagedata><tw-passagedata pid="146" name="Biwag_Ergebnis" tags="" position="4275,3275" size="100,100">&lt;&lt;set _stufe to setup.biwagVerdikt()&gt;&gt;
 &lt;&lt;scene&gt;&gt;
 &lt;p&gt;Rindler wechselt einen Blick mit Kurt, ehe er das Urteil spricht.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
@@ -12587,13 +12761,13 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 	&lt;p&gt;Die erste Wache wird eingeteilt, das Feuer heruntergebrannt. Ein Tag ist vorüber.&lt;/p&gt;
   &lt;&lt;= setup.biwagTagEnde()&gt;&gt;
 	&lt;span class=&quot;weiter-link&quot;&gt;[[Der dritte Tag bricht an-&gt;Biwag_Tag3]]&lt;/span&gt;
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="164" name="Biwag_Tag3" tags="layout" position="4425,3800" size="100,100">&lt;&lt;if setup.biwagBeatOnce(&quot;tagN_start&quot;)&gt;&gt;&lt;&lt;= setup.biwagTagStart()&gt;&gt;&lt;&lt;/if&gt;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="164" name="Biwag_Tag3" tags="" position="4425,3800" size="100,100">&lt;&lt;if setup.biwagBeatOnce(&quot;tagN_start&quot;)&gt;&gt;&lt;&lt;= setup.biwagTagStart()&gt;&gt;&lt;&lt;/if&gt;&gt;
 
 &lt;&lt;scene&gt;&gt;
 &lt;p&gt;Der dritte Morgen bricht grau und nass an. Kein Sturm, aber ein zäher, kalter Regen, der von oben und von den Ästen zugleich kommt und den Weg vor euch in einen braunen Brei verwandelt. Der Karren steht schon halb im Schlamm, und die Männer sehen dich an: durchziehen oder das Wetter aussitzen?&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
 [[Weiterziehen — Strecke machen, ehe der Weg unpassierbar wird|Biwag_Tag3_Weiterziehen]]
-[[Rasten — das Ärgste vorüberziehen lassen|Biwag_Tag3_Rasten]]</tw-passagedata><tw-passagedata pid="165" name="Biwag_Tag3_Abend" tags="layout" position="3625,3700" size="100,100">&lt;&lt;scene&gt;&gt;
+[[Rasten — das Ärgste vorüberziehen lassen|Biwag_Tag3_Rasten]]</tw-passagedata><tw-passagedata pid="165" name="Biwag_Tag3_Abend" tags="" position="3625,3700" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Gegen Morgen hustet einer der Männer schwer, ein anderer fiebert leicht. Die Nässe hat ihren Tribut gefordert, und es liegt an dir&lt;&lt;if $player.spezialisierung eq &quot;medicine&quot;&gt;&gt; — dem Feldscher der Truppe —&lt;&lt;/if&gt;&gt;, dass aus einer feuchten Nacht keine kranke Woche wird.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
 &lt;&lt;if setup.biwagBeatOnce(&quot;tag3_gesund&quot;)&gt;&gt;
@@ -12606,29 +12780,29 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 	&lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;= setup.biwagTagEnde()&gt;&gt;
-[[Der vierte Tag|Biwag_Tag4]]</tw-passagedata><tw-passagedata pid="166" name="Biwag_Tag3_Enge" tags="layout" position="3775,3775" size="100,100">&lt;&lt;scene&gt;&gt;
+[[Der vierte Tag|Biwag_Tag4]]</tw-passagedata><tw-passagedata pid="166" name="Biwag_Tag3_Enge" tags="" position="3775,3775" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Ihr rückt zusammen, Rücken an Rücken unter den Planen, die ihr habt. &lt;&lt;if $world.biwagEquipment.zelte&gt;&gt;Die Zelte halten dicht — es geht.&lt;&lt;elseif $world.biwagEquipment.decken&gt;&gt;Die Wolldecken halten wenigstens die Wärme.&lt;&lt;else&gt;&gt;Es hilft wenig; ehe die Nacht vorüber ist, ist jeder bis auf die Haut durchnässt.&lt;&lt;/if&gt;&gt;&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
 &lt;&lt;if setup.biwagBeatOnce(&quot;tag3_wetter&quot;)&gt;&gt;
 	&lt;&lt;= setup.biwagMoral(setup.biwagWetterMalus(false))&gt;&gt;
 &lt;&lt;/if&gt;&gt;
-[[Die Nacht überstehen|Biwag_Tag3_Abend]]</tw-passagedata><tw-passagedata pid="167" name="Biwag_Tag3_Lager" tags="layout" position="4100,3875" size="100,100">&lt;&lt;scene&gt;&gt;
+[[Die Nacht überstehen|Biwag_Tag3_Abend]]</tw-passagedata><tw-passagedata pid="167" name="Biwag_Tag3_Lager" tags="" position="4100,3875" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Als ihr haltet, steht die Frage im Raum, wie ihr die nasse Nacht übersteht. Ein ordentlicher Unterstand kostet Mühe und braucht Gerät — oder ihr rückt einfach eng zusammen und hofft, dass der Regen nachlässt.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
 [[Einen Unterstand bauen|Biwag_Tag3_Unterstand]]
-[[Zusammenrücken|Biwag_Tag3_Enge]]</tw-passagedata><tw-passagedata pid="168" name="Biwag_Tag3_Rasten" tags="layout" position="4275,3925" size="100,100">&lt;&lt;scene&gt;&gt;
+[[Zusammenrücken|Biwag_Tag3_Enge]]</tw-passagedata><tw-passagedata pid="168" name="Biwag_Tag3_Rasten" tags="" position="4275,3925" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Du lässt halten und die Truppe unter die Bäume rücken. Es ist die vernünftige Wahl — doch ein verlorener Tag bleibt ein verlorener Tag, und das Murren mischt sich bald ins Trommeln des Regens.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
 &lt;&lt;if setup.biwagBeatOnce(&quot;tag3_rast&quot;)&gt;&gt;
   &lt;&lt;= setup.biwagRast()&gt;&gt;
 &lt;&lt;/if&gt;&gt;
-[[Ein Lager schlagen|Biwag_Tag3_Lager]]</tw-passagedata><tw-passagedata pid="169" name="Biwag_Tag3_Unterstand" tags="layout" position="3900,3850" size="100,100">&lt;&lt;scene&gt;&gt;
+[[Ein Lager schlagen|Biwag_Tag3_Lager]]</tw-passagedata><tw-passagedata pid="169" name="Biwag_Tag3_Unterstand" tags="" position="3900,3850" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;&lt;&lt;if $world.biwagEquipment.zelte&gt;&gt;Ihr spannt die Zelte und Planen, und binnen kurzem sitzt die Truppe im Trockenen.&lt;&lt;elseif $world.biwagEquipment.schanzzeug&gt;&gt;Mit Spaten, Beil und Seil zimmert ihr aus Ästen und Planen einen brauchbaren Unterstand — nicht bequem, aber trocken genug.&lt;&lt;else&gt;&gt;Ohne rechtes Gerät bleibt euer Unterstand Stückwerk; der Regen findet jede Lücke.&lt;&lt;/if&gt;&gt;&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
 &lt;&lt;if setup.biwagBeatOnce(&quot;tag3_wetter&quot;)&gt;&gt;
 	&lt;&lt;= setup.biwagMoral(setup.biwagWetterMalus(true))&gt;&gt;
 &lt;&lt;/if&gt;&gt;
-[[Die Nacht überstehen|Biwag_Tag3_Abend]]</tw-passagedata><tw-passagedata pid="170" name="Biwag_Tag3_Weiterziehen" tags="layout" position="3950,3725" size="100,100">&lt;&lt;scene&gt;&gt;
+[[Die Nacht überstehen|Biwag_Tag3_Abend]]</tw-passagedata><tw-passagedata pid="170" name="Biwag_Tag3_Weiterziehen" tags="" position="3950,3725" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Ihr stemmt euch gegen Regen und Schlamm. Das Karrenrad sinkt bis zur Nabe, und jeder Schritt will erkämpft sein — doch stillzustehen wäre schlimmer.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
 &lt;&lt;if setup.biwagBeatOnce(&quot;tag3_marsch&quot;)&gt;&gt;
@@ -12640,14 +12814,14 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 		&lt;p&gt;Der Karren bricht aus, kippt fast, und ihr verliert eine Stunde damit, ihn wieder freizubekommen. Am Ende seid ihr durchnässt, erschöpft und kaum weiter als am Morgen.&lt;/p&gt;
 	&lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
-[[Ein Lager schlagen|Biwag_Tag3_Lager]]</tw-passagedata><tw-passagedata pid="171" name="Biwag_Tag4" tags="layout" position="4650,3700" size="100,100">&lt;&lt;if setup.biwagBeatOnce(&quot;tagN_start&quot;)&gt;&gt;&lt;&lt;= setup.biwagTagStart()&gt;&gt;&lt;&lt;/if&gt;&gt;
+[[Ein Lager schlagen|Biwag_Tag3_Lager]]</tw-passagedata><tw-passagedata pid="171" name="Biwag_Tag4" tags="" position="4650,3700" size="100,100">&lt;&lt;if setup.biwagBeatOnce(&quot;tagN_start&quot;)&gt;&gt;&lt;&lt;= setup.biwagTagStart()&gt;&gt;&lt;&lt;/if&gt;&gt;
 
 &lt;&lt;scene&gt;&gt;
 &lt;p&gt;Der vierte Tag bringt die Sonne zurück, doch beim Blick in die Vorratskiste wird dir mulmig&lt;&lt;if $world.biwagProviant lte 3&gt;&gt; — es reicht nicht mehr lange&lt;&lt;/if&gt;&gt;. Entweder ihr macht Fleisch, oder ihr lernt zu hungern.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
 &lt;p&gt;Vorrat: &lt;b&gt;$world.biwagProviant&lt;/b&gt; Tagesrationen&lt;/p&gt;
 [[Auf die Jagd gehen|Biwag_Tag4_Jagd]]
-[[Die Rationen strecken|Biwag_Tag4_Strecken]]</tw-passagedata><tw-passagedata pid="172" name="Biwag_Tag4_Abend" tags="layout" position="4825,4875" size="100,100">&lt;&lt;scene&gt;&gt;
+[[Die Rationen strecken|Biwag_Tag4_Strecken]]</tw-passagedata><tw-passagedata pid="172" name="Biwag_Tag4_Abend" tags="" position="4825,4875" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Deine erste eigene Wache. Die Nacht ist klar und kalt, jedes Knacken im Unterholz zwingt dich, genau hinzuhören — wach zu bleiben, wenn der Schlaf an dir zerrt.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
 &lt;&lt;if setup.biwagBeatOnce(&quot;tag4_nachtwache&quot;)&gt;&gt;
@@ -12660,7 +12834,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
     &lt;&lt;= setup.biwagProviant(-1)&gt;&gt;
 	&lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
-[[Der fünfte Tag|Biwag_Tag5]]</tw-passagedata><tw-passagedata pid="173" name="Biwag_Tag4_Ansprechen" tags="layout" position="4700,4600" size="100,100">&lt;&lt;scene&gt;&gt;
+[[Der fünfte Tag|Biwag_Tag5]]</tw-passagedata><tw-passagedata pid="173" name="Biwag_Tag4_Ansprechen" tags="" position="4700,4600" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Du setzt dich zu ihm, ohne Vorwurf, und lässt ihn reden. Von zu Hause, von der Angst, zu versagen, von der Nacht, die noch so lang scheint.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
 &lt;&lt;if setup.biwagBeatOnce(&quot;tag4_wenzel&quot;)&gt;&gt;
@@ -12673,18 +12847,18 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 		&lt;p&gt;Er hört dich an, doch die Worte prallen ab; was in ihm nagt, sitzt tiefer, als ein Gespräch am Feuer es erreicht. Er zieht sich in sein Schweigen zurück.&lt;/p&gt;
 	&lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
-[[Zur Nachtruhe|Biwag_Tag4_Abend]]</tw-passagedata><tw-passagedata pid="174" name="Biwag_Tag4_Hart" tags="layout" position="4925,4625" size="100,100">&lt;&lt;scene&gt;&gt;
+[[Zur Nachtruhe|Biwag_Tag4_Abend]]</tw-passagedata><tw-passagedata pid="174" name="Biwag_Tag4_Hart" tags="" position="4925,4625" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Du fährst ihn an: kein Platz für Heimweh im Feld, er solle sich zusammenreißen wie ein Mann. Er zuckt zusammen, verstummt — und etwas in seinem Blick schließt sich, das sich so leicht nicht wieder öffnet.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
 &lt;&lt;if setup.biwagBeatOnce(&quot;tag4_wenzel&quot;)&gt;&gt;
 	&lt;&lt;set $world.biwagWenzelHart to true&gt;&gt;
 	&lt;&lt;= setup.biwagMoral(-1)&gt;&gt;
 &lt;&lt;/if&gt;&gt;
-[[Zur Nachtruhe|Biwag_Tag4_Abend]]</tw-passagedata><tw-passagedata pid="175" name="Biwag_Tag4_Ignorieren" tags="layout" position="4800,4675" size="100,100">&lt;&lt;scene&gt;&gt;
+[[Zur Nachtruhe|Biwag_Tag4_Abend]]</tw-passagedata><tw-passagedata pid="175" name="Biwag_Tag4_Ignorieren" tags="" position="4800,4675" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Du lässt ihn sitzen. Vielleicht braucht er nur Zeit; vielleicht ist es nicht deine Sache. Der Junge bleibt allein mit dem, was ihn drückt.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
 &lt;&lt;run setup.biwagBeatOnce(&quot;tag4_wenzel&quot;)&gt;&gt;
-[[Zur Nachtruhe|Biwag_Tag4_Abend]]</tw-passagedata><tw-passagedata pid="176" name="Biwag_Tag4_Jagd" tags="layout" position="4725,4350" size="100,100">&lt;&lt;scene&gt;&gt;
+[[Zur Nachtruhe|Biwag_Tag4_Abend]]</tw-passagedata><tw-passagedata pid="176" name="Biwag_Tag4_Jagd" tags="" position="4725,4350" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Du nimmst zwei ruhige Männer, den Wind im Gesicht, und schlägst dich ins Unterholz. &lt;&lt;if $player.spezialisierung eq &quot;crossbow&quot;&gt;&gt;Als Armbruster ist dies deine Stunde.&lt;&lt;elseif $player.spezialisierung eq &quot;pike&quot;&gt;&gt;Mit der Pike ist Jagd eine ungewohnte Kunst.&lt;&lt;/if&gt;&gt;&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
 &lt;&lt;if setup.biwagBeatOnce(&quot;tag4_jagd&quot;)&gt;&gt;
@@ -12697,25 +12871,25 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 		&lt;p&gt;Das Wild entwischt euch immer wieder, und nach Stunden kehrt ihr mit leeren Händen zurück — Zeit und Kraft vertan.&lt;/p&gt;
 	&lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
-[[Zurück ins Lager|Biwag_Tag4_Wenzel]]</tw-passagedata><tw-passagedata pid="177" name="Biwag_Tag4_Strecken" tags="layout" position="4950,4350" size="100,100">&lt;&lt;scene&gt;&gt;
+[[Zurück ins Lager|Biwag_Tag4_Wenzel]]</tw-passagedata><tw-passagedata pid="177" name="Biwag_Tag4_Strecken" tags="" position="4950,4350" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Du ordnest halbe Rationen an. Es ist vernünftig — und unbeliebt. Die Männer essen schweigend und mit leeren Augen, und die Stimmung sinkt mit dem Pegel im Kessel.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
 &lt;&lt;if setup.biwagBeatOnce(&quot;tag4_strecken&quot;)&gt;&gt;
 	&lt;&lt;= setup.biwagProviant(1)&gt;&gt;   /* gestreckt: die heutige Ration reicht länger */
 	&lt;&lt;= setup.biwagMoral(-2)&gt;&gt;
 &lt;&lt;/if&gt;&gt;
-[[Zurück ins Lager|Biwag_Tag4_Wenzel]]</tw-passagedata><tw-passagedata pid="178" name="Biwag_Tag4_Wenzel" tags="layout" position="4800,4450" size="100,100">&lt;&lt;scene&gt;&gt;
+[[Zurück ins Lager|Biwag_Tag4_Wenzel]]</tw-passagedata><tw-passagedata pid="178" name="Biwag_Tag4_Wenzel" tags="" position="4800,4450" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Am Abend findest du Wenzel abseits des Feuers, das Gesicht in Richtung Heimat gewandt. Der Junge hat rote Augen, und du weißt, dass eine falsche Behandlung jetzt in ein paar Nächten zum Problem werden kann.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
 [[Ihn ansprechen|Biwag_Tag4_Ansprechen]]
 [[Hart rangehen|Biwag_Tag4_Hart]]
-[[Ihn in Ruhe lassen|Biwag_Tag4_Ignorieren]]</tw-passagedata><tw-passagedata pid="179" name="Biwag_Tag5" tags="layout" position="5100,4600" size="100,100">&lt;&lt;if setup.biwagBeatOnce(&quot;tagN_start&quot;)&gt;&gt;&lt;&lt;= setup.biwagTagStart()&gt;&gt;&lt;&lt;/if&gt;&gt;
+[[Ihn in Ruhe lassen|Biwag_Tag4_Ignorieren]]</tw-passagedata><tw-passagedata pid="179" name="Biwag_Tag5" tags="" position="5100,4600" size="100,100">&lt;&lt;if setup.biwagBeatOnce(&quot;tagN_start&quot;)&gt;&gt;&lt;&lt;= setup.biwagTagStart()&gt;&gt;&lt;&lt;/if&gt;&gt;
 
 &lt;&lt;scene&gt;&gt;
 &lt;p&gt;Zur Wochenmitte wird die Truppe stumpf — vier Tage Marsch schleifen die Schärfe ab. Du kannst sie fordern, um sie wach zu halten, oder ihnen die Rast gönnen, die sie sich wünschen.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
 [[Die Männer drillen|Biwag_Tag5_Drill]]
-[[Ruhen lassen|Biwag_Tag5_Ruhe]]</tw-passagedata><tw-passagedata pid="180" name="Biwag_Tag5_Abend" tags="layout" position="5125,4375" size="100,100">&lt;&lt;if setup.biwagBeatOnce(&quot;tag5_kaelte&quot;)&gt;&gt;
+[[Ruhen lassen|Biwag_Tag5_Ruhe]]</tw-passagedata><tw-passagedata pid="180" name="Biwag_Tag5_Abend" tags="" position="5125,4375" size="100,100">&lt;&lt;if setup.biwagBeatOnce(&quot;tag5_kaelte&quot;)&gt;&gt;
 	&lt;&lt;= setup.biwagMoral(setup.biwagKaelteMalus())&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;scene&gt;&gt;
@@ -12723,10 +12897,10 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 &lt;&lt;/scene&gt;&gt;
 
 [[Am Feuer bleiben|Biwag_Tag5_Feuer]]
-[[Früh schlafen schicken|Biwag_Tag5_Frueh]]</tw-passagedata><tw-passagedata pid="181" name="Biwag_Tag5_Drill" tags="layout" position="5425,4575" size="100,100">&lt;&lt;scene&gt;&gt;
+[[Früh schlafen schicken|Biwag_Tag5_Frueh]]</tw-passagedata><tw-passagedata pid="181" name="Biwag_Tag5_Drill" tags="" position="5425,4575" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Du lässt antreten und die Handgriffe üben, bis sie sitzen. Mitten in der Übung splittert etwas — &lt;&lt;if $player.spezialisierung eq &quot;pike&quot;&gt;&gt;ein Pikenschaft bricht&lt;&lt;elseif $player.spezialisierung eq &quot;crossbow&quot;&gt;&gt;eine Armbrustsehne reißt&lt;&lt;elseif $player.spezialisierung eq &quot;cannon&quot;&gt;&gt;ein Zündeisen versagt&lt;&lt;else&gt;&gt;ein Riemenzeug reißt&lt;&lt;/if&gt;&gt;, und plötzlich geht es nicht mehr ums Üben, sondern ums Flicken.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
-[[Das Gerät instand setzen|Biwag_Tag5_Reparatur]]</tw-passagedata><tw-passagedata pid="182" name="Biwag_Tag5_Feuer" tags="layout" position="5300,4375" size="100,100">&lt;&lt;scene&gt;&gt;
+[[Das Gerät instand setzen|Biwag_Tag5_Reparatur]]</tw-passagedata><tw-passagedata pid="182" name="Biwag_Tag5_Feuer" tags="" position="5300,4375" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Du bleibst mit ihnen am Feuer, und irgendwann fällt der Blick auf dich: eine Geschichte, ein Wort, das die Kälte kleiner macht.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
 &lt;&lt;if setup.biwagBeatOnce(&quot;tag5_feuer&quot;)&gt;&gt;
@@ -12739,14 +12913,14 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 	&lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;= setup.biwagTagEnde()&gt;&gt;
-[[Der sechste Tag|Biwag_Tag6]]</tw-passagedata><tw-passagedata pid="183" name="Biwag_Tag5_Frueh" tags="layout" position="5225,4100" size="100,100">&lt;&lt;scene&gt;&gt;
+[[Der sechste Tag|Biwag_Tag6]]</tw-passagedata><tw-passagedata pid="183" name="Biwag_Tag5_Frueh" tags="" position="5225,4100" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Du schickst sie früh in die Decken. Kein Feuerzauber, keine Geschichten — aber ausgeruhte Männer, wenn der Morgen kommt.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
 &lt;&lt;if setup.biwagBeatOnce(&quot;tag5_frueh&quot;)&gt;&gt;
 	&lt;&lt;= setup.biwagRast()&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;= setup.biwagTagEnde()&gt;&gt;
-[[Der sechste Tag|Biwag_Tag6]]</tw-passagedata><tw-passagedata pid="184" name="Biwag_Tag5_Reparatur" tags="layout" position="5250,4575" size="100,100">&lt;&lt;if setup.biwagBeatOnce(&quot;tag5_reparatur&quot;)&gt;&gt;
+[[Der sechste Tag|Biwag_Tag6]]</tw-passagedata><tw-passagedata pid="184" name="Biwag_Tag5_Reparatur" tags="" position="5250,4575" size="100,100">&lt;&lt;if setup.biwagBeatOnce(&quot;tag5_reparatur&quot;)&gt;&gt;
 	&lt;&lt;set _r to setup.biwagCheck($player.spezialisierung, 13, setup.biwagItemMod(&quot;waffenpflege&quot;))&gt;&gt;
 	&lt;&lt;= setup.skillCheckAlert(_r)&gt;&gt;
 	&lt;&lt;if _r.success&gt;&gt;
@@ -12756,19 +12930,19 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 
 	&lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
-[[Der Abend naht|Biwag_Tag5_Abend]]</tw-passagedata><tw-passagedata pid="185" name="Biwag_Tag5_Ruhe" tags="layout" position="5250,4225" size="100,100">&lt;&lt;scene&gt;&gt;
+[[Der Abend naht|Biwag_Tag5_Abend]]</tw-passagedata><tw-passagedata pid="185" name="Biwag_Tag5_Ruhe" tags="" position="5250,4225" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Du gibst den Tag frei. Die Männer flicken Kleider, dösen in der Sonne, lachen wieder — es tut ihnen gut. Ob es sie weicher macht, wird sich zeigen.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
 &lt;&lt;if setup.biwagBeatOnce(&quot;tag5_ruhe&quot;)&gt;&gt;
 	&lt;&lt;= setup.biwagRast()&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
-[[Der Abend naht|Biwag_Tag5_Abend]]</tw-passagedata><tw-passagedata pid="186" name="Biwag_Tag6" tags="layout" position="5625,3750" size="100,100">&lt;&lt;if setup.biwagBeatOnce(&quot;tagN_start&quot;)&gt;&gt;&lt;&lt;= setup.biwagTagStart()&gt;&gt;&lt;&lt;/if&gt;&gt;
+[[Der Abend naht|Biwag_Tag5_Abend]]</tw-passagedata><tw-passagedata pid="186" name="Biwag_Tag6" tags="" position="5625,3750" size="100,100">&lt;&lt;if setup.biwagBeatOnce(&quot;tagN_start&quot;)&gt;&gt;&lt;&lt;= setup.biwagTagStart()&gt;&gt;&lt;&lt;/if&gt;&gt;
 
 &lt;&lt;scene&gt;&gt;
 &lt;p&gt;Der sechste Tag kommt wieder mit Regen — härter als beim ersten Mal, und die Männer sind müder, dünnhäutiger. Es gibt keine Wahl als weiter: Der Weg zurück nach Ohm führt durch den Matsch.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
-[[Weiter durch den Regen|Biwag_Tag6_Marsch]]</tw-passagedata><tw-passagedata pid="187" name="Biwag_Tag6_Abend" tags="layout" position="5600,4100" size="100,100">&lt;&lt;scene&gt;&gt;
+[[Weiter durch den Regen|Biwag_Tag6_Marsch]]</tw-passagedata><tw-passagedata pid="187" name="Biwag_Tag6_Abend" tags="" position="5600,4100" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Die Stimmung ist am Tiefpunkt: nass, müde, und ein Platz am Feuer bleibt leer&lt;&lt;if not $world.biwagWenzelWeg&gt;&gt; — oder wäre leer geblieben, hättest du nicht gehandelt&lt;&lt;/if&gt;&gt;. Wenn je ein Wort der Führung gebraucht wurde, dann jetzt.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
 &lt;&lt;if setup.biwagBeatOnce(&quot;tag6_moralrede&quot;)&gt;&gt;
@@ -12781,12 +12955,12 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 	&lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;= setup.biwagTagEnde()&gt;&gt;
-[[Der siebte Tag|Biwag_Tag7]]</tw-passagedata><tw-passagedata pid="188" name="Biwag_Tag6_Desertion" tags="layout" position="5750,4375" size="100,100">&lt;&lt;scene&gt;&gt;
+[[Der siebte Tag|Biwag_Tag7]]</tw-passagedata><tw-passagedata pid="188" name="Biwag_Tag6_Desertion" tags="" position="5750,4375" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Du stellst ihn am Waldrand. Wenzel dreht sich um, das Gesicht nass von Regen und mehr — ein Junge, gefangen zwischen Furcht und Fahnenflucht. Was jetzt geschieht, liegt bei dir.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
 [[Ihn mit Worten zurückholen|Biwag_Tag6_Zurueck]]
 [[Ihn mit Gewalt zurückbringen|Biwag_Tag6_Gewalt]]
-[[Ihn ziehen lassen|Biwag_Tag6_Ziehen]]</tw-passagedata><tw-passagedata pid="189" name="Biwag_Tag6_Gewalt" tags="layout" position="5775,4050" size="100,100">&lt;&lt;if setup.biwagBeatOnce(&quot;tag6_ausgang&quot;)&gt;&gt;
+[[Ihn ziehen lassen|Biwag_Tag6_Ziehen]]</tw-passagedata><tw-passagedata pid="189" name="Biwag_Tag6_Gewalt" tags="" position="5775,4050" size="100,100">&lt;&lt;if setup.biwagBeatOnce(&quot;tag6_ausgang&quot;)&gt;&gt;
 	&lt;&lt;set _r to setup.biwagCheck(&quot;combat&quot;, 13)&gt;&gt;
 	&lt;&lt;= setup.skillCheckAlert(_r)&gt;&gt;
 	&lt;&lt;if _r.success&gt;&gt;
@@ -12796,7 +12970,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 		&lt;&lt;= setup.biwagProviant(-1)&gt;&gt;
 	&lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
-[[Zurück ins Lager|Biwag_Tag6_Abend]]</tw-passagedata><tw-passagedata pid="190" name="Biwag_Tag6_Lager" tags="layout" position="5675,3925" size="100,100">&lt;&lt;if setup.biwagBeatOnce(&quot;tag6_wetter&quot;)&gt;&gt;
+[[Zurück ins Lager|Biwag_Tag6_Abend]]</tw-passagedata><tw-passagedata pid="190" name="Biwag_Tag6_Lager" tags="" position="5675,3925" size="100,100">&lt;&lt;if setup.biwagBeatOnce(&quot;tag6_wetter&quot;)&gt;&gt;
 	&lt;&lt;= setup.biwagMoral(setup.biwagWetterMalus(false))&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;scene&gt;&gt;
@@ -12809,7 +12983,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 	&lt;&lt;else&gt;&gt;&lt;p&gt;Das Elend frisst sich tiefer; zwei Männer taugen kaum noch zu mehr als sich selbst zu tragen.&lt;/p&gt;&lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
-[[Die Nachtwache|Biwag_Tag6_Wache]]</tw-passagedata><tw-passagedata pid="191" name="Biwag_Tag6_Marsch" tags="layout" position="6000,4025" size="100,100">&lt;&lt;if setup.biwagBeatOnce(&quot;tag6_marsch&quot;)&gt;&gt;
+[[Die Nachtwache|Biwag_Tag6_Wache]]</tw-passagedata><tw-passagedata pid="191" name="Biwag_Tag6_Marsch" tags="" position="6000,4025" size="100,100">&lt;&lt;if setup.biwagBeatOnce(&quot;tag6_marsch&quot;)&gt;&gt;
 	&lt;&lt;set _r to setup.biwagCheck(&quot;combat&quot;, 13, setup.biwagItemMod(&quot;schanzzeug&quot;))&gt;&gt;
 	&lt;&lt;= setup.skillCheckAlert(_r)&gt;&gt;
 	&lt;&lt;if _r.success&gt;&gt;
@@ -12818,7 +12992,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 		&lt;p&gt;Der Weg zerrt euch nieder; zweimal bleibt der Karren stecken, und als ihr endlich haltet, ist die Truppe am Rand ihrer Kräfte.&lt;/p&gt;
 	&lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
-[[Das Lager schlagen|Biwag_Tag6_Lager]]</tw-passagedata><tw-passagedata pid="192" name="Biwag_Tag6_Verschlafen" tags="layout" position="5525,4225" size="100,100">&lt;&lt;scene&gt;&gt;
+[[Das Lager schlagen|Biwag_Tag6_Lager]]</tw-passagedata><tw-passagedata pid="192" name="Biwag_Tag6_Verschlafen" tags="" position="5525,4225" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Am Morgen ist eine Decke leer und kalt. Wenzel ist fort, mit seinem Bündel und einem Teil der Vorräte, und niemand hat ihn gehen sehen. Ein Deserteur unter deiner Wache — das wiegt schwer.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
 &lt;&lt;if setup.biwagBeatOnce(&quot;tag6_ausgang&quot;)&gt;&gt;
@@ -12826,7 +13000,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 	&lt;&lt;= setup.biwagMoral(-3)&gt;&gt;
 	&lt;&lt;= setup.biwagProviant(-1)&gt;&gt;
 &lt;&lt;/if&gt;&gt;
-[[Weiter|Biwag_Tag6_Abend]]</tw-passagedata><tw-passagedata pid="193" name="Biwag_Tag6_Wache" tags="layout" position="5600,4375" size="100,100">&lt;&lt;scene&gt;&gt;
+[[Weiter|Biwag_Tag6_Abend]]</tw-passagedata><tw-passagedata pid="193" name="Biwag_Tag6_Wache" tags="" position="5600,4375" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Tief in der Nacht, als der Regen zum Nieseln wird, ist da ein Geräusch am Rand des Lagers — leise, vorsichtig, das Geräusch eines Mannes, der nicht gehört werden will.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
 &lt;&lt;if setup.biwagBeatOnce(&quot;tag6_wache&quot;)&gt;&gt;
@@ -12840,7 +13014,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 &lt;&lt;else&gt;&gt;
 	&lt;p&gt;Deine Lider sind schwer, das Geräusch verliert sich, und du sinkst zurück in den Halbschlaf. Erst der Morgen zeigt dir, was du verpasst hast.&lt;/p&gt;
 	[[Der Morgen|Biwag_Tag6_Verschlafen]]
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="194" name="Biwag_Tag6_Ziehen" tags="layout" position="5725,4200" size="100,100">&lt;&lt;scene&gt;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="194" name="Biwag_Tag6_Ziehen" tags="" position="5725,4200" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Du trittst zur Seite. Vielleicht ist es Gnade, vielleicht Schwäche — aber du lässt ihn gehen, hinein in den Regen, nach Hause. Am Morgen wird die Truppe wissen, dass ihr Weibel einen Deserteur ziehen ließ.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
 &lt;&lt;if setup.biwagBeatOnce(&quot;tag6_ausgang&quot;)&gt;&gt;
@@ -12848,7 +13022,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 	&lt;&lt;= setup.biwagMoral(-3)&gt;&gt;
 	&lt;&lt;= setup.biwagProviant(-1)&gt;&gt;
 &lt;&lt;/if&gt;&gt;
-[[Zurück ins Lager|Biwag_Tag6_Abend]]</tw-passagedata><tw-passagedata pid="195" name="Biwag_Tag6_Zurueck" tags="layout" position="5850,4250" size="100,100">&lt;&lt;if setup.biwagBeatOnce(&quot;tag6_ausgang&quot;)&gt;&gt;
+[[Zurück ins Lager|Biwag_Tag6_Abend]]</tw-passagedata><tw-passagedata pid="195" name="Biwag_Tag6_Zurueck" tags="" position="5850,4250" size="100,100">&lt;&lt;if setup.biwagBeatOnce(&quot;tag6_ausgang&quot;)&gt;&gt;
 	&lt;&lt;set _r to setup.biwagCheck(&quot;gossip&quot;, ($world.biwagBond_wenzel ? 11 : 13))&gt;&gt;
 	&lt;&lt;= setup.skillCheckAlert(_r)&gt;&gt;
 	&lt;&lt;if _r.success&gt;&gt;
@@ -12860,22 +13034,22 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 		&lt;&lt;= setup.biwagProviant(-1)&gt;&gt;
 	&lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
-[[Zurück ins Lager|Biwag_Tag6_Abend]]</tw-passagedata><tw-passagedata pid="196" name="Biwag_Tag7" tags="layout" position="4725,3850" size="100,100">&lt;&lt;if setup.biwagBeatOnce(&quot;tagN_start&quot;)&gt;&gt;&lt;&lt;= setup.biwagTagStart()&gt;&gt;&lt;&lt;/if&gt;&gt;
+[[Zurück ins Lager|Biwag_Tag6_Abend]]</tw-passagedata><tw-passagedata pid="196" name="Biwag_Tag7" tags="" position="4725,3850" size="100,100">&lt;&lt;if setup.biwagBeatOnce(&quot;tagN_start&quot;)&gt;&gt;&lt;&lt;= setup.biwagTagStart()&gt;&gt;&lt;&lt;/if&gt;&gt;
 
 &lt;&lt;scene&gt;&gt;
 &lt;p&gt;Der letzte Tag. Vor euch liegt der Heimweg nach Ohm, und mit ihm die Frage, wie ihr ankommt: gehetzt und erschöpft, aber früh — oder aufrecht und geschlossen, wie eine Truppe, die etwas hinter sich gebracht hat.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
 [[Den Marsch forcieren|Biwag_Tag7_Forcieren]]
-[[Würdevoll heimführen|Biwag_Tag7_Wuerdig]]</tw-passagedata><tw-passagedata pid="197" name="Biwag_Tag7_Ankunft" tags="layout" position="4825,3675" size="100,100">&lt;&lt;scene&gt;&gt;
+[[Würdevoll heimführen|Biwag_Tag7_Wuerdig]]</tw-passagedata><tw-passagedata pid="197" name="Biwag_Tag7_Ankunft" tags="" position="4825,3675" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Im Hof erwarten euch Hauptmann Rindler und Kurt, die Hände im Rücken, die Blicke prüfend. Sie mustern die Truppe, die du zurückbringst — und dann dich.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
-[[Bericht erstatten|Biwag_Debrief]]</tw-passagedata><tw-passagedata pid="198" name="Biwag_Tag7_Forcieren" tags="layout" position="5000,3650" size="100,100">&lt;&lt;scene&gt;&gt;
+[[Bericht erstatten|Biwag_Debrief]]</tw-passagedata><tw-passagedata pid="198" name="Biwag_Tag7_Forcieren" tags="" position="5000,3650" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Du treibst zur Eile. Ihr erreicht Ohm noch vor der Dämmerung — doch die letzten Meilen brechen den Männern das Kreuz, und sie schleppen sich mehr, als dass sie marschieren.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
 &lt;&lt;if setup.biwagBeatOnce(&quot;tag7_schluss&quot;)&gt;&gt;
 	&lt;&lt;= setup.biwagMoral(-1)&gt;&gt;
 &lt;&lt;/if&gt;&gt;
-[[Ankunft in Ohm|Biwag_Tag7_Ankunft]]</tw-passagedata><tw-passagedata pid="199" name="Biwag_Tag7_Wuerdig" tags="layout" position="4475,3575" size="100,100">&lt;&lt;scene&gt;&gt;
+[[Ankunft in Ohm|Biwag_Tag7_Ankunft]]</tw-passagedata><tw-passagedata pid="199" name="Biwag_Tag7_Wuerdig" tags="" position="4475,3575" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Du lässt sie in Ordnung marschieren, Schritt und Haltung, so müde sie auch sind. Als das Nordtor in Sicht kommt, richten sie sich von selbst auf — sie wollen als Soldaten heimkehren, nicht als Häuflein.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
 &lt;&lt;if setup.biwagBeatOnce(&quot;tag7_schluss&quot;)&gt;&gt;
@@ -12887,7 +13061,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
     &lt;p&gt;Die Erschöpfung ist stärker als jeder Vorsatz; ihr kommt an, aber ohne den Glanz, den du erhofft hattest.&lt;/p&gt;
     &lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
-[[Ankunft in Ohm|Biwag_Tag7_Ankunft]]</tw-passagedata><tw-passagedata pid="200" name="Duell_S0_Fruehstueck" tags="interrupt einmalig" position="1225,2475" size="100,100">&lt;&lt;if not $world.duell or $world.duell.done&gt;&gt;
+[[Ankunft in Ohm|Biwag_Tag7_Ankunft]]</tw-passagedata><tw-passagedata pid="200" name="Duell_S0_Fruehstueck" tags="interrupt einmalig kapitel-opener" position="1225,2475" size="100,100">&lt;&lt;if not $world.duell or $world.duell.done&gt;&gt;
     &lt;&lt;set $world.duell = {
         active: true,
         done: false,
@@ -14311,7 +14485,7 @@ Fehde hat endlich das Blut bekommen, nach dem sie all die Jahre verlangt hat.&lt
 &lt;p&gt;Fackeln, Rufe, Stiefel im Dunkeln. Der Überlebende wird abgeführt, noch ehe der Morgen graut. Rabenfurt wird
 davon hören, und Rabenfurt wird nicht schweigen.&lt;/p&gt;
 
-&lt;&lt;weiterImTag &quot;In die Nacht hinein&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="234" name="Duell_Nachwirkung" tags="interrupt einmalig nach_Kap2_tag" position="475,2975" size="100,100">&lt;&lt;set _e to setup.duellEinfluss()&gt;&gt;
+&lt;&lt;weiterImTag &quot;In die Nacht hinein&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="234" name="Duell_Nachwirkung" tags="interrupt einmalig nach_Kap2_tag kapitel-opener" position="475,2975" size="100,100">&lt;&lt;set _e to setup.duellEinfluss()&gt;&gt;
 &lt;&lt;if $player.reputation.Rabenfurth === undefined&gt;&gt;
 	&lt;&lt;set $player.reputation.Rabenfurth to 0&gt;&gt;
 &lt;&lt;/if&gt;&gt;	
@@ -18602,7 +18776,681 @@ Eine kurze Pause. „Ich fand&#39;s zumindest sehr souverän, wie ich das vorhin
 &lt;&lt;set $npc.rosi.known to true&gt;&gt;
 
 &lt;hr class=&quot;trenner-raute&quot;&gt;
-&lt;&lt;weiterImTag &quot;Zurück zum Tagesgeschehen&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="394" name="PassageHeader" tags="header" position="550,0" size="100,100">&lt;&lt;run setup.migrateNpcImages()&gt;&gt;
+&lt;&lt;weiterImTag &quot;Zurück zum Tagesgeschehen&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="394" name="Besuch_S1_Ankunft" tags="interrupt einmalig kapitel-opener" position="1600,7000" size="100,100">&lt;&lt;scene&gt;&gt;
+&lt;p&gt;Der Befehl kam gestern Nacht, kurz und ohne Erklärung: bei Tagesanbruch die ganze Akademie auf dem Appellplatz,
+geschrubbt bis auf die Knochen, jeder Riemen gefettet, jede Schnalle blank. Nicht ein Jahrgang. Nicht ein Corps.
+Alle. Jetzt steht ihr in der grauen Frühe in Reih und Glied, Atem in weißen Fahnen, die Stiefel im gefrorenen Sand
+ausgerichtet wie mit der Schnur gezogen, und wartet auf etwas, das euch keiner beim Namen genannt hat.&lt;/p&gt;
+
+&lt;p&gt;Über den Reihen liegt ein Summen, zu leise für Worte, zu gespannt für Ruhe. Die Ausbilder gehen die Front ab,
+zupfen hier einen Kragen gerade, klopfen dort auf einen Rücken, und ihre Schärfe hat heute einen anderen Klang —
+nicht die des Drills, sondern die von Männern, die selbst nervös sind und es nicht zeigen dürfen.&lt;/p&gt;
+&lt;&lt;/scene&gt;&gt;
+
+&lt;&lt;gedanke&gt;&gt;
+&lt;p&gt;Wenn die Akademie sich derart auf Hochglanz bringt, dann nicht für uns. Uns hat man in zwei Jahren nie so poliert.
+Was auch immer diese Straße heraufkommt, es ist größer als alles, wofür man sonst antreten lässt.&lt;/p&gt;
+&lt;&lt;/gedanke&gt;&gt;
+
+&lt;p&gt;Dann, fern auf der Straße vom Nordtor, Staub. Kein einzelner Reiter, keine Fuhre — eine Wolke, die sich nicht legt,
+sondern wächst, breit und stetig, wie sie nur ein großes Gefolge aufwirft. Das Summen in den Reihen erstirbt.
+Jeder Kopf steht still, und doch wandert jeder Blick zur selben Stelle am Horizont.&lt;/p&gt;
+
+&lt;&lt;dialog&gt;&gt;
+    &lt;p&gt;Du kneifst unbewusst die Augen zusammen. „Wer kommt da?&quot; fragst du mehr dich selber, aber Karla antwortet 
+    „Keine Ahnung. Der Rat wirds nicht sein, wenn die durchs Tor kommen kommen die aus Alfalter.&quot;
+    „Und für wen aus dem Streifen würden wir hier so aufgeboten?&quot; Entgegnest du spöttisch.
+    „Niemanden. Das macht es ja so spannend.&quot; entgegnet dir Karla kühl.&lt;/p&gt;
+&lt;&lt;/dialog&gt;&gt;
+
+&lt;p&gt;Die Masse ist jetzt nah genug, dass du die Trommeln und die Flöten hören kannst. auch die Farben. Rot-Weiß.
+Und über dem vordersten Haufen wehtder rote Wolf. Aloy!&lt;/p&gt;
+
+&lt;&lt;gedanke&gt;&gt;
+    „Weit lasst die Fahnen wehen...!&quot;
+&lt;&lt;/gedanke&gt;&gt;
+
+&lt;&lt;dialog&gt;&gt;
+    &lt;p&gt;„Das sind Aloyer!&quot; sagst du aufgeregt zu Karla. Sie nickt nur, die Augen auf die Straße gerichtet. 
+    „Da muss aber mehr dahinter sein. Meinst du der Lewensteiner kommt?&quot; Beim letzten Gedanken weiten sich ihre Augen.
+    Und auch du schluckst schwer. Krieg mit Komarn und der Lewensteiner holt euch alle ab?&lt;/p&gt;
+&lt;&lt;/dialog&gt;&gt;
+
+&lt;p&gt;Dann entdeckst du noch ein anderes Banner. Eines das du von Holms Unterricht kennst. Der Doppelköpfige Adler der Kronmark. Gehalten von zwei Füchsen und gerahmt von Rosenranken.&lt;/p&gt;
+
+&lt;&lt;gedanke&gt;&gt;
+    „Rosenschlag! Grimmerthann! Verbündete!&quot;
+&lt;&lt;/gedanke&gt;&gt;
+
+&lt;p&gt;Der Tross zieht an euch vorbei. Und du siehst bekannte Gesichter. Der Haubentaucher führt die Kolonne an.&lt;/p&gt;
+
+&lt;p&gt;Ohne viel Federlesen marschieren sie an euch vorüber — Rot-Weiß, verwaschen und gelebt, Barette schief, Gambesons offen,
+Wagen, die quietschen, Maultiere, die nicht hören. Ein Haufen, der nach Rauch, Leder und Straße riecht. Sie mustern
+die stramme Front der Rekruten im Vorbeigehen, halb belustigt, halb gelangweilt, wie Männer, die genau hier einmal
+gestanden haben und wissen, wie wenig das noch bedeutet. Einer spuckt aus. Einer grinst. Keiner bleibt stehen.&lt;/p&gt;
+
+&lt;&lt;gedanke&gt;&gt;
+&lt;p&gt;Das sind sie. Die, in die wir hineinwachsen sollen. Und sie gehen an uns vorbei, als wären wir Zaunpfähle —
+weil wir für sie noch nichts anderes sind. Noch nicht.&lt;/p&gt;
+&lt;&lt;/gedanke&gt;&gt;
+
+
+&lt;p&gt;Und dann teilt sich der Staub ein zweites Mal, und was daraus hervortritt, schlägt das letzte Flüstern in den
+Reihen tot.&lt;/p&gt;
+
+&lt;p&gt;Zwei Gestalten hoch zu Ross, und du hast in deinem ganzen Leben nichts dergleichen gesehen. Rüstungen, die im
+ersten Sonnenlicht so rein und blendend gearbeitet sind, dass sie kein Staub der Welt zu berühren scheint — jede
+Platte sitzt, jede Fuge stimmt, als hätte man die beiden in ihr Eisen gegossen. Ein Mann, breit und aufrecht, das
+Kinn hoch, ein Lächeln schon auf den Lippen, als gehörte ihm die Straße und der Morgen dazu. Das muss Grimmerthann sein.
+Neben ihm eine Frau, Silva von Rosenschlag, ebenso gepanzert, ruhig, den Kopf kaum bewegt, und doch wandert ihr Blick über die Reihen, 
+als zähle und wiege sie jeden Einzelnen im Vorüberreiten.&lt;/p&gt;
+
+&lt;p&gt;Die Pferde. Herrgott, die Pferde. Die edelsten Tiere, die dir je vor Augen kamen, hochbeinig, die Hälse gewölbt,
+das Fell wie poliertes Holz, und in jeder Bewegung eine wilde, gebändigte Entschlossenheit, als trügen sie ihre
+Reiter nicht, sondern wählten sie. Hinter ihnen der Tross der Kronmark: Soldaten, Frohnleute, Wagen — kein Heer,
+ein Aufgebot, aber jeder Mann in Weiß und Rot, jede Linie geordnet, jedes Rad im Takt, ehrfurchtgebietend in seiner
+blanken, lautlosen Disziplin. Wo das 84. wie ein Sturm hereinbrach, zieht die Kronmark ein wie ein Urteil.&lt;/p&gt;
+
+&lt;&lt;gedanke&gt;&gt;
+&lt;p&gt;So etwas gibt es also wirklich. Nicht in den Liedern, die Barsinger grölen — hier, auf unserem Hof, im Staub
+unserer Straße. Ich weiß nicht, was die beiden hier wollen. Aber ich weiß, dass Männer wie unsere Ausbilder nicht für
+irgendwen die ganze Akademie auf Hochglanz stellen. Und mir wird kalt, und nicht vom Morgen.&lt;/p&gt;
+&lt;&lt;/gedanke&gt;&gt;
+
+&lt;p&gt;Kein Befehl fällt, und doch strafft sich die Front ein letztes Mal von selbst, jeder Rücken eine Handbreit
+gerader, als der Zug auf das Tor der Akademie zuhält.&lt;/p&gt;
+
+&lt;&lt;trenner&gt;&gt;
+[[Die ganze Akademie hält den Atem an-&gt;Besuch_S2_Musterung]]</tw-passagedata><tw-passagedata pid="395" name="Besuch_S2_Musterung" tags="" position="600,4975" size="100,100">&lt;&lt;set _spec to $player.spezialisierung&gt;&gt;
+
+&lt;&lt;scene&gt;&gt;
+&lt;p&gt;Man lässt euch frei — „bis die Glocke ruft&quot;, knapp, ohne mehr. Kein Drill, keine Aufgabe, nur die seltsame,
+gespannte Leere von Männern, die auf etwas warten. Die meisten drängen sich an die Fenster der Stuben, wo man auf
+das Feld vor der Akademie blickt, und was ihr dort seht, hält euch die nächste Stunde in Bann.&lt;/p&gt;
+
+&lt;p&gt;Vor den Mauern wachsen Läger aus dem Boden. Das 84. schlägt seines auf wie ein Wurf Würfel — bunt, laut, Zelte
+schief und Feuer schon rauchend, ehe die Heringe sitzen. Daneben, in sauberem Abstand, steigt das der Kronmark:
+Bahn um Bahn weißes Tuch mit roten Bändern, in Reihen gespannt wie mit dem Lot, die Wagen im Karree, die Pferdeleine
+schnurgerade. Selbst wie sie ein Lager bauen, sagt alles über die beiden — der Sturm und das Urteil.&lt;/p&gt;
+&lt;&lt;/scene&gt;&gt;
+
+&lt;&lt;if _spec is &quot;medicine&quot;&gt;&gt;
+	&lt;&lt;beziehung&gt;&gt;
+	&lt;p&gt;Dein Blick sucht von selbst das Feldscherzelt der Kronmark — hell, abseits, mit einem eigenen Wasserfass davor.
+	Wer so ein Zelt stellt, rechnet mit Wunden und will sie überleben. Das ist kein Aufputz. Das ist Erfahrung.&lt;/p&gt;
+	&lt;&lt;/beziehung&gt;&gt;
+&lt;&lt;elseif _spec is &quot;cannon&quot;&gt;&gt;
+	&lt;&lt;beziehung&gt;&gt;
+	&lt;p&gt;Zwischen den Wagen erkennst du abgedeckte Lafetten und die schweren Kästen, in denen nur Pulver reist. Wer die
+	so trocken und getrennt führt, hat schon erlebt, was passiert, wenn man es nicht tut.&lt;/p&gt;
+	&lt;&lt;/beziehung&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;p&gt;Dann läutet die Glocke, und aus der Leere wird wieder Ordnung. Antreten, ein zweites Mal — nur dass diesmal
+Hauptmann Lenz, von Grimmerthann und die von Rosenschlag die Front abschreiten.&lt;/p&gt;
+
+&lt;&lt;dialog&gt;&gt;
+&lt;p&gt;Heinrich geht voran, als wäre der Appellplatz eine Bühne und die Rekruten sein Publikum. Er lacht, er ruft Namen
+in die Reihen des 84., die er wiedererkennt, klopft einem Ausbilder auf den Harnisch, dass es scheppert. Silva folgt
+zwei Schritte hinter ihm, sagt nichts, und doch bleibt ihr Blick an Dingen hängen, die Heinrichs Lärm längst überrollt
+hat — an Händen, an Haltungen, an dir.&lt;/p&gt;
+&lt;&lt;/dialog&gt;&gt;
+
+&lt;&lt;dialog&gt;&gt;
+&lt;p&gt;„Genug angeschaut!&quot; dröhnt Heinrich schließlich über den Platz. „Papier lügt, und Ausbilder loben ihre eigene
+Arbeit. Ich will sehen, was die Aloyer Akademie taugt — Handwerk, kein Stillgestanden. Wer was kann, tritt vor.
+Nach Zunft!&quot;&lt;/p&gt;
+&lt;&lt;/dialog&gt;&gt;
+
+&lt;&lt;gedanke&gt;&gt;
+&lt;p&gt;Da ist es also. Kein Verstecken in der Reihe. Was zwei Jahre aus mir gemacht haben, wird jetzt gewogen — und die,
+die es wiegen, haben Kriege gesehen, von denen wir nur singen.&lt;/p&gt;
+&lt;&lt;/gedanke&gt;&gt;
+
+&lt;&lt;trenner&gt;&gt;
+[[Vortreten-&gt;Besuch_S2_Vorfuehrung]]</tw-passagedata><tw-passagedata pid="396" name="Besuch_S2_Vorfuehrung" tags="" position="725,4975" size="100,100">&lt;&lt;set _spec to $player.spezialisierung&gt;&gt;
+
+&lt;&lt;switch _spec&gt;&gt;
+/* ============================ PIKE ============================ */
+&lt;&lt;case &quot;pike&quot;&gt;&gt;
+	&lt;p&gt;„Spießer!&quot; ruft Lenz, und du trittst mit den anderen vor. Man reicht dir einen stumpfen Übungsspieß. Dir
+	gegenüber baut sich ein Söldner des 84. auf, breit grinsend, den seinen lässig in der Faust. Wenzel, Lars,
+	Hannes und Lenz bilden den Richterkreis — und Heinrich mittendrin, die Arme verschränkt, das Kinn hoch.&lt;/p&gt;
+	&lt;&lt;beziehung&gt;&gt;
+	&lt;&lt;set _r to setup.skillCheckXp(&quot;pike&quot;, 14)&gt;&gt;
+	&lt;&lt;= setup.skillCheckAlert(_r)&gt;&gt;
+	&lt;&lt;/beziehung&gt;&gt;
+	&lt;&lt;set _amt to (_r.outcome is &quot;crit&quot; ? 3 : _r.success ? 2 : _r.outcome is &quot;fumble&quot; ? 0 : 1)&gt;&gt;
+	&lt;&lt;if _r.success&gt;&gt;
+		&lt;p&gt;Du hältst die Distanz, liest seinen Ausfall, bevor er kommt, und drehst seinen Spieß mit einem sauberen
+		Schlag beiseite, die stumpfe Spitze eine Handbreit vor seiner Kehle. Der Kreis wird still. Dann bricht
+		Heinrich in ein Lachen aus, das man bis zum Tor hört.&lt;/p&gt;
+		&lt;&lt;dialog&gt;&gt;
+		&lt;p&gt;„HA! Seht ihr das? Der Junge steht wie ein Zaun und denkt wie ein Fuchs!&quot; Er tritt heran, schlägt dir auf
+		die Schulter. „Wo hast du das her, he?&quot;&lt;/p&gt;
+		&lt;p&gt;„Aus dem Drill, Herr, Ihr —&quot;&lt;/p&gt;
+		&lt;p&gt;„Du.&quot; Er sagt es, ohne das Lächeln zu verlieren. „Es heißt &lt;em&gt;du&lt;/em&gt;, Heinrich. ‚Herr&#39; lass ich mir von
+		Komarnern sagen — kurz bevor ich sie umlege.&quot;&lt;/p&gt;
+		&lt;&lt;/dialog&gt;&gt;
+	&lt;&lt;else&gt;&gt;
+		&lt;p&gt;Er ist schneller, als du dachtest. Ein Ruck, ein Haken, und dein Spieß zeigt ins Leere, während seine
+		stumpfe Spitze dir gegen die Brust tippt. &lt;&lt;if _r.outcome is &quot;fumble&quot;&gt;&gt;Du gehst dabei unrühmlich zu Boden,
+		und ein paar der Rekruten lachen — bis Heinrichs Blick sie trifft.&lt;&lt;else&gt;&gt;Du fängst dich, aber der Punkt
+		ist vergeben.&lt;&lt;/if&gt;&gt;&lt;/p&gt;
+		&lt;&lt;dialog&gt;&gt;
+		&lt;p&gt;„Verloren&quot;, sagt Heinrich, „aber nicht davongelaufen. &lt;&lt;if _r.outcome is &quot;fumble&quot;&gt;&gt;Und wieder aufgestanden.
+		Das zählt mehr, als die meisten glauben.&lt;&lt;else&gt;&gt;Und du hast ihn zweimal zum Schwitzen gebracht. Das ist mehr,
+		als das letzte Dutzend geschafft hat.&lt;&lt;/if&gt;&gt;&quot;&lt;/p&gt;
+		&lt;&lt;/dialog&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
+	&lt;&lt;set $npc.heinrich.known to true&gt;&gt;&lt;&lt;set $npc.silva.known to true&gt;&gt;
+	&lt;&lt;= setup.setNpcAffection(&quot;heinrich&quot;, _amt)&gt;&gt;
+	&lt;&lt;= setup.setNpcAffection(&quot;silva&quot;, _amt)&gt;&gt;
+	&lt;&lt;for _k range [&quot;weibelWenzel&quot;,&quot;diplomatHannes&quot;,&quot;hauptmannLenz&quot;,&quot;weibelLars&quot;]&gt;&gt;
+		&lt;&lt;set $npc[_k].known to true&gt;&gt;&lt;&lt;= setup.setNpcAffection(_k, _amt)&gt;&gt;
+	&lt;&lt;/for&gt;&gt;
+
+/* ========================== CROSSBOW ========================== */
+&lt;&lt;case &quot;crossbow&quot;&gt;&gt;
+	&lt;p&gt;„Armbruster!&quot; Vasil und Hadde, beide vom 84., stellen dir wortlos eine gespannte Waffe und ein Ziel in
+	dreißig Schritt hin — einen Apfel auf einem Zaunpfahl, weil Vasil es „langweilig&quot; fand, auf ein Brett zu schießen.
+	Silva tritt näher, den Kopf leicht geneigt.&lt;/p&gt;
+	&lt;&lt;beziehung&gt;&gt;
+	&lt;&lt;set _r to setup.skillCheckXp(&quot;crossbow&quot;, 14)&gt;&gt;
+	&lt;&lt;= setup.skillCheckAlert(_r)&gt;&gt;
+	&lt;&lt;/beziehung&gt;&gt;
+	&lt;&lt;set _amt to (_r.outcome is &quot;crit&quot; ? 3 : _r.success ? 2 : _r.outcome is &quot;fumble&quot; ? 0 : 1)&gt;&gt;
+	&lt;&lt;if _r.success&gt;&gt;
+		&lt;p&gt;Du atmest aus, hältst, lässt los. Der Bolzen nimmt den Apfel vom Pfahl, als hätte ihn nie einer draufgesetzt.
+		Hadde stößt einen anerkennenden Pfiff aus, Vasil brummt etwas, das bei ihm ein Lob ist.&lt;/p&gt;
+		&lt;&lt;dialog&gt;&gt;
+		&lt;p&gt;„Ein ruhiges Auge&quot;, sagt Silva leise — die ersten Worte, die du von ihr hörst. „Ruhiger als die Hand, die
+		ihn ausgebildet hat, wette ich. Merk dir den, Heinrich.&quot;&lt;/p&gt;
+		&lt;&lt;/dialog&gt;&gt;
+	&lt;&lt;else&gt;&gt;
+		&lt;p&gt;Der Bolzen geht &lt;&lt;if _r.outcome is &quot;fumble&quot;&gt;&gt;weit daneben und bleibt zitternd im Zaun stecken&lt;&lt;else&gt;&gt;knapp
+		vorbei, streift den Pfahl&lt;&lt;/if&gt;&gt;. Vasil zieht eine Augenbraue hoch.&lt;/p&gt;
+		&lt;&lt;dialog&gt;&gt;
+		&lt;p&gt;„Kein Auge für heut&quot;, brummt er. „Aber die Haltung stimmt. Den Rest macht die Übung.&quot; Silva nickt knapp,
+		als hätte sie genau das erwartet — und trotzdem hingesehen.&lt;/p&gt;
+		&lt;&lt;/dialog&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
+	&lt;&lt;set $npc.heinrich.known to true&gt;&gt;&lt;&lt;set $npc.silva.known to true&gt;&gt;
+	&lt;&lt;= setup.setNpcAffection(&quot;heinrich&quot;, _amt)&gt;&gt;
+	&lt;&lt;= setup.setNpcAffection(&quot;silva&quot;, _amt)&gt;&gt;
+	&lt;&lt;for _k range [&quot;vasil&quot;,&quot;haddl&quot;]&gt;&gt;
+		&lt;&lt;set $npc[_k].known to true&gt;&gt;&lt;&lt;= setup.setNpcAffection(_k, _amt)&gt;&gt;
+	&lt;&lt;/for&gt;&gt;
+
+/* =========================== CANNON =========================== */
+&lt;&lt;case &quot;cannon&quot;&gt;&gt;
+	&lt;p&gt;„Wer ans Rohr will!&quot; Vasil, der die Geschütze des 84. baut, und Wenzel führen dich zu einer kleinen Ballista
+	und einem gedeckten Falkonett. Kein Schuss auf Kommando — sie wollen sehen, ob du das Gerät &lt;em&gt;verstehst&lt;/em&gt;:
+	richten, laden, die Lunte lesen.&lt;/p&gt;
+	&lt;&lt;beziehung&gt;&gt;
+	&lt;&lt;set _r to setup.skillCheckXp(&quot;cannon&quot;, 14)&gt;&gt;
+	&lt;&lt;= setup.skillCheckAlert(_r)&gt;&gt;
+	&lt;&lt;/beziehung&gt;&gt;
+	&lt;&lt;set _amt to (_r.outcome is &quot;crit&quot; ? 3 : _r.success ? 2 : _r.outcome is &quot;fumble&quot; ? 0 : 1)&gt;&gt;
+	&lt;&lt;if _r.success&gt;&gt;
+		&lt;p&gt;Deine Hände wissen, was sie tun — Keil, Höhe, Zündkraut, jeder Griff sitzt. Als der Schuss losbricht,
+		fährt der Bolzen sauber ins Ziel, und das Rohr steht, wo es stehen soll. Wenzel nickt langsam.&lt;/p&gt;
+		&lt;&lt;dialog&gt;&gt;
+		&lt;p&gt;„Der weiß, an welchem Ende es knallt&quot;, sagt Wenzel trocken. „Selten genug.&quot; Vasil grinst breit — für seine
+		Verhältnisse ein Begeisterungssturm.&lt;/p&gt;
+		&lt;&lt;/dialog&gt;&gt;
+	&lt;&lt;else&gt;&gt;
+		&lt;p&gt;&lt;&lt;if _r.outcome is &quot;fumble&quot;&gt;&gt;Du legst den Keil falsch, das Rohr schlägt hoch, und alle ducken sich — mehr
+		Schreck als Schaden.&lt;&lt;else&gt;&gt;Du zögerst einen Herzschlag zu lang beim Richten, und der Schuss geht zu hoch.&lt;&lt;/if&gt;&gt;
+		Vasil ist mit zwei Schritten am Gerät und nimmt es dir ab.&lt;/p&gt;
+		&lt;&lt;dialog&gt;&gt;
+		&lt;p&gt;„Noch nicht&quot;, sagt er, „aber du hast keine Angst davor. Das ist der Anfang. Angst kommt vom Nichtwissen.&quot;&lt;/p&gt;
+		&lt;&lt;/dialog&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
+	&lt;&lt;set $npc.heinrich.known to true&gt;&gt;&lt;&lt;set $npc.silva.known to true&gt;&gt;
+	&lt;&lt;= setup.setNpcAffection(&quot;heinrich&quot;, _amt)&gt;&gt;
+	&lt;&lt;= setup.setNpcAffection(&quot;silva&quot;, _amt)&gt;&gt;
+	&lt;&lt;for _k range [&quot;vasil&quot;,&quot;weibelWenzel&quot;]&gt;&gt;
+		&lt;&lt;set $npc[_k].known to true&gt;&gt;&lt;&lt;= setup.setNpcAffection(_k, _amt)&gt;&gt;
+	&lt;&lt;/for&gt;&gt;
+
+/* ========================== MEDICINE ========================== */
+&lt;&lt;case &quot;medicine&quot;&gt;&gt;
+	&lt;p&gt;„Feldscher!&quot; Rosi vom 84. winkt dich zu einem Söldner, der sich beim Lageraufbau die Hand aufgerissen hat —
+	echtes Blut, keine Übung. Clausz und Tilly sehen zu, halb neugierig, halb prüfend. Silva bleibt am Rand stehen,
+	die Arme verschränkt.&lt;/p&gt;
+	&lt;&lt;beziehung&gt;&gt;
+	&lt;&lt;set _r to setup.skillCheckXp(&quot;medicine&quot;, 14)&gt;&gt;
+	&lt;&lt;= setup.skillCheckAlert(_r)&gt;&gt;
+	&lt;&lt;/beziehung&gt;&gt;
+	&lt;&lt;set _amt to (_r.outcome is &quot;crit&quot; ? 3 : _r.success ? 2 : _r.outcome is &quot;fumble&quot; ? 0 : 1)&gt;&gt;
+	&lt;&lt;if _r.success&gt;&gt;
+		&lt;p&gt;Du säuberst, prüfst, nähst — ruhig, ohne den Mann anzustarren wie ein Wunder, sondern wie eine Aufgabe.
+		Rosi haut sich anerkennend gegen die Stirn, dass das Hirnbisla am Barett wackelt.&lt;/p&gt;
+		&lt;&lt;dialog&gt;&gt;
+		&lt;p&gt;„Der hat Hände!&quot; ruft sie im Dialekt. „Und redt net dazwischen! Den nehm i mit!&quot; Silva löst sich vom Rand,
+		sieht dir kurz in die Augen. „Ein Feldscher, der nicht zittert, ist im Feld mehr wert als drei, die zittern.
+		Das ist keine Kleinigkeit.&quot;&lt;/p&gt;
+		&lt;&lt;/dialog&gt;&gt;
+	&lt;&lt;else&gt;&gt;
+		&lt;p&gt;&lt;&lt;if _r.outcome is &quot;fumble&quot;&gt;&gt;Dir rutscht der Faden, die Wunde blutet neu auf, und der Söldner flucht.
+		Rosi ist sofort zur Stelle und übernimmt.&lt;&lt;else&gt;&gt;Deine Naht hält, aber sie ist grob, und der Mann zieht scharf
+		die Luft ein.&lt;&lt;/if&gt;&gt;&lt;/p&gt;
+		&lt;&lt;dialog&gt;&gt;
+		&lt;p&gt;„Wird scho&quot;, sagt Rosi nicht unfreundlich. „S&#39;Herz is am rechten Fleck, d&#39;Hand lernt no.&quot; Silva nickt nur,
+		aber sie hat hingesehen — genauer, als dir lieb ist.&lt;/p&gt;
+		&lt;&lt;/dialog&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
+	&lt;&lt;set $npc.heinrich.known to true&gt;&gt;&lt;&lt;set $npc.silva.known to true&gt;&gt;
+	&lt;&lt;= setup.setNpcAffection(&quot;heinrich&quot;, _amt)&gt;&gt;
+	&lt;&lt;= setup.setNpcAffection(&quot;silva&quot;, _amt)&gt;&gt;
+	&lt;&lt;for _k range [&quot;rosi&quot;,&quot;clausz&quot;,&quot;tilly&quot;]&gt;&gt;
+		&lt;&lt;set $npc[_k].known to true&gt;&gt;&lt;&lt;= setup.setNpcAffection(_k, _amt)&gt;&gt;
+	&lt;&lt;/for&gt;&gt;
+&lt;&lt;/switch&gt;&gt;
+
+&lt;&lt;gedanke&gt;&gt;
+&lt;p&gt;Was auch immer gerade geschehen ist — sie haben mich gesehen. Nicht als Zaunpfahl. Als jemanden mit einem
+Handwerk. Und heute Abend, sagt man, brennen im Lager des 84. die Feuer.&lt;/p&gt;
+&lt;&lt;/gedanke&gt;&gt;
+
+&lt;&lt;trenner&gt;&gt;
+[[Der Tag verklingt — im Lager warten die Feuer-&gt;Besuch_S3_Lager]]</tw-passagedata><tw-passagedata pid="397" name="Besuch_S3_Lager" tags="" position="850,4975" size="100,100">&lt;&lt;set _best to setup.bannerHolt()&gt;&gt;
+&lt;&lt;if not _best&gt;&gt;&lt;&lt;set _best to &quot;weibelWenzel&quot;&gt;&gt;&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;scene&gt;&gt;
+&lt;p&gt;Die Musterung klingt aus, wie solche Dinge ausklingen: ein letztes Abschreiten, ein knappes Nicken der Gäste,
+dann der Abendappell im Fackellicht und endlich das Essen. In der Halle ist es warm nach dem langen, kalten Tag
+des Stehens, und zum ersten Mal seit dem Morgen fällt die Anspannung von den Reihen ab. Löffel klappern, Stimmen
+steigen, jemand lacht zu laut über den eigenen Witz.&lt;/p&gt;
+&lt;&lt;/scene&gt;&gt;
+
+&lt;p&gt;Du hast deine Schale leer und wischst gerade das letzte Fett mit einem Kanten Brot aus, während neben dir über
+den Tag geredet wird — über die Kronmärker, die Pferde, wer sich bei der Vorführung blamiert hat und wer nicht.&lt;/p&gt;
+
+&lt;&lt;dialog&gt;&gt;
+&lt;p&gt;„Hast du die Rüstungen gesehen&quot;, sagt einer mit vollem Mund. „So was trag ich nie im Leben.&quot;
+„So was trägst du nur, wenn du&#39;s dir verdienst&quot;, entgegnet Karla, „oder erbst. Und erben tust du nichts als Schulden.&quot;&lt;/p&gt;
+&lt;&lt;/dialog&gt;&gt;
+
+&lt;p&gt;Und dann, quer durch die Halle, fällt dein Name.&lt;/p&gt;
+
+&lt;p&gt;Du hebst den Kopf. In der Tür steht &lt;&lt;print $npc[_best].name&gt;&gt;, breit im Rahmen, das Gesicht vom Feuerschein
+draußen halb erhellt. &lt;&lt;print $npc[_best].name&gt;&gt; sucht die Reihen ab, findet dich, und winkt dich mit einer knappen
+Kopfbewegung zu sich.&lt;/p&gt;
+
+&lt;&lt;dialog&gt;&gt;
+&lt;&lt;switch _best&gt;&gt;
+&lt;&lt;case &quot;weibelWenzel&quot;&gt;&gt;
+	&lt;p&gt;„Wabbler! Ja, du, Rotznase — aufstehn. Das Feuer wartet nicht auf Rekruten, und heut Nacht macht&#39;s mal eine Ausnahme.&quot;&lt;/p&gt;
+&lt;&lt;case &quot;vasil&quot;&gt;&gt;
+	&lt;p&gt;„Du.&quot; &lt;&lt;print $npc.vasil.name&gt;&gt; deutet mit dem Daumen nach draußen. „Mitkommen.&quot; Mehr Worte macht er nicht — aber
+	da ist ein Grinsen, das bei ihm so viel heißt wie eine Umarmung.&lt;/p&gt;
+&lt;&lt;case &quot;rosi&quot;&gt;&gt;
+	&lt;p&gt;„Wabbler! Kummst, ja? Am Feuer wird&#39;s g&#39;mütli, und an Platz hast da heut redli verdient — na geh, schau ned so!&quot;&lt;/p&gt;
+&lt;&lt;case &quot;haddl&quot;&gt;&gt;
+	&lt;p&gt;„Mein Opa hat immer gesagt&quot;, ruft &lt;&lt;print $npc.haddl.name&gt;&gt;, „wer den Tag übersteht, gehört am Abend ans Feuer,
+	nicht auf die Pritsche. Also los.&quot;&lt;/p&gt;
+&lt;&lt;case &quot;clausz&quot;&gt;&gt;
+	&lt;p&gt;„Der Junge von der Musterung.&quot; &lt;&lt;print $npc.clausz.name&gt;&gt; lächelt fein. „Komm mit. Ich hab dir einen Platz
+	freigehalten — und was Besseres zu rauchen, als es die Stube je gesehen hat.&quot;&lt;/p&gt;
+&lt;&lt;default&gt;&gt;
+	&lt;p&gt;„Komm rüber, Junge&quot;, ruft &lt;&lt;print $npc[_best].name&gt;&gt;. „Heut Nacht sitzt du bei uns am Feuer. Verdient hast du&#39;s.&quot;&lt;/p&gt;
+&lt;&lt;/switch&gt;&gt;
+&lt;&lt;/dialog&gt;&gt;
+
+&lt;p&gt;Ein Stuhl scharrt. Kurt ist schneller auf den Beinen als du.&lt;/p&gt;
+
+&lt;&lt;dialog&gt;&gt;
+&lt;p&gt;„Der Junge hat morgen Drill&quot;, sagt Kurt, die Stimme flach, die Hand schon halb zum Einspruch erhoben. „Und die
+Stube ist nach dem Appell —&quot;&lt;/p&gt;
+&lt;p&gt;&lt;&lt;print $npc[_best].name&gt;&gt; lässt ihn nicht einmal ausreden. Kein Zorn, kein lautes Wort — nur ein Schritt in die
+Halle hinein, eine Hand, die sich beiläufig auf Kurts Schulter legt, schwer wie ein Amboss.&lt;/p&gt;
+&lt;p&gt;„Kurt.&quot; Ein Grinsen, das freundlich ist und trotzdem keine Widerrede duldet. „Heut Nacht gehört er uns.
+Morgen kannst du ihn wieder schleifen. Ein Söldner besucht nicht jeden Tag die Freunde, mit denen er bald ins Feld zieht.&quot;&lt;/p&gt;
+&lt;p&gt;Kurt öffnet den Mund. Schließt ihn wieder. Setzt sich. „Also gut, er muss es morgen ertragen, nicht ich.&quot;&lt;/p&gt;
+&lt;&lt;/dialog&gt;&gt;
+
+&lt;&lt;gedanke&gt;&gt;
+&lt;p&gt;Zwei Jahre lang war Kurts Wort Gesetz. Und eben hat ein Söldner in verwaschenem Rot-Weiß es mit einer Hand und einem
+Lächeln beiseitegeschoben. Ich weiß nicht, ob mir das Angst machen oder gefallen soll. Vielleicht beides.&lt;/p&gt;
+&lt;&lt;/gedanke&gt;&gt;
+
+&lt;p&gt;Du stehst auf, folgst &lt;&lt;print $npc[_best].name&gt;&gt; hinaus in die Nacht, und mit jedem Schritt vom Tor weg wird das
+Lachen aus der Halle leiser und das Prasseln der Lagerfeuer lauter.&lt;/p&gt;
+
+&lt;&lt;trenner&gt;&gt;
+[[Ins Lager des 84.-&gt;Besuch_S3_Lagerfeuer]]</tw-passagedata><tw-passagedata pid="398" name="Besuch_S3_Lagerfeuer" tags="" position="975,4975" size="100,100">&lt;&lt;set _spec to $player.spezialisierung&gt;&gt;
+
+&lt;&lt;scene&gt;&gt;
+&lt;p&gt;Das Lager des 84. ist eine andere Welt als die Akademie. Fackeln und Feuerschalen, der Geruch von Rauch, Eintopf
+und billigem Wein und Bier, und über allem ein Lärm aus Lachen, Streit und einer Fiedel, die jemand mehr aus Trotz als aus
+Können spielt. Man macht dir Platz am Feuer, drückt dir einen Becher in die Hand, und keiner sagt dir, du sollst
+gerade sitzen.&lt;/p&gt;
+&lt;&lt;/scene&gt;&gt;
+
+&lt;p&gt;Ein paar Gesichter kennst du — von heute, vom Markt, aus den Geschichten. Andere sehen dich zum ersten Mal, mustern
+dich kurz mit der rauen Freundlichkeit von Leuten, die schnell entscheiden, ob einer dazugehört, und dich offenbar
+durchgewunken haben.&lt;/p&gt;
+
+&lt;&lt;gedanke&gt;&gt;
+&lt;p&gt;Zum ersten Mal seit zwei Jahren bin ich kein Rekrut, den man schleift. Ich bin — beinahe — willkommen. Und ich
+weiß nicht, wann mir das zuletzt passiert ist.&lt;/p&gt;
+&lt;&lt;/gedanke&gt;&gt;
+
+&lt;p&gt;Als dich die vom Haubentaucher Banner sehen, kommen sie herüber, klopfen dir auf die Schulter, rufen deinen Namen, und umscharren dich wie alte Freunde. 
+Du weißt nicht, ob sie es ernst meinen oder ob sie nur so tun, aber es ist egal — du gehörst dazu. &lt;/p&gt;
+
+&lt;p&gt;Der Reihe nach wandern die Blicke am Feuer zu dir, dem neuen Gesicht, und wer dich noch nicht kennt, macht es kurz.&lt;/p&gt;
+
+&lt;&lt;dialog&gt;&gt;
+&lt;&lt;for _k range setup.unbekannteSoeldner()&gt;&gt;
+	&lt;&lt;capture _k&gt;&gt;
+	&lt;&lt;switch _k&gt;&gt;
+	&lt;&lt;case &quot;hauptmannLenz&quot;&gt;&gt;&lt;p&gt;„Lenz. Ich führ diesen Haufen — meistens dorthin, wo er hinsoll.&quot;&lt;/p&gt;
+	&lt;&lt;case &quot;weibelWenzel&quot;&gt;&gt;&lt;p&gt;„Wenzel, Feldweibel. Ich halt den Haufen zusammen — Aber im Lager sagt der Lars wos lang geht, brauchst garnicht zu mir kommen.&quot;&lt;/p&gt;
+	&lt;&lt;case &quot;weibelLars&quot;&gt;&gt;&lt;p&gt;„Lars, Wachweibl. Wenn&#39;s Ärger gibt, bin ich der, ders wieder grade biegt. Also ständig.&quot;&lt;/p&gt;
+	&lt;&lt;case &quot;vasil&quot;&gt;&gt;&lt;p&gt;„Vasil. Schieß und bau. &lt;&lt;if _spec eq &quot;crossbow&quot;&gt;&gt; Sauber geschossen vorhin! &lt;&lt;/if&gt;&gt;&quot;&lt;/p&gt;
+	&lt;&lt;case &quot;haddl&quot;&gt;&gt;&lt;p&gt;„Hadde, Armbruster&lt;&lt;if _spec eq &quot;crossbow&quot;&gt;&gt; wie du&lt;&lt;/if&gt;&gt;. Mein Opa hat immer gesagt —&quot; Ein kollektives Stöhnen, und er lässt es dabei bewenden.&lt;/p&gt;
+	&lt;&lt;case &quot;diplomatHannes&quot;&gt;&gt;&lt;p&gt;„Hannes Böttcher, Diplomat aus Grodaus. Wenn das Reden nichts mehr nützt, steh ich trotzdem in der Reihe.&quot;&lt;/p&gt;
+	&lt;&lt;case &quot;bast&quot;&gt;&gt;&lt;p&gt;„Bast, Diplomat aus Vormberg. Ich red viel und sag wenig — außer es sind Frauen im Spiel.&quot;&lt;/p&gt;
+	&lt;&lt;case &quot;hansFichtensplitter&quot;&gt;&gt;&lt;p&gt;„Hans Fichtensplitter.&quot; Mehr sagt er nicht, und selbst das klingt nach einer Geschichte, die man besser nicht kennt.&lt;/p&gt;
+	&lt;&lt;case &quot;clausz&quot;&gt;&gt;&lt;p&gt;„Clausz. Hab immer Rauchkraut und weiß immer, wo was ist — nur nicht, wo die Zeit fürs Aufstehen bleibt.&quot;&lt;/p&gt;
+	&lt;&lt;case &quot;rosi&quot;&gt;&gt;&lt;p&gt;„Rosi, Feldscher. Wennst wo blutst, kummst fei zu mir. Aber jammer ned wegen ana Delln.&quot;&lt;/p&gt;
+	&lt;&lt;case &quot;tilly&quot;&gt;&gt;&lt;p&gt;„Tilly. Findt man meist beim Tross. Kein Vorwurf — sagen die vom Tross.&quot;&lt;/p&gt;
+	&lt;&lt;case &quot;tobalt&quot;&gt;&gt;&lt;p&gt;„Tobalt, erste Lanze. Ich erzähl viel — aber ich merk mir auch viel. Kommt aufs selbe raus.&quot;&lt;/p&gt;
+	&lt;&lt;default&gt;&gt;&lt;p&gt;„&lt;&lt;= $npc[_k].name&gt;&gt;.&quot; Ein Nicken, mehr nicht.&lt;/p&gt;
+	&lt;&lt;/switch&gt;&gt;
+	&lt;&lt;set $npc[_k].known to true&gt;&gt;
+	&lt;&lt;run setup.pushNpcMemory(_k, &quot;Am Lagerfeuer des 84. kennengelernt.&quot;)&gt;&gt;
+	&lt;&lt;/capture&gt;&gt;
+&lt;&lt;/for&gt;&gt;
+&lt;&lt;/dialog&gt;&gt;
+
+&lt;p&gt;Irgendwer fragt, wie die Ausbildung so läuft. Das ist alles, was es braucht. Die Becher werden voller, die
+Geschichten kommen.&lt;/p&gt;
+
+&lt;&lt;dialog&gt;&gt;
+&lt;p&gt;Vasil fängt an, breit und ohne Miene. „Erstes Mal Armbrust, in der Ausbildung. Ich spann, ich leg an, ich denk,
+ich bin der Beste — und pack den Schaft komplett um, wie a Schaufel.&quot; Er hält die Hand hoch, als läge da noch die alte Wunde.
+„Hab mir die eigenen Finger zerlegt. Vor allen anderen. Der Ausbilder hat nicht mal geschimpft. Er hat nur gelacht.&quot;&lt;/p&gt;
+&lt;&lt;/dialog&gt;&gt;
+
+&lt;&lt;dialog&gt;&gt;
+&lt;p&gt;„Ach, das ist nichts&quot;, ruft Tobalt, der offenbar zu jeder Geschichte drei eigene hat. „Ich war mal in der Stadt,
+am Würfeltisch, so versumpft, dass ich nicht mal gemerkt hab, dass es Morgen wurde. Erst als sie mich abgeholt haben.&quot;
+Er grinst, als wär&#39;s ein Orden. „Danach hab ich lang keine Stadt mehr von innen gesehen. Nur den Arrest.&quot;&lt;/p&gt;
+&lt;&lt;/dialog&gt;&gt;
+
+&lt;&lt;dialog&gt;&gt;
+&lt;p&gt;„Ich hatte solche Sorgen nie&quot;, sagt Hannes ruhig, und für einen Moment klingt er beinahe stolz. „Ich war nie in
+der Schenke. Ich habe gelernt. Beflissentlich.&quot;&lt;/p&gt;
+&lt;p&gt;„Bei mir war&#39;s genauso&quot;, pflichtet Bast bei und nickt würdevoll.&lt;/p&gt;
+&lt;p&gt;Einen Herzschlag lang schweigen alle. Nicken. Sehen einander an.&lt;/p&gt;
+&lt;p&gt;Dann gröhlt Wenzel über das ganze Feuer: „JA! Das erklärt alles!&quot;&lt;/p&gt;
+&lt;p&gt;Das Lager bricht in Gelächter aus, Hände klatschen auf Schultern, jemand kippt fast in die Glut. Hannes und Bast
+sitzen betröppelt zwischen dem Sturm, und je würdevoller sie dreinschauen, desto lauter wird gelacht.&lt;/p&gt;
+&lt;&lt;/dialog&gt;&gt;
+
+&lt;&lt;dialog&gt;&gt;
+&lt;p&gt;„Mit dem Saufen&quot;, wirft Tilly ein, als es sich gelegt hat, „das ist so eine Sache.&quot; Sie deutet mit dem Becher auf
+Wenzel. „Der da war mal zu einem Gelage geladen und wusste, dass es eine harte Nummer wird. Also hat er mich
+hingeschickt. Als Befehl.&quot; Sie schüttelt den Kopf. „Ich dachte ehrlich, ich überlebe das Gelage bei der Germersmark nicht.&quot;&lt;/p&gt;
+&lt;p&gt;Wenzel hebt seinen Probier-Becher, völlig ungerührt. „Und? Lebst doch noch.&quot;&lt;/p&gt;
+&lt;&lt;/dialog&gt;&gt;
+
+&lt;&lt;dialog&gt;&gt;
+&lt;p&gt;Tobalt hat da schon die nächste Geschichte auf den Lippen, und die übernächste dahinter — er erzählt viele
+Geschichten, ehrlich gesagt zu viele, und man hört ihm trotzdem zu, weil das Feuer warm ist und die Nacht lang.&lt;/p&gt;
+&lt;&lt;/dialog&gt;&gt;
+
+&lt;&lt;dialog&gt;&gt;
+&lt;p&gt;Erst Hadde bringt es auf den Punkt, den Becher in der Hand, den Blick verklärt. „Mein Opa hat immer gesagt …&quot;
+Ein kollektives Stöhnen läuft ums Feuer, aber er redet unbeirrt weiter. „… und wisst ihr was? Der Alte hat hier
+gedient, vor gefühlt hundert Jahren. Und wenn ich mir das so anschau —&quot; er deutet mit dem Kinn in die Runde
+„— hat sich seit damals rein gar nichts geändert.&quot;&lt;/p&gt;
+&lt;&lt;/dialog&gt;&gt;
+
+&lt;&lt;gedanke&gt;&gt;
+&lt;p&gt;Das ist es also, wohinein ich wachse. Nicht Drill, nicht Rindlers Waage. Das hier — Männer und Frauen, die zu
+viel trinken und zu viel reden und füreinander durchs Feuer gingen. Morgen bin ich vielleicht wieder nur ein Rekrut.
+Heute Nacht sitze ich am richtigen Feuer.&lt;/p&gt;
+&lt;&lt;/gedanke&gt;&gt;
+
+&lt;&lt;if not $world.besuchGossipGefragt&gt;&gt;&lt;&lt;set $world.besuchGossipGefragt to []&gt;&gt;&lt;&lt;/if&gt;&gt;
+&lt;&lt;set _pool to setup.gossips84Bekannt()&gt;&gt;
+
+&lt;&lt;if _pool.length gt 0 and $world.besuchGossipGefragt.length lt 2&gt;&gt;
+&lt;div id=&quot;gossip-block&quot;&gt;
+
+&lt;div id=&quot;gossip-menu&quot;&gt;
+&lt;&lt;scene&gt;&gt;
+&lt;p&gt;Über den einen oder anderen am Feuer hast du schon etwas aufgeschnappt. Der Wein ist billig, die Zungen locker.&lt;/p&gt;
+&lt;&lt;/scene&gt;&gt;
+&lt;&lt;if _pool.length gt 2&gt;&gt;
+&lt;div class=&quot;status-info&quot;&gt;Du kannst zwei der Gerüchte nachhaken — wähl mit Bedacht.&lt;/div&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;ul class=&quot;sandbox-menu&quot;&gt;
+&lt;&lt;for _s range _pool&gt;&gt;
+	&lt;&lt;capture _s&gt;&gt;
+	&lt;li @id=&quot;&#39;gli_&#39; + _s.id&quot;&gt;
+		&lt;&lt;link `&quot;Frag &quot; + $npc[_s.npcKey].name`&gt;&gt;
+			&lt;&lt;run $world.besuchGossipGefragt.push(_s.id)&gt;&gt;
+			&lt;&lt;append &quot;#gossip-antworten&quot;&gt;&gt;
+				&lt;div class=&quot;gossip-antwort&quot;&gt;
+					&lt;p class=&quot;gossip-frage&quot;&gt;&lt;&lt;= _s.base&gt;&gt;&lt;/p&gt;
+					&lt;p class=&quot;gossip-erklaerung&quot;&gt;&lt;b&gt;&lt;&lt;= $npc[_s.npcKey].name&gt;&gt;:&lt;/b&gt; „&lt;&lt;= _s.erklaerung || &#39;Alte Geschichte. Lass gut sein.&#39;&gt;&gt;&quot;&lt;/p&gt;
+				&lt;/div&gt;
+			&lt;&lt;/append&gt;&gt;
+			&lt;&lt;if $world.besuchGossipGefragt.length gte 2&gt;&gt;
+				&lt;&lt;replace &quot;#gossip-menu&quot;&gt;&gt;&lt;&lt;/replace&gt;&gt;
+			&lt;&lt;else&gt;&gt;
+				&lt;&lt;run $(&#39;#gli_&#39; + _s.id).remove()&gt;&gt;
+			&lt;&lt;/if&gt;&gt;
+		&lt;&lt;/link&gt;&gt;
+		&lt;span class=&quot;subtext&quot;&gt;— &lt;&lt;= _s.rumorText&gt;&gt;&lt;/span&gt;
+	&lt;/li&gt;
+	&lt;&lt;/capture&gt;&gt;
+&lt;&lt;/for&gt;&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+
+&lt;div id=&quot;gossip-antworten&quot;&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;trenner&gt;&gt;
+&lt;&lt;if setup.wasGossipSuccessful(&quot;lk_004&quot;)&gt;&gt;
+    &lt;&lt;dialog&gt;&gt;
+        &lt;p&gt;„Ihr sollt euch auffallend gut mit einem Ritter aus der Kronmark verstehen.&quot; So wird geredet. 
+        Und jetzt is der Heinrich auch noch hier, in Aloy, mit euch...&lt;/p&gt;
+        „Ja wir verstehen uns gut.&quot; Schneidet dir eine Stimmer hinter dir das Wort ab
+    &lt;&lt;/dialog&gt;&gt;     
+&lt;&lt;trenner&gt;&gt;
+[[zu Heinrich umdrehen-&gt;Besuch_S3_Heinrich_b]]
+&lt;&lt;else&gt;&gt;
+[[Heinrich tritt ans Feuer-&gt;Besuch_S3_Heinrich]]
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="399" name="Besuch_S3_Heinrich" tags="" position="1100,4975" size="100,100">&lt;&lt;scene&gt;&gt;
+&lt;p&gt;Am größten der Feuer hält Heinrich Hof. Er singt — laut, nicht schlecht, und mit der vollen Überzeugung eines
+Mannes, der weiß, dass ihm alle zuhören —, und als das Lied endet, geht es nahtlos in eine Geschichte über, in der
+er selbst die Hauptrolle spielt und, versteht sich, gewinnt. Neben ihm sitzt Silva, den Becher in beiden Händen,
+und sieht ihm zu mit der nachsichtigen Ruhe von jemandem, der jede dieser Geschichten schon dreimal gehört hat und
+ihn trotzdem reden lässt.&lt;/p&gt;
+&lt;&lt;/scene&gt;&gt;
+
+&lt;&lt;dialog&gt;&gt;
+&lt;p&gt;„Da!&quot; Heinrichs Finger findet dich, kaum dass du in den Lichtkreis trittst. „Der von der Musterung! Komm her,
+setz dich, trink was. &lt;&lt;if $npc.heinrich.affection gte 2&gt;&gt;Dich hab ich mir gemerkt.&lt;&lt;else&gt;&gt;Wie war noch dein Name?&lt;&lt;/if&gt;&gt;&quot;&lt;/p&gt;
+&lt;&lt;/dialog&gt;&gt;
+
+&lt;&lt;dialog&gt;&gt;
+&lt;p&gt;„Thomas, Herr. Ihr habt —&quot;&lt;/p&gt;
+&lt;p&gt;„Du.&quot; Er sagt es sofort, ohne das Grinsen zu verlieren. „Es heißt &lt;em&gt;du&lt;/em&gt;, Heinrich. ‚Herr&#39; und ‚Ihr&#39; —
+damit soll man mich in der Kronmark piesacken. Hier draußen bin ich einfach Heinrich.&quot;&lt;/p&gt;
+&lt;p&gt;Silva, ohne aufzusehen: „Gib&#39;s auf, Junge. Er sammelt ein ‚Herr&#39; ein wie andere einen Splitter im Finger — und
+zieht&#39;s genauso umständlich wieder heraus. Es ist ihm ernst.&quot;&lt;/p&gt;
+&lt;&lt;/dialog&gt;&gt;
+
+&lt;p&gt;Du siehst sie an — die Rüstung, so blank wie Heinrichs, die ruhige, wache Art —, und irgendetwas in deinem Blick
+muss dich verraten haben, denn ihre Mundwinkel heben sich um Haaresbreite.&lt;/p&gt;
+
+&lt;&lt;dialog&gt;&gt;
+&lt;p&gt;„Du fragst dich, was eine Frau in dem Eisen zu suchen hat.&quot; Keine Frage, kein Vorwurf, nur eine Feststellung,
+ruhig und genau. „Das fragen sich viele. Die meisten von ihnen liegen inzwischen dort, wo man solche Fragen nicht
+mehr stellt.&quot; Ein kleines Lächeln. „Du wirst dich nicht zu ihnen gesellen. Dafür bist du zu klug — klüger, als du
+dich gibst.&quot;&lt;/p&gt;
+&lt;&lt;/dialog&gt;&gt;
+
+&lt;&lt;gedanke&gt;&gt;
+&lt;p&gt;Wie macht sie das. Zwei Sätze, und sie hat mich gelesen wie eine Seite, die ich selbst noch nicht ganz kenne.
+Der laute Mann daneben gewinnt Turniere mit dem Schwert. Ich glaube, sie gewinnt Kriege, ehe sie beginnen — und
+keiner merkt, dass sie es war.&lt;/p&gt;
+&lt;&lt;/gedanke&gt;&gt;
+
+&lt;&lt;dialog&gt;&gt;
+&lt;p&gt;„Genug geredet!&quot; ruft Heinrich, schon wieder ganz Mittelpunkt, und klatscht in die Hände, dass es knallt.
+„So ein Abend gehört den Würfeln. Wo sind die Würfel? Junge — du spielst mit.&quot;&lt;/p&gt;
+&lt;&lt;/dialog&gt;&gt;
+
+&lt;&lt;gedanke&gt;&gt;
+&lt;p&gt;Wer ihn zum Freund hat, sagt man, hat eine Eiche an seiner Seite. Und wer sie zur Freundin hat, die Stille neben
+ihm, hat etwas, das noch schwerer zu fällen ist. Ich bin froh, dass beide auf unserer Seite in den Krieg ziehen —
+und heimlich noch froher, dass ich ihnen nie gegenüberstehen muss.&lt;/p&gt;
+&lt;&lt;/gedanke&gt;&gt;
+
+&lt;&lt;trenner&gt;&gt;
+[[Die Würfel rollen-&gt;Besuch_S3_Wuerfeln]]</tw-passagedata><tw-passagedata pid="400" name="Besuch_S3_Heinrich_b" tags="" position="1225,4975" size="100,100">&lt;&lt;dialog&gt;&gt;
+&lt;p&gt;„Der von der Musterung! &lt;&lt;if $npc.heinrich.affection gte 2&gt;&gt;Dich hab ich mir gemerkt.&lt;&lt;else&gt;&gt;Wie war noch dein Name?&lt;&lt;/if&gt;&gt;&quot;&lt;/p&gt;
+&lt;&lt;/dialog&gt;&gt;
+
+&lt;&lt;dialog&gt;&gt;
+&lt;p&gt;„Thomas, Herr. Ihr habt —&quot;&lt;/p&gt;
+&lt;p&gt;„Du.&quot; Er sagt es sofort, ohne das Grinsen zu verlieren. „Es heißt &lt;em&gt;du&lt;/em&gt;, Heinrich. ‚Herr&#39; und ‚Ihr&#39; —
+damit soll man mich am Diplomatischen Tisch piesacken. Hier draußen bin ich einfach Heinrich.&quot;&lt;/p&gt;
+&lt;p&gt;Silva, ohne aufzusehen: „Gib&#39;s auf, Junge. Er sammelt ein ‚Herr&#39; ein wie andere einen Splitter im Finger — und
+zieht&#39;s genauso umständlich wieder heraus. Es ist ihm ernst.&quot;&lt;/p&gt;
+&lt;p&gt;„Und um dir deine Frage zu beantworten: Ja das 84. Banner und die Kronmark schauen zurück auf eine ereignisreiche Geschichte.
+Und stehts ging sie Freundschaftlich und respektvoll zu Ende. Und das ist auch gut so in der Zeit die uns bevorsteht. Brauchen wir alle
+Freunde. Vor allem welche die echt sind.&quot;&lt;/p&gt;
+&lt;p&gt;„Wohl gesprochen Liebste!&quot; pflichtet ihr Heinrich bei.&lt;/p&gt;
+&lt;&lt;/dialog&gt;&gt;
+
+&lt;p&gt;Du siehst sie an — die Rüstung, so blank wie Heinrichs, die ruhige, wache Art —, und irgendetwas in deinem Blick
+muss dich verraten haben, denn ihre Mundwinkel heben sich um Haaresbreite.&lt;/p&gt;
+
+&lt;&lt;dialog&gt;&gt;
+&lt;p&gt;„Du fragst dich, was eine Frau in dem Eisen zu suchen hat.&quot; Keine Frage, kein Vorwurf, nur eine Feststellung,
+ruhig und genau. „Das fragen sich viele. Die meisten von ihnen liegen inzwischen dort, wo man solche Fragen nicht
+mehr stellt.&quot; Ein kleines Lächeln. „Du wirst dich nicht zu ihnen gesellen. Dafür bist du zu klug — klüger, als du
+dich gibst.&quot;&lt;/p&gt;
+&lt;&lt;/dialog&gt;&gt;
+
+&lt;&lt;gedanke&gt;&gt;
+&lt;p&gt;Wie macht sie das. Zwei Sätze, und sie hat mich gelesen wie eine Seite, die ich selbst noch nicht ganz kenne.
+Der laute Mann daneben gewinnt Turniere mit dem Schwert. Ich glaube, sie gewinnt Kriege, ehe sie beginnen — und
+keiner merkt, dass sie es war.&lt;/p&gt;
+&lt;&lt;/gedanke&gt;&gt;
+
+&lt;&lt;dialog&gt;&gt;
+&lt;p&gt;„Genug geredet!&quot; ruft Heinrich, schon wieder ganz Mittelpunkt, und klatscht in die Hände, dass es knallt.
+„So ein Abend gehört den Würfeln. Wo sind die Würfel? Junge — du spielst mit.&quot;&lt;/p&gt;
+&lt;&lt;/dialog&gt;&gt;
+
+&lt;&lt;gedanke&gt;&gt;
+&lt;p&gt;Wer ihn zum Freund hat, sagt man, hat eine Eiche an seiner Seite. Und wer sie zur Freundin hat, die Stille neben
+ihm, hat etwas, das noch schwerer zu fällen ist. Ich bin froh, dass beide auf unserer Seite in den Krieg ziehen —
+und heimlich noch froher, dass ich ihnen nie gegenüberstehen muss.&lt;/p&gt;
+&lt;&lt;/gedanke&gt;&gt;
+
+&lt;&lt;trenner&gt;&gt;
+[[Die Würfel rollen-&gt;Besuch_S3_Wuerfeln]]</tw-passagedata><tw-passagedata pid="401" name="Besuch_S3_Wuerfeln" tags="" position="100,5100" size="100,100">&lt;&lt;scene&gt;&gt;
+&lt;p&gt;Die Nacht ist längst über den Zenit, und aus dem Feuer ist eine Party geworden, wie sie nur im Lager des 84.
+entsteht — ohne dass je einer sie ausgerufen hätte. Hans Fichtensplitter steht auf einem Fass und segnet mit
+großer Geste einen Barsinger, halb feierlich, halb betrunken, und Tobalt fällt mit einem Trinkspruch ein, der
+sich in drei Geschichten verzweigt, ehe er die Pointe findet. Irgendwo klappern Würfel auf einem Schild, das als
+Tisch herhalten muss.&lt;/p&gt;
+&lt;&lt;/scene&gt;&gt;
+
+&lt;p&gt;„Platz da!&quot; dröhnt Heinrich und lässt sich mit einem Becher in der einen und einer Handvoll Münzen in der
+anderen Hand am Würfelschild nieder, breit, laut, das halbe Lager schon als sein Publikum. „Wo gespielt wird,
+spiel ich mit. Und du —&quot; der Finger zeigt auf dich „— du setzt dich dazu. Du hast
+heut bei der Musterung was getaugt. Mal sehen, ob dein Glück so gut ist wie deine Hände.&quot;&lt;/p&gt;
+
+&lt;&lt;gedanke&gt;&gt;
+&lt;p&gt;Man sagt nicht Nein zu einem Mann wie Heinrich. Man setzt sich, wirft ein paar Kupfer auf das Schild und
+betet zu allem, was zuhört, dass man sich nicht blamiert.&lt;/p&gt;
+&lt;&lt;/gedanke&gt;&gt;
+
+&lt;p&gt;Du legst deinen Einsatz vor — Drei Stück Kupfer, ehrlich verdient und ungern verspielt. Die Würfel
+gehen um, Heinrich redet dabei ohne Punkt und Komma, über Alfalter, über Turniere, über ein Pferd, das er einmal
+im Wurf gewonnen und am selben Abend wieder verloren hat. Und irgendwann, mitten im Reden, schnappt sich seine
+Pranke ganz beiläufig eines deiner Kupferstücke vom Rand des Schilds.&lt;/p&gt;
+
+&lt;p&gt;Du siehst es. Er bemerkt es garnicht, weil er noch am erzählen ist.&lt;/p&gt;
+
+&lt;&lt;dialog&gt;&gt;
+&lt;p&gt;„Ähm&quot;, machst du, verlegen, und deutest auf seine Faust. „Das … das war meins.&quot;&lt;/p&gt;
+&lt;p&gt;Heinrich hält inne, sieht dich an, als hättest du ihm eine ungeheure Beleidigung ins Gesicht geschleudert.&lt;/p&gt;
+&lt;p&gt;„Nein, ich nehm doch nicht dein Kupfer! Bist du dumm, ich hab mein eigenes.&quot;&lt;/p&gt;
+&lt;p&gt;Er hält deinen Blick. Das Kupferstück blitzt deutlich sichtbar zwischen seinen Fingern.&lt;/p&gt;
+&lt;p&gt;„Hab ich dein Kupfer genommen?&quot; fragt er verdutzt.&lt;/p&gt;
+&lt;p&gt;Eine Pause. Das halbe Lager sieht her.&lt;/p&gt;
+&lt;p&gt;„Nein!&quot; Ist er sich sicher.&lt;/p&gt;
+&lt;p&gt;Noch eine Pause. Das Kupfer ist immer noch da, für jeden zu sehen.&lt;/p&gt;
+&lt;p&gt;„… Wirklich?&quot; fragt er nach.&lt;/p&gt;
+&lt;&lt;/dialog&gt;&gt;
+
+&lt;p&gt;Einen Herzschlag lang hält die Stille. Dann bricht das Lager in brüllendes Gelächter aus. Am Rand des Feuers
+hebt Silva, die alles gesehen hat, nur eine Augenbraue — mehr Kommentar braucht es bei ihr nie.&lt;/p&gt;
+
+&lt;p&gt;Und Heinrich, mitten im Gelächter, wirft die Würfel — und gewinnt. Natürlich gewinnt er. Er streicht den ganzen
+Haufen zusammen, dein Kupfer, sein Kupfer, aller Kupfer, wiegt ihn kurz in der Hand … und schiebt dir das Ganze
+mit einem breiten Grinsen über das Schild.&lt;/p&gt;
+
+&lt;&lt;dialog&gt;&gt;
+&lt;p&gt;„Da. Anfängerglück. Behalt&#39;s.&quot; Er lehnt sich zurück, zufrieden mit sich und der Welt. „Und erzähl daheim, du
+hättest gegen Grimmerthann gespielt und wärst reicher heimgegangen. Das glaubt dir keiner — und genau darum
+erzählst du&#39;s.&quot;&lt;/p&gt;
+&lt;&lt;/dialog&gt;&gt;
+
+&lt;&lt;= setup.addMoney(15)&gt;&gt;
+
+&lt;&lt;gedanke&gt;&gt;
+&lt;p&gt;Er hat mir vor allen ein Kupfer aus der Hand geklaut, es abgestritten, während es zwischen seinen Fingern
+glänzte — und mir dann einen ganzen Gewinn geschenkt. Ich verstehe diesen Mann nicht. Aber ich glaube, ich
+würde ihm folgen. Und ich glaube, genau das ist der Punkt.&lt;/p&gt;
+&lt;&lt;/gedanke&gt;&gt;
+
+&lt;&lt;trenner&gt;&gt;
+[[Die Nacht klingt aus-&gt;Besuch_S3_Ausklang]]</tw-passagedata><tw-passagedata pid="402" name="Besuch_S3_Ausklang" tags="nach_Kap2_morgen" position="225,5100" size="100,100">&lt;&lt;scene&gt;&gt;
+&lt;p&gt;Die Feuer sinken in sich zusammen, und mit ihnen die Nacht. Die Becher werden leerer, die Stimmen weniger, und
+einer nach dem anderen rollt sich in seine Decke oder verschwindet zwischen den Zelten. Als du dich auf den Rückweg
+machst, liegt schon Reif auf dem gestampften Boden, und die Kälte, die die Feuer den Abend über in Schach gehalten
+haben, kriecht dir wieder in die Knochen.&lt;/p&gt;
+
+&lt;p&gt;Am Rand des Lagers drehst du dich noch einmal um. Zwei Feldstädte im letzten Glimmen: die des 84., bunt und
+schief und schlafend, und die der Kronmark daneben, weiß und rot und geordnet noch im Dunkeln. Zwei Banner gegen
+den verlöschenden Himmel.&lt;/p&gt;
+&lt;&lt;/scene&gt;&gt;
+
+&lt;&lt;gedanke&gt;&gt;
+&lt;p&gt;Heute Nacht war es ein Fest. Aber das hier ist kein Fest. Das ist ein Heer, das sich sammelt, ehe es in den Krieg
+zieht — und ich gehöre dazu, ob ich will oder nicht. In ein paar Tagen stellt Rindler uns die letzte Prüfung. Und
+danach führt keine Straße mehr auf diesen Hof zurück, nur noch hinaus, nach Komarn, zu dem, wofür sie mich zwei
+Jahre lang gehärtet haben.&lt;/p&gt;
+&lt;&lt;/gedanke&gt;&gt;
+
+&lt;p&gt;Hinter dir grölt jemand noch immer ein Lied — Heinrich, wer sonst —, und der Klang folgt dir über den halben
+Weg, bis die grauen Mauern der Akademie ihn schlucken.&lt;/p&gt;
+
+&lt;&lt;gedanke&gt;&gt;
+&lt;p&gt;Ich will mir das merken. Die Gesichter, das Lachen, das Kupfer in Heinrichs Faust. Damit ich weiß, wofür das
+alles ist, wenn es hart wird.&lt;/p&gt;
+&lt;&lt;/gedanke&gt;&gt;
+
+&lt;&lt;weiterImTag &quot;Zurück auf die Stube, ehe der Morgen graut&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="403" name="PassageHeader" tags="header" position="550,0" size="100,100">&lt;&lt;run setup.migrateNpcImages()&gt;&gt;
 &lt;&lt;if !setup.isJournalBlocked()&gt;&gt;
 &lt;div id=&quot;hud-bar&quot;&gt;
     &lt;div class=&quot;hud-left&quot;&gt;
@@ -18629,7 +19477,7 @@ Eine kurze Pause. „Ich fand&#39;s zumindest sehr souverän, wie ich das vorhin
 &lt;/div&gt;
 
 &lt;hr class=&quot;hud-divider&quot;&gt;
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="395" name="journalAnsicht" tags="journal" position="700,0" size="100,100">&lt;div id=&quot;passage-journalansicht&quot; class=&quot;passage journalansicht&quot;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="404" name="journalAnsicht" tags="journal" position="700,0" size="100,100">&lt;div id=&quot;passage-journalansicht&quot; class=&quot;passage journalansicht&quot;&gt;
 
     &lt;h2&gt;📋 $player.name&#39;s Notizbuch&lt;/h2&gt;
 
@@ -18685,27 +19533,27 @@ Eine kurze Pause. „Ich fand&#39;s zumindest sehr souverän, wie ich das vorhin
         &lt;&lt;/link&gt;&gt;
     &lt;/span&gt;
 
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="396" name="Notizbuch_Ermittlung" tags="" position="1125,0" size="100,100">&lt;h2&gt;🔍 Ermittlungstagebuch&lt;/h2&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="405" name="Notizbuch_Ermittlung" tags="" position="1125,0" size="100,100">&lt;h2&gt;🔍 Ermittlungstagebuch&lt;/h2&gt;
 
 &lt;&lt;= setup.renderErmittlungstagebuch() &gt;&gt;
 &lt;span class=&quot;weiter-link&quot;&gt;
     &lt;&lt;link &quot;Übersicht&quot;&gt;&gt;&lt;&lt;run setup.notizbuch(&quot;journalAnsicht&quot;)&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;/span&gt;</tw-passagedata><tw-passagedata pid="397" name="Notizbuch_Geruechte" tags="" position="1025,0" size="100,100">&lt;h2&gt;🗣️ Gerüchte&lt;/h2&gt;
+&lt;/span&gt;</tw-passagedata><tw-passagedata pid="406" name="Notizbuch_Geruechte" tags="" position="1025,0" size="100,100">&lt;h2&gt;🗣️ Gerüchte&lt;/h2&gt;
 
 &lt;&lt;= setup.renderRumors() &gt;&gt;
 &lt;span class=&quot;weiter-link&quot;&gt;
     &lt;&lt;link &quot;Übersicht&quot;&gt;&gt;&lt;&lt;run setup.notizbuch(&quot;journalAnsicht&quot;)&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;/span&gt;</tw-passagedata><tw-passagedata pid="398" name="Notizbuch_Kameraden" tags="" position="925,0" size="100,100">&lt;h2&gt;📖 Kameraden &amp;amp; Bekannte — im Detail&lt;/h2&gt;
+&lt;/span&gt;</tw-passagedata><tw-passagedata pid="407" name="Notizbuch_Kameraden" tags="" position="925,0" size="100,100">&lt;h2&gt;📖 Kameraden &amp;amp; Bekannte — im Detail&lt;/h2&gt;
 
 &lt;&lt;= setup.renderRealPlayers() &gt;&gt;
 &lt;span class=&quot;weiter-link&quot;&gt;
     &lt;&lt;link &quot;Übersicht&quot;&gt;&gt;&lt;&lt;run setup.notizbuch(&quot;journalAnsicht&quot;)&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;/span&gt;</tw-passagedata><tw-passagedata pid="399" name="Notizbuch_Personen" tags="" position="825,0" size="100,100">&lt;h2&gt;📖 Personen — im Detail&lt;/h2&gt;
+&lt;/span&gt;</tw-passagedata><tw-passagedata pid="408" name="Notizbuch_Personen" tags="" position="825,0" size="100,100">&lt;h2&gt;📖 Personen — im Detail&lt;/h2&gt;
 
 &lt;&lt;= setup.renderJournal() &gt;&gt;
 &lt;span class=&quot;weiter-link&quot;&gt;
     &lt;&lt;link &quot;Übersicht&quot;&gt;&gt;&lt;&lt;run setup.notizbuch(&quot;journalAnsicht&quot;)&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;/span&gt;</tw-passagedata><tw-passagedata pid="400" name="StoryMenu" tags="" position="400,275" size="100,100">&lt;&lt;set _journalPages = [&quot;journalAnsicht&quot;, &quot;Notizbuch_Personen&quot;, &quot;Notizbuch_Kameraden&quot;, &quot;Notizbuch_Geruechte&quot;, &quot;Notizbuch_Ermittlung&quot;]&gt;&gt;
+&lt;/span&gt;</tw-passagedata><tw-passagedata pid="409" name="StoryMenu" tags="" position="400,275" size="100,100">&lt;&lt;set _journalPages = [&quot;journalAnsicht&quot;, &quot;Notizbuch_Personen&quot;, &quot;Notizbuch_Kameraden&quot;, &quot;Notizbuch_Geruechte&quot;, &quot;Notizbuch_Ermittlung&quot;]&gt;&gt;
 
 &lt;&lt;if not _journalPages.includes(passage())&gt;&gt;
 
@@ -18717,7 +19565,7 @@ Eine kurze Pause. „Ich fand&#39;s zumindest sehr souverän, wie ich das vorhin
 	&lt;&lt;if $world.kapitel1_gesperrt === true and setup.ermittlungBekannt()&gt;&gt;
         &lt;&lt;link &quot;📖 Ermittlungsstand&quot;&gt;&gt;&lt;&lt;run setup.notizbuch(&quot;Notizbuch_Ermittlung&quot;)&gt;&gt;&lt;&lt;/link&gt;&gt;
 	&lt;&lt;/if&gt;&gt;
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="401" name="StorySubtitle" tags="" position="250,275" size="100,100">&lt;&lt;if $player.flags.jareknarbe === undefined&gt;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="410" name="StorySubtitle" tags="" position="250,275" size="100,100">&lt;&lt;if $player.flags.jareknarbe === undefined&gt;&gt;
     &lt;&lt;set $player.flags.jareknarbe = false&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
@@ -18752,7 +19600,7 @@ Eine kurze Pause. „Ich fand&#39;s zumindest sehr souverän, wie ich das vorhin
         
         &lt;span class=&quot;hud-item hud-kondition&quot;&gt;
             &lt;&lt;= setup.getKonditionLabel($player.condition) &gt;&gt;
-        &lt;/span&gt;</tw-passagedata><tw-passagedata pid="402" name="DevLoginBak" tags="" position="1100,4150" size="100,100">&lt;h2&gt;Developer Login&lt;/h2&gt;
+        &lt;/span&gt;</tw-passagedata><tw-passagedata pid="411" name="DevLoginBak" tags="" position="1100,4150" size="100,100">&lt;h2&gt;Developer Login&lt;/h2&gt;
 
 &lt;input id=&quot;devpw&quot; type=&quot;password&quot;&gt;
 
@@ -18762,7 +19610,7 @@ Eine kurze Pause. „Ich fand&#39;s zumindest sehr souverän, wie ich das vorhin
 			? Engine.play(&quot;DEBUG_Kap2_Setup&quot;)
 			: alert(&quot;Falsches Passwort.&quot;)
 	)&gt;&gt;
-&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="403" name="DevLogin" tags="" position="1100,4150" size="100,100">&lt;h2&gt;Developer Login&lt;/h2&gt;
+&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="412" name="DevLogin" tags="" position="1100,4150" size="100,100">&lt;h2&gt;Developer Login&lt;/h2&gt;
 
 &lt;form id=&quot;dev-login-form&quot;&gt;
     &lt;input id=&quot;devpw&quot; type=&quot;password&quot; autocomplete=&quot;off&quot;&gt;
@@ -18789,7 +19637,7 @@ Eine kurze Pause. „Ich fand&#39;s zumindest sehr souverän, wie ich das vorhin
         $(&quot;#devpw&quot;).focus();
     }, 0);
 })();
-&lt;/script&gt;</tw-passagedata><tw-passagedata pid="404" name="DEBUG_Kap2_Setup" tags="" position="1375,4250" size="100,100">&lt;&lt;run setup.ermInit()&gt;&gt;
+&lt;/script&gt;</tw-passagedata><tw-passagedata pid="413" name="DEBUG_Kap2_Setup" tags="" position="1375,4250" size="100,100">&lt;&lt;run setup.ermInit()&gt;&gt;
 
 &lt;&lt;if not $world.flags&gt;&gt;
     &lt;&lt;set $world.flags = {}&gt;&gt;
@@ -19159,7 +20007,7 @@ Eine kurze Pause. „Ich fand&#39;s zumindest sehr souverän, wie ich das vorhin
         [[Biwag -&gt; Biwag_Drill]]
         &lt;span class=&quot;subtext&quot;&gt;— Direkt zum Biwag-Test.&lt;/span&gt;
     &lt;/li&gt;
-&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="405" name="DEBUG_Kap2_Setupbak" tags="" position="1375,4250" size="100,100">&lt;&lt;run setup.ermInit()&gt;&gt;
+&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="414" name="DEBUG_Kap2_Setupbak" tags="" position="1375,4250" size="100,100">&lt;&lt;run setup.ermInit()&gt;&gt;
 &lt;&lt;if not $world.flags&gt;&gt;&lt;&lt;set $world.flags = {}&gt;&gt;&lt;&lt;/if&gt;&gt;
 
 
@@ -19252,7 +20100,7 @@ Ermittlung frühestens Tag: &lt;b&gt;&lt;&lt;= $world.ermittlung.fruehestens_tag
 &lt;h4&gt;Starten&lt;/h4&gt;
 [[Regulär: Kapitel-2-Intro (mit Probe &amp; Waffenwahl)|Kap2_Intro]]
 [[Direkt in den Tagesloop (Spezialisierung oben wählen!)|Kap2_Tagesstart]]
-[[Biwag|Biwag_Drill]]</tw-passagedata><tw-passagedata pid="406" name="DEBUG_Menu" tags="" position="100,300" size="100,100">&lt;h3&gt;— DEBUG / Quest-Sprungbrett —&lt;/h3&gt;
+[[Biwag|Biwag_Drill]]</tw-passagedata><tw-passagedata pid="415" name="DEBUG_Menu" tags="" position="100,300" size="100,100">&lt;h3&gt;— DEBUG / Quest-Sprungbrett —&lt;/h3&gt;
 
 &#39;&#39;Jarek-Kette:&#39;&#39;
 &lt;&lt;link &quot;Setup S1 (Vorlesung)&quot;&gt;&gt;
@@ -19309,7 +20157,7 @@ Ermittlung frühestens Tag: &lt;b&gt;&lt;&lt;= $world.ermittlung.fruehestens_tag
 &lt;&lt;link &quot;↻ Flags zurücksetzen&quot;&gt;&gt;
   &lt;&lt;set $npc.jarek.memory.flags = {}&gt;&gt;
   &lt;&lt;goto &quot;DEBUG_Menu&quot;&gt;&gt;
-&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="407" name="Debugger Ermittlung" tags="" position="950,4925" size="100,100">&lt;&lt;if not $world&gt;&gt;&lt;&lt;set $world = {}&gt;&gt;&lt;&lt;/if&gt;&gt;
+&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="416" name="Debugger Ermittlung" tags="" position="950,4925" size="100,100">&lt;&lt;if not $world&gt;&gt;&lt;&lt;set $world = {}&gt;&gt;&lt;&lt;/if&gt;&gt;
 &lt;&lt;if not $world.flags&gt;&gt;&lt;&lt;set $world.flags = {}&gt;&gt;&lt;&lt;/if&gt;&gt;
 &lt;&lt;if not $edu&gt;&gt;&lt;&lt;set $edu = {}&gt;&gt;&lt;&lt;/if&gt;&gt;
 

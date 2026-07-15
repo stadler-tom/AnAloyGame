@@ -1065,3 +1065,718 @@ Eine kurze Pause. „Ich fand's zumindest sehr souverän, wie ich das vorhin rü
 
 <hr class="trenner-raute">
 <<weiterImTag "Zurück zum Tagesgeschehen">>
+
+
+:: Besuch_S1_Ankunft [interrupt einmalig kapitel-opener] {"position":"1600,7000","size":"100,100"}
+
+<<scene>>
+<p>Der Befehl kam gestern Nacht, kurz und ohne Erklärung: bei Tagesanbruch die ganze Akademie auf dem Appellplatz,
+geschrubbt bis auf die Knochen, jeder Riemen gefettet, jede Schnalle blank. Nicht ein Jahrgang. Nicht ein Corps.
+Alle. Jetzt steht ihr in der grauen Frühe in Reih und Glied, Atem in weißen Fahnen, die Stiefel im gefrorenen Sand
+ausgerichtet wie mit der Schnur gezogen, und wartet auf etwas, das euch keiner beim Namen genannt hat.</p>
+
+<p>Über den Reihen liegt ein Summen, zu leise für Worte, zu gespannt für Ruhe. Die Ausbilder gehen die Front ab,
+zupfen hier einen Kragen gerade, klopfen dort auf einen Rücken, und ihre Schärfe hat heute einen anderen Klang —
+nicht die des Drills, sondern die von Männern, die selbst nervös sind und es nicht zeigen dürfen.</p>
+<</scene>>
+
+<<gedanke>>
+<p>Wenn die Akademie sich derart auf Hochglanz bringt, dann nicht für uns. Uns hat man in zwei Jahren nie so poliert.
+Was auch immer diese Straße heraufkommt, es ist größer als alles, wofür man sonst antreten lässt.</p>
+<</gedanke>>
+
+<p>Dann, fern auf der Straße vom Nordtor, Staub. Kein einzelner Reiter, keine Fuhre — eine Wolke, die sich nicht legt,
+sondern wächst, breit und stetig, wie sie nur ein großes Gefolge aufwirft. Das Summen in den Reihen erstirbt.
+Jeder Kopf steht still, und doch wandert jeder Blick zur selben Stelle am Horizont.</p>
+
+<<dialog>>
+    <p>Du kneifst unbewusst die Augen zusammen. „Wer kommt da?" fragst du mehr dich selber, aber Karla antwortet 
+    „Keine Ahnung. Der Rat wirds nicht sein, wenn die durchs Tor kommen kommen die aus Alfalter."
+    „Und für wen aus dem Streifen würden wir hier so aufgeboten?" Entgegnest du spöttisch.
+    „Niemanden. Das macht es ja so spannend." entgegnet dir Karla kühl.</p>
+<</dialog>>
+
+<p>Die Masse ist jetzt nah genug, dass du die Trommeln und die Flöten hören kannst. auch die Farben. Rot-Weiß.
+Und über dem vordersten Haufen wehtder rote Wolf. Aloy!</p>
+
+<<gedanke>>
+    „Weit lasst die Fahnen wehen...!"
+<</gedanke>>
+
+<<dialog>>
+    <p>„Das sind Aloyer!" sagst du aufgeregt zu Karla. Sie nickt nur, die Augen auf die Straße gerichtet. 
+    „Da muss aber mehr dahinter sein. Meinst du der Lewensteiner kommt?" Beim letzten Gedanken weiten sich ihre Augen.
+    Und auch du schluckst schwer. Krieg mit Komarn und der Lewensteiner holt euch alle ab?</p>
+<</dialog>>
+
+<p>Dann entdeckst du noch ein anderes Banner. Eines das du von Holms Unterricht kennst. Der Doppelköpfige Adler der Kronmark. Gehalten von zwei Füchsen und gerahmt von Rosenranken.</p>
+
+<<gedanke>>
+    „Rosenschlag! Grimmerthann! Verbündete!"
+<</gedanke>>
+
+<p>Der Tross zieht an euch vorbei. Und du siehst bekannte Gesichter. Der Haubentaucher führt die Kolonne an.</p>
+
+<p>Ohne viel Federlesen marschieren sie an euch vorüber — Rot-Weiß, verwaschen und gelebt, Barette schief, Gambesons offen,
+Wagen, die quietschen, Maultiere, die nicht hören. Ein Haufen, der nach Rauch, Leder und Straße riecht. Sie mustern
+die stramme Front der Rekruten im Vorbeigehen, halb belustigt, halb gelangweilt, wie Männer, die genau hier einmal
+gestanden haben und wissen, wie wenig das noch bedeutet. Einer spuckt aus. Einer grinst. Keiner bleibt stehen.</p>
+
+<<gedanke>>
+<p>Das sind sie. Die, in die wir hineinwachsen sollen. Und sie gehen an uns vorbei, als wären wir Zaunpfähle —
+weil wir für sie noch nichts anderes sind. Noch nicht.</p>
+<</gedanke>>
+
+
+<p>Und dann teilt sich der Staub ein zweites Mal, und was daraus hervortritt, schlägt das letzte Flüstern in den
+Reihen tot.</p>
+
+<p>Zwei Gestalten hoch zu Ross, und du hast in deinem ganzen Leben nichts dergleichen gesehen. Rüstungen, die im
+ersten Sonnenlicht so rein und blendend gearbeitet sind, dass sie kein Staub der Welt zu berühren scheint — jede
+Platte sitzt, jede Fuge stimmt, als hätte man die beiden in ihr Eisen gegossen. Ein Mann, breit und aufrecht, das
+Kinn hoch, ein Lächeln schon auf den Lippen, als gehörte ihm die Straße und der Morgen dazu. Das muss Grimmerthann sein.
+Neben ihm eine Frau, Silva von Rosenschlag, ebenso gepanzert, ruhig, den Kopf kaum bewegt, und doch wandert ihr Blick über die Reihen, 
+als zähle und wiege sie jeden Einzelnen im Vorüberreiten.</p>
+
+<p>Die Pferde. Herrgott, die Pferde. Die edelsten Tiere, die dir je vor Augen kamen, hochbeinig, die Hälse gewölbt,
+das Fell wie poliertes Holz, und in jeder Bewegung eine wilde, gebändigte Entschlossenheit, als trügen sie ihre
+Reiter nicht, sondern wählten sie. Hinter ihnen der Tross der Kronmark: Soldaten, Frohnleute, Wagen — kein Heer,
+ein Aufgebot, aber jeder Mann in Weiß und Rot, jede Linie geordnet, jedes Rad im Takt, ehrfurchtgebietend in seiner
+blanken, lautlosen Disziplin. Wo das 84. wie ein Sturm hereinbrach, zieht die Kronmark ein wie ein Urteil.</p>
+
+<<gedanke>>
+<p>So etwas gibt es also wirklich. Nicht in den Liedern, die Barsinger grölen — hier, auf unserem Hof, im Staub
+unserer Straße. Ich weiß nicht, was die beiden hier wollen. Aber ich weiß, dass Männer wie unsere Ausbilder nicht für
+irgendwen die ganze Akademie auf Hochglanz stellen. Und mir wird kalt, und nicht vom Morgen.</p>
+<</gedanke>>
+
+<p>Kein Befehl fällt, und doch strafft sich die Front ein letztes Mal von selbst, jeder Rücken eine Handbreit
+gerader, als der Zug auf das Tor der Akademie zuhält.</p>
+
+<<trenner>>
+[[Die ganze Akademie hält den Atem an->Besuch_S2_Musterung]]
+
+:: Besuch_S2_Musterung
+
+<<set _spec to $player.spezialisierung>>
+
+<<scene>>
+<p>Man lässt euch frei — „bis die Glocke ruft", knapp, ohne mehr. Kein Drill, keine Aufgabe, nur die seltsame,
+gespannte Leere von Männern, die auf etwas warten. Die meisten drängen sich an die Fenster der Stuben, wo man auf
+das Feld vor der Akademie blickt, und was ihr dort seht, hält euch die nächste Stunde in Bann.</p>
+
+<p>Vor den Mauern wachsen Läger aus dem Boden. Das 84. schlägt seines auf wie ein Wurf Würfel — bunt, laut, Zelte
+schief und Feuer schon rauchend, ehe die Heringe sitzen. Daneben, in sauberem Abstand, steigt das der Kronmark:
+Bahn um Bahn weißes Tuch mit roten Bändern, in Reihen gespannt wie mit dem Lot, die Wagen im Karree, die Pferdeleine
+schnurgerade. Selbst wie sie ein Lager bauen, sagt alles über die beiden — der Sturm und das Urteil.</p>
+<</scene>>
+
+<<if _spec is "medicine">>
+	<<beziehung>>
+	<p>Dein Blick sucht von selbst das Feldscherzelt der Kronmark — hell, abseits, mit einem eigenen Wasserfass davor.
+	Wer so ein Zelt stellt, rechnet mit Wunden und will sie überleben. Das ist kein Aufputz. Das ist Erfahrung.</p>
+	<</beziehung>>
+<<elseif _spec is "cannon">>
+	<<beziehung>>
+	<p>Zwischen den Wagen erkennst du abgedeckte Lafetten und die schweren Kästen, in denen nur Pulver reist. Wer die
+	so trocken und getrennt führt, hat schon erlebt, was passiert, wenn man es nicht tut.</p>
+	<</beziehung>>
+<</if>>
+
+<p>Dann läutet die Glocke, und aus der Leere wird wieder Ordnung. Antreten, ein zweites Mal — nur dass diesmal
+Hauptmann Lenz, von Grimmerthann und die von Rosenschlag die Front abschreiten.</p>
+
+<<dialog>>
+<p>Heinrich geht voran, als wäre der Appellplatz eine Bühne und die Rekruten sein Publikum. Er lacht, er ruft Namen
+in die Reihen des 84., die er wiedererkennt, klopft einem Ausbilder auf den Harnisch, dass es scheppert. Silva folgt
+zwei Schritte hinter ihm, sagt nichts, und doch bleibt ihr Blick an Dingen hängen, die Heinrichs Lärm längst überrollt
+hat — an Händen, an Haltungen, an dir.</p>
+<</dialog>>
+
+<<dialog>>
+<p>„Genug angeschaut!" dröhnt Heinrich schließlich über den Platz. „Papier lügt, und Ausbilder loben ihre eigene
+Arbeit. Ich will sehen, was die Aloyer Akademie taugt — Handwerk, kein Stillgestanden. Wer was kann, tritt vor.
+Nach Zunft!"</p>
+<</dialog>>
+
+<<gedanke>>
+<p>Da ist es also. Kein Verstecken in der Reihe. Was zwei Jahre aus mir gemacht haben, wird jetzt gewogen — und die,
+die es wiegen, haben Kriege gesehen, von denen wir nur singen.</p>
+<</gedanke>>
+
+<<trenner>>
+[[Vortreten->Besuch_S2_Vorfuehrung]]
+
+
+:: Besuch_S2_Vorfuehrung
+
+<<set _spec to $player.spezialisierung>>
+
+<<switch _spec>>
+/* ============================ PIKE ============================ */
+<<case "pike">>
+	<p>„Spießer!" ruft Lenz, und du trittst mit den anderen vor. Man reicht dir einen stumpfen Übungsspieß. Dir
+	gegenüber baut sich ein Söldner des 84. auf, breit grinsend, den seinen lässig in der Faust. Wenzel, Lars,
+	Hannes und Lenz bilden den Richterkreis — und Heinrich mittendrin, die Arme verschränkt, das Kinn hoch.</p>
+	<<beziehung>>
+	<<set _r to setup.skillCheckXp("pike", 14)>>
+	<<= setup.skillCheckAlert(_r)>>
+	<</beziehung>>
+	<<set _amt to (_r.outcome is "crit" ? 3 : _r.success ? 2 : _r.outcome is "fumble" ? 0 : 1)>>
+	<<if _r.success>>
+		<p>Du hältst die Distanz, liest seinen Ausfall, bevor er kommt, und drehst seinen Spieß mit einem sauberen
+		Schlag beiseite, die stumpfe Spitze eine Handbreit vor seiner Kehle. Der Kreis wird still. Dann bricht
+		Heinrich in ein Lachen aus, das man bis zum Tor hört.</p>
+		<<dialog>>
+		<p>„HA! Seht ihr das? Der Junge steht wie ein Zaun und denkt wie ein Fuchs!" Er tritt heran, schlägt dir auf
+		die Schulter. „Wo hast du das her, he?"</p>
+		<p>„Aus dem Drill, Herr, Ihr —"</p>
+		<p>„Du." Er sagt es, ohne das Lächeln zu verlieren. „Es heißt <em>du</em>, Heinrich. ‚Herr' lass ich mir von
+		Komarnern sagen — kurz bevor ich sie umlege."</p>
+		<</dialog>>
+	<<else>>
+		<p>Er ist schneller, als du dachtest. Ein Ruck, ein Haken, und dein Spieß zeigt ins Leere, während seine
+		stumpfe Spitze dir gegen die Brust tippt. <<if _r.outcome is "fumble">>Du gehst dabei unrühmlich zu Boden,
+		und ein paar der Rekruten lachen — bis Heinrichs Blick sie trifft.<<else>>Du fängst dich, aber der Punkt
+		ist vergeben.<</if>></p>
+		<<dialog>>
+		<p>„Verloren", sagt Heinrich, „aber nicht davongelaufen. <<if _r.outcome is "fumble">>Und wieder aufgestanden.
+		Das zählt mehr, als die meisten glauben.<<else>>Und du hast ihn zweimal zum Schwitzen gebracht. Das ist mehr,
+		als das letzte Dutzend geschafft hat.<</if>>"</p>
+		<</dialog>>
+	<</if>>
+	<<set $npc.heinrich.known to true>><<set $npc.silva.known to true>>
+	<<= setup.setNpcAffection("heinrich", _amt)>>
+	<<= setup.setNpcAffection("silva", _amt)>>
+	<<for _k range ["weibelWenzel","diplomatHannes","hauptmannLenz","weibelLars"]>>
+		<<set $npc[_k].known to true>><<= setup.setNpcAffection(_k, _amt)>>
+	<</for>>
+
+/* ========================== CROSSBOW ========================== */
+<<case "crossbow">>
+	<p>„Armbruster!" Vasil und Hadde, beide vom 84., stellen dir wortlos eine gespannte Waffe und ein Ziel in
+	dreißig Schritt hin — einen Apfel auf einem Zaunpfahl, weil Vasil es „langweilig" fand, auf ein Brett zu schießen.
+	Silva tritt näher, den Kopf leicht geneigt.</p>
+	<<beziehung>>
+	<<set _r to setup.skillCheckXp("crossbow", 14)>>
+	<<= setup.skillCheckAlert(_r)>>
+	<</beziehung>>
+	<<set _amt to (_r.outcome is "crit" ? 3 : _r.success ? 2 : _r.outcome is "fumble" ? 0 : 1)>>
+	<<if _r.success>>
+		<p>Du atmest aus, hältst, lässt los. Der Bolzen nimmt den Apfel vom Pfahl, als hätte ihn nie einer draufgesetzt.
+		Hadde stößt einen anerkennenden Pfiff aus, Vasil brummt etwas, das bei ihm ein Lob ist.</p>
+		<<dialog>>
+		<p>„Ein ruhiges Auge", sagt Silva leise — die ersten Worte, die du von ihr hörst. „Ruhiger als die Hand, die
+		ihn ausgebildet hat, wette ich. Merk dir den, Heinrich."</p>
+		<</dialog>>
+	<<else>>
+		<p>Der Bolzen geht <<if _r.outcome is "fumble">>weit daneben und bleibt zitternd im Zaun stecken<<else>>knapp
+		vorbei, streift den Pfahl<</if>>. Vasil zieht eine Augenbraue hoch.</p>
+		<<dialog>>
+		<p>„Kein Auge für heut", brummt er. „Aber die Haltung stimmt. Den Rest macht die Übung." Silva nickt knapp,
+		als hätte sie genau das erwartet — und trotzdem hingesehen.</p>
+		<</dialog>>
+	<</if>>
+	<<set $npc.heinrich.known to true>><<set $npc.silva.known to true>>
+	<<= setup.setNpcAffection("heinrich", _amt)>>
+	<<= setup.setNpcAffection("silva", _amt)>>
+	<<for _k range ["vasil","haddl"]>>
+		<<set $npc[_k].known to true>><<= setup.setNpcAffection(_k, _amt)>>
+	<</for>>
+
+/* =========================== CANNON =========================== */
+<<case "cannon">>
+	<p>„Wer ans Rohr will!" Vasil, der die Geschütze des 84. baut, und Wenzel führen dich zu einer kleinen Ballista
+	und einem gedeckten Falkonett. Kein Schuss auf Kommando — sie wollen sehen, ob du das Gerät <em>verstehst</em>:
+	richten, laden, die Lunte lesen.</p>
+	<<beziehung>>
+	<<set _r to setup.skillCheckXp("cannon", 14)>>
+	<<= setup.skillCheckAlert(_r)>>
+	<</beziehung>>
+	<<set _amt to (_r.outcome is "crit" ? 3 : _r.success ? 2 : _r.outcome is "fumble" ? 0 : 1)>>
+	<<if _r.success>>
+		<p>Deine Hände wissen, was sie tun — Keil, Höhe, Zündkraut, jeder Griff sitzt. Als der Schuss losbricht,
+		fährt der Bolzen sauber ins Ziel, und das Rohr steht, wo es stehen soll. Wenzel nickt langsam.</p>
+		<<dialog>>
+		<p>„Der weiß, an welchem Ende es knallt", sagt Wenzel trocken. „Selten genug." Vasil grinst breit — für seine
+		Verhältnisse ein Begeisterungssturm.</p>
+		<</dialog>>
+	<<else>>
+		<p><<if _r.outcome is "fumble">>Du legst den Keil falsch, das Rohr schlägt hoch, und alle ducken sich — mehr
+		Schreck als Schaden.<<else>>Du zögerst einen Herzschlag zu lang beim Richten, und der Schuss geht zu hoch.<</if>>
+		Vasil ist mit zwei Schritten am Gerät und nimmt es dir ab.</p>
+		<<dialog>>
+		<p>„Noch nicht", sagt er, „aber du hast keine Angst davor. Das ist der Anfang. Angst kommt vom Nichtwissen."</p>
+		<</dialog>>
+	<</if>>
+	<<set $npc.heinrich.known to true>><<set $npc.silva.known to true>>
+	<<= setup.setNpcAffection("heinrich", _amt)>>
+	<<= setup.setNpcAffection("silva", _amt)>>
+	<<for _k range ["vasil","weibelWenzel"]>>
+		<<set $npc[_k].known to true>><<= setup.setNpcAffection(_k, _amt)>>
+	<</for>>
+
+/* ========================== MEDICINE ========================== */
+<<case "medicine">>
+	<p>„Feldscher!" Rosi vom 84. winkt dich zu einem Söldner, der sich beim Lageraufbau die Hand aufgerissen hat —
+	echtes Blut, keine Übung. Clausz und Tilly sehen zu, halb neugierig, halb prüfend. Silva bleibt am Rand stehen,
+	die Arme verschränkt.</p>
+	<<beziehung>>
+	<<set _r to setup.skillCheckXp("medicine", 14)>>
+	<<= setup.skillCheckAlert(_r)>>
+	<</beziehung>>
+	<<set _amt to (_r.outcome is "crit" ? 3 : _r.success ? 2 : _r.outcome is "fumble" ? 0 : 1)>>
+	<<if _r.success>>
+		<p>Du säuberst, prüfst, nähst — ruhig, ohne den Mann anzustarren wie ein Wunder, sondern wie eine Aufgabe.
+		Rosi haut sich anerkennend gegen die Stirn, dass das Hirnbisla am Barett wackelt.</p>
+		<<dialog>>
+		<p>„Der hat Hände!" ruft sie im Dialekt. „Und redt net dazwischen! Den nehm i mit!" Silva löst sich vom Rand,
+		sieht dir kurz in die Augen. „Ein Feldscher, der nicht zittert, ist im Feld mehr wert als drei, die zittern.
+		Das ist keine Kleinigkeit."</p>
+		<</dialog>>
+	<<else>>
+		<p><<if _r.outcome is "fumble">>Dir rutscht der Faden, die Wunde blutet neu auf, und der Söldner flucht.
+		Rosi ist sofort zur Stelle und übernimmt.<<else>>Deine Naht hält, aber sie ist grob, und der Mann zieht scharf
+		die Luft ein.<</if>></p>
+		<<dialog>>
+		<p>„Wird scho", sagt Rosi nicht unfreundlich. „S'Herz is am rechten Fleck, d'Hand lernt no." Silva nickt nur,
+		aber sie hat hingesehen — genauer, als dir lieb ist.</p>
+		<</dialog>>
+	<</if>>
+	<<set $npc.heinrich.known to true>><<set $npc.silva.known to true>>
+	<<= setup.setNpcAffection("heinrich", _amt)>>
+	<<= setup.setNpcAffection("silva", _amt)>>
+	<<for _k range ["rosi","clausz","tilly"]>>
+		<<set $npc[_k].known to true>><<= setup.setNpcAffection(_k, _amt)>>
+	<</for>>
+<</switch>>
+
+<<gedanke>>
+<p>Was auch immer gerade geschehen ist — sie haben mich gesehen. Nicht als Zaunpfahl. Als jemanden mit einem
+Handwerk. Und heute Abend, sagt man, brennen im Lager des 84. die Feuer.</p>
+<</gedanke>>
+
+<<trenner>>
+[[Der Tag verklingt — im Lager warten die Feuer->Besuch_S3_Lager]]
+
+
+:: Besuch_S3_Lager
+
+<<set _best to setup.bannerHolt()>>
+<<if not _best>><<set _best to "weibelWenzel">><</if>>
+
+<<scene>>
+<p>Die Musterung klingt aus, wie solche Dinge ausklingen: ein letztes Abschreiten, ein knappes Nicken der Gäste,
+dann der Abendappell im Fackellicht und endlich das Essen. In der Halle ist es warm nach dem langen, kalten Tag
+des Stehens, und zum ersten Mal seit dem Morgen fällt die Anspannung von den Reihen ab. Löffel klappern, Stimmen
+steigen, jemand lacht zu laut über den eigenen Witz.</p>
+<</scene>>
+
+<p>Du hast deine Schale leer und wischst gerade das letzte Fett mit einem Kanten Brot aus, während neben dir über
+den Tag geredet wird — über die Kronmärker, die Pferde, wer sich bei der Vorführung blamiert hat und wer nicht.</p>
+
+<<dialog>>
+<p>„Hast du die Rüstungen gesehen", sagt einer mit vollem Mund. „So was trag ich nie im Leben."
+„So was trägst du nur, wenn du's dir verdienst", entgegnet Karla, „oder erbst. Und erben tust du nichts als Schulden."</p>
+<</dialog>>
+
+<p>Und dann, quer durch die Halle, fällt dein Name.</p>
+
+<p>Du hebst den Kopf. In der Tür steht <<print $npc[_best].name>>, breit im Rahmen, das Gesicht vom Feuerschein
+draußen halb erhellt. <<print $npc[_best].name>> sucht die Reihen ab, findet dich, und winkt dich mit einer knappen
+Kopfbewegung zu sich.</p>
+
+<<dialog>>
+<<switch _best>>
+<<case "weibelWenzel">>
+	<p>„Wabbler! Ja, du, Rotznase — aufstehn. Das Feuer wartet nicht auf Rekruten, und heut Nacht macht's mal eine Ausnahme."</p>
+<<case "vasil">>
+	<p>„Du." <<print $npc.vasil.name>> deutet mit dem Daumen nach draußen. „Mitkommen." Mehr Worte macht er nicht — aber
+	da ist ein Grinsen, das bei ihm so viel heißt wie eine Umarmung.</p>
+<<case "rosi">>
+	<p>„Wabbler! Kummst, ja? Am Feuer wird's g'mütli, und an Platz hast da heut redli verdient — na geh, schau ned so!"</p>
+<<case "haddl">>
+	<p>„Mein Opa hat immer gesagt", ruft <<print $npc.haddl.name>>, „wer den Tag übersteht, gehört am Abend ans Feuer,
+	nicht auf die Pritsche. Also los."</p>
+<<case "clausz">>
+	<p>„Der Junge von der Musterung." <<print $npc.clausz.name>> lächelt fein. „Komm mit. Ich hab dir einen Platz
+	freigehalten — und was Besseres zu rauchen, als es die Stube je gesehen hat."</p>
+<<default>>
+	<p>„Komm rüber, Junge", ruft <<print $npc[_best].name>>. „Heut Nacht sitzt du bei uns am Feuer. Verdient hast du's."</p>
+<</switch>>
+<</dialog>>
+
+<p>Ein Stuhl scharrt. Kurt ist schneller auf den Beinen als du.</p>
+
+<<dialog>>
+<p>„Der Junge hat morgen Drill", sagt Kurt, die Stimme flach, die Hand schon halb zum Einspruch erhoben. „Und die
+Stube ist nach dem Appell —"</p>
+<p><<print $npc[_best].name>> lässt ihn nicht einmal ausreden. Kein Zorn, kein lautes Wort — nur ein Schritt in die
+Halle hinein, eine Hand, die sich beiläufig auf Kurts Schulter legt, schwer wie ein Amboss.</p>
+<p>„Kurt." Ein Grinsen, das freundlich ist und trotzdem keine Widerrede duldet. „Heut Nacht gehört er uns.
+Morgen kannst du ihn wieder schleifen. Ein Söldner besucht nicht jeden Tag die Freunde, mit denen er bald ins Feld zieht."</p>
+<p>Kurt öffnet den Mund. Schließt ihn wieder. Setzt sich. „Also gut, er muss es morgen ertragen, nicht ich."</p>
+<</dialog>>
+
+<<gedanke>>
+<p>Zwei Jahre lang war Kurts Wort Gesetz. Und eben hat ein Söldner in verwaschenem Rot-Weiß es mit einer Hand und einem
+Lächeln beiseitegeschoben. Ich weiß nicht, ob mir das Angst machen oder gefallen soll. Vielleicht beides.</p>
+<</gedanke>>
+
+<p>Du stehst auf, folgst <<print $npc[_best].name>> hinaus in die Nacht, und mit jedem Schritt vom Tor weg wird das
+Lachen aus der Halle leiser und das Prasseln der Lagerfeuer lauter.</p>
+
+<<trenner>>
+[[Ins Lager des 84.->Besuch_S3_Lagerfeuer]]
+
+:: Besuch_S3_Lagerfeuer
+<<set _spec to $player.spezialisierung>>
+
+<<scene>>
+<p>Das Lager des 84. ist eine andere Welt als die Akademie. Fackeln und Feuerschalen, der Geruch von Rauch, Eintopf
+und billigem Wein und Bier, und über allem ein Lärm aus Lachen, Streit und einer Fiedel, die jemand mehr aus Trotz als aus
+Können spielt. Man macht dir Platz am Feuer, drückt dir einen Becher in die Hand, und keiner sagt dir, du sollst
+gerade sitzen.</p>
+<</scene>>
+
+<p>Ein paar Gesichter kennst du — von heute, vom Markt, aus den Geschichten. Andere sehen dich zum ersten Mal, mustern
+dich kurz mit der rauen Freundlichkeit von Leuten, die schnell entscheiden, ob einer dazugehört, und dich offenbar
+durchgewunken haben.</p>
+
+<<gedanke>>
+<p>Zum ersten Mal seit zwei Jahren bin ich kein Rekrut, den man schleift. Ich bin — beinahe — willkommen. Und ich
+weiß nicht, wann mir das zuletzt passiert ist.</p>
+<</gedanke>>
+
+<p>Als dich die vom Haubentaucher Banner sehen, kommen sie herüber, klopfen dir auf die Schulter, rufen deinen Namen, und umscharren dich wie alte Freunde. 
+Du weißt nicht, ob sie es ernst meinen oder ob sie nur so tun, aber es ist egal — du gehörst dazu. </p>
+
+<p>Der Reihe nach wandern die Blicke am Feuer zu dir, dem neuen Gesicht, und wer dich noch nicht kennt, macht es kurz.</p>
+
+<<dialog>>
+<<for _k range setup.unbekannteSoeldner()>>
+	<<capture _k>>
+	<<switch _k>>
+	<<case "hauptmannLenz">><p>„Lenz. Ich führ diesen Haufen — meistens dorthin, wo er hinsoll."</p>
+	<<case "weibelWenzel">><p>„Wenzel, Feldweibel. Ich halt den Haufen zusammen — Aber im Lager sagt der Lars wos lang geht, brauchst garnicht zu mir kommen."</p>
+	<<case "weibelLars">><p>„Lars, Wachweibl. Wenn's Ärger gibt, bin ich der, ders wieder grade biegt. Also ständig."</p>
+	<<case "vasil">><p>„Vasil. Schieß und bau. <<if _spec eq "crossbow">> Sauber geschossen vorhin! <</if>>"</p>
+	<<case "haddl">><p>„Hadde, Armbruster<<if _spec eq "crossbow">> wie du<</if>>. Mein Opa hat immer gesagt —" Ein kollektives Stöhnen, und er lässt es dabei bewenden.</p>
+	<<case "diplomatHannes">><p>„Hannes Böttcher, Diplomat aus Grodaus. Wenn das Reden nichts mehr nützt, steh ich trotzdem in der Reihe."</p>
+	<<case "bast">><p>„Bast, Diplomat aus Vormberg. Ich red viel und sag wenig — außer es sind Frauen im Spiel."</p>
+	<<case "hansFichtensplitter">><p>„Hans Fichtensplitter." Mehr sagt er nicht, und selbst das klingt nach einer Geschichte, die man besser nicht kennt.</p>
+	<<case "clausz">><p>„Clausz. Hab immer Rauchkraut und weiß immer, wo was ist — nur nicht, wo die Zeit fürs Aufstehen bleibt."</p>
+	<<case "rosi">><p>„Rosi, Feldscher. Wennst wo blutst, kummst fei zu mir. Aber jammer ned wegen ana Delln."</p>
+	<<case "tilly">><p>„Tilly. Findt man meist beim Tross. Kein Vorwurf — sagen die vom Tross."</p>
+	<<case "tobalt">><p>„Tobalt, erste Lanze. Ich erzähl viel — aber ich merk mir auch viel. Kommt aufs selbe raus."</p>
+	<<default>><p>„<<= $npc[_k].name>>." Ein Nicken, mehr nicht.</p>
+	<</switch>>
+	<<set $npc[_k].known to true>>
+	<<run setup.pushNpcMemory(_k, "Am Lagerfeuer des 84. kennengelernt.")>>
+	<</capture>>
+<</for>>
+<</dialog>>
+
+<p>Irgendwer fragt, wie die Ausbildung so läuft. Das ist alles, was es braucht. Die Becher werden voller, die
+Geschichten kommen.</p>
+
+<<dialog>>
+<p>Vasil fängt an, breit und ohne Miene. „Erstes Mal Armbrust, in der Ausbildung. Ich spann, ich leg an, ich denk,
+ich bin der Beste — und pack den Schaft komplett um, wie a Schaufel." Er hält die Hand hoch, als läge da noch die alte Wunde.
+„Hab mir die eigenen Finger zerlegt. Vor allen anderen. Der Ausbilder hat nicht mal geschimpft. Er hat nur gelacht."</p>
+<</dialog>>
+
+<<dialog>>
+<p>„Ach, das ist nichts", ruft Tobalt, der offenbar zu jeder Geschichte drei eigene hat. „Ich war mal in der Stadt,
+am Würfeltisch, so versumpft, dass ich nicht mal gemerkt hab, dass es Morgen wurde. Erst als sie mich abgeholt haben."
+Er grinst, als wär's ein Orden. „Danach hab ich lang keine Stadt mehr von innen gesehen. Nur den Arrest."</p>
+<</dialog>>
+
+<<dialog>>
+<p>„Ich hatte solche Sorgen nie", sagt Hannes ruhig, und für einen Moment klingt er beinahe stolz. „Ich war nie in
+der Schenke. Ich habe gelernt. Beflissentlich."</p>
+<p>„Bei mir war's genauso", pflichtet Bast bei und nickt würdevoll.</p>
+<p>Einen Herzschlag lang schweigen alle. Nicken. Sehen einander an.</p>
+<p>Dann gröhlt Wenzel über das ganze Feuer: „JA! Das erklärt alles!"</p>
+<p>Das Lager bricht in Gelächter aus, Hände klatschen auf Schultern, jemand kippt fast in die Glut. Hannes und Bast
+sitzen betröppelt zwischen dem Sturm, und je würdevoller sie dreinschauen, desto lauter wird gelacht.</p>
+<</dialog>>
+
+<<dialog>>
+<p>„Mit dem Saufen", wirft Tilly ein, als es sich gelegt hat, „das ist so eine Sache." Sie deutet mit dem Becher auf
+Wenzel. „Der da war mal zu einem Gelage geladen und wusste, dass es eine harte Nummer wird. Also hat er mich
+hingeschickt. Als Befehl." Sie schüttelt den Kopf. „Ich dachte ehrlich, ich überlebe das Gelage bei der Germersmark nicht."</p>
+<p>Wenzel hebt seinen Probier-Becher, völlig ungerührt. „Und? Lebst doch noch."</p>
+<</dialog>>
+
+<<dialog>>
+<p>Tobalt hat da schon die nächste Geschichte auf den Lippen, und die übernächste dahinter — er erzählt viele
+Geschichten, ehrlich gesagt zu viele, und man hört ihm trotzdem zu, weil das Feuer warm ist und die Nacht lang.</p>
+<</dialog>>
+
+<<dialog>>
+<p>Erst Hadde bringt es auf den Punkt, den Becher in der Hand, den Blick verklärt. „Mein Opa hat immer gesagt …"
+Ein kollektives Stöhnen läuft ums Feuer, aber er redet unbeirrt weiter. „… und wisst ihr was? Der Alte hat hier
+gedient, vor gefühlt hundert Jahren. Und wenn ich mir das so anschau —" er deutet mit dem Kinn in die Runde
+„— hat sich seit damals rein gar nichts geändert."</p>
+<</dialog>>
+
+<<gedanke>>
+<p>Das ist es also, wohinein ich wachse. Nicht Drill, nicht Rindlers Waage. Das hier — Männer und Frauen, die zu
+viel trinken und zu viel reden und füreinander durchs Feuer gingen. Morgen bin ich vielleicht wieder nur ein Rekrut.
+Heute Nacht sitze ich am richtigen Feuer.</p>
+<</gedanke>>
+
+<<if not $world.besuchGossipGefragt>><<set $world.besuchGossipGefragt to []>><</if>>
+<<set _pool to setup.gossips84Bekannt()>>
+
+<<if _pool.length gt 0 and $world.besuchGossipGefragt.length lt 2>>
+<div id="gossip-block">
+
+<div id="gossip-menu">
+<<scene>>
+<p>Über den einen oder anderen am Feuer hast du schon etwas aufgeschnappt. Der Wein ist billig, die Zungen locker.</p>
+<</scene>>
+<<if _pool.length gt 2>>
+<div class="status-info">Du kannst zwei der Gerüchte nachhaken — wähl mit Bedacht.</div>
+<</if>>
+<ul class="sandbox-menu">
+<<for _s range _pool>>
+	<<capture _s>>
+	<li @id="'gli_' + _s.id">
+		<<link `"Frag " + $npc[_s.npcKey].name`>>
+			<<run $world.besuchGossipGefragt.push(_s.id)>>
+			<<append "#gossip-antworten">>
+				<div class="gossip-antwort">
+					<p class="gossip-frage"><<= _s.base>></p>
+					<p class="gossip-erklaerung"><b><<= $npc[_s.npcKey].name>>:</b> „<<= _s.erklaerung || 'Alte Geschichte. Lass gut sein.'>>"</p>
+				</div>
+			<</append>>
+			<<if $world.besuchGossipGefragt.length gte 2>>
+				<<replace "#gossip-menu">><</replace>>
+			<<else>>
+				<<run $('#gli_' + _s.id).remove()>>
+			<</if>>
+		<</link>>
+		<span class="subtext">— <<= _s.rumorText>></span>
+	</li>
+	<</capture>>
+<</for>>
+</ul>
+</div>
+
+
+<div id="gossip-antworten"></div>
+
+</div>
+<</if>>
+
+<<trenner>>
+<<if setup.wasGossipSuccessful("lk_004")>>
+    <<dialog>>
+        <p>„Ihr sollt euch auffallend gut mit einem Ritter aus der Kronmark verstehen." So wird geredet. 
+        Und jetzt is der Heinrich auch noch hier, in Aloy, mit euch...</p>
+        „Ja wir verstehen uns gut." Schneidet dir eine Stimmer hinter dir das Wort ab
+    <</dialog>>     
+<<trenner>>
+[[zu Heinrich umdrehen->Besuch_S3_Heinrich_b]]
+<<else>>
+[[Heinrich tritt ans Feuer->Besuch_S3_Heinrich]]
+<</if>>
+
+
+
+:: Besuch_S3_Heinrich
+
+<<scene>>
+<p>Am größten der Feuer hält Heinrich Hof. Er singt — laut, nicht schlecht, und mit der vollen Überzeugung eines
+Mannes, der weiß, dass ihm alle zuhören —, und als das Lied endet, geht es nahtlos in eine Geschichte über, in der
+er selbst die Hauptrolle spielt und, versteht sich, gewinnt. Neben ihm sitzt Silva, den Becher in beiden Händen,
+und sieht ihm zu mit der nachsichtigen Ruhe von jemandem, der jede dieser Geschichten schon dreimal gehört hat und
+ihn trotzdem reden lässt.</p>
+<</scene>>
+
+<<dialog>>
+<p>„Da!" Heinrichs Finger findet dich, kaum dass du in den Lichtkreis trittst. „Der von der Musterung! Komm her,
+setz dich, trink was. <<if $npc.heinrich.affection gte 2>>Dich hab ich mir gemerkt.<<else>>Wie war noch dein Name?<</if>>"</p>
+<</dialog>>
+
+<<dialog>>
+<p>„Thomas, Herr. Ihr habt —"</p>
+<p>„Du." Er sagt es sofort, ohne das Grinsen zu verlieren. „Es heißt <em>du</em>, Heinrich. ‚Herr' und ‚Ihr' —
+damit soll man mich in der Kronmark piesacken. Hier draußen bin ich einfach Heinrich."</p>
+<p>Silva, ohne aufzusehen: „Gib's auf, Junge. Er sammelt ein ‚Herr' ein wie andere einen Splitter im Finger — und
+zieht's genauso umständlich wieder heraus. Es ist ihm ernst."</p>
+<</dialog>>
+
+<p>Du siehst sie an — die Rüstung, so blank wie Heinrichs, die ruhige, wache Art —, und irgendetwas in deinem Blick
+muss dich verraten haben, denn ihre Mundwinkel heben sich um Haaresbreite.</p>
+
+<<dialog>>
+<p>„Du fragst dich, was eine Frau in dem Eisen zu suchen hat." Keine Frage, kein Vorwurf, nur eine Feststellung,
+ruhig und genau. „Das fragen sich viele. Die meisten von ihnen liegen inzwischen dort, wo man solche Fragen nicht
+mehr stellt." Ein kleines Lächeln. „Du wirst dich nicht zu ihnen gesellen. Dafür bist du zu klug — klüger, als du
+dich gibst."</p>
+<</dialog>>
+
+<<gedanke>>
+<p>Wie macht sie das. Zwei Sätze, und sie hat mich gelesen wie eine Seite, die ich selbst noch nicht ganz kenne.
+Der laute Mann daneben gewinnt Turniere mit dem Schwert. Ich glaube, sie gewinnt Kriege, ehe sie beginnen — und
+keiner merkt, dass sie es war.</p>
+<</gedanke>>
+
+<<dialog>>
+<p>„Genug geredet!" ruft Heinrich, schon wieder ganz Mittelpunkt, und klatscht in die Hände, dass es knallt.
+„So ein Abend gehört den Würfeln. Wo sind die Würfel? Junge — du spielst mit."</p>
+<</dialog>>
+
+<<gedanke>>
+<p>Wer ihn zum Freund hat, sagt man, hat eine Eiche an seiner Seite. Und wer sie zur Freundin hat, die Stille neben
+ihm, hat etwas, das noch schwerer zu fällen ist. Ich bin froh, dass beide auf unserer Seite in den Krieg ziehen —
+und heimlich noch froher, dass ich ihnen nie gegenüberstehen muss.</p>
+<</gedanke>>
+
+<<trenner>>
+[[Die Würfel rollen->Besuch_S3_Wuerfeln]]
+
+:: Besuch_S3_Heinrich_b
+
+<<dialog>>
+<p>„Der von der Musterung! <<if $npc.heinrich.affection gte 2>>Dich hab ich mir gemerkt.<<else>>Wie war noch dein Name?<</if>>"</p>
+<</dialog>>
+
+<<dialog>>
+<p>„Thomas, Herr. Ihr habt —"</p>
+<p>„Du." Er sagt es sofort, ohne das Grinsen zu verlieren. „Es heißt <em>du</em>, Heinrich. ‚Herr' und ‚Ihr' —
+damit soll man mich am Diplomatischen Tisch piesacken. Hier draußen bin ich einfach Heinrich."</p>
+<p>Silva, ohne aufzusehen: „Gib's auf, Junge. Er sammelt ein ‚Herr' ein wie andere einen Splitter im Finger — und
+zieht's genauso umständlich wieder heraus. Es ist ihm ernst."</p>
+<p>„Und um dir deine Frage zu beantworten: Ja das 84. Banner und die Kronmark schauen zurück auf eine ereignisreiche Geschichte.
+Und stehts ging sie Freundschaftlich und respektvoll zu Ende. Und das ist auch gut so in der Zeit die uns bevorsteht. Brauchen wir alle
+Freunde. Vor allem welche die echt sind."</p>
+<p>„Wohl gesprochen Liebste!" pflichtet ihr Heinrich bei.</p>
+<</dialog>>
+
+<p>Du siehst sie an — die Rüstung, so blank wie Heinrichs, die ruhige, wache Art —, und irgendetwas in deinem Blick
+muss dich verraten haben, denn ihre Mundwinkel heben sich um Haaresbreite.</p>
+
+<<dialog>>
+<p>„Du fragst dich, was eine Frau in dem Eisen zu suchen hat." Keine Frage, kein Vorwurf, nur eine Feststellung,
+ruhig und genau. „Das fragen sich viele. Die meisten von ihnen liegen inzwischen dort, wo man solche Fragen nicht
+mehr stellt." Ein kleines Lächeln. „Du wirst dich nicht zu ihnen gesellen. Dafür bist du zu klug — klüger, als du
+dich gibst."</p>
+<</dialog>>
+
+<<gedanke>>
+<p>Wie macht sie das. Zwei Sätze, und sie hat mich gelesen wie eine Seite, die ich selbst noch nicht ganz kenne.
+Der laute Mann daneben gewinnt Turniere mit dem Schwert. Ich glaube, sie gewinnt Kriege, ehe sie beginnen — und
+keiner merkt, dass sie es war.</p>
+<</gedanke>>
+
+<<dialog>>
+<p>„Genug geredet!" ruft Heinrich, schon wieder ganz Mittelpunkt, und klatscht in die Hände, dass es knallt.
+„So ein Abend gehört den Würfeln. Wo sind die Würfel? Junge — du spielst mit."</p>
+<</dialog>>
+
+<<gedanke>>
+<p>Wer ihn zum Freund hat, sagt man, hat eine Eiche an seiner Seite. Und wer sie zur Freundin hat, die Stille neben
+ihm, hat etwas, das noch schwerer zu fällen ist. Ich bin froh, dass beide auf unserer Seite in den Krieg ziehen —
+und heimlich noch froher, dass ich ihnen nie gegenüberstehen muss.</p>
+<</gedanke>>
+
+<<trenner>>
+[[Die Würfel rollen->Besuch_S3_Wuerfeln]]
+
+:: Besuch_S3_Wuerfeln
+
+<<scene>>
+<p>Die Nacht ist längst über den Zenit, und aus dem Feuer ist eine Party geworden, wie sie nur im Lager des 84.
+entsteht — ohne dass je einer sie ausgerufen hätte. Hans Fichtensplitter steht auf einem Fass und segnet mit
+großer Geste einen Barsinger, halb feierlich, halb betrunken, und Tobalt fällt mit einem Trinkspruch ein, der
+sich in drei Geschichten verzweigt, ehe er die Pointe findet. Irgendwo klappern Würfel auf einem Schild, das als
+Tisch herhalten muss.</p>
+<</scene>>
+
+<p>„Platz da!" dröhnt Heinrich und lässt sich mit einem Becher in der einen und einer Handvoll Münzen in der
+anderen Hand am Würfelschild nieder, breit, laut, das halbe Lager schon als sein Publikum. „Wo gespielt wird,
+spiel ich mit. Und du —" der Finger zeigt auf dich „— du setzt dich dazu. Du hast
+heut bei der Musterung was getaugt. Mal sehen, ob dein Glück so gut ist wie deine Hände."</p>
+
+<<gedanke>>
+<p>Man sagt nicht Nein zu einem Mann wie Heinrich. Man setzt sich, wirft ein paar Kupfer auf das Schild und
+betet zu allem, was zuhört, dass man sich nicht blamiert.</p>
+<</gedanke>>
+
+<p>Du legst deinen Einsatz vor — Drei Stück Kupfer, ehrlich verdient und ungern verspielt. Die Würfel
+gehen um, Heinrich redet dabei ohne Punkt und Komma, über Alfalter, über Turniere, über ein Pferd, das er einmal
+im Wurf gewonnen und am selben Abend wieder verloren hat. Und irgendwann, mitten im Reden, schnappt sich seine
+Pranke ganz beiläufig eines deiner Kupferstücke vom Rand des Schilds.</p>
+
+<p>Du siehst es. Er bemerkt es garnicht, weil er noch am erzählen ist.</p>
+
+<<dialog>>
+<p>„Ähm", machst du, verlegen, und deutest auf seine Faust. „Das … das war meins."</p>
+<p>Heinrich hält inne, sieht dich an, als hättest du ihm eine ungeheure Beleidigung ins Gesicht geschleudert.</p>
+<p>„Nein, ich nehm doch nicht dein Kupfer! Bist du dumm, ich hab mein eigenes."</p>
+<p>Er hält deinen Blick. Das Kupferstück blitzt deutlich sichtbar zwischen seinen Fingern.</p>
+<p>„Hab ich dein Kupfer genommen?" fragt er verdutzt.</p>
+<p>Eine Pause. Das halbe Lager sieht her.</p>
+<p>„Nein!" Ist er sich sicher.</p>
+<p>Noch eine Pause. Das Kupfer ist immer noch da, für jeden zu sehen.</p>
+<p>„… Wirklich?" fragt er nach.</p>
+<</dialog>>
+
+<p>Einen Herzschlag lang hält die Stille. Dann bricht das Lager in brüllendes Gelächter aus. Am Rand des Feuers
+hebt Silva, die alles gesehen hat, nur eine Augenbraue — mehr Kommentar braucht es bei ihr nie.</p>
+
+<p>Und Heinrich, mitten im Gelächter, wirft die Würfel — und gewinnt. Natürlich gewinnt er. Er streicht den ganzen
+Haufen zusammen, dein Kupfer, sein Kupfer, aller Kupfer, wiegt ihn kurz in der Hand … und schiebt dir das Ganze
+mit einem breiten Grinsen über das Schild.</p>
+
+<<dialog>>
+<p>„Da. Anfängerglück. Behalt's." Er lehnt sich zurück, zufrieden mit sich und der Welt. „Und erzähl daheim, du
+hättest gegen Grimmerthann gespielt und wärst reicher heimgegangen. Das glaubt dir keiner — und genau darum
+erzählst du's."</p>
+<</dialog>>
+
+<<= setup.addMoney(15)>>
+
+<<gedanke>>
+<p>Er hat mir vor allen ein Kupfer aus der Hand geklaut, es abgestritten, während es zwischen seinen Fingern
+glänzte — und mir dann einen ganzen Gewinn geschenkt. Ich verstehe diesen Mann nicht. Aber ich glaube, ich
+würde ihm folgen. Und ich glaube, genau das ist der Punkt.</p>
+<</gedanke>>
+
+<<trenner>>
+[[Die Nacht klingt aus->Besuch_S3_Ausklang]]
+
+
+:: Besuch_S3_Ausklang [nach_Kap2_morgen]
+
+<<scene>>
+<p>Die Feuer sinken in sich zusammen, und mit ihnen die Nacht. Die Becher werden leerer, die Stimmen weniger, und
+einer nach dem anderen rollt sich in seine Decke oder verschwindet zwischen den Zelten. Als du dich auf den Rückweg
+machst, liegt schon Reif auf dem gestampften Boden, und die Kälte, die die Feuer den Abend über in Schach gehalten
+haben, kriecht dir wieder in die Knochen.</p>
+
+<p>Am Rand des Lagers drehst du dich noch einmal um. Zwei Feldstädte im letzten Glimmen: die des 84., bunt und
+schief und schlafend, und die der Kronmark daneben, weiß und rot und geordnet noch im Dunkeln. Zwei Banner gegen
+den verlöschenden Himmel.</p>
+<</scene>>
+
+<<gedanke>>
+<p>Heute Nacht war es ein Fest. Aber das hier ist kein Fest. Das ist ein Heer, das sich sammelt, ehe es in den Krieg
+zieht — und ich gehöre dazu, ob ich will oder nicht. In ein paar Tagen stellt Rindler uns die letzte Prüfung. Und
+danach führt keine Straße mehr auf diesen Hof zurück, nur noch hinaus, nach Komarn, zu dem, wofür sie mich zwei
+Jahre lang gehärtet haben.</p>
+<</gedanke>>
+
+<p>Hinter dir grölt jemand noch immer ein Lied — Heinrich, wer sonst —, und der Klang folgt dir über den halben
+Weg, bis die grauen Mauern der Akademie ihn schlucken.</p>
+
+<<gedanke>>
+<p>Ich will mir das merken. Die Gesichter, das Lachen, das Kupfer in Heinrichs Faust. Damit ich weiß, wofür das
+alles ist, wenn es hart wird.</p>
+<</gedanke>>
+
+<<weiterImTag "Zurück auf die Stube, ehe der Morgen graut">>

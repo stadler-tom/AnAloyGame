@@ -783,7 +783,9 @@
           "success": "Später kamen der Shek und Snori de Alba ins Lager. Snori stellte sich vor, wie man es von ihm erwartet – laut und selbstsicher. Darauf soll jemand aus dem 84. Banner gesagt haben: ‚In Aloy sind alle Ritter.‘ Ob das wirklich so fiel, weiß keiner genau, aber Snorri hat es angeblich nicht gut aufgenommen. Heute ist der Spruch im 84. ein halber Insider geworden, den man nur hinter vorgehaltener Hand benutzt.",
           "fail": "Andere winken nur ab und sagen, es sei nichts Besonderes gewesen – Banditen, wie sie eben öfter vorkommen, mehr nicht."
         },
-        "rumorText": "Snori de Alba nimmt es nicht gut auf wenn man den Ritterstand herabwürdigt."
+        "rumorText": "Snori de Alba nimmt es nicht gut auf wenn man den Ritterstand herabwürdigt.",
+        "npcKey": "clausz",
+        "erklaerung": "Also, ich hab ja ned gewusst, dass der Snorri so empfindlich is. Aber der Spruch, stimmt ja auch. In Aloy sind wir alle Ritter. Und Adlige. Aber a bissl Angst hatt ich schon. Der Snorri is ja kein kleiner Ritter."
       },
       {
         "id": "lk_002",
@@ -809,7 +811,8 @@
           "fail": "Der Typ grinst nur breit. 'Namen nenn ich keine. Nicht wegen mir — wegen meiner Knie.'"
         },
         "rumorText": "Weibel Lars soll stiller Teilhaber eines Freudenhauses in Tiafunt sein. Er redet nicht darüber.",
-        "npcKey": "weibelLars"
+        "npcKey": "weibelLars",
+        "erklaerung": "Ich weis gar nicht wo das herkommt! Ich hab ja garkeiene Zeit mich um a Bordell zu kümmern, ich bin ja nie im Land, gefühlt."
       },
       {
         "id": "lk_004",
@@ -822,7 +825,7 @@
           "fail": "Der Kerl schnaubt nur. 'Vielleicht trinken sie einfach gern zusammen. Nicht hinter jeder Kanne Bier steckt gleich eine Verschwörung.'"
         },
         "rumorText": "Das 84. Banner soll sich auffallend gut mit einem Ritter aus der Kronmark verstehen. Manche wittern bereits Loyalisten.",
-        "npcKey": null
+        "npcKey": "heinrich"
       },
       {
         "id": "lk_005",
@@ -848,7 +851,8 @@
           "fail": "Die meisten lachen nur. 'Ob Ritter oder Knecht, wenn du beim Feldscher ankommst, bist du erstmal nur ein weiterer Verwundeter.' Mehr weiß angeblich niemand."
         },
         "rumorText": "Die Feldscherin des 84. schickte einen Ritter wegen einer Rüstungsdelle zum Schmied, während sie seine Kameraden versorgte.",
-        "npcKey": "feldscherin84"
+        "npcKey": "rosi",
+        "erklaerung": "Des stimmt genau so! Ich hab fei nur mei Arbeit gmacht. Ich hab ja ned gwusst, dass des ein Ritter war. Ich hab ja nur dacht, er soll sei Rüstung fei richten lassen, bevor er wieder mei Zeit verschwendt."
       },
       {
         "id": "lk_007",
@@ -874,7 +878,8 @@
           "fail": "Der Erzähler winkt ab. 'Fest, Alkohol und zu viele Leute mit zu viel Meinung. Am Ende weiß keiner mehr, wer wen gesucht hat.'"
         },
         "rumorText": "Beim Heinrichsfest 119 nBA entkam eine Zeichnerin der KgH, nachdem Aloyer mit einem angeblichen Termin für Chaos sorgten.",
-        "npcKey": null
+        "npcKey": "vasil",
+        "erklaerung": "Stimmt! Hab ich schon fast vergessen. Ja da habens sau bleed gschaut die KgHler. Als da alle durcheinander und gaaanz zufällig im Weg gestanden sind."
       },
       {
         "id": "lk_009",
@@ -887,7 +892,8 @@
           "fail": "Der Erzähler grinst nur. 'Ob es wirklich so war? Keine Ahnung. Aber Erasmus schaut seitdem angeblich sehr genau hin, bevor er sich irgendwo hinsetzt.'"
         },
         "rumorText": "Weibel Wenzel soll Snori de Alba mit einem Einhornstreich hereingelegt haben. Erasmus von Than bekam dafür die Schuld und verlor einen Zahn.",
-        "npcKey": "weibelWenzel"
+        "npcKey": "weibelWenzel",
+        "erklaerung": "Also so direkt möchti ich das jetzt nicht bestätigen. Weil ichs nimmer genau weis. Aber es hört sich nach mir an."
       },
       {
         "id": "lk_010",
@@ -900,7 +906,8 @@
           "fail": "Der Erzähler hebt die Hände. 'Er war krank. Mehr weiß ich nicht. Alles andere ist Gerede von Leuten, die lieber über andere reden als über sich selbst.'"
         },
         "rumorText": "Hauptmann Lenz soll auf Heinrichsfesten viel Zeit mit einer Adeligen verbracht haben. Nach seiner Abwesenheit kursieren Gerüchte über eine Krankheit.",
-        "npcKey": "hauptmannLenz"
+        "npcKey": "hauptmannLenz",
+        "erklaerung":"Einzige Regel: sie durft sich nicht aufs Schafsfell legen! Spaß beiseite. Wir haben nur über diplomatische verkettungen geredet und waren zu keiner Zeit in privaterem Umfeld."
       },
       {
         "id": "lk_011",
@@ -941,13 +948,13 @@
       },
       {
         "id": "lk_014",
-        "base": "Es hängt eine Bekanntmachung aus, die selbst die Büttel nur mit hochgezogener Braue vorlesen: Am ersten Wochentag ist es verboten, seine Notdurft in Bächen und Flüssen zu verrichten. Grund? Mittwochs wird gebraut. Nach dem Brautag, heißt es, werde das Verbot wieder aufgehoben.",
+        "base": "Es hängt eine Bekanntmachung aus, die selbst die Büttel nur mit hochgezogener Braue vorlesen: Am ersten Wochentag ist es verboten, seine Notdurft in Bächen und Flüssen zu verrichten. Grund? Am Migga wird gebraut. Nach dem Brautag, heißt es, werde das Verbot wieder aufgehoben.",
         "probe": {
           "difficulty": 0,
           "success": "Ein Brauknecht klärt dich grinsend auf: Das Verbot ist bitterernst gemeint. Einmal soll ein ganzer Sud gekippt sein, weil oben am Bach jemand … nun ja. Seither wacht die Zunft am Brautag über jede Uferböschung wie ein Habicht, und der Rat hat es lieber gleich zu Pergament gebracht, als sich das nochmal erklären zu müssen.",
-          "fail": "'Frag im Wirtshaus', sagt der Mann. 'Aber nicht am Mittwoch. Da haben die anderes im Kopf.'"
+          "fail": "'Frag im Wirtshaus', sagt der Mann. 'Aber nicht am Migga. Da haben die anderes im Kopf.'"
         },
-        "rumorText": "Am Brautag (Mittwoch) ist die Notdurft in Bächen und Flüssen verboten — wegen eines einst gekippten Suds.",
+        "rumorText": "Am Brautag (Migga) ist die Notdurft in Bächen und Flüssen verboten — wegen eines einst gekippten Suds.",
         "npcKey": null
       },
       {
@@ -970,7 +977,7 @@
           "fail": "'Der Hauptmann und sein Herz', seufzt der Erzähler. 'Darüber redet man nicht. Höchstens Lars. Und der schweigt für zwei.'"
         },
         "rumorText": "Hauptmann Lenz hat ein Auge auf Katharina de Alba — für sie versäumte er sogar einen Komarner Termin.",
-        "npcKey": "hauptmannLenz"
+        "npcKey": "null"
       },
       {
         "id": "lk_017",
@@ -1057,7 +1064,8 @@
           "fail": "Der Alte zuckt mit den Schultern. 'Was genau passiert ist, weiß ich nicht. Aber die Barbaren haben seitdem jedenfalls keine Geiseln mehr nach Bofeld verschleppt.'"
         },
         "rumorText": "Beim Hirtenfest von Bofeld erschoss ein Schütze des 84. den Geiselnehmer – und mit ihm die Geisel. Aloy verhandelt nicht.",
-        "npcKey": null
+        "npcKey": "vasil",
+        "erklaerung": "Da war auf einmal a riesen Tamtam und wir haben garned gwusst was da los ist. Im endeffekt hat einer gmeint Vasil, den triffst du nie. Der Rest ist Geschichte"
       },
       {
         "id": "li_005",
@@ -1109,7 +1117,7 @@
           "fail": "Der Erzähler zieht die Augenbrauen hoch. 'Der Rat misstraut jedem, der nicht im Rat sitzt. Heute sind es die Söldner, morgen die Händler und übermorgen die eigenen Nachbarn.' Mehr weiß er angeblich nicht."
         },
         "rumorText": "Der Rat beobachtet das 84. Banner und zweifelt an Sera de Albas Befugnissen sowie an Hauptmann Lenz' Neutralität bei den Verhandlungen mit Komarn.",
-        "npcKey": "hauptmannLenz"
+        "npcKey": null
       },
       {
         "id": "li_009",

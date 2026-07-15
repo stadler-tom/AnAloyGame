@@ -310,3 +310,45 @@ setup.getRandomKnownNpcByFaction = function (factionString) {
     if (known.length === 0) return null;
     return known[Math.floor(Math.random() * known.length)].name;
 };
+
+/* Der bekannte 84.-Banner-Mann mit der höchsten affection holt Thomas ins Lager. */
+setup.bannerHolt = function () {
+    var npc = State.variables.npc, best = null;
+    for (var k in npc) {
+        var n = npc[k];
+        if (n && n.faction === "84. Banner" && n.known === true) {
+            if (best === null || n.affection > npc[best].affection) best = k;
+        }
+    }
+    return best;   // npc-Key oder null
+};
+
+/* Erfolgreich aufgedeckte Gossips, die an eine bestimmte Person geknüpft sind. */
+setup.gossipsFuerNpc = function (npcKey) {
+    return setup.getAllGossipStories().filter(function (s) {
+        if (s.npcKey !== npcKey) return false;
+        return setup.wasGossipSuccessful(s.id)
+            || (State.variables.player.rumors || []).includes(s.rumorText);
+    });
+};
+
+/* Alle „ansprechbaren" Gossips für die am Feuer Anwesenden. */
+setup.gossipsFuerAnwesende = function (npcKeys) {
+    var out = [];
+    npcKeys.forEach(function (k) {
+        setup.gossipsFuerNpc(k).forEach(function (s) { out.push({ npc: k, story: s }); });
+    });
+    return out;
+};
+
+
+/* Alle 84.-Banner-Söldner, die Thomas noch nicht kennt. */
+setup.unbekannteSoeldner = function () {
+    var npc = State.variables.npc, out = [];
+    for (var k in npc) {
+        if (npc[k] && npc[k].faction === "84. Banner" && npc[k].known !== true) {
+            out.push(k);
+        }
+    }
+    return out;
+};

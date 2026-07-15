@@ -391,3 +391,19 @@ setup.getSuccessThought = function (skill, difficulty) {
 
     return '<div class="thought-box">' + result + '</div>';
 };
+
+setup.gossips84Bekannt = function () {
+    var npc = State.variables.npc;
+    var pool = setup.getAllGossipStories().filter(function (s) {
+        if (!s.npcKey) return false;
+        var n = npc[s.npcKey];
+        if (!n || n.faction !== "84. Banner") return false;
+        return setup.wasGossipSuccessful(s.id)
+            || (State.variables.player.rumors || []).includes(s.rumorText);
+    });
+    for (var i = pool.length - 1; i > 0; i--) {          // mischen
+        var j = Math.floor(Math.random() * (i + 1));
+        var t = pool[i]; pool[i] = pool[j]; pool[j] = t;
+    }
+    return pool.slice(0, 4);                               // max. 4
+};

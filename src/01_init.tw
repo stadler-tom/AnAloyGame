@@ -318,6 +318,25 @@
         memory: { flags: {}, events: [] },
         journalEntry: "Söldnerin des 84. Banners — offiziell, mit M-Vermerk. Aus Tiafunt. In der Praxis findet man sie fast immer im Tross. Kein Vorwurf, sagen die vom Tross. Eher ein Kompliment. Zwei Zöpfe und viel zu ehrgeizige Stickereien auf der Uniform"
     },
+    tobalt: {
+        name: "Tobalt",
+        image: "images/Tobalt.png",
+        known: false,
+        faction: "84. Banner",
+        affection: 0,
+        trust: false,
+        isRealPlayer: true,
+        memory: { flags: {}, events: [] },
+        journalEntry: "Söldner des 84. Banners, 1. Lanze, aus einem Dorf nahe Weitfurth — Holzfällersohn, klein und kräftig, mit einem schelmischen Grinsen, das selten weicht. Aloyer Farben, praktisch getragen, Messer und Trinkgefäß am Gurt und ein kleiner Holzlöffel mit graviertem Auge. Freundlich, loyal, trinkfest. Redet lieber in Geschichten als in Antworten — und erzählt derer zu viele. Bringt jeden zum Reden, plaudert dabei selbst oft zu viel, und weiß am Ende doch mehr, als er zugibt. 'Ja mei, dann machen wir mal.'"
+        /*
+            HINTERGRUND (nicht im Journal):
+            Sorgloser, als er wirkt — überspielt Ernst mit Witzen, nimmt aber viel wahr.
+            Oft "zufällig" dort, wo Informationen fallen; Bote/Verbindungsmann.
+            Barsinger-Gläubiger (Trinken, Geselligkeit, Glück des Augenblicks).
+            Wird still und direkt, wenn man seine Kameraden schlecht behandelt.
+            Easteregg: echter Spieler des 84. Banners.
+        */
+    },
 
 
     /* ===========================
@@ -375,6 +394,28 @@
        DIPLOMATIE / AUSSENWELT
        =========================== */
 
+    heinrich: {
+        name: "Heinrich von Grimmerthann",
+        image: "images/Heinrich.png",
+        known: false,
+        faction: "Kronmark",
+        affection: 0,
+        trust: false,
+        isRealPlayer: true,
+        memory: { flags: {}, events: [] },
+        journalEntry: "Ritter aus der Kronmark, Freund des 84. Banners. Kämpfer, kein Höfling — besteht auf 'Du', und ist trotz Adelsschlags in Aloy geachtet. Verbündeter im Krieg gegen Komarn. Vorlaut, von sich selbst Überzeugt. Hört sich gerne reden. Singt gerne, steht sehr gern im mittelpunkt. Ruhiger wenn seine Frau Silva dabei ist. Aber ein loyaler Kerl. Wer ihn als Freund hat hat eine Eiche an seiner Seite. Hat die Carolus Dux Tourney 2 mal gewonnen."
+    },
+    silva: {
+        name: "Silva von Rosenschlag",
+        image: "images/Silva.png",
+        known: false,
+        faction: "Kronmark",
+        affection: 0,
+        trust: false,
+        isRealPlayer: true,
+        memory: { flags: {}, events: [] },
+        journalEntry: "Hohe Herrin der Kronmark und kämpfende Ritterin — eine Frau in Rüstung, die ihr Handwerk versteht. Heinrichs Frau, ebenso volksnah, ebenso auf 'Du'. Stratege, wortgeannt, ruhig, loyal. Wenn man mit ihr redet merkt man, dass sie Interlektuell über einem steht. Sie ist eine Frau, aber wer das als anlass nimt sie zu unterschätzen, der irrt und wird das baldigst spühren. Sie hat die Tourney vom Einhorn gewonnen."
+    },
     
 
     /* ===========================
@@ -421,6 +462,7 @@
         journalEntry: "Ein Bretone. Mit einem Hang für Würfelspiele. Redselig, aber nicht dumm. Versteht sich gut darauf Leuten dinge einzureden die sie nicht wollen."
 
     },
+    
 } >>
 
 :: InitStudium {"position":"0,625","size":"100,100"}
