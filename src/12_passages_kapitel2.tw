@@ -76,13 +76,32 @@ Der Dienst ist vorbei — aber der Abend gehört noch dir.<</scene>>
 :: Kap2_Abend_Lesen {"position":"2525,3750","size":"100,100"}
 <<scene>>Ein Stumpen Talglicht, ein geliehenes Bändchen aus der Schreibstube, die Pritsche als Lesepult. Um dich herum fällt die Baracke in Schlaf, Atemzug um Atemzug, während du liest — über Feldzüge, Provinzen, alte Verträge, was immer die Seiten hergeben.<</scene>>
 
-<p>Als das Licht niederbrennt, sind deine Augen trocken und dein Kopf voller als zuvor. Der Morgen wird früh kommen, und er wird es dich spüren lassen. Aber das hier nimmt dir keiner mehr.</p>
+<<if $world.flags.barsinger_spur>>
+	<p>Dir kommt es vor als würdest du Flötentöne hören und fröhliches Lachen. </p>
 
-<div class="system-alert status-positive">Gelehrsamkeit erhöht</div>
-<<set $player.stats.scholarship += 1>>
+	<p>Du gehst zum Fenster und schaust ob draußen etwas ist. Aber die Baracke ist still, und die Nacht ist still, und nur die Sterne über der Stadt leuchten.</p>
+
+	<p>Als du wieder zu deiner Pritsche kommst, ist das Buch zugeschlagen. Und es wirkt so als hätte jemand auf deiner Pritsche gesessen. </p>
+
+	<p>Du nimmst das Buch und siehst darunter einen hölzernen Würfel. Und statt der sechs eine Rebe.</p>
+
+	<<gedanke>>
+		<p>Barsinger! Ich hab sein Zeichen in der Kirche gefunden und jetzt hat er mich gefunden!</p>
+	<</gedanke>>
+	<<= setup.setPlayerStat("faith", 20)>>
+<<else>>
+	<p>Als das Licht niederbrennt, sind deine Augen trocken und dein Kopf voller als zuvor. Der Morgen wird früh kommen, 
+	und er wird es dich spüren lassen. Aber das hier nimmt dir keiner mehr.</p>
+
+	<<gedanke>>Halm hat einmal gesagt, das Archiv vergisst niemanden, der wirklich wissen wollte. 
+
+	Vielleicht liest deshalb ein Waffenträger nachts bei Talglicht — damit irgendwer sich erinnert, dass er mehr war als eine Waffe mit Beinen.
+	<</gedanke>>
+
+	<<= setup.setPlayerStat("scholarship", 1)>>
+<</if>>
+
 <<= setup.setPlayerCondition(-5)>>
-
-<<gedanke>>Halm hat einmal gesagt, das Archiv vergisst niemanden, der wirklich wissen wollte. Vielleicht liest deshalb ein Waffenträger nachts bei Talglicht — damit irgendwer sich erinnert, dass er mehr war als ein Spieß mit Beinen.<</gedanke>>
 
 [[Das Licht löschen. ->Kap2_Abend]]
 
@@ -960,12 +979,20 @@ der seine Runde vergessen zu haben scheint.</p>
 			<span class="subtext">— Ein kleines Opfer, sichtbar für jeden, der danach hier betet.</span>
 			</li>
 			<<if not $world.flags.kirche_andacht_done>>
-			<li>
-			<<link "Am Seitenaltar niederknien und beten">>
-				<<goto "Stadt_Kirche_Andacht">>
-			<</link>>
-			<span class="subtext">— Nicht aus Pflicht. Aus etwas, das du selbst nicht ganz benennen kannst.</span>
-			</li>
+				<li>
+				<<link "Am Seitenaltar niederknien und beten">>
+					<<goto "Stadt_Kirche_Andacht">>
+				<</link>>
+				<span class="subtext">— Nicht aus Pflicht. Aus etwas, das du selbst nicht ganz benennen kannst.</span>
+				</li>
+			<</if>>
+			<<if $world.flags.kirche_andacht_done and not $world.flags.barsinger_spur and $npc.hansFichtensplitter.known>>
+				<li>
+				<<link "Es zieht dich nocheinmal zum Seitenaltar">>
+					<<goto "Stadt_Kirche_Andacht">>
+				<</link>>
+				<span class="subtext">— Nicht aus Pflicht. Aus etwas, das du selbst nicht ganz benennen kannst.</span>
+				</li>
 			<</if>>
 		</ul>
 

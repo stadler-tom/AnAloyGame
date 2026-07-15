@@ -5535,7 +5535,7 @@ setup.duellEinfluss = function () {
              : wert >= 0 ? "gemischt"
              :             "verbrannt";
     return { wert: wert, band: band };
-};</script><tw-tag name="layout" color="green"></tw-tag><tw-tag name="nach_Kap2_morgen" color="green"></tw-tag><tw-tag name="nach_stube" color="orange"></tw-tag><tw-tag name="einmalig" color="red"></tw-tag><tw-tag name="nach_appell" color="yellow"></tw-tag><tw-tag name="studium" color="yellow"></tw-tag><tw-tag name="nach_Kap2_abend" color="yellow"></tw-tag><tw-tag name="startup-debug" color="purple"></tw-tag><tw-tag name="widget" color="blue"></tw-tag><tw-tag name="nach_morgen" color="red"></tw-tag><tw-tag name="kapitel-opener" color="red"></tw-tag><tw-tag name="nach_hub" color="green"></tw-tag><tw-tag name="journal" color="orange"></tw-tag><tw-tag name="nach_Kap2_tag" color="green"></tw-tag><tw-tag name="header" color="blue"></tw-tag><tw-tag name="script" color="purple"></tw-tag><tw-tag name="interrupt" color="purple"></tw-tag><tw-tag name="pruefung" color="green"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="0,225" size="100,100">&lt;&lt;include &quot;InitPlayer&quot;&gt;&gt;
+};</script><tw-tag name="pruefung" color="green"></tw-tag><tw-tag name="kapitel-opener" color="red"></tw-tag><tw-tag name="layout" color="green"></tw-tag><tw-tag name="nach_Kap2_abend" color="yellow"></tw-tag><tw-tag name="header" color="blue"></tw-tag><tw-tag name="nach_appell" color="yellow"></tw-tag><tw-tag name="studium" color="yellow"></tw-tag><tw-tag name="journal" color="orange"></tw-tag><tw-tag name="startup-debug" color="purple"></tw-tag><tw-tag name="widget" color="blue"></tw-tag><tw-tag name="nach_stube" color="orange"></tw-tag><tw-tag name="nach_Kap2_morgen" color="green"></tw-tag><tw-tag name="einmalig" color="red"></tw-tag><tw-tag name="nach_morgen" color="red"></tw-tag><tw-tag name="interrupt" color="purple"></tw-tag><tw-tag name="nach_Kap2_tag" color="green"></tw-tag><tw-tag name="script" color="purple"></tw-tag><tw-tag name="nach_hub" color="green"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="0,225" size="100,100">&lt;&lt;include &quot;InitPlayer&quot;&gt;&gt;
 &lt;&lt;include &quot;InitNPC&quot;&gt;&gt;
 &lt;&lt;include &quot;InitWorld&quot;&gt;&gt;
 &lt;&lt;include &quot;InitStudium&quot;&gt;&gt;
@@ -6017,6 +6017,7 @@ setup.duellEinfluss = function () {
 
     lastPassage:&quot;&quot;,
     debug: false,
+    flags: {},
     day: 0,
     weather: &quot;windig&quot;,
     wasPracticing: false,
@@ -15957,13 +15958,32 @@ Der Dienst ist vorbei — aber der Abend gehört noch dir.&lt;&lt;/scene&gt;&gt;
 
 [[Hinunter zur Baracke. -&gt;Kap2_Abend]]</tw-passagedata><tw-passagedata pid="307" name="Kap2_Abend_Lesen" tags="" position="2525,3750" size="100,100">&lt;&lt;scene&gt;&gt;Ein Stumpen Talglicht, ein geliehenes Bändchen aus der Schreibstube, die Pritsche als Lesepult. Um dich herum fällt die Baracke in Schlaf, Atemzug um Atemzug, während du liest — über Feldzüge, Provinzen, alte Verträge, was immer die Seiten hergeben.&lt;&lt;/scene&gt;&gt;
 
-&lt;p&gt;Als das Licht niederbrennt, sind deine Augen trocken und dein Kopf voller als zuvor. Der Morgen wird früh kommen, und er wird es dich spüren lassen. Aber das hier nimmt dir keiner mehr.&lt;/p&gt;
+&lt;&lt;if $world.flags.barsinger_spur&gt;&gt;
+	&lt;p&gt;Dir kommt es vor als würdest du Flötentöne hören und fröhliches Lachen. &lt;/p&gt;
 
-&lt;div class=&quot;system-alert status-positive&quot;&gt;Gelehrsamkeit erhöht&lt;/div&gt;
-&lt;&lt;set $player.stats.scholarship += 1&gt;&gt;
+	&lt;p&gt;Du gehst zum Fenster und schaust ob draußen etwas ist. Aber die Baracke ist still, und die Nacht ist still, und nur die Sterne über der Stadt leuchten.&lt;/p&gt;
+
+	&lt;p&gt;Als du wieder zu deiner Pritsche kommst, ist das Buch zugeschlagen. Und es wirkt so als hätte jemand auf deiner Pritsche gesessen. &lt;/p&gt;
+
+	&lt;p&gt;Du nimmst das Buch und siehst darunter einen hölzernen Würfel. Und statt der sechs eine Rebe.&lt;/p&gt;
+
+	&lt;&lt;gedanke&gt;&gt;
+		&lt;p&gt;Barsinger! Ich hab sein Zeichen in der Kirche gefunden und jetzt hat er mich gefunden!&lt;/p&gt;
+	&lt;&lt;/gedanke&gt;&gt;
+	&lt;&lt;= setup.setPlayerStat(&quot;faith&quot;, 20)&gt;&gt;
+&lt;&lt;else&gt;&gt;
+	&lt;p&gt;Als das Licht niederbrennt, sind deine Augen trocken und dein Kopf voller als zuvor. Der Morgen wird früh kommen, 
+	und er wird es dich spüren lassen. Aber das hier nimmt dir keiner mehr.&lt;/p&gt;
+
+	&lt;&lt;gedanke&gt;&gt;Halm hat einmal gesagt, das Archiv vergisst niemanden, der wirklich wissen wollte. 
+
+	Vielleicht liest deshalb ein Waffenträger nachts bei Talglicht — damit irgendwer sich erinnert, dass er mehr war als eine Waffe mit Beinen.
+	&lt;&lt;/gedanke&gt;&gt;
+
+	&lt;&lt;= setup.setPlayerStat(&quot;scholarship&quot;, 1)&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
 &lt;&lt;= setup.setPlayerCondition(-5)&gt;&gt;
-
-&lt;&lt;gedanke&gt;&gt;Halm hat einmal gesagt, das Archiv vergisst niemanden, der wirklich wissen wollte. Vielleicht liest deshalb ein Waffenträger nachts bei Talglicht — damit irgendwer sich erinnert, dass er mehr war als ein Spieß mit Beinen.&lt;&lt;/gedanke&gt;&gt;
 
 [[Das Licht löschen. -&gt;Kap2_Abend]]</tw-passagedata><tw-passagedata pid="308" name="Kap2_Abend_Schenke" tags="" position="2875,4050" size="100,100">&lt;&lt;set $world.schenkeRueckweg to &quot;Kap2_Abend&quot;&gt;&gt;
 &lt;&lt;scene&gt;&gt;Die Stadt bei Nacht ist eine andere Stadt. Die Marktstände sind verrammelt, dafür fällt aus den Gassen um den Grauen Wolf warmes Licht auf das Pflaster, und mit ihm Stimmen, Würfelklappern und der Geruch von Bier und Talg. Um diese Stunde sitzt hier jeder, der einen Grund hat, nicht zu schlafen — und jeder, der einen sucht.&lt;&lt;/scene&gt;&gt;
@@ -16758,12 +16778,20 @@ der seine Runde vergessen zu haben scheint.&lt;/p&gt;
 			&lt;span class=&quot;subtext&quot;&gt;— Ein kleines Opfer, sichtbar für jeden, der danach hier betet.&lt;/span&gt;
 			&lt;/li&gt;
 			&lt;&lt;if not $world.flags.kirche_andacht_done&gt;&gt;
-			&lt;li&gt;
-			&lt;&lt;link &quot;Am Seitenaltar niederknien und beten&quot;&gt;&gt;
-				&lt;&lt;goto &quot;Stadt_Kirche_Andacht&quot;&gt;&gt;
-			&lt;&lt;/link&gt;&gt;
-			&lt;span class=&quot;subtext&quot;&gt;— Nicht aus Pflicht. Aus etwas, das du selbst nicht ganz benennen kannst.&lt;/span&gt;
-			&lt;/li&gt;
+				&lt;li&gt;
+				&lt;&lt;link &quot;Am Seitenaltar niederknien und beten&quot;&gt;&gt;
+					&lt;&lt;goto &quot;Stadt_Kirche_Andacht&quot;&gt;&gt;
+				&lt;&lt;/link&gt;&gt;
+				&lt;span class=&quot;subtext&quot;&gt;— Nicht aus Pflicht. Aus etwas, das du selbst nicht ganz benennen kannst.&lt;/span&gt;
+				&lt;/li&gt;
+			&lt;&lt;/if&gt;&gt;
+			&lt;&lt;if $world.flags.kirche_andacht_done and not $world.flags.barsinger_spur and $npc.hansFichtensplitter.known&gt;&gt;
+				&lt;li&gt;
+				&lt;&lt;link &quot;Es zieht dich nocheinmal zum Seitenaltar&quot;&gt;&gt;
+					&lt;&lt;goto &quot;Stadt_Kirche_Andacht&quot;&gt;&gt;
+				&lt;&lt;/link&gt;&gt;
+				&lt;span class=&quot;subtext&quot;&gt;— Nicht aus Pflicht. Aus etwas, das du selbst nicht ganz benennen kannst.&lt;/span&gt;
+				&lt;/li&gt;
 			&lt;&lt;/if&gt;&gt;
 		&lt;/ul&gt;
 

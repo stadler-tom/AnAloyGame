@@ -493,6 +493,7 @@
 
     lastPassage:"",
     debug: false,
+    flags: {},
     day: 0,
     weather: "windig",
     wasPracticing: false,
