@@ -877,7 +877,10 @@ var LZString=function(){var r=String.fromCharCode,o="ABCDEFGHIJKLMNOPQRSTUVWXYZa
 @keyframes gossipReveal {
     from { opacity: 0; transform: translateY(-4px); }
     to   { opacity: 1; transform: translateY(0); }
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript">/* twine-user-script #1: "0_11_kampf.js" */
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript">/* twine-user-script #1: "Stats" */
+<script data-goatcounter="https://stadler-tom.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+/* twine-user-script #2: "0_11_kampf.js" */
 
 
 /* ================================================================
@@ -1593,7 +1596,7 @@ setup.trimCombatLog = function () {
     }
 };
 
-/* twine-user-script #2: "90_01_config.js" */
+/* twine-user-script #3: "90_01_config.js" */
 /* ================================================================
    SECTION 01  CONFIG
    ================================================================ */
@@ -1611,7 +1614,7 @@ $(document).on(':passagedisplay', function (ev) {
         );
     }
 });
-/* twine-user-script #3: "90_02_interrupts.js" */
+/* twine-user-script #4: "90_02_interrupts.js" */
 
 /* ================================================================
    SECTION 02  INTERRUPT-ENGINE
@@ -2185,7 +2188,7 @@ setup.interruptCond["Kapitel2_Ende"] = w =>
     && w.duell && w.duell.done && w.duell.nachwirkung_done                // Duell durch
     && w.biwagDone                                                        // Biwak-Beurteilung erhalten
     && w.day >= (w.biwagDoneDay + 6);                                     // +6 Tage nach dem Biwak
-/* twine-user-script #4: "90_03_ermittlung.js" */
+/* twine-user-script #5: "90_03_ermittlung.js" */
 
 /* ================================================================
    SECTION 05  ERMITTLUNG — HELPER
@@ -2239,7 +2242,7 @@ setup.ermMit = function () {
     return !!e && e.flags.modus === "mit";
 };
 
-/* twine-user-script #5: "90_04_sidequests.js" */
+/* twine-user-script #6: "90_04_sidequests.js" */
 
 /* ================================================================
    SECTION 06  SIDEQUESTS & DRUCK-SYSTEM
@@ -2316,7 +2319,7 @@ setup.tickSidequestDruck = function () {
         st.druck += 1;
     });
 };
-/* twine-user-script #6: "90_05_world_geld.js" */
+/* twine-user-script #7: "90_05_world_geld.js" */
 
 
 /* ================================================================
@@ -2579,7 +2582,7 @@ setup.loseMoney = function (copperAmount) {
 
     return `<div class="system-alert status-negative">${parts.join(", ")} verloren</div>`;
 };
-/* twine-user-script #7: "90_06_player_npc.js" */
+/* twine-user-script #8: "90_06_player_npc.js" */
 
 /* ================================================================
    SECTION 09  PLAYER — WERTE, INVENTAR, GERÜCHTE
@@ -2945,7 +2948,7 @@ setup.unbekannteSoeldner = function () {
     }
     return out;
 };
-/* twine-user-script #8: "90_07_skillchecks.js" */
+/* twine-user-script #9: "90_07_skillchecks.js" */
 
 /* ================================================================
    SECTION 11  SKILL-CHECKS
@@ -3118,7 +3121,7 @@ setup.faithCheck = function (difficulty, modifier) {
     return { outcome: outcome, success: (outcome === "success" || outcome === "crit"),
              roll: roll, skill: skill, skillKey: "faith", skillName: "Glaube", total: total, dc: dc };
 };
-/* twine-user-script #9: "90_08_vaults_gossip.js" */
+/* twine-user-script #10: "90_08_vaults_gossip.js" */
 
 /* ================================================================
    SECTION 12  TEXT-VAULTS KAPITEL 1
@@ -3528,7 +3531,7 @@ setup.gossips84Bekannt = function () {
     }
     return pool.slice(0, 4);                               // max. 4
 };
-/* twine-user-script #10: "90_09_studium.js" */
+/* twine-user-script #11: "90_09_studium.js" */
 
 /* ================================================================
    SECTION 14  STUDIUM & PRÜFUNG
@@ -3849,7 +3852,7 @@ setup.spendScholarship = function (cost) {
     p.stats.scholarship -= cost;
     return true;
 };
-/* twine-user-script #11: "90_10_quest_kapitel.js" */
+/* twine-user-script #12: "90_10_quest_kapitel.js" */
 
 /* ================================================================
    SECTION 15  QUEST-HELPER & KAPITELWECHSEL
@@ -3942,7 +3945,7 @@ setup.getPeakKnowledgeAfterKapOne = function () {
         .filter(([, value]) => value === maxValue)
         .map(([key]) => setup.knowledgeNames[key] || key);
 };
-/* twine-user-script #12: "90_12_charakterbogen.js" */
+/* twine-user-script #13: "90_12_charakterbogen.js" */
 
 /* ================================================================
    SECTION 17  CHARAKTERBOGEN & JOURNAL
@@ -4627,7 +4630,7 @@ setup.addNpcJournalEntry = function (npcId, text, options = {}) {
 
     return true;
 };
-/* twine-user-script #13: "90_13_kap2_hub.js" */
+/* twine-user-script #14: "90_13_kap2_hub.js" */
 
 /* ================================================================
    SECTION 18  KAPITEL 2 — TAGESHUB, STORYLETS & TEXTPOOLS
@@ -4895,7 +4898,7 @@ setup.checkRequirement = function (req) {
     }
     return true;
 };
-/* twine-user-script #14: "90_14_spezialisierung_biwak.js" */
+/* twine-user-script #15: "90_14_spezialisierung_biwak.js" */
 
 
 /* ================================================================
@@ -4976,7 +4979,7 @@ setup.gattungsdrill = function () {
     return { text: scenery, thought: thought, reward: reward };
 };
 
-/* twine-user-script #15: "90_15_karla_romanze.js" */
+/* twine-user-script #16: "90_15_karla_romanze.js" */
 
 /* ================================================================
    SECTION 20  KARLA-ROMANZE (Mini-Sim, Kapitel 2)
@@ -5076,7 +5079,7 @@ setup.gibKarlaGeschenk = function (id) {
     if (!behalten) setup.removeItem(g.item);
     return out;
 };
-/* twine-user-script #16: "90_16_debug.js" */
+/* twine-user-script #17: "90_16_debug.js" */
 
 /* ================================================================
    SECTION 21  DEBUG & LOGGING
@@ -5518,7 +5521,7 @@ setup.debugAlleNpcBekannt = function () {
     console.log("[debug] " + n + " NPC auf known gesetzt.");
     return n + " NPC auf known gesetzt.";
 };
-/* twine-user-script #17: "90_18_duell_ende.js" */
+/* twine-user-script #18: "90_18_duell_ende.js" */
 /* ===== DUELL: Ende-Berechnung & Nachwirkung ===== */
 
 /* Ausgang = rein aus dem Wissen (deine S5-Tabelle). Trust steckt schon in den Checks. */
@@ -5552,7 +5555,7 @@ setup.duellEinfluss = function () {
              : wert >= 0 ? "gemischt"
              :             "verbrannt";
     return { wert: wert, band: band };
-};</script><tw-tag name="nach_hub" color="green"></tw-tag><tw-tag name="nach_Kap2_tag" color="green"></tw-tag><tw-tag name="nach_Kap2_abend" color="yellow"></tw-tag><tw-tag name="header" color="blue"></tw-tag><tw-tag name="widget" color="blue"></tw-tag><tw-tag name="interrupt" color="purple"></tw-tag><tw-tag name="studium" color="yellow"></tw-tag><tw-tag name="nach_Kap2_morgen" color="green"></tw-tag><tw-tag name="script" color="purple"></tw-tag><tw-tag name="startup-debug" color="purple"></tw-tag><tw-tag name="nach_appell" color="yellow"></tw-tag><tw-tag name="kapitel-opener" color="red"></tw-tag><tw-tag name="layout" color="green"></tw-tag><tw-tag name="nach_stube" color="orange"></tw-tag><tw-tag name="einmalig" color="red"></tw-tag><tw-tag name="nach_morgen" color="red"></tw-tag><tw-tag name="pruefung" color="green"></tw-tag><tw-tag name="journal" color="orange"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="0,225" size="100,100">&lt;&lt;include &quot;InitPlayer&quot;&gt;&gt;
+};</script><tw-tag name="startup-debug" color="purple"></tw-tag><tw-tag name="nach_hub" color="green"></tw-tag><tw-tag name="interrupt" color="purple"></tw-tag><tw-tag name="pruefung" color="green"></tw-tag><tw-tag name="layout" color="green"></tw-tag><tw-tag name="nach_stube" color="orange"></tw-tag><tw-tag name="nach_morgen" color="red"></tw-tag><tw-tag name="studium" color="yellow"></tw-tag><tw-tag name="kapitel-opener" color="red"></tw-tag><tw-tag name="journal" color="orange"></tw-tag><tw-tag name="nach_Kap2_tag" color="green"></tw-tag><tw-tag name="header" color="blue"></tw-tag><tw-tag name="widget" color="blue"></tw-tag><tw-tag name="einmalig" color="red"></tw-tag><tw-tag name="nach_appell" color="yellow"></tw-tag><tw-tag name="nach_Kap2_morgen" color="green"></tw-tag><tw-tag name="nach_Kap2_abend" color="yellow"></tw-tag><tw-tag name="script" color="purple"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="0,225" size="100,100">&lt;&lt;include &quot;InitPlayer&quot;&gt;&gt;
 &lt;&lt;include &quot;InitNPC&quot;&gt;&gt;
 &lt;&lt;include &quot;InitWorld&quot;&gt;&gt;
 &lt;&lt;include &quot;InitStudium&quot;&gt;&gt;
