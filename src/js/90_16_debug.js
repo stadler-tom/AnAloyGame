@@ -439,3 +439,24 @@ setup.debugAlleNpcBekannt = function () {
     console.log("[debug] " + n + " NPC auf known gesetzt.");
     return n + " NPC auf known gesetzt.";
 };
+
+setup.debugDuellSetzen = function (variante) {
+    var V = State.variables;
+    if (!V.world.duell) V.world.duell = { flags: {}, wissen: {} };
+    if (!V.world.duell.flags) V.world.duell.flags = {};
+    var d = V.world.duell;
+    d.done = true;
+    d.ende_tag = V.world.day;
+    d.flags.verrat = false; d.flags.bronko_tot = false; d.flags.pavel_tot = false;
+    var mem = "";
+    switch (variante) {
+        case "A_versoehnt": d.tier = "A"; d.outcome = "A_versoehnt";     mem = "Fehde unblutig beendet"; break;
+        case "A_kuehl":     d.tier = "A"; d.outcome = "A_kuehl";         mem = "Fehde unblutig beendet"; break;
+        case "B":           d.tier = "B"; d.outcome = "B_bronko_reue";   mem = "Fehde ohne Tote"; break;
+        case "verrat":      d.tier = "B"; d.outcome = "B_pavel_verrat";  d.flags.verrat = true; mem = "Hat Zdenka verraten"; break;
+        case "C_bronko":    d.tier = "C"; d.outcome = "C"; d.flags.bronko_tot = true; mem = "Fehde mit Totem"; break;
+        case "C_pavel":     d.tier = "C"; d.outcome = "C"; d.flags.pavel_tot = true; mem = "Fehde mit Totem"; break;
+    }
+    if (mem) setup.pushNpcMemory("karla", mem);
+    return '<div class="system-alert status-info">Duell: ' + variante + (mem ? ' (+Karla-Memory: „' + mem + '“)' : '') + '</div>';
+};

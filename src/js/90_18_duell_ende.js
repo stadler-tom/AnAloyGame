@@ -32,3 +32,4 @@ setup.duellEinfluss = function () {
              :             "verbrannt";
     return { wert: wert, band: band };
 };
+

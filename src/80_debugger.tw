@@ -685,3 +685,36 @@ Ermittlung frühestens Tag: <b><<= $world.ermittlung.fruehestens_tag>></b> · Lu
 <div id="archiv-status"></div>
 
 <div id="weiter"></div>
+
+:: DEBUG_Kap2_Endgame
+<<set $world.day to 406>>
+<<if not $world.ermittlung>><<set $world.ermittlung to {flags:{}, spuren:[], spurenText:{}, verdacht:{}}>><</if>>
+<<if not $world.ermittlung.flags>><<set $world.ermittlung.flags to {}>><</if>>
+<<set $world.ermittlung.flags.s9_done to true>>
+<<set $world.ermittlung.flags.beweis_stark to true>>
+<<set $world.biwagDone to true>>
+<<set $world.biwagDoneDay to 400>>
+<<set $npc.karla.known to true>>
+<<set $npc.karla.affection to 12>>
+<<set $player.flags.jareknarbe to true>>
+<<= setup.debugDuellSetzen("A_versoehnt")>>
+
+<p><b>Spät-Kap-2-Stand gesetzt:</b> Ermittlung gelöst (beweis_stark), Biwak fertig, Duell = A_versöhnt, Tag 406. <br>
+Kapitel2_Ende ist damit feuerbereit (day ≥ biwagDoneDay+6).</p>
+
+<<link "→ Duell-Ausgang umschalten">><<goto "DEBUG_Duell">><</link>>
+[[→ Zum Abend (Traum + Karla testen)|Kap2_Abend]]
+[[→ Zum Tag (Kapitel2_Ende / Marschappell)|Kap2_Tagesstart]]
+
+
+:: DEBUG_Duell
+<p><b>Duell-Ausgang setzen</b> (Flags + Karla-Memory):</p>
+<<link "A – versöhnt">><<= setup.debugDuellSetzen("A_versoehnt")>><</link>> ·
+<<link "A – kühl">><<= setup.debugDuellSetzen("A_kuehl")>><</link>> ·
+<<link "B – glimpflich">><<= setup.debugDuellSetzen("B")>><</link>> ·
+<<link "B – Verrat">><<= setup.debugDuellSetzen("verrat")>><</link>> ·
+<<link "C – Bronko tot">><<= setup.debugDuellSetzen("C_bronko")>><</link>> ·
+<<link "C – Pavel tot">><<= setup.debugDuellSetzen("C_pavel")>><</link>>
+<hr>
+[[→ Abend (Karla-Reaktion / Traum)|Kap2_Abend]]
+[[← Zurück|DEBUG_Kap2_Endgame]]
