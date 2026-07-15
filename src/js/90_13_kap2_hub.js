@@ -159,7 +159,8 @@ setup.kap2AbendStorylets = [
         text: "Waffen und Zeug pflegen",
         target: "Kap2_Abend_Waffenpflege",
         available: function () {
-            return State.variables.world.gut_vorbereitet !== true;
+            return State.variables.world.gut_vorbereitet !== true
+            && State.variables.world.sehr_gut_vorbereitet !== true;
         }
     },
     {
@@ -229,22 +230,20 @@ setup.getNpcInteraction = function (poolName) {
     if (eligible.length === 0) return "";
 
     const chosen = eligible[Math.floor(Math.random() * eligible.length)];
-    let out = "<p>" + chosen.text + "</p>";
+    let out = "";
 
     if (chosen.checkOn != null) {
-        var result = setup.skillCheckXp(chosen.checkOn, 15, 0);
-
-        out += result.lernHTML;
-        out += '\n'
+        var result = setup.skillCheckXp(chosen.checkOn, 13, 0);
         if (result.outcome === "success" || result.outcome === "crit") {
-            out += setup.applyOutcome(chosen.checkSuccessText); 
+            out += "<p>" + (chosen.checkSuccessText || chosen.text) + "</p>";   // Probe bestanden: Ausweich-Text, kein böses outcome
         }
         else {
-            if (chosen.outcome) out += setup.applyOutcome(chosen.outcome);
+            out += "<p>" + chosen.text + "</p>";
+            if (chosen.outcome) out += setup.applyOutcome(chosen.outcome);      // Probe misslungen: Grundtext + Folgen
         }
-
-
+        out += result.lernHTML || "";
     } else {
+        out += "<p>" + chosen.text + "</p>";
         if (chosen.outcome) out += setup.applyOutcome(chosen.outcome);
     }
 

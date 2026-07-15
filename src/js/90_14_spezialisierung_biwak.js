@@ -56,7 +56,14 @@ setup.gattungsdrill = function () {
         if (State.variables.world.gut_vorbereitet === true) {
             xp = Math.round(xp * 1.5);
             State.variables.world.gut_vorbereitet = false;
-            reward += '<div class="system-alert status-info">Die Vorbereitung des Abends zahlt sich aus.</div>';
+            reward += '<div class="system-alert status-info">Die Vorbereitung des Abends zahlt sich aus (x 1.5).</div>';
+        }
+
+         /* Abendliche Waffenpflege: der nächste Drill bringt mehr */
+        if (State.variables.world.sehr_gut_vorbereitet === true) {
+            xp = Math.round(xp * 2.5);
+            State.variables.world.sehr_gut_vorbereitet = false;
+            reward += '<div class="system-alert status-info">Die Vorbereitung des Abends zahlt sich sehr aus (x 2.5).</div>';
         }
 
         var name = (setup.knowledgeNames && setup.knowledgeNames[spez]) || spez;

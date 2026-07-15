@@ -114,12 +114,24 @@ Der Dienst ist vorbei — aber der Abend gehört noch dir.<</scene>>
 
 
 :: Kap2_Abend_Waffenpflege {"position":"2425,3950","size":"100,100"}
-<<scene>>Ölstein, Lappen, Lederfett. Du sitzt auf der Bank vor der Baracke, die Waffe über den Knien, und arbeitest dich durch die Handgriffe, die dir das erste Jahr eingebläut hat — Schneide, Schaft, Riemen, jede Schraube, jede Naht.<</scene>>
+<<scene>>Du sitzt auf der Bank vor der Baracke, die Waffe über den Knien, und arbeitest dich durch die Handgriffe, die dir das erste Jahr eingebläut hat — Schneide, Schaft, Riemen, jede Schraube, jede Naht.<</scene>>
 
 <p>Es ist stumpfe Arbeit, und genau das ist ihr Wert: Die Hände tun, was sie können, und der Kopf sortiert derweil den Tag. Als du fertig bist, liegt das Zeug bereit wie für eine Parade — und morgen wird jeder Handgriff einen Fingerbreit leichter gehen.</p>
 
-<<set $world.gut_vorbereitet to true>>
-<div class="system-alert status-info">Gut vorbereitet — der nächste Gattungsdrill wird sicher Fortschritt bringen.</div>
+<<if setup.hasItem("Ölstein und Lappen")>>
+	<<run setup.removeItem("Ölstein und Lappen")>>
+	<<set $world.sehr_gut_vorbereitet to true>>
+	<p>Du hast Öl und Lappen vom Markt mitgebracht. Die Waffe glänzt, und du weißt, dass sie morgen förmlich für dich arbeiten wird.</p>
+	<div class="system-alert status-info">Ölstein und Lappen verbraucht — die Waffe glänzt wie neu. Der nächste Gattungsdrill bringt <b>deutlich</b> mehr Fortschritt.</div>
+<<else>>
+	<<set $world.gut_vorbereitet to true>>
+	<div class="system-alert status-info">Gut vorbereitet — der nächste Gattungsdrill wird sicher Fortschritt bringen.</div>
+<</if>>
+
+
+
+
+
 
 [[Zurück zur Baracke. ->Kap2_Abend]]
 
@@ -886,6 +898,7 @@ der seine Runde vergessen zu haben scheint.</p>
 			<<replace "#sandbox-menu">>
 				<<run setup.removeMoney(3)>>
 				<<set $world.wuerfelSpiel.gespielt += 1>>
+				<<set $world.wuerfelGesamt to ($world.wuerfelGesamt || 0) + 1>>
 				<p>Ihr lacht, ihr würfelt und ihr spielt. Die Würfel rollen, die Münzen klappern,
 				und für einen Moment ist es, als gäbe es die Welt draußen nicht.</p>
 				<<= setup.getNpcInteraction("Kap2_Pool_Stadt_Gluecksspiel")>>
@@ -905,6 +918,7 @@ der seine Runde vergessen zu haben scheint.</p>
 			<<replace "#sandbox-menu">>
 				<<run setup.removeMoney(3)>>
 				<<set $world.wuerfelSpiel.gespielt += 1>>
+				<<set $world.wuerfelGesamt to ($world.wuerfelGesamt || 0) + 1>>
 				<<set _r to setup.skillCheckXp("thievery", 12, _potSize)>>
 				<<= _r.lernHTML>>
 				<<if _r.success>>
@@ -1330,7 +1344,23 @@ und das ist mehr, als du vor einem Jahr von dir erwartet hättest.</p>
 <p>„Zum Grauen Wolf“ liegt tief im Gassengewirr, ihr Schild so verwittert, dass der namensgebende Wolf kaum mehr zu erkennen ist. Drinnen erwartet dich eine Wand aus Wärme, Talglicht und dem beißenden Rauch billigen Tabaks, vermengt mit dem säuerlichen Duft von verschüttetem Bier und feuchtem Stroh, das den Boden bedeckt. An den Tischen sitzen Fuhrleute, ein paar Söldner ohne Banner, ein Weib, das Karten mischt, als wäre es ihr Handwerk.</p>
 <</scene>>
 
-<p>Der Wirt, ein Mann mit einer Narbe quer über der Nase, mustert dich kurz, ohne sonderliches Interesse. Solange du zahlst, bist du hier willkommen — mehr fragt er nicht.</p>
+<<if ($world.wuerfelGesamt || 0) gte 4>>
+	<<beziehung>>
+		<p>Der Wirt hebt das Kinn, als du eintrittst. „Ah, der Würfelfreund! Setz dich — für Stammgäste hab ich immer einen Platz und manchmal einen Krug, der auf keiner Rechnung steht." Er zwinkert. Wer oft genug kommt, wird Teil des Hauses.</p>
+		<</beziehung>>
+<<else>>
+	<<beziehung>>
+		<p>Der Wirt, ein Mann mit einer Narbe quer über der Nase, mustert dich kurz, ohne sonderliches Interesse. Solange du zahlst, bist du hier willkommen — mehr fragt er nicht.</p>
+	<</beziehung>>
+<</if>>
+
+<<if $player.trinken gte 2>>
+	<<beziehung>>
+	<p>Der Wein sitzt dir schon in den Beinen, und beim Griff nach dem Becher wirfst du ihn um — mitten auf den Schoß eines breitschultrigen Fuhrmanns. Es kostet dich ein paar Münzen Friedensgeld und ein gutes Stück Würde, ehe die Sache beigelegt ist.</p>
+	<<run setup.removeMoney(4)>>
+	<</beziehung>>
+<</if>>
+
 
 <ul class="sandbox-menu">
  <li>
@@ -1661,6 +1691,40 @@ Es gibt nichts zu tun, als zu warten, was sie finden.</p>
 <p>Hinter dem Nordtor der Akademie beginnt eine andere Welt. Die Gassen sind eng, das Pflaster uneben, überall drängen sich Fuhrleute, Marktweiber und Handwerksburschen aneinander vorbei, während der Geruch von Fischständen, frisch gebackenem Brot und dem beißenden Rauch der Schmieden sich zu einem einzigen, dichten Gemenge vermengt. Hier fragt niemand nach deinem Rang. Hier zählt, was in deinem Beutel klimpert.</p>
 <</scene>>
 
+/* --- Reaktive Eingangszeilen: Folgen früherer Entscheidungen --- */
+
+<<if $world.duell and $world.duell.flags and $world.duell.flags.verrat>>
+	<<beziehung>>
+	<p>Ein Mann in verwaschenem Rot-Weiß löst sich aus dem Schatten eines Torbogens, mustert dich lange — und spuckt vor deine Stiefel, ehe er weitergeht. Kein Wort. Es braucht keins. Man weiß, was du getan hast.</p>
+	<</beziehung>>
+<<elseif ($player.reputation.Rabenfurth || 0) gte 3>>
+	<<beziehung>>
+	<p>An der Brücke erkennt dich ein Fuhrmann aus Rabenfurt und tippt sich an die Mütze. „Ihr seid der, der die Sache mit den Pipovics befriedet hat, nicht wahr? Drüben am Waid redet man gut über Euch. Ein Krug geht auf mich, wenn Ihr mal durchkommt."</p>
+	<</beziehung>>
+<<elseif ($player.reputation.Rabenfurth || 0) lte -2>>
+	<<beziehung>>
+	<p>Zwei Rabenfurter stehen am Brunnen, und als sie dich sehen, verstummt ihr Gespräch. „Der da", sagt einer, laut genug, dass du es hören sollst. „Der hat sich in Dinge gemischt, die ihn nichts angingen — und Blut war der Preis. So einer bringt Unglück, wohin er auch kommt."</p>
+	<</beziehung>>
+<</if>>
+
+<<if $world.ermittlung and $world.ermittlung.flags and $world.ermittlung.flags.beweis_stark>>
+	<<beziehung>>
+	<p>An den Ständen wird getuschelt — über den Schreiber der Akademie, den man über Nacht vor den Rat gezerrt hat, und über den, der die Fäden aufdeckte. Ein alter Krämer fängt deinen Blick und nickt dir knapp zu. Respekt, wortlos, aber echt.</p>
+	<</beziehung>>
+<</if>>
+
+<<if $player.condition lte 30>>
+	<<beziehung>>
+	<p>Die Müdigkeit sitzt dir in den Knochen, und auf dem holprigen Pflaster knickt dir der Fuß weg. <<if random(1, 2) is 1>>Eine fremde Hand fängt dich am Ellbogen, ehe du stürzt. „Vorsicht, Junge, der Tag war wohl lang." Ein Nicken, dann ist der Mann schon weiter.<<else>>Du fängst dich gerade noch — aber ein paar Halbwüchsige an der Ecke grölen vor Lachen. Würde ist ein Luxus, den man sich erst leisten muss.<</if>></p>
+	<</beziehung>>
+<</if>>
+
+<<if $player.suspicion gte 40>>
+	<<beziehung>>
+	<p>Zwischen den Gassen bleibt ein Blick zu lang an dir hängen — ein Mann, unauffällig gekleidet, der sich zu beiläufig abwendet, als du hinsiehst. Beweisen kannst du nichts. Aber das Gefühl, beobachtet zu werden, hat aufgehört, ein Gefühl zu sein.</p>
+	<</beziehung>>
+<</if>>
+
 <<beziehung>>
 	<<= setup.getNpcInteraction("Kap2_Pool_Stadt_Encounter")>>
 <</beziehung>>
@@ -1670,6 +1734,57 @@ Es gibt nichts zu tun, als zu warten, was sie finden.</p>
 <<else>>
 	<p>Du schlenderst an der Ecke zur Fischgasse vorbei, die Arme verschränkt, ungeduldig wie stets, wenn du nicht weißt, wie du deine Zeit verbringen willst.</p>
 <</if>>
+
+<<if ($player.reputation.Rabenfurth || 0) gte 3>>
+	<<beziehung>>
+		
+	<</beziehung>>	
+<</if>>
+
+<<if setup.hasItem("Wallwurz-Salbe") and $player.spezialisierung is "medicine">>
+<div id="salbe-menu">
+	<p>Ein bisschen abseits des Trubels siehst du einen Jungen, der sich am Arm verletzt hat. Du könntest ihm mit der Wallwurz-Salbe helfen.</p>
+	<ul class="sandbox-menu">
+		<li>
+			<<link "Dem Kleinen helfen">>
+				<<= setup.removeItem("Wallwurz-Salbe")>>
+				<<append "#gossip-antworten">>
+					<div class="gossip-antwort">
+						<p class="gossip-frage">„Na Kleiner, da hast du dich wohl richtig lang gemacht. Ich bin in der Feldscher-Ausbildung und hab etwas dabei, das dir hilft."</p>
+						<<if setup.karlaDa()>>
+							<p class="gossip-erklaerung">Karla sieht dir beim Helfen zu.</p>
+							<<= setup.setNpcAffection("karla", 2)>>
+						<<else>>
+							<p class="gossip-erklaerung">Du verarztest den Jungen sorgfältig.</p>
+						<</if>>
+					</div>
+				<</append>>
+				<<replace "#salbe-menu">><</replace>>
+			<</link>>
+			<span class="subtext">— Kostet die Salbe.</span>
+		</li>
+		<li>
+			<<link "Der wird schon wieder">>
+				<<append "#gossip-antworten">>
+					<div class="gossip-antwort">
+						<p class="gossip-frage">„Das hat viel übler ausgesehen, als es war."</p>
+						<<if setup.karlaDa()>>
+							<p class="gossip-erklaerung">Karla schüttelt den Kopf.</p>
+							<<= setup.setNpcAffection("karla", -1)>>
+						<<else>>
+							<p class="gossip-erklaerung">Du gehst weiter Richtung Hauptstraße.</p>
+						<</if>>
+					</div>
+				<</append>>
+				<<replace "#salbe-menu">><</replace>>
+			<</link>>
+			<span class="subtext">— So schlimm ist es nicht.</span>
+		</li>
+	</ul>
+</div>
+<div id="gossip-antworten"></div>
+<</if>>
+
 
 <<trenner>>
 <ul class="sandbox-menu">

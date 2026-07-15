@@ -4778,7 +4778,8 @@ setup.kap2AbendStorylets = [
         text: "Waffen und Zeug pflegen",
         target: "Kap2_Abend_Waffenpflege",
         available: function () {
-            return State.variables.world.gut_vorbereitet !== true;
+            return State.variables.world.gut_vorbereitet !== true
+            && State.variables.world.sehr_gut_vorbereitet !== true;
         }
     },
     {
@@ -4848,22 +4849,20 @@ setup.getNpcInteraction = function (poolName) {
     if (eligible.length === 0) return "";
 
     const chosen = eligible[Math.floor(Math.random() * eligible.length)];
-    let out = "<p>" + chosen.text + "</p>";
+    let out = "";
 
     if (chosen.checkOn != null) {
-        var result = setup.skillCheckXp(chosen.checkOn, 15, 0);
-
-        out += result.lernHTML;
-        out += '\n'
+        var result = setup.skillCheckXp(chosen.checkOn, 13, 0);
         if (result.outcome === "success" || result.outcome === "crit") {
-            out += setup.applyOutcome(chosen.checkSuccessText); 
+            out += "<p>" + (chosen.checkSuccessText || chosen.text) + "</p>";   // Probe bestanden: Ausweich-Text, kein böses outcome
         }
         else {
-            if (chosen.outcome) out += setup.applyOutcome(chosen.outcome);
+            out += "<p>" + chosen.text + "</p>";
+            if (chosen.outcome) out += setup.applyOutcome(chosen.outcome);      // Probe misslungen: Grundtext + Folgen
         }
-
-
+        out += result.lernHTML || "";
     } else {
+        out += "<p>" + chosen.text + "</p>";
         if (chosen.outcome) out += setup.applyOutcome(chosen.outcome);
     }
 
@@ -4944,7 +4943,14 @@ setup.gattungsdrill = function () {
         if (State.variables.world.gut_vorbereitet === true) {
             xp = Math.round(xp * 1.5);
             State.variables.world.gut_vorbereitet = false;
-            reward += '<div class="system-alert status-info">Die Vorbereitung des Abends zahlt sich aus.</div>';
+            reward += '<div class="system-alert status-info">Die Vorbereitung des Abends zahlt sich aus (x 1.5).</div>';
+        }
+
+         /* Abendliche Waffenpflege: der nächste Drill bringt mehr */
+        if (State.variables.world.sehr_gut_vorbereitet === true) {
+            xp = Math.round(xp * 2.5);
+            State.variables.world.sehr_gut_vorbereitet = false;
+            reward += '<div class="system-alert status-info">Die Vorbereitung des Abends zahlt sich sehr aus (x 2.5).</div>';
         }
 
         var name = (setup.knowledgeNames && setup.knowledgeNames[spez]) || spez;
@@ -5535,7 +5541,7 @@ setup.duellEinfluss = function () {
              : wert >= 0 ? "gemischt"
              :             "verbrannt";
     return { wert: wert, band: band };
-};</script><tw-tag name="pruefung" color="green"></tw-tag><tw-tag name="kapitel-opener" color="red"></tw-tag><tw-tag name="layout" color="green"></tw-tag><tw-tag name="nach_Kap2_abend" color="yellow"></tw-tag><tw-tag name="header" color="blue"></tw-tag><tw-tag name="nach_appell" color="yellow"></tw-tag><tw-tag name="studium" color="yellow"></tw-tag><tw-tag name="journal" color="orange"></tw-tag><tw-tag name="startup-debug" color="purple"></tw-tag><tw-tag name="widget" color="blue"></tw-tag><tw-tag name="nach_stube" color="orange"></tw-tag><tw-tag name="nach_Kap2_morgen" color="green"></tw-tag><tw-tag name="einmalig" color="red"></tw-tag><tw-tag name="nach_morgen" color="red"></tw-tag><tw-tag name="interrupt" color="purple"></tw-tag><tw-tag name="nach_Kap2_tag" color="green"></tw-tag><tw-tag name="script" color="purple"></tw-tag><tw-tag name="nach_hub" color="green"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="0,225" size="100,100">&lt;&lt;include &quot;InitPlayer&quot;&gt;&gt;
+};</script><tw-tag name="script" color="purple"></tw-tag><tw-tag name="widget" color="blue"></tw-tag><tw-tag name="nach_stube" color="orange"></tw-tag><tw-tag name="einmalig" color="red"></tw-tag><tw-tag name="nach_Kap2_morgen" color="green"></tw-tag><tw-tag name="header" color="blue"></tw-tag><tw-tag name="nach_morgen" color="red"></tw-tag><tw-tag name="interrupt" color="purple"></tw-tag><tw-tag name="studium" color="yellow"></tw-tag><tw-tag name="pruefung" color="green"></tw-tag><tw-tag name="kapitel-opener" color="red"></tw-tag><tw-tag name="nach_Kap2_abend" color="yellow"></tw-tag><tw-tag name="nach_hub" color="green"></tw-tag><tw-tag name="journal" color="orange"></tw-tag><tw-tag name="nach_Kap2_tag" color="green"></tw-tag><tw-tag name="startup-debug" color="purple"></tw-tag><tw-tag name="nach_appell" color="yellow"></tw-tag><tw-tag name="layout" color="green"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="0,225" size="100,100">&lt;&lt;include &quot;InitPlayer&quot;&gt;&gt;
 &lt;&lt;include &quot;InitNPC&quot;&gt;&gt;
 &lt;&lt;include &quot;InitWorld&quot;&gt;&gt;
 &lt;&lt;include &quot;InitStudium&quot;&gt;&gt;
@@ -7538,10 +7544,10 @@ setup.duellEinfluss = function () {
 	{	&quot;text&quot;: &quot;Eine flinke Hand streift deinen Gürtel, ehe du reagieren kannst. Als du nachsiehst, fehlen dir ein paar Münzen — der Dieb ist längst in der Menge verschwunden.&quot;, 
 		&quot;outcome&quot;: { &quot;npc&quot;: null, &quot;fields&quot;: [ { &quot;field&quot;: &quot;moneyLoss&quot;, &quot;value&quot;: 8, &quot;chance&quot;: 100 } ] },
 		&quot;checkOn&quot;: &quot;perception&quot;,
-		&quot;checkSuccessText&quot;: &quot;Eine flinke Hand streift deinen Gürtel, du bemerkst sie und schlägst sie weg. Also du dich umsiehst ist der Dieb schon wieder in der Menge verschwunden.&quot;},
+		&quot;checkSuccessText&quot;: &quot;Eine flinke Hand streift deinen Gürtel, du bemerkst sie und schlägst sie weg. Als du dich umsiehst ist der Dieb schon wieder in der Menge verschwunden.&quot;},
   { &quot;text&quot;: &quot;Ein alter Landsknecht, dem ein Bein fehlt, erzählt dir gegen ein kleines Almosen von seinen Feldzügen. Du hörst zu, länger, als du wolltest, und gibst ihm am Ende mehr, als du eigentlich vorhattest.&quot;, &quot;outcome&quot;: { &quot;npc&quot;: null, &quot;fields&quot;: [ { &quot;field&quot;: &quot;money&quot;, &quot;value&quot;: -3, &quot;chance&quot;: 100 }, { &quot;field&quot;: &quot;condition&quot;, &quot;value&quot;: 2, &quot;chance&quot;: 50 } ] } },
   { &quot;text&quot;: &quot;Ein Kaufmann, dessen Karren im Schlamm feststeckt, bittet dich um eine kräftige Schulter. Du hilfst, und er drückt dir zum Dank ein paar Münzen in die Hand.&quot;, &quot;outcome&quot;: { &quot;npc&quot;: null, &quot;fields&quot;: [ { &quot;field&quot;: &quot;money&quot;, &quot;value&quot;: 2, &quot;chance&quot;: 70 }, { &quot;field&quot;: &quot;condition&quot;, &quot;value&quot;: -3, &quot;chance&quot;: 100 } ] } },
-  { &quot;text&quot;: &quot;Zwei Weiber am Brunnen tuscheln über einen Schreiber der Akademie, der neuerdings so nervös sei wie ein Dieb kurz vor der Tat. Du gehst weiter, als hättest du nichts gehört — doch die Worte bleiben in dir hängen.&quot;, &quot;outcome&quot;: { &quot;npc&quot;: &quot;oren&quot;, &quot;fields&quot;: [ { &quot;field&quot;: &quot;verdacht&quot;, &quot;value&quot;: 0, &quot;chance&quot;: 0 } ] } },
+  { &quot;text&quot;: &quot;Zwei Weiber am Brunnen tuscheln über einen Schreiber der Akademie, der neuerdings so nervös sei wie ein Dieb kurz vor der Tat. Du gehst weiter, als hättest du nichts gehört — doch die Worte bleiben in dir hängen.&quot;, &quot;outcome&quot;: { &quot;npc&quot;: &quot;orenmalk&quot;, &quot;fields&quot;: [ { &quot;field&quot;: &quot;verdacht&quot;, &quot;value&quot;: 0, &quot;chance&quot;: 0 } ] } },
   { &quot;text&quot;: &quot;Ein betrunkener Söldner rempelt dich an, mehr aus Unachtsamkeit als Bosheit, murmelt eine Entschuldigung und taumelt weiter.&quot;, &quot;outcome&quot;: null },
   { &quot;text&quot;: &quot;Eine Streunerkatze folgt dir eine Weile durch die Gassen, als hätte sie beschlossen, dass du ihr Beschützer seist. Du lässt sie gewähren.&quot;, &quot;outcome&quot;: null },
   { &quot;text&quot;: &quot;Ein Kind drückt dir wortlos eine verwelkte Blume in die Hand und rennt davon, ehe du fragen kannst, warum.&quot;, &quot;outcome&quot;: null }
@@ -15988,12 +15994,24 @@ Der Dienst ist vorbei — aber der Abend gehört noch dir.&lt;&lt;/scene&gt;&gt;
 [[Das Licht löschen. -&gt;Kap2_Abend]]</tw-passagedata><tw-passagedata pid="308" name="Kap2_Abend_Schenke" tags="" position="2875,4050" size="100,100">&lt;&lt;set $world.schenkeRueckweg to &quot;Kap2_Abend&quot;&gt;&gt;
 &lt;&lt;scene&gt;&gt;Die Stadt bei Nacht ist eine andere Stadt. Die Marktstände sind verrammelt, dafür fällt aus den Gassen um den Grauen Wolf warmes Licht auf das Pflaster, und mit ihm Stimmen, Würfelklappern und der Geruch von Bier und Talg. Um diese Stunde sitzt hier jeder, der einen Grund hat, nicht zu schlafen — und jeder, der einen sucht.&lt;&lt;/scene&gt;&gt;
 
-[[Eintreten. -&gt;Stadt_Schenke]]</tw-passagedata><tw-passagedata pid="309" name="Kap2_Abend_Waffenpflege" tags="" position="2425,3950" size="100,100">&lt;&lt;scene&gt;&gt;Ölstein, Lappen, Lederfett. Du sitzt auf der Bank vor der Baracke, die Waffe über den Knien, und arbeitest dich durch die Handgriffe, die dir das erste Jahr eingebläut hat — Schneide, Schaft, Riemen, jede Schraube, jede Naht.&lt;&lt;/scene&gt;&gt;
+[[Eintreten. -&gt;Stadt_Schenke]]</tw-passagedata><tw-passagedata pid="309" name="Kap2_Abend_Waffenpflege" tags="" position="2425,3950" size="100,100">&lt;&lt;scene&gt;&gt;Du sitzt auf der Bank vor der Baracke, die Waffe über den Knien, und arbeitest dich durch die Handgriffe, die dir das erste Jahr eingebläut hat — Schneide, Schaft, Riemen, jede Schraube, jede Naht.&lt;&lt;/scene&gt;&gt;
 
 &lt;p&gt;Es ist stumpfe Arbeit, und genau das ist ihr Wert: Die Hände tun, was sie können, und der Kopf sortiert derweil den Tag. Als du fertig bist, liegt das Zeug bereit wie für eine Parade — und morgen wird jeder Handgriff einen Fingerbreit leichter gehen.&lt;/p&gt;
 
-&lt;&lt;set $world.gut_vorbereitet to true&gt;&gt;
-&lt;div class=&quot;system-alert status-info&quot;&gt;Gut vorbereitet — der nächste Gattungsdrill wird sicher Fortschritt bringen.&lt;/div&gt;
+&lt;&lt;if setup.hasItem(&quot;Ölstein und Lappen&quot;)&gt;&gt;
+	&lt;&lt;run setup.removeItem(&quot;Ölstein und Lappen&quot;)&gt;&gt;
+	&lt;&lt;set $world.sehr_gut_vorbereitet to true&gt;&gt;
+	&lt;p&gt;Du hast Öl und Lappen vom Markt mitgebracht. Die Waffe glänzt, und du weißt, dass sie morgen förmlich für dich arbeiten wird.&lt;/p&gt;
+	&lt;div class=&quot;system-alert status-info&quot;&gt;Ölstein und Lappen verbraucht — die Waffe glänzt wie neu. Der nächste Gattungsdrill bringt &lt;b&gt;deutlich&lt;/b&gt; mehr Fortschritt.&lt;/div&gt;
+&lt;&lt;else&gt;&gt;
+	&lt;&lt;set $world.gut_vorbereitet to true&gt;&gt;
+	&lt;div class=&quot;system-alert status-info&quot;&gt;Gut vorbereitet — der nächste Gattungsdrill wird sicher Fortschritt bringen.&lt;/div&gt;
+&lt;&lt;/if&gt;&gt;
+
+
+
+
+
 
 [[Zurück zur Baracke. -&gt;Kap2_Abend]]</tw-passagedata><tw-passagedata pid="310" name="Kap2_Ausbildung" tags="" position="1700,4550" size="100,100">&lt;&lt;silently&gt;&gt;
 &lt;&lt;set $world.day += 21&gt;&gt;
@@ -16691,6 +16709,7 @@ der seine Runde vergessen zu haben scheint.&lt;/p&gt;
 			&lt;&lt;replace &quot;#sandbox-menu&quot;&gt;&gt;
 				&lt;&lt;run setup.removeMoney(3)&gt;&gt;
 				&lt;&lt;set $world.wuerfelSpiel.gespielt += 1&gt;&gt;
+				&lt;&lt;set $world.wuerfelGesamt to ($world.wuerfelGesamt || 0) + 1&gt;&gt;
 				&lt;p&gt;Ihr lacht, ihr würfelt und ihr spielt. Die Würfel rollen, die Münzen klappern,
 				und für einen Moment ist es, als gäbe es die Welt draußen nicht.&lt;/p&gt;
 				&lt;&lt;= setup.getNpcInteraction(&quot;Kap2_Pool_Stadt_Gluecksspiel&quot;)&gt;&gt;
@@ -16710,6 +16729,7 @@ der seine Runde vergessen zu haben scheint.&lt;/p&gt;
 			&lt;&lt;replace &quot;#sandbox-menu&quot;&gt;&gt;
 				&lt;&lt;run setup.removeMoney(3)&gt;&gt;
 				&lt;&lt;set $world.wuerfelSpiel.gespielt += 1&gt;&gt;
+				&lt;&lt;set $world.wuerfelGesamt to ($world.wuerfelGesamt || 0) + 1&gt;&gt;
 				&lt;&lt;set _r to setup.skillCheckXp(&quot;thievery&quot;, 12, _potSize)&gt;&gt;
 				&lt;&lt;= _r.lernHTML&gt;&gt;
 				&lt;&lt;if _r.success&gt;&gt;
@@ -17098,7 +17118,23 @@ und das ist mehr, als du vor einem Jahr von dir erwartet hättest.&lt;/p&gt;
 &lt;p&gt;„Zum Grauen Wolf“ liegt tief im Gassengewirr, ihr Schild so verwittert, dass der namensgebende Wolf kaum mehr zu erkennen ist. Drinnen erwartet dich eine Wand aus Wärme, Talglicht und dem beißenden Rauch billigen Tabaks, vermengt mit dem säuerlichen Duft von verschüttetem Bier und feuchtem Stroh, das den Boden bedeckt. An den Tischen sitzen Fuhrleute, ein paar Söldner ohne Banner, ein Weib, das Karten mischt, als wäre es ihr Handwerk.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
 
-&lt;p&gt;Der Wirt, ein Mann mit einer Narbe quer über der Nase, mustert dich kurz, ohne sonderliches Interesse. Solange du zahlst, bist du hier willkommen — mehr fragt er nicht.&lt;/p&gt;
+&lt;&lt;if ($world.wuerfelGesamt || 0) gte 4&gt;&gt;
+	&lt;&lt;beziehung&gt;&gt;
+		&lt;p&gt;Der Wirt hebt das Kinn, als du eintrittst. „Ah, der Würfelfreund! Setz dich — für Stammgäste hab ich immer einen Platz und manchmal einen Krug, der auf keiner Rechnung steht.&quot; Er zwinkert. Wer oft genug kommt, wird Teil des Hauses.&lt;/p&gt;
+		&lt;&lt;/beziehung&gt;&gt;
+&lt;&lt;else&gt;&gt;
+	&lt;&lt;beziehung&gt;&gt;
+		&lt;p&gt;Der Wirt, ein Mann mit einer Narbe quer über der Nase, mustert dich kurz, ohne sonderliches Interesse. Solange du zahlst, bist du hier willkommen — mehr fragt er nicht.&lt;/p&gt;
+	&lt;&lt;/beziehung&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $player.trinken gte 2&gt;&gt;
+	&lt;&lt;beziehung&gt;&gt;
+	&lt;p&gt;Der Wein sitzt dir schon in den Beinen, und beim Griff nach dem Becher wirfst du ihn um — mitten auf den Schoß eines breitschultrigen Fuhrmanns. Es kostet dich ein paar Münzen Friedensgeld und ein gutes Stück Würde, ehe die Sache beigelegt ist.&lt;/p&gt;
+	&lt;&lt;run setup.removeMoney(4)&gt;&gt;
+	&lt;&lt;/beziehung&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
 
 &lt;ul class=&quot;sandbox-menu&quot;&gt;
  &lt;li&gt;
@@ -17388,6 +17424,40 @@ Es gibt nichts zu tun, als zu warten, was sie finden.&lt;/p&gt;
 &lt;p&gt;Hinter dem Nordtor der Akademie beginnt eine andere Welt. Die Gassen sind eng, das Pflaster uneben, überall drängen sich Fuhrleute, Marktweiber und Handwerksburschen aneinander vorbei, während der Geruch von Fischständen, frisch gebackenem Brot und dem beißenden Rauch der Schmieden sich zu einem einzigen, dichten Gemenge vermengt. Hier fragt niemand nach deinem Rang. Hier zählt, was in deinem Beutel klimpert.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
 
+/* --- Reaktive Eingangszeilen: Folgen früherer Entscheidungen --- */
+
+&lt;&lt;if $world.duell and $world.duell.flags and $world.duell.flags.verrat&gt;&gt;
+	&lt;&lt;beziehung&gt;&gt;
+	&lt;p&gt;Ein Mann in verwaschenem Rot-Weiß löst sich aus dem Schatten eines Torbogens, mustert dich lange — und spuckt vor deine Stiefel, ehe er weitergeht. Kein Wort. Es braucht keins. Man weiß, was du getan hast.&lt;/p&gt;
+	&lt;&lt;/beziehung&gt;&gt;
+&lt;&lt;elseif ($player.reputation.Rabenfurth || 0) gte 3&gt;&gt;
+	&lt;&lt;beziehung&gt;&gt;
+	&lt;p&gt;An der Brücke erkennt dich ein Fuhrmann aus Rabenfurt und tippt sich an die Mütze. „Ihr seid der, der die Sache mit den Pipovics befriedet hat, nicht wahr? Drüben am Waid redet man gut über Euch. Ein Krug geht auf mich, wenn Ihr mal durchkommt.&quot;&lt;/p&gt;
+	&lt;&lt;/beziehung&gt;&gt;
+&lt;&lt;elseif ($player.reputation.Rabenfurth || 0) lte -2&gt;&gt;
+	&lt;&lt;beziehung&gt;&gt;
+	&lt;p&gt;Zwei Rabenfurter stehen am Brunnen, und als sie dich sehen, verstummt ihr Gespräch. „Der da&quot;, sagt einer, laut genug, dass du es hören sollst. „Der hat sich in Dinge gemischt, die ihn nichts angingen — und Blut war der Preis. So einer bringt Unglück, wohin er auch kommt.&quot;&lt;/p&gt;
+	&lt;&lt;/beziehung&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $world.ermittlung and $world.ermittlung.flags and $world.ermittlung.flags.beweis_stark&gt;&gt;
+	&lt;&lt;beziehung&gt;&gt;
+	&lt;p&gt;An den Ständen wird getuschelt — über den Schreiber der Akademie, den man über Nacht vor den Rat gezerrt hat, und über den, der die Fäden aufdeckte. Ein alter Krämer fängt deinen Blick und nickt dir knapp zu. Respekt, wortlos, aber echt.&lt;/p&gt;
+	&lt;&lt;/beziehung&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $player.condition lte 30&gt;&gt;
+	&lt;&lt;beziehung&gt;&gt;
+	&lt;p&gt;Die Müdigkeit sitzt dir in den Knochen, und auf dem holprigen Pflaster knickt dir der Fuß weg. &lt;&lt;if random(1, 2) is 1&gt;&gt;Eine fremde Hand fängt dich am Ellbogen, ehe du stürzt. „Vorsicht, Junge, der Tag war wohl lang.&quot; Ein Nicken, dann ist der Mann schon weiter.&lt;&lt;else&gt;&gt;Du fängst dich gerade noch — aber ein paar Halbwüchsige an der Ecke grölen vor Lachen. Würde ist ein Luxus, den man sich erst leisten muss.&lt;&lt;/if&gt;&gt;&lt;/p&gt;
+	&lt;&lt;/beziehung&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $player.suspicion gte 40&gt;&gt;
+	&lt;&lt;beziehung&gt;&gt;
+	&lt;p&gt;Zwischen den Gassen bleibt ein Blick zu lang an dir hängen — ein Mann, unauffällig gekleidet, der sich zu beiläufig abwendet, als du hinsiehst. Beweisen kannst du nichts. Aber das Gefühl, beobachtet zu werden, hat aufgehört, ein Gefühl zu sein.&lt;/p&gt;
+	&lt;&lt;/beziehung&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
 &lt;&lt;beziehung&gt;&gt;
 	&lt;&lt;= setup.getNpcInteraction(&quot;Kap2_Pool_Stadt_Encounter&quot;)&gt;&gt;
 &lt;&lt;/beziehung&gt;&gt;
@@ -17397,6 +17467,57 @@ Es gibt nichts zu tun, als zu warten, was sie finden.&lt;/p&gt;
 &lt;&lt;else&gt;&gt;
 	&lt;p&gt;Du schlenderst an der Ecke zur Fischgasse vorbei, die Arme verschränkt, ungeduldig wie stets, wenn du nicht weißt, wie du deine Zeit verbringen willst.&lt;/p&gt;
 &lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if ($player.reputation.Rabenfurth || 0) gte 3&gt;&gt;
+	&lt;&lt;beziehung&gt;&gt;
+		
+	&lt;&lt;/beziehung&gt;&gt;	
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if setup.hasItem(&quot;Wallwurz-Salbe&quot;) and $player.spezialisierung is &quot;medicine&quot;&gt;&gt;
+&lt;div id=&quot;salbe-menu&quot;&gt;
+	&lt;p&gt;Ein bisschen abseits des Trubels siehst du einen Jungen, der sich am Arm verletzt hat. Du könntest ihm mit der Wallwurz-Salbe helfen.&lt;/p&gt;
+	&lt;ul class=&quot;sandbox-menu&quot;&gt;
+		&lt;li&gt;
+			&lt;&lt;link &quot;Dem Kleinen helfen&quot;&gt;&gt;
+				&lt;&lt;= setup.removeItem(&quot;Wallwurz-Salbe&quot;)&gt;&gt;
+				&lt;&lt;append &quot;#gossip-antworten&quot;&gt;&gt;
+					&lt;div class=&quot;gossip-antwort&quot;&gt;
+						&lt;p class=&quot;gossip-frage&quot;&gt;„Na Kleiner, da hast du dich wohl richtig lang gemacht. Ich bin in der Feldscher-Ausbildung und hab etwas dabei, das dir hilft.&quot;&lt;/p&gt;
+						&lt;&lt;if setup.karlaDa()&gt;&gt;
+							&lt;p class=&quot;gossip-erklaerung&quot;&gt;Karla sieht dir beim Helfen zu.&lt;/p&gt;
+							&lt;&lt;= setup.setNpcAffection(&quot;karla&quot;, 2)&gt;&gt;
+						&lt;&lt;else&gt;&gt;
+							&lt;p class=&quot;gossip-erklaerung&quot;&gt;Du verarztest den Jungen sorgfältig.&lt;/p&gt;
+						&lt;&lt;/if&gt;&gt;
+					&lt;/div&gt;
+				&lt;&lt;/append&gt;&gt;
+				&lt;&lt;replace &quot;#salbe-menu&quot;&gt;&gt;&lt;&lt;/replace&gt;&gt;
+			&lt;&lt;/link&gt;&gt;
+			&lt;span class=&quot;subtext&quot;&gt;— Kostet die Salbe.&lt;/span&gt;
+		&lt;/li&gt;
+		&lt;li&gt;
+			&lt;&lt;link &quot;Der wird schon wieder&quot;&gt;&gt;
+				&lt;&lt;append &quot;#gossip-antworten&quot;&gt;&gt;
+					&lt;div class=&quot;gossip-antwort&quot;&gt;
+						&lt;p class=&quot;gossip-frage&quot;&gt;„Das hat viel übler ausgesehen, als es war.&quot;&lt;/p&gt;
+						&lt;&lt;if setup.karlaDa()&gt;&gt;
+							&lt;p class=&quot;gossip-erklaerung&quot;&gt;Karla schüttelt den Kopf.&lt;/p&gt;
+							&lt;&lt;= setup.setNpcAffection(&quot;karla&quot;, -1)&gt;&gt;
+						&lt;&lt;else&gt;&gt;
+							&lt;p class=&quot;gossip-erklaerung&quot;&gt;Du gehst weiter Richtung Hauptstraße.&lt;/p&gt;
+						&lt;&lt;/if&gt;&gt;
+					&lt;/div&gt;
+				&lt;&lt;/append&gt;&gt;
+				&lt;&lt;replace &quot;#salbe-menu&quot;&gt;&gt;&lt;&lt;/replace&gt;&gt;
+			&lt;&lt;/link&gt;&gt;
+			&lt;span class=&quot;subtext&quot;&gt;— So schlimm ist es nicht.&lt;/span&gt;
+		&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&quot;gossip-antworten&quot;&gt;&lt;/div&gt;
+&lt;&lt;/if&gt;&gt;
+
 
 &lt;&lt;trenner&gt;&gt;
 &lt;ul class=&quot;sandbox-menu&quot;&gt;
