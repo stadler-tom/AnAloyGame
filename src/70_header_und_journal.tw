@@ -5,15 +5,16 @@
     <div class="hud-left">
         <span class="hud-item hud-day">⚔<<= setup.datumAnzeige()>></span>
 
+
         <span class="hud-item hud-money">
-            💰
+        💰
             <<set _m = setup.getMoney($player.money.copper)>>
-            <<= _m.gold >> G&nbsp; <<= _m.silver >> S&nbsp; <<= _m.copper >> K
+            <span class="coin coin-g"></span><<= _m.gold >>
+            <span class="coin coin-s"></span><<= _m.silver >>
+            <span class="coin coin-k"></span><<= _m.copper >>
         </span>
 
-        <span class="hud-item hud-kondition">
-            <<= setup.getKonditionLabel($player.condition) >>
-        </span>
+        <<= setup.konditionMeter() >>
 
         <<if $world.weather>>
             <span class="hud-item hud-weather"><<= $world.weather >></span>
@@ -29,9 +30,19 @@
 <</if>>
 
 :: journalAnsicht [journal] {"position":"700,0","size":"100,100"}
+
+
 <div id="passage-journalansicht" class="passage journalansicht">
 
     <h2>📋 $player.name's Notizbuch</h2>
+
+   <details class="journal-section" open>
+        <summary>Debug</summary>
+        <div id="player-table"> 
+        <p>Passagennamen einblenden?</p>
+        <span id="debug-toggle"><<checkbox "$world.debug" false true autocheck>></span> Titel für Debug einblenden
+        </div>
+    </details>
 
     <details class="journal-section" open>
         <summary>Werte</summary>

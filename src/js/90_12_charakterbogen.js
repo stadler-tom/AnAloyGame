@@ -754,3 +754,13 @@ setup.addNpcJournalEntry = function (npcId, text, options = {}) {
 
     return true;
 };
+
+setup.konditionMeter = function () {
+    var c = setup.clamp(State.variables.player.condition, 0, 100);
+    var tier = c >= 90 ? 'bestform' : c >= 70 ? 'fit' : c >= 50 ? 'angeschlagen'
+             : c >= 30 ? 'erschoepft' : c >= 10 ? 'amlimit' : 'zusammenbruch';
+    var label = setup.getKonditionLabel(State.variables.player.condition);
+    return '<span class="hud-item hud-kondition kond-meter kond-' + tier + '">'
+         + '<span class="kond-fill" style="width:' + c + '%"></span>'
+         + '<span class="kond-text">' + label + '</span></span>';
+};

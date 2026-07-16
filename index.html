@@ -208,25 +208,43 @@ var LZString=function(){var r=String.fromCharCode,o="ABCDEFGHIJKLMNOPQRSTUVWXYZa
 
 #hud-bar {
     display: flex; justify-content: space-between; align-items: center;
-    padding: 6px 4px 4px 4px; margin-bottom: 0; flex-wrap: wrap; gap: 0.4em;
+    padding: 6px 4px 4px 4px; margin-bottom: 0; flex-wrap: nowrap; gap: 0.4em;
+     background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(0,0,0,.20)), var(--panel-bg);
+    border: 1px solid var(--panel-border); border-radius: 3px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.05), 0 1px 3px rgba(0,0,0,.4);
 }
-.hud-left { display: flex; flex-wrap: wrap; gap: 0.6em; align-items: center; }
-.hud-right { margin-left: auto; white-space: nowrap; }
+.hud-left {
+    display: flex; flex-wrap: wrap; gap: 0.6em; align-items: center;
+    flex: 1 1 auto; min-width: 0;
+}
+.hud-right {
+    margin-left: auto; white-space: nowrap;
+    flex: 0 0 auto;
+    
+}
 .hud-item {
     font-size: 0.82em; font-variant: small-caps; letter-spacing: 0.04em;
     color: var(--text-dust); background: var(--panel-bg);
     border: 1px solid var(--panel-border); border-radius: 2px; padding: 2px 8px;
+    white-space: nowrap;
 }
 .hud-right a.link-internal {
     display: inline-block !important; padding: 4px 14px !important;
     margin-bottom: 0 !important; font-size: 0.88em !important;
     font-variant: small-caps; letter-spacing: 0.04em;
     border-left-width: 2px !important; transform: none !important;
+    background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(0,0,0,.14));
+    border: 1px solid var(--panel-border); border-left: 2px solid var(--accent-brass) !important;
+    transition: box-shadow .15s, border-color .15s, color .15s;
 }
 .hud-right a.link-internal:hover {
     transform: none !important; border-left-color: var(--accent-brass) !important;
+    color: var(--accent-gold) !important; border-left-color: var(--accent-gold) !important;
+    box-shadow: 0 0 8px rgba(201,162,39,.35);
 }
-.hud-divider { margin-top: 6px; border-color: var(--panel-border); }
+.hud-divider { margin-top: 6px; border-color: var(--panel-border); border: 0; height: 1px; margin-top: 6px;
+    background: linear-gradient(90deg, transparent, var(--panel-border) 20%, var(--accent-brass) 50%, var(--panel-border) 80%, transparent);
+}
 .journal-link { text-align: right; margin: 0; padding: 0; }
 
 
@@ -962,7 +980,24 @@ var LZString=function(){var r=String.fromCharCode,o="ABCDEFGHIJKLMNOPQRSTUVWXYZa
 .akte-schritt {
   font-size: .78rem; background: #d8c9a3; color: #4a3c22;
   border-radius: 2px; padding: 2px 7px;
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript">/* twine-user-script #1: "0_11_kampf.js" */
+}
+
+.kond-meter { position: relative; overflow: hidden; }
+.kond-fill  { position: absolute; left: 0; top: 0; bottom: 0; opacity: .16;
+              transition: width .3s ease; pointer-events: none; }
+.kond-text  { position: relative; }
+.kond-bestform .kond-fill, .kond-fit .kond-fill { background: #4d7d3a; }
+.kond-angeschlagen .kond-fill { background: #b0991e; }
+.kond-erschoepft   .kond-fill { background: #b06a1e; }
+.kond-amlimit .kond-fill, .kond-zusammenbruch .kond-fill { background: #8a2b20; }
+
+.coin { display:inline-block; width:.62em; height:.62em; border-radius:50%; margin:0 .15em 0 .5em;
+    box-shadow: inset -1px -1px 1px rgba(0,0,0,.45); vertical-align: middle; }
+.coin-g { background: radial-gradient(circle at 35% 30%, #f0d97a, #c9a227); }
+.coin-s { background: radial-gradient(circle at 35% 30%, #e8ebf0, #a7adb8); }
+.coin-k { background: radial-gradient(circle at 35% 30%, #d89a6a, #a55f32); }
+
+.debug-passagentitel { color: #c0402f; font-weight: bold; font-size: .85em; margin-bottom: .4em; }</style><script role="script" id="twine-user-script" type="text/twine-javascript">/* twine-user-script #1: "0_11_kampf.js" */
 
 
 /* ================================================================
@@ -1687,15 +1722,23 @@ Config.history.maxStates = 2;
 Config.debug = false;
 Config.passages.nobr = true;
 
+$(document).on('change', '#debug-toggle input', function () {
+    if (setup.debugTitleAktualisieren) setup.debugTitleAktualisieren();
+});
+
 $(document).on(':passagedisplay', function (ev) {
     if (State.variables.world.debug) {
-        $(ev.detail.content).prepend(
-            '<div style="color:red;font-weight:bold;">Passage: ' +
-            ev.detail.passage.name +
-            '</div>'
-        );
+        $(ev.detail.content).prepend('<div class="debug-passagentitel">Passage: ' + ev.detail.passage.name + '</div>');
     }
 });
+
+setup.debugTitleAktualisieren = function () {
+    var $p = $('#passages .passage').last();
+    $p.find('.debug-passagentitel').remove();
+    if (State.variables.world.debug) {
+        $p.prepend('<div class="debug-passagentitel">Passage: ' + State.passage + '</div>');
+    }
+};
 
 (function () {
   var url = 'https://aloystorycounter.stadler-tom.workers.dev/';
@@ -4841,6 +4884,16 @@ setup.addNpcJournalEntry = function (npcId, text, options = {}) {
 
     return true;
 };
+
+setup.konditionMeter = function () {
+    var c = setup.clamp(State.variables.player.condition, 0, 100);
+    var tier = c >= 90 ? 'bestform' : c >= 70 ? 'fit' : c >= 50 ? 'angeschlagen'
+             : c >= 30 ? 'erschoepft' : c >= 10 ? 'amlimit' : 'zusammenbruch';
+    var label = setup.getKonditionLabel(State.variables.player.condition);
+    return '<span class="hud-item hud-kondition kond-meter kond-' + tier + '">'
+         + '<span class="kond-fill" style="width:' + c + '%"></span>'
+         + '<span class="kond-text">' + label + '</span></span>';
+};
 /* twine-user-script #13: "90_13_kap2_hub.js" */
 
 /* ================================================================
@@ -5808,7 +5861,7 @@ setup.duellEinfluss = function () {
     return { wert: wert, band: band };
 };
 
-</script><tw-tag name="einmalig" color="red"></tw-tag><tw-tag name="nach_appell" color="yellow"></tw-tag><tw-tag name="studium" color="yellow"></tw-tag><tw-tag name="pruefung" color="green"></tw-tag><tw-tag name="kapitel-opener" color="red"></tw-tag><tw-tag name="header" color="blue"></tw-tag><tw-tag name="startup-debug" color="purple"></tw-tag><tw-tag name="nach_stube" color="orange"></tw-tag><tw-tag name="nach_Kap2_morgen" color="green"></tw-tag><tw-tag name="nach_Kap2_abend" color="yellow"></tw-tag><tw-tag name="layout" color="green"></tw-tag><tw-tag name="nach_Kap2_tag" color="green"></tw-tag><tw-tag name="widget" color="blue"></tw-tag><tw-tag name="nach_morgen" color="red"></tw-tag><tw-tag name="interrupt" color="purple"></tw-tag><tw-tag name="nach_hub" color="green"></tw-tag><tw-tag name="journal" color="orange"></tw-tag><tw-tag name="script" color="purple"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="0,225" size="100,100">&lt;&lt;include &quot;InitPlayer&quot;&gt;&gt;
+</script><tw-tag name="widget" color="blue"></tw-tag><tw-tag name="nach_hub" color="green"></tw-tag><tw-tag name="einmalig" color="red"></tw-tag><tw-tag name="nach_Kap2_morgen" color="green"></tw-tag><tw-tag name="script" color="purple"></tw-tag><tw-tag name="nach_stube" color="orange"></tw-tag><tw-tag name="nach_appell" color="yellow"></tw-tag><tw-tag name="layout" color="green"></tw-tag><tw-tag name="journal" color="orange"></tw-tag><tw-tag name="nach_Kap2_tag" color="green"></tw-tag><tw-tag name="header" color="blue"></tw-tag><tw-tag name="startup-debug" color="purple"></tw-tag><tw-tag name="nach_morgen" color="red"></tw-tag><tw-tag name="interrupt" color="purple"></tw-tag><tw-tag name="kapitel-opener" color="red"></tw-tag><tw-tag name="studium" color="yellow"></tw-tag><tw-tag name="pruefung" color="green"></tw-tag><tw-tag name="nach_Kap2_abend" color="yellow"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="0,225" size="100,100">&lt;&lt;include &quot;InitPlayer&quot;&gt;&gt;
 &lt;&lt;include &quot;InitNPC&quot;&gt;&gt;
 &lt;&lt;include &quot;InitWorld&quot;&gt;&gt;
 &lt;&lt;include &quot;InitStudium&quot;&gt;&gt;
@@ -20617,15 +20670,16 @@ alles ist, wenn es hart wird.&lt;/p&gt;
     &lt;div class=&quot;hud-left&quot;&gt;
         &lt;span class=&quot;hud-item hud-day&quot;&gt;⚔&lt;&lt;= setup.datumAnzeige()&gt;&gt;&lt;/span&gt;
 
+
         &lt;span class=&quot;hud-item hud-money&quot;&gt;
-            💰
+        💰
             &lt;&lt;set _m = setup.getMoney($player.money.copper)&gt;&gt;
-            &lt;&lt;= _m.gold &gt;&gt; G&amp;nbsp; &lt;&lt;= _m.silver &gt;&gt; S&amp;nbsp; &lt;&lt;= _m.copper &gt;&gt; K
+            &lt;span class=&quot;coin coin-g&quot;&gt;&lt;/span&gt;&lt;&lt;= _m.gold &gt;&gt;
+            &lt;span class=&quot;coin coin-s&quot;&gt;&lt;/span&gt;&lt;&lt;= _m.silver &gt;&gt;
+            &lt;span class=&quot;coin coin-k&quot;&gt;&lt;/span&gt;&lt;&lt;= _m.copper &gt;&gt;
         &lt;/span&gt;
 
-        &lt;span class=&quot;hud-item hud-kondition&quot;&gt;
-            &lt;&lt;= setup.getKonditionLabel($player.condition) &gt;&gt;
-        &lt;/span&gt;
+        &lt;&lt;= setup.konditionMeter() &gt;&gt;
 
         &lt;&lt;if $world.weather&gt;&gt;
             &lt;span class=&quot;hud-item hud-weather&quot;&gt;&lt;&lt;= $world.weather &gt;&gt;&lt;/span&gt;
@@ -20641,6 +20695,14 @@ alles ist, wenn es hart wird.&lt;/p&gt;
 &lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="406" name="journalAnsicht" tags="journal" position="700,0" size="100,100">&lt;div id=&quot;passage-journalansicht&quot; class=&quot;passage journalansicht&quot;&gt;
 
     &lt;h2&gt;📋 $player.name&#39;s Notizbuch&lt;/h2&gt;
+
+   &lt;details class=&quot;journal-section&quot; open&gt;
+        &lt;summary&gt;Debug&lt;/summary&gt;
+        &lt;div id=&quot;player-table&quot;&gt; 
+        &lt;p&gt;Passagennamen einblenden?&lt;/p&gt;
+        &lt;span id=&quot;debug-toggle&quot;&gt;&lt;&lt;checkbox &quot;$world.debug&quot; false true autocheck&gt;&gt;&lt;/span&gt; Titel für Debug einblenden
+        &lt;/div&gt;
+    &lt;/details&gt;
 
     &lt;details class=&quot;journal-section&quot; open&gt;
         &lt;summary&gt;Werte&lt;/summary&gt;

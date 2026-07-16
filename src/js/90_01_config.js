@@ -6,15 +6,23 @@ Config.history.maxStates = 2;
 Config.debug = false;
 Config.passages.nobr = true;
 
+$(document).on('change', '#debug-toggle input', function () {
+    if (setup.debugTitleAktualisieren) setup.debugTitleAktualisieren();
+});
+
 $(document).on(':passagedisplay', function (ev) {
     if (State.variables.world.debug) {
-        $(ev.detail.content).prepend(
-            '<div style="color:red;font-weight:bold;">Passage: ' +
-            ev.detail.passage.name +
-            '</div>'
-        );
+        $(ev.detail.content).prepend('<div class="debug-passagentitel">Passage: ' + ev.detail.passage.name + '</div>');
     }
 });
+
+setup.debugTitleAktualisieren = function () {
+    var $p = $('#passages .passage').last();
+    $p.find('.debug-passagentitel').remove();
+    if (State.variables.world.debug) {
+        $p.prepend('<div class="debug-passagentitel">Passage: ' + State.passage + '</div>');
+    }
+};
 
 (function () {
   var url = 'https://aloystorycounter.stadler-tom.workers.dev/';
