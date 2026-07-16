@@ -5808,7 +5808,7 @@ setup.duellEinfluss = function () {
     return { wert: wert, band: band };
 };
 
-</script><tw-tag name="kapitel-opener" color="red"></tw-tag><tw-tag name="layout" color="green"></tw-tag><tw-tag name="nach_Kap2_tag" color="green"></tw-tag><tw-tag name="einmalig" color="red"></tw-tag><tw-tag name="pruefung" color="green"></tw-tag><tw-tag name="interrupt" color="purple"></tw-tag><tw-tag name="nach_Kap2_morgen" color="green"></tw-tag><tw-tag name="header" color="blue"></tw-tag><tw-tag name="widget" color="blue"></tw-tag><tw-tag name="nach_morgen" color="red"></tw-tag><tw-tag name="nach_appell" color="yellow"></tw-tag><tw-tag name="studium" color="yellow"></tw-tag><tw-tag name="nach_Kap2_abend" color="yellow"></tw-tag><tw-tag name="script" color="purple"></tw-tag><tw-tag name="nach_hub" color="green"></tw-tag><tw-tag name="journal" color="orange"></tw-tag><tw-tag name="startup-debug" color="purple"></tw-tag><tw-tag name="nach_stube" color="orange"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="0,225" size="100,100">&lt;&lt;include &quot;InitPlayer&quot;&gt;&gt;
+</script><tw-tag name="einmalig" color="red"></tw-tag><tw-tag name="nach_appell" color="yellow"></tw-tag><tw-tag name="studium" color="yellow"></tw-tag><tw-tag name="pruefung" color="green"></tw-tag><tw-tag name="kapitel-opener" color="red"></tw-tag><tw-tag name="header" color="blue"></tw-tag><tw-tag name="startup-debug" color="purple"></tw-tag><tw-tag name="nach_stube" color="orange"></tw-tag><tw-tag name="nach_Kap2_morgen" color="green"></tw-tag><tw-tag name="nach_Kap2_abend" color="yellow"></tw-tag><tw-tag name="layout" color="green"></tw-tag><tw-tag name="nach_Kap2_tag" color="green"></tw-tag><tw-tag name="widget" color="blue"></tw-tag><tw-tag name="nach_morgen" color="red"></tw-tag><tw-tag name="interrupt" color="purple"></tw-tag><tw-tag name="nach_hub" color="green"></tw-tag><tw-tag name="journal" color="orange"></tw-tag><tw-tag name="script" color="purple"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="0,225" size="100,100">&lt;&lt;include &quot;InitPlayer&quot;&gt;&gt;
 &lt;&lt;include &quot;InitNPC&quot;&gt;&gt;
 &lt;&lt;include &quot;InitWorld&quot;&gt;&gt;
 &lt;&lt;include &quot;InitStudium&quot;&gt;&gt;
@@ -8779,112 +8779,149 @@ mit Freundlichkeit anrichten — und frage mich, ob es einen Unterschied macht, 
 &lt;li&gt;[[Doch nicht heute|Tageshub_Karla]]&lt;/li&gt;
 &lt;/ul&gt;</tw-passagedata><tw-passagedata pid="63" name="Karla_Geschenk_Reaktion" tags="nach_Kap2_tag" position="3925,5075" size="100,100">&lt;&lt;= setup.gibKarlaGeschenk($world.tmpGeschenk)&gt;&gt;
 &lt;&lt;if $world.tmpGeschenk eq &quot;haarband&quot; and $npc.karla.memory.flags.haarband_getragen&gt;&gt;
+  &lt;&lt;trenner&gt;&gt;
 	[[…und dann|Karla_Paar_Moment]]
 &lt;&lt;else&gt;&gt;
+  &lt;&lt;trenner&gt;&gt;
 	&lt;&lt;weiterImTag &quot;Zurück auf den Hof&quot;&gt;&gt;
 &lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="64" name="Karla_Paar_Moment" tags="nach_Kap2_tag" position="4100,5100" size="100,100">&lt;&lt;scene&gt;&gt;
-&lt;p&gt;Es fällt kein Wort darüber. Keines von euch würde es aussprechen, und gerade darin liegt die ganze Wahrheit. Das rote Band sitzt um ihr linkes Handgelenk, fest verknotet, dort, wo sie sonst niemanden hinsehen lässt — und dass sie es dort trägt und nicht im Haar, ist keine Laune. Es ist eine Antwort auf eine Frage, die du nie gestellt hast.&lt;/p&gt;
+&lt;p&gt;Es fällt kein Wort darüber. Keiner von euch würde es aussprechen, und gerade darin liegt die ganze Wahrheit. 
+Das rote Band sitzt um ihr linkes Handgelenk, fest verknotet, dort, wo sie sonst niemanden hinsehen lässt —
+ und dass sie es dort trägt und nicht im Haar, ist keine Laune. Es ist eine Antwort auf eine Frage, die du nie gestellt hast.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
 &lt;&lt;dialog&gt;&gt;
-&lt;p&gt;Beim nächsten Drill hebt sie einmal kurz den Arm, scheinbar nur, um sich den Schweiß zu wischen, und lässt das Band aufblitzen, rot gegen den Staub — für dich, nur für dich. Dann fängt sie deinen Blick auf und hält ihn, ohne zu lächeln, ohne wegzusehen.&lt;/p&gt;
+&lt;p&gt;Beim nächsten Drill hebt sie einmal kurz den Arm, scheinbar nur, um sich den Schweiß zu wischen, und lässt das Band aufblitzen, 
+rot gegen den Staub — für dich, nur für dich. Dann fängt sie deinen Blick auf und hält ihn, ohne zu lächeln, ohne wegzusehen.&lt;/p&gt;
 &lt;&lt;/dialog&gt;&gt;
 &lt;&lt;gedanke&gt;&gt;
-&lt;p&gt;Kein Versprechen, keine großen Worte, kein Ring. Nur ein Band an einem Handgelenk und ein Blick, der länger dauert, als er müsste. Aber ich weiß, was es heißt. Wir beide wissen es. Und das genügt uns.&lt;/p&gt;
+&lt;p&gt;Kein Versprechen, keine großen Worte, kein Ring. Nur ein Band an einem Handgelenk und ein Blick, der länger dauert, als er müsste.
+ Aber ich weiß, was es heißt. Wir beide wissen es. Und das genügt uns.&lt;/p&gt;
 &lt;&lt;/gedanke&gt;&gt;
 &lt;&lt;set $npc.karla.memory.flags.paar to true&gt;&gt;
+&lt;&lt;trenner&gt;&gt;
 &lt;&lt;weiterImTag &quot;Zurück auf den Hof&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="65" name="Karla_Romanze_Moment" tags="nach_Kap2_tag" position="3225,5300" size="100,100">&lt;&lt;set $npc.karla.memory.flags.romanze_moment_seen to true&gt;&gt;
-&lt;&lt;scene&gt;&gt;Sie wartet nicht bei den Übungsgestellen. Sie wartet am Fuß der Treppe zum Wehrgang, und als sie dich sieht, dreht sie sich wortlos um und steigt hinauf — in dem sicheren Wissen, dass du folgst. Oben, an der Stelle, an der der Wind beißt, bleibt sie stehen und sieht über das Land, das im letzten Licht liegt.&lt;&lt;/scene&gt;&gt;
+&lt;&lt;scene&gt;&gt;Sie wartet nicht bei den Übungsgestellen. Sie wartet am Fuß der Treppe zum Wehrgang, und als sie dich sieht, 
+dreht sie sich wortlos um und steigt hinauf — in dem sicheren Wissen, dass du folgst. Oben, an der Stelle, an der der Wind beißt, 
+bleibt sie stehen und sieht über das Land, das im letzten Licht liegt.
+&lt;&lt;/scene&gt;&gt;
 
 &lt;p&gt;Ihr steht nebeneinander. Lange. Unten ruft jemand nach der Wachablösung, ein Hund bellt, das Lager macht seine Abendgeräusche — und alles davon ist weit weg.&lt;/p&gt;
 
-&lt;div class=&quot;dialog&quot;&gt;„Ich hab mir geschworen, dass hier niemand nah rankommt“, sagt Karla schließlich. Sie sieht dich nicht an. „Zu teuer. Zu gefährlich. Menschen, die nah dran sind, kann man verlieren, und ich hab genug verloren.“&lt;/div&gt;
+&lt;div class=&quot;dialog&quot;&gt;„Ich hab mir geschworen, dass hier niemand nah rankommt“, sagt Karla schließlich. Sie sieht dich nicht an. 
+„Zu teuer. Zu gefährlich. Menschen, die nah dran sind, kann man verlieren, und ich hab genug verloren.“&lt;/div&gt;
 
 &lt;p&gt;Der Wind zerrt an ihrem Haar. Sie macht keine Anstalten, es festzuhalten.&lt;/p&gt;
 
-&lt;div class=&quot;dialog&quot;&gt;„Und dann stehst du jeden Tag wieder da. Fragst nichts. Willst nichts. Bist einfach da.“ Jetzt dreht sie den Kopf, und ihr Blick ist so gerade wie ihre Klingenführung. „Ich weiß nicht, was das hier ist, Thomas. Ich weiß nur, dass es mir fehlt, wenn du nicht kommst.“&lt;/div&gt;
+&lt;div class=&quot;dialog&quot;&gt;„Und dann stehst du jeden Tag wieder da. Fragst nichts. Willst nichts. Bist einfach da.“ 
+Jetzt dreht sie den Kopf, und ihr Blick ist so gerade wie ihre Klingenführung. „Ich weiß nicht, was das hier ist, 
+Thomas. Ich weiß nur, dass es mir fehlt, wenn du nicht kommst.“&lt;/div&gt;
 
-&lt;p&gt;Ihre Hand liegt auf dem kalten Stein zwischen euch. Du legst deine daneben — nicht darauf, daneben, den kleinen Finger an ihrem. Es ist die vorsichtigste Berührung der Welt, und sie zieht ihre Hand nicht weg. Sie lehnt den Kopf an deine Schulter, nur für ein paar Atemzüge, ehe die Glocke zum Appell ruft und sie sich aufrichtet, als wäre nichts gewesen.&lt;/p&gt;
+&lt;p&gt;Ihre Hand liegt auf dem kalten Stein zwischen euch. Du legst deine daneben — nicht darauf, daneben, den kleinen Finger an ihrem.
+Es ist die vorsichtigste Berührung der Welt, und sie zieht ihre Hand nicht weg. Sie lehnt den Kopf an deine Schulter, nur für ein paar Atemzüge, 
+ehe die Glocke zum Appell ruft und sie sich aufrichtet, als wäre nichts gewesen.&lt;/p&gt;
 
 &lt;div class=&quot;dialog&quot;&gt;„Kein Wort zu niemandem“, sagt sie, aber ihre Stimme ist weich dabei. „Das gehört uns.“&lt;/div&gt;
 
-&lt;div class=&quot;thought-box&quot;&gt;Kein Kuss, kein Schwur, kein Name für das Ganze. Nur eine Hand neben meiner und ein Kopf an meiner Schulter. Und trotzdem weiß ich: Was auch kommt — das hier trage ich mit hinaus, wohin immer man uns schickt.&lt;/div&gt;
+&lt;div class=&quot;thought-box&quot;&gt;Kein Kuss, kein Schwur, kein Name für das Ganze. Nur eine Hand neben meiner und ein Kopf an meiner Schulter. 
+Und trotzdem weiß ich: Was auch kommt — das hier trage ich mit hinaus, wohin immer man uns schickt.&lt;/div&gt;
 
 &lt;&lt;= setup.setNpcAffection(&quot;karla&quot;, 5)&gt;&gt;
 &lt;div class=&quot;system-alert status-positive&quot;&gt;♥ Etwas Eigenes — was zwischen dir und Karla ist, braucht keinen Namen mehr.&lt;/div&gt;
 
+&lt;&lt;trenner&gt;&gt;
 &lt;&lt;weiterImTag &quot;Zurück auf den Hof&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="66" name="Karla_Stufe_Reaktion" tags="" position="3400,5400" size="100,100">&lt;&lt;switch setup.romanzeStufe()&gt;&gt;
-&lt;&lt;case 1&gt;&gt;
-&lt;&lt;scene&gt;&gt;
-&lt;p&gt;Etwas hat sich verschoben, so leise, dass du es zuerst nicht benennen kannst. Karla, die sonst jeden Platz am Feuer mit den Ellenbogen verteidigt, rückt ein Stück, als du dich setzt — nicht viel, aber genug, dass du weißt: Es ist gemeint.&lt;/p&gt;
-&lt;&lt;/scene&gt;&gt;
-&lt;&lt;dialog&gt;&gt;
-&lt;p&gt;„Du bist weniger nutzlos, als du aussiehst“, sagt sie, ohne dich anzusehen, und in ihrem Mund ist das beinahe zärtlich. „Behalt das für dich.“&lt;/p&gt;
-&lt;&lt;/dialog&gt;&gt;
-&lt;&lt;case 2&gt;&gt;
-&lt;&lt;scene&gt;&gt;
-&lt;p&gt;Ihr sitzt auf der Mauer, die Beine über der Leere, und eine lange Weile sagt keiner etwas — und es ist kein Schweigen, das gefüllt werden müsste. Karla lehnt sich zurück, das Gesicht in den letzten Sonnenstrahl, und lässt dich sehen, was sie sonst niemandem zeigt: dass sie müde ist. Dass sie es sein darf, neben dir.&lt;/p&gt;
-&lt;&lt;/scene&gt;&gt;
-&lt;&lt;dialog&gt;&gt;
-&lt;p&gt;„Ich rede mit niemandem so wie mit dir“, sagt sie, und es klingt fast wie ein Vorwurf. „Ich weiß nicht, ob mir das gefällt.“ Aber sie steht nicht auf.&lt;/p&gt;
-&lt;&lt;/dialog&gt;&gt;
-&lt;&lt;case 3&gt;&gt;
-&lt;&lt;scene&gt;&gt;
-&lt;p&gt;Es kommt ohne Vorwarnung, wie alles, was Karla wirklich tut. Mitten in einem Satz, den du im selben Moment vergisst, greift sie in deinen Kragen, zieht dich zu sich und küsst dich — hart, entschlossen, ohne die geringste Scheu, so wie sie kämpft und flucht und lebt. Dann lässt sie ebenso plötzlich wieder los.&lt;/p&gt;
-&lt;&lt;/scene&gt;&gt;
-&lt;&lt;dialog&gt;&gt;
-&lt;p&gt;Sie mustert dich, ein wenig atemlos, das Kinn trotzig gehoben, als warte sie darauf, dass du etwas Dummes sagst, das sie dir übelnehmen kann. „Wenn du jetzt anfängst zu reden“, sagt sie leise, „bring ich dich um.“&lt;/p&gt;
-&lt;&lt;/dialog&gt;&gt;
-&lt;&lt;gedanke&gt;&gt;
-&lt;p&gt;Also rede ich nicht. Ich habe bei Karla gelernt, dass die wichtigsten Dinge die sind, die man nicht ausspricht.&lt;/p&gt;
-&lt;&lt;/gedanke&gt;&gt;
+  &lt;&lt;case 1&gt;&gt;
+    &lt;&lt;scene&gt;&gt;
+    &lt;p&gt;Etwas hat sich verschoben, so leise, dass du es zuerst nicht benennen kannst. Karla, die sonst jeden Platz am Feuer mit den Ellenbogen verteidigt,
+     rückt ein Stück, als du dich setzt — nicht viel, aber genug, dass du weißt: Es ist gemeint.&lt;/p&gt;
+    &lt;&lt;/scene&gt;&gt;
+    &lt;&lt;dialog&gt;&gt;
+    &lt;p&gt;„Du bist weniger nutzlos, als du aussiehst“, sagt sie, ohne dich anzusehen, und in ihrem Mund ist das beinahe zärtlich. „Behalt das für dich.“&lt;/p&gt;
+    &lt;&lt;/dialog&gt;&gt;
+  &lt;&lt;case 2&gt;&gt;
+    &lt;&lt;scene&gt;&gt;
+    &lt;p&gt;Ihr sitzt auf der Mauer, die Beine über der Leere, und eine lange Weile sagt keiner etwas — und es ist kein Schweigen, 
+    das gefüllt werden müsste. Karla lehnt sich zurück, das Gesicht in den letzten Sonnenstrahl, und lässt dich sehen, was sie sonst 
+    niemandem zeigt: dass sie müde ist. Dass sie es sein darf, neben dir.&lt;/p&gt;
+    &lt;&lt;/scene&gt;&gt;
+    &lt;&lt;dialog&gt;&gt;
+    &lt;p&gt;„Ich rede mit niemandem so wie mit dir“, sagt sie, und es klingt fast wie ein Vorwurf. „Ich weiß nicht, ob mir das gefällt.“ Aber sie steht nicht auf.&lt;/p&gt;
+    &lt;&lt;/dialog&gt;&gt;
+  &lt;&lt;case 3&gt;&gt;
+    &lt;&lt;scene&gt;&gt;
+    &lt;p&gt;Es kommt ohne Vorwarnung, wie alles, was Karla wirklich tut. Mitten in einem Satz, den du im selben Moment vergisst, greift sie in deinen Kragen, 
+    zieht dich zu sich und küsst dich — hart, entschlossen, ohne die geringste Scheu, so wie sie kämpft und flucht und lebt. Dann lässt sie ebenso plötzlich wieder los.&lt;/p&gt;
+    &lt;&lt;/scene&gt;&gt;
+    &lt;&lt;dialog&gt;&gt;
+    &lt;p&gt;Sie mustert dich, ein wenig atemlos, das Kinn trotzig gehoben, als warte sie darauf, dass du etwas Dummes sagst, das sie dir übelnehmen kann. 
+    „Wenn du jetzt anfängst zu reden“, sagt sie leise, „bring ich dich um.“&lt;/p&gt;
+    &lt;&lt;/dialog&gt;&gt;
+    &lt;&lt;gedanke&gt;&gt;
+    &lt;p&gt;Also rede ich nicht. Ich habe bei Karla gelernt, dass die wichtigsten Dinge die sind, die man nicht ausspricht.&lt;/p&gt;
+    &lt;&lt;/gedanke&gt;&gt;
 &lt;&lt;/switch&gt;&gt;
+&lt;&lt;trenner&gt;&gt;
 [[Weiter|Tageshub_Karla]]</tw-passagedata><tw-passagedata pid="67" name="Karla_Zeit_Mauer" tags="nach_Kap2_tag" position="3550,5450" size="100,100">&lt;&lt;scene&gt;&gt;Es gibt eine Stelle auf dem Wehrgang über dem Osttor, an der die Wache nie lange steht, weil der Wind dort beißt. Karla mag sie genau deshalb. Ihr sitzt nebeneinander auf dem kalten Stein, die Beine über der Kante, und unter euch liegt die Akademie wie ein Spielbrett, das euch für eine Stunde nichts angeht.&lt;&lt;/scene&gt;&gt;
 
 &lt;p&gt;Karla schweigt. Es ist kein leeres Schweigen — es ist ihres, und sie teilt es mit dir.&lt;/p&gt;
 
+&lt;&lt;trenner&gt;&gt;
 [[Das Schweigen halten.|Karla_Zeit_Mauer_Schweigen]]
-[[Erzählen — von früher, von den Bergen.|Karla_Zeit_Mauer_Reden]]
-
-
-\:: Karla_Zeit_Mauer_Schweigen {&quot;position&quot;:&quot;2200,4850&quot;,&quot;size&quot;:&quot;100,100&quot;}
-&lt;p&gt;Du sagst nichts. Der Wind sagt genug.&lt;/p&gt;
-&lt;p&gt;Nach einer langen Weile lehnt sich Karlas Schulter gegen deine — kaum ein Gewicht, vielleicht nur die Kälte, vielleicht nicht. Keiner von euch rückt ab. Als die Glocke zum Abendappell ruft, steht sie auf, klopft sich den Staub von der Hose und sagt im Gehen, ohne dich anzusehen:&lt;/p&gt;
-&lt;div class=&quot;dialog&quot;&gt;„Du bist der Einzige, mit dem Schweigen nicht anstrengend ist.“&lt;/div&gt;
-&lt;&lt;weiterImTag &quot;Zurück auf den Hof&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="68" name="Karla_Zeit_Mauer_Reden" tags="nach_Kap2_tag" position="3625,5675" size="100,100">&lt;p&gt;Du erzählst. Von den Bergen, vom Käse, vom langen Gesundwerden — Dinge, die du sonst niemandem erzählst. Karla hört zu, den Blick auf dem Horizont, und unterbricht dich kein einziges Mal.&lt;/p&gt;
-&lt;div class=&quot;dialog&quot;&gt;„Du warst krank“, sagt sie schließlich. „Und jetzt sitzt du hier oben im Wind und frierst freiwillig.“ Sie schüttelt den Kopf, aber es ist kein Vorwurf. „Zäher, als du aussiehst, Wabbler.“&lt;/div&gt;
+[[Erzählen — von früher, von den Bergen.|Karla_Zeit_Mauer_Reden]]</tw-passagedata><tw-passagedata pid="68" name="Karla_Zeit_Mauer_Reden" tags="nach_Kap2_tag" position="3625,5675" size="100,100">&lt;p&gt;Du erzählst. Von den Bergen, vom Käse, vom langen Gesundwerden — Dinge, die du sonst niemandem erzählst. Karla hört zu, 
+den Blick auf dem Horizont, und unterbricht dich kein einziges Mal.&lt;/p&gt;
+&lt;div class=&quot;dialog&quot;&gt;„Du warst krank“, sagt sie schließlich. „Und jetzt sitzt du hier oben im Wind und frierst freiwillig.“ 
+Sie schüttelt den Kopf, aber es ist kein Vorwurf. „Zäher, als du aussiehst, Wabbler.“&lt;/div&gt;
+&lt;&lt;trenner&gt;&gt;
 &lt;&lt;weiterImTag &quot;Zurück auf den Hof&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="69" name="Karla_Zeit_Mauer_Schweigen" tags="nach_Kap2_tag" position="3425,5675" size="100,100">&lt;p&gt;Du sagst nichts. Der Wind sagt genug.&lt;/p&gt;
-&lt;p&gt;Nach einer langen Weile lehnt sich Karlas Schulter gegen deine — kaum ein Gewicht, vielleicht nur die Kälte, vielleicht nicht. Keiner von euch rückt ab. Als die Glocke zum Abendappell ruft, steht sie auf, klopft sich den Staub von der Hose und sagt im Gehen, ohne dich anzusehen:&lt;/p&gt;
+&lt;p&gt;Nach einer langen Weile lehnt sich Karlas Schulter gegen deine — kaum ein Gewicht, vielleicht nur die Kälte, vielleicht nicht. 
+Keiner von euch rückt ab. Als die Glocke zum Abendappell ruft, steht sie auf, klopft sich den Staub von der Hose und sagt im Gehen, ohne dich anzusehen:&lt;/p&gt;
 &lt;div class=&quot;dialog&quot;&gt;„Du bist der Einzige, mit dem Schweigen nicht anstrengend ist.“&lt;/div&gt;
 &lt;&lt;= setup.setRomanze(1)&gt;&gt;
-&lt;&lt;weiterImTag &quot;Zurück auf den Hof&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="70" name="Karla_Zeit_Stadtgang" tags="" position="3750,5350" size="100,100">&lt;&lt;scene&gt;&gt;Karla in der Stadt ist ein anderes Bild: Sie geht durch das Gedränge des Marktes wie durch eine Gasse voller Gegner — wach, raumgreifend, die Hand nie weit vom Gürtel. Aber heute geht sie langsamer als nötig. Wegen dir, auch wenn sie das nie sagen würde.&lt;&lt;/scene&gt;&gt;
+&lt;&lt;trenner&gt;&gt;
+&lt;&lt;weiterImTag &quot;Zurück auf den Hof&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="70" name="Karla_Zeit_Stadtgang" tags="" position="3750,5350" size="100,100">&lt;&lt;scene&gt;&gt;Karla in der Stadt ist ein anderes Bild: Sie geht durch das Gedränge des Marktes wie durch eine Gasse voller Gegner — wach, 
+
+raumgreifend, die Hand nie weit vom Gürtel. Aber heute geht sie langsamer als nötig. Wegen dir, auch wenn sie das nie sagen würde.&lt;&lt;/scene&gt;&gt;
 
 &lt;&lt;if $npc.karla.memory.flags.haarband_getragen&gt;&gt;
 &lt;p&gt;Am Handgelenk trägt sie das rote Band. Eine Marktfrau sieht es, sieht euch beide, und grinst wissend. Karla starrt zurück, bis das Grinsen verschwindet — aber das Band nimmt sie nicht ab.&lt;/p&gt;
 &lt;&lt;/if&gt;&gt;
 
-&lt;p&gt;Ihr teilt euch heiße Maronen aus einer Tüte, streitet über die beste Pikenlänge, und vor dem Stand eines Waffenschmieds bleibt sie so lange stehen, dass der Händler schon Morgenluft wittert. Als ihr am Abend durchs Tor zurückkommt, ist nichts Besonderes geschehen — und genau das war das Besondere.&lt;/p&gt;
+&lt;p&gt;Ihr teilt euch heiße Maronen aus einer Tüte, streitet über die beste Pikenlänge, und vor dem Stand eines Waffenschmieds bleibt sie so lange stehen, 
+dass der Händler schon Morgenluft wittert. Als ihr am Abend durchs Tor zurückkommt, ist nichts Besonderes geschehen — und genau das war das Besondere.&lt;/p&gt;
 
-&lt;div class=&quot;thought-box&quot;&gt;Ein ganzer Nachmittag, an dem niemand etwas von uns wollte. Keine Listen, keine Spuren, keine Wände. Nur wir. Ich wusste gar nicht mehr, wie sich das anfühlt.&lt;/div&gt;
+&lt;div class=&quot;thought-box&quot;&gt;Ein ganzer Nachmittag, an dem niemand etwas von uns wollte. Keine Listen, keine Spuren, keine Wände. Nur wir. 
+Ich wusste gar nicht mehr, wie sich das anfühlt.&lt;/div&gt;
 
 &lt;&lt;= setup.setRomanze(1)&gt;&gt;
 &lt;&lt;= setup.removeMoney(4)&gt;&gt;
+&lt;&lt;trenner&gt;&gt;
 &lt;&lt;weiterImTag &quot;Zurück auf den Hof&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="71" name="Karla_Zeit_Training" tags="nach_Kap2_tag" position="3475,5025" size="100,100">&lt;&lt;set _stufe to setup.romanzeStufe()&gt;&gt;
-&lt;p&gt;Sie wirft dir die Übungsklinge zu, ohne ein „fang&quot; davor — das hat sich seit dem ersten Jahr nicht geändert, und es soll sich nicht ändern. Ihr geht in Position, und für eine Weile gibt es nur das Klacken der Schäfte, den Atem, den Staub.&lt;/p&gt;
+&lt;p&gt;Sie wirft dir die Übungsklinge zu, ohne ein „fang&quot; davor — das hat sich seit dem ersten Jahr nicht geändert, 
+und es soll sich nicht ändern. Ihr geht in Position, und für eine Weile gibt es nur das Klacken der Schäfte, den Atem, den Staub.&lt;/p&gt;
 
 &lt;&lt;if $npc.karla.affection &lt;= 15&gt;&gt;
-  &lt;&lt;if random(0,3) === 1 &gt;&gt;
+  &lt;&lt;dialog&gt;&gt;
+    &lt;p&gt;&lt;&lt;quote Das war ein gutes Training!&gt;&gt;Lobt sie euch, komplett ausser Atem. &lt;/p&gt;
+  &lt;&lt;/dialog&gt;&gt;
+  &lt;&lt;if random(1,2) eq 1 &gt;&gt;
       	&lt;&lt;= setup.setNpcAffection(&quot;karla&quot;, 1)&gt;&gt;
+  &lt;&lt;else&gt;&gt;
+    &lt;&lt;dialog&gt;&gt;
+      &lt;p&gt;&lt;&lt;quote Das reicht für heute.&gt;&gt; Sagt sie.&lt;/p&gt;
+    &lt;&lt;/dialog&gt;&gt;
   &lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
 &lt;&lt;if _stufe gte 1&gt;&gt;
 &lt;p&gt;Nach dem dritten Durchgang merkst du es wieder: Ihre linke Seite. Sie deckt sie besser als früher — aber du weißt, wo sie ist. Und Karla weiß, dass du es weißt.&lt;/p&gt;
 
+&lt;&lt;trenner&gt;&gt;
 [[Die linke Seite meiden, wie immer.|Karla_Zeit_Training_Schonen]]
 [[Bewusst von links kommen — sie fordern.|Karla_Zeit_Training_Fordern]]
 &lt;&lt;else&gt;&gt;
 &lt;p&gt;Als ihr abbrecht, seid ihr beide außer Atem, und Karla nickt dir zu — anerkennend, sachlich. „Du wirst besser&quot;, sagt sie. Von ihr ist das ein halber Festumzug.&lt;/p&gt;
 &lt;&lt;= setup.setRomanze(0)&gt;&gt;
+&lt;&lt;trenner&gt;&gt;
 &lt;&lt;weiterImTag &quot;Zurück auf den Hof&quot;&gt;&gt;
 &lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="72" name="Karla_Zeit_Training_Fordern" tags="nach_Kap2_tag" position="3375,4875" size="100,100">&lt;&lt;if $npc.karla.romanze gte 8&gt;&gt;
 &lt;p&gt;Du kommst von links. Langsam genug, dass sie es sieht. Schnell genug, dass es zählt.&lt;/p&gt;
@@ -8899,11 +8936,13 @@ mit Freundlichkeit anrichten — und frage mich, ob es einen Unterschied macht, 
 &lt;p&gt;Sie stellt die Klinge ins Gestell und geht. Du bleibst im Staub zurück, mit dem Gefühl, an eine Tür geklopft zu haben, zu der du noch keinen Schlüssel hast.&lt;/p&gt;
 &lt;&lt;= setup.setRomanze(-2)&gt;&gt;
 &lt;&lt;/if&gt;&gt;
+&lt;&lt;trenner&gt;&gt;
 &lt;&lt;weiterImTag &quot;Zurück auf den Hof&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="73" name="Karla_Zeit_Training_Schonen" tags="nach_Kap2_tag" position="3550,4875" size="100,100">&lt;p&gt;Du greifst an wie immer — von rechts, von vorn, sauber. Sie pariert, kontert, treibt dich über den Platz, und irgendwann steht ihr beide lachend im Staub, so weit Karla eben lacht: ein kurzes, raues Ausatmen, das mehr wert ist als das Gelächter anderer Leute.&lt;/p&gt;
 
 &lt;div class=&quot;thought-box&quot;&gt;Ich könnte sie treffen, wenn ich von links käme. Wir wissen es beide. Und genau deshalb tue ich es nicht.&lt;/div&gt;
 
 &lt;&lt;= setup.setRomanze(1)&gt;&gt;
+&lt;&lt;trenner&gt;&gt;
 &lt;&lt;weiterImTag &quot;Zurück auf den Hof&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="74" name="Jarek_S1_Vorlesung" tags="interrupt einmalig kapitel-opener kap1" position="2800,75" size="100,100">&lt;&lt;set $npc.jarek.memory.flags.s1_seen = true&gt;&gt;
 &lt;div class=&quot;scenery-text&quot;&gt;Der Hörsaal ist kalt — die Akademie spart Holz für Räume, in denen gedacht statt gekämpft wird. Die Rekruten sitzen dicht gedrängt auf den Bänken, mehr aus Wärmebedürfnis als aus Wissensdurst, und über allem liegt der trockene Geruch von Staub und altem Papier.
 Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf einem abgegriffenen Bändchen, dessen Rücken du von hier aus nicht entziffern kannst — dessen Titel du aber kennst. Die Freiheitserklärung. Jeder kennt sie. Kaum einer hat sie gelesen.&lt;/div&gt;
