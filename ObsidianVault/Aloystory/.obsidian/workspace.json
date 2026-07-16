@@ -13,11 +13,11 @@
             "state": {
               "type": "canvas",
               "state": {
-                "file": "Biwag/Ablaufplan.canvas",
+                "file": "Duell/Ablaufplan.canvas",
                 "viewState": {
-                  "x": 9411.773402223309,
-                  "y": 10189.036847492105,
-                  "zoom": 0.6666666666666667
+                  "x": 646.8482330512425,
+                  "y": 991.3602347384283,
+                  "zoom": -1.9447680454156808
                 }
               },
               "icon": "lucide-layout-dashboard",
@@ -188,6 +188,12 @@
   },
   "active": "2e86e795bfe20ffd",
   "lastOpenFiles": [
+    "temp Tesing/Unbenannt.canvas",
+    "temp Tesing/Ereignis 3.md",
+    "temp Tesing/Ereignis 1.md",
+    "temp Tesing/Ereignis 2.md",
+    "Biwag/Ablaufplan.canvas",
+    "temp Tesing",
     "Biwag/Story/Biwag_Tag1_Schonen.md",
     "Biwag/Story/Biwag_Tag4_Hart.md",
     "Biwag/Story/Biwag_Tag7.md",
@@ -197,7 +203,6 @@
     "Biwag/Story/Biwag_Tag4_Strecken.md",
     "Biwag/Story/Biwag_Tag3_Rasten.md",
     "Biwag/Werte/biwagTag1Tempo.md",
-    "Biwag/Ablaufplan.canvas",
     "Biwag/Story/Biwag_Tag1.md",
     "Biwag/Story/Biwag_Aufbruch.md",
     "Aloy Landesinfos/06_Aloy_Splitterlande.md",
@@ -213,10 +218,6 @@
     "Biwag/Werte/biwagBeatsDone.md",
     "Biwag/Werte/biwagWacheBemerkt.md",
     "Biwag/Werte/biwagWenzelWeg.md",
-    "Biwag/Werte/biwagWenzelHart.md",
-    "Biwag/Werte/biwagBond_wenzel.md",
-    "Biwag/Werte/biwagReiberei.md",
-    "Biwag/Werte/biwagTierfaehrte.md",
     "Biwag/Story",
     "Biwag/Werte",
     "Biwag",
@@ -226,7 +227,6 @@
     "Duell/Kanon.md.tmp.41676.94c8e7fa08fe",
     "Aloy Landesinfos/Charackterinfos",
     "Aloy Landesinfos",
-    "Duell/Kanon.md.tmp.33544.32cf70f1e319",
-    "Optionen/Duell_S3_PavelVomBriefErzaehlen.md.tmp.38732.d786d16bd2c4"
+    "Duell/Kanon.md.tmp.33544.32cf70f1e319"
   ]
 }

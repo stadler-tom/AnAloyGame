@@ -17,14 +17,6 @@ $(document).on(':passagedisplay', function (ev) {
 });
 
 (function () {
-    var s = document.createElement('script');
-    s.setAttribute('data-goatcounter', 'https://stadler-tom.goatcounter.com/count');
-    s.async = true;
-    s.src = '//gc.zgo.at/count.js';
-    document.head.appendChild(s);
-})();
-
-(function () {
   var url = 'https://aloystorycounter.stadler-tom.workers.dev/';
   try {
     if (!localStorage.getItem('anAloyGezaehlt')) {
@@ -34,4 +26,15 @@ $(document).on(':passagedisplay', function (ev) {
   } catch (e) {
     try { fetch(url, { keepalive: true }); } catch (e2) {}
   }
+})();
+
+/* Titelbilder vorab laden, damit sie beim ersten Rendern schon im Cache liegen */
+(function () {
+    [
+        "images/Thomas_Kap0.png",
+        "images/Thomas_Kap1.png",
+        "images/Thomas_Kap1_scar.png",
+        "images/Thomas_Kap2.png",
+        "images/Thomas_Kap2_scar.png"
+    ].forEach(function (src) { var img = new Image(); img.src = src; });
 })();

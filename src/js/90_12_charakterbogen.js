@@ -240,6 +240,78 @@ setup.verdachtLabel = function (v) {
     if (v <= -1) return "eher unverdächtig";
     return "unklar";
 };
+/* Ermittlungsakte — visueller Aktendeckel aus world.ermittlung */
+setup.renderErmittlungsakte = function () {
+    const e = State.variables.world.ermittlung;
+    if (!e || (!e.active && (!e.spuren || e.spuren.length === 0))) {
+        return `<p class="journal-empty">Noch liegt keine Akte an.</p>`;
+    }
+    const npcs = State.variables.npc || {};
+    let out = `<div class="akte">`;
+
+    /* Aktendeckel */
+    out += `<div class="akte-kopf">`;
+    out += `<div class="akte-stempel">Vertraulich</div>`;
+    out += `<div class="akte-titel">Ermittlungsakte</div>`;
+    out += `<div class="akte-sub">84. Banner &middot; Stufe ${e.stufe || 0}</div>`;
+    if (e.motiv) out += `<div class="akte-motiv">Vermutetes Motiv: <span>${e.motiv}</span></div>`;
+    out += `</div>`;
+
+    /* Verdächtige */
+    const vKeys = e.verdacht ? Object.keys(e.verdacht).filter(k => (e.verdacht[k] || 0) !== 0) : [];
+    out += `<div class="akte-block"><div class="akte-block-titel">Verdächtige</div>`;
+    if (vKeys.length === 0) {
+        out += `<div class="akte-leer">Noch fällt der Verdacht auf niemanden.</div>`;
+    } else {
+        out += `<div class="akte-karten">`;
+        vKeys.sort((a, b) => (e.verdacht[b] || 0) - (e.verdacht[a] || 0)).forEach(k => {
+            const npc = npcs[k] || {};
+            const name = npc.name || k;
+            const v = setup.clamp(e.verdacht[k] || 0, -10, 10);
+            const pct = Math.round(((v + 10) / 20) * 100);
+            const stufe = v >= 8 ? "akut" : v >= 4 ? "hoch" : v >= 1 ? "leicht" : v <= -1 ? "entlastet" : "neutral";
+            const img = npc.imageKap2 || npc.image || "";
+            const fotoStyle = img ? ` style="background-image:url('${img}')"` : "";
+            out += `<div class="akte-karte akte-karte-${stufe}">`;
+            out += `<div class="akte-foto"${fotoStyle}></div>`;
+            out += `<div class="akte-karte-txt">`;
+            out += `<div class="akte-name">${name}</div>`;
+            out += `<div class="akte-vlabel">${setup.verdachtLabel(v)}</div>`;
+            out += `<div class="akte-meter"><div class="akte-meter-fill akte-meter-${stufe}" style="width:${pct}%"></div></div>`;
+            out += `</div></div>`;
+        });
+        out += `</div>`;
+    }
+    out += `</div>`;
+
+    /* Gesicherte Spuren — angepinnte Zettel */
+    out += `<div class="akte-block"><div class="akte-block-titel">Gesicherte Spuren</div>`;
+    if (!e.spuren || e.spuren.length === 0) {
+        out += `<div class="akte-leer">Noch keine Spur gesichert.</div>`;
+    } else {
+        out += `<div class="akte-zettel-feld">`;
+        e.spuren.forEach((id, i) => {
+            const label = (e.spurenText && e.spurenText[id]) || id;
+            out += `<div class="akte-zettel akte-zettel-${i % 3}"><span class="akte-pin"></span>${label}</div>`;
+        });
+        out += `</div>`;
+    }
+    out += `</div>`;
+
+    /* Erledigte Schritte (aus sN_done-Flags) */
+    const steps = Object.keys(e.flags || {})
+        .filter(f => /^s\d+_done$/.test(f) && e.flags[f])
+        .map(f => Number(f.match(/^s(\d+)_done$/)[1]))
+        .sort((a, b) => a - b);
+    if (steps.length) {
+        out += `<div class="akte-block"><div class="akte-block-titel">Erledigte Schritte</div><div class="akte-schritte">`;
+        steps.forEach(n => { out += `<span class="akte-schritt">&#10004; S${n}</span>`; });
+        out += `</div></div>`;
+    }
+
+    out += `</div>`;
+    return out;
+};
 
 setup.renderErmittlungstagebuch = function () {
     const e = State.variables.world.ermittlung;

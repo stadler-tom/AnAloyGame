@@ -1521,6 +1521,22 @@ gedient, vor gefühlt hundert Jahren. Und wenn ich mir das so anschau —" er de
 „— hat sich seit damals rein gar nichts geändert."</p>
 <</dialog>>
 
+<<<<dialog>>
+  <p><<quote Jetzt ich gefunden dich Lenz!>> Eine stimme so fest wie eine Eiche lässt dich umschauen.</p>
+  <<if <<set $npc.konrad.known  >>
+	<p><<quote Ah kleiner Rekrut aus Schenke ist auch hier.>></p>
+	<<if $npc.schlaeger.memory.flags.bier_spendiert>>
+		<p><<quote Freut mich dich wieder zu sehen!>> er hebt seinen Krug und zwinkert dir zu.</p>
+	<</if>>
+  <</if>>
+  <p><<quote Ah Konrad! schön das du es einrichten konntest!>>Begrüßt ihn Lenz.</p>
+<<if not $npc.konrad.known  >>
+	<p><<quote Das hier ist ein guter Freund von uns. Konrad Schläger. Er hat den weiten Weg aus dem Imperium auf sich genommen.>></p>
+<</if>>>
+
+  <p><<quote Komm konrad, ich muss dich sprechen.>> Lenz führt Konrad Richtug Akademie. Was die beiden wohl aushecken?</p>
+<</dialog>>>>
+
 <<gedanke>>
 <p>Das ist es also, wohinein ich wachse. Nicht Drill, nicht Rindlers Waage. Das hier — Männer und Frauen, die zu
 viel trinken und zu viel reden und füreinander durchs Feuer gingen. Morgen bin ich vielleicht wieder nur ein Rekrut.
@@ -1715,15 +1731,15 @@ Pranke ganz beiläufig eines deiner Kupferstücke vom Rand des Schilds.</p>
 <p>Du siehst es. Er bemerkt es garnicht, weil er noch am erzählen ist.</p>
 
 <<dialog>>
-<p>„Ähm", machst du, verlegen, und deutest auf seine Faust. „Das … das war meins."</p>
+<p>„Ähm", machst du verlegen und deutest auf seine Faust. „Das … das war meins."</p>
 <p>Heinrich hält inne, sieht dich an, als hättest du ihm eine ungeheure Beleidigung ins Gesicht geschleudert.</p>
 <p>„Nein, ich nehm doch nicht dein Kupfer! Bist du dumm, ich hab mein eigenes."</p>
 <p>Er hält deinen Blick. Das Kupferstück blitzt deutlich sichtbar zwischen seinen Fingern.</p>
 <p>„Hab ich dein Kupfer genommen?" fragt er verdutzt.</p>
 <p>Eine Pause. Das halbe Lager sieht her.</p>
-<p>„Nein!" Ist er sich sicher.</p>
+<p>„Nein!" Er nickt, als wollte er sich selbst überzeugen.</p>
 <p>Noch eine Pause. Das Kupfer ist immer noch da, für jeden zu sehen.</p>
-<p>„… Wirklich?" fragt er nach.</p>
+<p>„… Wirklich?" fragt er schließlich leise nach.</p>
 <</dialog>>
 
 <p>Einen Herzschlag lang hält die Stille. Dann bricht das Lager in brüllendes Gelächter aus. Am Rand des Feuers

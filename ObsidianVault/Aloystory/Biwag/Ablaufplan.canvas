@@ -49,7 +49,6 @@
 		{"id":"Biwag_Tag7_Ankunft","type":"text","text":"[[Biwag_Tag7_Ankunft]]","x":12063,"y":9188,"width":240,"height":60},
 		{"id":"Biwag_Tag7_Forcieren","type":"text","text":"[[Biwag_Tag7_Forcieren]]","x":12500,"y":9125,"width":240,"height":60},
 		{"id":"Biwag_Tag7_Wuerdig","type":"text","text":"[[Biwag_Tag7_Wuerdig]]","x":11188,"y":8938,"width":240,"height":60},
-		{"id":"Biwag_Drill","type":"text","text":"[[Biwag_Drill]]","x":8980,"y":9993,"width":240,"height":60,"color":"2"},
 		{"id":"Biwag_Loadout","type":"text","text":"[[Biwag_Loadout]]","x":8980,"y":10178,"width":240,"height":60,"color":"2"},
 		{"id":"Biwag_Aufbruch","type":"text","text":"[[Biwag_Aufbruch]]","x":8980,"y":10333,"width":240,"height":50,"color":"2"},
 		{"id":"Biwag_Tag1","type":"text","text":"[[Biwag_Tag1]]","x":8980,"y":10453,"width":240,"height":60,"color":"5"},
@@ -58,7 +57,8 @@
 		{"id":"Biwag_Tag1_Lager","type":"text","text":"[[Biwag_Tag1_Lager]]","x":8980,"y":10813,"width":240,"height":60},
 		{"id":"Biwag_Tag1_Vorraete_Pruefen","type":"text","text":"[[Biwag_Tag1_Vorraete_Pruefen]]","x":8800,"y":10973,"width":240,"height":60},
 		{"id":"Biwag_Tag1_Vorraete_Belassen","type":"text","text":"[[Biwag_Tag1_Vorraete_Belassen]]","x":9100,"y":10973,"width":240,"height":60},
-		{"id":"Biwag_Tag1_Abend","type":"text","text":"[[Biwag_Tag1_Abend]]","x":8980,"y":11133,"width":240,"height":60}
+		{"id":"Biwag_Tag1_Abend","type":"text","text":"[[Biwag_Tag1_Abend]]","x":8980,"y":11133,"width":240,"height":60},
+		{"id":"Biwag_Drill","type":"text","text":"[[Biwag_Drill]]","x":8980,"y":10000,"width":240,"height":60,"color":"2"}
 	],
 	"edges":[
 		{"id":"Biwag_Aufbruch::Biwag_Tag1","fromNode":"Biwag_Aufbruch","fromSide":"bottom","toNode":"Biwag_Tag1","toSide":"top"},

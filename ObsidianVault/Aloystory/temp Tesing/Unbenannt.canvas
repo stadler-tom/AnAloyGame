@@ -1,0 +1,11 @@
+{
+	"nodes":[
+		{"id":"9d14f29eb06300ad","x":-1080,"y":-280,"width":360,"height":200,"type":"file","file":"temp Tesing/Ereignis 1.md"},
+		{"id":"f4a07d1be5d15849","x":-520,"y":-280,"width":360,"height":200,"type":"file","file":"temp Tesing/Ereignis 2.md"},
+		{"id":"c711f0889ad2aab7","x":40,"y":-280,"width":360,"height":200,"type":"file","file":"temp Tesing/Ereignis 3.md"}
+	],
+	"edges":[
+		{"id":"5cd6f29e4148c837","fromNode":"9d14f29eb06300ad","fromSide":"bottom","toNode":"f4a07d1be5d15849","toSide":"top"},
+		{"id":"5f3c9facd331de6f","fromNode":"f4a07d1be5d15849","fromSide":"bottom","toNode":"c711f0889ad2aab7","toSide":"top"}
+	]
+}

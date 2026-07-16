@@ -1444,7 +1444,7 @@
 [
   { "text": "Das Bier ist dünn und leicht sauer, doch nach dem ersten Schluck spürst du, wie sich etwas in deinen Schultern löst, das den ganzen Tag über festgesessen hat.", "outcome": { "npc": null, "fields": [ { "field": "condition", "value": 4, "chance": 70 } ] } },
   { "text": "Du trinkst schneller, als es klug wäre, und der Raum beginnt für einen Moment sanft zu schwanken. Als du aufstehst, ist dir schwindliger, als dir lieb ist.", "outcome": { "npc": null, "fields": [ { "field": "condition", "value": -5, "chance": 40 } ] } },
-  { "text": "Ein Fuhrmann am Nebentisch hebt seinen Krug in deine Richtung, ein stummer Gruß unter Fremden, die für diesen einen Abend keine Fremden sind.", "outcome": { "npc": null, "fields": [ { "field": "condition", "value": 3, "chance": 60 } ] } },
+  { "text": "Ein Fuhrmann am Nebentisch hebt seinen Krug in deine Richtung, ein stummer Gruß unter Fremden, die für diesen einen Abend keine Fremden sind.", "outcome": { "npc": null, "fields": [ { "field": "condition", "value": 3, "chance": 60 }, { "field": "honesty", "value": 3, "chance": 70 } ] } },
   { "text": "Das Bier schmeckt nach nichts Besonderem, doch die Wärme der Stube und das Gemurmel um dich herum tun ihre eigene, stille Arbeit.", "outcome": { "npc": null, "fields": [ { "field": "condition", "value": 5, "chance": 55 } ] } },
   { "text": "Du trinkst allein, den Blick auf den Krug gerichtet, und für eine Weile ist auch das eine Art von Ruhe.", "outcome": null }
 ]
@@ -1466,10 +1466,10 @@
 		"outcome": { "npc": null, "fields": [ { "field": "moneyLoss", "value": 8, "chance": 100 } ] },
 		"checkOn": "perception",
 		"checkSuccessText": "Eine flinke Hand streift deinen Gürtel, du bemerkst sie und schlägst sie weg. Als du dich umsiehst ist der Dieb schon wieder in der Menge verschwunden."},
-  { "text": "Ein alter Landsknecht, dem ein Bein fehlt, erzählt dir gegen ein kleines Almosen von seinen Feldzügen. Du hörst zu, länger, als du wolltest, und gibst ihm am Ende mehr, als du eigentlich vorhattest.", "outcome": { "npc": null, "fields": [ { "field": "money", "value": -3, "chance": 100 }, { "field": "condition", "value": 2, "chance": 50 } ] } },
-  { "text": "Ein Kaufmann, dessen Karren im Schlamm feststeckt, bittet dich um eine kräftige Schulter. Du hilfst, und er drückt dir zum Dank ein paar Münzen in die Hand.", "outcome": { "npc": null, "fields": [ { "field": "money", "value": 2, "chance": 70 }, { "field": "condition", "value": -3, "chance": 100 } ] } },
+  { "text": "Ein alter Landsknecht, dem ein Bein fehlt, erzählt dir gegen ein kleines Almosen von seinen Feldzügen. Du hörst zu, länger, als du wolltest, und gibst ihm am Ende mehr, als du eigentlich vorhattest.", "outcome": { "npc": null, "fields": [ { "field": "money", "value": -3, "chance": 100 }, { "field": "condition", "value": 2, "chance": 50 }, { "field": "honesty", "value": 2, "chance": 80 } ] } },
+  { "text": "Ein Kaufmann, dessen Karren im Schlamm feststeckt, bittet dich um eine kräftige Schulter. Du hilfst, und er drückt dir zum Dank ein paar Münzen in die Hand.", "outcome": { "npc": null, "fields": [ { "field": "money", "value": 2, "chance": 70 }, { "field": "condition", "value": -3, "chance": 100 }, { "field": "honesty", "value": 3, "chance": 80 } ] } },
   { "text": "Zwei Weiber am Brunnen tuscheln über einen Schreiber der Akademie, der neuerdings so nervös sei wie ein Dieb kurz vor der Tat. Du gehst weiter, als hättest du nichts gehört — doch die Worte bleiben in dir hängen.", "outcome": { "npc": "orenmalk", "fields": [ { "field": "verdacht", "value": 0, "chance": 0 } ] } },
-  { "text": "Ein betrunkener Söldner rempelt dich an, mehr aus Unachtsamkeit als Bosheit, murmelt eine Entschuldigung und taumelt weiter.", "outcome": null },
+  { "text": "Ein betrunkener Söldner rempelt dich an, mehr aus Unachtsamkeit als Bosheit, murmelt eine Entschuldigung und taumelt weiter.", "outcome": { "npc": null, "fields": [ { "field": "honesty", "value": 3, "chance": 100 } ] }},
   { "text": "Eine Streunerkatze folgt dir eine Weile durch die Gassen, als hätte sie beschlossen, dass du ihr Beschützer seist. Du lässt sie gewähren.", "outcome": null },
   { "text": "Ein Kind drückt dir wortlos eine verwelkte Blume in die Hand und rennt davon, ehe du fragen kannst, warum.", "outcome": null }
 ]

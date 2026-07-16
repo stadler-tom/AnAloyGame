@@ -114,8 +114,38 @@ sein Bett noch leer bis auf ein paar Seile und einen losen Sack Nägel. Er wird 
 was ihr nicht hineinlegt, müsst ihr tragen, Meile um Meile, und was ihr weder hineinlegt noch tragt, wird euch draußen fehlen, 
 wenn es am wenigsten passt.</p>
 
+<p>Gerade als du dich aufmachen willst zum Packen lässt dich eine Stimme innehalten.</p>
+<<dialog>>
+	<p><<quote Weibel, also>> Es ist der Schinder, seid der Kurt die Ausbildung übernommen hat hast du ihn Kaum mehr gesehen.
+	<p><<quote Das ging ja bei dir schneller als erwartet!>> Er grinst, aufrichtig sogar.</p>
+	<p><<quote einen Lachen von dir, auch wenn es nur ein Grinsen ist hätte ich nicht erwartet.>> Entgegnest du ihm</p>
+	<p><<quote Es gibt nichts das es nicht gibt, Junge!>> Antwortet er.</p>
+
+	<<if $npc.schinder.affection gt 0 >>
+		<p><<quote Du warst ein guter Frischling! Ich wollte dir nur viel Glück wünschen.>> Sagt er dir.</p>
+	<<else>>
+		<p><<quote Jede Gruppe wählt einen der sie Führt. Weil keiner die Verantwortung will.>> Sagt er dir.</p>
+	<</if>>
+
+	<<if setup.hasNpcMemory("schinder", "zeigt_eigeninitiative")>>
+		<p><<quote Du bist jemand der Handelt, das hast du mir gezeigt. Vertrau auf sich selbst, du wirst die richtigen Enscheidungen treffen. 
+		Und jetzt Hau ab und pack den Waagen!>> gibt er dir mit auf den Weg.</p> 
+		<<= setup.setNpcAffection("schinder", 2)>>
+	<<elseif setup.hasNpcMemory("schinder", "ist_befehlstreu")>>Er mustert dich anders als die anderen — er nickt kühl, ein Frontsoldat, der tut, was man ihm sagt.
+		<p><<quote Du bist ein Frontsoldat, der tut, was man ihm sagt, das hast du mir gezeigt. Vertrau auf die Ausbildung. Wir haben dir die Mittel gegeben 
+		die richtigen Enscheidungen treffen. Und jetzt Hau ab und pack den Waagen!>> gibt er dir mit auf den Weg.</p> 
+		<<= setup.setNpcAffection("schinder", 2)>>
+	<<elseif setup.hasNpcMemory("schinder", "ist_panisch")>>Er mustert dich anders als die anderen — er schüttelt enttäuscht den Kopf, dreht sich weg und geht weiter.
+		<p><<quote Unter Druck reagierst du panisch, das hast du mir gezeigt.Vertrau auf die Ausbildung. Wir haben dir die Mittel gegeben 
+		die richtigen Enscheidungen treffen. Und Atme tief durch befor du handelst! Und jetzt Hau ab und pack den Waagen!>> gibt er dir mit auf den Weg.</p> 
+		<<= setup.setNpcAffection("schinder", 1)>>
+	<</if>>
+
+<</dialog>>
+
 <p>Die anderen acht warten. Sie warten auf dich.</p>
 
+<<trenner>>
 <span class="weiter-link">[[Den Karren beladen->Biwag_Loadout]]</span>
 
 

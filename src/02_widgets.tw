@@ -49,6 +49,10 @@
 <hr class="trenner-raute">\
 <</widget>>
 
+<<widget "quote">>\
+„<<print _args.join(' ')>>“\
+<</widget>>
+
 
 
 

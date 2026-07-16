@@ -34,6 +34,23 @@ setup.skillCheck = function (skillKey, difficulty, modifier) {
     };
 };
 
+setup.hasAnyRequiredSkill = function(difficulty) {
+    var knowledge = State.variables.player.knowledge || {};
+    return Object.values(knowledge).some(function (value) {
+        return value >= difficulty;
+    });
+};
+
+/* Verschlagenheit: steigt, wenn Ehrlichkeit fällt. +5 (skrupellos) … −5 (grundehrlich) */
+setup.verschlagenheitMod = function () {
+    return -setup.honestyMod();
+};
+
+setup.honestyMod = function () {
+    var h = (State.variables.player.stats && State.variables.player.stats.honesty) || 0;
+    return Math.round((setup.clamp(h, 0, 100) - 50) / 10);
+};
+
 /* Sichtbare Info-Box zu einer Probe. Direkt nach dem Check ausgeben:
    <<set _r to setup.skillCheck("thievery", 14)>>
    <<= setup.skillCheckAlert(_r)>> */

@@ -190,6 +190,9 @@ setup.applyOutcome = function (outcome) {
             case "verdacht":
                 out += setup.setNpcsuspicion(outcome.npc, f.value);
                 break;
+            case "honesty":
+                out += setup.setPlayerStat("honesty", f.value);
+                break;
             case "condition":
                 State.variables.player.condition = setup.clamp(
                     State.variables.player.condition + f.value, 0, 100);

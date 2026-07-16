@@ -56,7 +56,9 @@ setup.resetDailyVariables = function () {
     world.wuerfelSpiel.gespielt = 0; /* Kap2: WürfelspielCounter zurücksetzen */
     world.wuerfelSpiel.cheat = 0; /* Kap2: WürfelspielCheat zurücksetzen */
     world.kirchenBesuch = false; /* Kap2: Kirchenbesuch zurücksetzen */
+    world.flags.barsingerEncounter = false; /* Barsinger encounter in schenke zurücksetzten */
     player.trinken = 0; /* Kap2: Trinken zurücksetzen */
+
     setup.tickKarlaDruck();
 };
 

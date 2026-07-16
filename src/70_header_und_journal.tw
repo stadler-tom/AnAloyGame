@@ -91,7 +91,7 @@
 :: Notizbuch_Ermittlung {"position":"1125,0","size":"100,100"}
 <h2>🔍 Ermittlungstagebuch</h2>
 
-<<= setup.renderErmittlungstagebuch() >>
+<<= setup.renderErmittlungsakte() >>
 <span class="weiter-link">
     <<link "Übersicht">><<run setup.notizbuch("journalAnsicht")>><</link>>
 </span>
@@ -126,28 +126,14 @@
 
 
 :: StoryMenu {"position":"400,275","size":"100,100"}
-<<set _journalPages = ["journalAnsicht", "Notizbuch_Personen", "Notizbuch_Kameraden", "Notizbuch_Geruechte", "Notizbuch_Ermittlung"]>>
 
-<<if not _journalPages.includes(passage())>>
-
-            <<if $world.kapitel1_gesperrt === true and setup.ermittlungBekannt()>>
-                        <<link "📖 Ermittlungsstand" "Notizbuch_Ermittlung">><</link>>
-             <</if>>
-	
-<<else>>
-	<<if $world.kapitel1_gesperrt === true and setup.ermittlungBekannt()>>
-        <<link "📖 Ermittlungsstand">><<run setup.notizbuch("Notizbuch_Ermittlung")>><</link>>
-	<</if>>
-<</if>>
+ 
 
 
 :: StorySubtitle {"position":"250,275","size":"100,100"}
 <<if $player.flags.jareknarbe === undefined>>
     <<set $player.flags.jareknarbe = false>>
 <</if>>
-
-
-
 
 <<if $showLogo>>
     <<if $world.kapitel1_gesperrt === false>>

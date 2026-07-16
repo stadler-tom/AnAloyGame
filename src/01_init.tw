@@ -240,6 +240,7 @@
     },
     haddl: {
         name: "Hartmut Hadde Wurz",
+        image: "images/Haddl.png",
         known: false,
         faction: "84. Banner",
         affection: 0,
@@ -298,6 +299,7 @@
 
     rosi: {
         name: "Rosina Hugendubel",
+        image: "images/Rosi.png",
         known: false,
         faction: "84. Banner",
         affection: 0,
@@ -462,6 +464,24 @@
         journalEntry: "Ein Bretone. Mit einem Hang für Würfelspiele. Redselig, aber nicht dumm. Versteht sich gut darauf Leuten dinge einzureden die sie nicht wollen."
 
     },
+
+    /* ===========================
+       Imperium
+       =========================== */
+
+    konrad: {
+        name: "Konrad Schläger",
+        known: false,
+        image: "images/Konrad.png",
+        faction: "Imperium",
+        affection: 0,
+        trust: false,
+        isRealPlayer: true,
+        memory: { flags: {}, events: [] },
+        journalEntry: "Einer vom Imperium! Ein Hüne von einem Kerl, aus der Ostmark. Den Akzent in dem er spricht hast du noch nie gehört."
+
+    },
+
     
 } >>
 

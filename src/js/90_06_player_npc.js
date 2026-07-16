@@ -144,7 +144,7 @@ setup.syncPlayerRel = function () {
 };
 
 setup.migrateWorld = function () {
-    var w = State.variables.world;
+    var w = State.variables.world; 
     if (!w) return;
 
     if (!w.flags) w.flags = {};
@@ -156,6 +156,8 @@ setup.migrateWorld = function () {
 $(document).on(":passagestart", function () {
     setup.syncPlayerRel();
     setup.migrateWorld();
+    var known = State.variables.npc && State.variables.npc.sergeant && State.variables.npc.sergeant.known === true;
+    jQuery("html").toggleClass("hat-titelbild", known);
 });
 
 /* --- Inventar --- */
@@ -374,3 +376,5 @@ setup.unbekannteSoeldner = function () {
     }
     return out;
 };
+
+

@@ -365,6 +365,7 @@ Du sagst noch nichts davon. Aber der Gedanke sitzt in dir wie ein Splitter, den 
 <<weiterImTag "Weiter">>
 
 :: Ermittlung_S2_Einbruch [interrupt einmalig kapitel-opener] {"position":"750,5275","size":"100,100"}
+<<= setup.setPlayerStat("honesty", -3)>>
 <<if setup.ermMit()>>
 	<<scene>>
 	<p>Die Nacht, die ihr euch ausgesucht habt, ist eine ohne Mond — Karla hat drei Abende lang den Himmel beobachtet, ehe sie diesen für richtig befand. Kein Licht außer den Wachfeuern an den Toren, kein Laut außer dem Wind, der durch die leeren Übungshöfe streicht und die losen Läden der Waffenausgabe gegen ihre Rahmen schlagen lässt, immer und immer wieder, bis das Geräusch selbst zur Stille gehört.</p>
@@ -1113,7 +1114,6 @@ Und die Einzige, die mit mir darüber hätte flüstern können, sitzt zwei Tages
 
 :: Ermittlung_S2_Verwaltungstrick [einmalig interrupt ] {"position":"1125,5275","size":"100,100"}
 
-//kann nur mit Karla passieren
 
 <<scene>>
 <p>Der Nachmittag ist grau und geschäftig, die Stunde, in der die Waffenausgabe am meisten Betrieb hat — Rekruten, die Übungswaffen tauschen, ein Korporal, der nach fehlenden Riemen fragt, das ständige Kommen und Gehen, in dem ein einzelner Vorfall leicht untergeht. Genau diese Stunde hat Karla gewählt, mit derselben kühlen Berechnung, mit der sie schon den mondlosen Abend für den Einbruch gewählt hätte, wäre es dazu gekommen.</p>

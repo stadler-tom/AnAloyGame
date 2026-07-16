@@ -32,6 +32,15 @@ setup.loadGattungsdrillVault = function () {
     return setup.gattungsdrillVault;
 };
 
+/* Reisegerät: jedes besessene Stück hebt den Gattungsdrill-XP um 10 % */
+setup.reisegeraetItems = ["Wetterfeste Stiefel", "Lederhandschuhe", "Öltuch-Umhang", "Fuhrmannsmesser", "Waster"];
+
+setup.reisegeraetBonus = function () {
+    var n = 0;
+    setup.reisegeraetItems.forEach(function (it) { if (setup.hasItem(it)) n++; });
+    return n; // Anzahl besessener Stücke
+};
+
 /* Ein Drill-Besuch: liefert Szenerie + levelabhängigen Gedanken + Belohnung.
    Fortschritt: bis Skill 4 sicher, bis 7 zäh (60%), darüber selten (30%). */
 setup.gattungsdrill = function () {
@@ -64,6 +73,13 @@ setup.gattungsdrill = function () {
             xp = Math.round(xp * 2.5);
             State.variables.world.sehr_gut_vorbereitet = false;
             reward += '<div class="system-alert status-info">Die Vorbereitung des Abends zahlt sich sehr aus (x 2.5).</div>';
+        }
+
+        /* Reisegerät im Gepäck erleichtert den Drill (+10 % je Stück) */
+        var _gear = setup.reisegeraetBonus ? setup.reisegeraetBonus() : 0;
+        if (_gear > 0) {
+            xp = Math.round(xp * (1 + 0.1 * _gear));
+            reward += '<div class="system-alert status-info">Gute Ausrüstung verbessert deinen Drillerfolg (+' + (_gear * 10) + '%).</div>';
         }
 
         var name = (setup.knowledgeNames && setup.knowledgeNames[spez]) || spez;

@@ -323,6 +323,7 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 :: Jarek_S4_Unbefugt {"position":"3825,225","size":"100,100"}
 <<set _r to setup.skillCheck("thievery", 13)>>
 <p>Kein Zeichen, kein Recht, hier zu sein. Ihr drückt euch durch die schwere Tür, und sofort ist die Dunkelheit ein anderes Ding — eine, die jeden Laut verstärkt. Jarek bewegt sich, als hätte er das geübt. Du nicht.</p>
+<<set _out += setup.setPlayerStat("honesty", -3)>>
 
 <<if _r.success>>
 <div class="beziehung">Du setzt jeden Schritt zwischen das Knarren der Dielen, atmest, wenn der Wind ans Fenster schlägt. Lautlos arbeitet ihr euch zu den alten Verzeichnissen vor. Niemand hört euch. Niemand kommt.</div>
@@ -468,8 +469,10 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 <<set _r to setup.skillCheck("thievery", 14)>>
 <<if _r.success>>
 	<div class="beziehung">und knallst ihm eine Lüge nach der anderen hin und kommst dabei nichteinmal in verlegenheit</div>
+	<<set _out += setup.setPlayerStat("honesty", -3)>>
 <<else>>
 	<div class="beziehung">und wiederholst alles Was du schon einmal erzählt hast und hoffst dass er dir glaubt</div>
+	<<set _out += setup.setPlayerStat("honesty", -1)>>
 <</if>>
 <p>Am Ende nickt er.</p>
 <div class="dialog">"Gut, damit hätte ich alles. Meinen Bericht lege ich der Administartion vor. Dir möchte ich für deinen Einsatz schon als erster Danken und ich mahne dich, erzähl die Geschichte nicht herum. Jarek hat dem Druck der Ausbildung nicht standgehalten. Er ist eingebrochen und hat überreagiert. Mehr muss niemand wissen."</div>

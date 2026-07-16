@@ -772,3 +772,88 @@
     from { opacity: 0; transform: translateY(-4px); }
     to   { opacity: 1; transform: translateY(0); }
 }
+
+.hat-titelbild #story-title { display: none; }
+.titel-bild { max-width: 100%; height: auto; display: block; }
+
+/* === Ermittlungsakte === */
+.akte {
+  background: #e7dbc0;
+  color: #2b2119;
+  border: 1px solid #b9a880;
+  border-radius: 3px;
+  padding: 14px 16px 18px;
+  box-shadow: inset 0 0 40px rgba(120,95,55,.25), 0 2px 6px rgba(0,0,0,.4);
+  font-family: Georgia, "Times New Roman", serif;
+}
+.akte-kopf { position: relative; border-bottom: 2px solid #6b5836; padding-bottom: 8px; margin-bottom: 12px; }
+.akte-stempel {
+  position: absolute; top: -4px; right: -4px;
+  transform: rotate(8deg);
+  border: 2px solid #8a2b20; color: #8a2b20;
+  font-size: .7rem; letter-spacing: 2px; text-transform: uppercase;
+  padding: 2px 8px; border-radius: 2px; opacity: .8;
+}
+.akte-titel { font-size: 1.4rem; font-weight: bold; letter-spacing: 1px; }
+.akte-sub { font-size: .85rem; color: #5c4a2e; margin-top: 2px; }
+.akte-motiv { font-size: .9rem; margin-top: 6px; font-style: italic; }
+.akte-motiv span { font-style: normal; font-weight: bold; }
+
+.akte-block { margin-top: 14px; }
+.akte-block-titel {
+  font-size: .8rem; text-transform: uppercase; letter-spacing: 1.5px;
+  color: #6b5836; border-bottom: 1px dotted #b0997018; margin-bottom: 8px;
+}
+.akte-leer { font-style: italic; color: #7a6849; font-size: .9rem; }
+
+/* Verdächtigen-Karten */
+.akte-karten { display: flex; flex-wrap: wrap; gap: 10px; }
+.akte-karte {
+  display: flex; gap: 10px; align-items: center;
+  background: #f2e9d4; border: 1px solid #c3b189; border-left: 4px solid #999;
+  border-radius: 2px; padding: 8px 10px; min-width: 210px; flex: 1 1 210px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.25);
+}
+.akte-karte-akut { border-left-color: #8a2b20; }
+.akte-karte-hoch { border-left-color: #b06a1e; }
+.akte-karte-leicht { border-left-color: #b0991e; }
+.akte-karte-neutral { border-left-color: #8a7f68; }
+.akte-karte-entlastet { border-left-color: #4d6b3a; }
+.akte-foto {
+  width: 46px; height: 46px; flex: 0 0 46px; border-radius: 2px;
+  background: #cdbe98 center/cover no-repeat;
+  border: 1px solid #9b8a63; filter: sepia(.35) contrast(.95);
+}
+.akte-karte-txt { flex: 1; min-width: 0; }
+.akte-name { font-weight: bold; font-size: .98rem; }
+.akte-vlabel { font-size: .78rem; color: #5c4a2e; margin-bottom: 4px; }
+.akte-meter { height: 6px; background: #d5c7a4; border-radius: 3px; overflow: hidden; }
+.akte-meter-fill { height: 100%; }
+.akte-meter-akut { background: #8a2b20; }
+.akte-meter-hoch { background: #b06a1e; }
+.akte-meter-leicht { background: #b0991e; }
+.akte-meter-neutral { background: #8a7f68; }
+.akte-meter-entlastet { background: #4d6b3a; }
+
+/* Spuren-Zettel */
+.akte-zettel-feld { display: flex; flex-wrap: wrap; gap: 12px; }
+.akte-zettel {
+  position: relative; background: #fbf6e8; color: #33291a;
+  border: 1px solid #d8c9a3; padding: 12px 12px 12px 14px;
+  font-size: .9rem; max-width: 240px;
+  box-shadow: 1px 2px 4px rgba(0,0,0,.28);
+}
+.akte-zettel-0 { transform: rotate(-1.4deg); }
+.akte-zettel-1 { transform: rotate(1.1deg); }
+.akte-zettel-2 { transform: rotate(-.5deg); }
+.akte-pin {
+  position: absolute; top: -6px; left: 50%; transform: translateX(-50%);
+  width: 10px; height: 10px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #c0402f, #6e1c14);
+  box-shadow: 0 1px 2px rgba(0,0,0,.5);
+}
+.akte-schritte { display: flex; flex-wrap: wrap; gap: 6px; }
+.akte-schritt {
+  font-size: .78rem; background: #d8c9a3; color: #4a3c22;
+  border-radius: 2px; padding: 2px 7px;
+}

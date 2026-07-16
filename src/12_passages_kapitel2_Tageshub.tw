@@ -57,99 +57,483 @@
   <</if>>
 <</beziehung>>
 
+<<= setup.setPlayerStat("honesty", 2)>>
+
 [[Zurück in die Stadt|Tageshub_Stadt]]
 
 
 :: Stadt_Bader {"position":"2250,5375","size":"100,100"}
-<<if setup.canAffordMoney(6)>>
-	<<print setup.removeMoney(6)>>
-	<<scene>>
-	<p>Die Stube des Baders riecht nach Kräutersud und heißem Wasser, nach Essig und getrockneten Blüten, die von der Decke hängen. Der Bader selbst, ein Mann mit geschickten, narbigen Händen, mustert dich kurz, ehe er dich auf einen Schemel weist.</p>
-	<</scene>>
-	<<= setup.getNpcInteraction("Kap2_Pool_Bader")>>
-	<<print setup.setPlayerCondition(20)>>
+<<if $world.flags.baderHausverbot>>
+	<p>Kaum stehst du in der Tür, hebt der Bader den Kopf. Sein Blick geht von deinem Gesicht zu deinen Händen
+	und wieder zurück, und was einmal an Freundlichkeit darin war, ist fort.</p>
+	<div class="dialog">„Raus. Für Euch flicke ich nichts mehr. Sucht Euch einen anderen, der Euch den Rücken zudreht."</div>
+
 <<else>>
-	<<scene>>
-	<p>Der Bader wirft einen Blick auf dich, dann auf deinen offensichtlich leeren Beutel, und schüttelt den Kopf. „Kommt wieder, wenn Ihr zahlen könnt. Ich flicke keine Rekruten aus reiner Nächstenliebe.“</p>
-	<</scene>>
+
+	/* --- Körper lesen (einmalig) oder Begrüßung --- */
+	<<if not $world.flags.baderKoerperGelesen>>
+		<<set $world.flags.baderKoerperGelesen to true>>
+		<<dialog>>
+		<p>Seine Finger fahren die Rippen entlang, tasten, halten inne. „Ihr wart einmal krank", sagt er, nicht als Frage.
+		„Als Kind. Die Lunge. Und schwerer, als Ihr jetzt ausseht — das sieht man am Bau, auch wenn das Fleisch längst fort
+		ist." Er richtet sich auf und mustert dich, als läse er eine alte Schrift. „Wer immer Euch wieder aufgepäppelt hat,
+		verstand sein Handwerk. Das war keine billige Genesung. Das war Geduld."</p>
+		<<if $npc.schinder.affection gte 1>>
+			<p>Er bemerkt etwas. <<quote Oh! Du bist das! Bertram hat von dir gesprochen. Dass du dich sehr gemausert hast!>></p>
+			<p><<quote Wer?>> willst du wissen.</p>
+			<p><<quote Der Schinder! Kommt selten vor, dass er so gut über einen Rekruten spricht.>></p>
+		<</if>>
+		<</dialog>>
+	<<else>>
+		<p><<quote Ah, der Herr mit der schweren Lunge! Was kann ich heute für Euch tun?>> begrüßt dich der Bader.</p>
+	<</if>>
+
+	/* --- Auftrag abgeben --- */
+	<<if setup.hasItem("Silberbrech") and $world.flags.baderAuftrag and $world.flags.baderAuftrag neq "erledigt">>
+		<<dialog>>
+		<p>Du legst den Silberbrech auf den Tisch, Wurzel und Blätter, noch klamm vom Fels. Der Bader nimmt ihn auf, dreht
+		ihn ins Licht, und etwas in seinem Gesicht löst sich.</p>
+		<p><<quote Frisch. Sauber gestochen. Ihr habt nicht gelogen.>> Er greift nach seinem Beutel.</p>
+		<</dialog>>
+		<div id="bader-lohn">
+		<ul class="menu">
+		<li><<link "Den vereinbarten Lohn nehmen">>
+			<<replace "#bader-lohn">>
+				<<run setup.removeItem("Silberbrech")>>
+				<<set $world.flags.baderAuftrag to "erledigt">>
+				<<set $world.flags.baderFreund to true>>
+				<<= setup.addMoney(30)>>
+				<<= setup.setPlayerStat("honesty", 2)>>
+				<p>Er zählt dir das Kupfer in die Hand, Stück für Stück, und legt ungefragt ein paar drauf. <<quote Für die
+				Mühe der Beine>>, sagt er. Dann, fast beiläufig: <<quote Kommt öfter. Für Euch flicke ich künftig zum halben
+				Preis — ein Mann, der die Höhen kennt, ist mir mehr wert als ein voller Beutel.>></p>
+			<</replace>>
+		<</link>></li>
+		<li><<link "Behaupten, es hätte dich fast das Leben gekostet — und mehr fordern">>
+			<<replace "#bader-lohn">>
+				<<run setup.removeItem("Silberbrech")>>
+				<<set $world.flags.baderAuftrag to "erledigt">>
+				<<= setup.addMoney(20)>>
+				<<= setup.setPlayerStat("honesty", -2)>>
+				<p>Er hält inne, den Blick auf dir, und du siehst, wie er die Rechnung aufmacht und aufgehen lässt.</p>
+				<p><<quote Fast das Leben>>, wiederholt er trocken. <<quote Für einen, der die Grate im Schlaf kennt.>> Er zählt
+				dir weniger in die Hand, als er wollte, und dreht sich weg. <<quote Nehmt und geht. Und spart Euch die
+				Geschichten beim Nächsten, der sie Euch nicht glaubt.>></p>
+			<</replace>>
+		<</link>></li>
+		</ul>
+		</div>
+	<</if>>
+
+	/* --- Auftrag vergeben --- */
+	<<if $world.flags.baderKoerperGelesen and not $world.flags.baderAuftrag>>
+		<<dialog>>
+		<p>Er wischt sich die Hände am Schurz ab und sieht dich an, als fasse er einen Entschluss.</p>
+		<p><<quote Ihr kennt die Höhen. Das hört man nicht nur, das sieht man an Euch.>> Er nickt zum Fenster, hinauf zu den
+		Graten über der Stadt. <<quote Da oben, wo der Schnee erst spät weicht, wächst der Silberbrech. Ein Kraut gegen ein
+		Fieber, das keine Rinde und kein Sud aufhält. Ich habe einen Kranken, dem sonst nichts mehr hilft — und keine Beine
+		mehr, die mich da hinauftragen.>></p>
+		<p><<quote Bringt mir eine Handvoll, frisch gestochen, mit der Wurzel. Ich zahle, und ich vergesse es nicht.>></p>
+		<</dialog>>
+		<div id="bader-auftrag">
+		<ul class="menu">
+		<li><<link "Ich hole es Euch">>
+			<<replace "#bader-auftrag">>
+				<<set $world.flags.baderAuftrag to "offen">>
+				<p>Er nickt nur, aber in dem Nicken liegt mehr Vertrauen, als dir die meisten hier im Lager je gezeigt haben.</p>
+			<</replace>>
+		<</link>></li>
+		<li><<link "Sucht Euch einen anderen">>
+			<<replace "#bader-auftrag">>
+				<p>Er zuckt die Schultern, und das Fenster mit den Graten dahinter ist wieder nur ein Fenster.</p>
+			<</replace>>
+		<</link>></li>
+		</ul>
+		</div>
+	<</if>>
+
+	/* --- Behandlung, Gratis für Ehrliche, sonst Bruch --- */
+	<<set _behandelt to false>>
+	<<set _gratisReif to (not $world.flags.baderGratisDay) or (($world.day - $world.flags.baderGratisDay) gte 4)>>
+
+	<<set _price to ($world.flags.baderFreund) ? 3 : 6>>
+	<<if not setup.canAffordMoney(_price) and $player.stats.honesty gte 70 and _gratisReif>>
+		<<scene>>
+		<p>Die Stube des Baders riecht nach Kräutersud und heißem Wasser, nach Essig und getrockneten Blüten, die von der
+		Decke hängen.</p>
+		<</scene>>
+		<p><<quote Kein Geld? Macht nichts. Du bist ein guter Kerl, und guten Kerlen muss man hin und wieder helfen.>> Er
+		winkt dich zu sich auf den Schemel.</p>
+		<<set $world.flags.baderGratisDay to $world.day>>
+		<<= setup.getNpcInteraction("Kap2_Pool_Bader")>>
+		<<print setup.setPlayerCondition(20)>>
+		<<set _behandelt to true>>
+
+	<<elseif setup.canAffordMoney(_price)>>
+		<<print setup.removeMoney(_price)>>
+		<<scene>>
+		<p>Die Stube des Baders riecht nach Kräutersud und heißem Wasser, nach Essig und getrockneten Blüten, die von der
+		Decke hängen. Der Bader, ein Mann mit geschickten, narbigen Händen, mustert dich kurz, ehe er dich auf einen Schemel
+		weist.</p>
+		<p><<quote Für dich mach ich den halben Preis!.>> Er
+		winkt dich zu sich auf den Schemel.</p>
+		<</scene>>
+		<<= setup.getNpcInteraction("Kap2_Pool_Bader")>>
+		<<print setup.setPlayerCondition(20)>>
+		<<set _behandelt to true>>
+
+	<<else>>
+		<p>Der Bader wirft einen Blick auf dich, dann auf deinen offensichtlich leeren Beutel, und schüttelt den Kopf.</p>
+		<div class="dialog">„Kommt wieder, wenn Ihr zahlen könnt. Ich flicke keine Rekruten aus reiner Nächstenliebe."</div>
+		<<scene>>
+		<p>Er wendet sich ab, zu einem Kessel über dem Feuer. Auf dem Regal neben dir stehen die Tiegel in Reih und Glied —
+		Tinkturen, getrocknete Wurzeln, und ganz vorn ein Topf Wallwurz-Salbe, keine Handbreit entfernt. Sein Rücken ist dir
+		zugewandt.</p>
+		<</scene>>
+		<div class="thought-box">Ein Griff. Mehr nicht. Er würde es nicht einmal merken, ehe ich zur Tür hinaus bin.</div>
+		<div id="bader-wahl">
+		<ul class="menu">
+		<li><<link "Nach der Salbe greifen, solange er den Rücken zeigt">>
+			<<replace "#bader-wahl">>
+				<<set _r to setup.skillCheckXp("thievery", 13, - setup.verschlagenheitMod())>>
+				<<if _r.success>>
+					<p>Deine Hand ist schon unterwegs, ehe der Zweifel sie einholt. Der Topf gleitet in deinen Ärmel, kühl und
+					glatt, und der Bader rührt weiter in seinem Kessel, als wärst du längst gegangen.</p>
+					<<= setup.addItem("Wallwurz-Salbe")>>
+					<<= setup.setPlayerStat("honesty", -3)>>
+				<<elseif _r.outcome === "fumble">>
+					<p>Der Tiegel stößt gegen den Rand des Regals — ein kleines, verräterisches Klirren. Der Bader ist schneller,
+					als ein Mann seines Alters sein dürfte. Seine narbige Hand schließt sich um dein Gelenk, ehe du den Arm
+					zurückziehst, und drückt zu, bis die Salbe zu Boden fällt.</p>
+					<div class="dialog">„Also so einer bist du." Er lässt dich los wie etwas Schmutziges. „Merk dir das Gesicht,
+					Rekrut — es ist das Letzte, das du hier drin siehst. Raus."</div>
+					<<= setup.setPlayerStat("honesty", -3)>>
+					<<set $world.flags.baderHausverbot to true>>
+				<<else>>
+					<p>Deine Finger sind schon am Topf, als sein Kopf sich dreht — zu langsam warst du, oder er zu wach. Er sagt
+					nichts, sieht nur auf deine Hand, dann in dein Gesicht, und du ziehst den Arm zurück, als hättest du dich
+					verbrannt.</p>
+					<div class="dialog">„Beim nächsten Mal breche ich dir die Finger, nicht den Blick. Verschwinde."</div>
+					<<= setup.setPlayerStat("honesty", -2)>>
+				<</if>>
+				<<= _r.lernHTML>>
+			<</replace>>
+		<</link>></li>
+		<li><<link "Die Finger von fremdem Gut lassen">>
+			<<replace "#bader-wahl">>
+				<p>Du siehst den Topf an. Dann ziehst du die Hand zurück, ehe sie ein eigenes Leben entwickelt, und trittst
+				einen Schritt vom Regal weg. Es ist nicht deins. So einfach ist das, und so schwer.</p>
+				<<= setup.setPlayerStat("honesty", 2)>>
+			<</replace>>
+		<</link>></li>
+		</ul>
+		</div>
+	<</if>>
+
+	/* --- Nur nach echter Behandlung: bei der Arbeit zusehen --- */
+	<<if _behandelt and random(1, 100) lt 50>>
+		<p>Der Bader hat noch einen anderen Patienten auf dem Schemel. Du könntest ihm bei der Arbeit über die Schulter sehen.</p>
+		<div id="bader-lern">
+		<<link "Ihm bei der Arbeit über die Schulter sehen">>
+			<<replace "#bader-lern">>
+				<<set _r to setup.skillCheckXp("medicine", 13, 0)>>
+				<<if _r.success>>
+					<p>Du reichst ihm die Zange, ehe er danach greift, und er nickt, ohne aufzusehen. „Ihr habt das schon mal
+					gemacht." Ein knappes Lob, aber es wiegt.</p>
+				<<else>>
+					<p>Du siehst genauer hin, als dir lieb ist, und dein Magen dreht sich. Der Bader grinst schief. „Das legt
+					sich. Oder Ihr taugt nicht dafür."</p>
+				<</if>>
+				<<= _r.lernHTML>>
+			<</replace>>
+		<</link>>
+		</div>
+	<</if>>
+
 <</if>>
 
 [[Zurück in die Stadt|Tageshub_Stadt]]
 
 
+:: Bader_Auftrag_Suche
+<<scene>>
+<p>Der Pfad hinter dem Lager wird schnell steil, aus Tritten wird Klettern, aus Gras wird nackter, windgeschliffener
+Fels. Weit unter dir liegt das Lager wie ein Häufchen Asche, und die Luft wird dünn und schneidend, je höher du kommst.</p>
+<</scene>>
+
+<<set _r to setup.skillCheckXp("medicine", 13, -2)>>
+<<if _r.success>>
+	<p>Du weißt, wonach du suchst, ehe dein Verstand den Namen findet — die Hände erinnern sich, wo der Kopf längst
+	weitergezogen ist. Zwischen zwei Steinen, im Windschatten, die silbrigen Blätter. Du stichst die Wurzel sauber aus.</p>
+	<div class="thought-box">Jemand hat mir das gezeigt. Hier oben, als ich kaum die Luft zum Gehen hatte. Ich weiß sein
+	Gesicht nicht mehr, nur seine Hände über den meinen, und die Kälte, und dass er nicht losließ, als ich aufgeben wollte.</div>
+	<<= setup.addItem("Silberbrech")>>
+	<<set $world.flags.baderAuftrag to "gefunden">>
+<<elseif _r.outcome === "fumble">>
+	<p>Ein Stein unter deinem Fuß gibt nach. Du fängst dich gerade noch, aber die Handvoll Erde, die den Hang hinabrollt,
+	hättest auch du sein können. Für heute reicht der Berg dir eine Warnung statt des Krauts.</p>
+<<else>>
+	<p>Du suchst, bis das Licht kippt, und findest nichts als tauben Fels und deine eigene Ungeduld. Ein andermal.</p>
+<</if>>
+<<= _r.lernHTML>>
+
+[[Zurück|Tageshub_Stadt]]
+
 :: Stadt_Botenstand {"position":"2700,5675","size":"100,100"}
 <<scene>>
-<p>Der Botenstand liegt am Rand des Marktes, ein schmaler Verschlag, in dem ein hagerer Schreiber Nachrichten entgegennimmt, sie faltet, siegelt und den reitenden Boten übergibt, die zweimal die Woche in alle Himmelsrichtungen aufbrechen.</p>
+<p>Der Botenstand liegt am Rand des Marktes, ein schmaler Verschlag, in dem ein hagerer Schreiber Nachrichten
+entgegennimmt, sie faltet, siegelt und den reitenden Boten übergibt, die zweimal die Woche in alle Himmelsrichtungen
+aufbrechen.</p>
 <</scene>>
 
 <<dialog>>
 <p>„Wohin soll die Nachricht?“, fragt der Schreiber, ohne aufzusehen.</p>
 <</dialog>>
 
-<<if $world.ermittlung.flags.westhof_done === true>>
+<<set _hatEmpfaenger to false>>
 
-    <<dialog>>
-    <p>„Ein Brief nach Grodaus. In das Kontor von Ramirez de Volpe. Was kostet mich das?“</p>
-    <p>Jetzt blickt der Schreiber auf. „Hauptstadt, vier Kupfer. In den Verteiler nochmal zwei Kupfer, direkte Zustellung vier Kupfer extra. Gleich morgen geht die nächste Lieferung auf den Weg.“ Damit macht sich der Schreiber wieder über seine Liste her. </p>
-    <</dialog>>
-    <<if setup.canAffordMoney(8)>>
-    		<<link "Einen Brief an Luigi schicken (8 Kupfer)">>
+/* --- Karla, solange sie einsitzt --- */
+<<if $npc.karla.memory.flags.verhaftung_seen>>
+	<<set _hatEmpfaenger to true>>
+	<<set _briefReif to (not $npc.karla.memory.flags.briefTag) or (($world.day - $npc.karla.memory.flags.briefTag) gte 3)>>
+	<<if _briefReif>>
+		<<if $world.ermittlung.flags.nachspiel_done>>
+			<<set _tier to 3>>
+		<<elseif $world.ermittlung.flags.s10_done or $world.ermittlung.flags.s9_done or $world.ermittlung.flags.westhof_done>>
+			<<set _tier to 2>>
+		<<else>>
+			<<set _tier to 1>>
+		<</if>>
+		<<dialog>>
+		<p>„Und an eine Gefangene?“, fragst du leiser, als du wolltest. Der Schreiber sieht dich an, ohne die Miene zu
+		verziehen. „Kostet dasselbe wie jeder andere Brief. Ob sie ihn kriegt, ist nicht meine Sache. Vier Kupfer.“</p>
+		<</dialog>>
+		<<if setup.canAffordMoney(4)>>
+			<div id="karla-brief">
+			<<link "Karla schreiben (4 Kupfer)">>
+				<<replace "#karla-brief">>
+					<<print setup.removeMoney(4)>>
+					<<set $npc.karla.memory.flags.briefTag to $world.day>>
+					<<= setup.setNpcAffection("karla", 1)>>
+					<<run setup.pushNpcMemory("karla", "brief_gesendet")>>
+					<div class="letter">
+					<<if _tier === 1>>
+						<p>Ich weiß nicht, ob diese Zeilen dich erreichen, oder ob ein Wächter sie liest, ehe du sie in die
+						Hand bekommst. Also schreibe ich nichts, was dir schaden könnte. Nur, dass ich nicht stillsitze. Dass
+						ich jeden Tag ein Stück weiterkomme, auch wenn es langsam geht. Halte durch. Ich gebe nicht auf,
+						solange du da drin bist.</p>
+					<<elseif _tier === 2>>
+						<p>Es bewegt sich, Karla. Ich kann nicht schreiben, was ich weiß — nicht hier, nicht auf Papier, das
+						durch fremde Hände geht. Aber die Spur, der wir gefolgt sind, ist keine Einbildung mehr. Sie führt
+						irgendwohin, und ich bin fast dort. Noch ein wenig Geduld. Nicht mehr lang.</p>
+					<<else>>
+						<p>Es ist heraus. Die Wahrheit liegt dort, wo sie hingehört, und diesmal kann sie keiner mehr
+						wegräumen. Du hast selbst gesagt, die Mühlen mahlen langsam — aber sie mahlen jetzt in die richtige
+						Richtung. Halte noch ein wenig durch. Bald steht das Tor offen, und ich warte davor.</p>
+					<</if>>
+					</div>
+					<p>Du legst das Kupfer hin und siehst zu, wie der Schreiber deinen Brief faltet und siegelt, als wäre er
+					einer von hundert.</p>
+				<</replace>>
+			<</link>>
+			</div>
+		<<else>>
+			<p>Vier Kupfer. Du hast sie nicht, und der Brief bleibt ungeschrieben in deinem Kopf.</p>
+		<</if>>
+	<<else>>
+		<<gedanke>>
+		<p>Ich habe ihr erst vor Kurzem geschrieben. Noch einmal so bald, und es klingt, als hätte ich sonst nichts zu tun,
+		als auf ihre Antwort zu warten.</p>
+		<</gedanke>>
+	<</if>>
+<</if>>
+
+<<if $world.duell?.nachwirkung_done AND $world.duell?.tier eq "C" AND $world.duell?.zdenka_trust gt -2>>
+	<<set _hatEmpfaenger to true>>
+	<<dialog>>
+	<p>„Ein Brief nach Rabenfurth. An Fräulein Zdenka Hrusa. Was kostet mich das?“</p>
+	<p>Jetzt blickt der Schreiber auf. Rabenfurth, Sechs Kupfer.“ Damit macht sich der Schreiber wieder über
+	seine Liste her.</p>
+	<</dialog>>
+	<<if setup.canAffordMoney(6)>>
+		<<link "Einen Brief an Zdenka schicken (6 Kupfer)">>
+			<<print setup.removeMoney(6)>>
+			<<set $world.flags.sendLetterToZdenka to true>>
+			<<goto "Tageshub_Stadt">>
+		<</link>>
+	<<else>>
+		<<dialog>>
+		<p>„Schon gut, das kann ich mir nicht leisten.“</p>
+		<</dialog>>
+		<p>Du verneinst und drehst dich zum Gehen um.</p>
+	<</if>>
+<</if>>
+
+/* --- Familia / Luigi, wenn die Westhof-Spur steht --- */
+<<if $world.ermittlung.flags.westhof_done === true>>
+	<<set _hatEmpfaenger to true>>
+	<<dialog>>
+	<p>„Ein Brief nach Grodaus. In das Kontor von Ramirez de Volpe. Was kostet mich das?“</p>
+	<p>Jetzt blickt der Schreiber auf. „Hauptstadt, vier Kupfer. In den Verteiler nochmal zwei Kupfer, direkte Zustellung
+	vier Kupfer extra. Gleich morgen geht die nächste Lieferung auf den Weg.“ Damit macht sich der Schreiber wieder über
+	seine Liste her.</p>
+	<</dialog>>
+	<<if setup.canAffordMoney(8)>>
+		<<link "Einen Brief an Luigi schicken (8 Kupfer)">>
 			<<print setup.removeMoney(8)>>
-            <<set $world.ermittlung.flags.sendLetterToLuigi to true>>
+			<<set $world.ermittlung.flags.sendLetterToLuigi to true>>
 			<<set $world.ermittlung.flags.familia_kontakt_tag to $world.day>>
 			<<goto "Tageshub_Stadt">>
 		<</link>>
-    <<else>>
-   			 <<dialog>>
-     		<p>Schon gut, das kann ich mir nicht leisten.</p>
-            <</dialog>>
-            <p> Du verneinst und drehst dich zum gehen um.</p> 
-            [[Zurück in die Stadt|Tageshub_Stadt]]
-    <</if>>
-
-<<else>>
-<<gedanke>>
-<p>Ich habe niemanden, dem ich derzeit etwas zu sagen hätte, das eine Reise wert wäre. Vielleicht ändert sich das noch.</p>
-<</gedanke>>
-
-<p>Du verlässt den Stand, ohne eine Nachricht zu hinterlassen.</p>
-[[Zurück in die Stadt|Tageshub_Stadt]]
+	<<else>>
+		<<dialog>>
+		<p>„Schon gut, das kann ich mir nicht leisten.“</p>
+		<</dialog>>
+		<p>Du verneinst und drehst dich zum Gehen um.</p>
+	<</if>>
 <</if>>
 
+/* --- Niemand, an den zu schreiben wäre --- */
+<<if not _hatEmpfaenger>>
+	<<gedanke>>
+	<p>Ich habe niemanden, dem ich derzeit etwas zu sagen hätte, das eine Reise wert wäre. Vielleicht ändert sich das noch.</p>
+	<</gedanke>>
+	<p>Du verlässt den Stand, ohne eine Nachricht zu hinterlassen.</p>
+<</if>>
+
+[[Zurück in die Stadt|Tageshub_Stadt]]
 
 :: Stadt_Fuhrmannsviertel {"position":"2600,5500","size":"100,100"}
 <<scene>>
-<p>Hier riecht es nach Pferdemist, Teer und nassem Sackleinen. Karren stehen aufgereiht, ihre Achsen von tausend Meilen glattgeschliffen, und zwischen ihnen sitzen Fuhrleute an kleinen Feuern, rauchen, würfeln, erzählen sich Geschichten von Straßen, die kein Rekrut je zu Gesicht bekommt.</p>
+<p>Hier riecht es nach Pferdemist, Teer und nassem Sackleinen. Karren stehen aufgereiht, ihre Achsen von tausend Meilen
+glattgeschliffen, und zwischen ihnen sitzen Fuhrleute an kleinen Feuern, rauchen, würfeln, erzählen sich Geschichten von
+Straßen, die kein Rekrut je zu Gesicht bekommt.</p>
 <</scene>>
 
 <<if not $npc.karla.memory.flags.verhaftung_seen>>
 	<<gedanke>>
-	<p>Jarek ist mit dem Dokument verschwunden, mitten in der Nacht, durch Tore, die eigentlich niemanden ungesehen hinauslassen sollten. Wenn er nicht zu Fuß ging — und wie hätte er das schaffen sollen, mit einem gestohlenen Aktenstück unterm Wams —, dann führte sein Weg durch genau solche Hände wie diese. Fuhrleute reden viel. Manchmal reden sie auch über das Falsche, ohne es zu merken.</p>
+	<p>Jarek ist mit dem Dokument verschwunden, mitten in der Nacht, durch Tore, die eigentlich niemanden ungesehen
+	hinauslassen sollten. Wenn er nicht zu Fuß ging, dann führte sein Weg durch genau solche Hände wie diese. Fuhrleute
+	reden viel. Manchmal reden sie auch über das Falsche, ohne es zu merken.</p>
 	<</gedanke>>
 <<else>>
 	<<gedanke>>
-	<p>Diese Männer kennen jede Route zwischen hier und der Grenze besser als ich meinen eigenen Namen. Was sie sich erzählen, dringt selten bis zur Akademie durch — man muss schon selbst hier stehen, um es zu hören.</p>
+	<p>Diese Männer kennen jede Route zwischen hier und der Grenze besser als ich meinen eigenen Namen. Was sie sich
+	erzählen, dringt selten bis zur Akademie durch — man muss schon selbst hier stehen, um es zu hören.</p>
 	<</gedanke>>
 <</if>>
 
-<p>Heute reden sie nur vom Wetter und von schlechten Straßen — nichts, das du nicht schon wüsstest.</p>
-
+/* --- Glückstreffer (8 %), bleibt --- */
 <<if not $world.ermittlung.spuren.includes("fuhrmann_hinweis")>>
 	<<if random(1,100) <= 8>>
-		<p>Ein alter Fuhrmann, dessen Hände von Zügeln und Kälte gleichermaßen gegerbt sind, erzählt beiläufig, fast im Vorübergehen, 
-		von einer Nacht vor einigen Wochen — einem Karren, der außerhalb der üblichen Stunde das Nordtor passierte, 
-		ohne dass jemand danach fragte, wessen Fracht er trug. Er selbst hielt es nicht für erwähnenswert. 
-		Für dich klingt es wie ein Stein, der gerade erst ins Wasser gefallen ist.</p>
-		<<gedanke>>
-			<p>Ein Karren. Zur falschen Stunde. Niemand, der fragte. Das könnte nichts bedeuten — oder alles.</p>
-		<</gedanke>>
-		<<print setup.ermFund("fuhrmann_hinweis", "Ein Fuhrmann erwähnte beiläufig einen Karren, der zur falschen Stunde durchs Nordtor fuhr, 
-		ohne dass die Wache nach der Fracht fragte.")>>
+		<p>Ein alter Fuhrmann, dessen Hände von Zügeln und Kälte gleichermaßen gegerbt sind, erzählt beiläufig von einer
+		Nacht vor einigen Wochen — einem Karren, der außerhalb der üblichen Stunde das Nordtor passierte, ohne dass jemand
+		fragte, wessen Fracht er trug. Für dich klingt es wie ein Stein, der gerade erst ins Wasser gefallen ist.</p>
+		<<gedanke>><p>Ein Karren. Zur falschen Stunde. Niemand, der fragte. Das könnte nichts bedeuten — oder alles.</p><</gedanke>>
+		<<print setup.ermFund("fuhrmann_hinweis", "Ein Fuhrmann erwähnte beiläufig einen Karren, der zur falschen Stunde durchs Nordtor fuhr, ohne dass die Wache nach der Fracht fragte.")>>
 	<</if>>
 <</if>>
 
-[[Zurück in die Stadt|Tageshub_Stadt]]
+/* --- Der alte Fuhrmann als Informant (zuverlässig, gegen Kupfer) --- */
+<<if $world.ermittlung.active and not $world.ermittlung.flags.s10_done>>
+	<div id="fuhrmann-info">
+	<ul class="menu">
+	<<if not $world.ermittlung.flags.fuhrmann_tier1 and setup.canAffordMoney(3)>>
+		<li><<link "Dem Alten einen Krug spendieren (3 Kupfer)">>
+			<<replace "#fuhrmann-info">>
+				<<print setup.removeMoney(3)>>
+				<<set $world.ermittlung.flags.fuhrmann_tier1 to true>>
+				<p>Der Krug macht den Alten redselig. Der Karren sei nach Norden gerollt, sagt er, ein hagerer Mann auf dem
+				Bock, kein Fuhrmann, den er kannte, und auf den Kisten habe „Übungsbestand“ gestanden — für Übungszeug, sagt
+				er und lacht, fahre keiner bei Nacht durchs Tor, als hinge sein Leben dran.</p>
+				<<if not $world.ermittlung.spuren.includes("fuhrmann_hinweis")>>
+					<<print setup.ermFund("fuhrmann_hinweis", "Ein Fuhrmann beschrieb einen nächtlichen Karren Richtung Norden, hagerer Mann auf dem Bock, Kisten mit der Aufschrift 'Übungsbestand'.")>>
+				<</if>>
+				<<= setup.ermVerdacht("orenmalk", 1)>>
+			<</replace>>
+		<</link>></li>
+	<</if>>
+	<<if $world.ermittlung.flags.fuhrmann_tier1 and $world.ermittlung.flags.s8_done and not $world.ermittlung.flags.s9_done and not $world.ermittlung.flags.fuhrmann_tier2 and setup.canAffordMoney(6)>>
+		<li><<link "Ihn fragen, wann die nächste solche Fuhre geht (6 Kupfer)">>
+			<<replace "#fuhrmann-info">>
+				<<print setup.removeMoney(6)>>
+				<<set $world.ermittlung.flags.fuhrmann_tier2 to true>>
+				<p>Er wird leiser, sieht sich um, ehe er redet. Die nächste gehe bald, sagt er, immer dasselbe Muster,
+				dieselbe Stunde, dasselbe Tor. Wenn du wissen wollest, wann — er nennt dir den Tag, und du weißt, dass du
+				diesmal davorstehen wirst, ehe der Karren rollt.</p>
+				<<set $world.ermittlung.flags.naechste_fuhre_tag to Math.max($world.day + 1, $world.ermittlung.flags.naechste_fuhre_tag - 2)>>
+				<<= setup.ermVerdacht("orenmalk", 2)>>
+			<</replace>>
+		<</link>></li>
+	<</if>>
+	</ul>
+	</div>
+<</if>>
 
+/* --- Straßen-Gerüchte (einmal pro Tag) --- */
+<<if not $world.flags.fuhrmannGeruechtTag or $world.flags.fuhrmannGeruechtTag neq $world.day>>
+	<div id="fuhrmann-geruecht">
+	<<link "Dich zu einem Feuer setzen und zuhören">>
+		<<replace "#fuhrmann-geruecht">>
+			<<set $world.flags.fuhrmannGeruechtTag to $world.day>>
+			<<set _roads to [
+				"Ein Fuhrmann erzählt, das 84. Banner werde zum Heinrichsfest wieder nach Drachengard verlegt — man rüste schon die Wagen.",
+				"Auf der Grodaus-Straße habe ein Handelshaus namens de Volpe die Zölle für ein halbes Dutzend Fuhren im Voraus bezahlt. Wer so viel Silber bewegt, hat es eilig.",
+				"Aus der Kronmark komme Wort von neuen Werbern, die den Dörfern das Blaue vom Himmel versprechen. Junge Kerle verschwänden dorthin wie Wasser im Sand.",
+				"Ein Bote schwört, an der Grenze bei Umseck stünden mehr Söldner als sonst — niemand wisse, wessen Sold sie nähmen.",
+				"Zwischen den Feuern läuft die Rede von einem Winter, der früh kommt, und von Pässen, die er schließt, ehe die letzte Fuhre durch ist.",
+				"In Alfalter hat der Greifenorden aufgeräumt! Unter den Hufen der Ritter ist der Bürgerkrieg zerbrochen."
+			]>>
+			<<set _r to _roads.random()>>
+			<p>Du lässt dich an ein Feuer sinken, sagst wenig, hörst viel. @@_r@@</p>
+			<<= setup.addRumor(_r)>>
+		<</replace>>
+	<</link>>
+	</div>
+<</if>>
+
+/* --- Ehrliche Lastenarbeit (einmal pro Tag) --- */
+<<if not $world.flags.fuhrmannArbeitTag or $world.flags.fuhrmannArbeitTag neq $world.day>>
+	<<if $player.condition gte 15>>
+		<div id="fuhrmann-arbeit">
+		<<link "Beim Aufladen einer Fuhre mit anpacken">>
+			<<replace "#fuhrmann-arbeit">>
+				<<set $world.flags.fuhrmannArbeitTag to $world.day>>
+				<<set _lohn to random(3, 6)>>
+				<p>Du packst mit an — Fässer, Ballen, eine Achse, die sich sträubt. Es ist stumpfe, ehrliche Arbeit, und
+				am Ende drückt dir der Fuhrmann ein paar Münzen in die Hand und ein Nicken dazu, das mehr wiegt als das Kupfer.</p>
+				<<= setup.addMoney(_lohn)>>
+				<<= setup.setPlayerCondition(-12)>>
+				<<= setup.setPlayerStat("honesty", 1)>>
+			<</replace>>
+		<</link>>
+		</div>
+	<</if>>
+<</if>>
+
+/* --- Reisegerät-Markt (jedes Stück: +10 % Gattungsdrill-XP im Gepäck) --- */
+<div id="fuhrmann-markt">
+<p>Auf einer Plane liegt ausgebreitet, was die Fuhrleute zusammengetragen haben: Richtig gutes Gerät zum Traineren.</p>
+<ul class="menu">
+	<<if not setup.hasItem("Wetterfeste Stiefel") and setup.canAffordMoney(14)>>
+		<li><<link "Wetterfeste Stiefel kaufen (2 Silber)">><<replace "#fuhrmann-markt">><<print setup.removeMoney(14)>><<= setup.addItem("Wetterfeste Stiefel")>><</replace>><</link>></li>
+	<</if>>
+	<<if not setup.hasItem("Lederhandschuhe") and setup.canAffordMoney(6)>>
+		<li><<link "Lederhandschuhe kaufen (6 Kupfer)">><<replace "#fuhrmann-markt">><<print setup.removeMoney(6)>><<= setup.addItem("Lederhandschuhe")>><</replace>><</link>></li>
+	<</if>>
+	<<if not setup.hasItem("Öltuch-Umhang") and setup.canAffordMoney(8)>>
+		<li><<link "Öltuch-Umhang kaufen (8 Kupfer)">><<replace "#fuhrmann-markt">><<print setup.removeMoney(8)>><<= setup.addItem("Öltuch-Umhang")>><</replace>><</link>></li>
+	<</if>>
+	<<if not setup.hasItem("Fuhrmannsmesser") and setup.canAffordMoney(7)>>
+		<li><<link "Fuhrmannsmesser kaufen (7 Kupfer)">><<replace "#fuhrmann-markt">><<print setup.removeMoney(7)>><<= setup.addItem("Fuhrmannsmesser")>><</replace>><</link>></li>
+	<</if>>
+	<<if not setup.hasItem("Waster") and setup.canAffordMoney(21)>>
+		<li><<link "Ein guter schwerer Waster (3 Silber)">><<replace "#fuhrmann-markt">><<print setup.removeMoney(7)>><<= setup.addItem("Waster")>><</replace>><</link>></li>
+	<</if>>
+</ul>
+</div>
+
+[[Zurück in die Stadt|Tageshub_Stadt]]
 
 :: Stadt_Geruechte {"position":"2475,5600","size":"100,100"}
 <<scene>>
@@ -279,20 +663,25 @@ der seine Runde vergessen zu haben scheint.</p>
 			<</replace>>
 		<</link>></li>
 
+
 		<li><<link "Versuche zu betrügen (3 Kupfer)">>
 			<<replace "#sandbox-menu">>
 				<<run setup.removeMoney(3)>>
 				<<set $world.wuerfelSpiel.gespielt += 1>>
 				<<set $world.wuerfelGesamt to ($world.wuerfelGesamt || 0) + 1>>
-				<<set _r to setup.skillCheckXp("thievery", 12, _potSize)>>
+
+				<<set _r to setup.skillCheckXp("thievery", 12, _potSize - setup.verschlagenheitMod())>>
+				
 				<<= _r.lernHTML>>
 				<<if _r.success>>
 					<p>Ein bisschen unbemerkt klopfen, ein bisschen stupsen, und schon zeigen die Würfel andere Augen.</p>
 					<<set _copperWon to _potSize>>
+					<<= setup.setPlayerStat("honesty", -2)>>
 					<<if _r.outcome === "crit">>
 						<<set _extraBet to random(1, 4)>>
 						<p>Du legst noch eine Extrawette über _extraBet Kupfer nach — und gewinnst, natürlich.</p>
 						<<set _copperWon += _extraBet>>
+						<<= setup.setPlayerStat("honesty", -2)>>
 					<</if>>
 					<<= setup.addMoney(_copperWon)>>
 				<<elseif _r.outcome === "fumble">>
@@ -781,7 +1170,69 @@ und das ist mehr, als du vor einem Jahr von dir erwartet hättest.</p>
 		zurück, dreifach, zehnfach, bis die ganze Schenke in einen Sturm des Feierns ausbricht, als hätten sie nur auf
 		dieses eine Wort gewartet.</p>
 		<<print setup.setPlayerStat("faith", 10)>>
+		<<set $world.flags.barsingerEncounter to true>>
+	<<elseif not $world.flags.barsingerEncounter and random(1,100) lt 54>>
+		<<set $npc.konrad.known to true>>
 
+		<p>Es geht schnell, und es ist hässlich. Eine Hand fährt an einen Gürtel, ein Messerchen blitzt — und ehe der Beutel
+		fällt, ist der Fremde schon auf den Beinen. Er ist groß, breiter noch als groß, und er bewegt sich nicht wie ein großer
+		Mann, sondern wie ein Fass, das den Hang hinabrollt und nichts mehr aufhält. Der Dieb kommt keine drei Schritte weit.
+		Der erste Schlag hebt ihn aus den Stiefeln, der zweite treibt ihn über einen Tisch, Zinn und Krüge splittern, und was
+		danach kommt, willst du nicht zählen. Am Ende liegt der Junge — denn mehr ist es nicht — vor der Tür im Dreck, und
+		niemand rührt sich, ihm aufzuhelfen.</p>
+
+		<p>Der Fremde geht zurück zu seiner Bank und setzt sich, als hätte er nur kurz nach dem Wetter gesehen. Der Wirt, ein
+		Mann mit Armen wie Schinken, wischt einen Becher und schweigt. Er schweigt sehr gründlich.</p>
+
+		<<gedanke>>
+		<p>Ich sollte weitergehen. Männer wie der bringen nur Ärger, und ich habe genug davon. Aber ich stehe schon, und meine
+		Füße hören nicht auf mich, und irgendetwas an ihm lässt mich nicht los — nicht der Schlag, sondern die Ruhe danach.</p>
+		<</gedanke>>
+
+		<p>Sein Krug liegt auf der Seite, das Bier rinnt in dunklen Fäden über die Tischkante. Er starrt es an, ohne die Miene
+		zu verziehen, als sei auch das nur Wetter.</p>
+
+		<div id="konrad-wahl">
+		<ul class="menu">
+		<<if setup.canAffordMoney(3)>>
+			<li><<link "Ihm ein neues Bier ausgeben (3 Kupfer)">>
+				<<replace "#konrad-wahl">>
+					<<print setup.removeMoney(3)>>
+					<<= setup.setNpcAffection("konrad", 3)>>
+					<<set $npc.konrad.memory.flags.bier_spendiert to true>>
+					<<set $npc.konrad.memory.flags.suchtHauptmannLenz to true>>
+					<<run setup.pushNpcMemory("konrad", "herkunft_erzaehlt")>>
+					<p>Du stellst ihm einen vollen Krug hin. Einen Moment sieht er dich an, von unten herauf, und misst dich, wie
+					man Vieh auf dem Markt misst. Dann hebt sich ein Mundwinkel.</p>
+					<div class="dialog">„Gibst du mir Bier? Ha. Erste kluge Sache heut in diese Wirtschaft. Setz dich, Kleiner. Setz.“</div>
+					<p>Er trinkt, lang, und wischt sich den Schaum aus dem Bart, ehe er redet.</p>
+					<div class="dialog">„Woher ich komm? Ostmark.“ Er sagt es, als läge alles darin. „Ganz im Osten, wo Imperium aufhört
+					und Wald anfängt und nie mehr aufhört. Land, das Mann hart macht — oder tot. Mich hat es gemacht hart.“</div>
+					<div class="dialog">„Wie Konrad kommt nach Aloy, du willst wissen. Ha.“ Ein kurzes, freudloses Lachen. „Lange Straße,
+					Kleiner. Bin ich eingeladen von Hauptmann, aber kann ich ihn grad nicht finden. Also geh ich in Taverne und lerne Land kennen.“</div>
+					<<gedanke>>
+					<p>Ein Mann des Imperiums, hier, im Herzen Aloys. Das ist so selten wie Schnee im Hochsommer. Und er redet darüber,
+					als wäre es das Gewöhnlichste der Welt — was mir mehr über ihn sagt als alles andere.</p>
+					<</gedanke>>
+				<</replace>>
+			<</link>></li>
+		<</if>>
+			<li><<link "Ihn ansprechen, ohne etwas auszugeben">>
+				<<replace "#konrad-wahl">>
+					<<run setup.pushNpcMemory("konrad", "herkunft_erzaehlt")>>
+					<p>Du trittst näher, und sein Blick fällt auf deine leeren Hände, ehe er dein Gesicht erreicht. Es sagt genug.</p>
+					<div class="dialog">„Was geht dich an, woher ich komm.“ Es ist keine Frage. Er mustert dich noch einmal. „Ostmark.
+					Imperium. Reicht für heut.“</div>
+					<<gedanke>>
+					<p>Imperium. Ein Mann von jenseits der Grenze, mitten in Aloy — und er verrät mir kein Wort mehr als nötig. Vielleicht
+					ein andermal. Vielleicht bei einem Bier.</p>
+					<</gedanke>>
+				<</replace>>
+			<</link>></li>
+		</ul>
+		</div>
+
+		
 	<<else>>
 		<<scene>>
 		<p>Du trinkst, und der Krug wärmt von innen. Um dich her wird geredet, lauter mit jedem Becher — und wer mittrinkt,
@@ -930,6 +1381,10 @@ und das ist mehr, als du vor einem Jahr von dir erwartet hättest.</p>
 <div id="gossip-antworten"></div>
 <</if>>
 
+<<if $world.flags.baderAuftrag === "offen" and not setup.hasItem("Silberbrech")>>
+	<li><<link "Auf die Grate über Ohm steigen" "Bader_Auftrag_Suche">><</link>>
+	<span class="subtext">— Der Bader wartet auf sein Bergkraut. Ein steiler Weg, und du kennst ihn besser als die meisten.</span></li>
+<</if>>
 
 <<trenner>>
 <ul class="sandbox-menu">

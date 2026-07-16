@@ -877,6 +877,91 @@ var LZString=function(){var r=String.fromCharCode,o="ABCDEFGHIJKLMNOPQRSTUVWXYZa
 @keyframes gossipReveal {
     from { opacity: 0; transform: translateY(-4px); }
     to   { opacity: 1; transform: translateY(0); }
+}
+
+.hat-titelbild #story-title { display: none; }
+.titel-bild { max-width: 100%; height: auto; display: block; }
+
+/* === Ermittlungsakte === */
+.akte {
+  background: #e7dbc0;
+  color: #2b2119;
+  border: 1px solid #b9a880;
+  border-radius: 3px;
+  padding: 14px 16px 18px;
+  box-shadow: inset 0 0 40px rgba(120,95,55,.25), 0 2px 6px rgba(0,0,0,.4);
+  font-family: Georgia, "Times New Roman", serif;
+}
+.akte-kopf { position: relative; border-bottom: 2px solid #6b5836; padding-bottom: 8px; margin-bottom: 12px; }
+.akte-stempel {
+  position: absolute; top: -4px; right: -4px;
+  transform: rotate(8deg);
+  border: 2px solid #8a2b20; color: #8a2b20;
+  font-size: .7rem; letter-spacing: 2px; text-transform: uppercase;
+  padding: 2px 8px; border-radius: 2px; opacity: .8;
+}
+.akte-titel { font-size: 1.4rem; font-weight: bold; letter-spacing: 1px; }
+.akte-sub { font-size: .85rem; color: #5c4a2e; margin-top: 2px; }
+.akte-motiv { font-size: .9rem; margin-top: 6px; font-style: italic; }
+.akte-motiv span { font-style: normal; font-weight: bold; }
+
+.akte-block { margin-top: 14px; }
+.akte-block-titel {
+  font-size: .8rem; text-transform: uppercase; letter-spacing: 1.5px;
+  color: #6b5836; border-bottom: 1px dotted #b0997018; margin-bottom: 8px;
+}
+.akte-leer { font-style: italic; color: #7a6849; font-size: .9rem; }
+
+/* Verdächtigen-Karten */
+.akte-karten { display: flex; flex-wrap: wrap; gap: 10px; }
+.akte-karte {
+  display: flex; gap: 10px; align-items: center;
+  background: #f2e9d4; border: 1px solid #c3b189; border-left: 4px solid #999;
+  border-radius: 2px; padding: 8px 10px; min-width: 210px; flex: 1 1 210px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.25);
+}
+.akte-karte-akut { border-left-color: #8a2b20; }
+.akte-karte-hoch { border-left-color: #b06a1e; }
+.akte-karte-leicht { border-left-color: #b0991e; }
+.akte-karte-neutral { border-left-color: #8a7f68; }
+.akte-karte-entlastet { border-left-color: #4d6b3a; }
+.akte-foto {
+  width: 46px; height: 46px; flex: 0 0 46px; border-radius: 2px;
+  background: #cdbe98 center/cover no-repeat;
+  border: 1px solid #9b8a63; filter: sepia(.35) contrast(.95);
+}
+.akte-karte-txt { flex: 1; min-width: 0; }
+.akte-name { font-weight: bold; font-size: .98rem; }
+.akte-vlabel { font-size: .78rem; color: #5c4a2e; margin-bottom: 4px; }
+.akte-meter { height: 6px; background: #d5c7a4; border-radius: 3px; overflow: hidden; }
+.akte-meter-fill { height: 100%; }
+.akte-meter-akut { background: #8a2b20; }
+.akte-meter-hoch { background: #b06a1e; }
+.akte-meter-leicht { background: #b0991e; }
+.akte-meter-neutral { background: #8a7f68; }
+.akte-meter-entlastet { background: #4d6b3a; }
+
+/* Spuren-Zettel */
+.akte-zettel-feld { display: flex; flex-wrap: wrap; gap: 12px; }
+.akte-zettel {
+  position: relative; background: #fbf6e8; color: #33291a;
+  border: 1px solid #d8c9a3; padding: 12px 12px 12px 14px;
+  font-size: .9rem; max-width: 240px;
+  box-shadow: 1px 2px 4px rgba(0,0,0,.28);
+}
+.akte-zettel-0 { transform: rotate(-1.4deg); }
+.akte-zettel-1 { transform: rotate(1.1deg); }
+.akte-zettel-2 { transform: rotate(-.5deg); }
+.akte-pin {
+  position: absolute; top: -6px; left: 50%; transform: translateX(-50%);
+  width: 10px; height: 10px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #c0402f, #6e1c14);
+  box-shadow: 0 1px 2px rgba(0,0,0,.5);
+}
+.akte-schritte { display: flex; flex-wrap: wrap; gap: 6px; }
+.akte-schritt {
+  font-size: .78rem; background: #d8c9a3; color: #4a3c22;
+  border-radius: 2px; padding: 2px 7px;
 }</style><script role="script" id="twine-user-script" type="text/twine-javascript">/* twine-user-script #1: "0_11_kampf.js" */
 
 
@@ -1613,14 +1698,6 @@ $(document).on(':passagedisplay', function (ev) {
 });
 
 (function () {
-    var s = document.createElement('script');
-    s.setAttribute('data-goatcounter', 'https://stadler-tom.goatcounter.com/count');
-    s.async = true;
-    s.src = '//gc.zgo.at/count.js';
-    document.head.appendChild(s);
-})();
-
-(function () {
   var url = 'https://aloystorycounter.stadler-tom.workers.dev/';
   try {
     if (!localStorage.getItem('anAloyGezaehlt')) {
@@ -1630,6 +1707,17 @@ $(document).on(':passagedisplay', function (ev) {
   } catch (e) {
     try { fetch(url, { keepalive: true }); } catch (e2) {}
   }
+})();
+
+/* Titelbilder vorab laden, damit sie beim ersten Rendern schon im Cache liegen */
+(function () {
+    [
+        "images/Thomas_Kap0.png",
+        "images/Thomas_Kap1.png",
+        "images/Thomas_Kap1_scar.png",
+        "images/Thomas_Kap2.png",
+        "images/Thomas_Kap2_scar.png"
+    ].forEach(function (src) { var img = new Image(); img.src = src; });
 })();
 /* twine-user-script #3: "90_02_interrupts.js" */
 
@@ -2395,7 +2483,9 @@ setup.resetDailyVariables = function () {
     world.wuerfelSpiel.gespielt = 0; /* Kap2: WürfelspielCounter zurücksetzen */
     world.wuerfelSpiel.cheat = 0; /* Kap2: WürfelspielCheat zurücksetzen */
     world.kirchenBesuch = false; /* Kap2: Kirchenbesuch zurücksetzen */
+    world.flags.barsingerEncounter = false; /* Barsinger encounter in schenke zurücksetzten */
     player.trinken = 0; /* Kap2: Trinken zurücksetzen */
+
     setup.tickKarlaDruck();
 };
 
@@ -2745,8 +2835,21 @@ setup.syncPlayerRel = function () {
     });
 };
 
+setup.migrateWorld = function () {
+    var w = State.variables.world; 
+    if (!w) return;
+
+    if (!w.flags) w.flags = {};
+
+    /* künftige Nachrüstungen einfach hier ergänzen, z.B.: */
+    /* if (w.wuerfelGesamt === undefined) w.wuerfelGesamt = 0; */
+};
+
 $(document).on(":passagestart", function () {
     setup.syncPlayerRel();
+    setup.migrateWorld();
+    var known = State.variables.npc && State.variables.npc.sergeant && State.variables.npc.sergeant.known === true;
+    jQuery("html").toggleClass("hat-titelbild", known);
 });
 
 /* --- Inventar --- */
@@ -2965,6 +3068,8 @@ setup.unbekannteSoeldner = function () {
     }
     return out;
 };
+
+
 /* twine-user-script #8: "90_07_skillchecks.js" */
 
 /* ================================================================
@@ -3000,6 +3105,23 @@ setup.skillCheck = function (skillKey, difficulty, modifier) {
         total: total,
         dc: dc
     };
+};
+
+setup.hasAnyRequiredSkill = function(difficulty) {
+    var knowledge = State.variables.player.knowledge || {};
+    return Object.values(knowledge).some(function (value) {
+        return value >= difficulty;
+    });
+};
+
+/* Verschlagenheit: steigt, wenn Ehrlichkeit fällt. +5 (skrupellos) … −5 (grundehrlich) */
+setup.verschlagenheitMod = function () {
+    return -setup.honestyMod();
+};
+
+setup.honestyMod = function () {
+    var h = (State.variables.player.stats && State.variables.player.stats.honesty) || 0;
+    return Math.round((setup.clamp(h, 0, 100) - 50) / 10);
 };
 
 /* Sichtbare Info-Box zu einer Probe. Direkt nach dem Check ausgeben:
@@ -4205,6 +4327,78 @@ setup.verdachtLabel = function (v) {
     if (v <= -1) return "eher unverdächtig";
     return "unklar";
 };
+/* Ermittlungsakte — visueller Aktendeckel aus world.ermittlung */
+setup.renderErmittlungsakte = function () {
+    const e = State.variables.world.ermittlung;
+    if (!e || (!e.active && (!e.spuren || e.spuren.length === 0))) {
+        return `<p class="journal-empty">Noch liegt keine Akte an.</p>`;
+    }
+    const npcs = State.variables.npc || {};
+    let out = `<div class="akte">`;
+
+    /* Aktendeckel */
+    out += `<div class="akte-kopf">`;
+    out += `<div class="akte-stempel">Vertraulich</div>`;
+    out += `<div class="akte-titel">Ermittlungsakte</div>`;
+    out += `<div class="akte-sub">84. Banner &middot; Stufe ${e.stufe || 0}</div>`;
+    if (e.motiv) out += `<div class="akte-motiv">Vermutetes Motiv: <span>${e.motiv}</span></div>`;
+    out += `</div>`;
+
+    /* Verdächtige */
+    const vKeys = e.verdacht ? Object.keys(e.verdacht).filter(k => (e.verdacht[k] || 0) !== 0) : [];
+    out += `<div class="akte-block"><div class="akte-block-titel">Verdächtige</div>`;
+    if (vKeys.length === 0) {
+        out += `<div class="akte-leer">Noch fällt der Verdacht auf niemanden.</div>`;
+    } else {
+        out += `<div class="akte-karten">`;
+        vKeys.sort((a, b) => (e.verdacht[b] || 0) - (e.verdacht[a] || 0)).forEach(k => {
+            const npc = npcs[k] || {};
+            const name = npc.name || k;
+            const v = setup.clamp(e.verdacht[k] || 0, -10, 10);
+            const pct = Math.round(((v + 10) / 20) * 100);
+            const stufe = v >= 8 ? "akut" : v >= 4 ? "hoch" : v >= 1 ? "leicht" : v <= -1 ? "entlastet" : "neutral";
+            const img = npc.imageKap2 || npc.image || "";
+            const fotoStyle = img ? ` style="background-image:url('${img}')"` : "";
+            out += `<div class="akte-karte akte-karte-${stufe}">`;
+            out += `<div class="akte-foto"${fotoStyle}></div>`;
+            out += `<div class="akte-karte-txt">`;
+            out += `<div class="akte-name">${name}</div>`;
+            out += `<div class="akte-vlabel">${setup.verdachtLabel(v)}</div>`;
+            out += `<div class="akte-meter"><div class="akte-meter-fill akte-meter-${stufe}" style="width:${pct}%"></div></div>`;
+            out += `</div></div>`;
+        });
+        out += `</div>`;
+    }
+    out += `</div>`;
+
+    /* Gesicherte Spuren — angepinnte Zettel */
+    out += `<div class="akte-block"><div class="akte-block-titel">Gesicherte Spuren</div>`;
+    if (!e.spuren || e.spuren.length === 0) {
+        out += `<div class="akte-leer">Noch keine Spur gesichert.</div>`;
+    } else {
+        out += `<div class="akte-zettel-feld">`;
+        e.spuren.forEach((id, i) => {
+            const label = (e.spurenText && e.spurenText[id]) || id;
+            out += `<div class="akte-zettel akte-zettel-${i % 3}"><span class="akte-pin"></span>${label}</div>`;
+        });
+        out += `</div>`;
+    }
+    out += `</div>`;
+
+    /* Erledigte Schritte (aus sN_done-Flags) */
+    const steps = Object.keys(e.flags || {})
+        .filter(f => /^s\d+_done$/.test(f) && e.flags[f])
+        .map(f => Number(f.match(/^s(\d+)_done$/)[1]))
+        .sort((a, b) => a - b);
+    if (steps.length) {
+        out += `<div class="akte-block"><div class="akte-block-titel">Erledigte Schritte</div><div class="akte-schritte">`;
+        steps.forEach(n => { out += `<span class="akte-schritt">&#10004; S${n}</span>`; });
+        out += `</div></div>`;
+    }
+
+    out += `</div>`;
+    return out;
+};
 
 setup.renderErmittlungstagebuch = function () {
     const e = State.variables.world.ermittlung;
@@ -4840,6 +5034,9 @@ setup.applyOutcome = function (outcome) {
             case "verdacht":
                 out += setup.setNpcsuspicion(outcome.npc, f.value);
                 break;
+            case "honesty":
+                out += setup.setPlayerStat("honesty", f.value);
+                break;
             case "condition":
                 State.variables.player.condition = setup.clamp(
                     State.variables.player.condition + f.value, 0, 100);
@@ -4950,6 +5147,15 @@ setup.loadGattungsdrillVault = function () {
     return setup.gattungsdrillVault;
 };
 
+/* Reisegerät: jedes besessene Stück hebt den Gattungsdrill-XP um 10 % */
+setup.reisegeraetItems = ["Wetterfeste Stiefel", "Lederhandschuhe", "Öltuch-Umhang", "Fuhrmannsmesser", "Waster"];
+
+setup.reisegeraetBonus = function () {
+    var n = 0;
+    setup.reisegeraetItems.forEach(function (it) { if (setup.hasItem(it)) n++; });
+    return n; // Anzahl besessener Stücke
+};
+
 /* Ein Drill-Besuch: liefert Szenerie + levelabhängigen Gedanken + Belohnung.
    Fortschritt: bis Skill 4 sicher, bis 7 zäh (60%), darüber selten (30%). */
 setup.gattungsdrill = function () {
@@ -4982,6 +5188,13 @@ setup.gattungsdrill = function () {
             xp = Math.round(xp * 2.5);
             State.variables.world.sehr_gut_vorbereitet = false;
             reward += '<div class="system-alert status-info">Die Vorbereitung des Abends zahlt sich sehr aus (x 2.5).</div>';
+        }
+
+        /* Reisegerät im Gepäck erleichtert den Drill (+10 % je Stück) */
+        var _gear = setup.reisegeraetBonus ? setup.reisegeraetBonus() : 0;
+        if (_gear > 0) {
+            xp = Math.round(xp * (1 + 0.1 * _gear));
+            reward += '<div class="system-alert status-info">Gute Ausrüstung verbessert deinen Drillerfolg (+' + (_gear * 10) + '%).</div>';
         }
 
         var name = (setup.knowledgeNames && setup.knowledgeNames[spez]) || spez;
@@ -5595,7 +5808,7 @@ setup.duellEinfluss = function () {
     return { wert: wert, band: band };
 };
 
-</script><tw-tag name="script" color="purple"></tw-tag><tw-tag name="pruefung" color="green"></tw-tag><tw-tag name="nach_Kap2_tag" color="green"></tw-tag><tw-tag name="journal" color="orange"></tw-tag><tw-tag name="nach_Kap2_abend" color="yellow"></tw-tag><tw-tag name="startup-debug" color="purple"></tw-tag><tw-tag name="nach_appell" color="yellow"></tw-tag><tw-tag name="kapitel-opener" color="red"></tw-tag><tw-tag name="layout" color="green"></tw-tag><tw-tag name="nach_stube" color="orange"></tw-tag><tw-tag name="einmalig" color="red"></tw-tag><tw-tag name="interrupt" color="purple"></tw-tag><tw-tag name="studium" color="yellow"></tw-tag><tw-tag name="nach_Kap2_morgen" color="green"></tw-tag><tw-tag name="header" color="blue"></tw-tag><tw-tag name="widget" color="blue"></tw-tag><tw-tag name="nach_hub" color="green"></tw-tag><tw-tag name="nach_morgen" color="red"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="0,225" size="100,100">&lt;&lt;include &quot;InitPlayer&quot;&gt;&gt;
+</script><tw-tag name="kapitel-opener" color="red"></tw-tag><tw-tag name="layout" color="green"></tw-tag><tw-tag name="nach_Kap2_tag" color="green"></tw-tag><tw-tag name="einmalig" color="red"></tw-tag><tw-tag name="pruefung" color="green"></tw-tag><tw-tag name="interrupt" color="purple"></tw-tag><tw-tag name="nach_Kap2_morgen" color="green"></tw-tag><tw-tag name="header" color="blue"></tw-tag><tw-tag name="widget" color="blue"></tw-tag><tw-tag name="nach_morgen" color="red"></tw-tag><tw-tag name="nach_appell" color="yellow"></tw-tag><tw-tag name="studium" color="yellow"></tw-tag><tw-tag name="nach_Kap2_abend" color="yellow"></tw-tag><tw-tag name="script" color="purple"></tw-tag><tw-tag name="nach_hub" color="green"></tw-tag><tw-tag name="journal" color="orange"></tw-tag><tw-tag name="startup-debug" color="purple"></tw-tag><tw-tag name="nach_stube" color="orange"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="0,225" size="100,100">&lt;&lt;include &quot;InitPlayer&quot;&gt;&gt;
 &lt;&lt;include &quot;InitNPC&quot;&gt;&gt;
 &lt;&lt;include &quot;InitWorld&quot;&gt;&gt;
 &lt;&lt;include &quot;InitStudium&quot;&gt;&gt;
@@ -5830,6 +6043,7 @@ setup.duellEinfluss = function () {
     },
     haddl: {
         name: &quot;Hartmut Hadde Wurz&quot;,
+        image: &quot;images/Haddl.png&quot;,
         known: false,
         faction: &quot;84. Banner&quot;,
         affection: 0,
@@ -5888,6 +6102,7 @@ setup.duellEinfluss = function () {
 
     rosi: {
         name: &quot;Rosina Hugendubel&quot;,
+        image: &quot;images/Rosi.png&quot;,
         known: false,
         faction: &quot;84. Banner&quot;,
         affection: 0,
@@ -6052,6 +6267,24 @@ setup.duellEinfluss = function () {
         journalEntry: &quot;Ein Bretone. Mit einem Hang für Würfelspiele. Redselig, aber nicht dumm. Versteht sich gut darauf Leuten dinge einzureden die sie nicht wollen.&quot;
 
     },
+
+    /* ===========================
+       Imperium
+       =========================== */
+
+    konrad: {
+        name: &quot;Konrad Schläger&quot;,
+        known: false,
+        image: &quot;images/Konrad.png&quot;,
+        faction: &quot;Imperium&quot;,
+        affection: 0,
+        trust: false,
+        isRealPlayer: true,
+        memory: { flags: {}, events: [] },
+        journalEntry: &quot;Einer vom Imperium! Ein Hüne von einem Kerl, aus der Ostmark. Den Akzent in dem er spricht hast du noch nie gehört.&quot;
+
+    },
+
     
 } &gt;&gt;</tw-passagedata><tw-passagedata pid="4" name="InitStudium" tags="" position="0,625" size="100,100">/* Defensiv: legt nur an, was fehlt - sicher beim Merge ins Hauptspiel */
 &lt;&lt;if not $player.knowledge&gt;&gt;&lt;&lt;set $player.knowledge = {}&gt;&gt;&lt;&lt;/if&gt;&gt;
@@ -6184,6 +6417,10 @@ setup.duellEinfluss = function () {
 
 &lt;&lt;widget &quot;trenner&quot;&gt;&gt;\
 &lt;hr class=&quot;trenner-raute&quot;&gt;\
+&lt;&lt;/widget&gt;&gt;
+
+&lt;&lt;widget &quot;quote&quot;&gt;&gt;\
+„&lt;&lt;print _args.join(&#39; &#39;)&gt;&gt;“\
 &lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="11" name="StudiumTexte" tags="" position="1700,525" size="100,100">{
   &quot;hubIntros&quot;: [
     &quot;Der Hoersaal der Akademie riecht nach Tinte, kaltem Stein und dem Talg der Leuchter. Nach dem Drill draussen fuehlt sich das Sitzen fast wie eine List an – bis der Magister den Raum betritt und klarmacht, dass auch Stille hier eine Form von Anstrengung ist.&quot;,
@@ -7581,7 +7818,7 @@ setup.duellEinfluss = function () {
 ]</tw-passagedata><tw-passagedata pid="23" name="Kap2_Pool_Schenke_Trinken" tags="" position="2175,5900" size="100,100">[
   { &quot;text&quot;: &quot;Das Bier ist dünn und leicht sauer, doch nach dem ersten Schluck spürst du, wie sich etwas in deinen Schultern löst, das den ganzen Tag über festgesessen hat.&quot;, &quot;outcome&quot;: { &quot;npc&quot;: null, &quot;fields&quot;: [ { &quot;field&quot;: &quot;condition&quot;, &quot;value&quot;: 4, &quot;chance&quot;: 70 } ] } },
   { &quot;text&quot;: &quot;Du trinkst schneller, als es klug wäre, und der Raum beginnt für einen Moment sanft zu schwanken. Als du aufstehst, ist dir schwindliger, als dir lieb ist.&quot;, &quot;outcome&quot;: { &quot;npc&quot;: null, &quot;fields&quot;: [ { &quot;field&quot;: &quot;condition&quot;, &quot;value&quot;: -5, &quot;chance&quot;: 40 } ] } },
-  { &quot;text&quot;: &quot;Ein Fuhrmann am Nebentisch hebt seinen Krug in deine Richtung, ein stummer Gruß unter Fremden, die für diesen einen Abend keine Fremden sind.&quot;, &quot;outcome&quot;: { &quot;npc&quot;: null, &quot;fields&quot;: [ { &quot;field&quot;: &quot;condition&quot;, &quot;value&quot;: 3, &quot;chance&quot;: 60 } ] } },
+  { &quot;text&quot;: &quot;Ein Fuhrmann am Nebentisch hebt seinen Krug in deine Richtung, ein stummer Gruß unter Fremden, die für diesen einen Abend keine Fremden sind.&quot;, &quot;outcome&quot;: { &quot;npc&quot;: null, &quot;fields&quot;: [ { &quot;field&quot;: &quot;condition&quot;, &quot;value&quot;: 3, &quot;chance&quot;: 60 }, { &quot;field&quot;: &quot;honesty&quot;, &quot;value&quot;: 3, &quot;chance&quot;: 70 } ] } },
   { &quot;text&quot;: &quot;Das Bier schmeckt nach nichts Besonderem, doch die Wärme der Stube und das Gemurmel um dich herum tun ihre eigene, stille Arbeit.&quot;, &quot;outcome&quot;: { &quot;npc&quot;: null, &quot;fields&quot;: [ { &quot;field&quot;: &quot;condition&quot;, &quot;value&quot;: 5, &quot;chance&quot;: 55 } ] } },
   { &quot;text&quot;: &quot;Du trinkst allein, den Blick auf den Krug gerichtet, und für eine Weile ist auch das eine Art von Ruhe.&quot;, &quot;outcome&quot;: null }
 ]</tw-passagedata><tw-passagedata pid="24" name="Kap2_Pool_Stadt_Encounter" tags="" position="2050,5525" size="100,100">[
@@ -7599,10 +7836,10 @@ setup.duellEinfluss = function () {
 		&quot;outcome&quot;: { &quot;npc&quot;: null, &quot;fields&quot;: [ { &quot;field&quot;: &quot;moneyLoss&quot;, &quot;value&quot;: 8, &quot;chance&quot;: 100 } ] },
 		&quot;checkOn&quot;: &quot;perception&quot;,
 		&quot;checkSuccessText&quot;: &quot;Eine flinke Hand streift deinen Gürtel, du bemerkst sie und schlägst sie weg. Als du dich umsiehst ist der Dieb schon wieder in der Menge verschwunden.&quot;},
-  { &quot;text&quot;: &quot;Ein alter Landsknecht, dem ein Bein fehlt, erzählt dir gegen ein kleines Almosen von seinen Feldzügen. Du hörst zu, länger, als du wolltest, und gibst ihm am Ende mehr, als du eigentlich vorhattest.&quot;, &quot;outcome&quot;: { &quot;npc&quot;: null, &quot;fields&quot;: [ { &quot;field&quot;: &quot;money&quot;, &quot;value&quot;: -3, &quot;chance&quot;: 100 }, { &quot;field&quot;: &quot;condition&quot;, &quot;value&quot;: 2, &quot;chance&quot;: 50 } ] } },
-  { &quot;text&quot;: &quot;Ein Kaufmann, dessen Karren im Schlamm feststeckt, bittet dich um eine kräftige Schulter. Du hilfst, und er drückt dir zum Dank ein paar Münzen in die Hand.&quot;, &quot;outcome&quot;: { &quot;npc&quot;: null, &quot;fields&quot;: [ { &quot;field&quot;: &quot;money&quot;, &quot;value&quot;: 2, &quot;chance&quot;: 70 }, { &quot;field&quot;: &quot;condition&quot;, &quot;value&quot;: -3, &quot;chance&quot;: 100 } ] } },
+  { &quot;text&quot;: &quot;Ein alter Landsknecht, dem ein Bein fehlt, erzählt dir gegen ein kleines Almosen von seinen Feldzügen. Du hörst zu, länger, als du wolltest, und gibst ihm am Ende mehr, als du eigentlich vorhattest.&quot;, &quot;outcome&quot;: { &quot;npc&quot;: null, &quot;fields&quot;: [ { &quot;field&quot;: &quot;money&quot;, &quot;value&quot;: -3, &quot;chance&quot;: 100 }, { &quot;field&quot;: &quot;condition&quot;, &quot;value&quot;: 2, &quot;chance&quot;: 50 }, { &quot;field&quot;: &quot;honesty&quot;, &quot;value&quot;: 2, &quot;chance&quot;: 80 } ] } },
+  { &quot;text&quot;: &quot;Ein Kaufmann, dessen Karren im Schlamm feststeckt, bittet dich um eine kräftige Schulter. Du hilfst, und er drückt dir zum Dank ein paar Münzen in die Hand.&quot;, &quot;outcome&quot;: { &quot;npc&quot;: null, &quot;fields&quot;: [ { &quot;field&quot;: &quot;money&quot;, &quot;value&quot;: 2, &quot;chance&quot;: 70 }, { &quot;field&quot;: &quot;condition&quot;, &quot;value&quot;: -3, &quot;chance&quot;: 100 }, { &quot;field&quot;: &quot;honesty&quot;, &quot;value&quot;: 3, &quot;chance&quot;: 80 } ] } },
   { &quot;text&quot;: &quot;Zwei Weiber am Brunnen tuscheln über einen Schreiber der Akademie, der neuerdings so nervös sei wie ein Dieb kurz vor der Tat. Du gehst weiter, als hättest du nichts gehört — doch die Worte bleiben in dir hängen.&quot;, &quot;outcome&quot;: { &quot;npc&quot;: &quot;orenmalk&quot;, &quot;fields&quot;: [ { &quot;field&quot;: &quot;verdacht&quot;, &quot;value&quot;: 0, &quot;chance&quot;: 0 } ] } },
-  { &quot;text&quot;: &quot;Ein betrunkener Söldner rempelt dich an, mehr aus Unachtsamkeit als Bosheit, murmelt eine Entschuldigung und taumelt weiter.&quot;, &quot;outcome&quot;: null },
+  { &quot;text&quot;: &quot;Ein betrunkener Söldner rempelt dich an, mehr aus Unachtsamkeit als Bosheit, murmelt eine Entschuldigung und taumelt weiter.&quot;, &quot;outcome&quot;: { &quot;npc&quot;: null, &quot;fields&quot;: [ { &quot;field&quot;: &quot;honesty&quot;, &quot;value&quot;: 3, &quot;chance&quot;: 100 } ] }},
   { &quot;text&quot;: &quot;Eine Streunerkatze folgt dir eine Weile durch die Gassen, als hätte sie beschlossen, dass du ihr Beschützer seist. Du lässt sie gewähren.&quot;, &quot;outcome&quot;: null },
   { &quot;text&quot;: &quot;Ein Kind drückt dir wortlos eine verwelkte Blume in die Hand und rennt davon, ehe du fragen kannst, warum.&quot;, &quot;outcome&quot;: null }
 ]</tw-passagedata><tw-passagedata pid="25" name="Kap2_Pool_Stadt_Gluecksspiel" tags="" position="2050,5900" size="100,100">[
@@ -8926,6 +9163,7 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 &lt;&lt;trenner&gt;&gt;
 [[Jarek das Blatt zeigen. -&gt;Jarek_S5_Begreifen]]</tw-passagedata><tw-passagedata pid="90" name="Jarek_S4_Unbefugt" tags="" position="3825,225" size="100,100">&lt;&lt;set _r to setup.skillCheck(&quot;thievery&quot;, 13)&gt;&gt;
 &lt;p&gt;Kein Zeichen, kein Recht, hier zu sein. Ihr drückt euch durch die schwere Tür, und sofort ist die Dunkelheit ein anderes Ding — eine, die jeden Laut verstärkt. Jarek bewegt sich, als hätte er das geübt. Du nicht.&lt;/p&gt;
+&lt;&lt;set _out += setup.setPlayerStat(&quot;honesty&quot;, -3)&gt;&gt;
 
 &lt;&lt;if _r.success&gt;&gt;
 &lt;div class=&quot;beziehung&quot;&gt;Du setzt jeden Schritt zwischen das Knarren der Dielen, atmest, wenn der Wind ans Fenster schlägt. Lautlos arbeitet ihr euch zu den alten Verzeichnissen vor. Niemand hört euch. Niemand kommt.&lt;/div&gt;
@@ -9051,8 +9289,10 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 &lt;&lt;set _r to setup.skillCheck(&quot;thievery&quot;, 14)&gt;&gt;
 &lt;&lt;if _r.success&gt;&gt;
 	&lt;div class=&quot;beziehung&quot;&gt;und knallst ihm eine Lüge nach der anderen hin und kommst dabei nichteinmal in verlegenheit&lt;/div&gt;
+	&lt;&lt;set _out += setup.setPlayerStat(&quot;honesty&quot;, -3)&gt;&gt;
 &lt;&lt;else&gt;&gt;
 	&lt;div class=&quot;beziehung&quot;&gt;und wiederholst alles Was du schon einmal erzählt hast und hoffst dass er dir glaubt&lt;/div&gt;
+	&lt;&lt;set _out += setup.setPlayerStat(&quot;honesty&quot;, -1)&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;p&gt;Am Ende nickt er.&lt;/p&gt;
 &lt;div class=&quot;dialog&quot;&gt;&quot;Gut, damit hätte ich alles. Meinen Bericht lege ich der Administartion vor. Dir möchte ich für deinen Einsatz schon als erster Danken und ich mahne dich, erzähl die Geschichte nicht herum. Jarek hat dem Druck der Ausbildung nicht standgehalten. Er ist eingebrochen und hat überreagiert. Mehr muss niemand wissen.&quot;&lt;/div&gt;
@@ -9465,7 +9705,8 @@ Du sagst noch nichts davon. Aber der Gedanke sitzt in dir wie ein Splitter, den 
 &lt;p&gt;Also warten. Drill, Appell, Dienst — Tage, die aussehen müssen wie alle anderen, während die Sache in dir arbeitet. Das Schwerste am Ermitteln, lernst du gerade, ist nicht das Wagnis. Es ist das Stillhalten davor.&lt;/p&gt;
 
 &lt;&lt;trenner&gt;&gt;
-&lt;&lt;weiterImTag &quot;Weiter&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="105" name="Ermittlung_S2_Einbruch" tags="interrupt einmalig kapitel-opener" position="750,5275" size="100,100">&lt;&lt;if setup.ermMit()&gt;&gt;
+&lt;&lt;weiterImTag &quot;Weiter&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="105" name="Ermittlung_S2_Einbruch" tags="interrupt einmalig kapitel-opener" position="750,5275" size="100,100">&lt;&lt;= setup.setPlayerStat(&quot;honesty&quot;, -3)&gt;&gt;
+&lt;&lt;if setup.ermMit()&gt;&gt;
 	&lt;&lt;scene&gt;&gt;
 	&lt;p&gt;Die Nacht, die ihr euch ausgesucht habt, ist eine ohne Mond — Karla hat drei Abende lang den Himmel beobachtet, ehe sie diesen für richtig befand. Kein Licht außer den Wachfeuern an den Toren, kein Laut außer dem Wind, der durch die leeren Übungshöfe streicht und die losen Läden der Waffenausgabe gegen ihre Rahmen schlagen lässt, immer und immer wieder, bis das Geräusch selbst zur Stille gehört.&lt;/p&gt;
 	&lt;p&gt;Ihr habt die Tage zuvor genutzt, wie man einen Feind vor der Schlacht auskundschaftet. Du hast beobachtet, wann Oren geht — jeden Abend zur selben Stunde, kein einziges Mal später, ein Mann, der seine eigene Pünktlichkeit wie eine Tugend trägt. Karla hat sich Tür, Fenster, Schlüssel und Wachwege eingeprägt, ohne ein Wort darüber zu verlieren, bis sie es dir an diesem Abend flüsternd vorlegt wie eine Karte, die nur in ihrem Kopf existiert.&lt;/p&gt;
@@ -10195,9 +10436,7 @@ Und die Einzige, die mit mir darüber hätte flüstern können, sitzt zwei Tages
 
 [[Den Fund ordnen|Ermittlung_S3_Erkenntnis]]
 
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="109" name="Ermittlung_S2_Verwaltungstrick" tags="einmalig interrupt" position="1125,5275" size="100,100">//kann nur mit Karla passieren
-
-&lt;&lt;scene&gt;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="109" name="Ermittlung_S2_Verwaltungstrick" tags="einmalig interrupt" position="1125,5275" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Der Nachmittag ist grau und geschäftig, die Stunde, in der die Waffenausgabe am meisten Betrieb hat — Rekruten, die Übungswaffen tauschen, ein Korporal, der nach fehlenden Riemen fragt, das ständige Kommen und Gehen, in dem ein einzelner Vorfall leicht untergeht. Genau diese Stunde hat Karla gewählt, mit derselben kühlen Berechnung, mit der sie schon den mondlosen Abend für den Einbruch gewählt hätte, wäre es dazu gekommen.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
 
@@ -12428,8 +12667,38 @@ sein Bett noch leer bis auf ein paar Seile und einen losen Sack Nägel. Er wird 
 was ihr nicht hineinlegt, müsst ihr tragen, Meile um Meile, und was ihr weder hineinlegt noch tragt, wird euch draußen fehlen, 
 wenn es am wenigsten passt.&lt;/p&gt;
 
+&lt;p&gt;Gerade als du dich aufmachen willst zum Packen lässt dich eine Stimme innehalten.&lt;/p&gt;
+&lt;&lt;dialog&gt;&gt;
+	&lt;p&gt;&lt;&lt;quote Weibel, also&gt;&gt; Es ist der Schinder, seid der Kurt die Ausbildung übernommen hat hast du ihn Kaum mehr gesehen.
+	&lt;p&gt;&lt;&lt;quote Das ging ja bei dir schneller als erwartet!&gt;&gt; Er grinst, aufrichtig sogar.&lt;/p&gt;
+	&lt;p&gt;&lt;&lt;quote einen Lachen von dir, auch wenn es nur ein Grinsen ist hätte ich nicht erwartet.&gt;&gt; Entgegnest du ihm&lt;/p&gt;
+	&lt;p&gt;&lt;&lt;quote Es gibt nichts das es nicht gibt, Junge!&gt;&gt; Antwortet er.&lt;/p&gt;
+
+	&lt;&lt;if $npc.schinder.affection gt 0 &gt;&gt;
+		&lt;p&gt;&lt;&lt;quote Du warst ein guter Frischling! Ich wollte dir nur viel Glück wünschen.&gt;&gt; Sagt er dir.&lt;/p&gt;
+	&lt;&lt;else&gt;&gt;
+		&lt;p&gt;&lt;&lt;quote Jede Gruppe wählt einen der sie Führt. Weil keiner die Verantwortung will.&gt;&gt; Sagt er dir.&lt;/p&gt;
+	&lt;&lt;/if&gt;&gt;
+
+	&lt;&lt;if setup.hasNpcMemory(&quot;schinder&quot;, &quot;zeigt_eigeninitiative&quot;)&gt;&gt;
+		&lt;p&gt;&lt;&lt;quote Du bist jemand der Handelt, das hast du mir gezeigt. Vertrau auf sich selbst, du wirst die richtigen Enscheidungen treffen. 
+		Und jetzt Hau ab und pack den Waagen!&gt;&gt; gibt er dir mit auf den Weg.&lt;/p&gt; 
+		&lt;&lt;= setup.setNpcAffection(&quot;schinder&quot;, 2)&gt;&gt;
+	&lt;&lt;elseif setup.hasNpcMemory(&quot;schinder&quot;, &quot;ist_befehlstreu&quot;)&gt;&gt;Er mustert dich anders als die anderen — er nickt kühl, ein Frontsoldat, der tut, was man ihm sagt.
+		&lt;p&gt;&lt;&lt;quote Du bist ein Frontsoldat, der tut, was man ihm sagt, das hast du mir gezeigt. Vertrau auf die Ausbildung. Wir haben dir die Mittel gegeben 
+		die richtigen Enscheidungen treffen. Und jetzt Hau ab und pack den Waagen!&gt;&gt; gibt er dir mit auf den Weg.&lt;/p&gt; 
+		&lt;&lt;= setup.setNpcAffection(&quot;schinder&quot;, 2)&gt;&gt;
+	&lt;&lt;elseif setup.hasNpcMemory(&quot;schinder&quot;, &quot;ist_panisch&quot;)&gt;&gt;Er mustert dich anders als die anderen — er schüttelt enttäuscht den Kopf, dreht sich weg und geht weiter.
+		&lt;p&gt;&lt;&lt;quote Unter Druck reagierst du panisch, das hast du mir gezeigt.Vertrau auf die Ausbildung. Wir haben dir die Mittel gegeben 
+		die richtigen Enscheidungen treffen. Und Atme tief durch befor du handelst! Und jetzt Hau ab und pack den Waagen!&gt;&gt; gibt er dir mit auf den Weg.&lt;/p&gt; 
+		&lt;&lt;= setup.setNpcAffection(&quot;schinder&quot;, 1)&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;/dialog&gt;&gt;
+
 &lt;p&gt;Die anderen acht warten. Sie warten auf dich.&lt;/p&gt;
 
+&lt;&lt;trenner&gt;&gt;
 &lt;span class=&quot;weiter-link&quot;&gt;[[Den Karren beladen-&gt;Biwag_Loadout]]&lt;/span&gt;</tw-passagedata><tw-passagedata pid="146" name="Biwag_Ergebnis" tags="" position="4275,3275" size="100,100">&lt;&lt;set _stufe to setup.biwagVerdikt()&gt;&gt;
 &lt;&lt;scene&gt;&gt;
 &lt;p&gt;Rindler wechselt einen Blick mit Kurt, ehe er das Urteil spricht.&lt;/p&gt;
@@ -13168,25 +13437,21 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 
 &lt;&lt;scene&gt;&gt;
 &lt;p&gt;Der Morgen riecht nach Graupenbrei, Zwiebeln, nassem Wollstoff und kalter Asche.&lt;/p&gt;
-
-&lt;p&gt;In der Halle sitzen die Waffenträger enger beieinander als im ersten Jahr, aber nicht friedlicher. Waffenriemen liegen über den Bänken, Helme unter den Tischen, und jedes Mal, wenn einer den Ellbogen zu hastig bewegt, schlägt irgendwo Metall gegen Holz.&lt;/p&gt;
-
-&lt;p&gt;Der Lärm ist niedrig und zäh: Löffel in Schalen, Stiefel unter Bänken, Husten, halbe Stimmen, das Scharren eines Schemels. Am Eingang steht ein Korporal mit roten Augen und tut so, als sei Müdigkeit eine Form von Wachsamkeit.&lt;/p&gt;
+&lt;p&gt;In der Halle sitzen die Waffenträger enger beieinander als im ersten Jahr, aber nicht friedlicher. 
+Waffenriemen liegen über den Bänken, Helme unter den Tischen, und jedes Mal, wenn einer den Ellbogen zu hastig bewegt, schlägt irgendwo Metall gegen Holz.&lt;/p&gt;
+&lt;p&gt;Der Lärm ist niedrig und zäh: Löffel in Schalen, Stiefel unter Bänken, Husten, halbe Stimmen, das Scharren eines Schemels. 
+Am Eingang steht ein Korporal mit roten Augen und tut so, als sei Müdigkeit eine Form von Wachsamkeit.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
 
 &lt;p&gt;Du sitzt mit der Schale zwischen den Händen. Der Brei ist heiß genug, um dir die Finger zu wärmen, aber nicht gut genug, um dich dankbar zu machen.&lt;/p&gt;
-
 &lt;p&gt;Am anderen Ende des Tisches fällt Pavels Name.&lt;/p&gt;
-
 &lt;p&gt;Nicht laut. Nicht deutlich. Nur ein Wort, halb in den Brei gesprochen.&lt;/p&gt;
-
 &lt;p&gt;Und trotzdem kauen mehrere Männer langsamer.&lt;/p&gt;
 
 &lt;&lt;dialog&gt;&gt;
 &lt;p&gt;„Pipovic hat wieder angefangen“, murmelt einer neben der Brotschüssel.&lt;/p&gt;
 &lt;p&gt;„Pavel?“&lt;/p&gt;
-&lt;p&gt;„Welcher sonst.“&lt;/p&gt;
-&lt;p&gt;Ein anderer schnaubt leise.&lt;/p&gt;
+&lt;p&gt;„Welcher sonst.“ schnaubt ein anderer leise.&lt;/p&gt;
 &lt;p&gt;„Dann fehlt nur noch ein Kulitcka, und Rabenfurt brennt wieder.“&lt;/p&gt;
 &lt;&lt;/dialog&gt;&gt;
 
@@ -13194,7 +13459,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 
 &lt;&lt;dialog&gt;&gt;
 &lt;p&gt;„Worum ging&#39;s diesmal?“ fragt jemand.&lt;/p&gt;
-&lt;p&gt;„Worum geht&#39;s bei denen schon?“&lt;/p&gt;
+&lt;p&gt;„Worum geht&#39;s bei denen schon wieder?“&lt;/p&gt;
 &lt;p&gt;„Mühle?“&lt;/p&gt;
 &lt;p&gt;„Brücke.“&lt;/p&gt;
 &lt;p&gt;„Schafe.“&lt;/p&gt;
@@ -13207,13 +13472,17 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 &lt;p&gt;„Halt dein Maul“, sagt jemand.&lt;/p&gt;
 &lt;&lt;/dialog&gt;&gt;
 
-&lt;p&gt;Etwas in dir will wissen, welches der Worte stimmt. Vielleicht, weil keins davon nach der ganzen Wahrheit klingt.&lt;/p&gt;
+
+
+&lt;p&gt;Etwas in dir will wissen, welches der Worte stimmt. Vielleicht, weil keins davon nach der ganzen Wahrheit klingt. Die Brücke, Schafe, den ganzen
+Mumpitz kennst du schon zur Genüge, aber &lt;&lt;quote Ein Mädchen.&gt;&gt; Das ist neu.&lt;/p&gt;
 
 &lt;p&gt;Du suchst Pavel zwischen den Köpfen und Schultern.&lt;/p&gt;
 
 &lt;p&gt;Pavel Pipovic sitzt drei Tische weiter. Den Kopf gesenkt, die Schale unberührt vor sich. Seine Schultern sind ruhig, aber seine Hand neben der Schale ist zur Faust geworden.&lt;/p&gt;
 
-&lt;p&gt;Bronko Kulitcka sitzt an der Wandseite. Breiter als Pavel, still genug, dass man ihn fast übersehen könnte — wenn nicht alle so täten, als sähen sie ihn nicht. Er hält einen Becher mit beiden Händen. Er trinkt nicht.&lt;/p&gt;
+&lt;p&gt;Bronko Kulitcka sitzt an der Wandseite. Breiter als Pavel, still genug, dass man ihn fast übersehen könnte — wenn nicht alle so täten, 
+als sähen sie ihn nicht. Er hält einen Becher mit beiden Händen. Er trinkt nicht.&lt;/p&gt;
 
 &lt;p&gt;Er sieht nicht zu Pavel hinüber.&lt;/p&gt;
 
@@ -13221,19 +13490,24 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 
 &lt;&lt;if _spec is &quot;pike&quot;&gt;&gt;
     &lt;&lt;beziehung&gt;&gt;
-    &lt;p&gt;Seit du mit Pike und Hellebarde arbeitest, siehst du Abstände anders. Zwischen Pavel und Bronko liegt die halbe Halle — und doch wirkt sie schmal wie ein Steg über tiefem Wasser. Macht einer den ersten Schritt, bleibt für den zweiten kaum noch Raum.&lt;/p&gt;
+    &lt;p&gt;Seit du mit Pike und Hellebarde arbeitest, siehst du Abstände anders. Zwischen Pavel und Bronko liegt die halbe Halle — 
+	und doch wirkt sie schmal wie ein Steg über tiefem Wasser. Macht einer den ersten Schritt, bleibt für den zweiten kaum noch Raum.&lt;/p&gt;
     &lt;&lt;/beziehung&gt;&gt;
 &lt;&lt;elseif _spec is &quot;cannon&quot;&gt;&gt;
     &lt;&lt;beziehung&gt;&gt;
-    &lt;p&gt;Beim Geschütz lernt man, der Lunte zuzuhören, bevor sie das Pulver findet — das kurze Zischen, das ankündigt, was gleich losbricht. Hier riechst du kein Pulver, und trotzdem liegt genau dieses Zischen in der Luft zwischen den beiden, als glimme irgendwo schon ein Docht, den keiner mehr löschen will.&lt;/p&gt;
+    &lt;p&gt;Beim Geschütz lernt man, der Lunte zuzuhören, bevor sie das Pulver findet — das kurze Zischen, das ankündigt, was gleich losbricht.
+	 Hier riechst du kein Pulver, und trotzdem liegt genau dieses Zischen in der Luft zwischen den beiden, als glimme irgendwo schon ein Docht, 
+	 den keiner mehr löschen will.&lt;/p&gt;
     &lt;&lt;/beziehung&gt;&gt;
 &lt;&lt;elseif _spec is &quot;crossbow&quot;&gt;&gt;
     &lt;&lt;beziehung&gt;&gt;
-    &lt;p&gt;Die Armbrust hat dir Geduld beigebracht. Nicht die friedliche Art — die andere, bei der man wartet, bis ein Blick eine Spur zu lange hält. Bronko hebt den Kopf einmal. Pavel sieht nicht weg.&lt;/p&gt;
+    &lt;p&gt;Die Armbrust hat dir Geduld beigebracht. Nicht die friedliche Art — die andere, bei der man wartet, bis ein Blick eine Spur zu lange hält. 
+	Bronko hebt den Kopf einmal. Pavel sieht nicht weg.&lt;/p&gt;
     &lt;&lt;/beziehung&gt;&gt;
 &lt;&lt;elseif _spec is &quot;medicine&quot;&gt;&gt;
     &lt;&lt;beziehung&gt;&gt;
-    &lt;p&gt;Seit du beim Feldscher gelernt hast hinzusehen, fallen dir andere Dinge zuerst auf. Pavels Finger sind zu steif. Bronkos Kiefer arbeitet einmal zu viel. Und Zdenka, zwei Bänke weiter, ist blasser, als eine alte Dorfgeschichte rechtfertigt.&lt;/p&gt;
+    &lt;p&gt;Seit du beim Feldscher gelernt hast hinzusehen, fallen dir andere Dinge zuerst auf. Pavels Finger sind zu steif. Bronkos Kiefer arbeitet 
+	einmal zu viel. Und Zdenka, zwei Bänke weiter, ist blasser, als eine alte Dorfgeschichte rechtfertigt.&lt;/p&gt;
     &lt;&lt;/beziehung&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
@@ -13241,10 +13515,10 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 
 &lt;p&gt;Du kennst sie flüchtig — eine Rekrutin aus Rabenfurt, ruhig, mit scharfem Blick und einer Art zu schweigen, die nicht leer wirkt.&lt;/p&gt;
 
-&lt;p&gt;Heute hält sie ihre Schale mit beiden Händen fest. Sie isst nicht.&lt;/p&gt;
+&lt;p&gt;Ihre Schale steht unberührt vor ihr. Etwas raubt ihr den Appetit.&lt;/p&gt;
 
 &lt;&lt;dialog&gt;&gt;
-&lt;p&gt;„Siehst du Zdenka?“ fragt der Waffenträger neben dir.&lt;/p&gt;
+&lt;p&gt;&lt;&lt;quote Siehst du Zdenka?&gt;&gt; fragt der Waffenträger neben dir.&lt;/p&gt;
 &lt;p&gt;„Was ist mit ihr?“&lt;/p&gt;
 &lt;p&gt;Er hebt das Kinn kaum merklich in ihre Richtung.&lt;/p&gt;
 &lt;p&gt;„Sitzt nicht bei Pavel. Nicht bei Bronko.“&lt;/p&gt;
@@ -13266,7 +13540,7 @@ einer den Namen Kulitcka. Jemand habe von der Brücke gesprochen. Jemand von ein
 &lt;&lt;set $world .duell.facts.zdenka_angst = true&gt;&gt;
 
 &lt;&lt;trenner&gt;&gt;
-[[Weiter zum Vormittag-&gt;Duell_S1_Vormittag]]</tw-passagedata><tw-passagedata pid="201" name="Duell_S1_Vormittag" tags="" position="100,2600" size="100,100">&lt;&lt;set _spec = $player.spezialisierung&gt;&gt;
+[[Weiter zum Vormittag|Duell_S1_Vormittag]]</tw-passagedata><tw-passagedata pid="201" name="Duell_S1_Vormittag" tags="" position="100,2600" size="100,100">&lt;&lt;set _spec = $player.spezialisierung&gt;&gt;
 
 &lt;&lt;scene&gt;&gt;
 &lt;p&gt;Der Übungshof liegt noch im Schatten der Ostmauer, der Boden hart gefroren unter der dünnen Kruste aus Reif. Paare stehen im Abstand von zwei Schritten, stumpfe Kurzspieße in den Fäusten, Atem, der in weißen Fahnen aufsteigt und sich mit dem Geruch von Schweiß und altem Leder mischt.&lt;/p&gt;
@@ -13314,9 +13588,9 @@ einer den Namen Kulitcka. Jemand habe von der Brücke gesprochen. Jemand von ein
 
 &lt;p&gt;So lange hast du.&lt;/p&gt;
 
-[[Dazwischengehen – die Stange abfangen-&gt;Duell_S1_Dazwischengehen]]
-[[Nichts tun, nur genau hinsehen-&gt;Duell_S1_Beobachten]]
-[[Zurücktreten und danach die anderen fragen-&gt;Duell_S1_Nachfragen]]</tw-passagedata><tw-passagedata pid="202" name="Duell_S1_Dazwischengehen" tags="" position="225,2600" size="100,100">&lt;&lt;set $world.duell.tension += 1&gt;&gt;
+[[Dazwischengehen – die Stange abfangen|Duell_S1_Dazwischengehen]]
+[[Nichts tun, nur genau hinsehen|Duell_S1_Beobachten]]
+[[Zurücktreten und danach die anderen fragen|Duell_S1_Nachfragen]]</tw-passagedata><tw-passagedata pid="202" name="Duell_S1_Dazwischengehen" tags="" position="225,2600" size="100,100">&lt;&lt;set $world.duell.tension += 1&gt;&gt;
 
 &lt;p&gt;Du denkst nicht nach. Deine Füße bewegen sich, bevor der Gedanke fertig ist.&lt;/p&gt;
 
@@ -13355,7 +13629,7 @@ einer den Namen Kulitcka. Jemand habe von der Brücke gesprochen. Jemand von ein
 
 &lt;p&gt;Der Waffenmeister brüllt die Reihen wieder in Ordnung. Aber sein Blick bleibt noch einen Moment auf Pavel und Bronko hängen, als würde er sich die Namen für später merken.&lt;/p&gt;
 
-[[Weiter zum Mittag-&gt;Duell_S2_Mittag]]</tw-passagedata><tw-passagedata pid="203" name="Duell_S1_Beobachten" tags="" position="350,2600" size="100,100">&lt;p&gt;Du rührst dich nicht.&lt;/p&gt;
+[[Weiter zum Mittag|Duell_S2_Mittag]]</tw-passagedata><tw-passagedata pid="203" name="Duell_S1_Beobachten" tags="" position="350,2600" size="100,100">&lt;p&gt;Du rührst dich nicht.&lt;/p&gt;
 
 &lt;p&gt;Es ist der falsche Moment, um zu handeln, sagt etwas in dir — und der richtige, um zu sehen.&lt;/p&gt;
 
@@ -13386,7 +13660,7 @@ einer den Namen Kulitcka. Jemand habe von der Brücke gesprochen. Jemand von ein
 
 &lt;p&gt;Pavel hält sich die Wange, mehr überrascht als verletzt. Der Waffenmeister brüllt beide zur Wand, wo sie stehen bleiben, ohne einander anzusehen, während der Drill um sie herum weitergeht, als wäre nichts gewesen.&lt;/p&gt;
 
-[[Weiter zum Mittag-&gt;Duell_S2_Mittag]]</tw-passagedata><tw-passagedata pid="204" name="Duell_S1_Nachfragen" tags="" position="475,2600" size="100,100">&lt;p&gt;Du trittst einen halben Schritt zurück.&lt;/p&gt;
+[[Weiter zum Mittag|Duell_S2_Mittag]]</tw-passagedata><tw-passagedata pid="204" name="Duell_S1_Nachfragen" tags="" position="475,2600" size="100,100">&lt;p&gt;Du trittst einen halben Schritt zurück.&lt;/p&gt;
 
 &lt;p&gt;Nicht aus Angst — oder nicht nur. Sondern weil dir in diesem Moment klarer ist, was du nicht verstehst, als was du tun könntest.&lt;/p&gt;
 
@@ -13423,7 +13697,7 @@ einer den Namen Kulitcka. Jemand habe von der Brücke gesprochen. Jemand von ein
 
 &lt;p&gt;Der letzte Satz bleibt bei dir hängen, länger als der Rest.&lt;/p&gt;
 
-[[Weiter zum Mittag-&gt;Duell_S2_Mittag]]</tw-passagedata><tw-passagedata pid="205" name="Duell_S2_Mittag" tags="" position="600,2600" size="100,100">&lt;&lt;set _spec = $player.spezialisierung&gt;&gt;
+[[Weiter zum Mittag|Duell_S2_Mittag]]</tw-passagedata><tw-passagedata pid="205" name="Duell_S2_Mittag" tags="" position="600,2600" size="100,100">&lt;&lt;set _spec = $player.spezialisierung&gt;&gt;
 
 &lt;&lt;scene&gt;&gt;
 &lt;p&gt;Der Markt vor dem Nordtor riecht nach nassem Kohl, Fischtran und dem Rauch der Garküchen.
@@ -13476,8 +13750,8 @@ Mund zu halten. Was die Leute einander erzählen, wenn sie glauben, es höre nie
 was sie einem ins Gesicht sagen.&lt;/p&gt;
 &lt;&lt;/gedanke&gt;&gt;
 
-[[Sie ansprechen-&gt;Duell_S2_Zdenka_Ansprechen]]
-[[Abstand halten und zuhören, was geredet wird-&gt;Duell_S2_Zuhoeren]]</tw-passagedata><tw-passagedata pid="206" name="Duell_S2_Zdenka_Ansprechen" tags="" position="725,2600" size="100,100">&lt;p&gt;Du gehst hinüber, langsamer als sonst, als könntest du sie mit zu schnellen Schritten verscheuchen wie einen Vogel vom Zaun.&lt;/p&gt;
+[[Sie ansprechen|Duell_S2_Zdenka_Ansprechen]]
+[[Abstand halten und zuhören, was geredet wird|Duell_S2_Zuhoeren]]</tw-passagedata><tw-passagedata pid="206" name="Duell_S2_Zdenka_Ansprechen" tags="" position="725,2600" size="100,100">&lt;p&gt;Du gehst hinüber, langsamer als sonst, als könntest du sie mit zu schnellen Schritten verscheuchen wie einen Vogel vom Zaun.&lt;/p&gt;
 
 &lt;&lt;dialog&gt;&gt;
 &lt;p&gt;„Zdenka.“&lt;/p&gt;
@@ -13526,7 +13800,7 @@ was sie einem ins Gesicht sagen.&lt;/p&gt;
 &lt;p&gt;Sie geht, bevor du noch etwas fragen kannst — nicht hastig, aber endgültig,
 wie jemand, der eine Tür nur einen Spalt geöffnet hat und sie jetzt selbst wieder zudrückt.&lt;/p&gt;
 
-[[Weiter zum Nachmittag-&gt;Duell_S3_Ereignisse]]</tw-passagedata><tw-passagedata pid="207" name="Duell_S2_Zuhoeren" tags="" position="850,2600" size="100,100">&lt;p&gt;Du bleibst, wo du bist, den Brotkanten halb aufgegessen in der Hand, und lässt den Markt für dich arbeiten.&lt;/p&gt;
+[[Weiter zum Nachmittag|Duell_S3_Ereignisse]]</tw-passagedata><tw-passagedata pid="207" name="Duell_S2_Zuhoeren" tags="" position="850,2600" size="100,100">&lt;p&gt;Du bleibst, wo du bist, den Brotkanten halb aufgegessen in der Hand, und lässt den Markt für dich arbeiten.&lt;/p&gt;
 
 &lt;p&gt;Zwischen zwei Ständen unterhalten sich zwei Weiber über den Preis von Salz und, ohne die Stimme zu senken,
 über alles andere auch.&lt;/p&gt;
@@ -13565,7 +13839,7 @@ Sie schnaubt. „Als hätten die nichts Besseres zu tun.“&lt;/p&gt;
 
 &lt;&lt;set $world.duell.s2_method = &quot;zuhoeren&quot;&gt;&gt;
 
-[[Weiter zum Nachmittag-&gt;Duell_S3_Ereignisse]]</tw-passagedata><tw-passagedata pid="208" name="Duell_S3_Ereignisse" tags="" position="975,2600" size="100,100">&lt;&lt;set _spec to $player.spezialisierung&gt;&gt;
+[[Weiter zum Nachmittag|Duell_S3_Ereignisse]]</tw-passagedata><tw-passagedata pid="208" name="Duell_S3_Ereignisse" tags="" position="975,2600" size="100,100">&lt;&lt;set _spec to $player.spezialisierung&gt;&gt;
 
 &lt;&lt;scene&gt;&gt;
 &lt;p&gt;Der Nachmittag legt sich grau über den Hof. Der Drill ist vorbei, die Waffen weggeräumt, die Reihen aufgelöst —
@@ -13584,9 +13858,9 @@ entscheiden, dass es mich nichts angeht und den Rest den drei überlasse, die sc
 &lt;p&gt;Drei Menschen tragen die Wahrheit zwischen sich auf — und keiner davon trägt sie gern. Die Sonne steht schon tief.&lt;/p&gt;
 
 &lt;ul class=&quot;sandbox-menu&quot;&gt;
-&lt;li&gt;[[Zdenka suchen — sie hält mehr in der Faust als ein Stück Papier-&gt;Duell_S3_ZdenkaNachhaken]]&lt;/li&gt;
-&lt;li&gt;[[Pavel stellen — den, der nichts vergisst-&gt;Duell_S3_PavelNachhaken]]&lt;/li&gt;
-&lt;li&gt;[[Bronko stellen — den, der heute Morgen den Schlag zurückgerufen hat-&gt;Duell_S3_BronkoNachhaken]]&lt;/li&gt;
+&lt;li&gt;[[Zdenka suchen — sie hält mehr in der Faust als ein Stück Papier|Duell_S3_ZdenkaNachhaken]]&lt;/li&gt;
+&lt;li&gt;[[Pavel stellen — den, der nichts vergisst|Duell_S3_PavelNachhaken]]&lt;/li&gt;
+&lt;li&gt;[[Bronko stellen — den, der heute Morgen den Schlag zurückgerufen hat|Duell_S3_BronkoNachhaken]]&lt;/li&gt;
 &lt;/ul&gt;</tw-passagedata><tw-passagedata pid="209" name="Duell_S3_ZdenkaNachhaken" tags="" position="1100,2600" size="100,100">&lt;&lt;set _spec to $player.spezialisierung&gt;&gt;
 
 &lt;&lt;scene&gt;&gt;
@@ -13660,8 +13934,8 @@ das sie am Mittag noch versteckt hat. Sie hat es nicht weggeworfen. Sie hat es n
 	&lt;&lt;run setup.addRumor(&#39;Marja Pipovic und Bronko liebten sich heimlich; auf dem Freiheitsfest wurde sie schwanger und die Pipovics brachten sie fort. Marja lebt, ist in Sicherheit und verflucht Bronko nicht — Zdenka hat ihren Brief.&#39;)&gt;&gt;
 
 	&lt;&lt;trenner&gt;&gt;
-	[[Bronko stellen — mit dem, was du jetzt weißt-&gt;Duell_S3_BronkoKonfrontieren]]
-	[[Pavel stellen — mit dem, was du jetzt weißt-&gt;Duell_S3_PavelKonfrontieren]]
+	[[Bronko stellen — mit dem, was du jetzt weißt|Duell_S3_BronkoKonfrontieren]]
+	[[Pavel stellen — mit dem, was du jetzt weißt|Duell_S3_PavelKonfrontieren]]
 &lt;&lt;else&gt;&gt;
 	&lt;&lt;dialog&gt;&gt;
 	&lt;p&gt;Sie schiebt das Papier tiefer in den Ärmel und tritt an dir vorbei in den Dampf.&lt;/p&gt;
@@ -13674,9 +13948,9 @@ das sie am Mittag noch versteckt hat. Sie hat es nicht weggeworfen. Sie hat es n
 
 	&lt;&lt;trenner&gt;&gt;
 	&lt;&lt;if random(1, 2) is 1&gt;&gt;
-		[[Der Abend kommt-&gt;Duell_S4_Abend_mit_Pavel_reden_keine_Wahrheit]]
+		[[Der Abend kommt|Duell_S4_Abend_mit_Pavel_reden_keine_Wahrheit]]
 	&lt;&lt;else&gt;&gt;
-		[[Der Abend kommt-&gt;Duell_S4_Abend_mit_Bronko_reden_keine_Wahrheit]]
+		[[Der Abend kommt|Duell_S4_Abend_mit_Bronko_reden_keine_Wahrheit]]
 	&lt;&lt;/if&gt;&gt;	
 &lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="210" name="Duell_S3_BronkoNachhaken" tags="" position="1225,2600" size="100,100">&lt;&lt;set _spec to $player.spezialisierung&gt;&gt;
 
@@ -13731,7 +14005,7 @@ Er hat den ganzen Tag mit niemandem gesprochen.&lt;/p&gt;
 	&lt;p&gt;„Geh“, sagt er noch einmal. Diesmal fragt keiner mehr nach.&lt;/p&gt;
 	&lt;&lt;/dialog&gt;&gt;
 	&lt;&lt;trenner&gt;&gt;
-	[[Du gehst — mit weniger, als du wolltest-&gt;Duell_S3_Bronko_erzaehlt_nichts]]
+	[[Du gehst — mit weniger, als du wolltest|Duell_S3_Bronko_erzaehlt_nichts]]
 &lt;&lt;else&gt;&gt;
 	&lt;&lt;dialog&gt;&gt;
 	&lt;p&gt;Du sagst nichts über die Brücke. Nichts über Pavel. Du bleibst nur stehen und lässt ihn wissen, dass du
@@ -13742,9 +14016,9 @@ Er hat den ganzen Tag mit niemandem gesprochen.&lt;/p&gt;
 	&lt;&lt;/dialog&gt;&gt;
 	&lt;&lt;trenner&gt;&gt;
 	&lt;&lt;if $world.duell.wissen.fest&gt;&gt;
-	[[Nach dem Fest fragen-&gt;Duell_S3_BronkoFestBefragen]]
+	[[Nach dem Fest fragen|Duell_S3_BronkoFestBefragen]]
 	&lt;&lt;else&gt;&gt;
-	[[Fragen, was wirklich zwischen ihm und Pavel steht-&gt;Duell_S3_Bronko_erzaehlt]]
+	[[Fragen, was wirklich zwischen ihm und Pavel steht|Duell_S3_Bronko_erzaehlt]]
 	&lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="211" name="Duell_S3_BronkoFestBefragen" tags="" position="100,2725" size="100,100">&lt;&lt;set _spec to $player.spezialisierung&gt;&gt;
 
@@ -13813,7 +14087,7 @@ bei sich. Und der die Faust eines anderen für gerechter hält als die eigene Un
 &lt;&lt;run setup.addRumor(&#39;Bronko und Marja Pipovic liebten sich heimlich. Auf dem Freiheitsfest wurde sie schwanger; als es aufkam, brachten die Pipovics sie fort. Bronko gibt allein sich die Schuld.&#39;)&gt;&gt;
 
 &lt;&lt;trenner&gt;&gt;
-[[Der Abend kommt — und mit ihm Pavel-&gt;Duell_S4_Abend_mit_Pavel_reden_hat_Wahrheit]]</tw-passagedata><tw-passagedata pid="212" name="Duell_S3_Bronko_erzaehlt" tags="" position="225,2725" size="100,100">&lt;&lt;set _spec to $player.spezialisierung&gt;&gt;
+[[Der Abend kommt — und mit ihm Pavel|Duell_S4_Abend_mit_Pavel_reden_hat_Wahrheit]]</tw-passagedata><tw-passagedata pid="212" name="Duell_S3_Bronko_erzaehlt" tags="" position="225,2725" size="100,100">&lt;&lt;set _spec to $player.spezialisierung&gt;&gt;
 
 &lt;&lt;dialog&gt;&gt;
 &lt;p&gt;„Was steht wirklich zwischen dir und Pavel?“, fragst du. „Es ist nicht die Brücke. Das war es nie.“&lt;/p&gt;
@@ -13852,7 +14126,7 @@ Vielleicht auch nicht.&lt;/p&gt;
 &lt;&lt;run setup.addRumor(&#39;Zwischen Bronko und Pavel steht kein Streit um die Brücke, sondern eine Frau aus Pavels Familie. Bronko nennt es seine Schuld — mehr sagt er nicht.&#39;)&gt;&gt;
 
 &lt;&lt;trenner&gt;&gt;
-[[Der Abend kommt — und mit ihm Pavel-&gt;Duell_S4_Abend_mit_Pavel_reden_hat_Wahrheit]]</tw-passagedata><tw-passagedata pid="213" name="Duell_S3_Bronko_erzaehlt_nichts" tags="" position="350,2725" size="100,100">&lt;p&gt;Du gehst, weil Bleiben nichts mehr ändert. Hinter dir fällt die Axt wieder in ihren Takt, hebt und fällt,
+[[Der Abend kommt — und mit ihm Pavel|Duell_S4_Abend_mit_Pavel_reden_hat_Wahrheit]]</tw-passagedata><tw-passagedata pid="213" name="Duell_S3_Bronko_erzaehlt_nichts" tags="" position="350,2725" size="100,100">&lt;p&gt;Du gehst, weil Bleiben nichts mehr ändert. Hinter dir fällt die Axt wieder in ihren Takt, hebt und fällt,
 als hättest du nie neben ihm gestanden.&lt;/p&gt;
 
 &lt;&lt;gedanke&gt;&gt;
@@ -13864,7 +14138,7 @@ lässt er nicht heran. Am Abend werde ich vor Pavel stehen, ohne das eine, das v
 bevor du den Hof erreichst.&lt;/p&gt;
 
 &lt;&lt;trenner&gt;&gt;
-[[Der Abend kommt — und mit ihm Pavel-&gt;Duell_S4_Abend_mit_Pavel_reden_keine_Wahrheit]]</tw-passagedata><tw-passagedata pid="214" name="Duell_S3_BronkoKonfrontieren" tags="" position="475,2725" size="100,100">&lt;&lt;set _spec to $player.spezialisierung&gt;&gt;
+[[Der Abend kommt — und mit ihm Pavel|Duell_S4_Abend_mit_Pavel_reden_keine_Wahrheit]]</tw-passagedata><tw-passagedata pid="214" name="Duell_S3_BronkoKonfrontieren" tags="" position="475,2725" size="100,100">&lt;&lt;set _spec to $player.spezialisierung&gt;&gt;
 
 &lt;&lt;scene&gt;&gt;
 &lt;p&gt;Die Dämmerung frisst die Farben vom Holzplatz. Grau wird zu Blau, Blau wird zu nichts, und mit dem Licht
@@ -13976,11 +14250,11 @@ erste Glocke des Abends.&lt;/p&gt;
 
 &lt;&lt;set $world.duell.bronko_trust += 2&gt;&gt;
 &lt;&lt;set $world.duell.wissen.wahrheit_bronko to true&gt;&gt;
-&lt;&lt;set $world.duell.flags.bronko_erreicht to true&gt;&gt;   /* Bronko hat Marjas Botschaft erhalten -&gt; am Ende bereit, die Fehde niederzulegen (Voraussetzung Bronko-Seite von Ende A) */
+&lt;&lt;set $world.duell.flags.bronko_erreicht to true&gt;&gt;   /* Bronko hat Marjas Botschaft erhalten | am Ende bereit, die Fehde niederzulegen (Voraussetzung Bronko-Seite von Ende A) */
 &lt;&lt;run setup.addRumor(&#39;Bronko weiß jetzt, dass Marja lebt und ihn nicht verflucht. Zum ersten Mal seit dem Fest hat er die Fehde für einen Moment vergessen.&#39;)&gt;&gt;
 
 &lt;&lt;trenner&gt;&gt;
-[[Der Abend kommt — jetzt fehlt nur noch Pavel-&gt;Duell_S4_Abend_mit_Pavel_reden_hat_Wahrheit]]</tw-passagedata><tw-passagedata pid="215" name="Duell_S3_PavelNachhaken" tags="" position="600,2725" size="100,100">&lt;&lt;set _spec to $player.spezialisierung&gt;&gt;
+[[Der Abend kommt — jetzt fehlt nur noch Pavel|Duell_S4_Abend_mit_Pavel_reden_hat_Wahrheit]]</tw-passagedata><tw-passagedata pid="215" name="Duell_S3_PavelNachhaken" tags="" position="600,2725" size="100,100">&lt;&lt;set _spec to $player.spezialisierung&gt;&gt;
 
 &lt;&lt;scene&gt;&gt;
 &lt;p&gt;Unter dem Vordach der Waffenkammer sitzt Pavel allein auf einem umgedrehten Fass, eine Klinge quer über den
@@ -14017,7 +14291,7 @@ und wir sollen so tun, als sei nichts geschehen.“&lt;/p&gt;
 	&lt;p&gt;Er senkt den Kopf wieder über den Stahl. Für ihn ist das Gespräch vorbei.&lt;/p&gt;
 	&lt;&lt;/dialog&gt;&gt;
 	&lt;&lt;trenner&gt;&gt;
-	[[Du lässt ihn mit seinem Zorn allein-&gt;Duell_S3_Pavel_erzaehlt_nichts]]
+	[[Du lässt ihn mit seinem Zorn allein|Duell_S3_Pavel_erzaehlt_nichts]]
 &lt;&lt;else&gt;&gt;
 	&lt;&lt;dialog&gt;&gt;
 	&lt;p&gt;Etwas an der Art, wie du fragst, trifft eine Stelle, die der Zorn noch nicht ganz zugedeckt hat. Der Wetzstein
@@ -14026,9 +14300,9 @@ und wir sollen so tun, als sei nichts geschehen.“&lt;/p&gt;
 	&lt;&lt;/dialog&gt;&gt;
 	&lt;&lt;trenner&gt;&gt;
 	&lt;&lt;if $world.duell.wissen.fest&gt;&gt;
-	[[Nach dem Fest fragen-&gt;Duell_S3_PavelFestBefragen]]
+	[[Nach dem Fest fragen|Duell_S3_PavelFestBefragen]]
 	&lt;&lt;else&gt;&gt;
-	[[Fragen, was wirklich hinter der Fehde steckt-&gt;Duell_S3_Pavel_erzaehlt]]
+	[[Fragen, was wirklich hinter der Fehde steckt|Duell_S3_Pavel_erzaehlt]]
 	&lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="216" name="Duell_S3_PavelKonfrontieren" tags="" position="725,2725" size="100,100">&lt;&lt;set _spec to $player.spezialisierung&gt;&gt;
 
@@ -14078,11 +14352,11 @@ gibt für das, was er vorhat. Ein einziger Satz. Und ich würde damit jedes Vers
 &lt;&lt;/gedanke&gt;&gt;
 
 &lt;&lt;trenner&gt;&gt;
-[[Ihm von Marja und dem Brief erzählen-&gt;Duell_S3_PavelVomBriefErzaehlen]]
+[[Ihm von Marja und dem Brief erzählen|Duell_S3_PavelVomBriefErzaehlen]]
 &lt;&lt;if _r.success&gt;&gt;
-[[Den Brief für dich behalten — ihn nur seine Seite erzählen lassen-&gt;Duell_S3_Pavel_erzaehlt]]
+[[Den Brief für dich behalten — ihn nur seine Seite erzählen lassen|Duell_S3_Pavel_erzaehlt]]
 &lt;&lt;else&gt;&gt;
-[[Den Brief für dich behalten und gehen-&gt;Duell_S3_Pavel_erzaehlt_nichts]]
+[[Den Brief für dich behalten und gehen|Duell_S3_Pavel_erzaehlt_nichts]]
 &lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="217" name="Duell_S3_Pavel_erzaehlt" tags="" position="850,2725" size="100,100">&lt;&lt;set _spec to $player.spezialisierung&gt;&gt;
 
 &lt;&lt;dialog&gt;&gt;
@@ -14117,7 +14391,7 @@ wie Bronko. Nur nennt er sie anders.&lt;/p&gt;
 &lt;&lt;run setup.addRumor(&#39;Pavel sagt, Bronko habe seiner Familie Schande und Blut geschuldet — mehr als die Brücke stehe zwischen ihnen. Was genau, spricht er nicht aus.&#39;)&gt;&gt;
 
 &lt;&lt;trenner&gt;&gt;
-[[Der Abend kommt — jetzt fehlt Bronkos Seite-&gt;Duell_S4_Abend_mit_Bronko_reden_hat_Wahrheit]]</tw-passagedata><tw-passagedata pid="218" name="Duell_S3_PavelFestBefragen" tags="" position="975,2725" size="100,100">&lt;&lt;set _spec to $player.spezialisierung&gt;&gt;
+[[Der Abend kommt — jetzt fehlt Bronkos Seite|Duell_S4_Abend_mit_Bronko_reden_hat_Wahrheit]]</tw-passagedata><tw-passagedata pid="218" name="Duell_S3_PavelFestBefragen" tags="" position="975,2725" size="100,100">&lt;&lt;set _spec to $player.spezialisierung&gt;&gt;
 
 &lt;&lt;dialog&gt;&gt;
 &lt;p&gt;„Auf dem Fest“, sagst du. „Es ist auf dem Freiheitsfest passiert.“&lt;/p&gt;
@@ -14163,7 +14437,7 @@ er den eigenen Schmerz ertragen kann.&lt;/p&gt;
 &lt;&lt;run setup.addRumor(&#39;Pavel: Bronko hat seine Schwester Marja auf dem Fest geschwängert und die Familie beschämt; die Pipovics brachten sie fort. Für Pavel ist Bronko ein Verführer, der Blut schuldet — von Liebe will er nichts hören.&#39;)&gt;&gt;
 
 &lt;&lt;trenner&gt;&gt;
-[[Der Abend kommt — jetzt fehlt Bronkos Seite-&gt;Duell_S4_Abend_mit_Bronko_reden_hat_Wahrheit]]</tw-passagedata><tw-passagedata pid="219" name="Duell_S3_Pavel_erzaehlt_nichts" tags="" position="1100,2725" size="100,100">&lt;p&gt;Du gehst, und hinter dir setzt der Wetzstein wieder ein — schrapp, schrapp —, gleichmäßig, geduldig, als
+[[Der Abend kommt — jetzt fehlt Bronkos Seite|Duell_S4_Abend_mit_Bronko_reden_hat_Wahrheit]]</tw-passagedata><tw-passagedata pid="219" name="Duell_S3_Pavel_erzaehlt_nichts" tags="" position="1100,2725" size="100,100">&lt;p&gt;Du gehst, und hinter dir setzt der Wetzstein wieder ein — schrapp, schrapp —, gleichmäßig, geduldig, als
 schleife er nicht eine Klinge, sondern die Stunden, bis er sie brauchen wird.&lt;/p&gt;
 
 &lt;&lt;gedanke&gt;&gt;
@@ -14174,7 +14448,7 @@ letzte Besitz, der ihm geblieben ist. Am Abend werde ich vor Bronko stehen, ohne
 &lt;p&gt;Der Klang des Stahls folgt dir über den halben Hof, bis das Dämmern ihn verschluckt.&lt;/p&gt;
 
 &lt;&lt;trenner&gt;&gt;
-[[Der Abend kommt — Bronkos Seite fehlt-&gt;Duell_S4_Abend_mit_Bronko_reden_keine_Wahrheit]]</tw-passagedata><tw-passagedata pid="220" name="Duell_S3_PavelVomBriefErzaehlen" tags="" position="1225,2725" size="100,100">&lt;&lt;set _spec to $player.spezialisierung&gt;&gt;
+[[Der Abend kommt — Bronkos Seite fehlt|Duell_S4_Abend_mit_Bronko_reden_keine_Wahrheit]]</tw-passagedata><tw-passagedata pid="220" name="Duell_S3_PavelVomBriefErzaehlen" tags="" position="1225,2725" size="100,100">&lt;&lt;set _spec to $player.spezialisierung&gt;&gt;
 
 &lt;&lt;dialog&gt;&gt;
 &lt;p&gt;„Marja lebt“, sagst du.&lt;/p&gt;
@@ -14210,12 +14484,13 @@ Bis morgen wissen alle, wer geredet hat. Zdenka. Bronko. Und keiner wird mir noc
 &lt;&lt;set $world.duell.flags.verrat to true&gt;&gt;   /* Marjas Geheimnis an Pavel verraten -&gt; Bronko &amp; Zdenka feindselig; treibt Richtung Katastrophe (Ende C) */
 &lt;&lt;set $world.duell.bronko_trust to -3&gt;&gt;
 &lt;&lt;set $world.duell.zdenka_trust to -3&gt;&gt;
+&lt;&lt;set setup.setPlayerStat(&quot;honesty&quot;, -8)&gt;&gt;
 &lt;&lt;set $world.duell.tension += 2&gt;&gt;
 &lt;&lt;run setup.pushNpcMemory(&quot;karla&quot;, &quot;Hat Zdenka verraten&quot;)&gt;&gt;
 &lt;&lt;run setup.addRumor(&#39;Thomas hat Pavel von Marjas Brief erzählt. Jetzt weiß Pavel, dass seine Schwester lebt und Bronkos Kind erwartet — und er will die Schande mit Blut tilgen.&#39;)&gt;&gt;
 
 &lt;&lt;trenner&gt;&gt;
-[[Der Abend kommt — und niemand steht mehr auf deiner Seite-&gt;Duell_S4_Abend_zero_Trust]]</tw-passagedata><tw-passagedata pid="221" name="Duell_S4_Abend_mit_Pavel_reden_hat_Wahrheit" tags="" position="100,2850" size="100,100">&lt;&lt;set _spec to $player.spezialisierung&gt;&gt;
+[[Der Abend kommt|Duell_S4_Abend_zero_Trust]]</tw-passagedata><tw-passagedata pid="221" name="Duell_S4_Abend_mit_Pavel_reden_hat_Wahrheit" tags="" position="100,2850" size="100,100">&lt;&lt;set _spec to $player.spezialisierung&gt;&gt;
 
 &lt;&lt;scene&gt;&gt;
 &lt;p&gt;Der Appell ist verklungen, die Ausbilder in ihren Stuben, und über dem Hof liegt die Art von Stille, die keine
@@ -14245,14 +14520,14 @@ dazwischenstellen will, muss ich Pavel verstehen — nicht die Anklage, den Mens
 	&lt;&lt;set $world.duell.pavel_trust += 1&gt;&gt;
 	&lt;&lt;set $world.duell.wissen.wahrheit_pavel to true&gt;&gt;
 	&lt;&lt;trenner&gt;&gt;
-	[[Du hast beide Seiten — die Nacht wartet-&gt;Duell_S4_Abend_Wahrheit]]
+	[[Du hast beide Seiten — die Nacht wartet|Duell_S4_Abend_Wahrheit]]
 &lt;&lt;else&gt;&gt;
 	&lt;&lt;dialog&gt;&gt;
 	&lt;p&gt;Aber er lässt dich nicht an sich heran. Zu viele haben ihn heute ausgefragt; du bist nur noch einer davon.
 	Er stößt sich von der Mauer und geht der Dunkelheit entgegen, ehe du mehr hörst als die alte Anklage.&lt;/p&gt;
 	&lt;&lt;/dialog&gt;&gt;
 	&lt;&lt;trenner&gt;&gt;
-	[[Nur eine Seite in der Hand — die Nacht wartet-&gt;Duell_S4_Abend_Kennt_Bronkos_Geschichte]]
+	[[Nur eine Seite in der Hand — die Nacht wartet|Duell_S4_Abend_Kennt_Bronkos_Geschichte]]
 &lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="222" name="Duell_S4_Abend_Wahrheit" tags="" position="225,2850" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Du stehst am Rand des Hofes, wo die Fackeln enden und das Dunkel beginnt. Die Kälte kriecht durch die Sohlen.
 Von den Ställen her hörst du schon Schritte, mehr als zwei Paar — es hat sich herumgesprochen, wie es das immer tut.&lt;/p&gt;
@@ -14265,7 +14540,7 @@ keine Ahnung, ob mir irgendwer glaubt, wenn ich gleich zwischen die beiden trete
 &lt;&lt;/gedanke&gt;&gt;
 
 &lt;&lt;trenner&gt;&gt;
-[[Hinaus in die Nacht-&gt;Duell_S5_Nacht]]</tw-passagedata><tw-passagedata pid="223" name="Duell_S4_Abend_mit_Bronko_reden_hat_Wahrheit" tags="" position="350,2850" size="100,100">&lt;&lt;set _spec to $player.spezialisierung&gt;&gt;
+[[Hinaus in die Nacht|Duell_S5_Nacht]]</tw-passagedata><tw-passagedata pid="223" name="Duell_S4_Abend_mit_Bronko_reden_hat_Wahrheit" tags="" position="350,2850" size="100,100">&lt;&lt;set _spec to $player.spezialisierung&gt;&gt;
 
 &lt;&lt;scene&gt;&gt;
 &lt;p&gt;Der Appell ist verklungen. Über dem Hof steht die Stille des Wartens, und hinter den Ställen, im Dunkeln, wird
@@ -14296,14 +14571,14 @@ Geschichte zwischen zwei Männern.&lt;/p&gt;
 	&lt;&lt;set $world.duell.wissen.bronko_reue to true&gt;&gt;
 	&lt;&lt;set $world.duell.bronko_trust += 1&gt;&gt;
 	&lt;&lt;trenner&gt;&gt;
-	[[Du hast beide Seiten — die Nacht wartet-&gt;Duell_S4_Abend_Wahrheit]]
+	[[Du hast beide Seiten — die Nacht wartet|Duell_S4_Abend_Wahrheit]]
 &lt;&lt;else&gt;&gt;
 	&lt;&lt;dialog&gt;&gt;
 	&lt;p&gt;Aber er lässt dich nicht hinein. „Geh“, sagt er, mehr müde als hart. „Es gibt nichts, das du richten kannst.“
 	Und er wendet sich ab, ehe du mehr bekommst als sein Schweigen.&lt;/p&gt;
 	&lt;&lt;/dialog&gt;&gt;
 	&lt;&lt;trenner&gt;&gt;
-	[[Nur Pavels Seite in der Hand — die Nacht wartet-&gt;Duell_S4_Abend_Kennt_Pavels_Geschichte]]
+	[[Nur Pavels Seite in der Hand — die Nacht wartet|Duell_S4_Abend_Kennt_Pavels_Geschichte]]
 &lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="224" name="Duell_S4_Abend_mit_Pavel_reden_keine_Wahrheit" tags="" position="475,2850" size="100,100">&lt;&lt;set _spec to $player.spezialisierung&gt;&gt;
 
 &lt;&lt;scene&gt;&gt;
@@ -14329,14 +14604,14 @@ dann er — Zorn ist gesprächiger als Scham.&lt;/p&gt;
 	&lt;&lt;set $world.duell.wissen.wahrheit_pavel to true&gt;&gt;
 	&lt;&lt;set $world.duell.pavel_trust += 1&gt;&gt;
 	&lt;&lt;trenner&gt;&gt;
-	[[Pavels Seite in der Hand — die Nacht wartet-&gt;Duell_S4_Abend_Kennt_Pavels_Geschichte]]
+	[[Pavels Seite in der Hand — die Nacht wartet|Duell_S4_Abend_Kennt_Pavels_Geschichte]]
 &lt;&lt;else&gt;&gt;
 	&lt;&lt;dialog&gt;&gt;
 	&lt;p&gt;Aber er hat genug geredet für heute. „Frag die Toten von Rabenfurt“, sagt er. „Die wissen mehr als ich.“
 	Und damit lässt er dich stehen.&lt;/p&gt;
 	&lt;&lt;/dialog&gt;&gt;
 	&lt;&lt;trenner&gt;&gt;
-	[[Mit leeren Händen in die Nacht-&gt;Duell_S4_Abend_Dunkel]]
+	[[Mit leeren Händen in die Nacht|Duell_S4_Abend_Dunkel]]
 &lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="225" name="Duell_S4_Abend_mit_Bronko_reden_keine_Wahrheit" tags="" position="600,2850" size="100,100">&lt;&lt;set _spec to $player.spezialisierung&gt;&gt;
 
 &lt;&lt;scene&gt;&gt;
@@ -14362,14 +14637,14 @@ den Mund hältst und einfach bleibst.&lt;/p&gt;
 	&lt;&lt;set $world.duell.wissen.bronko_reue to true&gt;&gt;
 	&lt;&lt;set $world.duell.bronko_trust += 1&gt;&gt;
 	&lt;&lt;trenner&gt;&gt;
-	[[Bronkos Seite in der Hand — die Nacht wartet-&gt;Duell_S4_Abend_Kennt_Bronkos_Geschichte]]
+	[[Bronkos Seite in der Hand — die Nacht wartet|Duell_S4_Abend_Kennt_Bronkos_Geschichte]]
 &lt;&lt;else&gt;&gt;
 	&lt;&lt;dialog&gt;&gt;
 	&lt;p&gt;Aber er hebt nur den Kopf, sieht dich an und schüttelt ihn. Kein Wort. Manche Türen öffnen sich nicht,
 	nur weil man davorsteht.&lt;/p&gt;
 	&lt;&lt;/dialog&gt;&gt;
 	&lt;&lt;trenner&gt;&gt;
-	[[Mit leeren Händen in die Nacht-&gt;Duell_S4_Abend_Dunkel]]
+	[[Mit leeren Händen in die Nacht|Duell_S4_Abend_Dunkel]]
 &lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="226" name="Duell_S4_Abend_zero_Trust" tags="" position="725,2850" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Du hast Pavel gesagt, was du wusstest, und der Brief hat seine Wirkung getan — die falsche. Jetzt ist die
 Nacht da, und mit ihr ein Zorn, den du selbst frisch entfacht hast. Hinter den Ställen wartet keine Frage mehr,
@@ -14382,7 +14657,7 @@ Zdenka auch. Ich habe Pavels Seite in der Hand — und sonst niemanden mehr auf 
 &lt;&lt;/gedanke&gt;&gt;
 
 &lt;&lt;trenner&gt;&gt;
-[[Hinaus in die Nacht-&gt;Duell_S4_Abend_Kennt_Pavels_Geschichte]]</tw-passagedata><tw-passagedata pid="227" name="Duell_S4_Abend_Kennt_Pavels_Geschichte" tags="" position="850,2850" size="100,100">&lt;&lt;scene&gt;&gt;
+[[Hinaus in die Nacht|Duell_S4_Abend_Kennt_Pavels_Geschichte]]</tw-passagedata><tw-passagedata pid="227" name="Duell_S4_Abend_Kennt_Pavels_Geschichte" tags="" position="850,2850" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Du stehst am Rand des Hofes, wo die Fackeln enden. Von den Ställen her hörst du Schritte, mehr als zwei Paar.
 Es hat sich herumgesprochen, wie es das immer tut.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
@@ -14393,7 +14668,7 @@ vorgeht, der ihm gleich gegenübersteht. Eine halbe Geschichte. Vielleicht reich
 &lt;&lt;/gedanke&gt;&gt;
 
 &lt;&lt;trenner&gt;&gt;
-[[Hinaus in die Nacht-&gt;Duell_S5_Nacht]]</tw-passagedata><tw-passagedata pid="228" name="Duell_S4_Abend_Kennt_Bronkos_Geschichte" tags="" position="975,2850" size="100,100">&lt;&lt;scene&gt;&gt;
+[[Hinaus in die Nacht|Duell_S5_Nacht]]</tw-passagedata><tw-passagedata pid="228" name="Duell_S4_Abend_Kennt_Bronkos_Geschichte" tags="" position="975,2850" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Du stehst am Rand des Hofes, wo die Fackeln enden. Von den Ställen her hörst du Schritte. Es hat sich
 herumgesprochen, wie es das immer tut.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
@@ -14404,7 +14679,7 @@ umstimmt, und weiß nicht, wie tief sein Zorn wirklich sitzt. Ich trage eine Wah
 &lt;&lt;/gedanke&gt;&gt;
 
 &lt;&lt;trenner&gt;&gt;
-[[Hinaus in die Nacht-&gt;Duell_S5_Nacht]]</tw-passagedata><tw-passagedata pid="229" name="Duell_S4_Abend_Dunkel" tags="" position="1100,2850" size="100,100">&lt;&lt;scene&gt;&gt;
+[[Hinaus in die Nacht|Duell_S5_Nacht]]</tw-passagedata><tw-passagedata pid="229" name="Duell_S4_Abend_Dunkel" tags="" position="1100,2850" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Du stehst am Rand des Hofes, wo die Fackeln enden und das Dunkel beginnt. Von den Ställen her hörst du Schritte.
 Du bist gekommen, ohne etwas in der Hand zu haben, das zählt.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
@@ -14415,7 +14690,7 @@ gegenüberstehen — und wer nichts weiß, kann nichts richten. Was gleich gesch
 &lt;&lt;/gedanke&gt;&gt;
 
 &lt;&lt;trenner&gt;&gt;
-[[Hinaus in die Nacht-&gt;Duell_S5_Nacht]]</tw-passagedata><tw-passagedata pid="230" name="Duell_S5_Nacht" tags="" position="1225,2850" size="100,100">&lt;&lt;set _spec to $player.spezialisierung&gt;&gt;
+[[Hinaus in die Nacht|Duell_S5_Nacht]]</tw-passagedata><tw-passagedata pid="230" name="Duell_S5_Nacht" tags="" position="1225,2850" size="100,100">&lt;&lt;set _spec to $player.spezialisierung&gt;&gt;
 
 &lt;&lt;scene&gt;&gt;
 &lt;p&gt;Hinter den Ställen liegt ein Streifen gestampfter Erde, den kein Fackellicht erreicht. Der Reif knirscht unter
@@ -14435,11 +14710,11 @@ voneinander, stehen Pavel und Bronko. Der eine mit der Klinge. Der andere mit le
 
 &lt;&lt;trenner&gt;&gt;
 &lt;&lt;if _e.tier is &quot;A&quot;&gt;&gt;
-[[Du trittst zwischen sie-&gt;Duell_Ende_A]]
+[[Du trittst zwischen sie|Duell_Ende_A]]
 &lt;&lt;elseif _e.tier is &quot;B&quot;&gt;&gt;
-[[Du trittst zwischen sie-&gt;Duell_Ende_B]]
+[[Du trittst zwischen sie|Duell_Ende_B]]
 &lt;&lt;else&gt;&gt;
-[[Du kannst nur zusehen-&gt;Duell_Ende_C]]
+[[Du kannst nur zusehen|Duell_Ende_C]]
 &lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="231" name="Duell_Ende_A" tags="nach_Kap2_morgen" position="100,2975" size="100,100">&lt;&lt;switch $world.duell.outcome&gt;&gt;
 &lt;&lt;case &quot;A_versoehnt&quot;&gt;&gt;
 	&lt;&lt;scene&gt;&gt;
@@ -14586,10 +14861,11 @@ kalter Zug.&lt;/p&gt;
 	vor Rabenfurt die alte Fehde, unverändert, nur um eine Wunde reicher.&lt;/p&gt;
 	&lt;&lt;switch $world.duell.outcome&gt;&gt;
 	&lt;&lt;case &quot;B_bronko_reue&quot;&gt;&gt;&lt;p&gt;Was Pavel in Bronkos Gesicht sah, lässt ihn nicht los. Sechs Tage später fragt er zum ersten Mal selbst nach — leise, misstrauisch, aber er fragt. Ein Riss im Panzer.&lt;/p&gt;
-	&lt;&lt;case &quot;B_pavel_verrat&quot;&gt;&gt;&lt;p&gt;Pavel weiß jetzt: Marja lebt, sie trägt Bronkos Kind. Aus der alten Fehde wird eine Jagd. Marja hat einen letzten Brief geschickt und die Flucht nach Tiafunt gewagt — nur weg. Bronko und Zdenka verachten dich.&lt;/p&gt;
+	&lt;&lt;case &quot;B_pavel_verrat&quot;&gt;&gt;&lt;p&gt;Pavel weiß jetzt: Marja lebt, sie trägt Bronkos Kind. Aus der alten Fehde wird eine Jagd — er sinnt darauf, 
+		die Schande mit Blut zu tilgen, und Marja muss untertauchen, ehe er ihre Spur findet. Bronko und Zdenka verachten dich für das, was du verraten hast.&lt;/p&gt;
 	&lt;&lt;default&gt;&gt;&lt;p&gt;Die Fehde brennt weiter, jetzt mit frischem Blut als Brennstoff. Keine Erkenntnis, kein Frieden — nur zwei Familien, die sich noch tiefer eingraben.&lt;/p&gt;
 	&lt;&lt;/switch&gt;&gt;
-&lt;&lt;default&gt;&gt;
+&lt;&lt;case &quot;C&quot;&gt;&gt;
 	&lt;p&gt;Der Überlebende steht vor dem Malefizgericht. In Rabenfurt sind die Familien in offener, blutiger
 	Auseinandersetzung — mehrere Tote. Die Sache kommt vor den Rat; die Brückenadministration wird zum Staatsakt,
 	die Familienoberhäupter werden malefizgerichtlich belangt. Das Wort „Umsiedlung“ steht im Raum, um den Frieden
@@ -14609,10 +14885,10 @@ kalter Zug.&lt;/p&gt;
 &lt;&lt;if $world.duell.zdenka_trust lte -2&gt;&gt;
 	&lt;p&gt;Zdenka gibt dir die Alleinschuld an dem, was geschah. Sie spuckt vor dir aus und macht dich bei den
 	gemäßigten Kräften zur Persona non grata.&lt;/p&gt;
-	&lt;&lt;set $player.reputation.Rabenfurth -= 5&gt;&gt;
+	&lt;&lt;set $player.reputation.rabenfurt to ($player.reputation.rabenfurt || 0) - 5&gt;&gt;
 &lt;&lt;else&gt;&gt;
 	&lt;p&gt;Zdenka verabschiedet sich von dir und dankt dir für deine Teilhabe — was auch immer daraus geworden ist.&lt;/p&gt;
-	&lt;&lt;set $player.reputation.Rabenfurth += 1&gt;&gt;
+	&lt;&lt;set $player.reputation.rabenfurt to ($player.reputation.rabenfurt || 0) + 1&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
 &lt;&lt;set $world.duell.nachwirkung_done to true&gt;&gt;
@@ -16283,6 +16559,14 @@ Es bedeutet nur, dass man jetzt selbst wissen soll, wohin man gehört.&lt;/p&gt;
 
 &lt;&lt;dialog&gt;&gt;„Vortreten.“&lt;&lt;/dialog&gt;&gt;
 
+&lt;p&gt;Dir wird ganz anders zu mute, aber du kannst dich nicht weigern. Als du anhebst du gehen siest du den Schinder.&lt;/p&gt;
+&lt;&lt;if setup.hasAnyRequiredSkill(3)&gt;
+	&lt;p&gt;Er fixiert dich eisern. Aber er nickt dir anerkennend zu.&lt;/p&gt;
+	&lt;&lt;run setNpcAffection(&quot;schinder&quot;, 2)&gt;&gt;
+&lt;&lt;else&gt;&gt;
+	&lt;p&gt;Er fixiert dich eisern. Als wolle er sehen was passiert und wie du dich anstellen wirst.&lt;/p&gt;
+&lt;&lt;/if&gt;&gt;
+
 &lt;&lt;trenner&gt;&gt;
 [[Vortreten -&gt;Kap2_Die_Probe]]</tw-passagedata><tw-passagedata pid="306" name="Kap2_Tagesstart" tags="tagesstart" position="2350,4900" size="100,100">/* Einstiegspunkt für den Tag */
 &lt;&lt;= setup.renderTagesbericht()&gt;&gt;
@@ -17375,86 +17659,469 @@ Karla hört zu, den Blick bei den Sternen, und wirft nur hin und wieder einen tr
   &lt;&lt;/if&gt;&gt;
 &lt;&lt;/beziehung&gt;&gt;
 
-[[Zurück in die Stadt|Tageshub_Stadt]]</tw-passagedata><tw-passagedata pid="338" name="Stadt_Bader" tags="" position="2250,5375" size="100,100">&lt;&lt;if setup.canAffordMoney(6)&gt;&gt;
-	&lt;&lt;print setup.removeMoney(6)&gt;&gt;
-	&lt;&lt;scene&gt;&gt;
-	&lt;p&gt;Die Stube des Baders riecht nach Kräutersud und heißem Wasser, nach Essig und getrockneten Blüten, die von der Decke hängen. Der Bader selbst, ein Mann mit geschickten, narbigen Händen, mustert dich kurz, ehe er dich auf einen Schemel weist.&lt;/p&gt;
-	&lt;&lt;/scene&gt;&gt;
-	&lt;&lt;= setup.getNpcInteraction(&quot;Kap2_Pool_Bader&quot;)&gt;&gt;
-	&lt;&lt;print setup.setPlayerCondition(20)&gt;&gt;
+&lt;&lt;= setup.setPlayerStat(&quot;honesty&quot;, 2)&gt;&gt;
+
+[[Zurück in die Stadt|Tageshub_Stadt]]</tw-passagedata><tw-passagedata pid="338" name="Stadt_Bader" tags="" position="2250,5375" size="100,100">&lt;&lt;if $world.flags.baderHausverbot&gt;&gt;
+	&lt;p&gt;Kaum stehst du in der Tür, hebt der Bader den Kopf. Sein Blick geht von deinem Gesicht zu deinen Händen
+	und wieder zurück, und was einmal an Freundlichkeit darin war, ist fort.&lt;/p&gt;
+	&lt;div class=&quot;dialog&quot;&gt;„Raus. Für Euch flicke ich nichts mehr. Sucht Euch einen anderen, der Euch den Rücken zudreht.&quot;&lt;/div&gt;
+
 &lt;&lt;else&gt;&gt;
-	&lt;&lt;scene&gt;&gt;
-	&lt;p&gt;Der Bader wirft einen Blick auf dich, dann auf deinen offensichtlich leeren Beutel, und schüttelt den Kopf. „Kommt wieder, wenn Ihr zahlen könnt. Ich flicke keine Rekruten aus reiner Nächstenliebe.“&lt;/p&gt;
-	&lt;&lt;/scene&gt;&gt;
+
+	/* --- Körper lesen (einmalig) oder Begrüßung --- */
+	&lt;&lt;if not $world.flags.baderKoerperGelesen&gt;&gt;
+		&lt;&lt;set $world.flags.baderKoerperGelesen to true&gt;&gt;
+		&lt;&lt;dialog&gt;&gt;
+		&lt;p&gt;Seine Finger fahren die Rippen entlang, tasten, halten inne. „Ihr wart einmal krank&quot;, sagt er, nicht als Frage.
+		„Als Kind. Die Lunge. Und schwerer, als Ihr jetzt ausseht — das sieht man am Bau, auch wenn das Fleisch längst fort
+		ist.&quot; Er richtet sich auf und mustert dich, als läse er eine alte Schrift. „Wer immer Euch wieder aufgepäppelt hat,
+		verstand sein Handwerk. Das war keine billige Genesung. Das war Geduld.&quot;&lt;/p&gt;
+		&lt;&lt;if $npc.schinder.affection gte 1&gt;&gt;
+			&lt;p&gt;Er bemerkt etwas. &lt;&lt;quote Oh! Du bist das! Bertram hat von dir gesprochen. Dass du dich sehr gemausert hast!&gt;&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;&lt;quote Wer?&gt;&gt; willst du wissen.&lt;/p&gt;
+			&lt;p&gt;&lt;&lt;quote Der Schinder! Kommt selten vor, dass er so gut über einen Rekruten spricht.&gt;&gt;&lt;/p&gt;
+		&lt;&lt;/if&gt;&gt;
+		&lt;&lt;/dialog&gt;&gt;
+	&lt;&lt;else&gt;&gt;
+		&lt;p&gt;&lt;&lt;quote Ah, der Herr mit der schweren Lunge! Was kann ich heute für Euch tun?&gt;&gt; begrüßt dich der Bader.&lt;/p&gt;
+	&lt;&lt;/if&gt;&gt;
+
+	/* --- Auftrag abgeben --- */
+	&lt;&lt;if setup.hasItem(&quot;Silberbrech&quot;) and $world.flags.baderAuftrag and $world.flags.baderAuftrag neq &quot;erledigt&quot;&gt;&gt;
+		&lt;&lt;dialog&gt;&gt;
+		&lt;p&gt;Du legst den Silberbrech auf den Tisch, Wurzel und Blätter, noch klamm vom Fels. Der Bader nimmt ihn auf, dreht
+		ihn ins Licht, und etwas in seinem Gesicht löst sich.&lt;/p&gt;
+		&lt;p&gt;&lt;&lt;quote Frisch. Sauber gestochen. Ihr habt nicht gelogen.&gt;&gt; Er greift nach seinem Beutel.&lt;/p&gt;
+		&lt;&lt;/dialog&gt;&gt;
+		&lt;div id=&quot;bader-lohn&quot;&gt;
+		&lt;ul class=&quot;menu&quot;&gt;
+		&lt;li&gt;&lt;&lt;link &quot;Den vereinbarten Lohn nehmen&quot;&gt;&gt;
+			&lt;&lt;replace &quot;#bader-lohn&quot;&gt;&gt;
+				&lt;&lt;run setup.removeItem(&quot;Silberbrech&quot;)&gt;&gt;
+				&lt;&lt;set $world.flags.baderAuftrag to &quot;erledigt&quot;&gt;&gt;
+				&lt;&lt;set $world.flags.baderFreund to true&gt;&gt;
+				&lt;&lt;= setup.addMoney(30)&gt;&gt;
+				&lt;&lt;= setup.setPlayerStat(&quot;honesty&quot;, 2)&gt;&gt;
+				&lt;p&gt;Er zählt dir das Kupfer in die Hand, Stück für Stück, und legt ungefragt ein paar drauf. &lt;&lt;quote Für die
+				Mühe der Beine&gt;&gt;, sagt er. Dann, fast beiläufig: &lt;&lt;quote Kommt öfter. Für Euch flicke ich künftig zum halben
+				Preis — ein Mann, der die Höhen kennt, ist mir mehr wert als ein voller Beutel.&gt;&gt;&lt;/p&gt;
+			&lt;&lt;/replace&gt;&gt;
+		&lt;&lt;/link&gt;&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;&lt;link &quot;Behaupten, es hätte dich fast das Leben gekostet — und mehr fordern&quot;&gt;&gt;
+			&lt;&lt;replace &quot;#bader-lohn&quot;&gt;&gt;
+				&lt;&lt;run setup.removeItem(&quot;Silberbrech&quot;)&gt;&gt;
+				&lt;&lt;set $world.flags.baderAuftrag to &quot;erledigt&quot;&gt;&gt;
+				&lt;&lt;= setup.addMoney(20)&gt;&gt;
+				&lt;&lt;= setup.setPlayerStat(&quot;honesty&quot;, -2)&gt;&gt;
+				&lt;p&gt;Er hält inne, den Blick auf dir, und du siehst, wie er die Rechnung aufmacht und aufgehen lässt.&lt;/p&gt;
+				&lt;p&gt;&lt;&lt;quote Fast das Leben&gt;&gt;, wiederholt er trocken. &lt;&lt;quote Für einen, der die Grate im Schlaf kennt.&gt;&gt; Er zählt
+				dir weniger in die Hand, als er wollte, und dreht sich weg. &lt;&lt;quote Nehmt und geht. Und spart Euch die
+				Geschichten beim Nächsten, der sie Euch nicht glaubt.&gt;&gt;&lt;/p&gt;
+			&lt;&lt;/replace&gt;&gt;
+		&lt;&lt;/link&gt;&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;/div&gt;
+	&lt;&lt;/if&gt;&gt;
+
+	/* --- Auftrag vergeben --- */
+	&lt;&lt;if $world.flags.baderKoerperGelesen and not $world.flags.baderAuftrag&gt;&gt;
+		&lt;&lt;dialog&gt;&gt;
+		&lt;p&gt;Er wischt sich die Hände am Schurz ab und sieht dich an, als fasse er einen Entschluss.&lt;/p&gt;
+		&lt;p&gt;&lt;&lt;quote Ihr kennt die Höhen. Das hört man nicht nur, das sieht man an Euch.&gt;&gt; Er nickt zum Fenster, hinauf zu den
+		Graten über der Stadt. &lt;&lt;quote Da oben, wo der Schnee erst spät weicht, wächst der Silberbrech. Ein Kraut gegen ein
+		Fieber, das keine Rinde und kein Sud aufhält. Ich habe einen Kranken, dem sonst nichts mehr hilft — und keine Beine
+		mehr, die mich da hinauftragen.&gt;&gt;&lt;/p&gt;
+		&lt;p&gt;&lt;&lt;quote Bringt mir eine Handvoll, frisch gestochen, mit der Wurzel. Ich zahle, und ich vergesse es nicht.&gt;&gt;&lt;/p&gt;
+		&lt;&lt;/dialog&gt;&gt;
+		&lt;div id=&quot;bader-auftrag&quot;&gt;
+		&lt;ul class=&quot;menu&quot;&gt;
+		&lt;li&gt;&lt;&lt;link &quot;Ich hole es Euch&quot;&gt;&gt;
+			&lt;&lt;replace &quot;#bader-auftrag&quot;&gt;&gt;
+				&lt;&lt;set $world.flags.baderAuftrag to &quot;offen&quot;&gt;&gt;
+				&lt;p&gt;Er nickt nur, aber in dem Nicken liegt mehr Vertrauen, als dir die meisten hier im Lager je gezeigt haben.&lt;/p&gt;
+			&lt;&lt;/replace&gt;&gt;
+		&lt;&lt;/link&gt;&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;&lt;link &quot;Sucht Euch einen anderen&quot;&gt;&gt;
+			&lt;&lt;replace &quot;#bader-auftrag&quot;&gt;&gt;
+				&lt;p&gt;Er zuckt die Schultern, und das Fenster mit den Graten dahinter ist wieder nur ein Fenster.&lt;/p&gt;
+			&lt;&lt;/replace&gt;&gt;
+		&lt;&lt;/link&gt;&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;/div&gt;
+	&lt;&lt;/if&gt;&gt;
+
+	/* --- Behandlung, Gratis für Ehrliche, sonst Bruch --- */
+	&lt;&lt;set _behandelt to false&gt;&gt;
+	&lt;&lt;set _gratisReif to (not $world.flags.baderGratisDay) or (($world.day - $world.flags.baderGratisDay) gte 4)&gt;&gt;
+
+	&lt;&lt;set _price to ($world.flags.baderFreund) ? 3 : 6&gt;&gt;
+	&lt;&lt;if not setup.canAffordMoney(_price) and $player.stats.honesty gte 70 and _gratisReif&gt;&gt;
+		&lt;&lt;scene&gt;&gt;
+		&lt;p&gt;Die Stube des Baders riecht nach Kräutersud und heißem Wasser, nach Essig und getrockneten Blüten, die von der
+		Decke hängen.&lt;/p&gt;
+		&lt;&lt;/scene&gt;&gt;
+		&lt;p&gt;&lt;&lt;quote Kein Geld? Macht nichts. Du bist ein guter Kerl, und guten Kerlen muss man hin und wieder helfen.&gt;&gt; Er
+		winkt dich zu sich auf den Schemel.&lt;/p&gt;
+		&lt;&lt;set $world.flags.baderGratisDay to $world.day&gt;&gt;
+		&lt;&lt;= setup.getNpcInteraction(&quot;Kap2_Pool_Bader&quot;)&gt;&gt;
+		&lt;&lt;print setup.setPlayerCondition(20)&gt;&gt;
+		&lt;&lt;set _behandelt to true&gt;&gt;
+
+	&lt;&lt;elseif setup.canAffordMoney(_price)&gt;&gt;
+		&lt;&lt;print setup.removeMoney(_price)&gt;&gt;
+		&lt;&lt;scene&gt;&gt;
+		&lt;p&gt;Die Stube des Baders riecht nach Kräutersud und heißem Wasser, nach Essig und getrockneten Blüten, die von der
+		Decke hängen. Der Bader, ein Mann mit geschickten, narbigen Händen, mustert dich kurz, ehe er dich auf einen Schemel
+		weist.&lt;/p&gt;
+		&lt;p&gt;&lt;&lt;quote Für dich mach ich den halben Preis!.&gt;&gt; Er
+		winkt dich zu sich auf den Schemel.&lt;/p&gt;
+		&lt;&lt;/scene&gt;&gt;
+		&lt;&lt;= setup.getNpcInteraction(&quot;Kap2_Pool_Bader&quot;)&gt;&gt;
+		&lt;&lt;print setup.setPlayerCondition(20)&gt;&gt;
+		&lt;&lt;set _behandelt to true&gt;&gt;
+
+	&lt;&lt;else&gt;&gt;
+		&lt;p&gt;Der Bader wirft einen Blick auf dich, dann auf deinen offensichtlich leeren Beutel, und schüttelt den Kopf.&lt;/p&gt;
+		&lt;div class=&quot;dialog&quot;&gt;„Kommt wieder, wenn Ihr zahlen könnt. Ich flicke keine Rekruten aus reiner Nächstenliebe.&quot;&lt;/div&gt;
+		&lt;&lt;scene&gt;&gt;
+		&lt;p&gt;Er wendet sich ab, zu einem Kessel über dem Feuer. Auf dem Regal neben dir stehen die Tiegel in Reih und Glied —
+		Tinkturen, getrocknete Wurzeln, und ganz vorn ein Topf Wallwurz-Salbe, keine Handbreit entfernt. Sein Rücken ist dir
+		zugewandt.&lt;/p&gt;
+		&lt;&lt;/scene&gt;&gt;
+		&lt;div class=&quot;thought-box&quot;&gt;Ein Griff. Mehr nicht. Er würde es nicht einmal merken, ehe ich zur Tür hinaus bin.&lt;/div&gt;
+		&lt;div id=&quot;bader-wahl&quot;&gt;
+		&lt;ul class=&quot;menu&quot;&gt;
+		&lt;li&gt;&lt;&lt;link &quot;Nach der Salbe greifen, solange er den Rücken zeigt&quot;&gt;&gt;
+			&lt;&lt;replace &quot;#bader-wahl&quot;&gt;&gt;
+				&lt;&lt;set _r to setup.skillCheckXp(&quot;thievery&quot;, 13, - setup.verschlagenheitMod())&gt;&gt;
+				&lt;&lt;if _r.success&gt;&gt;
+					&lt;p&gt;Deine Hand ist schon unterwegs, ehe der Zweifel sie einholt. Der Topf gleitet in deinen Ärmel, kühl und
+					glatt, und der Bader rührt weiter in seinem Kessel, als wärst du längst gegangen.&lt;/p&gt;
+					&lt;&lt;= setup.addItem(&quot;Wallwurz-Salbe&quot;)&gt;&gt;
+					&lt;&lt;= setup.setPlayerStat(&quot;honesty&quot;, -3)&gt;&gt;
+				&lt;&lt;elseif _r.outcome === &quot;fumble&quot;&gt;&gt;
+					&lt;p&gt;Der Tiegel stößt gegen den Rand des Regals — ein kleines, verräterisches Klirren. Der Bader ist schneller,
+					als ein Mann seines Alters sein dürfte. Seine narbige Hand schließt sich um dein Gelenk, ehe du den Arm
+					zurückziehst, und drückt zu, bis die Salbe zu Boden fällt.&lt;/p&gt;
+					&lt;div class=&quot;dialog&quot;&gt;„Also so einer bist du.&quot; Er lässt dich los wie etwas Schmutziges. „Merk dir das Gesicht,
+					Rekrut — es ist das Letzte, das du hier drin siehst. Raus.&quot;&lt;/div&gt;
+					&lt;&lt;= setup.setPlayerStat(&quot;honesty&quot;, -3)&gt;&gt;
+					&lt;&lt;set $world.flags.baderHausverbot to true&gt;&gt;
+				&lt;&lt;else&gt;&gt;
+					&lt;p&gt;Deine Finger sind schon am Topf, als sein Kopf sich dreht — zu langsam warst du, oder er zu wach. Er sagt
+					nichts, sieht nur auf deine Hand, dann in dein Gesicht, und du ziehst den Arm zurück, als hättest du dich
+					verbrannt.&lt;/p&gt;
+					&lt;div class=&quot;dialog&quot;&gt;„Beim nächsten Mal breche ich dir die Finger, nicht den Blick. Verschwinde.&quot;&lt;/div&gt;
+					&lt;&lt;= setup.setPlayerStat(&quot;honesty&quot;, -2)&gt;&gt;
+				&lt;&lt;/if&gt;&gt;
+				&lt;&lt;= _r.lernHTML&gt;&gt;
+			&lt;&lt;/replace&gt;&gt;
+		&lt;&lt;/link&gt;&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;&lt;link &quot;Die Finger von fremdem Gut lassen&quot;&gt;&gt;
+			&lt;&lt;replace &quot;#bader-wahl&quot;&gt;&gt;
+				&lt;p&gt;Du siehst den Topf an. Dann ziehst du die Hand zurück, ehe sie ein eigenes Leben entwickelt, und trittst
+				einen Schritt vom Regal weg. Es ist nicht deins. So einfach ist das, und so schwer.&lt;/p&gt;
+				&lt;&lt;= setup.setPlayerStat(&quot;honesty&quot;, 2)&gt;&gt;
+			&lt;&lt;/replace&gt;&gt;
+		&lt;&lt;/link&gt;&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;/div&gt;
+	&lt;&lt;/if&gt;&gt;
+
+	/* --- Nur nach echter Behandlung: bei der Arbeit zusehen --- */
+	&lt;&lt;if _behandelt and random(1, 100) lt 50&gt;&gt;
+		&lt;p&gt;Der Bader hat noch einen anderen Patienten auf dem Schemel. Du könntest ihm bei der Arbeit über die Schulter sehen.&lt;/p&gt;
+		&lt;div id=&quot;bader-lern&quot;&gt;
+		&lt;&lt;link &quot;Ihm bei der Arbeit über die Schulter sehen&quot;&gt;&gt;
+			&lt;&lt;replace &quot;#bader-lern&quot;&gt;&gt;
+				&lt;&lt;set _r to setup.skillCheckXp(&quot;medicine&quot;, 13, 0)&gt;&gt;
+				&lt;&lt;if _r.success&gt;&gt;
+					&lt;p&gt;Du reichst ihm die Zange, ehe er danach greift, und er nickt, ohne aufzusehen. „Ihr habt das schon mal
+					gemacht.&quot; Ein knappes Lob, aber es wiegt.&lt;/p&gt;
+				&lt;&lt;else&gt;&gt;
+					&lt;p&gt;Du siehst genauer hin, als dir lieb ist, und dein Magen dreht sich. Der Bader grinst schief. „Das legt
+					sich. Oder Ihr taugt nicht dafür.&quot;&lt;/p&gt;
+				&lt;&lt;/if&gt;&gt;
+				&lt;&lt;= _r.lernHTML&gt;&gt;
+			&lt;&lt;/replace&gt;&gt;
+		&lt;&lt;/link&gt;&gt;
+		&lt;/div&gt;
+	&lt;&lt;/if&gt;&gt;
+
 &lt;&lt;/if&gt;&gt;
 
-[[Zurück in die Stadt|Tageshub_Stadt]]</tw-passagedata><tw-passagedata pid="339" name="Stadt_Botenstand" tags="" position="2700,5675" size="100,100">&lt;&lt;scene&gt;&gt;
-&lt;p&gt;Der Botenstand liegt am Rand des Marktes, ein schmaler Verschlag, in dem ein hagerer Schreiber Nachrichten entgegennimmt, sie faltet, siegelt und den reitenden Boten übergibt, die zweimal die Woche in alle Himmelsrichtungen aufbrechen.&lt;/p&gt;
+[[Zurück in die Stadt|Tageshub_Stadt]]</tw-passagedata><tw-passagedata pid="339" name="Bader_Auftrag_Suche" tags="" position="1100,4225" size="100,100">&lt;&lt;scene&gt;&gt;
+&lt;p&gt;Der Pfad hinter dem Lager wird schnell steil, aus Tritten wird Klettern, aus Gras wird nackter, windgeschliffener
+Fels. Weit unter dir liegt das Lager wie ein Häufchen Asche, und die Luft wird dünn und schneidend, je höher du kommst.&lt;/p&gt;
+&lt;&lt;/scene&gt;&gt;
+
+&lt;&lt;set _r to setup.skillCheckXp(&quot;medicine&quot;, 13, -2)&gt;&gt;
+&lt;&lt;if _r.success&gt;&gt;
+	&lt;p&gt;Du weißt, wonach du suchst, ehe dein Verstand den Namen findet — die Hände erinnern sich, wo der Kopf längst
+	weitergezogen ist. Zwischen zwei Steinen, im Windschatten, die silbrigen Blätter. Du stichst die Wurzel sauber aus.&lt;/p&gt;
+	&lt;div class=&quot;thought-box&quot;&gt;Jemand hat mir das gezeigt. Hier oben, als ich kaum die Luft zum Gehen hatte. Ich weiß sein
+	Gesicht nicht mehr, nur seine Hände über den meinen, und die Kälte, und dass er nicht losließ, als ich aufgeben wollte.&lt;/div&gt;
+	&lt;&lt;= setup.addItem(&quot;Silberbrech&quot;)&gt;&gt;
+	&lt;&lt;set $world.flags.baderAuftrag to &quot;gefunden&quot;&gt;&gt;
+&lt;&lt;elseif _r.outcome === &quot;fumble&quot;&gt;&gt;
+	&lt;p&gt;Ein Stein unter deinem Fuß gibt nach. Du fängst dich gerade noch, aber die Handvoll Erde, die den Hang hinabrollt,
+	hättest auch du sein können. Für heute reicht der Berg dir eine Warnung statt des Krauts.&lt;/p&gt;
+&lt;&lt;else&gt;&gt;
+	&lt;p&gt;Du suchst, bis das Licht kippt, und findest nichts als tauben Fels und deine eigene Ungeduld. Ein andermal.&lt;/p&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;= _r.lernHTML&gt;&gt;
+
+[[Zurück|Tageshub_Stadt]]</tw-passagedata><tw-passagedata pid="340" name="Stadt_Botenstand" tags="" position="2700,5675" size="100,100">&lt;&lt;scene&gt;&gt;
+&lt;p&gt;Der Botenstand liegt am Rand des Marktes, ein schmaler Verschlag, in dem ein hagerer Schreiber Nachrichten
+entgegennimmt, sie faltet, siegelt und den reitenden Boten übergibt, die zweimal die Woche in alle Himmelsrichtungen
+aufbrechen.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
 
 &lt;&lt;dialog&gt;&gt;
 &lt;p&gt;„Wohin soll die Nachricht?“, fragt der Schreiber, ohne aufzusehen.&lt;/p&gt;
 &lt;&lt;/dialog&gt;&gt;
 
-&lt;&lt;if $world.ermittlung.flags.westhof_done === true&gt;&gt;
+&lt;&lt;set _hatEmpfaenger to false&gt;&gt;
 
-    &lt;&lt;dialog&gt;&gt;
-    &lt;p&gt;„Ein Brief nach Grodaus. In das Kontor von Ramirez de Volpe. Was kostet mich das?“&lt;/p&gt;
-    &lt;p&gt;Jetzt blickt der Schreiber auf. „Hauptstadt, vier Kupfer. In den Verteiler nochmal zwei Kupfer, direkte Zustellung vier Kupfer extra. Gleich morgen geht die nächste Lieferung auf den Weg.“ Damit macht sich der Schreiber wieder über seine Liste her. &lt;/p&gt;
-    &lt;&lt;/dialog&gt;&gt;
-    &lt;&lt;if setup.canAffordMoney(8)&gt;&gt;
-    		&lt;&lt;link &quot;Einen Brief an Luigi schicken (8 Kupfer)&quot;&gt;&gt;
+/* --- Karla, solange sie einsitzt --- */
+&lt;&lt;if $npc.karla.memory.flags.verhaftung_seen&gt;&gt;
+	&lt;&lt;set _hatEmpfaenger to true&gt;&gt;
+	&lt;&lt;set _briefReif to (not $npc.karla.memory.flags.briefTag) or (($world.day - $npc.karla.memory.flags.briefTag) gte 3)&gt;&gt;
+	&lt;&lt;if _briefReif&gt;&gt;
+		&lt;&lt;if $world.ermittlung.flags.nachspiel_done&gt;&gt;
+			&lt;&lt;set _tier to 3&gt;&gt;
+		&lt;&lt;elseif $world.ermittlung.flags.s10_done or $world.ermittlung.flags.s9_done or $world.ermittlung.flags.westhof_done&gt;&gt;
+			&lt;&lt;set _tier to 2&gt;&gt;
+		&lt;&lt;else&gt;&gt;
+			&lt;&lt;set _tier to 1&gt;&gt;
+		&lt;&lt;/if&gt;&gt;
+		&lt;&lt;dialog&gt;&gt;
+		&lt;p&gt;„Und an eine Gefangene?“, fragst du leiser, als du wolltest. Der Schreiber sieht dich an, ohne die Miene zu
+		verziehen. „Kostet dasselbe wie jeder andere Brief. Ob sie ihn kriegt, ist nicht meine Sache. Vier Kupfer.“&lt;/p&gt;
+		&lt;&lt;/dialog&gt;&gt;
+		&lt;&lt;if setup.canAffordMoney(4)&gt;&gt;
+			&lt;div id=&quot;karla-brief&quot;&gt;
+			&lt;&lt;link &quot;Karla schreiben (4 Kupfer)&quot;&gt;&gt;
+				&lt;&lt;replace &quot;#karla-brief&quot;&gt;&gt;
+					&lt;&lt;print setup.removeMoney(4)&gt;&gt;
+					&lt;&lt;set $npc.karla.memory.flags.briefTag to $world.day&gt;&gt;
+					&lt;&lt;= setup.setNpcAffection(&quot;karla&quot;, 1)&gt;&gt;
+					&lt;&lt;run setup.pushNpcMemory(&quot;karla&quot;, &quot;brief_gesendet&quot;)&gt;&gt;
+					&lt;div class=&quot;letter&quot;&gt;
+					&lt;&lt;if _tier === 1&gt;&gt;
+						&lt;p&gt;Ich weiß nicht, ob diese Zeilen dich erreichen, oder ob ein Wächter sie liest, ehe du sie in die
+						Hand bekommst. Also schreibe ich nichts, was dir schaden könnte. Nur, dass ich nicht stillsitze. Dass
+						ich jeden Tag ein Stück weiterkomme, auch wenn es langsam geht. Halte durch. Ich gebe nicht auf,
+						solange du da drin bist.&lt;/p&gt;
+					&lt;&lt;elseif _tier === 2&gt;&gt;
+						&lt;p&gt;Es bewegt sich, Karla. Ich kann nicht schreiben, was ich weiß — nicht hier, nicht auf Papier, das
+						durch fremde Hände geht. Aber die Spur, der wir gefolgt sind, ist keine Einbildung mehr. Sie führt
+						irgendwohin, und ich bin fast dort. Noch ein wenig Geduld. Nicht mehr lang.&lt;/p&gt;
+					&lt;&lt;else&gt;&gt;
+						&lt;p&gt;Es ist heraus. Die Wahrheit liegt dort, wo sie hingehört, und diesmal kann sie keiner mehr
+						wegräumen. Du hast selbst gesagt, die Mühlen mahlen langsam — aber sie mahlen jetzt in die richtige
+						Richtung. Halte noch ein wenig durch. Bald steht das Tor offen, und ich warte davor.&lt;/p&gt;
+					&lt;&lt;/if&gt;&gt;
+					&lt;/div&gt;
+					&lt;p&gt;Du legst das Kupfer hin und siehst zu, wie der Schreiber deinen Brief faltet und siegelt, als wäre er
+					einer von hundert.&lt;/p&gt;
+				&lt;&lt;/replace&gt;&gt;
+			&lt;&lt;/link&gt;&gt;
+			&lt;/div&gt;
+		&lt;&lt;else&gt;&gt;
+			&lt;p&gt;Vier Kupfer. Du hast sie nicht, und der Brief bleibt ungeschrieben in deinem Kopf.&lt;/p&gt;
+		&lt;&lt;/if&gt;&gt;
+	&lt;&lt;else&gt;&gt;
+		&lt;&lt;gedanke&gt;&gt;
+		&lt;p&gt;Ich habe ihr erst vor Kurzem geschrieben. Noch einmal so bald, und es klingt, als hätte ich sonst nichts zu tun,
+		als auf ihre Antwort zu warten.&lt;/p&gt;
+		&lt;&lt;/gedanke&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $world.duell?.nachwirkung_done AND $world.duell?.tier eq &quot;C&quot; AND $world.duell?.zdenka_trust gt -2&gt;&gt;
+	&lt;&lt;set _hatEmpfaenger to true&gt;&gt;
+	&lt;&lt;dialog&gt;&gt;
+	&lt;p&gt;„Ein Brief nach Rabenfurth. An Fräulein Zdenka Hrusa. Was kostet mich das?“&lt;/p&gt;
+	&lt;p&gt;Jetzt blickt der Schreiber auf. Rabenfurth, Sechs Kupfer.“ Damit macht sich der Schreiber wieder über
+	seine Liste her.&lt;/p&gt;
+	&lt;&lt;/dialog&gt;&gt;
+	&lt;&lt;if setup.canAffordMoney(6)&gt;&gt;
+		&lt;&lt;link &quot;Einen Brief an Zdenka schicken (6 Kupfer)&quot;&gt;&gt;
+			&lt;&lt;print setup.removeMoney(6)&gt;&gt;
+			&lt;&lt;set $world.flags.sendLetterToZdenka to true&gt;&gt;
+			&lt;&lt;goto &quot;Tageshub_Stadt&quot;&gt;&gt;
+		&lt;&lt;/link&gt;&gt;
+	&lt;&lt;else&gt;&gt;
+		&lt;&lt;dialog&gt;&gt;
+		&lt;p&gt;„Schon gut, das kann ich mir nicht leisten.“&lt;/p&gt;
+		&lt;&lt;/dialog&gt;&gt;
+		&lt;p&gt;Du verneinst und drehst dich zum Gehen um.&lt;/p&gt;
+	&lt;&lt;/if&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+/* --- Familia / Luigi, wenn die Westhof-Spur steht --- */
+&lt;&lt;if $world.ermittlung.flags.westhof_done === true&gt;&gt;
+	&lt;&lt;set _hatEmpfaenger to true&gt;&gt;
+	&lt;&lt;dialog&gt;&gt;
+	&lt;p&gt;„Ein Brief nach Grodaus. In das Kontor von Ramirez de Volpe. Was kostet mich das?“&lt;/p&gt;
+	&lt;p&gt;Jetzt blickt der Schreiber auf. „Hauptstadt, vier Kupfer. In den Verteiler nochmal zwei Kupfer, direkte Zustellung
+	vier Kupfer extra. Gleich morgen geht die nächste Lieferung auf den Weg.“ Damit macht sich der Schreiber wieder über
+	seine Liste her.&lt;/p&gt;
+	&lt;&lt;/dialog&gt;&gt;
+	&lt;&lt;if setup.canAffordMoney(8)&gt;&gt;
+		&lt;&lt;link &quot;Einen Brief an Luigi schicken (8 Kupfer)&quot;&gt;&gt;
 			&lt;&lt;print setup.removeMoney(8)&gt;&gt;
-            &lt;&lt;set $world.ermittlung.flags.sendLetterToLuigi to true&gt;&gt;
+			&lt;&lt;set $world.ermittlung.flags.sendLetterToLuigi to true&gt;&gt;
 			&lt;&lt;set $world.ermittlung.flags.familia_kontakt_tag to $world.day&gt;&gt;
 			&lt;&lt;goto &quot;Tageshub_Stadt&quot;&gt;&gt;
 		&lt;&lt;/link&gt;&gt;
-    &lt;&lt;else&gt;&gt;
-   			 &lt;&lt;dialog&gt;&gt;
-     		&lt;p&gt;Schon gut, das kann ich mir nicht leisten.&lt;/p&gt;
-            &lt;&lt;/dialog&gt;&gt;
-            &lt;p&gt; Du verneinst und drehst dich zum gehen um.&lt;/p&gt; 
-            [[Zurück in die Stadt|Tageshub_Stadt]]
-    &lt;&lt;/if&gt;&gt;
+	&lt;&lt;else&gt;&gt;
+		&lt;&lt;dialog&gt;&gt;
+		&lt;p&gt;„Schon gut, das kann ich mir nicht leisten.“&lt;/p&gt;
+		&lt;&lt;/dialog&gt;&gt;
+		&lt;p&gt;Du verneinst und drehst dich zum Gehen um.&lt;/p&gt;
+	&lt;&lt;/if&gt;&gt;
+&lt;&lt;/if&gt;&gt;
 
-&lt;&lt;else&gt;&gt;
-&lt;&lt;gedanke&gt;&gt;
-&lt;p&gt;Ich habe niemanden, dem ich derzeit etwas zu sagen hätte, das eine Reise wert wäre. Vielleicht ändert sich das noch.&lt;/p&gt;
-&lt;&lt;/gedanke&gt;&gt;
+/* --- Niemand, an den zu schreiben wäre --- */
+&lt;&lt;if not _hatEmpfaenger&gt;&gt;
+	&lt;&lt;gedanke&gt;&gt;
+	&lt;p&gt;Ich habe niemanden, dem ich derzeit etwas zu sagen hätte, das eine Reise wert wäre. Vielleicht ändert sich das noch.&lt;/p&gt;
+	&lt;&lt;/gedanke&gt;&gt;
+	&lt;p&gt;Du verlässt den Stand, ohne eine Nachricht zu hinterlassen.&lt;/p&gt;
+&lt;&lt;/if&gt;&gt;
 
-&lt;p&gt;Du verlässt den Stand, ohne eine Nachricht zu hinterlassen.&lt;/p&gt;
-[[Zurück in die Stadt|Tageshub_Stadt]]
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="340" name="Stadt_Fuhrmannsviertel" tags="" position="2600,5500" size="100,100">&lt;&lt;scene&gt;&gt;
-&lt;p&gt;Hier riecht es nach Pferdemist, Teer und nassem Sackleinen. Karren stehen aufgereiht, ihre Achsen von tausend Meilen glattgeschliffen, und zwischen ihnen sitzen Fuhrleute an kleinen Feuern, rauchen, würfeln, erzählen sich Geschichten von Straßen, die kein Rekrut je zu Gesicht bekommt.&lt;/p&gt;
+[[Zurück in die Stadt|Tageshub_Stadt]]</tw-passagedata><tw-passagedata pid="341" name="Stadt_Fuhrmannsviertel" tags="" position="2600,5500" size="100,100">&lt;&lt;scene&gt;&gt;
+&lt;p&gt;Hier riecht es nach Pferdemist, Teer und nassem Sackleinen. Karren stehen aufgereiht, ihre Achsen von tausend Meilen
+glattgeschliffen, und zwischen ihnen sitzen Fuhrleute an kleinen Feuern, rauchen, würfeln, erzählen sich Geschichten von
+Straßen, die kein Rekrut je zu Gesicht bekommt.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
 
 &lt;&lt;if not $npc.karla.memory.flags.verhaftung_seen&gt;&gt;
 	&lt;&lt;gedanke&gt;&gt;
-	&lt;p&gt;Jarek ist mit dem Dokument verschwunden, mitten in der Nacht, durch Tore, die eigentlich niemanden ungesehen hinauslassen sollten. Wenn er nicht zu Fuß ging — und wie hätte er das schaffen sollen, mit einem gestohlenen Aktenstück unterm Wams —, dann führte sein Weg durch genau solche Hände wie diese. Fuhrleute reden viel. Manchmal reden sie auch über das Falsche, ohne es zu merken.&lt;/p&gt;
+	&lt;p&gt;Jarek ist mit dem Dokument verschwunden, mitten in der Nacht, durch Tore, die eigentlich niemanden ungesehen
+	hinauslassen sollten. Wenn er nicht zu Fuß ging, dann führte sein Weg durch genau solche Hände wie diese. Fuhrleute
+	reden viel. Manchmal reden sie auch über das Falsche, ohne es zu merken.&lt;/p&gt;
 	&lt;&lt;/gedanke&gt;&gt;
 &lt;&lt;else&gt;&gt;
 	&lt;&lt;gedanke&gt;&gt;
-	&lt;p&gt;Diese Männer kennen jede Route zwischen hier und der Grenze besser als ich meinen eigenen Namen. Was sie sich erzählen, dringt selten bis zur Akademie durch — man muss schon selbst hier stehen, um es zu hören.&lt;/p&gt;
+	&lt;p&gt;Diese Männer kennen jede Route zwischen hier und der Grenze besser als ich meinen eigenen Namen. Was sie sich
+	erzählen, dringt selten bis zur Akademie durch — man muss schon selbst hier stehen, um es zu hören.&lt;/p&gt;
 	&lt;&lt;/gedanke&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
-&lt;p&gt;Heute reden sie nur vom Wetter und von schlechten Straßen — nichts, das du nicht schon wüsstest.&lt;/p&gt;
-
+/* --- Glückstreffer (8 %), bleibt --- */
 &lt;&lt;if not $world.ermittlung.spuren.includes(&quot;fuhrmann_hinweis&quot;)&gt;&gt;
 	&lt;&lt;if random(1,100) &lt;= 8&gt;&gt;
-		&lt;p&gt;Ein alter Fuhrmann, dessen Hände von Zügeln und Kälte gleichermaßen gegerbt sind, erzählt beiläufig, fast im Vorübergehen, 
-		von einer Nacht vor einigen Wochen — einem Karren, der außerhalb der üblichen Stunde das Nordtor passierte, 
-		ohne dass jemand danach fragte, wessen Fracht er trug. Er selbst hielt es nicht für erwähnenswert. 
-		Für dich klingt es wie ein Stein, der gerade erst ins Wasser gefallen ist.&lt;/p&gt;
-		&lt;&lt;gedanke&gt;&gt;
-			&lt;p&gt;Ein Karren. Zur falschen Stunde. Niemand, der fragte. Das könnte nichts bedeuten — oder alles.&lt;/p&gt;
-		&lt;&lt;/gedanke&gt;&gt;
-		&lt;&lt;print setup.ermFund(&quot;fuhrmann_hinweis&quot;, &quot;Ein Fuhrmann erwähnte beiläufig einen Karren, der zur falschen Stunde durchs Nordtor fuhr, 
-		ohne dass die Wache nach der Fracht fragte.&quot;)&gt;&gt;
+		&lt;p&gt;Ein alter Fuhrmann, dessen Hände von Zügeln und Kälte gleichermaßen gegerbt sind, erzählt beiläufig von einer
+		Nacht vor einigen Wochen — einem Karren, der außerhalb der üblichen Stunde das Nordtor passierte, ohne dass jemand
+		fragte, wessen Fracht er trug. Für dich klingt es wie ein Stein, der gerade erst ins Wasser gefallen ist.&lt;/p&gt;
+		&lt;&lt;gedanke&gt;&gt;&lt;p&gt;Ein Karren. Zur falschen Stunde. Niemand, der fragte. Das könnte nichts bedeuten — oder alles.&lt;/p&gt;&lt;&lt;/gedanke&gt;&gt;
+		&lt;&lt;print setup.ermFund(&quot;fuhrmann_hinweis&quot;, &quot;Ein Fuhrmann erwähnte beiläufig einen Karren, der zur falschen Stunde durchs Nordtor fuhr, ohne dass die Wache nach der Fracht fragte.&quot;)&gt;&gt;
 	&lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
-[[Zurück in die Stadt|Tageshub_Stadt]]</tw-passagedata><tw-passagedata pid="341" name="Stadt_Geruechte" tags="" position="2475,5600" size="100,100">&lt;&lt;scene&gt;&gt;
+/* --- Der alte Fuhrmann als Informant (zuverlässig, gegen Kupfer) --- */
+&lt;&lt;if $world.ermittlung.active and not $world.ermittlung.flags.s10_done&gt;&gt;
+	&lt;div id=&quot;fuhrmann-info&quot;&gt;
+	&lt;ul class=&quot;menu&quot;&gt;
+	&lt;&lt;if not $world.ermittlung.flags.fuhrmann_tier1 and setup.canAffordMoney(3)&gt;&gt;
+		&lt;li&gt;&lt;&lt;link &quot;Dem Alten einen Krug spendieren (3 Kupfer)&quot;&gt;&gt;
+			&lt;&lt;replace &quot;#fuhrmann-info&quot;&gt;&gt;
+				&lt;&lt;print setup.removeMoney(3)&gt;&gt;
+				&lt;&lt;set $world.ermittlung.flags.fuhrmann_tier1 to true&gt;&gt;
+				&lt;p&gt;Der Krug macht den Alten redselig. Der Karren sei nach Norden gerollt, sagt er, ein hagerer Mann auf dem
+				Bock, kein Fuhrmann, den er kannte, und auf den Kisten habe „Übungsbestand“ gestanden — für Übungszeug, sagt
+				er und lacht, fahre keiner bei Nacht durchs Tor, als hinge sein Leben dran.&lt;/p&gt;
+				&lt;&lt;if not $world.ermittlung.spuren.includes(&quot;fuhrmann_hinweis&quot;)&gt;&gt;
+					&lt;&lt;print setup.ermFund(&quot;fuhrmann_hinweis&quot;, &quot;Ein Fuhrmann beschrieb einen nächtlichen Karren Richtung Norden, hagerer Mann auf dem Bock, Kisten mit der Aufschrift &#39;Übungsbestand&#39;.&quot;)&gt;&gt;
+				&lt;&lt;/if&gt;&gt;
+				&lt;&lt;= setup.ermVerdacht(&quot;orenmalk&quot;, 1)&gt;&gt;
+			&lt;&lt;/replace&gt;&gt;
+		&lt;&lt;/link&gt;&gt;&lt;/li&gt;
+	&lt;&lt;/if&gt;&gt;
+	&lt;&lt;if $world.ermittlung.flags.fuhrmann_tier1 and $world.ermittlung.flags.s8_done and not $world.ermittlung.flags.s9_done and not $world.ermittlung.flags.fuhrmann_tier2 and setup.canAffordMoney(6)&gt;&gt;
+		&lt;li&gt;&lt;&lt;link &quot;Ihn fragen, wann die nächste solche Fuhre geht (6 Kupfer)&quot;&gt;&gt;
+			&lt;&lt;replace &quot;#fuhrmann-info&quot;&gt;&gt;
+				&lt;&lt;print setup.removeMoney(6)&gt;&gt;
+				&lt;&lt;set $world.ermittlung.flags.fuhrmann_tier2 to true&gt;&gt;
+				&lt;p&gt;Er wird leiser, sieht sich um, ehe er redet. Die nächste gehe bald, sagt er, immer dasselbe Muster,
+				dieselbe Stunde, dasselbe Tor. Wenn du wissen wollest, wann — er nennt dir den Tag, und du weißt, dass du
+				diesmal davorstehen wirst, ehe der Karren rollt.&lt;/p&gt;
+				&lt;&lt;set $world.ermittlung.flags.naechste_fuhre_tag to Math.max($world.day + 1, $world.ermittlung.flags.naechste_fuhre_tag - 2)&gt;&gt;
+				&lt;&lt;= setup.ermVerdacht(&quot;orenmalk&quot;, 2)&gt;&gt;
+			&lt;&lt;/replace&gt;&gt;
+		&lt;&lt;/link&gt;&gt;&lt;/li&gt;
+	&lt;&lt;/if&gt;&gt;
+	&lt;/ul&gt;
+	&lt;/div&gt;
+&lt;&lt;/if&gt;&gt;
+
+/* --- Straßen-Gerüchte (einmal pro Tag) --- */
+&lt;&lt;if not $world.flags.fuhrmannGeruechtTag or $world.flags.fuhrmannGeruechtTag neq $world.day&gt;&gt;
+	&lt;div id=&quot;fuhrmann-geruecht&quot;&gt;
+	&lt;&lt;link &quot;Dich zu einem Feuer setzen und zuhören&quot;&gt;&gt;
+		&lt;&lt;replace &quot;#fuhrmann-geruecht&quot;&gt;&gt;
+			&lt;&lt;set $world.flags.fuhrmannGeruechtTag to $world.day&gt;&gt;
+			&lt;&lt;set _roads to [
+				&quot;Ein Fuhrmann erzählt, das 84. Banner werde zum Heinrichsfest wieder nach Drachengard verlegt — man rüste schon die Wagen.&quot;,
+				&quot;Auf der Grodaus-Straße habe ein Handelshaus namens de Volpe die Zölle für ein halbes Dutzend Fuhren im Voraus bezahlt. Wer so viel Silber bewegt, hat es eilig.&quot;,
+				&quot;Aus der Kronmark komme Wort von neuen Werbern, die den Dörfern das Blaue vom Himmel versprechen. Junge Kerle verschwänden dorthin wie Wasser im Sand.&quot;,
+				&quot;Ein Bote schwört, an der Grenze bei Umseck stünden mehr Söldner als sonst — niemand wisse, wessen Sold sie nähmen.&quot;,
+				&quot;Zwischen den Feuern läuft die Rede von einem Winter, der früh kommt, und von Pässen, die er schließt, ehe die letzte Fuhre durch ist.&quot;,
+				&quot;In Alfalter hat der Greifenorden aufgeräumt! Unter den Hufen der Ritter ist der Bürgerkrieg zerbrochen.&quot;
+			]&gt;&gt;
+			&lt;&lt;set _r to _roads.random()&gt;&gt;
+			&lt;p&gt;Du lässt dich an ein Feuer sinken, sagst wenig, hörst viel. @@_r@@&lt;/p&gt;
+			&lt;&lt;= setup.addRumor(_r)&gt;&gt;
+		&lt;&lt;/replace&gt;&gt;
+	&lt;&lt;/link&gt;&gt;
+	&lt;/div&gt;
+&lt;&lt;/if&gt;&gt;
+
+/* --- Ehrliche Lastenarbeit (einmal pro Tag) --- */
+&lt;&lt;if not $world.flags.fuhrmannArbeitTag or $world.flags.fuhrmannArbeitTag neq $world.day&gt;&gt;
+	&lt;&lt;if $player.condition gte 15&gt;&gt;
+		&lt;div id=&quot;fuhrmann-arbeit&quot;&gt;
+		&lt;&lt;link &quot;Beim Aufladen einer Fuhre mit anpacken&quot;&gt;&gt;
+			&lt;&lt;replace &quot;#fuhrmann-arbeit&quot;&gt;&gt;
+				&lt;&lt;set $world.flags.fuhrmannArbeitTag to $world.day&gt;&gt;
+				&lt;&lt;set _lohn to random(3, 6)&gt;&gt;
+				&lt;p&gt;Du packst mit an — Fässer, Ballen, eine Achse, die sich sträubt. Es ist stumpfe, ehrliche Arbeit, und
+				am Ende drückt dir der Fuhrmann ein paar Münzen in die Hand und ein Nicken dazu, das mehr wiegt als das Kupfer.&lt;/p&gt;
+				&lt;&lt;= setup.addMoney(_lohn)&gt;&gt;
+				&lt;&lt;= setup.setPlayerCondition(-12)&gt;&gt;
+				&lt;&lt;= setup.setPlayerStat(&quot;honesty&quot;, 1)&gt;&gt;
+			&lt;&lt;/replace&gt;&gt;
+		&lt;&lt;/link&gt;&gt;
+		&lt;/div&gt;
+	&lt;&lt;/if&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+/* --- Reisegerät-Markt (jedes Stück: +10 % Gattungsdrill-XP im Gepäck) --- */
+&lt;div id=&quot;fuhrmann-markt&quot;&gt;
+&lt;p&gt;Auf einer Plane liegt ausgebreitet, was die Fuhrleute zusammengetragen haben: Richtig gutes Gerät zum Traineren.&lt;/p&gt;
+&lt;ul class=&quot;menu&quot;&gt;
+	&lt;&lt;if not setup.hasItem(&quot;Wetterfeste Stiefel&quot;) and setup.canAffordMoney(14)&gt;&gt;
+		&lt;li&gt;&lt;&lt;link &quot;Wetterfeste Stiefel kaufen (2 Silber)&quot;&gt;&gt;&lt;&lt;replace &quot;#fuhrmann-markt&quot;&gt;&gt;&lt;&lt;print setup.removeMoney(14)&gt;&gt;&lt;&lt;= setup.addItem(&quot;Wetterfeste Stiefel&quot;)&gt;&gt;&lt;&lt;/replace&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;/li&gt;
+	&lt;&lt;/if&gt;&gt;
+	&lt;&lt;if not setup.hasItem(&quot;Lederhandschuhe&quot;) and setup.canAffordMoney(6)&gt;&gt;
+		&lt;li&gt;&lt;&lt;link &quot;Lederhandschuhe kaufen (6 Kupfer)&quot;&gt;&gt;&lt;&lt;replace &quot;#fuhrmann-markt&quot;&gt;&gt;&lt;&lt;print setup.removeMoney(6)&gt;&gt;&lt;&lt;= setup.addItem(&quot;Lederhandschuhe&quot;)&gt;&gt;&lt;&lt;/replace&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;/li&gt;
+	&lt;&lt;/if&gt;&gt;
+	&lt;&lt;if not setup.hasItem(&quot;Öltuch-Umhang&quot;) and setup.canAffordMoney(8)&gt;&gt;
+		&lt;li&gt;&lt;&lt;link &quot;Öltuch-Umhang kaufen (8 Kupfer)&quot;&gt;&gt;&lt;&lt;replace &quot;#fuhrmann-markt&quot;&gt;&gt;&lt;&lt;print setup.removeMoney(8)&gt;&gt;&lt;&lt;= setup.addItem(&quot;Öltuch-Umhang&quot;)&gt;&gt;&lt;&lt;/replace&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;/li&gt;
+	&lt;&lt;/if&gt;&gt;
+	&lt;&lt;if not setup.hasItem(&quot;Fuhrmannsmesser&quot;) and setup.canAffordMoney(7)&gt;&gt;
+		&lt;li&gt;&lt;&lt;link &quot;Fuhrmannsmesser kaufen (7 Kupfer)&quot;&gt;&gt;&lt;&lt;replace &quot;#fuhrmann-markt&quot;&gt;&gt;&lt;&lt;print setup.removeMoney(7)&gt;&gt;&lt;&lt;= setup.addItem(&quot;Fuhrmannsmesser&quot;)&gt;&gt;&lt;&lt;/replace&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;/li&gt;
+	&lt;&lt;/if&gt;&gt;
+	&lt;&lt;if not setup.hasItem(&quot;Waster&quot;) and setup.canAffordMoney(21)&gt;&gt;
+		&lt;li&gt;&lt;&lt;link &quot;Ein guter schwerer Waster (3 Silber)&quot;&gt;&gt;&lt;&lt;replace &quot;#fuhrmann-markt&quot;&gt;&gt;&lt;&lt;print setup.removeMoney(7)&gt;&gt;&lt;&lt;= setup.addItem(&quot;Waster&quot;)&gt;&gt;&lt;&lt;/replace&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;/li&gt;
+	&lt;&lt;/if&gt;&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+[[Zurück in die Stadt|Tageshub_Stadt]]</tw-passagedata><tw-passagedata pid="342" name="Stadt_Geruechte" tags="" position="2475,5600" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Am Marktbrunnen versammeln sich, wie jeden Nachmittag, jene, die mehr reden als arbeiten — Mägde, Handelsburschen, ein müder Wächter, 
 der seine Runde vergessen zu haben scheint.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
@@ -17515,7 +18182,7 @@ der seine Runde vergessen zu haben scheint.&lt;/p&gt;
 	&lt;p&gt;Heute hörst du nichts, das du nicht schon wüsstest — nur das übliche Gemurmel über Wetter, Preise und fremde Gesichter.&lt;/p&gt;
 &lt;&lt;/if&gt;&gt;
 
-[[Zurück in die Stadt|Tageshub_Stadt]]</tw-passagedata><tw-passagedata pid="342" name="Stadt_Gluecksspiel" tags="" position="2050,5800" size="100,100">&lt;&lt;if $world.wuerfelSpiel === undefined&gt;&gt;
+[[Zurück in die Stadt|Tageshub_Stadt]]</tw-passagedata><tw-passagedata pid="343" name="Stadt_Gluecksspiel" tags="" position="2050,5800" size="100,100">&lt;&lt;if $world.wuerfelSpiel === undefined&gt;&gt;
 	&lt;&lt;set $world.wuerfelSpiel to { cheat: 0, gespielt: 0 }&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
@@ -17577,20 +18244,25 @@ der seine Runde vergessen zu haben scheint.&lt;/p&gt;
 			&lt;&lt;/replace&gt;&gt;
 		&lt;&lt;/link&gt;&gt;&lt;/li&gt;
 
+
 		&lt;li&gt;&lt;&lt;link &quot;Versuche zu betrügen (3 Kupfer)&quot;&gt;&gt;
 			&lt;&lt;replace &quot;#sandbox-menu&quot;&gt;&gt;
 				&lt;&lt;run setup.removeMoney(3)&gt;&gt;
 				&lt;&lt;set $world.wuerfelSpiel.gespielt += 1&gt;&gt;
 				&lt;&lt;set $world.wuerfelGesamt to ($world.wuerfelGesamt || 0) + 1&gt;&gt;
-				&lt;&lt;set _r to setup.skillCheckXp(&quot;thievery&quot;, 12, _potSize)&gt;&gt;
+
+				&lt;&lt;set _r to setup.skillCheckXp(&quot;thievery&quot;, 12, _potSize - setup.verschlagenheitMod())&gt;&gt;
+				
 				&lt;&lt;= _r.lernHTML&gt;&gt;
 				&lt;&lt;if _r.success&gt;&gt;
 					&lt;p&gt;Ein bisschen unbemerkt klopfen, ein bisschen stupsen, und schon zeigen die Würfel andere Augen.&lt;/p&gt;
 					&lt;&lt;set _copperWon to _potSize&gt;&gt;
+					&lt;&lt;= setup.setPlayerStat(&quot;honesty&quot;, -2)&gt;&gt;
 					&lt;&lt;if _r.outcome === &quot;crit&quot;&gt;&gt;
 						&lt;&lt;set _extraBet to random(1, 4)&gt;&gt;
 						&lt;p&gt;Du legst noch eine Extrawette über _extraBet Kupfer nach — und gewinnst, natürlich.&lt;/p&gt;
 						&lt;&lt;set _copperWon += _extraBet&gt;&gt;
+						&lt;&lt;= setup.setPlayerStat(&quot;honesty&quot;, -2)&gt;&gt;
 					&lt;&lt;/if&gt;&gt;
 					&lt;&lt;= setup.addMoney(_copperWon)&gt;&gt;
 				&lt;&lt;elseif _r.outcome === &quot;fumble&quot;&gt;&gt;
@@ -17621,7 +18293,7 @@ der seine Runde vergessen zu haben scheint.&lt;/p&gt;
 		&lt;/li&gt;
 	&lt;/ul&gt;
 	&lt;/div&gt;
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="343" name="Stadt_Kirche" tags="" position="2575,5375" size="100,100">/* Standard Scene*/
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="344" name="Stadt_Kirche" tags="" position="2575,5375" size="100,100">/* Standard Scene*/
 		&lt;&lt;scene&gt;&gt;
 		&lt;p&gt;Die Kirche ist kühl und von Weihrauch und altem Stein durchdrungen. Kerzenlicht flackert vor einem schlichten Altar, und für einen Moment ist es, 
 		als hielte selbst der Lärm der Stadt draußen den Atem an.&lt;/p&gt;
@@ -17668,12 +18340,12 @@ der seine Runde vergessen zu haben scheint.&lt;/p&gt;
 		&lt;/ul&gt;
 
 		&lt;&lt;trenner&gt;&gt;
-		[[Zurück in die Stadt|Tageshub_Stadt]]</tw-passagedata><tw-passagedata pid="344" name="Stadt_Kirche_Ende" tags="" position="2575,5275" size="100,100">&lt;&lt;gedanke&gt;&gt;
+		[[Zurück in die Stadt|Tageshub_Stadt]]</tw-passagedata><tw-passagedata pid="345" name="Stadt_Kirche_Ende" tags="" position="2575,5275" size="100,100">&lt;&lt;gedanke&gt;&gt;
 &lt;p&gt;Ich weiß nicht, ob es etwas ändert, dort draußen, wo die Dinge entschieden werden, die mich betreffen. 
 Aber für diesen einen Moment fühlt es sich an, als wöge die Welt ein wenig weniger schwer.&lt;/p&gt;
 &lt;&lt;/gedanke&gt;&gt;
 
-[[Zurück in die Stadt|Tageshub_Stadt]]</tw-passagedata><tw-passagedata pid="345" name="Stadt_Kirche_Andacht" tags="" position="600,4350" size="100,100">&lt;&lt;set $world.flags.kirche_andacht_done to true&gt;&gt;
+[[Zurück in die Stadt|Tageshub_Stadt]]</tw-passagedata><tw-passagedata pid="346" name="Stadt_Kirche_Andacht" tags="" position="725,4350" size="100,100">&lt;&lt;set $world.flags.kirche_andacht_done to true&gt;&gt;
 &lt;&lt;set _r to setup.faithCheck(13)&gt;&gt;
 &lt;&lt;scene&gt;&gt;
 &lt;p&gt;Du kniest vor den drei Standbildern nieder — Limba mit der offenen Hand, Miram mit der Waage im Gleichgewicht,
@@ -17734,7 +18406,7 @@ in den Ärmeln, der dich schon eine Weile betrachtet haben muss.&lt;/p&gt;
 &lt;&lt;/if&gt;&gt;
 
 &lt;&lt;trenner&gt;&gt;
-[[Weiter|Stadt_Kirche_Ende]]</tw-passagedata><tw-passagedata pid="346" name="Stadt_Markt" tags="" position="2425,5750" size="100,100">&lt;&lt;scene&gt;&gt;
+[[Weiter|Stadt_Kirche_Ende]]</tw-passagedata><tw-passagedata pid="347" name="Stadt_Markt" tags="" position="2425,5750" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Zwischen den Ständen drängen sich Käufer und Verkäufer, feilschende Stimmen, das Klappern von Tonkrügen, der metallische Klang, wenn ein Händler eine Klinge gegen einen Amboss schlägt, um ihre Güte zu beweisen. Hier gibt es alles, was ein Rekrut mit Kupfer in der Tasche brauchen könnte — und vieles, das er sich nur ansehen kann.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
 
@@ -17858,14 +18530,14 @@ in den Ärmeln, der dich schon eine Weile betrachtet haben muss.&lt;/p&gt;
 [[Zurück in die Stadt|Tageshub_Stadt]]
 
 
-/*Depricated orphaned?*/</tw-passagedata><tw-passagedata pid="347" name="Stadt_Markt_Kauf" tags="" position="2425,5875" size="100,100">&lt;&lt;set _g to setup.karlaGeschenke[$world.tmpKauf]&gt;&gt;
+/*Depricated orphaned?*/</tw-passagedata><tw-passagedata pid="348" name="Stadt_Markt_Kauf" tags="" position="2425,5875" size="100,100">&lt;&lt;set _g to setup.karlaGeschenke[$world.tmpKauf]&gt;&gt;
 &lt;&lt;if setup.canAffordMoney(_g.preis)&gt;&gt;
 	&lt;&lt;= setup.removeMoney(_g.preis)&gt;&gt;
 	&lt;&lt;= setup.addItem(_g.item)&gt;&gt;
 &lt;&lt;else&gt;&gt;
 	&lt;p&gt;Du zählst nach — und steckst den Beutel wieder ein. Dafür reicht es heute nicht.&lt;/p&gt;
 &lt;&lt;/if&gt;&gt;
-[[Zurück zum Markt|Stadt_Markt]]</tw-passagedata><tw-passagedata pid="348" name="Stadt_Schenke_MitMesser" tags="" position="975,4350" size="100,100">&lt;&lt;set $world.schenkeEncounter to true&gt;&gt;
+[[Zurück zum Markt|Stadt_Markt]]</tw-passagedata><tw-passagedata pid="349" name="Stadt_Schenke_MitMesser" tags="" position="1100,4350" size="100,100">&lt;&lt;set $world.schenkeEncounter to true&gt;&gt;
 &lt;&lt;scene&gt;&gt;
 &lt;p&gt;„Zum Grauen Wolf“ liegt tief im Gassengewirr, ihr Schild so verwittert, dass der namensgebende Wolf kaum mehr zu erkennen ist. 
 Drinnen erwartet dich eine Wand aus Wärme, Talglicht und dem beißenden Rauch billigen Tabaks, vermengt mit dem säuerlichen Duft von verschüttetem Bier und feuchtem Stroh, das den Boden bedeckt. An den Tischen sitzen Fuhrleute, ein paar Söldner ohne Banner, ein Weib, das Karten mischt, als wäre es ihr Handwerk.&lt;/p&gt;
@@ -17888,7 +18560,7 @@ Solange du zahlst, bist du hier willkommen — mehr fragt er nicht.&lt;/p&gt;
 
 &lt;&lt;trenner&gt;&gt;
 [[Wieder zur Theke drehen|Stadt_Schenke]]
-[[Die Schenke verlassen|VorDerSchenke]]</tw-passagedata><tw-passagedata pid="349" name="VorDerSchenke" tags="" position="1100,4350" size="100,100">&lt;&lt;scene&gt;&gt;
+[[Die Schenke verlassen|VorDerSchenke]]</tw-passagedata><tw-passagedata pid="350" name="VorDerSchenke" tags="" position="1225,4350" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Die Tür fällt hinter dir zu, und mit ihr Wärme, Licht und Stimmen. Die Gasse liegt schmal und nass im
 Dunkeln, das Kopfsteinpflaster glänzt vom Nieselregen, der seit dem Nachmittag nicht aufgehört hat. Irgendwo
 tropft Wasser von einer Dachtraufe, gleichmäßig, wie ein Zählwerk.&lt;/p&gt;
@@ -17930,7 +18602,7 @@ löst. Der Bullige aus der Schenke. Hinter dir Schritte — ein zweiter, den du 
 
 [[Zurück zum Tageshub-&gt;Tageshub_Stadt]]
 
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="350" name="VorDerSchenke_Kampf" tags="" position="1225,4350" size="100,100">&lt;&lt;set $world.schenkeEncounterVorbei to true&gt;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="351" name="VorDerSchenke_Kampf" tags="" position="100,4475" size="100,100">&lt;&lt;set $world.schenkeEncounterVorbei to true&gt;&gt;
 &lt;&lt;set $world.schenkeEncounter to false&gt;&gt;
 &lt;div class=&quot;system-alert status-positive&quot;&gt;🎲 Probe auf Kampfkraft — gelungen&lt;/div&gt;
 
@@ -17962,7 +18634,7 @@ und das ist mehr, als du vor einem Jahr von dir erwartet hättest.&lt;/p&gt;
 
 
 &lt;&lt;trenner&gt;&gt;
-[[Zurück zum Tageshub-&gt;Tageshub_Stadt]]</tw-passagedata><tw-passagedata pid="351" name="Stadt_Schenke" tags="" position="2100,5625" size="100,100">&lt;&lt;if setup.hasItem(&quot;field_knife&quot;)&gt;&gt;
+[[Zurück zum Tageshub-&gt;Tageshub_Stadt]]</tw-passagedata><tw-passagedata pid="352" name="Stadt_Schenke" tags="" position="2100,5625" size="100,100">&lt;&lt;if setup.hasItem(&quot;field_knife&quot;)&gt;&gt;
 	&lt;&lt;goto &quot;Stadt_Schenke_MitMesser&quot;&gt;&gt; 
 &lt;&lt;/if&gt;&gt;
 
@@ -18007,7 +18679,7 @@ und das ist mehr, als du vor einem Jahr von dir erwartet hättest.&lt;/p&gt;
  &lt;span class=&quot;subtext&quot;&gt;— Die Gaststube kann warten.&lt;/span&gt;
  &lt;&lt;/if&gt;&gt;
  &lt;/li&gt;
-&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="352" name="Stadt_Trinken" tags="" position="2175,5800" size="100,100">&lt;&lt;if $player.trinken === undefined&gt;&gt;&lt;&lt;set $player.trinken to 0&gt;&gt;&lt;&lt;/if&gt;&gt;
+&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="353" name="Stadt_Trinken" tags="" position="2175,5800" size="100,100">&lt;&lt;if $player.trinken === undefined&gt;&gt;&lt;&lt;set $player.trinken to 0&gt;&gt;&lt;&lt;/if&gt;&gt;
 
 &lt;&lt;if $player.trinken gte 3&gt;&gt;
 	&lt;&lt;scene&gt;&gt;
@@ -18038,7 +18710,69 @@ und das ist mehr, als du vor einem Jahr von dir erwartet hättest.&lt;/p&gt;
 		zurück, dreifach, zehnfach, bis die ganze Schenke in einen Sturm des Feierns ausbricht, als hätten sie nur auf
 		dieses eine Wort gewartet.&lt;/p&gt;
 		&lt;&lt;print setup.setPlayerStat(&quot;faith&quot;, 10)&gt;&gt;
+		&lt;&lt;set $world.flags.barsingerEncounter to true&gt;&gt;
+	&lt;&lt;elseif not $world.flags.barsingerEncounter and random(1,100) lt 54&gt;&gt;
+		&lt;&lt;set $npc.konrad.known to true&gt;&gt;
 
+		&lt;p&gt;Es geht schnell, und es ist hässlich. Eine Hand fährt an einen Gürtel, ein Messerchen blitzt — und ehe der Beutel
+		fällt, ist der Fremde schon auf den Beinen. Er ist groß, breiter noch als groß, und er bewegt sich nicht wie ein großer
+		Mann, sondern wie ein Fass, das den Hang hinabrollt und nichts mehr aufhält. Der Dieb kommt keine drei Schritte weit.
+		Der erste Schlag hebt ihn aus den Stiefeln, der zweite treibt ihn über einen Tisch, Zinn und Krüge splittern, und was
+		danach kommt, willst du nicht zählen. Am Ende liegt der Junge — denn mehr ist es nicht — vor der Tür im Dreck, und
+		niemand rührt sich, ihm aufzuhelfen.&lt;/p&gt;
+
+		&lt;p&gt;Der Fremde geht zurück zu seiner Bank und setzt sich, als hätte er nur kurz nach dem Wetter gesehen. Der Wirt, ein
+		Mann mit Armen wie Schinken, wischt einen Becher und schweigt. Er schweigt sehr gründlich.&lt;/p&gt;
+
+		&lt;&lt;gedanke&gt;&gt;
+		&lt;p&gt;Ich sollte weitergehen. Männer wie der bringen nur Ärger, und ich habe genug davon. Aber ich stehe schon, und meine
+		Füße hören nicht auf mich, und irgendetwas an ihm lässt mich nicht los — nicht der Schlag, sondern die Ruhe danach.&lt;/p&gt;
+		&lt;&lt;/gedanke&gt;&gt;
+
+		&lt;p&gt;Sein Krug liegt auf der Seite, das Bier rinnt in dunklen Fäden über die Tischkante. Er starrt es an, ohne die Miene
+		zu verziehen, als sei auch das nur Wetter.&lt;/p&gt;
+
+		&lt;div id=&quot;konrad-wahl&quot;&gt;
+		&lt;ul class=&quot;menu&quot;&gt;
+		&lt;&lt;if setup.canAffordMoney(3)&gt;&gt;
+			&lt;li&gt;&lt;&lt;link &quot;Ihm ein neues Bier ausgeben (3 Kupfer)&quot;&gt;&gt;
+				&lt;&lt;replace &quot;#konrad-wahl&quot;&gt;&gt;
+					&lt;&lt;print setup.removeMoney(3)&gt;&gt;
+					&lt;&lt;= setup.setNpcAffection(&quot;konrad&quot;, 3)&gt;&gt;
+					&lt;&lt;set $npc.konrad.memory.flags.bier_spendiert to true&gt;&gt;
+					&lt;&lt;set $npc.konrad.memory.flags.suchtHauptmannLenz to true&gt;&gt;
+					&lt;&lt;run setup.pushNpcMemory(&quot;konrad&quot;, &quot;herkunft_erzaehlt&quot;)&gt;&gt;
+					&lt;p&gt;Du stellst ihm einen vollen Krug hin. Einen Moment sieht er dich an, von unten herauf, und misst dich, wie
+					man Vieh auf dem Markt misst. Dann hebt sich ein Mundwinkel.&lt;/p&gt;
+					&lt;div class=&quot;dialog&quot;&gt;„Gibst du mir Bier? Ha. Erste kluge Sache heut in diese Wirtschaft. Setz dich, Kleiner. Setz.“&lt;/div&gt;
+					&lt;p&gt;Er trinkt, lang, und wischt sich den Schaum aus dem Bart, ehe er redet.&lt;/p&gt;
+					&lt;div class=&quot;dialog&quot;&gt;„Woher ich komm? Ostmark.“ Er sagt es, als läge alles darin. „Ganz im Osten, wo Imperium aufhört
+					und Wald anfängt und nie mehr aufhört. Land, das Mann hart macht — oder tot. Mich hat es gemacht hart.“&lt;/div&gt;
+					&lt;div class=&quot;dialog&quot;&gt;„Wie Konrad kommt nach Aloy, du willst wissen. Ha.“ Ein kurzes, freudloses Lachen. „Lange Straße,
+					Kleiner. Bin ich eingeladen von Hauptmann, aber kann ich ihn grad nicht finden. Also geh ich in Taverne und lerne Land kennen.“&lt;/div&gt;
+					&lt;&lt;gedanke&gt;&gt;
+					&lt;p&gt;Ein Mann des Imperiums, hier, im Herzen Aloys. Das ist so selten wie Schnee im Hochsommer. Und er redet darüber,
+					als wäre es das Gewöhnlichste der Welt — was mir mehr über ihn sagt als alles andere.&lt;/p&gt;
+					&lt;&lt;/gedanke&gt;&gt;
+				&lt;&lt;/replace&gt;&gt;
+			&lt;&lt;/link&gt;&gt;&lt;/li&gt;
+		&lt;&lt;/if&gt;&gt;
+			&lt;li&gt;&lt;&lt;link &quot;Ihn ansprechen, ohne etwas auszugeben&quot;&gt;&gt;
+				&lt;&lt;replace &quot;#konrad-wahl&quot;&gt;&gt;
+					&lt;&lt;run setup.pushNpcMemory(&quot;konrad&quot;, &quot;herkunft_erzaehlt&quot;)&gt;&gt;
+					&lt;p&gt;Du trittst näher, und sein Blick fällt auf deine leeren Hände, ehe er dein Gesicht erreicht. Es sagt genug.&lt;/p&gt;
+					&lt;div class=&quot;dialog&quot;&gt;„Was geht dich an, woher ich komm.“ Es ist keine Frage. Er mustert dich noch einmal. „Ostmark.
+					Imperium. Reicht für heut.“&lt;/div&gt;
+					&lt;&lt;gedanke&gt;&gt;
+					&lt;p&gt;Imperium. Ein Mann von jenseits der Grenze, mitten in Aloy — und er verrät mir kein Wort mehr als nötig. Vielleicht
+					ein andermal. Vielleicht bei einem Bier.&lt;/p&gt;
+					&lt;&lt;/gedanke&gt;&gt;
+				&lt;&lt;/replace&gt;&gt;
+			&lt;&lt;/link&gt;&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+		&lt;/div&gt;
+
+		
 	&lt;&lt;else&gt;&gt;
 		&lt;&lt;scene&gt;&gt;
 		&lt;p&gt;Du trinkst, und der Krug wärmt von innen. Um dich her wird geredet, lauter mit jedem Becher — und wer mittrinkt,
@@ -18080,7 +18814,7 @@ und das ist mehr, als du vor einem Jahr von dir erwartet hättest.&lt;/p&gt;
 	&lt;&lt;/scene&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
-[[Zurück in die Schenke|Stadt_Schenke]]</tw-passagedata><tw-passagedata pid="353" name="Tageshub_Stadt" tags="" position="2200,5525" size="100,100">&lt;&lt;if $world.stadtActivitiesUsed is undefined&gt;&gt;
+[[Zurück in die Schenke|Stadt_Schenke]]</tw-passagedata><tw-passagedata pid="354" name="Tageshub_Stadt" tags="" position="2200,5525" size="100,100">&lt;&lt;if $world.stadtActivitiesUsed is undefined&gt;&gt;
 	&lt;&lt;set $world.stadtActivitiesUsed = 0&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
@@ -18183,6 +18917,10 @@ und das ist mehr, als du vor einem Jahr von dir erwartet hättest.&lt;/p&gt;
 &lt;div id=&quot;gossip-antworten&quot;&gt;&lt;/div&gt;
 &lt;&lt;/if&gt;&gt;
 
+&lt;&lt;if $world.flags.baderAuftrag === &quot;offen&quot; and not setup.hasItem(&quot;Silberbrech&quot;)&gt;&gt;
+	&lt;li&gt;&lt;&lt;link &quot;Auf die Grate über Ohm steigen&quot; &quot;Bader_Auftrag_Suche&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
+	&lt;span class=&quot;subtext&quot;&gt;— Der Bader wartet auf sein Bergkraut. Ein steiler Weg, und du kennst ihn besser als die meisten.&lt;/span&gt;&lt;/li&gt;
+&lt;&lt;/if&gt;&gt;
 
 &lt;&lt;trenner&gt;&gt;
 &lt;ul class=&quot;sandbox-menu&quot;&gt;
@@ -18255,7 +18993,7 @@ und das ist mehr, als du vor einem Jahr von dir erwartet hättest.&lt;/p&gt;
 	&lt;&lt;/link&gt;&gt;
 	&lt;span class=&quot;subtext&quot;&gt;— Genug für heute.&lt;/span&gt;
 	&lt;/li&gt;
-&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="354" name="05_Sidequest_Hansbert" tags="layout kap1" position="125,2375" size="100,100">&lt;p&gt;Am Morgen ruft die Glocke zum Gottesdienst. Im Betsaal der Akademie stehen die Rekruten in Reihen, der Priester der Drei spricht von Limbas Funken, von Mirams Waage, von Hortum, der die Taten der Toten wiegt. Weihrauch hängt schwer in der kalten Luft.&lt;/p&gt;
+&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="355" name="05_Sidequest_Hansbert" tags="layout kap1" position="125,2375" size="100,100">&lt;p&gt;Am Morgen ruft die Glocke zum Gottesdienst. Im Betsaal der Akademie stehen die Rekruten in Reihen, der Priester der Drei spricht von Limbas Funken, von Mirams Waage, von Hortum, der die Taten der Toten wiegt. Weihrauch hängt schwer in der kalten Luft.&lt;/p&gt;
 
 &lt;div class=&quot;scenery-text&quot;&gt;In der Letzten Reihe sitzt heute eine Gestalt die nicht zu den Rekruten gehört. Trotz dem hängenden Kopf siest du dass sie ein SöldnerBarett Auf dem Kopf Trägt&lt;/div&gt; 
 &lt;div class=&quot;thought-box&quot;&gt;Seltsam, was macht denn ein Söldner hier?&lt;/div&gt;
@@ -18265,11 +19003,11 @@ und das ist mehr, als du vor einem Jahr von dir erwartet hättest.&lt;/p&gt;
 &lt;hr class=&quot;trenner-raute&quot;&gt;
 
 [[Zu den Kammeraden-&gt;05_Sidequest_Hansbert_Abbruch]] 
-[[Setz dich zu dem Fremden-&gt;05_Sidequest_Hansbert_Hinsetzen]]</tw-passagedata><tw-passagedata pid="355" name="05_Sidequest_Hansbert_Abbruch" tags="layout" position="250,2500" size="100,100">&lt;p&gt;Du gehst weiter. Du willst dich am Gottesdienst beteiligen.&lt;/p&gt;
+[[Setz dich zu dem Fremden-&gt;05_Sidequest_Hansbert_Hinsetzen]]</tw-passagedata><tw-passagedata pid="356" name="05_Sidequest_Hansbert_Abbruch" tags="layout" position="250,2500" size="100,100">&lt;p&gt;Du gehst weiter. Du willst dich am Gottesdienst beteiligen.&lt;/p&gt;
 &lt;p&gt;Das ist hier nicht die passende Umgebung für seltsame Begegnungen.&lt;/p&gt;
 &lt;hr class=&quot;trenner-raute&quot;&gt;
 
-[[Neben den anderen Rekruten Platz nehmen-&gt;Story005_Gottesdienst]]</tw-passagedata><tw-passagedata pid="356" name="05_Sidequest_Hansbert_Barsinger" tags="layout" position="100,2775" size="100,100">&lt;div class=&quot;dialog&quot;&gt;&quot;Versteh mich nicht falsch. Die Drei sind schon in Ordnung.&quot;Hansbert beobachtet den Prediger.&quot;Aber deren Gottesdienste könnten ein wenig mehr Würfelspiele vertragen.&quot;&lt;/div&gt;
+[[Neben den anderen Rekruten Platz nehmen-&gt;Story005_Gottesdienst]]</tw-passagedata><tw-passagedata pid="357" name="05_Sidequest_Hansbert_Barsinger" tags="layout" position="100,2775" size="100,100">&lt;div class=&quot;dialog&quot;&gt;&quot;Versteh mich nicht falsch. Die Drei sind schon in Ordnung.&quot;Hansbert beobachtet den Prediger.&quot;Aber deren Gottesdienste könnten ein wenig mehr Würfelspiele vertragen.&quot;&lt;/div&gt;
 &lt;div class=&quot;thought-box&quot;&gt;Du unterdrückst ein Grinsen.&lt;/div&gt;
 &lt;div class=&quot;dialog&quot;&gt;&quot;Barsinger wird hier einfach nicht genug gewürdigt.&quot; Er schüttelt den Kopf. &quot;Im Feld schaut das anders aus.&quot;&lt;/div&gt;
 
@@ -18322,7 +19060,7 @@ Ein dritter.&lt;br&gt;
 &lt;p&gt;Hansbert grinst.&lt;/p&gt;
 &lt;div class=&quot;dialog&quot;&gt;&quot;Nach dir.&quot;&lt;/div&gt;
 
-&lt;&lt;include &quot;05_Sidequest_Hansbert_finalize&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="357" name="05_Sidequest_Hansbert_Hinsetzen" tags="layout" position="50,2500" size="100,100">&lt;div class=&quot;scenery-text&quot;&gt;Als du dich neben dem Kerl niederlässt steigt dir eine Fahne in die Nase.&lt;/div&gt; &lt;div class=&quot;thought-box&quot;&gt;PUHHH! So ein Duft und dass am Morgen, war ne harte Nacht.&lt;/div&gt;
+&lt;&lt;include &quot;05_Sidequest_Hansbert_finalize&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="358" name="05_Sidequest_Hansbert_Hinsetzen" tags="layout" position="50,2500" size="100,100">&lt;div class=&quot;scenery-text&quot;&gt;Als du dich neben dem Kerl niederlässt steigt dir eine Fahne in die Nase.&lt;/div&gt; &lt;div class=&quot;thought-box&quot;&gt;PUHHH! So ein Duft und dass am Morgen, war ne harte Nacht.&lt;/div&gt;
 &lt;p&gt;Du schaust den Fremden musternd an. Ein Vogel auf seinem Barrett.&lt;/p&gt;
 &lt;&lt;if setup.isFactionKnown(&quot;84. Banner&quot;)&gt;&gt;
 	&lt;div class=&quot;scenery-text&quot;&gt;Der Haubentaucher!&lt;/div&gt;
@@ -18340,12 +19078,12 @@ Ein dritter.&lt;br&gt;
 
 [[Entschuldigt. Ich wollte nicht stören.-&gt;Hansbert_Hoeflich]]
 [[Ein Söldner beim Gottesdienst? Das sieht man selten.-&gt;Hansbert_Neugierig]]
-[[Ihr riecht als hättet Ihr in einem Bierfass geschlafen.-&gt;Hansbert_Frech]]</tw-passagedata><tw-passagedata pid="358" name="05_Sidequest_Hansbert_finalize" tags="layout" position="300,2350" size="100,100">&lt;&lt;set $npc.hansFichtensplitter.memory.flags.sidequest05Complete = true&gt;&gt;
+[[Ihr riecht als hättet Ihr in einem Bierfass geschlafen.-&gt;Hansbert_Frech]]</tw-passagedata><tw-passagedata pid="359" name="05_Sidequest_Hansbert_finalize" tags="layout" position="300,2350" size="100,100">&lt;&lt;set $npc.hansFichtensplitter.memory.flags.sidequest05Complete = true&gt;&gt;
 &lt;&lt;set $npc.hansFichtensplitter.known = true&gt;&gt;
 &lt;&lt;run setup.setNpcAffection(&quot;hansFichtensplitter&quot;, 2)&gt;&gt;
 &lt;&lt;run setup.setPlayerStat(&quot;faith&quot;,5)&gt;&gt;
 &lt;hr class=&quot;trenner-raute&quot;&gt;
-[[Die Kirche verlassen|Nachmittag Hub]]</tw-passagedata><tw-passagedata pid="359" name="Hansbert_Frech" tags="layout" position="200,2625" size="100,100">&lt;div class=&quot;dialog&quot;&gt;&quot;Ihr riecht als hättet Ihr in einem Bierfass geschlafen.&quot;&lt;/div&gt;
+[[Die Kirche verlassen|Nachmittag Hub]]</tw-passagedata><tw-passagedata pid="360" name="Hansbert_Frech" tags="layout" position="200,2625" size="100,100">&lt;div class=&quot;dialog&quot;&gt;&quot;Ihr riecht als hättet Ihr in einem Bierfass geschlafen.&quot;&lt;/div&gt;
 
 &lt;p&gt;Hansbert sieht an sich herunter.&lt;/p&gt;
 
@@ -18368,7 +19106,7 @@ Ein dritter.&lt;br&gt;
 &lt;div class=&quot;dialog&quot;&gt;&quot;Barsinger segnet meine Arbeit regelmäßig.&quot;&lt;/div&gt;
 &lt;hr class=&quot;trenner-raute&quot;&gt;
 
-[[Er holt Luft -&gt;05_Sidequest_Hansbert_Barsinger]]</tw-passagedata><tw-passagedata pid="360" name="Hansbert_Hoeflich" tags="layout" position="0,2625" size="100,100">&lt;div class=&quot;dialog&quot;&gt;&quot;Hm.&quot;&lt;/div&gt;
+[[Er holt Luft -&gt;05_Sidequest_Hansbert_Barsinger]]</tw-passagedata><tw-passagedata pid="361" name="Hansbert_Hoeflich" tags="layout" position="0,2625" size="100,100">&lt;div class=&quot;dialog&quot;&gt;&quot;Hm.&quot;&lt;/div&gt;
 
 &lt;p&gt;Der Fremde mustert dich kurz.&lt;/p&gt;
 
@@ -18383,7 +19121,7 @@ Ein dritter.&lt;br&gt;
 &lt;div class=&quot;dialog&quot;&gt;&quot;Barsingers Diener, wenn man den Gerüchten glauben darf.&quot;&lt;/div&gt;
 &lt;hr class=&quot;trenner-raute&quot;&gt;
 
-[[Er holt Luft -&gt;05_Sidequest_Hansbert_Barsinger]]</tw-passagedata><tw-passagedata pid="361" name="Hansbert_Neugierig" tags="layout" position="100,2625" size="100,100">&lt;div class=&quot;dialog&quot;&gt;&quot;Ein Söldner beim Gottesdienst? Das sieht man selten...
+[[Er holt Luft -&gt;05_Sidequest_Hansbert_Barsinger]]</tw-passagedata><tw-passagedata pid="362" name="Hansbert_Neugierig" tags="layout" position="100,2625" size="100,100">&lt;div class=&quot;dialog&quot;&gt;&quot;Ein Söldner beim Gottesdienst? Das sieht man selten...
 Wer sagt denn, dass ich wegen des Gottesdienstes hier bin?&quot;&lt;/div&gt;
 
 &lt;p&gt;Er grinst.&lt;/p&gt;
@@ -18399,7 +19137,7 @@ Wer sagt denn, dass ich wegen des Gottesdienstes hier bin?&quot;&lt;/div&gt;
 &lt;div class=&quot;dialog&quot;&gt;&quot;Hansbert.&quot;&lt;/div&gt;
 &lt;hr class=&quot;trenner-raute&quot;&gt;
 
-[[Er holt Luft -&gt;05_Sidequest_Hansbert_Barsinger]]</tw-passagedata><tw-passagedata pid="362" name="04_Sidequest_diplomaten" tags="" position="1350,150" size="100,100">&lt;p&gt;Die Tür der Gästekammer steht einen Spalt offen. Drinnen zwei Stimmen, die du beide nicht zuordnen kannst — eine redet viel, die andere selten, aber wenn, dann fällt das Reden der ersten kurz aus.&lt;/p&gt;
+[[Er holt Luft -&gt;05_Sidequest_Hansbert_Barsinger]]</tw-passagedata><tw-passagedata pid="363" name="04_Sidequest_diplomaten" tags="" position="1350,150" size="100,100">&lt;p&gt;Die Tür der Gästekammer steht einen Spalt offen. Drinnen zwei Stimmen, die du beide nicht zuordnen kannst — eine redet viel, die andere selten, aber wenn, dann fällt das Reden der ersten kurz aus.&lt;/p&gt;
 
 &lt;div class=&quot;dialog&quot;&gt;„…und ich sag dir, das war nicht der erste, der so sauber hochgeht. Erinnerst du dich an den im Frühjahr, der bei Ohm — nein, weiter nördlich, der mit dem Salz und dem anderen Kram —, der ist auch nicht einfach so. Da sitzt einer, der die Zettel vorher liest, anders kann das gar nicht —&quot;&lt;/div&gt;
 
@@ -18436,7 +19174,7 @@ Wer sagt denn, dass ich wegen des Gottesdienstes hier bin?&quot;&lt;/div&gt;
 &lt;div&gt;&lt;&lt;link &quot;Die Magd abpassen, die gleich das Essen bringt&quot;&gt;&gt;
     &lt;&lt;replace &quot;#flur-wahl&quot;&gt;&gt;&lt;&lt;goto &quot;04_Sidequest_diplomaten_Magd&quot;&gt;&gt;&lt;&lt;/replace&gt;&gt;
 &lt;&lt;/link&gt;&gt;&lt;/div&gt;
-&lt;/span&gt;</tw-passagedata><tw-passagedata pid="363" name="04_Sidequest_diplomaten_Auftrag" tags="einmalig interrupt kap1" position="1350,25" size="100,100">&lt;div class=&quot;dialog&quot;&gt;„Rekrut! Hände frei?&quot; Der Sergeant wartet die Antwort nicht ab. Er stellt dir einen verkorkten Tonkrug auf den Tisch und legt einen versiegelten Brief daneben. „Gästekammer, oberer Gang. Zwei Diplomaten, auf Durchreise, irgendwas mit dem Banner und dem Städtebund. Der Krug ist für die, der Brief auch.&quot;&lt;/div&gt;
+&lt;/span&gt;</tw-passagedata><tw-passagedata pid="364" name="04_Sidequest_diplomaten_Auftrag" tags="einmalig interrupt kap1" position="1350,25" size="100,100">&lt;div class=&quot;dialog&quot;&gt;„Rekrut! Hände frei?&quot; Der Sergeant wartet die Antwort nicht ab. Er stellt dir einen verkorkten Tonkrug auf den Tisch und legt einen versiegelten Brief daneben. „Gästekammer, oberer Gang. Zwei Diplomaten, auf Durchreise, irgendwas mit dem Banner und dem Städtebund. Der Krug ist für die, der Brief auch.&quot;&lt;/div&gt;
 
 &lt;p&gt;Er sieht dich an, und zum ersten Mal liegt so etwas wie eine Warnung in seinem Blick.&lt;/p&gt;
 
@@ -18444,7 +19182,7 @@ Wer sagt denn, dass ich wegen des Gottesdienstes hier bin?&quot;&lt;/div&gt;
 
 &lt;div class=&quot;thought-box&quot;&gt;Ein Krug, ein Brief, zwei Worte und wieder weg. Klingt einfach. Klingt zu einfach für die Miene, die er gerade macht.&lt;/div&gt;
 
-[[Zur Gästekammer. -&gt;04_Sidequest_diplomaten]]</tw-passagedata><tw-passagedata pid="364" name="04_Sidequest_diplomaten_Eintreten" tags="" position="1150,350" size="100,100">&lt;p&gt;Du gehst hinein, stellst den Krug auf den Tisch und legst den Brief daneben. „Vom Sergeanten.&quot;&lt;/p&gt;
+[[Zur Gästekammer. -&gt;04_Sidequest_diplomaten]]</tw-passagedata><tw-passagedata pid="365" name="04_Sidequest_diplomaten_Eintreten" tags="" position="1150,350" size="100,100">&lt;p&gt;Du gehst hinein, stellst den Krug auf den Tisch und legst den Brief daneben. „Vom Sergeanten.&quot;&lt;/p&gt;
 
 &lt;p&gt;Jetzt siehst du sie ganz: zwei in der rot-weißen Kleidung des Banners, abgetragen, gelebt. Keine Amtsketten, kein Brokat — der eine hat einen roten Bart und eine Dokumentenrolle am Gurt, der andere einen kürzeren, gepflegten, und eine kleine Narbe neben der Nase. Söldner, die reden können. Mehr nicht, und das ist schon viel.&lt;/p&gt;
 
@@ -18474,7 +19212,7 @@ Wer sagt denn, dass ich wegen des Gottesdienstes hier bin?&quot;&lt;/div&gt;
 &lt;p&gt;Dann winkt Hannes ab — freundlich, aber ihr seid fertig. „Geh schon. Bevor der Magister denkt, wir hätten dich behalten.&quot;&lt;/p&gt;
 
 
-&lt;&lt;include &quot;04_Sidequest_diplomaten_finalize&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="365" name="04_Sidequest_diplomaten_Erwischt" tags="" position="1300,275" size="100,100">&lt;div class=&quot;scenery-text&quot;&gt;Du beugst dich einen Daumenbreit zu weit in den Spalt — und der Boden unter deinem Stiefel hat eine andere Meinung. Ein Knarren. Winzig. Genug.&lt;/div&gt;
+&lt;&lt;include &quot;04_Sidequest_diplomaten_finalize&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="366" name="04_Sidequest_diplomaten_Erwischt" tags="" position="1300,275" size="100,100">&lt;div class=&quot;scenery-text&quot;&gt;Du beugst dich einen Daumenbreit zu weit in den Spalt — und der Boden unter deinem Stiefel hat eine andere Meinung. Ein Knarren. Winzig. Genug.&lt;/div&gt;
 &lt;div class=&quot;dialog&quot;&gt;„…einer von innen, anders —&quot; Bast bricht ab.&lt;/div&gt;
 
 &lt;p&gt;Zwei Schritte, die Tür fliegt auf. Der mit der Narbe füllt den Rahmen, und das Beiläufige ist weg aus seinem Gesicht.&lt;/p&gt;
@@ -18493,7 +19231,7 @@ Wer sagt denn, dass ich wegen des Gottesdienstes hier bin?&quot;&lt;/div&gt;
 &lt;p&gt;Eine Hand schließt sich um deinen Oberarm — nicht grob, aber ohne jeden Zweifel daran, dass du jetzt mitkommst. Krug und Brief bleiben stehen, wo sie stehen.&lt;/p&gt;
 
 &lt;hr class=&quot;trenner-raute&quot;&gt;
-[[Mitgehen -&gt;04_Sidequest_diplomaten_Kurt]]</tw-passagedata><tw-passagedata pid="366" name="04_Sidequest_diplomaten_Kurt" tags="" position="1450,275" size="100,100">&lt;p&gt;Sie bringen dich nicht weit. Eine Tür, ein Gang, und dann stehst du vor Kurt Brasner — grauhaarig, Fähnrich, einer, der schon Rekruten hat kommen und gehen sehen, als deine Eltern noch keine waren.&lt;/p&gt;
+[[Mitgehen -&gt;04_Sidequest_diplomaten_Kurt]]</tw-passagedata><tw-passagedata pid="367" name="04_Sidequest_diplomaten_Kurt" tags="" position="1450,275" size="100,100">&lt;p&gt;Sie bringen dich nicht weit. Eine Tür, ein Gang, und dann stehst du vor Kurt Brasner — grauhaarig, Fähnrich, einer, der schon Rekruten hat kommen und gehen sehen, als deine Eltern noch keine waren.&lt;/p&gt;
 
 &lt;p&gt;Der Rotbart erklärt es in drei Sätzen. Kein Drama, keine Anklage. Nur: am Türspalt, beim falschen Gespräch, erwischt.&lt;/p&gt;
 
@@ -18523,7 +19261,7 @@ Wer sagt denn, dass ich wegen des Gottesdienstes hier bin?&quot;&lt;/div&gt;
 
 &lt;div class=&quot;thought-box&quot;&gt;Drei Namen reicher, drei Mal schlechter angesehen. Das hab ich ja sauber hinbekommen...&lt;/div&gt;
 
-[[Den Tag hinter dich bringen -&gt;Auf Stube]]</tw-passagedata><tw-passagedata pid="367" name="04_Sidequest_diplomaten_Lauschen" tags="" position="1200,150" size="100,100">&lt;div class=&quot;scenery-text&quot;&gt;
+[[Den Tag hinter dich bringen -&gt;Auf Stube]]</tw-passagedata><tw-passagedata pid="368" name="04_Sidequest_diplomaten_Lauschen" tags="" position="1200,150" size="100,100">&lt;div class=&quot;scenery-text&quot;&gt;
 Du bleibst stehen, atmest flach und lässt die Brocken nicht mehr einzeln vorbeiziehen, sondern legst sie nebeneinander, bis sie ein Bild ergeben.
 &lt;/div&gt;
 
@@ -18559,7 +19297,7 @@ Du bleibst stehen, atmest flach und lässt die Brocken nicht mehr einzeln vorbei
 &lt;p&gt; Dir wird bewusst, dass  du immer noch mit Krug und Brief da stehst. Die müssen trotzdem rein.&lt;/p&gt;
 
 &lt;hr class=&quot;trenner-raute&quot;&gt;
-[[Eintreten und abliefern -&gt;04_Sidequest_diplomaten_Eintreten]]</tw-passagedata><tw-passagedata pid="368" name="04_Sidequest_diplomaten_Magd" tags="" position="1225,475" size="100,100">&lt;p&gt;Hinter dir will die Küchenmagd mit einem Tablett herein, und du trittst beiseite, um sie durchzulassen und schließt dich ihr an. Eine Selbstverständlichkeit. Du denkst dir nichts dabei.&lt;/p&gt;
+[[Eintreten und abliefern -&gt;04_Sidequest_diplomaten_Eintreten]]</tw-passagedata><tw-passagedata pid="369" name="04_Sidequest_diplomaten_Magd" tags="" position="1225,475" size="100,100">&lt;p&gt;Hinter dir will die Küchenmagd mit einem Tablett herein, und du trittst beiseite, um sie durchzulassen und schließt dich ihr an. Eine Selbstverständlichkeit. Du denkst dir nichts dabei.&lt;/p&gt;
 
 &lt;p&gt;Bast schon.&lt;/p&gt;
 
@@ -18596,13 +19334,13 @@ Du bleibst stehen, atmest flach und lässt die Brocken nicht mehr einzeln vorbei
 &lt;p&gt;Dann winkt Hannes ab — freundlich, aber ihr seid fertig. „Geh schon. Bevor der Magister denkt, wir hätten dich behalten.&quot;&lt;/p&gt;
 
 
-&lt;&lt;include &quot;04_Sidequest_diplomaten_finalize&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="369" name="04_Sidequest_diplomaten_finalize" tags="" position="1375,450" size="100,100">&lt;&lt;set $npc.bast.known = true&gt;&gt;
+&lt;&lt;include &quot;04_Sidequest_diplomaten_finalize&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="370" name="04_Sidequest_diplomaten_finalize" tags="" position="1375,450" size="100,100">&lt;&lt;set $npc.bast.known = true&gt;&gt;
 &lt;&lt;set $npc.diplomatHannes.known = true&gt;&gt;
 &lt;&lt;set $npc.bast.memory.flags.sidequest04Complete = true&gt;&gt;
 &lt;&lt;set $npc.diplomatHannes.memory.flags.sidequest04Complete = true&gt;&gt;
 
 &lt;hr class=&quot;trenner-raute&quot;&gt;
-[[Die Glocken rufen zum Unterricht-&gt;Studium Hub]]</tw-passagedata><tw-passagedata pid="370" name="03_Sidequest_wenzel" tags="" position="575,2825" size="100,100">&lt;p&gt;Du biegst um die Ecke der Schreibstube und wärst um ein Haar in ihn hineingelaufen: Ein Söldner bunt wie ein Pfau, an die Wand gelehnt, Arme verschränkt, das rote Barett schief, im Gesicht das Grinsen eines Mannes, der gleich die beste Vorstellung seines Lebens erwartet.&lt;/p&gt;
+[[Die Glocken rufen zum Unterricht-&gt;Studium Hub]]</tw-passagedata><tw-passagedata pid="371" name="03_Sidequest_wenzel" tags="" position="575,2825" size="100,100">&lt;p&gt;Du biegst um die Ecke der Schreibstube und wärst um ein Haar in ihn hineingelaufen: Ein Söldner bunt wie ein Pfau, an die Wand gelehnt, Arme verschränkt, das rote Barett schief, im Gesicht das Grinsen eines Mannes, der gleich die beste Vorstellung seines Lebens erwartet.&lt;/p&gt;
 
 &lt;p&gt;Er hebt den Zeigefinger an die Lippen. Pst.&lt;/p&gt;
 
@@ -18613,7 +19351,7 @@ Du bleibst stehen, atmest flach und lässt die Brocken nicht mehr einzeln vorbei
 
 [[Klappe halten und zusehen. -&gt;03_Sidequest_wenzel_Mitspielen]]
 [[Den Unteroffizier unauffällig warnen. -&gt;03_Sidequest_wenzel_Warnen]]
-[[Wenzel fragen, was das soll. -&gt;03_Sidequest_wenzel_Fragen]]</tw-passagedata><tw-passagedata pid="371" name="03_Sidequest_wenzel_Auftrag" tags="interrupt einmalig kap1" position="450,2825" size="100,100">&lt;p&gt;Es ist der Schinder, der dich aus dem Tritt reißt — nicht mit einem Schlag, mit einem Blick und einem Zettel.&lt;/p&gt;
+[[Wenzel fragen, was das soll. -&gt;03_Sidequest_wenzel_Fragen]]</tw-passagedata><tw-passagedata pid="372" name="03_Sidequest_wenzel_Auftrag" tags="interrupt einmalig kap1" position="450,2825" size="100,100">&lt;p&gt;Es ist der Schinder, der dich aus dem Tritt reißt — nicht mit einem Schlag, mit einem Blick und einem Zettel.&lt;/p&gt;
 
 &lt;div class=&quot;dialog&quot;&gt;„Du. Rekrut.&quot; Er drückt dir ein Stück Papier in die Hand, an dem ein Stempel klebt. „Schreibstube. Dein Eintrag in der Truppenrolle stimmt nicht. Der Sergeant will dich sehen, bevor&#39;s offiziell wird. Und nimm die Beine in die Hand — ich will dich vor dem Appell zurück.&quot;&lt;/div&gt;
 
@@ -18622,7 +19360,7 @@ Du bleibst stehen, atmest flach und lässt die Brocken nicht mehr einzeln vorbei
 &lt;div class=&quot;thought-box&quot;&gt;Ein Fehler in einer Liste. Klingt nach nichts. Aber hier ist eine Liste das Einzige, was beweist, dass es mich überhaupt gibt. Besser, ich bring das in Ordnung.&lt;/div&gt;
 &lt;p&gt;Der Weg zur Schreibstube führt durch die hinteren Gänge der Kaserne, dorthin, wo der Stein nach Tinte und altem Papier riecht und der Lärm des Hofs verstummt.&lt;/p&gt;
 
-[[Zur Schreibstube. -&gt;03_Sidequest_wenzel]]</tw-passagedata><tw-passagedata pid="372" name="03_Sidequest_wenzel_Fragen" tags="" position="700,2825" size="100,100">&lt;div class=&quot;dialog&quot;&gt;„Was ich da treib?&quot; Er nimmt die Augen nicht vom Gang. „Handwerk.&quot;&lt;/div&gt;
+[[Zur Schreibstube. -&gt;03_Sidequest_wenzel]]</tw-passagedata><tw-passagedata pid="373" name="03_Sidequest_wenzel_Fragen" tags="" position="700,2825" size="100,100">&lt;div class=&quot;dialog&quot;&gt;„Was ich da treib?&quot; Er nimmt die Augen nicht vom Gang. „Handwerk.&quot;&lt;/div&gt;
 
 &lt;p&gt;Eine Pause. „War Zimmermann, bevor mich das Heer hatte. Und ein Zimmermann weiß: Jedes Holz hat &#39;ne Stelle, wo&#39;s bricht. Bei Leuten is das genauso.&quot; Erst jetzt sieht er dich an. „Bei dem da&quot; — Kinn Richtung Unteroffizier — „is es der Hochmut. Bei dir weiß ich&#39;s noch nich.&quot;&lt;/p&gt;
 
@@ -18632,7 +19370,7 @@ Du bleibst stehen, atmest flach und lässt die Brocken nicht mehr einzeln vorbei
 
 &lt;&lt;= setup.setNpcAffection(&quot;weibelWenzel&quot;, 3)&gt;&gt;
 &lt;&lt;= setup.pushNpcMemory(&quot;weibelWenzel&quot;, &quot;hat nach dem Lampenoel gefragt&quot;)&gt;&gt;
-&lt;&lt;include &quot;03_Sidequest_wenzel_finalize&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="373" name="03_Sidequest_wenzel_Mitspielen" tags="" position="575,2700" size="100,100">&lt;p&gt;Du hältst den Mund. Du tust gar nichts. Das ist alles, was es braucht.&lt;/p&gt;
+&lt;&lt;include &quot;03_Sidequest_wenzel_finalize&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="374" name="03_Sidequest_wenzel_Mitspielen" tags="" position="575,2700" size="100,100">&lt;p&gt;Du hältst den Mund. Du tust gar nichts. Das ist alles, was es braucht.&lt;/p&gt;
 
 &lt;p&gt;Der Unteroffizier trifft das Öl, und die Würde verlässt ihn von unten nach oben: erst der Stiefel, dann das Gleichgewicht, dann die Haltung, und zuletzt sitzt er auf dem Hintern zwischen verstreuten Papieren und einem Fluch, der eines Weibels würdig wäre.&lt;/p&gt;
 
@@ -18643,7 +19381,7 @@ Du bleibst stehen, atmest flach und lässt die Brocken nicht mehr einzeln vorbei
 
 &lt;&lt;= setup.setNpcAffection(&quot;weibelWenzel&quot;, 5)&gt;&gt;
 &lt;&lt;= setup.pushNpcMemory(&quot;weibelWenzel&quot;, &quot;hat mitgespielt und Klappe gehalten&quot;)&gt;&gt;
-&lt;&lt;include &quot;03_Sidequest_wenzel_finalize&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="374" name="03_Sidequest_wenzel_Warnen" tags="" position="575,2950" size="100,100">&lt;p&gt;Du hustest. Ein halber Schritt, ein Blick nach unten, gerade genug — der Unteroffizier stutzt, sieht den matten Fleck und macht einen knappen Bogen darum. Er marschiert weiter, ohne je zu erfahren, wie nah er dem Boden war.&lt;/p&gt;
+&lt;&lt;include &quot;03_Sidequest_wenzel_finalize&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="375" name="03_Sidequest_wenzel_Warnen" tags="" position="575,2950" size="100,100">&lt;p&gt;Du hustest. Ein halber Schritt, ein Blick nach unten, gerade genug — der Unteroffizier stutzt, sieht den matten Fleck und macht einen knappen Bogen darum. Er marschiert weiter, ohne je zu erfahren, wie nah er dem Boden war.&lt;/p&gt;
 
 &lt;p&gt;Die Vorstellung ist vorbei, bevor sie begonnen hat.&lt;/p&gt;
 
@@ -18654,13 +19392,13 @@ Du bleibst stehen, atmest flach und lässt die Brocken nicht mehr einzeln vorbei
 &lt;&lt;= setup.setPlayerStat(&quot;mercy&quot;, 2)&gt;&gt;
 &lt;&lt;= setup.setNpcAffection(&quot;weibelWenzel&quot;, 1)&gt;&gt;
 &lt;&lt;= setup.pushNpcMemory(&quot;weibelWenzel&quot;, &quot;hat den Unteroffizier gewarnt&quot;)&gt;&gt;
-&lt;&lt;include &quot;03_Sidequest_wenzel_finalize&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="375" name="03_Sidequest_wenzel_finalize" tags="nach_appell" position="700,2700" size="100,100">&lt;&lt;set $npc.weibelWenzel.memory.flags.sidequest03Complete = true&gt;&gt;
+&lt;&lt;include &quot;03_Sidequest_wenzel_finalize&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="376" name="03_Sidequest_wenzel_finalize" tags="nach_appell" position="700,2700" size="100,100">&lt;&lt;set $npc.weibelWenzel.memory.flags.sidequest03Complete = true&gt;&gt;
 &lt;&lt;set $npc.weibelWenzel.known = true&gt;&gt;
 
 &lt;p&gt;Was war das für ein seltsamer Moment?&lt;/p&gt;
 &lt;p&gt;Du sinierst noch etwas befor dir auffällt dass du zu spät zum Appell kommst und noch zum Sergeanten musst !!!&lt;/p&gt;
 
-[[Losstürmen! -&gt;Abendappell]]</tw-passagedata><tw-passagedata pid="376" name="02_Sidequest_vasil" tags="layout kap1" position="200,1150" size="100,100">&lt;div class=&quot;scenery-text&quot;&gt;Der Armbrust-Stand ist um diese Stunde fast verwaist — bis auf den einen Mann, der breitbeinig vor dem hintersten Schießpfosten steht und mit einer Geduld an einer Ballistenwinde dreht, die so gar nicht zu seiner Statur passt.&lt;/div&gt;
+[[Losstürmen! -&gt;Abendappell]]</tw-passagedata><tw-passagedata pid="377" name="02_Sidequest_vasil" tags="layout kap1" position="200,1150" size="100,100">&lt;div class=&quot;scenery-text&quot;&gt;Der Armbrust-Stand ist um diese Stunde fast verwaist — bis auf den einen Mann, der breitbeinig vor dem hintersten Schießpfosten steht und mit einer Geduld an einer Ballistenwinde dreht, die so gar nicht zu seiner Statur passt.&lt;/div&gt;
 
 &lt;p&gt;Er ist groß. Nicht groß, wie ein hochgewachsener Rekrut groß ist, sondern groß wie eine Türöffnung, die jemand aus Versehen verbaut hat. Rot-weiße Söldnerkleidung, ein abgegriffenes Barett, Werkzeug am Gurt, das mehr nach Werkstatt als nach Schlachtfeld aussieht. Sein Gesicht steht auf Gewitter.&lt;/p&gt;
 
@@ -18680,17 +19418,17 @@ Du bleibst stehen, atmest flach und lässt die Brocken nicht mehr einzeln vorbei
 
 [[Ihn um einen Tipp fragen. -&gt;02_Sidequest_vasil_Tipp]]
 [[Dich danebenstellen und einfach zusehen. -&gt;02_Sidequest_vasil_Zusehen]]
-[[Lieber weitergehen. -&gt;02_Sidequest_vasil_Ablehnung]]</tw-passagedata><tw-passagedata pid="377" name="02_Sidequest_vasil_Ablehnung" tags="layout" position="325,1275" size="100,100">&lt;p&gt;Du gehst weiter. Hinter dir dreht sich die Winde unbeirrt weiter. Er ruft dir nicht nach.&lt;/p&gt;
+[[Lieber weitergehen. -&gt;02_Sidequest_vasil_Ablehnung]]</tw-passagedata><tw-passagedata pid="378" name="02_Sidequest_vasil_Ablehnung" tags="layout" position="325,1275" size="100,100">&lt;p&gt;Du gehst weiter. Hinter dir dreht sich die Winde unbeirrt weiter. Er ruft dir nicht nach.&lt;/p&gt;
 
 &lt;p&gt;Große Männer, die Ballisten reparieren, laufen keinem Frischling hinterher.&lt;/p&gt;
 
-&lt;&lt;include &quot;02_Sidequest_vasil_finalize&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="378" name="02_Sidequest_vasil_Hoeflich" tags="layout" position="200,1400" size="100,100">&lt;p&gt;Du ziehst die Mundwinkel hoch und nickst — die Höflichkeit, die man jemandem schuldet, der einem etwas beibringt.&lt;/p&gt;
+&lt;&lt;include &quot;02_Sidequest_vasil_finalize&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="379" name="02_Sidequest_vasil_Hoeflich" tags="layout" position="200,1400" size="100,100">&lt;p&gt;Du ziehst die Mundwinkel hoch und nickst — die Höflichkeit, die man jemandem schuldet, der einem etwas beibringt.&lt;/p&gt;
 
 &lt;p&gt;Er sieht es. Natürlich sieht er es. „Tss. Kenner.&quot; Die Wand schiebt sich wieder vor sein Gesicht, aber er korrigiert deinen Stand trotzdem noch ein letztes Mal, kurz und korrekt, bevor er sich wieder der Winde zuwendet.&lt;/p&gt;
 
 &lt;&lt;= setup.setNpcAffection(&quot;vasil&quot;, 2)&gt;&gt;
 &lt;&lt;= setup.setPlayerKnowledge(&quot;crossbow&quot;, 1)&gt;&gt;
-&lt;&lt;include &quot;02_Sidequest_vasil_finalize&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="379" name="02_Sidequest_vasil_Lachen" tags="layout" position="75,1400" size="100,100">&lt;p&gt;Und etwas passiert im Gesicht der Wand: Es bricht auf. Erst die Augen, dann der Rest, und plötzlich grinst da kein Gewitter mehr, sondern ein großer Junge, der gerade gehört hat, dass sein Witz angekommen ist.&lt;/p&gt;
+&lt;&lt;include &quot;02_Sidequest_vasil_finalize&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="380" name="02_Sidequest_vasil_Lachen" tags="layout" position="75,1400" size="100,100">&lt;p&gt;Und etwas passiert im Gesicht der Wand: Es bricht auf. Erst die Augen, dann der Rest, und plötzlich grinst da kein Gewitter mehr, sondern ein großer Junge, der gerade gehört hat, dass sein Witz angekommen ist.&lt;/p&gt;
 
 &lt;div class=&quot;dialog&quot;&gt;„Gut, oder? Hab noch &#39;nen besseren.&quot; Er hat keinen besseren, aber er erzählt ihn trotzdem, und der ist schlechter, und er klopft dir dabei auf die Schulter, dass du fast in den Pfosten kippst. Dann drückt er dir die Armbrust in die Hand und richtet deinen Griff noch einmal — „damit&#39;s auch sitzt&quot;.&lt;/div&gt;
 
@@ -18699,7 +19437,7 @@ Du bleibst stehen, atmest flach und lässt die Brocken nicht mehr einzeln vorbei
 &lt;&lt;= setup.setNpcAffection(&quot;vasil&quot;, 6)&gt;&gt;
 &lt;&lt;= setup.setPlayerKnowledge(&quot;crossbow&quot;, 1)&gt;&gt;
 &lt;&lt;= setup.pushNpcMemory(&quot;vasil&quot;, &quot;hat ueber den Witz gelacht&quot;)&gt;&gt;
-&lt;&lt;include &quot;02_Sidequest_vasil_finalize&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="380" name="02_Sidequest_vasil_Tipp" tags="layout" position="75,1275" size="100,100">&lt;&lt;set $npc.vasil.known = true&gt;&gt;
+&lt;&lt;include &quot;02_Sidequest_vasil_finalize&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="381" name="02_Sidequest_vasil_Tipp" tags="layout" position="75,1275" size="100,100">&lt;&lt;set $npc.vasil.known = true&gt;&gt;
 &lt;div class=&quot;dialog&quot;&gt;„Tipp.&quot; Er sagt das Wort, als würde er es auf Festigkeit prüfen. Dann legt er die Winde aus der Hand und mustert dich von unten herauf — das Gewitter zieht ein Stück weiter, ohne ganz zu verschwinden. „Na gut.&quot;&lt;/div&gt;
 
 &lt;p&gt;Er tippt sich ans Barett. „Vasil. Vierundachtzigstes Banner. Und du bist der, der gern im Licht steht.&quot;&lt;/p&gt;
@@ -18711,7 +19449,7 @@ Du bleibst stehen, atmest flach und lässt die Brocken nicht mehr einzeln vorbei
 &lt;p&gt;Er sieht dich an. Wartet. Es ist offensichtlich ein Witz, den er für ausgezeichnet hält.&lt;/p&gt;
 
 [[Ehrlich lachen — der Witz ist so dämlich, dass er gut ist. -&gt;02_Sidequest_vasil_Lachen]]
-[[Höflich nicken und weiterschießen. -&gt;02_Sidequest_vasil_Hoeflich]]</tw-passagedata><tw-passagedata pid="381" name="02_Sidequest_vasil_Zusehen" tags="layout" position="200,1275" size="100,100">&lt;&lt;set $npc.vasil.known = true&gt;&gt;
+[[Höflich nicken und weiterschießen. -&gt;02_Sidequest_vasil_Hoeflich]]</tw-passagedata><tw-passagedata pid="382" name="02_Sidequest_vasil_Zusehen" tags="layout" position="200,1275" size="100,100">&lt;&lt;set $npc.vasil.known = true&gt;&gt;
 &lt;p&gt;Du stellst dich neben ihn und sagst nichts. Er schießt. Wieder. Wieder. Die Bolzen sitzen so dicht beieinander, dass man sie mit einer Hand verdecken könnte — eine Präzision, die nichts mit seiner Masse zu tun hat und alles mit den tausend Stunden dahinter.&lt;/p&gt;
 
 &lt;p&gt;Irgendwann, ohne ein Wort, hält er dir eine gespannte Armbrust hin. „Eine. Mal sehn.&quot;&lt;/p&gt;
@@ -18723,15 +19461,15 @@ Du bleibst stehen, atmest flach und lässt die Brocken nicht mehr einzeln vorbei
 &lt;&lt;= setup.setNpcAffection(&quot;vasil&quot;, 4)&gt;&gt;
 &lt;&lt;= setup.setPlayerKnowledge(&quot;crossbow&quot;, 1)&gt;&gt;
 &lt;&lt;= setup.pushNpcMemory(&quot;vasil&quot;, &quot;hat zugesehen und mitgeschossen&quot;)&gt;&gt;
-&lt;&lt;include &quot;02_Sidequest_vasil_finalize&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="382" name="02_Sidequest_vasil_finalize" tags="layout" position="325,1400" size="100,100">&lt;&lt;set $npc.vasil.memory.flags.sidequest02Complete = true&gt;&gt;
-[[Zurück zu den Schützen -&gt;Nachmittag Crossbow]]</tw-passagedata><tw-passagedata pid="383" name="Story002_BierAnnehmen" tags="" position="2075,2675" size="100,100">&lt;p&gt;Du nimmst den Becher.&lt;/p&gt;
+&lt;&lt;include &quot;02_Sidequest_vasil_finalize&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="383" name="02_Sidequest_vasil_finalize" tags="layout" position="325,1400" size="100,100">&lt;&lt;set $npc.vasil.memory.flags.sidequest02Complete = true&gt;&gt;
+[[Zurück zu den Schützen -&gt;Nachmittag Crossbow]]</tw-passagedata><tw-passagedata pid="384" name="Story002_BierAnnehmen" tags="" position="2075,2675" size="100,100">&lt;p&gt;Du nimmst den Becher.&lt;/p&gt;
 &lt;p&gt;Das Bier ist dünn und hat einen Stich ins Saure — das Billige, das der Wirt für Soldaten aufhebt weil er weiß dass sie es trotzdem trinken. Es schmeckt trotzdem gut. Vielleicht wegen der Gesellschaft. Vielleicht wegen des Tages der dahinter liegt.&lt;/p&gt;
 &lt;p&gt;Haddl redet. Über die Gebirgsmarine, über einen Winter irgendwo an der Grenze, über einen Maultier das klüger war als sein Reiter. Lars hört zu mit dem Gesicht eines Mannes der die meisten dieser Geschichten schon kennt und sie trotzdem lässt.&lt;/p&gt;
 &lt;p&gt;Irgendwann bist du kein Rekrut mehr an ihrem Tisch. Du bist jemand der dazugehört.&lt;/p&gt;
 
 &lt;div class=&quot;scenery-text&quot;&gt;Der Abend wird länger als geplant.&lt;/div&gt;
 
-[[Noch eine Runde -&gt;Story002_finalize]]</tw-passagedata><tw-passagedata pid="384" name="Story002_Bier_Ausgeben" tags="" position="2225,2675" size="100,100">&lt;&lt;set $player.copper -= 8&gt;&gt;
+[[Noch eine Runde -&gt;Story002_finalize]]</tw-passagedata><tw-passagedata pid="385" name="Story002_Bier_Ausgeben" tags="" position="2225,2675" size="100,100">&lt;&lt;set $player.copper -= 8&gt;&gt;
 &lt;&lt;= setup.setNpcAffection(&quot;weibelLars&quot;, 1)&gt;&gt;
 &lt;&lt;= setup.pushNpcMemory(&quot;weibelLars&quot;,&quot;Hat Bier ausgegeben&quot;)&gt;&gt;
 &lt;&lt;= setup.setNpcAffection(&quot;haddl&quot;, 1)&gt;&gt;
@@ -18749,7 +19487,7 @@ Du bleibst stehen, atmest flach und lässt die Brocken nicht mehr einzeln vorbei
 &lt;p&gt;Haddl strahlt. „Der Opa hat immer gesagt: Wer großzügig ist bekommt mehr zurück als er gegeben hat.&quot;&lt;/p&gt;
 &lt;div class=&quot;dialog&quot;&gt;„Das hat der Opa diesmal vielleicht sogar gesagt&quot;, gibt Lars zu.&lt;/div&gt;
 
-[[Noch eine Runde -&gt;Story002_finalize]]</tw-passagedata><tw-passagedata pid="385" name="Story002_Taverne_Ansprechen_KeinAufhaenger" tags="" position="2300,2525" size="100,100">&lt;p&gt;Du gehst rüber. Ohne Grund. Ohne Plan.&lt;/p&gt;
+[[Noch eine Runde -&gt;Story002_finalize]]</tw-passagedata><tw-passagedata pid="386" name="Story002_Taverne_Ansprechen_KeinAufhaenger" tags="" position="2300,2525" size="100,100">&lt;p&gt;Du gehst rüber. Ohne Grund. Ohne Plan.&lt;/p&gt;
 &lt;p&gt;Der Große bemerkt dich zuerst. Sein Blick kommt langsam hoch — so wie ein Mann der gelernt hat dass das meiste was auf ihn zukommt entweder Arbeit oder Ärger ist. Er wartet ab welches du bist.&lt;/p&gt;
 &lt;p&gt;Der Lange dreht sich um. Mustert dich von oben bis unten mit der entspannten Gründlichkeit von jemandem dem das Ergebnis egal ist.&lt;/p&gt;
 &lt;p&gt;Stille.&lt;/p&gt;
@@ -18769,7 +19507,7 @@ Du bleibst stehen, atmest flach und lässt die Brocken nicht mehr einzeln vorbei
 [[Sich verabschieden und zurück zu den Rekruten -&gt;Auf Stube][$world.kondition += 5]]
 &lt;&lt;else&gt;&gt;
 [[Sich verabschieden und zurück zu den Rekruten -&gt;Auf Stube][$world.kondition += 5]]
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="386" name="Story002_Taverne_Ansprechen_MitAufhaenger" tags="" position="2025,2525" size="100,100">&lt;p&gt;Du gehst rüber. Das Wappen auf dem Mantel gibt dir genug.&lt;/p&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="387" name="Story002_Taverne_Ansprechen_MitAufhaenger" tags="" position="2025,2525" size="100,100">&lt;p&gt;Du gehst rüber. Das Wappen auf dem Mantel gibt dir genug.&lt;/p&gt;
 &lt;div class=&quot;dialog&quot;&gt;„Das Wappenschild—&quot; du nickst in Richtung seiner Brust. „Das 84. Banner.&quot;&lt;/div&gt;
 &lt;p&gt;Der Große sieht dich an. Dann sieht er dich //anders// an — so wie man jemanden ansieht der gerade von Hund auf Mensch hochgestuft wurde.&lt;/p&gt;
 &lt;div class=&quot;dialog&quot;&gt;„Ja.&quot; Eine kurze Pause. „Woher weißt du das.&quot;&lt;/div&gt;
@@ -18789,7 +19527,7 @@ Du bleibst stehen, atmest flach und lässt die Brocken nicht mehr einzeln vorbei
 &lt;&lt;= setup.setNpcAffection(&quot;haddl&quot;, 1)&gt;&gt;
 &lt;div class=&quot;scenery-text&quot;&gt;Das Gespräch findet seinen eigenen Rhythmus. Lars redet wenig aber wenn er redet hat es Gewicht. Haddl füllt die Lücken mit Geschichten die halb gelogen und halb zu gut sind um erfunden zu sein.
 &lt;p&gt;Irgendwann bestellt Lars ohne zu fragen eine neue Runde.&lt;/p&gt;&lt;/div&gt;
-[[Das Bier annehmen -&gt;Story002_BierAnnehmen]]</tw-passagedata><tw-passagedata pid="387" name="Story002_Taverne_mit_Lars_Und_Hadde" tags="interrupt einmalig kap1" position="2175,2400" size="100,100">&lt;p&gt;Es war die Idee von jemand anderem. Zumindest sagst du dir das.&lt;/p&gt;
+[[Das Bier annehmen -&gt;Story002_BierAnnehmen]]</tw-passagedata><tw-passagedata pid="388" name="Story002_Taverne_mit_Lars_Und_Hadde" tags="interrupt einmalig kap1" position="2175,2400" size="100,100">&lt;p&gt;Es war die Idee von jemand anderem. Zumindest sagst du dir das.&lt;/p&gt;
 &lt;p&gt;Drei Mann, ein Loch im Zaun das schon seit Wochen niemand geflickt hat, und ein Nachmittag der sich lang genug anfühlt um es zu riskieren. Der Weg zur Taverne dauert keine zehn Minuten — aber die ersten zwei gehst du mit dem Nacken zwischen den Schultern.&lt;/p&gt;
 &lt;p&gt;Niemand ruft euch zurück.&lt;/p&gt;
 &lt;div class=&quot;scenery-text&quot;&gt;Es riecht nach Talg, saurem Bier und dem angenehmen Nichts von //nach dem Dienst//. Ein Dutzend Tische, halb besetzt. Irgendwer lacht zu laut. Niemand schaut hin.
@@ -18836,7 +19574,7 @@ Du bleibst stehen, atmest flach und lässt die Brocken nicht mehr einzeln vorbei
 
 [[Den Nachmittag genießen und die zwei vergessen -&gt;Auf Stube][$world.kondition += 1]]
 [[Hingehen -&gt;Story002_Taverne_Ansprechen_KeinAufhaenger]]
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="388" name="Story002_finalize" tags="nach_morgen" position="2150,2825" size="100,100">&lt;div class=&quot;scenery-text&quot;&gt;Was danach passiert lässt sich schwer in einer geraden Linie erzählen.&lt;/div&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="389" name="Story002_finalize" tags="nach_morgen" position="2150,2825" size="100,100">&lt;div class=&quot;scenery-text&quot;&gt;Was danach passiert lässt sich schwer in einer geraden Linie erzählen.&lt;/div&gt;
 &lt;p&gt;Irgendwann war der Becher leer und dann voll und dann wieder leer.&lt;/p&gt;
 
 &lt;p&gt;Haddl hat eine Sau aufgetrieben — woher, das hat niemand gefragt und er hat es nicht erklärt.&lt;/p&gt;
@@ -18857,7 +19595,7 @@ Du bleibst stehen, atmest flach und lässt die Brocken nicht mehr einzeln vorbei
 
 
 &lt;hr class=&quot;trenner-raute&quot;&gt;
-&lt;&lt;weiterImTag &quot;Tswu .. viel... lang... verdammt!&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="389" name="EE_Tross_Intro" tags="kap1" position="725,750" size="100,100">&lt;p&gt;Der Schinder hat dich am Morgen zur Seite genommen — keine große Sache, nur eine Besorgung. 
+&lt;&lt;weiterImTag &quot;Tswu .. viel... lang... verdammt!&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="390" name="EE_Tross_Intro" tags="kap1" position="725,750" size="100,100">&lt;p&gt;Der Schinder hat dich am Morgen zur Seite genommen — keine große Sache, nur eine Besorgung. 
 Irgendetwas fehlt im Lager, irgendjemand braucht irgendetwas aus der Stadt, und du bist der, der gerade keinen Grund hat nein zu sagen.&lt;/p&gt;
 
 &lt;p&gt;Du hast einen Zettel in der Hand und eine ungefähre Vorstellung wo die Gasse sein soll. 
@@ -18872,7 +19610,7 @@ Du findest die Gasse. Du findest das Haus. Du klopfst.&lt;/p&gt;
 
 &lt;p&gt;Unter dem Vordach des Nachbargebäudes hat sich eine kleine Welt eingerichtet.&lt;/p&gt;
 
-[[Nachschauen|EE_Tross]]</tw-passagedata><tw-passagedata pid="390" name="EE_Tross" tags="" position="725,875" size="100,100">&lt;p&gt;Du hörst sie, bevor du sie siehst.&lt;/p&gt;
+[[Nachschauen|EE_Tross]]</tw-passagedata><tw-passagedata pid="391" name="EE_Tross" tags="" position="725,875" size="100,100">&lt;p&gt;Du hörst sie, bevor du sie siehst.&lt;/p&gt;
 
 &lt;div class=&quot;scenery-text&quot;&gt;Eine Frauenstimme — Dialekt, warm, schnell — erklärt gerade
 jemandem mit großer Sachkenntnis und noch größerer Ungeduld, dass eine Wunde, die man
@@ -18927,7 +19665,7 @@ zu. Dann sucht er kurz nach Worten, findet keine besseren und sagt einfach:&lt;/
 &lt;hr class=&quot;trenner-raute&quot;&gt;
 
 [[Ich such&#39; eine Adresse. Die Gasse hier oben stimmt irgendwie nicht|EE_Tross_Adresse]]
-[[Ich weiß es selbst nicht genau|EE_Tross_Ehrlich]]</tw-passagedata><tw-passagedata pid="391" name="EE_Tross_Adresse" tags="" position="575,1000" size="100,100">&lt;p&gt;Du hältst ihm den Zettel hin.&lt;/p&gt;
+[[Ich weiß es selbst nicht genau|EE_Tross_Ehrlich]]</tw-passagedata><tw-passagedata pid="392" name="EE_Tross_Adresse" tags="" position="575,1000" size="100,100">&lt;p&gt;Du hältst ihm den Zettel hin.&lt;/p&gt;
 
 &lt;p&gt;Er nimmt ihn, dreht ihn einmal um, hält ihn kurz gegen das Licht — und nickt schon,
 bevor er ihn wieder hinlegt. Der Mann weiß, wo in dieser Stadt was steht; das sieht man
@@ -19022,7 +19760,7 @@ hätte die ganze Zeit aufmerksam zugehört. &lt;/p&gt;
         [[Weiter|EE_Tross_Rosi]]    
     &lt;&lt;/replace&gt;&gt;
   &lt;&lt;/link&gt;&gt;
-&lt;/span&gt;</tw-passagedata><tw-passagedata pid="392" name="EE_Tross_Ehrlich" tags="" position="875,1000" size="100,100">&lt;p&gt;Er sieht dich an. Nickt einmal, kurz.&lt;/p&gt;
+&lt;/span&gt;</tw-passagedata><tw-passagedata pid="393" name="EE_Tross_Ehrlich" tags="" position="875,1000" size="100,100">&lt;p&gt;Er sieht dich an. Nickt einmal, kurz.&lt;/p&gt;
 
 &lt;div class=&quot;dialog&quot;&gt;„Ehrliche Antwort. Mag ich. Mit den meisten kommt man eh weiter, wenn
 man nicht so tut, als wüsst man alles.&quot;&lt;/div&gt;
@@ -19082,7 +19820,7 @@ nichts gewesen.&lt;/p&gt;
         [[Weiter|EE_Tross_Rosi]] 
     &lt;&lt;/replace&gt;&gt;
   &lt;&lt;/link&gt;&gt;
-&lt;/span&gt;</tw-passagedata><tw-passagedata pid="393" name="EE_Tross_Rosi" tags="" position="725,1125" size="100,100">&lt;p&gt;Du willst sagen, dass es nichts ist. Sie lässt dich nicht.&lt;/p&gt;
+&lt;/span&gt;</tw-passagedata><tw-passagedata pid="394" name="EE_Tross_Rosi" tags="" position="725,1125" size="100,100">&lt;p&gt;Du willst sagen, dass es nichts ist. Sie lässt dich nicht.&lt;/p&gt;
 
 &lt;div class=&quot;dialog&quot;&gt;„Setz dich da hin. Rosi. Feldscher. Und jetz halt fei still.&quot;&lt;/div&gt;
 
@@ -19129,7 +19867,7 @@ hab.&quot;&lt;/div&gt;
 &lt;&lt;= setup.setNpcAffection(&quot;rosi&quot;, 3)&gt;&gt;
 &lt;hr class=&quot;trenner-raute&quot;&gt;
 
-[[Weiter.-&gt;EE_Tross_Abgang]]</tw-passagedata><tw-passagedata pid="394" name="EE_Tross_Abgang" tags="nach_hub" position="550,1150" size="100,100">&lt;p&gt;Du gehst.&lt;/p&gt;
+[[Weiter.-&gt;EE_Tross_Abgang]]</tw-passagedata><tw-passagedata pid="395" name="EE_Tross_Abgang" tags="nach_hub" position="550,1150" size="100,100">&lt;p&gt;Du gehst.&lt;/p&gt;
 
 &lt;p&gt;Hinter dir, noch bevor du um die Ecke bist, hörst du den Mann sagen: „Guter Rekrut.&quot;
 
@@ -19144,7 +19882,7 @@ Eine kurze Pause. „Ich fand&#39;s zumindest sehr souverän, wie ich das vorhin
 &lt;&lt;set $npc.rosi.known to true&gt;&gt;
 
 &lt;hr class=&quot;trenner-raute&quot;&gt;
-&lt;&lt;weiterImTag &quot;Zurück zum Tagesgeschehen&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="395" name="Besuch_S1_Ankunft" tags="interrupt einmalig kapitel-opener" position="1600,7000" size="100,100">&lt;&lt;scene&gt;&gt;
+&lt;&lt;weiterImTag &quot;Zurück zum Tagesgeschehen&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="396" name="Besuch_S1_Ankunft" tags="interrupt einmalig kapitel-opener" position="1600,7000" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Der Befehl kam gestern Nacht, kurz und ohne Erklärung: bei Tagesanbruch die ganze Akademie auf dem Appellplatz,
 geschrubbt bis auf die Knochen, jeder Riemen gefettet, jede Schnalle blank. Nicht ein Jahrgang. Nicht ein Corps.
 Alle. Jetzt steht ihr in der grauen Frühe in Reih und Glied, Atem in weißen Fahnen, die Stiefel im gefrorenen Sand
@@ -19229,7 +19967,7 @@ irgendwen die ganze Akademie auf Hochglanz stellen. Und mir wird kalt, und nicht
 gerader, als der Zug auf das Tor der Akademie zuhält.&lt;/p&gt;
 
 &lt;&lt;trenner&gt;&gt;
-[[Die ganze Akademie hält den Atem an-&gt;Besuch_S2_Musterung]]</tw-passagedata><tw-passagedata pid="396" name="Besuch_S2_Musterung" tags="" position="725,4975" size="100,100">&lt;&lt;set _spec to $player.spezialisierung&gt;&gt;
+[[Die ganze Akademie hält den Atem an-&gt;Besuch_S2_Musterung]]</tw-passagedata><tw-passagedata pid="397" name="Besuch_S2_Musterung" tags="" position="850,4975" size="100,100">&lt;&lt;set _spec to $player.spezialisierung&gt;&gt;
 
 &lt;&lt;scene&gt;&gt;
 &lt;p&gt;Man lässt euch frei — „bis die Glocke ruft&quot;, knapp, ohne mehr. Kein Drill, keine Aufgabe, nur die seltsame,
@@ -19276,7 +20014,7 @@ die es wiegen, haben Kriege gesehen, von denen wir nur singen.&lt;/p&gt;
 &lt;&lt;/gedanke&gt;&gt;
 
 &lt;&lt;trenner&gt;&gt;
-[[Vortreten-&gt;Besuch_S2_Vorfuehrung]]</tw-passagedata><tw-passagedata pid="397" name="Besuch_S2_Vorfuehrung" tags="" position="850,4975" size="100,100">&lt;&lt;set _spec to $player.spezialisierung&gt;&gt;
+[[Vortreten-&gt;Besuch_S2_Vorfuehrung]]</tw-passagedata><tw-passagedata pid="398" name="Besuch_S2_Vorfuehrung" tags="" position="975,4975" size="100,100">&lt;&lt;set _spec to $player.spezialisierung&gt;&gt;
 
 &lt;&lt;switch _spec&gt;&gt;
 /* ============================ PIKE ============================ */
@@ -19423,7 +20161,7 @@ Handwerk. Und heute Abend, sagt man, brennen im Lager des 84. die Feuer.&lt;/p&g
 &lt;&lt;/gedanke&gt;&gt;
 
 &lt;&lt;trenner&gt;&gt;
-[[Der Tag verklingt — im Lager warten die Feuer-&gt;Besuch_S3_Lager]]</tw-passagedata><tw-passagedata pid="398" name="Besuch_S3_Lager" tags="" position="975,4975" size="100,100">&lt;&lt;set _best to setup.bannerHolt()&gt;&gt;
+[[Der Tag verklingt — im Lager warten die Feuer-&gt;Besuch_S3_Lager]]</tw-passagedata><tw-passagedata pid="399" name="Besuch_S3_Lager" tags="" position="1100,4975" size="100,100">&lt;&lt;set _best to setup.bannerHolt()&gt;&gt;
 &lt;&lt;if not _best&gt;&gt;&lt;&lt;set _best to &quot;weibelWenzel&quot;&gt;&gt;&lt;&lt;/if&gt;&gt;
 
 &lt;&lt;scene&gt;&gt;
@@ -19488,7 +20226,7 @@ Lächeln beiseitegeschoben. Ich weiß nicht, ob mir das Angst machen oder gefall
 Lachen aus der Halle leiser und das Prasseln der Lagerfeuer lauter.&lt;/p&gt;
 
 &lt;&lt;trenner&gt;&gt;
-[[Ins Lager des 84.-&gt;Besuch_S3_Lagerfeuer]]</tw-passagedata><tw-passagedata pid="399" name="Besuch_S3_Lagerfeuer" tags="" position="1100,4975" size="100,100">&lt;&lt;set _spec to $player.spezialisierung&gt;&gt;
+[[Ins Lager des 84.-&gt;Besuch_S3_Lagerfeuer]]</tw-passagedata><tw-passagedata pid="400" name="Besuch_S3_Lagerfeuer" tags="" position="1225,4975" size="100,100">&lt;&lt;set _spec to $player.spezialisierung&gt;&gt;
 
 &lt;&lt;scene&gt;&gt;
 &lt;p&gt;Das Lager des 84. ist eine andere Welt als die Akademie. Fackeln und Feuerschalen, der Geruch von Rauch, Eintopf
@@ -19579,6 +20317,22 @@ gedient, vor gefühlt hundert Jahren. Und wenn ich mir das so anschau —&quot; 
 „— hat sich seit damals rein gar nichts geändert.&quot;&lt;/p&gt;
 &lt;&lt;/dialog&gt;&gt;
 
+&lt;&lt;&lt;&lt;dialog&gt;&gt;
+  &lt;p&gt;&lt;&lt;quote Jetzt ich gefunden dich Lenz!&gt;&gt; Eine stimme so fest wie eine Eiche lässt dich umschauen.&lt;/p&gt;
+  &lt;&lt;if &lt;&lt;set $npc.konrad.known  &gt;&gt;
+	&lt;p&gt;&lt;&lt;quote Ah kleiner Rekrut aus Schenke ist auch hier.&gt;&gt;&lt;/p&gt;
+	&lt;&lt;if $npc.schlaeger.memory.flags.bier_spendiert&gt;&gt;
+		&lt;p&gt;&lt;&lt;quote Freut mich dich wieder zu sehen!&gt;&gt; er hebt seinen Krug und zwinkert dir zu.&lt;/p&gt;
+	&lt;&lt;/if&gt;&gt;
+  &lt;&lt;/if&gt;&gt;
+  &lt;p&gt;&lt;&lt;quote Ah Konrad! schön das du es einrichten konntest!&gt;&gt;Begrüßt ihn Lenz.&lt;/p&gt;
+&lt;&lt;if not $npc.konrad.known  &gt;&gt;
+	&lt;p&gt;&lt;&lt;quote Das hier ist ein guter Freund von uns. Konrad Schläger. Er hat den weiten Weg aus dem Imperium auf sich genommen.&gt;&gt;&lt;/p&gt;
+&lt;&lt;/if&gt;&gt;&gt;
+
+  &lt;p&gt;&lt;&lt;quote Komm konrad, ich muss dich sprechen.&gt;&gt; Lenz führt Konrad Richtug Akademie. Was die beiden wohl aushecken?&lt;/p&gt;
+&lt;&lt;/dialog&gt;&gt;&gt;&gt;
+
 &lt;&lt;gedanke&gt;&gt;
 &lt;p&gt;Das ist es also, wohinein ich wachse. Nicht Drill, nicht Rindlers Waage. Das hier — Männer und Frauen, die zu
 viel trinken und zu viel reden und füreinander durchs Feuer gingen. Morgen bin ich vielleicht wieder nur ein Rekrut.
@@ -19640,7 +20394,7 @@ Heute Nacht sitze ich am richtigen Feuer.&lt;/p&gt;
 [[zu Heinrich umdrehen-&gt;Besuch_S3_Heinrich_b]]
 &lt;&lt;else&gt;&gt;
 [[Heinrich tritt ans Feuer-&gt;Besuch_S3_Heinrich]]
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="400" name="Besuch_S3_Heinrich" tags="" position="1225,4975" size="100,100">&lt;&lt;scene&gt;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="401" name="Besuch_S3_Heinrich" tags="" position="100,5100" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Am größten der Feuer hält Heinrich Hof. Er singt — laut, nicht schlecht, und mit der vollen Überzeugung eines
 Mannes, der weiß, dass ihm alle zuhören —, und als das Lied endet, geht es nahtlos in eine Geschichte über, in der
 er selbst die Hauptrolle spielt und, versteht sich, gewinnt. Neben ihm sitzt Silva, den Becher in beiden Händen,
@@ -19689,7 +20443,7 @@ und heimlich noch froher, dass ich ihnen nie gegenüberstehen muss.&lt;/p&gt;
 &lt;&lt;/gedanke&gt;&gt;
 
 &lt;&lt;trenner&gt;&gt;
-[[Die Würfel rollen-&gt;Besuch_S3_Wuerfeln]]</tw-passagedata><tw-passagedata pid="401" name="Besuch_S3_Heinrich_b" tags="" position="100,5100" size="100,100">&lt;&lt;dialog&gt;&gt;
+[[Die Würfel rollen-&gt;Besuch_S3_Wuerfeln]]</tw-passagedata><tw-passagedata pid="402" name="Besuch_S3_Heinrich_b" tags="" position="225,5100" size="100,100">&lt;&lt;dialog&gt;&gt;
 &lt;p&gt;„Der von der Musterung! &lt;&lt;if $npc.heinrich.affection gte 2&gt;&gt;Dich hab ich mir gemerkt.&lt;&lt;else&gt;&gt;Wie war noch dein Name?&lt;&lt;/if&gt;&gt;&quot;&lt;/p&gt;
 &lt;&lt;/dialog&gt;&gt;
 
@@ -19733,7 +20487,7 @@ und heimlich noch froher, dass ich ihnen nie gegenüberstehen muss.&lt;/p&gt;
 &lt;&lt;/gedanke&gt;&gt;
 
 &lt;&lt;trenner&gt;&gt;
-[[Die Würfel rollen-&gt;Besuch_S3_Wuerfeln]]</tw-passagedata><tw-passagedata pid="402" name="Besuch_S3_Wuerfeln" tags="" position="225,5100" size="100,100">&lt;&lt;scene&gt;&gt;
+[[Die Würfel rollen-&gt;Besuch_S3_Wuerfeln]]</tw-passagedata><tw-passagedata pid="403" name="Besuch_S3_Wuerfeln" tags="" position="350,5100" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Die Nacht ist längst über den Zenit, und aus dem Feuer ist eine Party geworden, wie sie nur im Lager des 84.
 entsteht — ohne dass je einer sie ausgerufen hätte. Hans Fichtensplitter steht auf einem Fass und segnet mit
 großer Geste einen Barsinger, halb feierlich, halb betrunken, und Tobalt fällt mit einem Trinkspruch ein, der
@@ -19759,15 +20513,15 @@ Pranke ganz beiläufig eines deiner Kupferstücke vom Rand des Schilds.&lt;/p&gt
 &lt;p&gt;Du siehst es. Er bemerkt es garnicht, weil er noch am erzählen ist.&lt;/p&gt;
 
 &lt;&lt;dialog&gt;&gt;
-&lt;p&gt;„Ähm&quot;, machst du, verlegen, und deutest auf seine Faust. „Das … das war meins.&quot;&lt;/p&gt;
+&lt;p&gt;„Ähm&quot;, machst du verlegen und deutest auf seine Faust. „Das … das war meins.&quot;&lt;/p&gt;
 &lt;p&gt;Heinrich hält inne, sieht dich an, als hättest du ihm eine ungeheure Beleidigung ins Gesicht geschleudert.&lt;/p&gt;
 &lt;p&gt;„Nein, ich nehm doch nicht dein Kupfer! Bist du dumm, ich hab mein eigenes.&quot;&lt;/p&gt;
 &lt;p&gt;Er hält deinen Blick. Das Kupferstück blitzt deutlich sichtbar zwischen seinen Fingern.&lt;/p&gt;
 &lt;p&gt;„Hab ich dein Kupfer genommen?&quot; fragt er verdutzt.&lt;/p&gt;
 &lt;p&gt;Eine Pause. Das halbe Lager sieht her.&lt;/p&gt;
-&lt;p&gt;„Nein!&quot; Ist er sich sicher.&lt;/p&gt;
+&lt;p&gt;„Nein!&quot; Er nickt, als wollte er sich selbst überzeugen.&lt;/p&gt;
 &lt;p&gt;Noch eine Pause. Das Kupfer ist immer noch da, für jeden zu sehen.&lt;/p&gt;
-&lt;p&gt;„… Wirklich?&quot; fragt er nach.&lt;/p&gt;
+&lt;p&gt;„… Wirklich?&quot; fragt er schließlich leise nach.&lt;/p&gt;
 &lt;&lt;/dialog&gt;&gt;
 
 &lt;p&gt;Einen Herzschlag lang hält die Stille. Dann bricht das Lager in brüllendes Gelächter aus. Am Rand des Feuers
@@ -19792,7 +20546,7 @@ würde ihm folgen. Und ich glaube, genau das ist der Punkt.&lt;/p&gt;
 &lt;&lt;/gedanke&gt;&gt;
 
 &lt;&lt;trenner&gt;&gt;
-[[Die Nacht klingt aus-&gt;Besuch_S3_Ausklang]]</tw-passagedata><tw-passagedata pid="403" name="Besuch_S3_Ausklang" tags="nach_Kap2_morgen" position="350,5100" size="100,100">&lt;&lt;scene&gt;&gt;
+[[Die Nacht klingt aus-&gt;Besuch_S3_Ausklang]]</tw-passagedata><tw-passagedata pid="404" name="Besuch_S3_Ausklang" tags="nach_Kap2_morgen" position="475,5100" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Die Feuer sinken in sich zusammen, und mit ihnen die Nacht. Die Becher werden leerer, die Stimmen weniger, und
 einer nach dem anderen rollt sich in seine Decke oder verschwindet zwischen den Zelten. Als du dich auf den Rückweg
 machst, liegt schon Reif auf dem gestampften Boden, und die Kälte, die die Feuer den Abend über in Schach gehalten
@@ -19818,7 +20572,7 @@ Weg, bis die grauen Mauern der Akademie ihn schlucken.&lt;/p&gt;
 alles ist, wenn es hart wird.&lt;/p&gt;
 &lt;&lt;/gedanke&gt;&gt;
 
-&lt;&lt;weiterImTag &quot;Zurück auf die Stube, ehe der Morgen graut&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="404" name="PassageHeader" tags="header" position="550,0" size="100,100">&lt;&lt;run setup.migrateNpcImages()&gt;&gt;
+&lt;&lt;weiterImTag &quot;Zurück auf die Stube, ehe der Morgen graut&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="405" name="PassageHeader" tags="header" position="550,0" size="100,100">&lt;&lt;run setup.migrateNpcImages()&gt;&gt;
 &lt;&lt;if !setup.isJournalBlocked()&gt;&gt;
 &lt;div id=&quot;hud-bar&quot;&gt;
     &lt;div class=&quot;hud-left&quot;&gt;
@@ -19845,7 +20599,7 @@ alles ist, wenn es hart wird.&lt;/p&gt;
 &lt;/div&gt;
 
 &lt;hr class=&quot;hud-divider&quot;&gt;
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="405" name="journalAnsicht" tags="journal" position="700,0" size="100,100">&lt;div id=&quot;passage-journalansicht&quot; class=&quot;passage journalansicht&quot;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="406" name="journalAnsicht" tags="journal" position="700,0" size="100,100">&lt;div id=&quot;passage-journalansicht&quot; class=&quot;passage journalansicht&quot;&gt;
 
     &lt;h2&gt;📋 $player.name&#39;s Notizbuch&lt;/h2&gt;
 
@@ -19901,44 +20655,29 @@ alles ist, wenn es hart wird.&lt;/p&gt;
         &lt;&lt;/link&gt;&gt;
     &lt;/span&gt;
 
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="406" name="Notizbuch_Ermittlung" tags="" position="1125,0" size="100,100">&lt;h2&gt;🔍 Ermittlungstagebuch&lt;/h2&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="407" name="Notizbuch_Ermittlung" tags="" position="1125,0" size="100,100">&lt;h2&gt;🔍 Ermittlungstagebuch&lt;/h2&gt;
 
-&lt;&lt;= setup.renderErmittlungstagebuch() &gt;&gt;
+&lt;&lt;= setup.renderErmittlungsakte() &gt;&gt;
 &lt;span class=&quot;weiter-link&quot;&gt;
     &lt;&lt;link &quot;Übersicht&quot;&gt;&gt;&lt;&lt;run setup.notizbuch(&quot;journalAnsicht&quot;)&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;/span&gt;</tw-passagedata><tw-passagedata pid="407" name="Notizbuch_Geruechte" tags="" position="1025,0" size="100,100">&lt;h2&gt;🗣️ Gerüchte&lt;/h2&gt;
+&lt;/span&gt;</tw-passagedata><tw-passagedata pid="408" name="Notizbuch_Geruechte" tags="" position="1025,0" size="100,100">&lt;h2&gt;🗣️ Gerüchte&lt;/h2&gt;
 
 &lt;&lt;= setup.renderRumors() &gt;&gt;
 &lt;span class=&quot;weiter-link&quot;&gt;
     &lt;&lt;link &quot;Übersicht&quot;&gt;&gt;&lt;&lt;run setup.notizbuch(&quot;journalAnsicht&quot;)&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;/span&gt;</tw-passagedata><tw-passagedata pid="408" name="Notizbuch_Kameraden" tags="" position="925,0" size="100,100">&lt;h2&gt;📖 Kameraden &amp;amp; Bekannte — im Detail&lt;/h2&gt;
+&lt;/span&gt;</tw-passagedata><tw-passagedata pid="409" name="Notizbuch_Kameraden" tags="" position="925,0" size="100,100">&lt;h2&gt;📖 Kameraden &amp;amp; Bekannte — im Detail&lt;/h2&gt;
 
 &lt;&lt;= setup.renderRealPlayers() &gt;&gt;
 &lt;span class=&quot;weiter-link&quot;&gt;
     &lt;&lt;link &quot;Übersicht&quot;&gt;&gt;&lt;&lt;run setup.notizbuch(&quot;journalAnsicht&quot;)&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;/span&gt;</tw-passagedata><tw-passagedata pid="409" name="Notizbuch_Personen" tags="" position="825,0" size="100,100">&lt;h2&gt;📖 Personen — im Detail&lt;/h2&gt;
+&lt;/span&gt;</tw-passagedata><tw-passagedata pid="410" name="Notizbuch_Personen" tags="" position="825,0" size="100,100">&lt;h2&gt;📖 Personen — im Detail&lt;/h2&gt;
 
 &lt;&lt;= setup.renderJournal() &gt;&gt;
 &lt;span class=&quot;weiter-link&quot;&gt;
     &lt;&lt;link &quot;Übersicht&quot;&gt;&gt;&lt;&lt;run setup.notizbuch(&quot;journalAnsicht&quot;)&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;/span&gt;</tw-passagedata><tw-passagedata pid="410" name="StoryMenu" tags="" position="400,275" size="100,100">&lt;&lt;set _journalPages = [&quot;journalAnsicht&quot;, &quot;Notizbuch_Personen&quot;, &quot;Notizbuch_Kameraden&quot;, &quot;Notizbuch_Geruechte&quot;, &quot;Notizbuch_Ermittlung&quot;]&gt;&gt;
-
-&lt;&lt;if not _journalPages.includes(passage())&gt;&gt;
-
-            &lt;&lt;if $world.kapitel1_gesperrt === true and setup.ermittlungBekannt()&gt;&gt;
-                        &lt;&lt;link &quot;📖 Ermittlungsstand&quot; &quot;Notizbuch_Ermittlung&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
-             &lt;&lt;/if&gt;&gt;
-	
-&lt;&lt;else&gt;&gt;
-	&lt;&lt;if $world.kapitel1_gesperrt === true and setup.ermittlungBekannt()&gt;&gt;
-        &lt;&lt;link &quot;📖 Ermittlungsstand&quot;&gt;&gt;&lt;&lt;run setup.notizbuch(&quot;Notizbuch_Ermittlung&quot;)&gt;&gt;&lt;&lt;/link&gt;&gt;
-	&lt;&lt;/if&gt;&gt;
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="411" name="StorySubtitle" tags="" position="250,275" size="100,100">&lt;&lt;if $player.flags.jareknarbe === undefined&gt;&gt;
+&lt;/span&gt;</tw-passagedata><tw-passagedata pid="411" name="StoryMenu" tags="" position="400,275" size="100,100"></tw-passagedata><tw-passagedata pid="412" name="StorySubtitle" tags="" position="250,275" size="100,100">&lt;&lt;if $player.flags.jareknarbe === undefined&gt;&gt;
     &lt;&lt;set $player.flags.jareknarbe = false&gt;&gt;
 &lt;&lt;/if&gt;&gt;
-
-
-
 
 &lt;&lt;if $showLogo&gt;&gt;
     &lt;&lt;if $world.kapitel1_gesperrt === false&gt;&gt;
@@ -19968,7 +20707,7 @@ alles ist, wenn es hart wird.&lt;/p&gt;
         
         &lt;span class=&quot;hud-item hud-kondition&quot;&gt;
             &lt;&lt;= setup.getKonditionLabel($player.condition) &gt;&gt;
-        &lt;/span&gt;</tw-passagedata><tw-passagedata pid="412" name="DevLoginBak" tags="" position="1100,4150" size="100,100">&lt;h2&gt;Developer Login&lt;/h2&gt;
+        &lt;/span&gt;</tw-passagedata><tw-passagedata pid="413" name="DevLoginBak" tags="" position="1100,4150" size="100,100">&lt;h2&gt;Developer Login&lt;/h2&gt;
 
 &lt;input id=&quot;devpw&quot; type=&quot;password&quot;&gt;
 
@@ -19978,7 +20717,7 @@ alles ist, wenn es hart wird.&lt;/p&gt;
 			? Engine.play(&quot;DEBUG_Kap2_Setup&quot;)
 			: alert(&quot;Falsches Passwort.&quot;)
 	)&gt;&gt;
-&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="413" name="DevLogin" tags="" position="1100,4150" size="100,100">&lt;h2&gt;Developer Login&lt;/h2&gt;
+&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="414" name="DevLogin" tags="" position="1100,4150" size="100,100">&lt;h2&gt;Developer Login&lt;/h2&gt;
 
 &lt;form id=&quot;dev-login-form&quot;&gt;
     &lt;input id=&quot;devpw&quot; type=&quot;password&quot; autocomplete=&quot;off&quot;&gt;
@@ -20005,7 +20744,7 @@ alles ist, wenn es hart wird.&lt;/p&gt;
         $(&quot;#devpw&quot;).focus();
     }, 0);
 })();
-&lt;/script&gt;</tw-passagedata><tw-passagedata pid="414" name="DEBUG_Kap2_Setup" tags="" position="1375,4250" size="100,100">&lt;&lt;run setup.ermInit()&gt;&gt;
+&lt;/script&gt;</tw-passagedata><tw-passagedata pid="415" name="DEBUG_Kap2_Setup" tags="" position="1375,4250" size="100,100">&lt;&lt;run setup.ermInit()&gt;&gt;
 
 &lt;&lt;if not $world.flags&gt;&gt;
     &lt;&lt;set $world.flags = {}&gt;&gt;
@@ -20375,7 +21114,7 @@ alles ist, wenn es hart wird.&lt;/p&gt;
         [[Biwag -&gt; Biwag_Drill]]
         &lt;span class=&quot;subtext&quot;&gt;— Direkt zum Biwag-Test.&lt;/span&gt;
     &lt;/li&gt;
-&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="415" name="DEBUG_Kap2_Setupbak" tags="" position="1375,4250" size="100,100">&lt;&lt;run setup.ermInit()&gt;&gt;
+&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="416" name="DEBUG_Kap2_Setupbak" tags="" position="1375,4250" size="100,100">&lt;&lt;run setup.ermInit()&gt;&gt;
 &lt;&lt;if not $world.flags&gt;&gt;&lt;&lt;set $world.flags = {}&gt;&gt;&lt;&lt;/if&gt;&gt;
 
 
@@ -20468,7 +21207,7 @@ Ermittlung frühestens Tag: &lt;b&gt;&lt;&lt;= $world.ermittlung.fruehestens_tag
 &lt;h4&gt;Starten&lt;/h4&gt;
 [[Regulär: Kapitel-2-Intro (mit Probe &amp; Waffenwahl)|Kap2_Intro]]
 [[Direkt in den Tagesloop (Spezialisierung oben wählen!)|Kap2_Tagesstart]]
-[[Biwag|Biwag_Drill]]</tw-passagedata><tw-passagedata pid="416" name="DEBUG_Menu" tags="" position="100,300" size="100,100">&lt;h3&gt;— DEBUG / Quest-Sprungbrett —&lt;/h3&gt;
+[[Biwag|Biwag_Drill]]</tw-passagedata><tw-passagedata pid="417" name="DEBUG_Menu" tags="" position="100,300" size="100,100">&lt;h3&gt;— DEBUG / Quest-Sprungbrett —&lt;/h3&gt;
 
 &#39;&#39;Jarek-Kette:&#39;&#39;
 &lt;&lt;link &quot;Setup S1 (Vorlesung)&quot;&gt;&gt;
@@ -20525,7 +21264,7 @@ Ermittlung frühestens Tag: &lt;b&gt;&lt;&lt;= $world.ermittlung.fruehestens_tag
 &lt;&lt;link &quot;↻ Flags zurücksetzen&quot;&gt;&gt;
   &lt;&lt;set $npc.jarek.memory.flags = {}&gt;&gt;
   &lt;&lt;goto &quot;DEBUG_Menu&quot;&gt;&gt;
-&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="417" name="Debugger Ermittlung" tags="" position="950,4925" size="100,100">&lt;&lt;if not $world&gt;&gt;&lt;&lt;set $world = {}&gt;&gt;&lt;&lt;/if&gt;&gt;
+&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="418" name="Debugger Ermittlung" tags="" position="950,4925" size="100,100">&lt;&lt;if not $world&gt;&gt;&lt;&lt;set $world = {}&gt;&gt;&lt;&lt;/if&gt;&gt;
 &lt;&lt;if not $world.flags&gt;&gt;&lt;&lt;set $world.flags = {}&gt;&gt;&lt;&lt;/if&gt;&gt;
 &lt;&lt;if not $edu&gt;&gt;&lt;&lt;set $edu = {}&gt;&gt;&lt;&lt;/if&gt;&gt;
 
@@ -20632,7 +21371,7 @@ Ermittlung frühestens Tag: &lt;b&gt;&lt;&lt;= $world.ermittlung.fruehestens_tag
 
 &lt;div id=&quot;archiv-status&quot;&gt;&lt;/div&gt;
 
-&lt;div id=&quot;weiter&quot;&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="418" name="DEBUG_Kap2_Endgame" tags="" position="975,5225" size="100,100">&lt;&lt;set $world.day to 406&gt;&gt;
+&lt;div id=&quot;weiter&quot;&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="419" name="DEBUG_Kap2_Endgame" tags="" position="1100,5225" size="100,100">&lt;&lt;set $world.day to 406&gt;&gt;
 &lt;&lt;if not $world.ermittlung&gt;&gt;&lt;&lt;set $world.ermittlung to {flags:{}, spuren:[], spurenText:{}, verdacht:{}}&gt;&gt;&lt;&lt;/if&gt;&gt;
 &lt;&lt;if not $world.ermittlung.flags&gt;&gt;&lt;&lt;set $world.ermittlung.flags to {}&gt;&gt;&lt;&lt;/if&gt;&gt;
 &lt;&lt;set $world.ermittlung.flags.s9_done to true&gt;&gt;
@@ -20649,7 +21388,7 @@ Kapitel2_Ende ist damit feuerbereit (day ≥ biwagDoneDay+6).&lt;/p&gt;
 
 &lt;&lt;link &quot;→ Duell-Ausgang umschalten&quot;&gt;&gt;&lt;&lt;goto &quot;DEBUG_Duell&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 [[→ Zum Abend (Traum + Karla testen)|Kap2_Abend]]
-[[→ Zum Tag (Kapitel2_Ende / Marschappell)|Kap2_Tagesstart]]</tw-passagedata><tw-passagedata pid="419" name="DEBUG_Duell" tags="" position="1100,5225" size="100,100">&lt;p&gt;&lt;b&gt;Duell-Ausgang setzen&lt;/b&gt; (Flags + Karla-Memory):&lt;/p&gt;
+[[→ Zum Tag (Kapitel2_Ende / Marschappell)|Kap2_Tagesstart]]</tw-passagedata><tw-passagedata pid="420" name="DEBUG_Duell" tags="" position="1225,5225" size="100,100">&lt;p&gt;&lt;b&gt;Duell-Ausgang setzen&lt;/b&gt; (Flags + Karla-Memory):&lt;/p&gt;
 &lt;&lt;link &quot;A – versöhnt&quot;&gt;&gt;&lt;&lt;= setup.debugDuellSetzen(&quot;A_versoehnt&quot;)&gt;&gt;&lt;&lt;/link&gt;&gt; ·
 &lt;&lt;link &quot;A – kühl&quot;&gt;&gt;&lt;&lt;= setup.debugDuellSetzen(&quot;A_kuehl&quot;)&gt;&gt;&lt;&lt;/link&gt;&gt; ·
 &lt;&lt;link &quot;B – glimpflich&quot;&gt;&gt;&lt;&lt;= setup.debugDuellSetzen(&quot;B&quot;)&gt;&gt;&lt;&lt;/link&gt;&gt; ·
