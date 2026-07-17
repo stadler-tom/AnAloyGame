@@ -1169,3 +1169,11 @@
 #ui-dialog-body.notizbuch-dialog details.journal-subgroup:not([open]) > summary.journal-subgroup-title::after {
     transform: rotate(-90deg);
 }
+
+.biwag-log { list-style: none; padding-left: 0; margin: .3em 0; }
+.biwag-log li { padding: 3px 0 3px 6px; border-left: 3px solid transparent; }
+.biwag-log-gut       { border-left-color: #4d7d3a; }
+.biwag-log-schlecht  { border-left-color: #8a2b20; }
+.biwag-log-mark      { display: inline-block; width: 1.2em; font-weight: bold; }
+.biwag-log-gut .biwag-log-mark      { color: #4d7d3a; }
+.biwag-log-schlecht .biwag-log-mark { color: #8a2b20; }
