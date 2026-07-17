@@ -141,7 +141,13 @@ setup.wochentage = ["Manda", "Irda", "Migga", "Pfinsta", "Freida", "Samsda", "Su
 
 
 setup.datumAnzeige = function () {
-    var d = Math.max(1, State.variables.world.day);
+    var w = State.variables.world;
+    if(w.flags.doneFirstWeeks === true){
+        var d = Math.max(1, State.variables.world.day +21);
+    }       
+    else{
+        var d = Math.max(1, State.variables.world.day);
+    }
     var jahr = Math.floor((d - 1) / 365) + 1;
     var tagImJahr = ((d - 1) % 365) + 1;
     var woche = Math.ceil(tagImJahr / 3);   // +1 alle 3 Tage

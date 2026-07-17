@@ -30,59 +30,34 @@
 <</if>>
 
 :: journalAnsicht [journal] {"position":"700,0","size":"100,100"}
-
-
 <div id="passage-journalansicht" class="passage journalansicht">
 
     <h2>📋 $player.name's Notizbuch</h2>
 
-   <details class="journal-section" open>
+    <<= setup.notizbuchTabs("journalAnsicht") >>
+
+    <details class="journal-section" open>
         <summary>Debug</summary>
-        <div id="player-table"> 
-        <p>Passagennamen einblenden?</p>
-        <span id="debug-toggle"><<checkbox "$world.debug" false true autocheck>></span> Titel für Debug einblenden
+        <div id="player-table">
+            <p>Passagennamen einblenden?</p>
+            <span id="debug-toggle"><<checkbox "$world.debug" false true autocheck>></span> Titel für Debug einblenden
         </div>
     </details>
 
     <details class="journal-section" open>
         <summary>Werte</summary>
-        <div id="player-table">
-            <<= setup.renderPlayerTable() >>
-        </div>
+        <div id="player-table"><<= setup.renderPlayerTable() >></div>
     </details>
 
     <details class="journal-section" open>
         <summary>Personen in der Militärakademie</summary>
         <<= setup.renderJournalCompact() >>
-        <span class="weiter-link">
-            <<link "Personen Details">><<run setup.notizbuch("Notizbuch_Personen")>><</link>>
-        </span>
     </details>
 
     <details class="journal-section" open>
         <summary>Kameraden &amp; Bekannte</summary>
         <<= setup.renderRealPlayersCompact() >>
-        <span class="weiter-link">
-            <<link "Kameraden Details">><<run setup.notizbuch("Notizbuch_Kameraden")>><</link>>
-        </span>
     </details>
-
-    <details class="journal-section" open>
-        <summary>Gerüchte</summary>
-        <span class="weiter-link">
-            <<link "Gerüchte Details">><<run setup.notizbuch("Notizbuch_Geruechte")>><</link>>
-        </span>
-    </details>
-
-    <<if setup.ermittlungBekannt()>>
-    <details class="journal-section" open>
-        <summary>Ermittlung</summary>
-        <span class="weiter-link">
-            <<link "Ermittlungs Details">><<run setup.notizbuch("Notizbuch_Ermittlung")>><</link>>
-        </span>
-    </details>
-    <</if>>
-
 
     <span class="weiter-link">
         <<link "🛏️ Zurück auf die Stube">>
@@ -92,53 +67,76 @@
             <<else>>
                 <<goto "Kap2_Abend">>
             <</if>>
-            
         <</link>>
     </span>
+
+    <div class="nb-totop"><<link "↑ Nach oben">><<run $('#ui-dialog-body').scrollTop(0)>><</link>></div>
 
 </div>
 
 
-:: Notizbuch_Ermittlung {"position":"1125,0","size":"100,100"}
-<h2>🔍 Ermittlungstagebuch</h2>
+:: Notizbuch_Personen {"position":"825,0","size":"100,100"}
+<h2>📖 Personen — im Detail</h2>
+<<= setup.notizbuchTabs("Notizbuch_Personen") >>
+<span class="nb-back"><<link "← Zurück zur Übersicht">><<run setup.notizbuch("journalAnsicht")>><</link>></span>
 
-<<= setup.renderErmittlungsakte() >>
-<span class="weiter-link">
-    <<link "Übersicht">><<run setup.notizbuch("journalAnsicht")>><</link>>
-</span>
+<<= setup.renderJournal() >>
 
-
-:: Notizbuch_Geruechte {"position":"1025,0","size":"100,100"}
-<h2>🗣️ Gerüchte</h2>
-
-<<= setup.renderRumors() >>
-<span class="weiter-link">
-    <<link "Übersicht">><<run setup.notizbuch("journalAnsicht")>><</link>>
-</span>
+<span class="nb-back"><<link "← Zurück zur Übersicht">><<run setup.notizbuch("journalAnsicht")>><</link>></span>
+<div class="nb-totop"><<link "↑ Nach oben">><<run $('#ui-dialog-body').scrollTop(0)>><</link>></div>
 
 
 :: Notizbuch_Kameraden {"position":"925,0","size":"100,100"}
 <h2>📖 Kameraden &amp; Bekannte — im Detail</h2>
+<<= setup.notizbuchTabs("Notizbuch_Kameraden") >>
+<span class="nb-back"><<link "← Zurück zur Übersicht">><<run setup.notizbuch("journalAnsicht")>><</link>></span>
 
 <<= setup.renderRealPlayers() >>
-<span class="weiter-link">
-    <<link "Übersicht">><<run setup.notizbuch("journalAnsicht")>><</link>>
-</span>
+
+<span class="nb-back"><<link "← Zurück zur Übersicht">><<run setup.notizbuch("journalAnsicht")>><</link>></span>
+<div class="nb-totop"><<link "↑ Nach oben">><<run $('#ui-dialog-body').scrollTop(0)>><</link>></div>
 
 
-:: Notizbuch_Personen {"position":"825,0","size":"100,100"}
-<h2>📖 Personen — im Detail</h2>
+:: Notizbuch_Geruechte {"position":"1025,0","size":"100,100"}
+<h2>🗣️ Gerüchte</h2>
+<<= setup.notizbuchTabs("Notizbuch_Geruechte") >>
+<span class="nb-back"><<link "← Zurück zur Übersicht">><<run setup.notizbuch("journalAnsicht")>><</link>></span>
 
-<<= setup.renderJournal() >>
-<span class="weiter-link">
-    <<link "Übersicht">><<run setup.notizbuch("journalAnsicht")>><</link>>
-</span>
+<<= setup.renderRumors() >>
+
+<span class="nb-back"><<link "← Zurück zur Übersicht">><<run setup.notizbuch("journalAnsicht")>><</link>></span>
+<div class="nb-totop"><<link "↑ Nach oben">><<run $('#ui-dialog-body').scrollTop(0)>><</link>></div>
+
+
+:: Notizbuch_Ermittlung {"position":"1125,0","size":"100,100"}
+<h2>🔍 Ermittlungstagebuch</h2>
+<<= setup.notizbuchTabs("Notizbuch_Ermittlung") >>
+<span class="nb-back"><<link "← Zurück zur Übersicht">><<run setup.notizbuch("journalAnsicht")>><</link>></span>
+
+<<= setup.renderErmittlungsakte() >>
+
+<span class="nb-back"><<link "← Zurück zur Übersicht">><<run setup.notizbuch("journalAnsicht")>><</link>></span>
+<div class="nb-totop"><<link "↑ Nach oben">><<run $('#ui-dialog-body').scrollTop(0)>><</link>></div>
+
+
+
+
+
+
 
 
 
 :: StoryMenu {"position":"400,275","size":"100,100"}
+<<if not setup.isJournalBlocked()>>
+    <<link "Übersicht">><<run setup.notizbuch("journalAnsicht")>><</link>>
+    <<link "In der Akkademie">><<run setup.notizbuch("Notizbuch_Personen")>><</link>>
+    <<link "Leute von Außen">><<run setup.notizbuch("Notizbuch_Kameraden")>><</link>>
+    <<link "Gerüchte">><<run setup.notizbuch("Notizbuch_Geruechte")>><</link>>
+    <<if setup.ermittlungBekannt()>>
+        <<link "🔍 Ermittlung">><<run setup.notizbuch("Notizbuch_Ermittlung")>><</link>>
+    <</if>>
+<</if>>
 
- 
 
 
 :: StorySubtitle {"position":"250,275","size":"100,100"}
@@ -165,6 +163,7 @@
 <div class='story-title-box'><img src='images/Thomas_Kap0.png' alt='An Aloy Story'></div>
 <</if>>
 
+<hr class="subtitle-divider">
 		<span class="hud-item hud-money">
             <<link "💰" "DevLogin">>
             <</link>>
@@ -177,10 +176,76 @@
         </span>
 
 
+<hr class="subtitle-divider">
+
+<<if not $world.musik>><<set $world.musik to { an: false, vol: 0.4, i: 0 }>><</if>>
+
+<div id="musik-box">
+    <<link "⏮">><<run setup.musikPrev()>><</link>>
+    <<link "♫">>
+    <<run setup.musikToggle()>>
+    <<replace "#musik-status">><<= $world.musik.an ? "läuft" : "aus" >><</replace>>
+<</link>>
+    <<link "⏭">><<run setup.musikNext()>><</link>>
+    <<link "🔊">><<run $('#musik-regler-box').toggle()>><</link>>
+    <span id="musik-status"><<= $world.musik.an ? "läuft" : "aus" >></span>
+
+    <div id="musik-regler-box" style="display:none; margin-top:.4em;">
+        <input id="musik-regler" type="range" min="0" max="100" @value="Math.round($world.musik.vol * 100)">
+        <span id="musik-vol"><<= Math.round($world.musik.vol * 100) >>%</span>
+    </div>
+</div>
+
+<hr class="subtitle-divider">
 
 
 
 
+:: Patchnotes
+<h2>📜 Neuigkeiten & Änderungen</h2>
+
+
+<h3>Notizbuch</h3>
+<ul>
+<li>Komplett neuer Feldbuch-Look: Ledereinband, Pergament, lesbare Schrift.</li>
+<li>Reiter statt Endlos-Scrollen, „Nach oben"-Knopf und Zurück-Links oben wie unten.</li>
+<li>Personen jetzt nach Fraktion sortiert: Akademie, 84. Banner, La Familia, Kronmark, Imperium.</li>
+<li>Überarbeitete NPC-Karten mit größeren Porträts und klarem Rahmen.</li>
+<li>Gerüchte nach Kategorie geordnet: Lagerklatsch, Landesinfos, Knaller, Sonstiges.</li>
+<li>Neue Ermittlungsakte.</li>
+</ul>
+
+<h3>Neue Charaktere & Begegnungen</h3>
+
+<h3>Ehrlichkeit — neues System</h3>
+<ul>
+<li>Deine Ehrlichkeit verändert sich durch viele Entscheidungen und beeinflusst Proben.</li>
+<li>Skrupellosigkeit macht dich zum besseren Dieb — hat aber ihren Preis.</li>
+</ul>
+
+<h3>Sidequests Kapitel 2 erweitert</h3>
+
+<h3>Stadt</h3>
+<ul>
+<li>Fuhrmannsviertel: ehrliche Lastenarbeit, ein Reisegerät-Markt (Ausrüstung verbessert den Gattungsdrill) und Informationen gegen Kupfer.</li>
+</ul>
+
+<h3>Oberfläche & Musik</h3>
+<ul>
+<li>Ambient-Musik: zehn Stücke im Loop, mit Play/Pause, Vor/Zurück und Lautstärke in der Sidebar. Startet zufällig, damit kein Stück verbrennt.</li>
+<li>Neue HUD-Leiste: Kondition als Balken, Geld als Münzen, Wetter — sauberes Layout ohne Umbruch.</li>
+<li>Journal-Reiter und die Menü-Knöpfe im Mittelalter-Stil.</li>
+</ul>
+
+<h3>Unter der Haube</h3>
+<ul>
+<li>Neues Speicherstand-System: alte Spielstände werden automatisch mit neuen Inhalten nachgerüstet.</li>
+<li>Zahlreiche Fehlerbehebungen an Szenen, Dialogen und Anzeige.</li>
+</ul>
+
+<div class="patchnotes-schliessen">
+<<link "Verstanden">><<run Dialog.close()>><</link>>
+</div>
 
 
 

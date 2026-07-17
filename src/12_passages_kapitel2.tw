@@ -1,8 +1,8 @@
 :: Kap2_Ausbildung {"position":"1700,4550","size":"100,100"}
 <<silently>>
-<<set $world.day += 21>>
-<<run setup.ermInit()>>
-<<set $world.ermittlung.fruehestens_tag to $world.day + 3>>
+    <<run setup.ermInit()>>
+    <<set $world.ermittlung.fruehestens_tag to $world.day + 1>>
+	<<set $world.flags.doneFirstWeeks to true>>
 <</silently>>
 
 <<scene>>Die ersten Wochen der Gattungsausbildung verschwimmen zu einem einzigen langen Tag aus Wiederholung. Neue Handgriffe, neue Kommandos, neue Schwielen an Stellen, an denen du schon keine mehr für möglich gehieltest.<</scene>>

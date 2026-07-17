@@ -43,6 +43,7 @@
 <</if>>
 
 <<set _spec = $player.spezialisierung>>
+<<set $npc.bronko.known to true>><<set $npc.pavel.known to true>><<set $npc.zdenka.known to true>>
 
 <<scene>>
 <p>Der Morgen riecht nach Graupenbrei, Zwiebeln, nassem Wollstoff und kalter Asche.</p>
@@ -1627,13 +1628,27 @@ kalter Zug.</p>
 	<<default>><p>Doch was zwischen dir und den Beteiligten steht, trübt selbst diesen Ausgang.</p>
 	<</switch>>
 <<case "B">>
+	<<if $world.duell.outcome isnot "B_bronko_reue">>
+		<<set $npc.zdenka.memory.flags.weggegangen to true>>
+		<<set $npc.zdenka.memory.flags.vermittelt to true>>
+	<</if>>
 	<p>Es floss Blut, aber keiner starb. Vor der Akademie steht Disziplinarisches — ein Duell bleibt ein Duell —,
 	vor Rabenfurt die alte Fehde, unverändert, nur um eine Wunde reicher.</p>
 	<<switch $world.duell.outcome>>
-	<<case "B_bronko_reue">><p>Was Pavel in Bronkos Gesicht sah, lässt ihn nicht los. Sechs Tage später fragt er zum ersten Mal selbst nach — leise, misstrauisch, aber er fragt. Ein Riss im Panzer.</p>
-	<<case "B_pavel_verrat">><p>Pavel weiß jetzt: Marja lebt, sie trägt Bronkos Kind. Aus der alten Fehde wird eine Jagd — er sinnt darauf, 
-		die Schande mit Blut zu tilgen, und Marja muss untertauchen, ehe er ihre Spur findet. Bronko und Zdenka verachten dich für das, was du verraten hast.</p>
-	<<default>><p>Die Fehde brennt weiter, jetzt mit frischem Blut als Brennstoff. Keine Erkenntnis, kein Frieden — nur zwei Familien, die sich noch tiefer eingraben.</p>
+	<<case "B_bronko_reue">>
+		<p>Was Pavel in Bronkos Gesicht sah, lässt ihn nicht los. Sechs Tage später fragt er zum ersten Mal selbst nach —
+		leise, misstrauisch, aber er fragt. Ein Riss im Panzer. Zdenka bleibt an der Akademie; solange die Hoffnung keimt,
+		will sie in der Nähe sein. Es könnte der Anfang von etwas sehr Gutem sein.</p>
+	<<case "B_pavel_verrat">>
+		<p>Dass Marja schwanger ist, weiß Pavel längst — deshalb hat seine Familie sie aus Rabenfurt fortgeschafft. Doch der
+		Geburtstermin rückt näher, und mit ihm die endgültige Schande: ein Kind, gezeugt von einem Kulitcka. Was du ihm
+		verraten hast — dass sie lebt, dass sie Bronko nicht verflucht — macht aus seiner Trauer eine Jagd.
+		Zdenka quittiert den Dienst und geht nach Rabenfurt, um zu retten, was zu
+		retten ist — und verachtet dich für das, was du getan hast, genau wie es Bronko tut.</p>
+	<<default>>
+		<p>Die Fehde brennt weiter, jetzt mit frischem Blut als Brennstoff. Keine Erkenntnis, kein Frieden — nur zwei
+		Familien, die sich noch tiefer eingraben. Zdenka legt Barett und Gambeson ab und kehrt nach Rabenfurt zurück, um zu
+		vermitteln, ehe noch mehr Blut fließt.</p>
 	<</switch>>
 <<case "C">>
 	<p>Der Überlebende steht vor dem Malefizgericht. In Rabenfurt sind die Familien in offener, blutiger
@@ -1641,15 +1656,20 @@ kalter Zug.</p>
 	die Familienoberhäupter werden malefizgerichtlich belangt. Das Wort „Umsiedlung“ steht im Raum, um den Frieden
 	zu erzwingen.</p>
 	<<if $world.duell.flags.bronko_tot>>
+		<<set $npc.bronko.memory.flags.tot to true>>
+        <<set $npc.pavel.memory.flags.eingesperrt to true>>
 		<p>Marja hat einen letzten Abschiedsbrief an Zdenka geschickt und die Flucht nach Tiafunt gewagt — sie wird
 		ein Schiff besteigen, irgendeines, egal wohin, nur weg von Aloy, den Pipovics und den Kulitckas.</p>
 	<<else>>
+		<<set $npc.bronko.memory.flags.eingesperrt to true>>
+        <<set $npc.pavel.memory.flags.tot to true>>
 		<p>Zdenka ist die Einzige, die bezeugen kann, dass Bronko beim Drill Schläge zurückhielt und das Duell nicht
 		von ihm ausging. Entlastet sie ihn, rettet sie ihn vor dem Strick — und wird bei den Pipovics zur Verräterin.
 		Schweigt sie, trägt sie Mitschuld an seinem Tod.</p>
 	<</if>>
 	<p>Zdenka quittiert den Dienst an der Akademie und kehrt nach Rabenfurt zurück, nicht als Soldatin, sondern
-	als Trümmerfrau.</p>
+	als Trümmerfrau. Und versucht zu reparieren was noch zu reparieren ist und zu verhindern, dass Rabenfurth in einer tödlichen Fehde ausblutet.</p>
+	<<set $npc.zdenka.memory.flags.weggegangen to true>>
 <</switch>>
 
 <<if $world.duell.zdenka_trust lte -2>>

@@ -6,6 +6,32 @@ setup.reconcileState = function () {
     if (V.npc    && setup.npcDefaults)    setup.fillDefaults(V.npc,    setup.npcDefaults);
 };
 
+setup.migriereJarekBruch = function () {
+    var V = State.variables;
+    var j = V.npc && V.npc.jarek;
+    if (j && j.memory.flags.s6_done === true && !j.memory.flags.bruchNachgezogen) {
+        j.trust = false;
+        j.affection = -20;                       // Tiefstwert direkt, kein -40-Modifier
+        j.memory.flags.bruchNachgezogen = true;  // verhindert Wiederholung
+    }
+};
+setup.migriereEnttarnung = function () {
+    var npc = State.variables.npc;
+    if (!npc) return;
+
+    // Jarek: Bruch schon passiert (verschwunden) -> enttarnt nachziehen
+    if (npc.jarek && npc.jarek.memory.flags.verschwunden && !npc.jarek.memory.flags.enttarnt) {
+        npc.jarek.memory.flags.enttarnt = true;
+    }
+
+    // Oren: Ermittlung abgeschlossen / überführt -> enttarnt nachziehen
+    var e = State.variables.world.ermittlung;
+    if (npc.orenmalk && !npc.orenmalk.memory.flags.enttarnt
+        && e && e.flags && e.flags.nachspiel_done) {
+        npc.orenmalk.memory.flags.enttarnt = true;
+    }
+};
+
 function _istObjekt(x) { return x !== null && typeof x === "object" && !Array.isArray(x); }
 
 /* Ergänzt in target alle Schlüssel aus defaults, die fehlen. Bestehende Werte bleiben unangetastet. */
@@ -111,6 +137,9 @@ setup.npcDefaults = {
     sergeant: {
         name: "Sergeant",
         image: "images/Sergeant.png",
+        faction: "Akademie",
+        subsubfaction: "Personal",
+        subfaction: null,
         known: false,
         affection: 0,
         trust: false,
@@ -122,6 +151,9 @@ setup.npcDefaults = {
     kurt: {
         name: "Kurt Brasner",
         image: "images/Kurt.png",
+        faction: "Akademie",
+        subsubfaction: "Ausbilder",
+        subfaction: null,
         known: false,
         affection: 0,
         trust: false,
@@ -133,6 +165,9 @@ setup.npcDefaults = {
     schinder: {
         name: "Schinder",
         image: "images/Schinder.png",
+        faction: "Akademie",
+        subsubfaction: "Ausbilder",
+        subfaction: null,
         known: false,
         affection: 0,
         trust: false,
@@ -144,6 +179,9 @@ setup.npcDefaults = {
     hauptmann: {
         name: "Konrad Rindler",
         image: "images/Hauptmann.png",
+        faction: "Akademie",
+        subsubfaction: "Ausbilder",
+        subfaction: null,
         known: false,
         affection: 0,
         trust: false,
@@ -154,6 +192,9 @@ setup.npcDefaults = {
     magister: {
         name: "Magister Cornelius Halm",
         image: "images/Magister.png",
+        faction: "Akademie",
+        subsubfaction: "Ausbilder",
+        subfaction: null,
         known: false,
         affection: 0,
         trust: false,
@@ -177,15 +218,36 @@ setup.npcDefaults = {
     
     orenmalk: {
         name: "Oren Malk",
+        image: "images/Oren.png",
         known: false,
-        faction: "Loyalisten",
+        faction: "Akademie",
+        subsubfaction: "Personal",
+        subfaction: "Loyalisten",
         affection: 0,
         trust: false,
         isRealPlayer: false,
         memory: { flags: {}, events: [] },
         motiv: "",
-        journalEntry: "Schreiber in der Waffenausgabe der Militärakademie zu Ohm – schmal, tintenfleckige Finger, sauber gestutzter Bart, leicht hinkender Gang. Höflich und überkorrekt auf den ersten Blick, doch nervös, aufmerksam und vorsichtig, sobald es um Ausgabelisten, Bestandsmarken oder fehlende Waffen geht."
+        /* orenmalk */
+        journalEntry: [
+            { text: "Schreiber in der Waffenausgabe der Militärakademie zu Ohm – schmal, tintenfleckige Finger, sauber gestutzter Bart, leicht hinkender Gang. Höflich und überkorrekt auf den ersten Blick, doch nervös, sobald es um Ausgabelisten, Bestandsmarken oder fehlende Waffen geht." },
+            { flag: "enttarnt", text: "Oren Malk war mehr als ein nervöser Schreiber. Hinter den frisierten Ausgabelisten steckte kein bloßer Dieb, sondern ein Loyalist, der dem Untergrund Waffen zuschob. Die Bücher logen, weil er es so wollte." }
+        ],
+    },
 
+    bader: {
+        name: "Santonio Flavori",
+        image: "images/Bader.png",
+        known: false,
+        faction: "Akademie",
+        subsubfaction: "Personal",
+        subfaction: null,
+        affection: 0,
+        trust: false,
+        isRealPlayer: false,
+        memory: { flags: {}, events: [] },
+        motiv: "",
+        journalEntry: "Ein Bader mit südländischem Namen und wärmeren Manieren, als man sie im Lager gewohnt ist — geschickte, narbige Hände, ein Lächeln, das leicht kommt, und eine Zunge, die noch leichter läuft. Er flickt dich zusammen und erzählt dir dabei sein halbes Leben. Sein Handwerk versteht er wie kaum ein zweiter, und für einen guten Kerl drückt er auch mal ein Auge zu — sein Kupfer aber nimmt er bei aller Herzlichkeit gern."
     },
 
     /* Echte Spieler */
@@ -364,6 +426,9 @@ setup.npcDefaults = {
         image: "images/Karla_Kap1.png",
         imageKap2: "images/Karla_Kap2.jpg",
         imageVerhaftet: "images/Karla_verhaftet.png",
+        faction: "Akademie",
+        subfaction: null,
+        subsubfaction: "Kamerad",
         known: false,
         affection: 0,
         trust: false,
@@ -387,14 +452,21 @@ setup.npcDefaults = {
         name: "Jarek",
         image: "images/Jarek.png",
         imageKap2: "images/Jarek_Kap2.png",
+        faction: "Akademie",
+        subfaction: "Loyalisten",
+        subsubfaction: "Kamerad",
         known: false,
         affection: 0,
         trust: false,
         isRealPlayer: false,
         memory: { flags: {}, events: [] },
         /* Sichtbares Profil – kein Hinweis auf das Geheimnis */
-        journalEntry: "Schmächtig, ruhig, fällt nicht auf. Hat mir am ersten Abend die Pritsche neben sich angeboten und erklärt, dass er hier wegen des Solds ist – Geld für die Familie daheim. Hält sich aus Streitereien raus und beobachtet mehr als er redet. Niemand nimmt ihn besonders ernst."
-        /*
+        /* jarek */
+        journalEntry: [
+            { text: "Schmächtig, ruhig, fällt nicht auf. Hat mir am ersten Abend die Pritsche neben sich angeboten und erklärt, dass er hier wegen des Solds ist – Geld für die Familie daheim. Hält sich aus Streitereien raus und beobachtet mehr als er redet. Niemand nimmt ihn besonders ernst." },
+            { flag: "enttarnt", text: "Jarek war nie der stille Rekrut, für den ich ihn hielt. Ein Loyalist, von Kindheit an auf eine alte Lüge eingeschworen — und mit dem Beweis in der Hand verschwunden. Was harmlos aussah, war Geduld." }
+        ],
+    /*
             GEHEIMNIS (nicht im Journal – für interne Plotlogik):
             Heimlicher Loyalist, von klein auf indoktriniert.
             Sucht Zugang zum Gründungsarchiv der Akademie in Grodaus.
@@ -405,6 +477,72 @@ setup.npcDefaults = {
             Verbindung zu laufendem Plot: "Loyalisten" (Fraktion im Untergrund)
         */
     },
+    bronko: {
+        name: "Bronko",
+        image: "images/Bronko.png",
+        imageDead: "images/BronkoDead.png",
+        imageLocked: "images/BronkoEingesperrt.png",
+        faction: "Akademie",
+        subfaction: null,
+        subsubfaction: "Kamerad",
+        known: false,
+        affection: 0,
+        trust: false,
+        isRealPlayer: false,
+        memory: { flags: {}, events: [] },
+        /* Sichtbares Profil – kein Hinweis auf das Geheimnis */
+        /* bronko */
+        journalEntry: [
+            { text: "Ein Kulitcka aus Rabenfurt — groß, schweigsam, mit Fäusten wie Schmiedehämmer. Er schlägt zu, wie es von einem Kulitcka erwartet wird, doch in seinem Blick liegt etwas, das nicht zu einem Mann passt, der hassen soll." },
+            { flag: "eingesperrt", text: "Es floss Blut, aber Bronko lebt — und steht nun vor dem Malefizgericht. Aus dem stillen Riesen ist ein Gefangener geworden, und ob ihn jemand vor dem Strick bewahrt, liegt in fremden Händen." },
+            { flag: "tot", text: "Bronko ist tot. Der stille Riese aus Rabenfurt, in dessen Blick etwas lag, das nicht zum Hass passte — gefallen in einem Streit, der nie seiner war. Was er trug, trägt er nun ins Grab." }
+        ],
+    },
+
+    pavel: {
+        name: "Pavel",
+        image: "images/Pavel.png",
+        imageDead: "images/PavelDead.png",
+        imageLocked: "images/PavelEingesperrt.png",
+        faction: "Akademie",
+        subfaction: null,
+        subsubfaction: "Kamerad",
+        known: false,
+        affection: 0,
+        trust: false,
+        isRealPlayer: false,
+        memory: { flags: {}, events: [] },
+        /* Sichtbares Profil – kein Hinweis auf das Geheimnis */
+        /* pavel */
+        journalEntry: [
+            { text: "Ein Pipovic, und er trägt den Namen wie eine geladene Waffe. Schnell mit Worten, schneller mit Zorn — aber unter dem Zorn sitzt eine Trauer, die er keinem zeigt. Er will das Duell. Ob wirklich, weiß vielleicht nicht einmal er selbst." },
+            { flag: "eingesperrt", text: "Pavel lebt, doch der Zorn hat ihn ans Malefizgericht gebracht. Der Name, den er wie eine Waffe trug, wiegt jetzt schwer wie Ketten." },
+            { flag: "tot", text: "Pavel ist tot. Der schnelle Zorn ist verstummt — und die Trauer darunter, die er keinem gezeigt hat, hat nun niemanden mehr, dem er sie zeigen könnte." }
+        ],
+    },
+
+    zdenka: {
+        name: "Zdenka",
+        image: "images/Zdenka.png",
+        imageGone: "images/ZdenkaGone.png",
+        faction: "Akademie",
+        subfaction: null,
+        subsubfaction: "Kamerad",
+        known: false,
+        affection: 0,
+        trust: false,
+        isRealPlayer: false,
+        memory: { flags: {}, events: [] },
+        /* Sichtbares Profil – kein Hinweis auf das Geheimnis */
+        /* zdenka */
+        /* zdenka */
+        journalEntry: [
+            { text: "Eine Soldatin aus Rabenfurt, die zwischen den verfeindeten Häusern steht und einen Frieden zu halten versucht, den sonst niemand will. Sie wählt ihre Worte bedacht und ihre Blicke noch sorgsamer — als trüge sie etwas mit sich, das sie keinem anvertrauen kann." },
+            { flag: "vermittelt", text: "Zdenka hat den Dienst an der Akademie quittiert und ist nach Rabenfurt gegangen — nicht um zu kämpfen, sondern um zu vermitteln, solange zwischen den Häusern noch etwas zu retten ist. Barett und Gambeson hat sie abgelegt." },
+            { flag: "truemmer", text: "Zdenka hat den Dienst quittiert und ist nach Rabenfurt zurückgekehrt — nicht als Soldatin, sondern um die Scherben zu kehren, die andere hinterlassen haben. Barett und Gambeson hat sie abgelegt." }
+        ],
+    },
+
 
     /* ===========================
        DIPLOMATIE / AUSSENWELT
@@ -415,6 +553,7 @@ setup.npcDefaults = {
         image: "images/Heinrich.png",
         known: false,
         faction: "Kronmark",
+        subfaction: null,
         affection: 0,
         trust: false,
         isRealPlayer: true,
@@ -426,6 +565,7 @@ setup.npcDefaults = {
         image: "images/Silva.png",
         known: false,
         faction: "Kronmark",
+        subfaction: null,
         affection: 0,
         trust: false,
         isRealPlayer: true,
@@ -443,6 +583,7 @@ setup.npcDefaults = {
         known: false,
         image: "images/Luigi.png",
         faction: "La Familia",
+        subfaction: null,
         affection: 4,
         trust: false,
         isRealPlayer: true,
@@ -460,6 +601,7 @@ setup.npcDefaults = {
         name: "Vincente",
         known: false,
         faction: "La Familia",
+        subfaction: null,
         affection: 0,
         trust: false,
         isRealPlayer: true,
@@ -471,6 +613,7 @@ setup.npcDefaults = {
         known: false,
         image: "images/MM.png",
         faction: "La Familia",
+        subfaction: null,
         affection: 0,
         trust: false,
         isRealPlayer: true,
@@ -488,6 +631,7 @@ setup.npcDefaults = {
         known: false,
         image: "images/Konrad.png",
         faction: "Imperium",
+        subfaction: null,
         affection: 0,
         trust: false,
         isRealPlayer: true,

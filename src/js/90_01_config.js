@@ -46,3 +46,21 @@ setup.debugTitleAktualisieren = function () {
         "images/Thomas_Kap2_scar.png"
     ].forEach(function (src) { var img = new Image(); img.src = src; });
 })();
+
+
+(function () {
+    var PATCH_VERSION = "0.9.5";   // bei neuen Patchnotes hochzählen -> zeigt sie erneut
+
+    $(document).one(":passageend", function () {
+        var gesehen = null;
+        try { gesehen = localStorage.getItem("anAloyPatchnotes"); } catch (e) {}
+        if (gesehen === PATCH_VERSION) return;          // schon gesehen -> nichts tun
+
+        setTimeout(function () {
+            Dialog.setup("Neuigkeiten", "notizbuch-dialog patchnotes-dialog");
+            Dialog.wiki(Story.get("Patchnotes").text);
+            Dialog.open();
+            try { localStorage.setItem("anAloyPatchnotes", PATCH_VERSION); } catch (e) {}
+        }, 150);
+    });
+})();

@@ -390,6 +390,9 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 <<set $world.flags = $world.flags || {}>>
 <<set $world.flags.freiheitserklaerung_beweis = true>>
 <<set $npc.jarek.memory.flags.verschwunden = true>>
+<<set $npc.jarek.trust = false>>
+<<set $npc.jarek.memory.flags.enttarnt to true>>
+<<run setup.setNpcAffection("jarek", -40)>>
 <div class="dialog">„Warum ich?", bringst du heraus.</div>
 <p>Jarek hält das Blatt an die Brust, als wäre es das Einzige im Raum, das zählt. „Weil du niemand bist, Thomas. Kein Name, keine Familie, die nachfragt. Ein Frischling, der nicht auffällt, der nicht quatscht." Es klingt nicht einmal grausam. Es klingt wahr. „Du warst perfekt."</p>
 <div class="thought-box">Genau die Worte vom ersten Abend. „Du fällst nicht auf, du redest nicht viel — das passt." Ich dachte, das sei ein Kompliment.</div>

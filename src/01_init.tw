@@ -10,6 +10,23 @@
 <<include "initEnemy">>
 <<set $showLogo to false>>
 
+<<cacheaudio "amb01" "audio/01.mp3">>
+<<cacheaudio "amb02" "audio/02.mp3">>
+<<cacheaudio "amb03" "audio/03.mp3">>
+<<cacheaudio "amb04" "audio/04.mp3">>
+<<cacheaudio "amb05" "audio/05.mp3">>
+<<cacheaudio "amb06" "audio/06.mp3">>
+<<cacheaudio "amb07" "audio/07.mp3">>
+<<cacheaudio "amb08" "audio/08.mp3">>
+<<cacheaudio "amb09" "audio/09.mp3">>
+<<cacheaudio "amb10" "audio/10.mp3">>
+
+<<createplaylist "ambient">>
+    <<track "amb01">><<track "amb02">><<track "amb03">><<track "amb04">><<track "amb05">>
+    <<track "amb06">><<track "amb07">><<track "amb08">><<track "amb09">><<track "amb10">>
+<</createplaylist>>
+<<run SimpleAudio.volume(0.4)>>
+
 :: InitPlayer {"position":"0,325","size":"100,100"}
 <<set $player = {
     name: "Thomas",

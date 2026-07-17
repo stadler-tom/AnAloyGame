@@ -1567,61 +1567,64 @@ Heute Nacht sitze ich am richtigen Feuer.</p>
 <<if not $world.besuchGossipGefragt>><<set $world.besuchGossipGefragt to []>><</if>>
 <<set _pool to setup.gossips84Bekannt()>>
 
-<<if _pool.length gt 0 and $world.besuchGossipGefragt.length lt 2>>
+<<if not $world.besuchGossipFertig and _pool.length gt 0 and $world.besuchGossipGefragt.length lt 2>>
 <div id="gossip-block">
+  <div id="gossip-menu">
+    <<scene>>
+    <p>Über den einen oder anderen am Feuer hast du schon etwas aufgeschnappt. Der Wein ist billig, die Zungen locker.</p>
+    <</scene>>
+    <<if _pool.length gt 2>>
+    <div class="status-info">Du kannst zwei der Gerüchte nachhaken — wähl mit Bedacht.</div>
+    <</if>>
+    <ul class="sandbox-menu">
+    <<for _s range _pool>>
+      <<capture _s>>
+      <li @id="'gli_' + _s.id">
+        <<link `"Frag " + $npc[_s.npcKey].name`>>
+          <<run $world.besuchGossipGefragt.push(_s.id)>>
+          <<append "#gossip-antworten">>
+            <div class="gossip-antwort">
+              <p class="gossip-frage"><<= _s.base>></p>
+              <p class="gossip-erklaerung"><b><<= $npc[_s.npcKey].name>>:</b> „<<= _s.erklaerung || 'Alte Geschichte. Lass gut sein.'>>"</p>
+            </div>
+          <</append>>
+          <<if $world.besuchGossipGefragt.length gte 2>>
+            <<replace "#gossip-menu">><</replace>>
+            <<set $world.besuchGossipFertig to true>>
+            <<append "#gossip-weiter">><<include "Besuch_S3_GossipWeiter">><</append>>
+          <<else>>
+            <<run $('#gli_' + _s.id).remove()>>
+          <</if>>
+        <</link>>
+        <span class="subtext">— <<= _s.rumorText>></span>
+      </li>
+      <</capture>>
+    <</for>>    
+    </ul>
+  </div>
 
-<div id="gossip-menu">
-<<scene>>
-<p>Über den einen oder anderen am Feuer hast du schon etwas aufgeschnappt. Der Wein ist billig, die Zungen locker.</p>
-<</scene>>
-<<if _pool.length gt 2>>
-<div class="status-info">Du kannst zwei der Gerüchte nachhaken — wähl mit Bedacht.</div>
+  <div id="gossip-antworten"></div>
+</div>
 <</if>>
-<ul class="sandbox-menu">
-<<for _s range _pool>>
-	<<capture _s>>
-	<li @id="'gli_' + _s.id">
-		<<link `"Frag " + $npc[_s.npcKey].name`>>
-			<<run $world.besuchGossipGefragt.push(_s.id)>>
-			<<append "#gossip-antworten">>
-				<div class="gossip-antwort">
-					<p class="gossip-frage"><<= _s.base>></p>
-					<p class="gossip-erklaerung"><b><<= $npc[_s.npcKey].name>>:</b> „<<= _s.erklaerung || 'Alte Geschichte. Lass gut sein.'>>"</p>
-				</div>
-			<</append>>
-			<<if $world.besuchGossipGefragt.length gte 2>>
-				<<replace "#gossip-menu">><</replace>>
-			<<else>>
-				<<run $('#gli_' + _s.id).remove()>>
-			<</if>>
-		<</link>>
-		<span class="subtext">— <<= _s.rumorText>></span>
-	</li>
-	<</capture>>
-<</for>>
-</ul>
+
+<div id="gossip-weiter">
+<<if $world.besuchGossipFertig>><<include "Besuch_S3_GossipWeiter">><</if>>
 </div>
 
-
-<div id="gossip-antworten"></div>
-
-</div>
-<</if>>
-
+:: Besuch_S3_GossipWeiter
 <<trenner>>
 <<if setup.wasGossipSuccessful("lk_004")>>
-    <<dialog>>
-        <p>„Ihr sollt euch auffallend gut mit einem Ritter aus der Kronmark verstehen." So wird geredet. 
-        Und jetzt is der Heinrich auch noch hier, in Aloy, mit euch...</p>
-        „Ja wir verstehen uns gut." Schneidet dir eine Stimmer hinter dir das Wort ab
-    <</dialog>>     
-<<trenner>>
-[[zu Heinrich umdrehen->Besuch_S3_Heinrich_b]]
+	<p>Als du deine Neugier befriedigt hast, bleibt noch eine Sache, die dir unter den Nägeln brennt. Also fragst du frei heraus.</p>
+	<<dialog>>
+		<p>„Ihr sollt euch auffallend gut mit einem Ritter aus der Kronmark verstehen." So wird geredet. Und jetzt ist der Heinrich
+		auch noch hier, in Aloy, mit euch …</p>
+		<p>„Ja, wir verstehen uns gut", schneidet dir eine Stimme hinter dir das Wort ab.</p>
+	<</dialog>>
+	<<trenner>>
+	[[zu Heinrich umdrehen->Besuch_S3_Heinrich_b]]
 <<else>>
-[[Heinrich tritt ans Feuer->Besuch_S3_Heinrich]]
+	[[Heinrich tritt ans Feuer->Besuch_S3_Heinrich]]
 <</if>>
-
-
 
 :: Besuch_S3_Heinrich
 

@@ -139,6 +139,9 @@
 .hud-divider { margin-top: 6px; border-color: var(--panel-border); border: 0; height: 1px; margin-top: 6px;
     background: linear-gradient(90deg, transparent, var(--panel-border) 20%, var(--accent-brass) 50%, var(--panel-border) 80%, transparent);
 }
+.subtitle-divider { margin: 4px 0px; border-color: var(--panel-border); border: 0; height: 1px; margin: 4px 0px;
+    background: linear-gradient(90deg, transparent, var(--panel-border) 20%, var(--accent-brass) 50%, var(--panel-border) 80%, transparent);
+}
 .journal-link { text-align: right; margin: 0; padding: 0; }
 
 
@@ -660,6 +663,27 @@
     border-radius: 6px;
 }
 
+/* Sidebar-Menü im Mittelalter-Look */
+#ui-bar #menu li a {
+    display: block;
+    margin: 4px 6px;
+    padding: 6px 12px;
+    font-variant: small-caps;
+    letter-spacing: .06em;
+    color: #e8d5a8 !important;
+    border: 1px solid #23150a;
+    border-radius: 3px;
+    box-shadow: inset 0 1px 0 rgba(210,170,115,.18), 0 1px 2px rgba(0,0,0,.4);
+    text-decoration: none;
+    transition: color .15s, border-color .15s, box-shadow .15s, background .15s;
+}
+#ui-bar #menu li a:hover {
+    color: #f6e6bd !important;
+    border-left-color: var(--accent-gold, #d9a441);
+    background: linear-gradient(180deg, #56391f, #3d2716);
+    box-shadow: inset 0 1px 0 rgba(210,170,115,.25), 0 0 8px rgba(201,162,39,.35);
+}
+
 .npc-row-compact {
     display: flex;
     justify-content: space-between;
@@ -733,12 +757,226 @@
     padding-left: 0;
 }
 
-#ui-dialog.notizbuch-dialog,
+/* === Notizbuch: Feldbuch, lesbar === */
 #ui-dialog-body.notizbuch-dialog {
-    max-width: 900px;
-    width: 92vw;
+    padding: 1.4em 1.7em;
+    font-family: Georgia, "Times New Roman", serif;
+    background:
+        repeating-linear-gradient(0deg, rgba(110,80,45,.05) 0 27px, transparent 27px 28px),
+        #d9c6a0;                                   /* tieferes Pergament */
+    border: 12px solid #3a2a1a;                    /* Ledereinband rundum */
+    border-radius: 4px;
+    box-shadow: inset 0 0 55px rgba(110,80,45,.30);
 }
-#ui-dialog-body.notizbuch-dialog { padding: 1.2em 1.5em; }
+
+/* ============================================================
+   NOTIZBUCH — Feldbuch-Look (komplett)
+   ============================================================ */
+
+/* --- Ledereinband (äußerer Dialog) --- */
+#ui-dialog:has(#ui-dialog-body.notizbuch-dialog) {
+    padding: 7px;
+    border: 2px solid #23150a;
+    border-radius: 11px;
+    background:
+        repeating-linear-gradient(135deg, rgba(0,0,0,.05) 0 3px, transparent 3px 7px),
+        radial-gradient(130% 140% at 25% 5%, #55371f, #3a2513 55%, #2a1a0d);
+    box-shadow: 0 14px 46px rgba(0,0,0,.6),
+                inset 0 1px 0 rgba(210,170,115,.25),
+                inset 0 0 0 1px rgba(0,0,0,.4);
+}
+#ui-dialog:has(#ui-dialog-body.notizbuch-dialog) #ui-dialog-titlebar {
+    background: transparent; border: 0; padding: .3em .6em;
+}
+#ui-dialog:has(#ui-dialog-body.notizbuch-dialog) #ui-dialog-title {
+    color: #e8d5a8; font-variant: small-caps; letter-spacing: .14em; font-size: 1.05em;
+    text-shadow: 0 1px 2px rgba(0,0,0,.6);
+}
+#ui-dialog:has(#ui-dialog-body.notizbuch-dialog) #ui-dialog-close { color: #c9a86a !important; }
+#ui-dialog:has(#ui-dialog-body.notizbuch-dialog) #ui-dialog-close:hover { color: #f0d9a8 !important; }
+
+/* --- Pergamentseite --- */
+#ui-dialog-body.notizbuch-dialog {
+    margin: 8px;
+    padding: 1.5em 1.7em;
+    border-radius: 3px;
+    border: 1px dashed rgba(120,90,50,.45);
+    font-family: Georgia, "Times New Roman", serif;
+    background:
+        radial-gradient(150% 120% at 50% -15%, rgba(255,250,238,.55), transparent 55%),
+        radial-gradient(90% 90% at 100% 105%, rgba(95,62,30,.22), transparent 60%),
+        radial-gradient(90% 90% at 0% 105%,  rgba(95,62,30,.18), transparent 60%),
+        repeating-linear-gradient(0deg, rgba(110,80,45,.045) 0 26px, transparent 26px 27px),
+        #dccaa0;
+    box-shadow: inset 0 0 34px rgba(95,62,30,.28), inset 0 0 2px rgba(0,0,0,.35);
+}
+
+/* --- Text zwingend dunkel (überschreibt die hellen Theme-Farben) --- */
+#ui-dialog-body.notizbuch-dialog,
+#ui-dialog-body.notizbuch-dialog .passage,
+#ui-dialog-body.notizbuch-dialog p,
+#ui-dialog-body.notizbuch-dialog li,
+#ui-dialog-body.notizbuch-dialog td,
+#ui-dialog-body.notizbuch-dialog th,
+#ui-dialog-body.notizbuch-dialog div,
+#ui-dialog-body.notizbuch-dialog b,
+#ui-dialog-body.notizbuch-dialog strong,
+#ui-dialog-body.notizbuch-dialog em {
+    color: #2a2016 !important;
+}
+
+/* --- Titel --- */
+#ui-dialog-body.notizbuch-dialog h2 {
+    font-variant: small-caps; letter-spacing: .06em; text-align: center;
+    color: #4a2f1a !important; border: 0; margin: 0 0 .7em;
+    text-shadow: 0 1px 0 rgba(255,255,255,.4);
+}
+#ui-dialog-body.notizbuch-dialog h2::after {
+    content: ""; display: block; height: 2px; width: 62%; margin: .45em auto 0;
+    background: linear-gradient(90deg, transparent, #7a5a2e, transparent);
+}
+
+/* --- Sektionen (details/summary) --- */
+#ui-dialog-body.notizbuch-dialog .journal-section { border: 0; margin: 0 0 .2em; }
+#ui-dialog-body.notizbuch-dialog .journal-section > summary {
+    list-style: none; cursor: pointer; position: relative;
+    font-variant: small-caps; letter-spacing: .05em; font-size: 1.03em;
+    color: #5a3d22 !important; padding: .4em 0 .32em 1.5em;
+    border-bottom: 1px solid rgba(110,80,45,.35);
+}
+#ui-dialog-body.notizbuch-dialog .journal-section > summary::-webkit-details-marker { display: none; }
+#ui-dialog-body.notizbuch-dialog .journal-section > summary::before {
+    content: "❧"; position: absolute; left: .1em; top: .35em; color: #7a5a2e; transition: transform .2s;
+}
+#ui-dialog-body.notizbuch-dialog .journal-section[open] > summary::before { transform: rotate(90deg); }
+#ui-dialog-body.notizbuch-dialog .journal-section > *:not(summary) { padding: .55em .2em .8em; }
+
+/* --- Links im Buch --- */
+#ui-dialog-body.notizbuch-dialog a.link-internal {
+    color: #6e3f16 !important; background: none !important; border: 0 !important;
+}
+#ui-dialog-body.notizbuch-dialog a.link-internal:hover { color: #9a5a1e !important; }
+
+/* --- Reiter --- */
+#ui-dialog-body.notizbuch-dialog .nb-tabs {
+    display: flex; flex-wrap: wrap; gap: 4px; margin: 0 0 1.1em; border-bottom: 2px solid #7a5a2e;
+}
+#ui-dialog-body.notizbuch-dialog .nb-tab {
+    cursor: pointer; padding: .3em .95em; font-variant: small-caps; letter-spacing: .04em;
+    color: #5a3d22 !important; background: #cbb488; border: 1px solid #a8946a; border-bottom: 0;
+    border-radius: 5px 5px 0 0; margin-bottom: -2px;
+}
+#ui-dialog-body.notizbuch-dialog .nb-tab:hover { background: #dcc79c; }
+#ui-dialog-body.notizbuch-dialog .nb-tab-aktiv {
+    background: #dccaa0; color: #3a2410 !important; font-weight: bold; border-bottom: 2px solid #dccaa0;
+}
+
+/* --- „Nach oben“-Knopf --- */
+#ui-dialog-body.notizbuch-dialog .nb-totop {
+    position: sticky; bottom: 10px; text-align: right; margin-top: 1em; z-index: 5; pointer-events: none;
+}
+#ui-dialog-body.notizbuch-dialog .nb-totop a.link-internal {
+    pointer-events: auto; display: inline-block;
+    background: #3a2a1a !important; color: #e7dabd !important;
+    border: 1px solid #7a5a2e !important; border-radius: 4px; padding: .3em .8em !important;
+    font-variant: small-caps;
+}
+/* --- Nachtrag: helle Spans & Skillkugeln lesbar auf Pergament --- */
+#ui-dialog-body.notizbuch-dialog span,
+#ui-dialog-body.notizbuch-dialog label {
+    color: #2a2016 !important;
+}
+
+/* Skill-Pips */
+#ui-dialog-body.notizbuch-dialog .pip-full {
+    background: #7a4c14 !important; border: 1px solid #4a2f10;
+}
+#ui-dialog-body.notizbuch-dialog .pip-empty {
+    background: rgba(0,0,0,.06) !important; border: 1px solid rgba(90,60,30,.6) !important;
+}
+
+/* XP-Balken */
+#ui-dialog-body.notizbuch-dialog .skill-xp-track {
+    background: rgba(90,60,30,.18) !important; border: 1px solid rgba(90,60,30,.35);
+}
+#ui-dialog-body.notizbuch-dialog .skill-xp-fill { background: #7a4c14 !important; }
+#ui-dialog-body.notizbuch-dialog .skill-xp-num  { color: #4a3418 !important; }
+
+/* --- Bildlaufleiste --- */
+#ui-dialog-body.notizbuch-dialog::-webkit-scrollbar { width: 10px; }
+#ui-dialog-body.notizbuch-dialog::-webkit-scrollbar-track { background: rgba(110,80,45,.15); }
+#ui-dialog-body.notizbuch-dialog::-webkit-scrollbar-thumb { background: #7a5a2e; border-radius: 5px; }
+
+/* --- Oberer Zurück-Knopf --- */
+#ui-dialog-body.notizbuch-dialog .nb-back a.link-internal {
+    display: inline-block; margin-bottom: .7em;
+    background: #cbb488 !important; color: #3a2410 !important;
+    border: 1px solid #a8946a !important; border-radius: 4px;
+    padding: .25em .8em !important; font-variant: small-caps; letter-spacing: .04em;
+}
+#ui-dialog-body.notizbuch-dialog .nb-back a.link-internal:hover { background: #dcc79c !important; }
+
+/* --- NPC-Karten --- */
+#ui-dialog-body.notizbuch-dialog .npc-card {
+    display: flex; gap: 12px; align-items: center;
+    background: linear-gradient(180deg, #f3e8ca, #e7d7ad);
+    border: 1px solid #b59a63; border-left: 4px solid #8a6a34;
+    border-radius: 5px; padding: 10px 13px; margin: 0 0 11px;
+    box-shadow: 0 1px 3px rgba(60,40,15,.25), inset 0 1px 0 rgba(255,255,255,.4);
+}
+#ui-dialog-body.notizbuch-dialog .npc-portrait {
+    width: 150px; height: 150px; flex: 0 0 150px; object-fit: cover;
+    border-radius: 3px; border: 1px solid #9b8353; filter: sepia(.25);
+}
+#ui-dialog-body.notizbuch-dialog .npc-card-body { flex: 1; min-width: 0; }
+#ui-dialog-body.notizbuch-dialog .npc-card-head {
+    display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; margin-bottom: 3px;
+}
+#ui-dialog-body.notizbuch-dialog .npc-card-loyalist {
+    background: linear-gradient(180deg, #f0d9cf, #e6c3b6);   /* leicht rötliches Pergament */
+    border-color: #b78b7a;
+    border-left-color: #8a2b20;                              /* rote Akzentkante, passend zum Badge */
+}
+
+#ui-dialog-body.notizbuch-dialog .npc-name {
+    font-variant: small-caps; letter-spacing: .04em; font-size: 1.06em; font-weight: bold;
+    color: #3a2410 !important;
+}
+#ui-dialog-body.notizbuch-dialog .npc-entry-text {
+    color: #2a2016 !important; font-size: .92em; line-height: 1.42; font-style: italic;
+}
+#ui-dialog-body.notizbuch-dialog .npc-meta {
+    margin-top: 5px; font-size: .82em; font-variant: small-caps; color: #6b4a22 !important;
+}
+#ui-dialog-body.notizbuch-dialog .npc-affection-val { color: #8a5a1e !important; }
+#ui-dialog-body.notizbuch-dialog .npc-trust {
+    font-size: .72em; font-variant: small-caps; letter-spacing: .04em;
+    background: #4d6b3a; color: #f0ead6 !important; border-radius: 3px; padding: 1px 7px;
+}
+
+/* --- Kompakt-Zeilen in der Übersicht --- */
+#ui-dialog-body.notizbuch-dialog .npc-row-compact {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 10px;
+    padding: 4px 8px; border-bottom: 1px dotted rgba(120,90,50,.35);
+}
+#ui-dialog-body.notizbuch-dialog .npc-row-compact:nth-child(even) { background: rgba(120,90,50,.06); }
+#ui-dialog-body.notizbuch-dialog .npc-row-compact .npc-meta { color: #6b4a22 !important; margin: 0; }
+
+#ui-dialog-body.notizbuch-dialog .rumor-cat-titel {
+    font-variant: small-caps; letter-spacing: .06em; font-size: 1.35em;
+    text-align: center; color: #4a2f1a !important;
+    border-bottom: 2px solid #7a5a2e; padding-bottom: 5px; margin: 0 0 10px;
+}
+#ui-dialog-body.notizbuch-dialog .rumor-eintrag {
+    color: #2a2016 !important; font-size: .93em; line-height: 1.5;
+    padding: 8px 4px;
+    border-bottom: 1px solid rgba(120,90,50,.25);
+}
+#ui-dialog-body.notizbuch-dialog .rumor-cat .rumor-eintrag:last-child { border-bottom: none; }
+
+
+
+/* === Header Menue === */
 
 .hud-item a,
 .hud-item a.link-internal {
@@ -892,3 +1130,42 @@
 .coin-k { background: radial-gradient(circle at 35% 30%, #d89a6a, #a55f32); }
 
 .debug-passagentitel { color: #c0402f; font-weight: bold; font-size: .85em; margin-bottom: .4em; }
+
+
+#ui-dialog-body.notizbuch-dialog .journal-group-title {
+    font-variant: small-caps; letter-spacing: .05em; font-size: 1.2em;
+    text-align: center; color: #4a2f1a !important;
+    border-bottom: 2px solid #7a5a2e; padding-bottom: 4px; margin: 1.1em 0 .6em;
+}
+#ui-dialog-body.notizbuch-dialog .npc-loyalist {
+    font-size: .72em; font-variant: small-caps; letter-spacing: .04em;
+    background: #8a2b20; color: #f0dcc0 !important; border-radius: 3px; padding: 1px 7px;
+}
+
+#ui-dialog-body.notizbuch-dialog details.journal-group { border: 0; margin: 0 0 .4em; }
+#ui-dialog-body.notizbuch-dialog details.journal-group > summary.journal-group-title {
+    list-style: none; cursor: pointer; position: relative;
+    font-variant: small-caps; letter-spacing: .05em; font-size: 1.2em; text-align: center;
+    color: #4a2f1a !important; border-bottom: 2px solid #7a5a2e; padding: 4px 1.4em; margin: 1em 0 .6em;
+}
+#ui-dialog-body.notizbuch-dialog details.journal-group > summary::-webkit-details-marker { display: none; }
+#ui-dialog-body.notizbuch-dialog details.journal-group > summary.journal-group-title::after {
+    content: "▾"; position: absolute; right: .3em; top: 50%; transform: translateY(-50%);
+    color: #7a5a2e; transition: transform .2s;
+}
+#ui-dialog-body.notizbuch-dialog details.journal-group:not([open]) > summary.journal-group-title::after {
+    transform: translateY(-50%) rotate(-90deg);
+}
+#ui-dialog-body.notizbuch-dialog details.journal-subgroup { border: 0; margin: 0 0 .3em; }
+#ui-dialog-body.notizbuch-dialog details.journal-subgroup > summary.journal-subgroup-title {
+    list-style: none; cursor: pointer; position: relative;
+    font-variant: small-caps; letter-spacing: .04em; font-size: .95em; color: #6b4a22 !important;
+    margin: .7em 0 .4em; padding: 0 1.2em 2px .2em; border-bottom: 1px dotted rgba(120,90,50,.4);
+}
+#ui-dialog-body.notizbuch-dialog details.journal-subgroup > summary::-webkit-details-marker { display: none; }
+#ui-dialog-body.notizbuch-dialog details.journal-subgroup > summary.journal-subgroup-title::after {
+    content: "▾"; position: absolute; right: .3em; top: 0; color: #8a6a34; transition: transform .2s;
+}
+#ui-dialog-body.notizbuch-dialog details.journal-subgroup:not([open]) > summary.journal-subgroup-title::after {
+    transform: rotate(-90deg);
+}

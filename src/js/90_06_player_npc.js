@@ -147,7 +147,9 @@ setup.syncPlayerRel = function () {
 
 $(document).on(":passagestart", function () {
     setup.syncPlayerRel();
-     setup.reconcileState();;
+    setup.reconcileState();
+    setup.migriereJarekBruch();
+    setup.migriereEnttarnung();
     var known = State.variables.npc && State.variables.npc.sergeant && State.variables.npc.sergeant.known === true;
     jQuery("html").toggleClass("hat-titelbild", known);
 });
@@ -184,14 +186,34 @@ setup.removeItem = function (itemName) {
 
 /* --- Gerüchte --- */
 setup.renderRumors = function () {
-    if (State.variables.player.rumors.length === 0) {
-        return "Noch keine Gerüchte notiert.";
-    }
+    var p = State.variables.player;
+    var rumors = p.rumors || [];
+    if (rumors.length === 0) return "Noch keine Gerüchte notiert.";
 
-    let out = "";
-    for (let r of State.variables.player.rumors) {
-        out += `<div>- ${r}</div>`;
-    }
+    // rumorText -> Story-id, um die Kategorie aus dem Präfix zu ziehen
+    var textZuId = {};
+    (setup.getAllGossipStories ? setup.getAllGossipStories() : []).forEach(function (s) {
+        if (s && s.rumorText) textZuId[s.rumorText] = s.id;
+    });
+    var catMap = p.rumorCat || {};      // Fallback für Nicht-Gossip-Gerüchte (z.B. Straßennews)
+    var gueltig = setup.rumorKategorien.map(function (k) { return k.id; });
+
+    var groups = {};
+    rumors.forEach(function (text) {
+        var cat = setup.rumorKatAusId(textZuId[text]) || catMap[text] || "sonstige";
+        if (gueltig.indexOf(cat) === -1) cat = "sonstige";
+        (groups[cat] = groups[cat] || []).push(text);
+    });
+
+    var out = "";
+    setup.rumorKategorien.forEach(function (k) {
+        var list = groups[k.id];
+        if (!list || !list.length) return;
+        out += '<div class="rumor-cat"><div class="rumor-cat-titel">' + k.label + '</div>';
+        list.forEach(function (text) { out += '<div class="rumor-eintrag">' + text + '</div>'; });
+        out += '</div>';
+
+    });
     return out;
 };
 
@@ -204,6 +226,23 @@ setup.addRumor = function (rumorText) {
         return '<div class="system-alert status-info">Neues Gerücht im Notizbuch vermerkt.</div>';
     }
     return "";
+};
+
+
+setup.rumorKategorien = [
+    { id: "lagerklatsch", label: "🍺 Lagerklatsch" },
+    { id: "landesinfo",   label: "🗺️ Landesinfos" },
+    { id: "knaller",      label: "💥 Knaller" },
+    { id: "sonstige",     label: "📎 Sonstiges" }
+];
+
+setup.rumorKatAusId = function (id) {
+    if (!id) return null;
+    var pre = String(id).slice(0, 3).toLowerCase();   // "lk_", "li_", "kn_"
+    if (pre === "lk_") return "lagerklatsch";
+    if (pre === "li_") return "landesinfo";
+    if (pre === "kn_") return "knaller";
+    return null;
 };
 
 setup.getRumor = function (rumorText) {

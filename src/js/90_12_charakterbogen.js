@@ -624,51 +624,102 @@ setup.resolveJournalEntry = function (npc) {
     return "";
 };
 
+setup.fraktionsRubriken = [
+    { id: "Akademie",   label: "🏛️ Die Akademie" },
+    { id: "84. Banner", label: "⚔️ Das 84. Banner" },
+    { id: "La Familia", label: "🍇 La Familia" },
+    { id: "Kronmark",   label: "🛡️ Die Kronmark" },
+    { id: "Imperium",   label: "🦅 Das Imperium" }
+];
+
+setup.subGruppen = [
+    { id: "Ausbilder", label: "Ausbilder" },
+    { id: "Kamerad",   label: "Kameraden" },
+    { id: "Personal",  label: "Personal" }
+];
+
+setup.renderNpcKarte = function (n) {
+    const esc = setup.escapeHtml;
+    const aff = setup.getAffectionLabel(n.affection);
+    const istLoyalist = !!(n.memory && n.memory.flags && n.memory.flags.enttarnt);
+    const trust = (n.trust === true || (typeof n.trust === "number" && n.trust > 0))
+        ? `<span class="npc-trust">🤝 Vertrauen</span>` : "";
+    const loyalist = istLoyalist ? `<span class="npc-loyalist">⚑ Loyalist</span>` : "";
+    const src = setup.resolveNpcImage(n);
+    const portrait = src
+        ? `<img class="npc-portrait" src="${esc(src)}" alt="${esc(n.name)}" onerror="this.style.display='none'">`
+        : "";
+    return `
+        <div class="npc-card${istLoyalist ? ' npc-card-loyalist' : ''}">${portrait}
+            <div class="npc-card-body">
+                <div class="npc-card-head"><span class="npc-name">${n.name}</span>${trust}${loyalist}</div>
+                <div class="npc-entry-text">${setup.resolveJournalEntry(n)}</div>
+                <div class="npc-meta">${aff} <span class="npc-affection-val">(${n.affection})</span></div>
+            </div>
+        </div>`;
+};
+
 /* Gemeinsamer Karten-Renderer für eine beliebige Personenliste */
 setup.renderPersonList = function (list, emptyMsg) {
     if (!list || list.length === 0) {
         return `<p class="journal-empty">${emptyMsg || "Noch kenne ich niemanden näher."}</p>`;
     }
-    const esc = setup.escapeHtml;
+    const byAffThenName = (a, b) => (b.affection - a.affection) || a.name.localeCompare(b.name, "de");
+
     const groups = {};
-    list.forEach(n => {
-        const f = n.faction || "Akademie zu Ohm";
-        (groups[f] = groups[f] || []).push(n);
-    });
-    const byAffThenName = (a, b) =>
-        (b.affection - a.affection) || a.name.localeCompare(b.name, "de");
+    list.forEach(n => { const f = n.faction || "Akademie"; (groups[f] = groups[f] || []).push(n); });
+
+    const labelMap = {};
+    const order = setup.fraktionsRubriken.map(r => { labelMap[r.id] = r.label; return r.id; });
+    Object.keys(groups).sort((a, b) => a.localeCompare(b, "de")).forEach(f => { if (order.indexOf(f) === -1) order.push(f); });
+
     let out = "";
-    Object.keys(groups).sort((a, b) => a.localeCompare(b, "de")).forEach(faction => {
-        out += `<div class="journal-group"><div class="journal-group-title">${faction}</div>`;
-        groups[faction].sort(byAffThenName).forEach(n => {
-            const aff = setup.getAffectionLabel(n.affection);
-            const trust = (n.trust === true || (typeof n.trust === "number" && n.trust > 0))
-                ? `<span class="npc-trust">🤝 Vertrauen</span>` : "";
-            const src = setup.resolveNpcImage(n);
-            const portrait = src
-                ? `<img class="npc-portrait" src="${esc(src)}" alt="${esc(n.name)}" onerror="this.style.display='none'">`
-                : "";
-            out += `
-                <div class="npc-card">
-                    ${portrait}
-                    <div class="npc-card-body">
-                        <div class="npc-card-head">
-                            <span class="npc-name">${n.name}</span>${trust}
-                        </div>
-                        <div class="npc-entry-text">${setup.resolveJournalEntry(n)}</div>
-                        <div class="npc-meta">${aff} <span class="npc-affection-val">(${n.affection})</span></div>
-                    </div>
-                </div>`;
-        });
-        out += `</div>`;
+    order.forEach(faction => {
+        const grp = groups[faction];
+        if (!grp || !grp.length) return;
+        out += `<details class="journal-group" open><summary class="journal-group-title">${labelMap[faction] || faction}</summary>`;
+
+        const subs = {};
+        grp.forEach(n => { const s = n.subsubfaction || "_rest"; (subs[s] = subs[s] || []).push(n); });
+        const hatUntergruppen = setup.subGruppen.some(sg => subs[sg.id] && subs[sg.id].length);
+
+        if (hatUntergruppen) {
+            const subOrder = setup.subGruppen.map(sg => sg.id);
+            const subLabel = {}; setup.subGruppen.forEach(sg => subLabel[sg.id] = sg.label);
+            Object.keys(subs).forEach(s => { if (subOrder.indexOf(s) === -1) subOrder.push(s); });
+            subOrder.forEach(s => {
+                const sg = subs[s];
+                if (!sg || !sg.length) return;
+                if (s !== "_rest") {
+                    out += `<details class="journal-subgroup" open><summary class="journal-subgroup-title">${subLabel[s] || s}</summary>`;
+                    sg.sort(byAffThenName).forEach(n => { out += setup.renderNpcKarte(n); });
+                    out += `</details>`;
+                } else {
+                    sg.sort(byAffThenName).forEach(n => { out += setup.renderNpcKarte(n); });
+                }
+            });
+        } else {
+            grp.sort(byAffThenName).forEach(n => { out += setup.renderNpcKarte(n); });
+        }
+        out += `</details>`;
     });
     return out;
 };
 
+setup.renderJournalAlle = function () {
+    var npcs = State.variables.npc || {};
+    var list = Object.keys(npcs).map(k => npcs[k]).filter(n => n.known === true);
+    return setup.renderPersonList(list, "Noch kenne ich niemanden näher.");
+};
+
 setup.resolveNpcImage = function (n) {
     if (!n) return "";
+    var f = (n.memory && n.memory.flags) || {};
+    if (f.tot          && n.imageDead)      return n.imageDead;
+    if (f.eingesperrt  && n.imageLocked)    return n.imageLocked;
+    if (f.weggegangen  && n.imageGone)      return n.imageGone;
+    if (f.verhaftung_seen && n.imageVerhaftet) return n.imageVerhaftet;   // Karla
     var kap2 = State.variables.world.kapitel1_gesperrt === true;
-    if (n.name === "Karla" && n.memory.flags.verhaftung_seen) return n.imageVerhaftet || "";
     if (kap2 && n.imageKap2) return n.imageKap2;
     return n.image || "";
 };
@@ -764,3 +815,22 @@ setup.konditionMeter = function () {
          + '<span class="kond-fill" style="width:' + c + '%"></span>'
          + '<span class="kond-text">' + label + '</span></span>';
 };
+
+setup.notizbuchTabs = function (aktiv) {
+    var tabs = [
+        { id: "journalAnsicht",      label: "Übersicht" },
+        { id: "Notizbuch_Personen",  label: "Personen" },
+        { id: "Notizbuch_Kameraden", label: "Kameraden" },
+        { id: "Notizbuch_Geruechte", label: "Gerüchte" }
+    ];
+    if (setup.ermittlungBekannt()) tabs.push({ id: "Notizbuch_Ermittlung", label: "Ermittlung" });
+    var out = '<div class="nb-tabs">';
+    tabs.forEach(function (t) {
+        out += '<a class="nb-tab' + (t.id === aktiv ? ' nb-tab-aktiv' : '') + '" data-seite="' + t.id + '">' + t.label + '</a>';
+    });
+    return out + '</div>';
+};
+
+$(document).on('click', '.notizbuch-dialog .nb-tab', function () {
+    setup.notizbuch($(this).attr('data-seite'));
+});

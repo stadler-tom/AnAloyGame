@@ -102,11 +102,12 @@
 				<<run setup.removeItem("Silberbrech")>>
 				<<set $world.flags.baderAuftrag to "erledigt">>
 				<<set $world.flags.baderFreund to true>>
+				<<set $npc.bader.known to true>>
 				<<= setup.addMoney(30)>>
 				<<= setup.setPlayerStat("honesty", 2)>>
 				<p>Er zählt dir das Kupfer in die Hand, Stück für Stück, und legt ungefragt ein paar drauf. <<quote Für die
 				Mühe der Beine>>, sagt er. Dann, fast beiläufig: <<quote Kommt öfter. Für Euch flicke ich künftig zum halben
-				Preis — ein Mann, der die Höhen kennt, ist mir mehr wert als ein voller Beutel.>></p>
+				Preis — ein Mann, der die Höhen kennt, ist mir mehr wert als ein voller Beutel. Ich bin Santonio Flavori, Freund.>></p>
 			<</replace>>
 		<</link>></li>
 		<li><<link "Behaupten, es hätte dich fast das Leben gekostet — und mehr fordern">>

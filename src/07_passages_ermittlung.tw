@@ -3062,6 +3062,7 @@ was ein flüchtiger Beobachter übersähe, und dein Gedächtnis hält es fest.</
 
 
 :: Ermittlung_S10_Koda {"position":"1225,6525","size":"100,100"}
+<<set $npc.orenmalk.memory.flags.enttarnt to true>>
 <<scene>>
 <p>Sie holen Oren mitten am Tag, ohne Aufhebens, wie man einen Mann holt, von dem man keinen Widerstand erwartet. Er leistet keinen. Er legt die Feder beiseite, richtet die Bolzen in ihren Fächern, als sei Ordnung noch immer seine Pflicht, und geht zwischen den beiden Weibeln hinaus, das kranke Bein nachziehend, den Rücken gerade.</p>
 <</scene>>

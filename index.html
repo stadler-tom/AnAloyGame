@@ -245,6 +245,9 @@ var LZString=function(){var r=String.fromCharCode,o="ABCDEFGHIJKLMNOPQRSTUVWXYZa
 .hud-divider { margin-top: 6px; border-color: var(--panel-border); border: 0; height: 1px; margin-top: 6px;
     background: linear-gradient(90deg, transparent, var(--panel-border) 20%, var(--accent-brass) 50%, var(--panel-border) 80%, transparent);
 }
+.subtitle-divider { margin: 4px 0px; border-color: var(--panel-border); border: 0; height: 1px; margin: 4px 0px;
+    background: linear-gradient(90deg, transparent, var(--panel-border) 20%, var(--accent-brass) 50%, var(--panel-border) 80%, transparent);
+}
 .journal-link { text-align: right; margin: 0; padding: 0; }
 
 
@@ -766,6 +769,27 @@ var LZString=function(){var r=String.fromCharCode,o="ABCDEFGHIJKLMNOPQRSTUVWXYZa
     border-radius: 6px;
 }
 
+/* Sidebar-Menü im Mittelalter-Look */
+#ui-bar #menu li a {
+    display: block;
+    margin: 4px 6px;
+    padding: 6px 12px;
+    font-variant: small-caps;
+    letter-spacing: .06em;
+    color: #e8d5a8 !important;
+    border: 1px solid #23150a;
+    border-radius: 3px;
+    box-shadow: inset 0 1px 0 rgba(210,170,115,.18), 0 1px 2px rgba(0,0,0,.4);
+    text-decoration: none;
+    transition: color .15s, border-color .15s, box-shadow .15s, background .15s;
+}
+#ui-bar #menu li a:hover {
+    color: #f6e6bd !important;
+    border-left-color: var(--accent-gold, #d9a441);
+    background: linear-gradient(180deg, #56391f, #3d2716);
+    box-shadow: inset 0 1px 0 rgba(210,170,115,.25), 0 0 8px rgba(201,162,39,.35);
+}
+
 .npc-row-compact {
     display: flex;
     justify-content: space-between;
@@ -839,12 +863,226 @@ var LZString=function(){var r=String.fromCharCode,o="ABCDEFGHIJKLMNOPQRSTUVWXYZa
     padding-left: 0;
 }
 
-#ui-dialog.notizbuch-dialog,
+/* === Notizbuch: Feldbuch, lesbar === */
 #ui-dialog-body.notizbuch-dialog {
-    max-width: 900px;
-    width: 92vw;
+    padding: 1.4em 1.7em;
+    font-family: Georgia, "Times New Roman", serif;
+    background:
+        repeating-linear-gradient(0deg, rgba(110,80,45,.05) 0 27px, transparent 27px 28px),
+        #d9c6a0;                                   /* tieferes Pergament */
+    border: 12px solid #3a2a1a;                    /* Ledereinband rundum */
+    border-radius: 4px;
+    box-shadow: inset 0 0 55px rgba(110,80,45,.30);
 }
-#ui-dialog-body.notizbuch-dialog { padding: 1.2em 1.5em; }
+
+/* ============================================================
+   NOTIZBUCH — Feldbuch-Look (komplett)
+   ============================================================ */
+
+/* --- Ledereinband (äußerer Dialog) --- */
+#ui-dialog:has(#ui-dialog-body.notizbuch-dialog) {
+    padding: 7px;
+    border: 2px solid #23150a;
+    border-radius: 11px;
+    background:
+        repeating-linear-gradient(135deg, rgba(0,0,0,.05) 0 3px, transparent 3px 7px),
+        radial-gradient(130% 140% at 25% 5%, #55371f, #3a2513 55%, #2a1a0d);
+    box-shadow: 0 14px 46px rgba(0,0,0,.6),
+                inset 0 1px 0 rgba(210,170,115,.25),
+                inset 0 0 0 1px rgba(0,0,0,.4);
+}
+#ui-dialog:has(#ui-dialog-body.notizbuch-dialog) #ui-dialog-titlebar {
+    background: transparent; border: 0; padding: .3em .6em;
+}
+#ui-dialog:has(#ui-dialog-body.notizbuch-dialog) #ui-dialog-title {
+    color: #e8d5a8; font-variant: small-caps; letter-spacing: .14em; font-size: 1.05em;
+    text-shadow: 0 1px 2px rgba(0,0,0,.6);
+}
+#ui-dialog:has(#ui-dialog-body.notizbuch-dialog) #ui-dialog-close { color: #c9a86a !important; }
+#ui-dialog:has(#ui-dialog-body.notizbuch-dialog) #ui-dialog-close:hover { color: #f0d9a8 !important; }
+
+/* --- Pergamentseite --- */
+#ui-dialog-body.notizbuch-dialog {
+    margin: 8px;
+    padding: 1.5em 1.7em;
+    border-radius: 3px;
+    border: 1px dashed rgba(120,90,50,.45);
+    font-family: Georgia, "Times New Roman", serif;
+    background:
+        radial-gradient(150% 120% at 50% -15%, rgba(255,250,238,.55), transparent 55%),
+        radial-gradient(90% 90% at 100% 105%, rgba(95,62,30,.22), transparent 60%),
+        radial-gradient(90% 90% at 0% 105%,  rgba(95,62,30,.18), transparent 60%),
+        repeating-linear-gradient(0deg, rgba(110,80,45,.045) 0 26px, transparent 26px 27px),
+        #dccaa0;
+    box-shadow: inset 0 0 34px rgba(95,62,30,.28), inset 0 0 2px rgba(0,0,0,.35);
+}
+
+/* --- Text zwingend dunkel (überschreibt die hellen Theme-Farben) --- */
+#ui-dialog-body.notizbuch-dialog,
+#ui-dialog-body.notizbuch-dialog .passage,
+#ui-dialog-body.notizbuch-dialog p,
+#ui-dialog-body.notizbuch-dialog li,
+#ui-dialog-body.notizbuch-dialog td,
+#ui-dialog-body.notizbuch-dialog th,
+#ui-dialog-body.notizbuch-dialog div,
+#ui-dialog-body.notizbuch-dialog b,
+#ui-dialog-body.notizbuch-dialog strong,
+#ui-dialog-body.notizbuch-dialog em {
+    color: #2a2016 !important;
+}
+
+/* --- Titel --- */
+#ui-dialog-body.notizbuch-dialog h2 {
+    font-variant: small-caps; letter-spacing: .06em; text-align: center;
+    color: #4a2f1a !important; border: 0; margin: 0 0 .7em;
+    text-shadow: 0 1px 0 rgba(255,255,255,.4);
+}
+#ui-dialog-body.notizbuch-dialog h2::after {
+    content: ""; display: block; height: 2px; width: 62%; margin: .45em auto 0;
+    background: linear-gradient(90deg, transparent, #7a5a2e, transparent);
+}
+
+/* --- Sektionen (details/summary) --- */
+#ui-dialog-body.notizbuch-dialog .journal-section { border: 0; margin: 0 0 .2em; }
+#ui-dialog-body.notizbuch-dialog .journal-section > summary {
+    list-style: none; cursor: pointer; position: relative;
+    font-variant: small-caps; letter-spacing: .05em; font-size: 1.03em;
+    color: #5a3d22 !important; padding: .4em 0 .32em 1.5em;
+    border-bottom: 1px solid rgba(110,80,45,.35);
+}
+#ui-dialog-body.notizbuch-dialog .journal-section > summary::-webkit-details-marker { display: none; }
+#ui-dialog-body.notizbuch-dialog .journal-section > summary::before {
+    content: "❧"; position: absolute; left: .1em; top: .35em; color: #7a5a2e; transition: transform .2s;
+}
+#ui-dialog-body.notizbuch-dialog .journal-section[open] > summary::before { transform: rotate(90deg); }
+#ui-dialog-body.notizbuch-dialog .journal-section > *:not(summary) { padding: .55em .2em .8em; }
+
+/* --- Links im Buch --- */
+#ui-dialog-body.notizbuch-dialog a.link-internal {
+    color: #6e3f16 !important; background: none !important; border: 0 !important;
+}
+#ui-dialog-body.notizbuch-dialog a.link-internal:hover { color: #9a5a1e !important; }
+
+/* --- Reiter --- */
+#ui-dialog-body.notizbuch-dialog .nb-tabs {
+    display: flex; flex-wrap: wrap; gap: 4px; margin: 0 0 1.1em; border-bottom: 2px solid #7a5a2e;
+}
+#ui-dialog-body.notizbuch-dialog .nb-tab {
+    cursor: pointer; padding: .3em .95em; font-variant: small-caps; letter-spacing: .04em;
+    color: #5a3d22 !important; background: #cbb488; border: 1px solid #a8946a; border-bottom: 0;
+    border-radius: 5px 5px 0 0; margin-bottom: -2px;
+}
+#ui-dialog-body.notizbuch-dialog .nb-tab:hover { background: #dcc79c; }
+#ui-dialog-body.notizbuch-dialog .nb-tab-aktiv {
+    background: #dccaa0; color: #3a2410 !important; font-weight: bold; border-bottom: 2px solid #dccaa0;
+}
+
+/* --- „Nach oben“-Knopf --- */
+#ui-dialog-body.notizbuch-dialog .nb-totop {
+    position: sticky; bottom: 10px; text-align: right; margin-top: 1em; z-index: 5; pointer-events: none;
+}
+#ui-dialog-body.notizbuch-dialog .nb-totop a.link-internal {
+    pointer-events: auto; display: inline-block;
+    background: #3a2a1a !important; color: #e7dabd !important;
+    border: 1px solid #7a5a2e !important; border-radius: 4px; padding: .3em .8em !important;
+    font-variant: small-caps;
+}
+/* --- Nachtrag: helle Spans & Skillkugeln lesbar auf Pergament --- */
+#ui-dialog-body.notizbuch-dialog span,
+#ui-dialog-body.notizbuch-dialog label {
+    color: #2a2016 !important;
+}
+
+/* Skill-Pips */
+#ui-dialog-body.notizbuch-dialog .pip-full {
+    background: #7a4c14 !important; border: 1px solid #4a2f10;
+}
+#ui-dialog-body.notizbuch-dialog .pip-empty {
+    background: rgba(0,0,0,.06) !important; border: 1px solid rgba(90,60,30,.6) !important;
+}
+
+/* XP-Balken */
+#ui-dialog-body.notizbuch-dialog .skill-xp-track {
+    background: rgba(90,60,30,.18) !important; border: 1px solid rgba(90,60,30,.35);
+}
+#ui-dialog-body.notizbuch-dialog .skill-xp-fill { background: #7a4c14 !important; }
+#ui-dialog-body.notizbuch-dialog .skill-xp-num  { color: #4a3418 !important; }
+
+/* --- Bildlaufleiste --- */
+#ui-dialog-body.notizbuch-dialog::-webkit-scrollbar { width: 10px; }
+#ui-dialog-body.notizbuch-dialog::-webkit-scrollbar-track { background: rgba(110,80,45,.15); }
+#ui-dialog-body.notizbuch-dialog::-webkit-scrollbar-thumb { background: #7a5a2e; border-radius: 5px; }
+
+/* --- Oberer Zurück-Knopf --- */
+#ui-dialog-body.notizbuch-dialog .nb-back a.link-internal {
+    display: inline-block; margin-bottom: .7em;
+    background: #cbb488 !important; color: #3a2410 !important;
+    border: 1px solid #a8946a !important; border-radius: 4px;
+    padding: .25em .8em !important; font-variant: small-caps; letter-spacing: .04em;
+}
+#ui-dialog-body.notizbuch-dialog .nb-back a.link-internal:hover { background: #dcc79c !important; }
+
+/* --- NPC-Karten --- */
+#ui-dialog-body.notizbuch-dialog .npc-card {
+    display: flex; gap: 12px; align-items: center;
+    background: linear-gradient(180deg, #f3e8ca, #e7d7ad);
+    border: 1px solid #b59a63; border-left: 4px solid #8a6a34;
+    border-radius: 5px; padding: 10px 13px; margin: 0 0 11px;
+    box-shadow: 0 1px 3px rgba(60,40,15,.25), inset 0 1px 0 rgba(255,255,255,.4);
+}
+#ui-dialog-body.notizbuch-dialog .npc-portrait {
+    width: 150px; height: 150px; flex: 0 0 150px; object-fit: cover;
+    border-radius: 3px; border: 1px solid #9b8353; filter: sepia(.25);
+}
+#ui-dialog-body.notizbuch-dialog .npc-card-body { flex: 1; min-width: 0; }
+#ui-dialog-body.notizbuch-dialog .npc-card-head {
+    display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; margin-bottom: 3px;
+}
+#ui-dialog-body.notizbuch-dialog .npc-card-loyalist {
+    background: linear-gradient(180deg, #f0d9cf, #e6c3b6);   /* leicht rötliches Pergament */
+    border-color: #b78b7a;
+    border-left-color: #8a2b20;                              /* rote Akzentkante, passend zum Badge */
+}
+
+#ui-dialog-body.notizbuch-dialog .npc-name {
+    font-variant: small-caps; letter-spacing: .04em; font-size: 1.06em; font-weight: bold;
+    color: #3a2410 !important;
+}
+#ui-dialog-body.notizbuch-dialog .npc-entry-text {
+    color: #2a2016 !important; font-size: .92em; line-height: 1.42; font-style: italic;
+}
+#ui-dialog-body.notizbuch-dialog .npc-meta {
+    margin-top: 5px; font-size: .82em; font-variant: small-caps; color: #6b4a22 !important;
+}
+#ui-dialog-body.notizbuch-dialog .npc-affection-val { color: #8a5a1e !important; }
+#ui-dialog-body.notizbuch-dialog .npc-trust {
+    font-size: .72em; font-variant: small-caps; letter-spacing: .04em;
+    background: #4d6b3a; color: #f0ead6 !important; border-radius: 3px; padding: 1px 7px;
+}
+
+/* --- Kompakt-Zeilen in der Übersicht --- */
+#ui-dialog-body.notizbuch-dialog .npc-row-compact {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 10px;
+    padding: 4px 8px; border-bottom: 1px dotted rgba(120,90,50,.35);
+}
+#ui-dialog-body.notizbuch-dialog .npc-row-compact:nth-child(even) { background: rgba(120,90,50,.06); }
+#ui-dialog-body.notizbuch-dialog .npc-row-compact .npc-meta { color: #6b4a22 !important; margin: 0; }
+
+#ui-dialog-body.notizbuch-dialog .rumor-cat-titel {
+    font-variant: small-caps; letter-spacing: .06em; font-size: 1.35em;
+    text-align: center; color: #4a2f1a !important;
+    border-bottom: 2px solid #7a5a2e; padding-bottom: 5px; margin: 0 0 10px;
+}
+#ui-dialog-body.notizbuch-dialog .rumor-eintrag {
+    color: #2a2016 !important; font-size: .93em; line-height: 1.5;
+    padding: 8px 4px;
+    border-bottom: 1px solid rgba(120,90,50,.25);
+}
+#ui-dialog-body.notizbuch-dialog .rumor-cat .rumor-eintrag:last-child { border-bottom: none; }
+
+
+
+/* === Header Menue === */
 
 .hud-item a,
 .hud-item a.link-internal {
@@ -997,13 +1235,78 @@ var LZString=function(){var r=String.fromCharCode,o="ABCDEFGHIJKLMNOPQRSTUVWXYZa
 .coin-s { background: radial-gradient(circle at 35% 30%, #e8ebf0, #a7adb8); }
 .coin-k { background: radial-gradient(circle at 35% 30%, #d89a6a, #a55f32); }
 
-.debug-passagentitel { color: #c0402f; font-weight: bold; font-size: .85em; margin-bottom: .4em; }</style><script role="script" id="twine-user-script" type="text/twine-javascript">/* twine-user-script #1: "00_01_syncGameState.js" */
+.debug-passagentitel { color: #c0402f; font-weight: bold; font-size: .85em; margin-bottom: .4em; }
+
+
+#ui-dialog-body.notizbuch-dialog .journal-group-title {
+    font-variant: small-caps; letter-spacing: .05em; font-size: 1.2em;
+    text-align: center; color: #4a2f1a !important;
+    border-bottom: 2px solid #7a5a2e; padding-bottom: 4px; margin: 1.1em 0 .6em;
+}
+#ui-dialog-body.notizbuch-dialog .npc-loyalist {
+    font-size: .72em; font-variant: small-caps; letter-spacing: .04em;
+    background: #8a2b20; color: #f0dcc0 !important; border-radius: 3px; padding: 1px 7px;
+}
+
+#ui-dialog-body.notizbuch-dialog details.journal-group { border: 0; margin: 0 0 .4em; }
+#ui-dialog-body.notizbuch-dialog details.journal-group > summary.journal-group-title {
+    list-style: none; cursor: pointer; position: relative;
+    font-variant: small-caps; letter-spacing: .05em; font-size: 1.2em; text-align: center;
+    color: #4a2f1a !important; border-bottom: 2px solid #7a5a2e; padding: 4px 1.4em; margin: 1em 0 .6em;
+}
+#ui-dialog-body.notizbuch-dialog details.journal-group > summary::-webkit-details-marker { display: none; }
+#ui-dialog-body.notizbuch-dialog details.journal-group > summary.journal-group-title::after {
+    content: "▾"; position: absolute; right: .3em; top: 50%; transform: translateY(-50%);
+    color: #7a5a2e; transition: transform .2s;
+}
+#ui-dialog-body.notizbuch-dialog details.journal-group:not([open]) > summary.journal-group-title::after {
+    transform: translateY(-50%) rotate(-90deg);
+}
+#ui-dialog-body.notizbuch-dialog details.journal-subgroup { border: 0; margin: 0 0 .3em; }
+#ui-dialog-body.notizbuch-dialog details.journal-subgroup > summary.journal-subgroup-title {
+    list-style: none; cursor: pointer; position: relative;
+    font-variant: small-caps; letter-spacing: .04em; font-size: .95em; color: #6b4a22 !important;
+    margin: .7em 0 .4em; padding: 0 1.2em 2px .2em; border-bottom: 1px dotted rgba(120,90,50,.4);
+}
+#ui-dialog-body.notizbuch-dialog details.journal-subgroup > summary::-webkit-details-marker { display: none; }
+#ui-dialog-body.notizbuch-dialog details.journal-subgroup > summary.journal-subgroup-title::after {
+    content: "▾"; position: absolute; right: .3em; top: 0; color: #8a6a34; transition: transform .2s;
+}
+#ui-dialog-body.notizbuch-dialog details.journal-subgroup:not([open]) > summary.journal-subgroup-title::after {
+    transform: rotate(-90deg);
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript">/* twine-user-script #1: "00_01_syncGameState.js" */
 
 setup.reconcileState = function () {
     var V = State.variables;
     if (V.player && setup.playerDefaults) setup.fillDefaults(V.player, setup.playerDefaults);
     if (V.world  && setup.worldDefaults)  setup.fillDefaults(V.world,  setup.worldDefaults);
     if (V.npc    && setup.npcDefaults)    setup.fillDefaults(V.npc,    setup.npcDefaults);
+};
+
+setup.migriereJarekBruch = function () {
+    var V = State.variables;
+    var j = V.npc && V.npc.jarek;
+    if (j && j.memory.flags.s6_done === true && !j.memory.flags.bruchNachgezogen) {
+        j.trust = false;
+        j.affection = -20;                       // Tiefstwert direkt, kein -40-Modifier
+        j.memory.flags.bruchNachgezogen = true;  // verhindert Wiederholung
+    }
+};
+setup.migriereEnttarnung = function () {
+    var npc = State.variables.npc;
+    if (!npc) return;
+
+    // Jarek: Bruch schon passiert (verschwunden) -> enttarnt nachziehen
+    if (npc.jarek && npc.jarek.memory.flags.verschwunden && !npc.jarek.memory.flags.enttarnt) {
+        npc.jarek.memory.flags.enttarnt = true;
+    }
+
+    // Oren: Ermittlung abgeschlossen / überführt -> enttarnt nachziehen
+    var e = State.variables.world.ermittlung;
+    if (npc.orenmalk && !npc.orenmalk.memory.flags.enttarnt
+        && e && e.flags && e.flags.nachspiel_done) {
+        npc.orenmalk.memory.flags.enttarnt = true;
+    }
 };
 
 function _istObjekt(x) { return x !== null && typeof x === "object" && !Array.isArray(x); }
@@ -1111,6 +1414,9 @@ setup.npcDefaults = {
     sergeant: {
         name: "Sergeant",
         image: "images/Sergeant.png",
+        faction: "Akademie",
+        subsubfaction: "Personal",
+        subfaction: null,
         known: false,
         affection: 0,
         trust: false,
@@ -1122,6 +1428,9 @@ setup.npcDefaults = {
     kurt: {
         name: "Kurt Brasner",
         image: "images/Kurt.png",
+        faction: "Akademie",
+        subsubfaction: "Ausbilder",
+        subfaction: null,
         known: false,
         affection: 0,
         trust: false,
@@ -1133,6 +1442,9 @@ setup.npcDefaults = {
     schinder: {
         name: "Schinder",
         image: "images/Schinder.png",
+        faction: "Akademie",
+        subsubfaction: "Ausbilder",
+        subfaction: null,
         known: false,
         affection: 0,
         trust: false,
@@ -1144,6 +1456,9 @@ setup.npcDefaults = {
     hauptmann: {
         name: "Konrad Rindler",
         image: "images/Hauptmann.png",
+        faction: "Akademie",
+        subsubfaction: "Ausbilder",
+        subfaction: null,
         known: false,
         affection: 0,
         trust: false,
@@ -1154,6 +1469,9 @@ setup.npcDefaults = {
     magister: {
         name: "Magister Cornelius Halm",
         image: "images/Magister.png",
+        faction: "Akademie",
+        subsubfaction: "Ausbilder",
+        subfaction: null,
         known: false,
         affection: 0,
         trust: false,
@@ -1177,15 +1495,36 @@ setup.npcDefaults = {
     
     orenmalk: {
         name: "Oren Malk",
+        image: "images/Oren.png",
         known: false,
-        faction: "Loyalisten",
+        faction: "Akademie",
+        subsubfaction: "Personal",
+        subfaction: "Loyalisten",
         affection: 0,
         trust: false,
         isRealPlayer: false,
         memory: { flags: {}, events: [] },
         motiv: "",
-        journalEntry: "Schreiber in der Waffenausgabe der Militärakademie zu Ohm – schmal, tintenfleckige Finger, sauber gestutzter Bart, leicht hinkender Gang. Höflich und überkorrekt auf den ersten Blick, doch nervös, aufmerksam und vorsichtig, sobald es um Ausgabelisten, Bestandsmarken oder fehlende Waffen geht."
+        /* orenmalk */
+        journalEntry: [
+            { text: "Schreiber in der Waffenausgabe der Militärakademie zu Ohm – schmal, tintenfleckige Finger, sauber gestutzter Bart, leicht hinkender Gang. Höflich und überkorrekt auf den ersten Blick, doch nervös, sobald es um Ausgabelisten, Bestandsmarken oder fehlende Waffen geht." },
+            { flag: "enttarnt", text: "Oren Malk war mehr als ein nervöser Schreiber. Hinter den frisierten Ausgabelisten steckte kein bloßer Dieb, sondern ein Loyalist, der dem Untergrund Waffen zuschob. Die Bücher logen, weil er es so wollte." }
+        ],
+    },
 
+    bader: {
+        name: "Santonio Flavori",
+        image: "images/Bader.png",
+        known: false,
+        faction: "Akademie",
+        subsubfaction: "Personal",
+        subfaction: null,
+        affection: 0,
+        trust: false,
+        isRealPlayer: false,
+        memory: { flags: {}, events: [] },
+        motiv: "",
+        journalEntry: "Ein Bader mit südländischem Namen und wärmeren Manieren, als man sie im Lager gewohnt ist — geschickte, narbige Hände, ein Lächeln, das leicht kommt, und eine Zunge, die noch leichter läuft. Er flickt dich zusammen und erzählt dir dabei sein halbes Leben. Sein Handwerk versteht er wie kaum ein zweiter, und für einen guten Kerl drückt er auch mal ein Auge zu — sein Kupfer aber nimmt er bei aller Herzlichkeit gern."
     },
 
     /* Echte Spieler */
@@ -1364,6 +1703,9 @@ setup.npcDefaults = {
         image: "images/Karla_Kap1.png",
         imageKap2: "images/Karla_Kap2.jpg",
         imageVerhaftet: "images/Karla_verhaftet.png",
+        faction: "Akademie",
+        subfaction: null,
+        subsubfaction: "Kamerad",
         known: false,
         affection: 0,
         trust: false,
@@ -1387,14 +1729,21 @@ setup.npcDefaults = {
         name: "Jarek",
         image: "images/Jarek.png",
         imageKap2: "images/Jarek_Kap2.png",
+        faction: "Akademie",
+        subfaction: "Loyalisten",
+        subsubfaction: "Kamerad",
         known: false,
         affection: 0,
         trust: false,
         isRealPlayer: false,
         memory: { flags: {}, events: [] },
         /* Sichtbares Profil – kein Hinweis auf das Geheimnis */
-        journalEntry: "Schmächtig, ruhig, fällt nicht auf. Hat mir am ersten Abend die Pritsche neben sich angeboten und erklärt, dass er hier wegen des Solds ist – Geld für die Familie daheim. Hält sich aus Streitereien raus und beobachtet mehr als er redet. Niemand nimmt ihn besonders ernst."
-        /*
+        /* jarek */
+        journalEntry: [
+            { text: "Schmächtig, ruhig, fällt nicht auf. Hat mir am ersten Abend die Pritsche neben sich angeboten und erklärt, dass er hier wegen des Solds ist – Geld für die Familie daheim. Hält sich aus Streitereien raus und beobachtet mehr als er redet. Niemand nimmt ihn besonders ernst." },
+            { flag: "enttarnt", text: "Jarek war nie der stille Rekrut, für den ich ihn hielt. Ein Loyalist, von Kindheit an auf eine alte Lüge eingeschworen — und mit dem Beweis in der Hand verschwunden. Was harmlos aussah, war Geduld." }
+        ],
+    /*
             GEHEIMNIS (nicht im Journal – für interne Plotlogik):
             Heimlicher Loyalist, von klein auf indoktriniert.
             Sucht Zugang zum Gründungsarchiv der Akademie in Grodaus.
@@ -1405,6 +1754,72 @@ setup.npcDefaults = {
             Verbindung zu laufendem Plot: "Loyalisten" (Fraktion im Untergrund)
         */
     },
+    bronko: {
+        name: "Bronko",
+        image: "images/Bronko.png",
+        imageDead: "images/BronkoDead.png",
+        imageLocked: "images/BronkoEingesperrt.png",
+        faction: "Akademie",
+        subfaction: null,
+        subsubfaction: "Kamerad",
+        known: false,
+        affection: 0,
+        trust: false,
+        isRealPlayer: false,
+        memory: { flags: {}, events: [] },
+        /* Sichtbares Profil – kein Hinweis auf das Geheimnis */
+        /* bronko */
+        journalEntry: [
+            { text: "Ein Kulitcka aus Rabenfurt — groß, schweigsam, mit Fäusten wie Schmiedehämmer. Er schlägt zu, wie es von einem Kulitcka erwartet wird, doch in seinem Blick liegt etwas, das nicht zu einem Mann passt, der hassen soll." },
+            { flag: "eingesperrt", text: "Es floss Blut, aber Bronko lebt — und steht nun vor dem Malefizgericht. Aus dem stillen Riesen ist ein Gefangener geworden, und ob ihn jemand vor dem Strick bewahrt, liegt in fremden Händen." },
+            { flag: "tot", text: "Bronko ist tot. Der stille Riese aus Rabenfurt, in dessen Blick etwas lag, das nicht zum Hass passte — gefallen in einem Streit, der nie seiner war. Was er trug, trägt er nun ins Grab." }
+        ],
+    },
+
+    pavel: {
+        name: "Pavel",
+        image: "images/Pavel.png",
+        imageDead: "images/PavelDead.png",
+        imageLocked: "images/PavelEingesperrt.png",
+        faction: "Akademie",
+        subfaction: null,
+        subsubfaction: "Kamerad",
+        known: false,
+        affection: 0,
+        trust: false,
+        isRealPlayer: false,
+        memory: { flags: {}, events: [] },
+        /* Sichtbares Profil – kein Hinweis auf das Geheimnis */
+        /* pavel */
+        journalEntry: [
+            { text: "Ein Pipovic, und er trägt den Namen wie eine geladene Waffe. Schnell mit Worten, schneller mit Zorn — aber unter dem Zorn sitzt eine Trauer, die er keinem zeigt. Er will das Duell. Ob wirklich, weiß vielleicht nicht einmal er selbst." },
+            { flag: "eingesperrt", text: "Pavel lebt, doch der Zorn hat ihn ans Malefizgericht gebracht. Der Name, den er wie eine Waffe trug, wiegt jetzt schwer wie Ketten." },
+            { flag: "tot", text: "Pavel ist tot. Der schnelle Zorn ist verstummt — und die Trauer darunter, die er keinem gezeigt hat, hat nun niemanden mehr, dem er sie zeigen könnte." }
+        ],
+    },
+
+    zdenka: {
+        name: "Zdenka",
+        image: "images/Zdenka.png",
+        imageGone: "images/ZdenkaGone.png",
+        faction: "Akademie",
+        subfaction: null,
+        subsubfaction: "Kamerad",
+        known: false,
+        affection: 0,
+        trust: false,
+        isRealPlayer: false,
+        memory: { flags: {}, events: [] },
+        /* Sichtbares Profil – kein Hinweis auf das Geheimnis */
+        /* zdenka */
+        /* zdenka */
+        journalEntry: [
+            { text: "Eine Soldatin aus Rabenfurt, die zwischen den verfeindeten Häusern steht und einen Frieden zu halten versucht, den sonst niemand will. Sie wählt ihre Worte bedacht und ihre Blicke noch sorgsamer — als trüge sie etwas mit sich, das sie keinem anvertrauen kann." },
+            { flag: "vermittelt", text: "Zdenka hat den Dienst an der Akademie quittiert und ist nach Rabenfurt gegangen — nicht um zu kämpfen, sondern um zu vermitteln, solange zwischen den Häusern noch etwas zu retten ist. Barett und Gambeson hat sie abgelegt." },
+            { flag: "truemmer", text: "Zdenka hat den Dienst quittiert und ist nach Rabenfurt zurückgekehrt — nicht als Soldatin, sondern um die Scherben zu kehren, die andere hinterlassen haben. Barett und Gambeson hat sie abgelegt." }
+        ],
+    },
+
 
     /* ===========================
        DIPLOMATIE / AUSSENWELT
@@ -1415,6 +1830,7 @@ setup.npcDefaults = {
         image: "images/Heinrich.png",
         known: false,
         faction: "Kronmark",
+        subfaction: null,
         affection: 0,
         trust: false,
         isRealPlayer: true,
@@ -1426,6 +1842,7 @@ setup.npcDefaults = {
         image: "images/Silva.png",
         known: false,
         faction: "Kronmark",
+        subfaction: null,
         affection: 0,
         trust: false,
         isRealPlayer: true,
@@ -1443,6 +1860,7 @@ setup.npcDefaults = {
         known: false,
         image: "images/Luigi.png",
         faction: "La Familia",
+        subfaction: null,
         affection: 4,
         trust: false,
         isRealPlayer: true,
@@ -1460,6 +1878,7 @@ setup.npcDefaults = {
         name: "Vincente",
         known: false,
         faction: "La Familia",
+        subfaction: null,
         affection: 0,
         trust: false,
         isRealPlayer: true,
@@ -1471,6 +1890,7 @@ setup.npcDefaults = {
         known: false,
         image: "images/MM.png",
         faction: "La Familia",
+        subfaction: null,
         affection: 0,
         trust: false,
         isRealPlayer: true,
@@ -1488,6 +1908,7 @@ setup.npcDefaults = {
         known: false,
         image: "images/Konrad.png",
         faction: "Imperium",
+        subfaction: null,
         affection: 0,
         trust: false,
         isRealPlayer: true,
@@ -2291,6 +2712,24 @@ setup.debugTitleAktualisieren = function () {
         "images/Thomas_Kap2.png",
         "images/Thomas_Kap2_scar.png"
     ].forEach(function (src) { var img = new Image(); img.src = src; });
+})();
+
+
+(function () {
+    var PATCH_VERSION = "0.9.5";   // bei neuen Patchnotes hochzählen -> zeigt sie erneut
+
+    $(document).one(":passageend", function () {
+        var gesehen = null;
+        try { gesehen = localStorage.getItem("anAloyPatchnotes"); } catch (e) {}
+        if (gesehen === PATCH_VERSION) return;          // schon gesehen -> nichts tun
+
+        setTimeout(function () {
+            Dialog.setup("Neuigkeiten", "notizbuch-dialog patchnotes-dialog");
+            Dialog.wiki(Story.get("Patchnotes").text);
+            Dialog.open();
+            try { localStorage.setItem("anAloyPatchnotes", PATCH_VERSION); } catch (e) {}
+        }, 150);
+    });
 })();
 /* twine-user-script #4: "90_02_interrupts.js" */
 
@@ -3412,7 +3851,9 @@ setup.syncPlayerRel = function () {
 
 $(document).on(":passagestart", function () {
     setup.syncPlayerRel();
-     setup.reconcileState();;
+    setup.reconcileState();
+    setup.migriereJarekBruch();
+    setup.migriereEnttarnung();
     var known = State.variables.npc && State.variables.npc.sergeant && State.variables.npc.sergeant.known === true;
     jQuery("html").toggleClass("hat-titelbild", known);
 });
@@ -3449,14 +3890,34 @@ setup.removeItem = function (itemName) {
 
 /* --- Gerüchte --- */
 setup.renderRumors = function () {
-    if (State.variables.player.rumors.length === 0) {
-        return "Noch keine Gerüchte notiert.";
-    }
+    var p = State.variables.player;
+    var rumors = p.rumors || [];
+    if (rumors.length === 0) return "Noch keine Gerüchte notiert.";
 
-    let out = "";
-    for (let r of State.variables.player.rumors) {
-        out += `<div>- ${r}</div>`;
-    }
+    // rumorText -> Story-id, um die Kategorie aus dem Präfix zu ziehen
+    var textZuId = {};
+    (setup.getAllGossipStories ? setup.getAllGossipStories() : []).forEach(function (s) {
+        if (s && s.rumorText) textZuId[s.rumorText] = s.id;
+    });
+    var catMap = p.rumorCat || {};      // Fallback für Nicht-Gossip-Gerüchte (z.B. Straßennews)
+    var gueltig = setup.rumorKategorien.map(function (k) { return k.id; });
+
+    var groups = {};
+    rumors.forEach(function (text) {
+        var cat = setup.rumorKatAusId(textZuId[text]) || catMap[text] || "sonstige";
+        if (gueltig.indexOf(cat) === -1) cat = "sonstige";
+        (groups[cat] = groups[cat] || []).push(text);
+    });
+
+    var out = "";
+    setup.rumorKategorien.forEach(function (k) {
+        var list = groups[k.id];
+        if (!list || !list.length) return;
+        out += '<div class="rumor-cat"><div class="rumor-cat-titel">' + k.label + '</div>';
+        list.forEach(function (text) { out += '<div class="rumor-eintrag">' + text + '</div>'; });
+        out += '</div>';
+
+    });
     return out;
 };
 
@@ -3469,6 +3930,23 @@ setup.addRumor = function (rumorText) {
         return '<div class="system-alert status-info">Neues Gerücht im Notizbuch vermerkt.</div>';
     }
     return "";
+};
+
+
+setup.rumorKategorien = [
+    { id: "lagerklatsch", label: "🍺 Lagerklatsch" },
+    { id: "landesinfo",   label: "🗺️ Landesinfos" },
+    { id: "knaller",      label: "💥 Knaller" },
+    { id: "sonstige",     label: "📎 Sonstiges" }
+];
+
+setup.rumorKatAusId = function (id) {
+    if (!id) return null;
+    var pre = String(id).slice(0, 3).toLowerCase();   // "lk_", "li_", "kn_"
+    if (pre === "lk_") return "lagerklatsch";
+    if (pre === "li_") return "landesinfo";
+    if (pre === "kn_") return "knaller";
+    return null;
 };
 
 setup.getRumor = function (rumorText) {
@@ -5276,51 +5754,102 @@ setup.resolveJournalEntry = function (npc) {
     return "";
 };
 
+setup.fraktionsRubriken = [
+    { id: "Akademie",   label: "🏛️ Die Akademie" },
+    { id: "84. Banner", label: "⚔️ Das 84. Banner" },
+    { id: "La Familia", label: "🍇 La Familia" },
+    { id: "Kronmark",   label: "🛡️ Die Kronmark" },
+    { id: "Imperium",   label: "🦅 Das Imperium" }
+];
+
+setup.subGruppen = [
+    { id: "Ausbilder", label: "Ausbilder" },
+    { id: "Kamerad",   label: "Kameraden" },
+    { id: "Personal",  label: "Personal" }
+];
+
+setup.renderNpcKarte = function (n) {
+    const esc = setup.escapeHtml;
+    const aff = setup.getAffectionLabel(n.affection);
+    const istLoyalist = !!(n.memory && n.memory.flags && n.memory.flags.enttarnt);
+    const trust = (n.trust === true || (typeof n.trust === "number" && n.trust > 0))
+        ? `<span class="npc-trust">🤝 Vertrauen</span>` : "";
+    const loyalist = istLoyalist ? `<span class="npc-loyalist">⚑ Loyalist</span>` : "";
+    const src = setup.resolveNpcImage(n);
+    const portrait = src
+        ? `<img class="npc-portrait" src="${esc(src)}" alt="${esc(n.name)}" onerror="this.style.display='none'">`
+        : "";
+    return `
+        <div class="npc-card${istLoyalist ? ' npc-card-loyalist' : ''}">${portrait}
+            <div class="npc-card-body">
+                <div class="npc-card-head"><span class="npc-name">${n.name}</span>${trust}${loyalist}</div>
+                <div class="npc-entry-text">${setup.resolveJournalEntry(n)}</div>
+                <div class="npc-meta">${aff} <span class="npc-affection-val">(${n.affection})</span></div>
+            </div>
+        </div>`;
+};
+
 /* Gemeinsamer Karten-Renderer für eine beliebige Personenliste */
 setup.renderPersonList = function (list, emptyMsg) {
     if (!list || list.length === 0) {
         return `<p class="journal-empty">${emptyMsg || "Noch kenne ich niemanden näher."}</p>`;
     }
-    const esc = setup.escapeHtml;
+    const byAffThenName = (a, b) => (b.affection - a.affection) || a.name.localeCompare(b.name, "de");
+
     const groups = {};
-    list.forEach(n => {
-        const f = n.faction || "Akademie zu Ohm";
-        (groups[f] = groups[f] || []).push(n);
-    });
-    const byAffThenName = (a, b) =>
-        (b.affection - a.affection) || a.name.localeCompare(b.name, "de");
+    list.forEach(n => { const f = n.faction || "Akademie"; (groups[f] = groups[f] || []).push(n); });
+
+    const labelMap = {};
+    const order = setup.fraktionsRubriken.map(r => { labelMap[r.id] = r.label; return r.id; });
+    Object.keys(groups).sort((a, b) => a.localeCompare(b, "de")).forEach(f => { if (order.indexOf(f) === -1) order.push(f); });
+
     let out = "";
-    Object.keys(groups).sort((a, b) => a.localeCompare(b, "de")).forEach(faction => {
-        out += `<div class="journal-group"><div class="journal-group-title">${faction}</div>`;
-        groups[faction].sort(byAffThenName).forEach(n => {
-            const aff = setup.getAffectionLabel(n.affection);
-            const trust = (n.trust === true || (typeof n.trust === "number" && n.trust > 0))
-                ? `<span class="npc-trust">🤝 Vertrauen</span>` : "";
-            const src = setup.resolveNpcImage(n);
-            const portrait = src
-                ? `<img class="npc-portrait" src="${esc(src)}" alt="${esc(n.name)}" onerror="this.style.display='none'">`
-                : "";
-            out += `
-                <div class="npc-card">
-                    ${portrait}
-                    <div class="npc-card-body">
-                        <div class="npc-card-head">
-                            <span class="npc-name">${n.name}</span>${trust}
-                        </div>
-                        <div class="npc-entry-text">${setup.resolveJournalEntry(n)}</div>
-                        <div class="npc-meta">${aff} <span class="npc-affection-val">(${n.affection})</span></div>
-                    </div>
-                </div>`;
-        });
-        out += `</div>`;
+    order.forEach(faction => {
+        const grp = groups[faction];
+        if (!grp || !grp.length) return;
+        out += `<details class="journal-group" open><summary class="journal-group-title">${labelMap[faction] || faction}</summary>`;
+
+        const subs = {};
+        grp.forEach(n => { const s = n.subsubfaction || "_rest"; (subs[s] = subs[s] || []).push(n); });
+        const hatUntergruppen = setup.subGruppen.some(sg => subs[sg.id] && subs[sg.id].length);
+
+        if (hatUntergruppen) {
+            const subOrder = setup.subGruppen.map(sg => sg.id);
+            const subLabel = {}; setup.subGruppen.forEach(sg => subLabel[sg.id] = sg.label);
+            Object.keys(subs).forEach(s => { if (subOrder.indexOf(s) === -1) subOrder.push(s); });
+            subOrder.forEach(s => {
+                const sg = subs[s];
+                if (!sg || !sg.length) return;
+                if (s !== "_rest") {
+                    out += `<details class="journal-subgroup" open><summary class="journal-subgroup-title">${subLabel[s] || s}</summary>`;
+                    sg.sort(byAffThenName).forEach(n => { out += setup.renderNpcKarte(n); });
+                    out += `</details>`;
+                } else {
+                    sg.sort(byAffThenName).forEach(n => { out += setup.renderNpcKarte(n); });
+                }
+            });
+        } else {
+            grp.sort(byAffThenName).forEach(n => { out += setup.renderNpcKarte(n); });
+        }
+        out += `</details>`;
     });
     return out;
 };
 
+setup.renderJournalAlle = function () {
+    var npcs = State.variables.npc || {};
+    var list = Object.keys(npcs).map(k => npcs[k]).filter(n => n.known === true);
+    return setup.renderPersonList(list, "Noch kenne ich niemanden näher.");
+};
+
 setup.resolveNpcImage = function (n) {
     if (!n) return "";
+    var f = (n.memory && n.memory.flags) || {};
+    if (f.tot          && n.imageDead)      return n.imageDead;
+    if (f.eingesperrt  && n.imageLocked)    return n.imageLocked;
+    if (f.weggegangen  && n.imageGone)      return n.imageGone;
+    if (f.verhaftung_seen && n.imageVerhaftet) return n.imageVerhaftet;   // Karla
     var kap2 = State.variables.world.kapitel1_gesperrt === true;
-    if (n.name === "Karla" && n.memory.flags.verhaftung_seen) return n.imageVerhaftet || "";
     if (kap2 && n.imageKap2) return n.imageKap2;
     return n.image || "";
 };
@@ -5416,6 +5945,25 @@ setup.konditionMeter = function () {
          + '<span class="kond-fill" style="width:' + c + '%"></span>'
          + '<span class="kond-text">' + label + '</span></span>';
 };
+
+setup.notizbuchTabs = function (aktiv) {
+    var tabs = [
+        { id: "journalAnsicht",      label: "Übersicht" },
+        { id: "Notizbuch_Personen",  label: "Personen" },
+        { id: "Notizbuch_Kameraden", label: "Kameraden" },
+        { id: "Notizbuch_Geruechte", label: "Gerüchte" }
+    ];
+    if (setup.ermittlungBekannt()) tabs.push({ id: "Notizbuch_Ermittlung", label: "Ermittlung" });
+    var out = '<div class="nb-tabs">';
+    tabs.forEach(function (t) {
+        out += '<a class="nb-tab' + (t.id === aktiv ? ' nb-tab-aktiv' : '') + '" data-seite="' + t.id + '">' + t.label + '</a>';
+    });
+    return out + '</div>';
+};
+
+$(document).on('click', '.notizbuch-dialog .nb-tab', function () {
+    setup.notizbuch($(this).attr('data-seite'));
+});
 /* twine-user-script #14: "90_13_kap2_hub.js" */
 
 /* ================================================================
@@ -6028,7 +6576,13 @@ setup.wochentage = ["Manda", "Irda", "Migga", "Pfinsta", "Freida", "Samsda", "Su
 
 
 setup.datumAnzeige = function () {
-    var d = Math.max(1, State.variables.world.day);
+    var w = State.variables.world;
+    if(w.flags.doneFirstWeeks === true){
+        var d = Math.max(1, State.variables.world.day +21);
+    }       
+    else{
+        var d = Math.max(1, State.variables.world.day);
+    }
     var jahr = Math.floor((d - 1) / 365) + 1;
     var tagImJahr = ((d - 1) % 365) + 1;
     var woche = Math.ceil(tagImJahr / 3);   // +1 alle 3 Tage
@@ -6347,7 +6901,56 @@ setup.debugDuellSetzen = function (variante) {
     if (mem) setup.pushNpcMemory("karla", mem);
     return '<div class="system-alert status-info">Duell: ' + variante + (mem ? ' (+Karla-Memory: „' + mem + '“)' : '') + '</div>';
 };
-/* twine-user-script #18: "90_18_duell_ende.js" */
+/* twine-user-script #18: "90_17_mucisPlayer.js" */
+setup.ambientTracks = ["amb01","amb02","amb03","amb04","amb05","amb06","amb07","amb08","amb09","amb10"];
+
+setup.musikSpiele = function (i) {
+    var M = State.variables.world.musik;
+    var n = setup.ambientTracks.length;
+    M.i = ((i % n) + n) % n;     // wrappt -> Endlosschleife
+    SimpleAudio.select(":all").off("ended").stop();
+    var run = SimpleAudio.select(setup.ambientTracks[M.i]);
+    run.volume(M.vol);
+    run.one("ended", function () { setup.musikSpiele(State.variables.world.musik.i + 1); });
+    run.play();
+    M.an = true;
+    setup._musikPausiert = false;
+};
+
+setup.musikToggle = function () {
+    var M = State.variables.world.musik;
+    if (M.an) {                                    // läuft -> pausieren
+        SimpleAudio.select(":all").pause();
+        M.an = false;
+        setup._musikPausiert = true;
+    } else if (setup._musikPausiert) {             // pausiert -> selben Titel fortsetzen
+        SimpleAudio.select(setup.ambientTracks[M.i]).play();
+        M.an = true;
+        setup._musikPausiert = false;
+    } else {
+        setup.musikSpiele(Math.floor(Math.random() * setup.ambientTracks.length));   // Zufallsindex
+    }
+};
+
+setup.musikNext = function () { setup.musikSpiele((State.variables.world.musik.i || 0) + 1); };
+setup.musikPrev = function () { setup.musikSpiele((State.variables.world.musik.i || 0) - 1); };
+
+setup.musikVol = function (v) {
+    var M = State.variables.world.musik;
+    M.vol = Math.max(0, Math.min(1, Number(v) || 0));
+    SimpleAudio.select(":all").volume(M.vol);
+};
+
+$(document).on("input", "#musik-regler", function () {
+    setup.musikVol(this.value / 100);
+    $("#musik-vol").text(Math.round(this.value) + "%");
+});
+
+$(document).one(":storyready", function () {
+    if (State.variables.world && State.variables.world.musik) State.variables.world.musik.an = false;
+    setup._musikPausiert = false;
+});
+/* twine-user-script #19: "90_18_duell_ende.js" */
 /* ===== DUELL: Ende-Berechnung & Nachwirkung ===== */
 
 /* Ausgang = rein aus dem Wissen (deine S5-Tabelle). Trust steckt schon in den Checks. */
@@ -6383,7 +6986,7 @@ setup.duellEinfluss = function () {
     return { wert: wert, band: band };
 };
 
-</script><tw-tag name="nach_hub" color="green"></tw-tag><tw-tag name="einmalig" color="red"></tw-tag><tw-tag name="studium" color="yellow"></tw-tag><tw-tag name="layout" color="green"></tw-tag><tw-tag name="nach_Kap2_morgen" color="green"></tw-tag><tw-tag name="nach_Kap2_tag" color="green"></tw-tag><tw-tag name="header" color="blue"></tw-tag><tw-tag name="script" color="purple"></tw-tag><tw-tag name="widget" color="blue"></tw-tag><tw-tag name="nach_morgen" color="red"></tw-tag><tw-tag name="pruefung" color="green"></tw-tag><tw-tag name="nach_stube" color="orange"></tw-tag><tw-tag name="interrupt" color="purple"></tw-tag><tw-tag name="nach_appell" color="yellow"></tw-tag><tw-tag name="nach_Kap2_abend" color="yellow"></tw-tag><tw-tag name="startup-debug" color="purple"></tw-tag><tw-tag name="kapitel-opener" color="red"></tw-tag><tw-tag name="journal" color="orange"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="0,225" size="100,100">&lt;&lt;set $npc to clone(setup.npcDefaults)&gt;&gt;
+</script><tw-tag name="interrupt" color="purple"></tw-tag><tw-tag name="nach_appell" color="yellow"></tw-tag><tw-tag name="pruefung" color="green"></tw-tag><tw-tag name="nach_Kap2_tag" color="green"></tw-tag><tw-tag name="widget" color="blue"></tw-tag><tw-tag name="nach_hub" color="green"></tw-tag><tw-tag name="einmalig" color="red"></tw-tag><tw-tag name="studium" color="yellow"></tw-tag><tw-tag name="header" color="blue"></tw-tag><tw-tag name="startup-debug" color="purple"></tw-tag><tw-tag name="nach_morgen" color="red"></tw-tag><tw-tag name="script" color="purple"></tw-tag><tw-tag name="nach_stube" color="orange"></tw-tag><tw-tag name="kapitel-opener" color="red"></tw-tag><tw-tag name="nach_Kap2_abend" color="yellow"></tw-tag><tw-tag name="layout" color="green"></tw-tag><tw-tag name="journal" color="orange"></tw-tag><tw-tag name="nach_Kap2_morgen" color="green"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="0,225" size="100,100">&lt;&lt;set $npc to clone(setup.npcDefaults)&gt;&gt;
 &lt;&lt;set $world to clone(setup.worldDefaults)&gt;&gt;
 &lt;&lt;set $player to clone(setup.playerDefaults)&gt;&gt;
 &lt;&lt;include &quot;InitStudium&quot;&gt;&gt;
@@ -6392,7 +6995,24 @@ setup.duellEinfluss = function () {
 &lt;&lt;set setup.trainingsHubTextVault to JSON.parse(Story.get(&quot;TrainingsHubTexte&quot;).text)&gt;&gt;
 &lt;&lt;set setup.abendappellTextVault to JSON.parse(Story.get(&quot;AbendappellTexte&quot;).text)&gt;&gt;
 &lt;&lt;include &quot;initEnemy&quot;&gt;&gt;
-&lt;&lt;set $showLogo to false&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="InitPlayer" tags="" position="0,325" size="100,100">&lt;&lt;set $player = {
+&lt;&lt;set $showLogo to false&gt;&gt;
+
+&lt;&lt;cacheaudio &quot;amb01&quot; &quot;audio/01.mp3&quot;&gt;&gt;
+&lt;&lt;cacheaudio &quot;amb02&quot; &quot;audio/02.mp3&quot;&gt;&gt;
+&lt;&lt;cacheaudio &quot;amb03&quot; &quot;audio/03.mp3&quot;&gt;&gt;
+&lt;&lt;cacheaudio &quot;amb04&quot; &quot;audio/04.mp3&quot;&gt;&gt;
+&lt;&lt;cacheaudio &quot;amb05&quot; &quot;audio/05.mp3&quot;&gt;&gt;
+&lt;&lt;cacheaudio &quot;amb06&quot; &quot;audio/06.mp3&quot;&gt;&gt;
+&lt;&lt;cacheaudio &quot;amb07&quot; &quot;audio/07.mp3&quot;&gt;&gt;
+&lt;&lt;cacheaudio &quot;amb08&quot; &quot;audio/08.mp3&quot;&gt;&gt;
+&lt;&lt;cacheaudio &quot;amb09&quot; &quot;audio/09.mp3&quot;&gt;&gt;
+&lt;&lt;cacheaudio &quot;amb10&quot; &quot;audio/10.mp3&quot;&gt;&gt;
+
+&lt;&lt;createplaylist &quot;ambient&quot;&gt;&gt;
+    &lt;&lt;track &quot;amb01&quot;&gt;&gt;&lt;&lt;track &quot;amb02&quot;&gt;&gt;&lt;&lt;track &quot;amb03&quot;&gt;&gt;&lt;&lt;track &quot;amb04&quot;&gt;&gt;&lt;&lt;track &quot;amb05&quot;&gt;&gt;
+    &lt;&lt;track &quot;amb06&quot;&gt;&gt;&lt;&lt;track &quot;amb07&quot;&gt;&gt;&lt;&lt;track &quot;amb08&quot;&gt;&gt;&lt;&lt;track &quot;amb09&quot;&gt;&gt;&lt;&lt;track &quot;amb10&quot;&gt;&gt;
+&lt;&lt;/createplaylist&gt;&gt;
+&lt;&lt;run SimpleAudio.volume(0.4)&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="InitPlayer" tags="" position="0,325" size="100,100">&lt;&lt;set $player = {
     name: &quot;Thomas&quot;,
     fullname: &quot;Thomaso Wabbler&quot;,
     rank: &quot;Zivilist&quot;,
@@ -9836,6 +10456,9 @@ Magister Halm steht nicht. Er lehnt am Pult, die tintenfleckigen Finger auf eine
 &lt;&lt;set $world.flags = $world.flags || {}&gt;&gt;
 &lt;&lt;set $world.flags.freiheitserklaerung_beweis = true&gt;&gt;
 &lt;&lt;set $npc.jarek.memory.flags.verschwunden = true&gt;&gt;
+&lt;&lt;set $npc.jarek.trust = false&gt;&gt;
+&lt;&lt;set $npc.jarek.memory.flags.enttarnt to true&gt;&gt;
+&lt;&lt;run setup.setNpcAffection(&quot;jarek&quot;, -40)&gt;&gt;
 &lt;div class=&quot;dialog&quot;&gt;„Warum ich?&quot;, bringst du heraus.&lt;/div&gt;
 &lt;p&gt;Jarek hält das Blatt an die Brust, als wäre es das Einzige im Raum, das zählt. „Weil du niemand bist, Thomas. Kein Name, keine Familie, die nachfragt. Ein Frischling, der nicht auffällt, der nicht quatscht.&quot; Es klingt nicht einmal grausam. Es klingt wahr. „Du warst perfekt.&quot;&lt;/p&gt;
 &lt;div class=&quot;thought-box&quot;&gt;Genau die Worte vom ersten Abend. „Du fällst nicht auf, du redest nicht viel — das passt.&quot; Ich dachte, das sei ein Kompliment.&lt;/div&gt;
@@ -12883,7 +13506,8 @@ was ein flüchtiger Beobachter übersähe, und dein Gedächtnis hält es fest.&l
 
 &lt;&lt;/if&gt;&gt;
 
-&lt;&lt;weiterImTag &quot;Weiter&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="135" name="Ermittlung_S10_Koda" tags="" position="1225,6525" size="100,100">&lt;&lt;scene&gt;&gt;
+&lt;&lt;weiterImTag &quot;Weiter&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="135" name="Ermittlung_S10_Koda" tags="" position="1225,6525" size="100,100">&lt;&lt;set $npc.orenmalk.memory.flags.enttarnt to true&gt;&gt;
+&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Sie holen Oren mitten am Tag, ohne Aufhebens, wie man einen Mann holt, von dem man keinen Widerstand erwartet. Er leistet keinen. Er legt die Feder beiseite, richtet die Bolzen in ihren Fächern, als sei Ordnung noch immer seine Pflicht, und geht zwischen den beiden Weibeln hinaus, das kranke Bein nachziehend, den Rücken gerade.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
 
@@ -14048,6 +14672,7 @@ oder du hältst die Truppe in Bewegung und suchst lieber den festeren Waldrand a
 &lt;&lt;/if&gt;&gt;
 
 &lt;&lt;set _spec = $player.spezialisierung&gt;&gt;
+&lt;&lt;set $npc.bronko.known to true&gt;&gt;&lt;&lt;set $npc.pavel.known to true&gt;&gt;&lt;&lt;set $npc.zdenka.known to true&gt;&gt;
 
 &lt;&lt;scene&gt;&gt;
 &lt;p&gt;Der Morgen riecht nach Graupenbrei, Zwiebeln, nassem Wollstoff und kalter Asche.&lt;/p&gt;
@@ -15471,13 +16096,27 @@ kalter Zug.&lt;/p&gt;
 	&lt;&lt;default&gt;&gt;&lt;p&gt;Doch was zwischen dir und den Beteiligten steht, trübt selbst diesen Ausgang.&lt;/p&gt;
 	&lt;&lt;/switch&gt;&gt;
 &lt;&lt;case &quot;B&quot;&gt;&gt;
+	&lt;&lt;if $world.duell.outcome isnot &quot;B_bronko_reue&quot;&gt;&gt;
+		&lt;&lt;set $npc.zdenka.memory.flags.weggegangen to true&gt;&gt;
+		&lt;&lt;set $npc.zdenka.memory.flags.vermittelt to true&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
 	&lt;p&gt;Es floss Blut, aber keiner starb. Vor der Akademie steht Disziplinarisches — ein Duell bleibt ein Duell —,
 	vor Rabenfurt die alte Fehde, unverändert, nur um eine Wunde reicher.&lt;/p&gt;
 	&lt;&lt;switch $world.duell.outcome&gt;&gt;
-	&lt;&lt;case &quot;B_bronko_reue&quot;&gt;&gt;&lt;p&gt;Was Pavel in Bronkos Gesicht sah, lässt ihn nicht los. Sechs Tage später fragt er zum ersten Mal selbst nach — leise, misstrauisch, aber er fragt. Ein Riss im Panzer.&lt;/p&gt;
-	&lt;&lt;case &quot;B_pavel_verrat&quot;&gt;&gt;&lt;p&gt;Pavel weiß jetzt: Marja lebt, sie trägt Bronkos Kind. Aus der alten Fehde wird eine Jagd — er sinnt darauf, 
-		die Schande mit Blut zu tilgen, und Marja muss untertauchen, ehe er ihre Spur findet. Bronko und Zdenka verachten dich für das, was du verraten hast.&lt;/p&gt;
-	&lt;&lt;default&gt;&gt;&lt;p&gt;Die Fehde brennt weiter, jetzt mit frischem Blut als Brennstoff. Keine Erkenntnis, kein Frieden — nur zwei Familien, die sich noch tiefer eingraben.&lt;/p&gt;
+	&lt;&lt;case &quot;B_bronko_reue&quot;&gt;&gt;
+		&lt;p&gt;Was Pavel in Bronkos Gesicht sah, lässt ihn nicht los. Sechs Tage später fragt er zum ersten Mal selbst nach —
+		leise, misstrauisch, aber er fragt. Ein Riss im Panzer. Zdenka bleibt an der Akademie; solange die Hoffnung keimt,
+		will sie in der Nähe sein. Es könnte der Anfang von etwas sehr Gutem sein.&lt;/p&gt;
+	&lt;&lt;case &quot;B_pavel_verrat&quot;&gt;&gt;
+		&lt;p&gt;Dass Marja schwanger ist, weiß Pavel längst — deshalb hat seine Familie sie aus Rabenfurt fortgeschafft. Doch der
+		Geburtstermin rückt näher, und mit ihm die endgültige Schande: ein Kind, gezeugt von einem Kulitcka. Was du ihm
+		verraten hast — dass sie lebt, dass sie Bronko nicht verflucht — macht aus seiner Trauer eine Jagd.
+		Zdenka quittiert den Dienst und geht nach Rabenfurt, um zu retten, was zu
+		retten ist — und verachtet dich für das, was du getan hast, genau wie es Bronko tut.&lt;/p&gt;
+	&lt;&lt;default&gt;&gt;
+		&lt;p&gt;Die Fehde brennt weiter, jetzt mit frischem Blut als Brennstoff. Keine Erkenntnis, kein Frieden — nur zwei
+		Familien, die sich noch tiefer eingraben. Zdenka legt Barett und Gambeson ab und kehrt nach Rabenfurt zurück, um zu
+		vermitteln, ehe noch mehr Blut fließt.&lt;/p&gt;
 	&lt;&lt;/switch&gt;&gt;
 &lt;&lt;case &quot;C&quot;&gt;&gt;
 	&lt;p&gt;Der Überlebende steht vor dem Malefizgericht. In Rabenfurt sind die Familien in offener, blutiger
@@ -15485,15 +16124,20 @@ kalter Zug.&lt;/p&gt;
 	die Familienoberhäupter werden malefizgerichtlich belangt. Das Wort „Umsiedlung“ steht im Raum, um den Frieden
 	zu erzwingen.&lt;/p&gt;
 	&lt;&lt;if $world.duell.flags.bronko_tot&gt;&gt;
+		&lt;&lt;set $npc.bronko.memory.flags.tot to true&gt;&gt;
+        &lt;&lt;set $npc.pavel.memory.flags.eingesperrt to true&gt;&gt;
 		&lt;p&gt;Marja hat einen letzten Abschiedsbrief an Zdenka geschickt und die Flucht nach Tiafunt gewagt — sie wird
 		ein Schiff besteigen, irgendeines, egal wohin, nur weg von Aloy, den Pipovics und den Kulitckas.&lt;/p&gt;
 	&lt;&lt;else&gt;&gt;
+		&lt;&lt;set $npc.bronko.memory.flags.eingesperrt to true&gt;&gt;
+        &lt;&lt;set $npc.pavel.memory.flags.tot to true&gt;&gt;
 		&lt;p&gt;Zdenka ist die Einzige, die bezeugen kann, dass Bronko beim Drill Schläge zurückhielt und das Duell nicht
 		von ihm ausging. Entlastet sie ihn, rettet sie ihn vor dem Strick — und wird bei den Pipovics zur Verräterin.
 		Schweigt sie, trägt sie Mitschuld an seinem Tod.&lt;/p&gt;
 	&lt;&lt;/if&gt;&gt;
 	&lt;p&gt;Zdenka quittiert den Dienst an der Akademie und kehrt nach Rabenfurt zurück, nicht als Soldatin, sondern
-	als Trümmerfrau.&lt;/p&gt;
+	als Trümmerfrau. Und versucht zu reparieren was noch zu reparieren ist und zu verhindern, dass Rabenfurth in einer tödlichen Fehde ausblutet.&lt;/p&gt;
+	&lt;&lt;set $npc.zdenka.memory.flags.weggegangen to true&gt;&gt;
 &lt;&lt;/switch&gt;&gt;
 
 &lt;&lt;if $world.duell.zdenka_trust lte -2&gt;&gt;
@@ -15507,9 +16151,7 @@ kalter Zug.&lt;/p&gt;
 
 &lt;&lt;set $world.duell.nachwirkung_done to true&gt;&gt;
 
-&lt;&lt;weiterImTag &quot;Weiter&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="235" name="Kapitel 0" tags="" position="225,50" size="200,200">&lt;p&gt;Vers. 0.9.6&lt;/p&gt;
-
-&lt;div class=&quot;chapter-screen&quot;&gt;
+&lt;&lt;weiterImTag &quot;Weiter&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="235" name="Kapitel 0" tags="" position="225,50" size="200,200">&lt;div class=&quot;chapter-screen&quot;&gt;
     &lt;div class=&quot;fade-trigger&quot;&gt;Intro&lt;/div&gt;
 
     &lt;div class=&quot;center-link&quot;&gt;
@@ -16865,9 +17507,9 @@ Nur ein Mann, dem der Krieg etwas genommen hat — und der trotzdem noch hier st
 [[Sieh was der Tag bringt-&gt;Kap1_Der nächste Tag]]</tw-passagedata><tw-passagedata pid="301" name="bye" tags="" position="1050,4475" size="100,100">&lt;p&gt;Kapitel 2 Wartet auf dich!&lt;/p&gt;
 
 [[Tauche weiter ein-&gt;Kapitel 2]]</tw-passagedata><tw-passagedata pid="302" name="Kap2_Ausbildung" tags="" position="1700,4550" size="100,100">&lt;&lt;silently&gt;&gt;
-&lt;&lt;set $world.day += 21&gt;&gt;
-&lt;&lt;run setup.ermInit()&gt;&gt;
-&lt;&lt;set $world.ermittlung.fruehestens_tag to $world.day + 3&gt;&gt;
+    &lt;&lt;run setup.ermInit()&gt;&gt;
+    &lt;&lt;set $world.ermittlung.fruehestens_tag to $world.day + 1&gt;&gt;
+	&lt;&lt;set $world.flags.doneFirstWeeks to true&gt;&gt;
 &lt;&lt;/silently&gt;&gt;
 
 &lt;&lt;scene&gt;&gt;Die ersten Wochen der Gattungsausbildung verschwimmen zu einem einzigen langen Tag aus Wiederholung. Neue Handgriffe, neue Kommandos, neue Schwielen an Stellen, an denen du schon keine mehr für möglich gehieltest.&lt;&lt;/scene&gt;&gt;
@@ -18314,11 +18956,12 @@ Karla hört zu, den Blick bei den Sternen, und wirft nur hin und wieder einen tr
 				&lt;&lt;run setup.removeItem(&quot;Silberbrech&quot;)&gt;&gt;
 				&lt;&lt;set $world.flags.baderAuftrag to &quot;erledigt&quot;&gt;&gt;
 				&lt;&lt;set $world.flags.baderFreund to true&gt;&gt;
+				&lt;&lt;set $npc.bader.known to true&gt;&gt;
 				&lt;&lt;= setup.addMoney(30)&gt;&gt;
 				&lt;&lt;= setup.setPlayerStat(&quot;honesty&quot;, 2)&gt;&gt;
 				&lt;p&gt;Er zählt dir das Kupfer in die Hand, Stück für Stück, und legt ungefragt ein paar drauf. &lt;&lt;quote Für die
 				Mühe der Beine&gt;&gt;, sagt er. Dann, fast beiläufig: &lt;&lt;quote Kommt öfter. Für Euch flicke ich künftig zum halben
-				Preis — ein Mann, der die Höhen kennt, ist mir mehr wert als ein voller Beutel.&gt;&gt;&lt;/p&gt;
+				Preis — ein Mann, der die Höhen kennt, ist mir mehr wert als ein voller Beutel. Ich bin Santonio Flavori, Freund.&gt;&gt;&lt;/p&gt;
 			&lt;&lt;/replace&gt;&gt;
 		&lt;&lt;/link&gt;&gt;&lt;/li&gt;
 		&lt;li&gt;&lt;&lt;link &quot;Behaupten, es hätte dich fast das Leben gekostet — und mehr fordern&quot;&gt;&gt;
@@ -20977,59 +21620,61 @@ Heute Nacht sitze ich am richtigen Feuer.&lt;/p&gt;
 &lt;&lt;if not $world.besuchGossipGefragt&gt;&gt;&lt;&lt;set $world.besuchGossipGefragt to []&gt;&gt;&lt;&lt;/if&gt;&gt;
 &lt;&lt;set _pool to setup.gossips84Bekannt()&gt;&gt;
 
-&lt;&lt;if _pool.length gt 0 and $world.besuchGossipGefragt.length lt 2&gt;&gt;
+&lt;&lt;if not $world.besuchGossipFertig and _pool.length gt 0 and $world.besuchGossipGefragt.length lt 2&gt;&gt;
 &lt;div id=&quot;gossip-block&quot;&gt;
+  &lt;div id=&quot;gossip-menu&quot;&gt;
+    &lt;&lt;scene&gt;&gt;
+    &lt;p&gt;Über den einen oder anderen am Feuer hast du schon etwas aufgeschnappt. Der Wein ist billig, die Zungen locker.&lt;/p&gt;
+    &lt;&lt;/scene&gt;&gt;
+    &lt;&lt;if _pool.length gt 2&gt;&gt;
+    &lt;div class=&quot;status-info&quot;&gt;Du kannst zwei der Gerüchte nachhaken — wähl mit Bedacht.&lt;/div&gt;
+    &lt;&lt;/if&gt;&gt;
+    &lt;ul class=&quot;sandbox-menu&quot;&gt;
+    &lt;&lt;for _s range _pool&gt;&gt;
+      &lt;&lt;capture _s&gt;&gt;
+      &lt;li @id=&quot;&#39;gli_&#39; + _s.id&quot;&gt;
+        &lt;&lt;link `&quot;Frag &quot; + $npc[_s.npcKey].name`&gt;&gt;
+          &lt;&lt;run $world.besuchGossipGefragt.push(_s.id)&gt;&gt;
+          &lt;&lt;append &quot;#gossip-antworten&quot;&gt;&gt;
+            &lt;div class=&quot;gossip-antwort&quot;&gt;
+              &lt;p class=&quot;gossip-frage&quot;&gt;&lt;&lt;= _s.base&gt;&gt;&lt;/p&gt;
+              &lt;p class=&quot;gossip-erklaerung&quot;&gt;&lt;b&gt;&lt;&lt;= $npc[_s.npcKey].name&gt;&gt;:&lt;/b&gt; „&lt;&lt;= _s.erklaerung || &#39;Alte Geschichte. Lass gut sein.&#39;&gt;&gt;&quot;&lt;/p&gt;
+            &lt;/div&gt;
+          &lt;&lt;/append&gt;&gt;
+          &lt;&lt;if $world.besuchGossipGefragt.length gte 2&gt;&gt;
+            &lt;&lt;replace &quot;#gossip-menu&quot;&gt;&gt;&lt;&lt;/replace&gt;&gt;
+            &lt;&lt;set $world.besuchGossipFertig to true&gt;&gt;
+            &lt;&lt;append &quot;#gossip-weiter&quot;&gt;&gt;&lt;&lt;include &quot;Besuch_S3_GossipWeiter&quot;&gt;&gt;&lt;&lt;/append&gt;&gt;
+          &lt;&lt;else&gt;&gt;
+            &lt;&lt;run $(&#39;#gli_&#39; + _s.id).remove()&gt;&gt;
+          &lt;&lt;/if&gt;&gt;
+        &lt;&lt;/link&gt;&gt;
+        &lt;span class=&quot;subtext&quot;&gt;— &lt;&lt;= _s.rumorText&gt;&gt;&lt;/span&gt;
+      &lt;/li&gt;
+      &lt;&lt;/capture&gt;&gt;
+    &lt;&lt;/for&gt;&gt;    
+    &lt;/ul&gt;
+  &lt;/div&gt;
 
-&lt;div id=&quot;gossip-menu&quot;&gt;
-&lt;&lt;scene&gt;&gt;
-&lt;p&gt;Über den einen oder anderen am Feuer hast du schon etwas aufgeschnappt. Der Wein ist billig, die Zungen locker.&lt;/p&gt;
-&lt;&lt;/scene&gt;&gt;
-&lt;&lt;if _pool.length gt 2&gt;&gt;
-&lt;div class=&quot;status-info&quot;&gt;Du kannst zwei der Gerüchte nachhaken — wähl mit Bedacht.&lt;/div&gt;
-&lt;&lt;/if&gt;&gt;
-&lt;ul class=&quot;sandbox-menu&quot;&gt;
-&lt;&lt;for _s range _pool&gt;&gt;
-	&lt;&lt;capture _s&gt;&gt;
-	&lt;li @id=&quot;&#39;gli_&#39; + _s.id&quot;&gt;
-		&lt;&lt;link `&quot;Frag &quot; + $npc[_s.npcKey].name`&gt;&gt;
-			&lt;&lt;run $world.besuchGossipGefragt.push(_s.id)&gt;&gt;
-			&lt;&lt;append &quot;#gossip-antworten&quot;&gt;&gt;
-				&lt;div class=&quot;gossip-antwort&quot;&gt;
-					&lt;p class=&quot;gossip-frage&quot;&gt;&lt;&lt;= _s.base&gt;&gt;&lt;/p&gt;
-					&lt;p class=&quot;gossip-erklaerung&quot;&gt;&lt;b&gt;&lt;&lt;= $npc[_s.npcKey].name&gt;&gt;:&lt;/b&gt; „&lt;&lt;= _s.erklaerung || &#39;Alte Geschichte. Lass gut sein.&#39;&gt;&gt;&quot;&lt;/p&gt;
-				&lt;/div&gt;
-			&lt;&lt;/append&gt;&gt;
-			&lt;&lt;if $world.besuchGossipGefragt.length gte 2&gt;&gt;
-				&lt;&lt;replace &quot;#gossip-menu&quot;&gt;&gt;&lt;&lt;/replace&gt;&gt;
-			&lt;&lt;else&gt;&gt;
-				&lt;&lt;run $(&#39;#gli_&#39; + _s.id).remove()&gt;&gt;
-			&lt;&lt;/if&gt;&gt;
-		&lt;&lt;/link&gt;&gt;
-		&lt;span class=&quot;subtext&quot;&gt;— &lt;&lt;= _s.rumorText&gt;&gt;&lt;/span&gt;
-	&lt;/li&gt;
-	&lt;&lt;/capture&gt;&gt;
-&lt;&lt;/for&gt;&gt;
-&lt;/ul&gt;
+  &lt;div id=&quot;gossip-antworten&quot;&gt;&lt;/div&gt;
 &lt;/div&gt;
-
-
-&lt;div id=&quot;gossip-antworten&quot;&gt;&lt;/div&gt;
-
-&lt;/div&gt;
 &lt;&lt;/if&gt;&gt;
 
-&lt;&lt;trenner&gt;&gt;
+&lt;div id=&quot;gossip-weiter&quot;&gt;
+&lt;&lt;if $world.besuchGossipFertig&gt;&gt;&lt;&lt;include &quot;Besuch_S3_GossipWeiter&quot;&gt;&gt;&lt;&lt;/if&gt;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="401" name="Besuch_S3_GossipWeiter" tags="" position="100,5100" size="100,100">&lt;&lt;trenner&gt;&gt;
 &lt;&lt;if setup.wasGossipSuccessful(&quot;lk_004&quot;)&gt;&gt;
-    &lt;&lt;dialog&gt;&gt;
-        &lt;p&gt;„Ihr sollt euch auffallend gut mit einem Ritter aus der Kronmark verstehen.&quot; So wird geredet. 
-        Und jetzt is der Heinrich auch noch hier, in Aloy, mit euch...&lt;/p&gt;
-        „Ja wir verstehen uns gut.&quot; Schneidet dir eine Stimmer hinter dir das Wort ab
-    &lt;&lt;/dialog&gt;&gt;     
-&lt;&lt;trenner&gt;&gt;
-[[zu Heinrich umdrehen-&gt;Besuch_S3_Heinrich_b]]
+	&lt;p&gt;Als du deine Neugier befriedigt hast, bleibt noch eine Sache, die dir unter den Nägeln brennt. Also fragst du frei heraus.&lt;/p&gt;
+	&lt;&lt;dialog&gt;&gt;
+		&lt;p&gt;„Ihr sollt euch auffallend gut mit einem Ritter aus der Kronmark verstehen.&quot; So wird geredet. Und jetzt ist der Heinrich
+		auch noch hier, in Aloy, mit euch …&lt;/p&gt;
+		&lt;p&gt;„Ja, wir verstehen uns gut&quot;, schneidet dir eine Stimme hinter dir das Wort ab.&lt;/p&gt;
+	&lt;&lt;/dialog&gt;&gt;
+	&lt;&lt;trenner&gt;&gt;
+	[[zu Heinrich umdrehen-&gt;Besuch_S3_Heinrich_b]]
 &lt;&lt;else&gt;&gt;
-[[Heinrich tritt ans Feuer-&gt;Besuch_S3_Heinrich]]
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="401" name="Besuch_S3_Heinrich" tags="" position="100,5100" size="100,100">&lt;&lt;scene&gt;&gt;
+	[[Heinrich tritt ans Feuer-&gt;Besuch_S3_Heinrich]]
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="402" name="Besuch_S3_Heinrich" tags="" position="225,5100" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Am größten der Feuer hält Heinrich Hof. Er singt — laut, nicht schlecht, und mit der vollen Überzeugung eines
 Mannes, der weiß, dass ihm alle zuhören —, und als das Lied endet, geht es nahtlos in eine Geschichte über, in der
 er selbst die Hauptrolle spielt und, versteht sich, gewinnt. Neben ihm sitzt Silva, den Becher in beiden Händen,
@@ -21078,7 +21723,7 @@ und heimlich noch froher, dass ich ihnen nie gegenüberstehen muss.&lt;/p&gt;
 &lt;&lt;/gedanke&gt;&gt;
 
 &lt;&lt;trenner&gt;&gt;
-[[Die Würfel rollen-&gt;Besuch_S3_Wuerfeln]]</tw-passagedata><tw-passagedata pid="402" name="Besuch_S3_Heinrich_b" tags="" position="225,5100" size="100,100">&lt;&lt;dialog&gt;&gt;
+[[Die Würfel rollen-&gt;Besuch_S3_Wuerfeln]]</tw-passagedata><tw-passagedata pid="403" name="Besuch_S3_Heinrich_b" tags="" position="350,5100" size="100,100">&lt;&lt;dialog&gt;&gt;
 &lt;p&gt;„Der von der Musterung! &lt;&lt;if $npc.heinrich.affection gte 2&gt;&gt;Dich hab ich mir gemerkt.&lt;&lt;else&gt;&gt;Wie war noch dein Name?&lt;&lt;/if&gt;&gt;&quot;&lt;/p&gt;
 &lt;&lt;/dialog&gt;&gt;
 
@@ -21122,7 +21767,7 @@ und heimlich noch froher, dass ich ihnen nie gegenüberstehen muss.&lt;/p&gt;
 &lt;&lt;/gedanke&gt;&gt;
 
 &lt;&lt;trenner&gt;&gt;
-[[Die Würfel rollen-&gt;Besuch_S3_Wuerfeln]]</tw-passagedata><tw-passagedata pid="403" name="Besuch_S3_Wuerfeln" tags="" position="350,5100" size="100,100">&lt;&lt;scene&gt;&gt;
+[[Die Würfel rollen-&gt;Besuch_S3_Wuerfeln]]</tw-passagedata><tw-passagedata pid="404" name="Besuch_S3_Wuerfeln" tags="" position="475,5100" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Die Nacht ist längst über den Zenit, und aus dem Feuer ist eine Party geworden, wie sie nur im Lager des 84.
 entsteht — ohne dass je einer sie ausgerufen hätte. Hans Fichtensplitter steht auf einem Fass und segnet mit
 großer Geste einen Barsinger, halb feierlich, halb betrunken, und Tobalt fällt mit einem Trinkspruch ein, der
@@ -21181,7 +21826,7 @@ würde ihm folgen. Und ich glaube, genau das ist der Punkt.&lt;/p&gt;
 &lt;&lt;/gedanke&gt;&gt;
 
 &lt;&lt;trenner&gt;&gt;
-[[Die Nacht klingt aus-&gt;Besuch_S3_Ausklang]]</tw-passagedata><tw-passagedata pid="404" name="Besuch_S3_Ausklang" tags="nach_Kap2_morgen" position="475,5100" size="100,100">&lt;&lt;scene&gt;&gt;
+[[Die Nacht klingt aus-&gt;Besuch_S3_Ausklang]]</tw-passagedata><tw-passagedata pid="405" name="Besuch_S3_Ausklang" tags="nach_Kap2_morgen" position="600,5100" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Die Feuer sinken in sich zusammen, und mit ihnen die Nacht. Die Becher werden leerer, die Stimmen weniger, und
 einer nach dem anderen rollt sich in seine Decke oder verschwindet zwischen den Zelten. Als du dich auf den Rückweg
 machst, liegt schon Reif auf dem gestampften Boden, und die Kälte, die die Feuer den Abend über in Schach gehalten
@@ -21207,7 +21852,7 @@ Weg, bis die grauen Mauern der Akademie ihn schlucken.&lt;/p&gt;
 alles ist, wenn es hart wird.&lt;/p&gt;
 &lt;&lt;/gedanke&gt;&gt;
 
-&lt;&lt;weiterImTag &quot;Zurück auf die Stube, ehe der Morgen graut&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="405" name="PassageHeader" tags="header" position="550,0" size="100,100">&lt;&lt;run setup.migrateNpcImages()&gt;&gt;
+&lt;&lt;weiterImTag &quot;Zurück auf die Stube, ehe der Morgen graut&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="406" name="PassageHeader" tags="header" position="550,0" size="100,100">&lt;&lt;run setup.migrateNpcImages()&gt;&gt;
 &lt;&lt;if !setup.isJournalBlocked()&gt;&gt;
 &lt;div id=&quot;hud-bar&quot;&gt;
     &lt;div class=&quot;hud-left&quot;&gt;
@@ -21235,57 +21880,34 @@ alles ist, wenn es hart wird.&lt;/p&gt;
 &lt;/div&gt;
 
 &lt;hr class=&quot;hud-divider&quot;&gt;
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="406" name="journalAnsicht" tags="journal" position="700,0" size="100,100">&lt;div id=&quot;passage-journalansicht&quot; class=&quot;passage journalansicht&quot;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="407" name="journalAnsicht" tags="journal" position="700,0" size="100,100">&lt;div id=&quot;passage-journalansicht&quot; class=&quot;passage journalansicht&quot;&gt;
 
     &lt;h2&gt;📋 $player.name&#39;s Notizbuch&lt;/h2&gt;
 
-   &lt;details class=&quot;journal-section&quot; open&gt;
+    &lt;&lt;= setup.notizbuchTabs(&quot;journalAnsicht&quot;) &gt;&gt;
+
+    &lt;details class=&quot;journal-section&quot; open&gt;
         &lt;summary&gt;Debug&lt;/summary&gt;
-        &lt;div id=&quot;player-table&quot;&gt; 
-        &lt;p&gt;Passagennamen einblenden?&lt;/p&gt;
-        &lt;span id=&quot;debug-toggle&quot;&gt;&lt;&lt;checkbox &quot;$world.debug&quot; false true autocheck&gt;&gt;&lt;/span&gt; Titel für Debug einblenden
+        &lt;div id=&quot;player-table&quot;&gt;
+            &lt;p&gt;Passagennamen einblenden?&lt;/p&gt;
+            &lt;span id=&quot;debug-toggle&quot;&gt;&lt;&lt;checkbox &quot;$world.debug&quot; false true autocheck&gt;&gt;&lt;/span&gt; Titel für Debug einblenden
         &lt;/div&gt;
     &lt;/details&gt;
 
     &lt;details class=&quot;journal-section&quot; open&gt;
         &lt;summary&gt;Werte&lt;/summary&gt;
-        &lt;div id=&quot;player-table&quot;&gt;
-            &lt;&lt;= setup.renderPlayerTable() &gt;&gt;
-        &lt;/div&gt;
+        &lt;div id=&quot;player-table&quot;&gt;&lt;&lt;= setup.renderPlayerTable() &gt;&gt;&lt;/div&gt;
     &lt;/details&gt;
 
     &lt;details class=&quot;journal-section&quot; open&gt;
         &lt;summary&gt;Personen in der Militärakademie&lt;/summary&gt;
         &lt;&lt;= setup.renderJournalCompact() &gt;&gt;
-        &lt;span class=&quot;weiter-link&quot;&gt;
-            &lt;&lt;link &quot;Personen Details&quot;&gt;&gt;&lt;&lt;run setup.notizbuch(&quot;Notizbuch_Personen&quot;)&gt;&gt;&lt;&lt;/link&gt;&gt;
-        &lt;/span&gt;
     &lt;/details&gt;
 
     &lt;details class=&quot;journal-section&quot; open&gt;
         &lt;summary&gt;Kameraden &amp;amp; Bekannte&lt;/summary&gt;
         &lt;&lt;= setup.renderRealPlayersCompact() &gt;&gt;
-        &lt;span class=&quot;weiter-link&quot;&gt;
-            &lt;&lt;link &quot;Kameraden Details&quot;&gt;&gt;&lt;&lt;run setup.notizbuch(&quot;Notizbuch_Kameraden&quot;)&gt;&gt;&lt;&lt;/link&gt;&gt;
-        &lt;/span&gt;
     &lt;/details&gt;
-
-    &lt;details class=&quot;journal-section&quot; open&gt;
-        &lt;summary&gt;Gerüchte&lt;/summary&gt;
-        &lt;span class=&quot;weiter-link&quot;&gt;
-            &lt;&lt;link &quot;Gerüchte Details&quot;&gt;&gt;&lt;&lt;run setup.notizbuch(&quot;Notizbuch_Geruechte&quot;)&gt;&gt;&lt;&lt;/link&gt;&gt;
-        &lt;/span&gt;
-    &lt;/details&gt;
-
-    &lt;&lt;if setup.ermittlungBekannt()&gt;&gt;
-    &lt;details class=&quot;journal-section&quot; open&gt;
-        &lt;summary&gt;Ermittlung&lt;/summary&gt;
-        &lt;span class=&quot;weiter-link&quot;&gt;
-            &lt;&lt;link &quot;Ermittlungs Details&quot;&gt;&gt;&lt;&lt;run setup.notizbuch(&quot;Notizbuch_Ermittlung&quot;)&gt;&gt;&lt;&lt;/link&gt;&gt;
-        &lt;/span&gt;
-    &lt;/details&gt;
-    &lt;&lt;/if&gt;&gt;
-
 
     &lt;span class=&quot;weiter-link&quot;&gt;
         &lt;&lt;link &quot;🛏️ Zurück auf die Stube&quot;&gt;&gt;
@@ -21295,31 +21917,48 @@ alles ist, wenn es hart wird.&lt;/p&gt;
             &lt;&lt;else&gt;&gt;
                 &lt;&lt;goto &quot;Kap2_Abend&quot;&gt;&gt;
             &lt;&lt;/if&gt;&gt;
-            
         &lt;&lt;/link&gt;&gt;
     &lt;/span&gt;
 
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="407" name="Notizbuch_Ermittlung" tags="" position="1125,0" size="100,100">&lt;h2&gt;🔍 Ermittlungstagebuch&lt;/h2&gt;
+    &lt;div class=&quot;nb-totop&quot;&gt;&lt;&lt;link &quot;↑ Nach oben&quot;&gt;&gt;&lt;&lt;run $(&#39;#ui-dialog-body&#39;).scrollTop(0)&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;/div&gt;
 
-&lt;&lt;= setup.renderErmittlungsakte() &gt;&gt;
-&lt;span class=&quot;weiter-link&quot;&gt;
-    &lt;&lt;link &quot;Übersicht&quot;&gt;&gt;&lt;&lt;run setup.notizbuch(&quot;journalAnsicht&quot;)&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;/span&gt;</tw-passagedata><tw-passagedata pid="408" name="Notizbuch_Geruechte" tags="" position="1025,0" size="100,100">&lt;h2&gt;🗣️ Gerüchte&lt;/h2&gt;
-
-&lt;&lt;= setup.renderRumors() &gt;&gt;
-&lt;span class=&quot;weiter-link&quot;&gt;
-    &lt;&lt;link &quot;Übersicht&quot;&gt;&gt;&lt;&lt;run setup.notizbuch(&quot;journalAnsicht&quot;)&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;/span&gt;</tw-passagedata><tw-passagedata pid="409" name="Notizbuch_Kameraden" tags="" position="925,0" size="100,100">&lt;h2&gt;📖 Kameraden &amp;amp; Bekannte — im Detail&lt;/h2&gt;
-
-&lt;&lt;= setup.renderRealPlayers() &gt;&gt;
-&lt;span class=&quot;weiter-link&quot;&gt;
-    &lt;&lt;link &quot;Übersicht&quot;&gt;&gt;&lt;&lt;run setup.notizbuch(&quot;journalAnsicht&quot;)&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;/span&gt;</tw-passagedata><tw-passagedata pid="410" name="Notizbuch_Personen" tags="" position="825,0" size="100,100">&lt;h2&gt;📖 Personen — im Detail&lt;/h2&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="408" name="Notizbuch_Personen" tags="" position="825,0" size="100,100">&lt;h2&gt;📖 Personen — im Detail&lt;/h2&gt;
+&lt;&lt;= setup.notizbuchTabs(&quot;Notizbuch_Personen&quot;) &gt;&gt;
+&lt;span class=&quot;nb-back&quot;&gt;&lt;&lt;link &quot;← Zurück zur Übersicht&quot;&gt;&gt;&lt;&lt;run setup.notizbuch(&quot;journalAnsicht&quot;)&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;/span&gt;
 
 &lt;&lt;= setup.renderJournal() &gt;&gt;
-&lt;span class=&quot;weiter-link&quot;&gt;
+
+&lt;span class=&quot;nb-back&quot;&gt;&lt;&lt;link &quot;← Zurück zur Übersicht&quot;&gt;&gt;&lt;&lt;run setup.notizbuch(&quot;journalAnsicht&quot;)&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;/span&gt;
+&lt;div class=&quot;nb-totop&quot;&gt;&lt;&lt;link &quot;↑ Nach oben&quot;&gt;&gt;&lt;&lt;run $(&#39;#ui-dialog-body&#39;).scrollTop(0)&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="409" name="Notizbuch_Kameraden" tags="" position="925,0" size="100,100">&lt;h2&gt;📖 Kameraden &amp;amp; Bekannte — im Detail&lt;/h2&gt;
+&lt;&lt;= setup.notizbuchTabs(&quot;Notizbuch_Kameraden&quot;) &gt;&gt;
+&lt;span class=&quot;nb-back&quot;&gt;&lt;&lt;link &quot;← Zurück zur Übersicht&quot;&gt;&gt;&lt;&lt;run setup.notizbuch(&quot;journalAnsicht&quot;)&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;/span&gt;
+
+&lt;&lt;= setup.renderRealPlayers() &gt;&gt;
+
+&lt;span class=&quot;nb-back&quot;&gt;&lt;&lt;link &quot;← Zurück zur Übersicht&quot;&gt;&gt;&lt;&lt;run setup.notizbuch(&quot;journalAnsicht&quot;)&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;/span&gt;
+&lt;div class=&quot;nb-totop&quot;&gt;&lt;&lt;link &quot;↑ Nach oben&quot;&gt;&gt;&lt;&lt;run $(&#39;#ui-dialog-body&#39;).scrollTop(0)&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="410" name="Notizbuch_Geruechte" tags="" position="1025,0" size="100,100">&lt;h2&gt;🗣️ Gerüchte&lt;/h2&gt;
+&lt;&lt;= setup.notizbuchTabs(&quot;Notizbuch_Geruechte&quot;) &gt;&gt;
+&lt;span class=&quot;nb-back&quot;&gt;&lt;&lt;link &quot;← Zurück zur Übersicht&quot;&gt;&gt;&lt;&lt;run setup.notizbuch(&quot;journalAnsicht&quot;)&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;/span&gt;
+
+&lt;&lt;= setup.renderRumors() &gt;&gt;
+
+&lt;span class=&quot;nb-back&quot;&gt;&lt;&lt;link &quot;← Zurück zur Übersicht&quot;&gt;&gt;&lt;&lt;run setup.notizbuch(&quot;journalAnsicht&quot;)&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;/span&gt;
+&lt;div class=&quot;nb-totop&quot;&gt;&lt;&lt;link &quot;↑ Nach oben&quot;&gt;&gt;&lt;&lt;run $(&#39;#ui-dialog-body&#39;).scrollTop(0)&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="411" name="Notizbuch_Ermittlung" tags="" position="1125,0" size="100,100">&lt;h2&gt;🔍 Ermittlungstagebuch&lt;/h2&gt;
+&lt;&lt;= setup.notizbuchTabs(&quot;Notizbuch_Ermittlung&quot;) &gt;&gt;
+&lt;span class=&quot;nb-back&quot;&gt;&lt;&lt;link &quot;← Zurück zur Übersicht&quot;&gt;&gt;&lt;&lt;run setup.notizbuch(&quot;journalAnsicht&quot;)&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;/span&gt;
+
+&lt;&lt;= setup.renderErmittlungsakte() &gt;&gt;
+
+&lt;span class=&quot;nb-back&quot;&gt;&lt;&lt;link &quot;← Zurück zur Übersicht&quot;&gt;&gt;&lt;&lt;run setup.notizbuch(&quot;journalAnsicht&quot;)&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;/span&gt;
+&lt;div class=&quot;nb-totop&quot;&gt;&lt;&lt;link &quot;↑ Nach oben&quot;&gt;&gt;&lt;&lt;run $(&#39;#ui-dialog-body&#39;).scrollTop(0)&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="412" name="StoryMenu" tags="" position="400,275" size="100,100">&lt;&lt;if not setup.isJournalBlocked()&gt;&gt;
     &lt;&lt;link &quot;Übersicht&quot;&gt;&gt;&lt;&lt;run setup.notizbuch(&quot;journalAnsicht&quot;)&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;/span&gt;</tw-passagedata><tw-passagedata pid="411" name="StoryMenu" tags="" position="400,275" size="100,100"></tw-passagedata><tw-passagedata pid="412" name="StorySubtitle" tags="" position="250,275" size="100,100">&lt;&lt;if $player.flags.jareknarbe === undefined&gt;&gt;
+    &lt;&lt;link &quot;In der Akkademie&quot;&gt;&gt;&lt;&lt;run setup.notizbuch(&quot;Notizbuch_Personen&quot;)&gt;&gt;&lt;&lt;/link&gt;&gt;
+    &lt;&lt;link &quot;Leute von Außen&quot;&gt;&gt;&lt;&lt;run setup.notizbuch(&quot;Notizbuch_Kameraden&quot;)&gt;&gt;&lt;&lt;/link&gt;&gt;
+    &lt;&lt;link &quot;Gerüchte&quot;&gt;&gt;&lt;&lt;run setup.notizbuch(&quot;Notizbuch_Geruechte&quot;)&gt;&gt;&lt;&lt;/link&gt;&gt;
+    &lt;&lt;if setup.ermittlungBekannt()&gt;&gt;
+        &lt;&lt;link &quot;🔍 Ermittlung&quot;&gt;&gt;&lt;&lt;run setup.notizbuch(&quot;Notizbuch_Ermittlung&quot;)&gt;&gt;&lt;&lt;/link&gt;&gt;
+    &lt;&lt;/if&gt;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="413" name="StorySubtitle" tags="" position="250,275" size="100,100">&lt;&lt;if $player.flags.jareknarbe === undefined&gt;&gt;
     &lt;&lt;set $player.flags.jareknarbe = false&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 
@@ -21342,6 +21981,7 @@ alles ist, wenn es hart wird.&lt;/p&gt;
 &lt;div class=&#39;story-title-box&#39;&gt;&lt;img src=&#39;images/Thomas_Kap0.png&#39; alt=&#39;An Aloy Story&#39;&gt;&lt;/div&gt;
 &lt;&lt;/if&gt;&gt;
 
+&lt;hr class=&quot;subtitle-divider&quot;&gt;
 		&lt;span class=&quot;hud-item hud-money&quot;&gt;
             &lt;&lt;link &quot;💰&quot; &quot;DevLogin&quot;&gt;&gt;
             &lt;&lt;/link&gt;&gt;
@@ -21351,7 +21991,73 @@ alles ist, wenn es hart wird.&lt;/p&gt;
         
         &lt;span class=&quot;hud-item hud-kondition&quot;&gt;
             &lt;&lt;= setup.getKonditionLabel($player.condition) &gt;&gt;
-        &lt;/span&gt;</tw-passagedata><tw-passagedata pid="413" name="DevLoginBak" tags="" position="1100,4150" size="100,100">&lt;h2&gt;Developer Login&lt;/h2&gt;
+        &lt;/span&gt;
+
+
+&lt;hr class=&quot;subtitle-divider&quot;&gt;
+
+&lt;&lt;if not $world.musik&gt;&gt;&lt;&lt;set $world.musik to { an: false, vol: 0.4, i: 0 }&gt;&gt;&lt;&lt;/if&gt;&gt;
+
+&lt;div id=&quot;musik-box&quot;&gt;
+    &lt;&lt;link &quot;⏮&quot;&gt;&gt;&lt;&lt;run setup.musikPrev()&gt;&gt;&lt;&lt;/link&gt;&gt;
+    &lt;&lt;link &quot;♫&quot;&gt;&gt;
+    &lt;&lt;run setup.musikToggle()&gt;&gt;
+    &lt;&lt;replace &quot;#musik-status&quot;&gt;&gt;&lt;&lt;= $world.musik.an ? &quot;läuft&quot; : &quot;aus&quot; &gt;&gt;&lt;&lt;/replace&gt;&gt;
+&lt;&lt;/link&gt;&gt;
+    &lt;&lt;link &quot;⏭&quot;&gt;&gt;&lt;&lt;run setup.musikNext()&gt;&gt;&lt;&lt;/link&gt;&gt;
+    &lt;&lt;link &quot;🔊&quot;&gt;&gt;&lt;&lt;run $(&#39;#musik-regler-box&#39;).toggle()&gt;&gt;&lt;&lt;/link&gt;&gt;
+    &lt;span id=&quot;musik-status&quot;&gt;&lt;&lt;= $world.musik.an ? &quot;läuft&quot; : &quot;aus&quot; &gt;&gt;&lt;/span&gt;
+
+    &lt;div id=&quot;musik-regler-box&quot; style=&quot;display:none; margin-top:.4em;&quot;&gt;
+        &lt;input id=&quot;musik-regler&quot; type=&quot;range&quot; min=&quot;0&quot; max=&quot;100&quot; @value=&quot;Math.round($world.musik.vol * 100)&quot;&gt;
+        &lt;span id=&quot;musik-vol&quot;&gt;&lt;&lt;= Math.round($world.musik.vol * 100) &gt;&gt;%&lt;/span&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;hr class=&quot;subtitle-divider&quot;&gt;</tw-passagedata><tw-passagedata pid="414" name="Patchnotes" tags="" position="475,5225" size="100,100">&lt;h2&gt;📜 Neuigkeiten &amp; Änderungen&lt;/h2&gt;
+
+
+&lt;h3&gt;Notizbuch&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Komplett neuer Feldbuch-Look: Ledereinband, Pergament, lesbare Schrift.&lt;/li&gt;
+&lt;li&gt;Reiter statt Endlos-Scrollen, „Nach oben&quot;-Knopf und Zurück-Links oben wie unten.&lt;/li&gt;
+&lt;li&gt;Personen jetzt nach Fraktion sortiert: Akademie, 84. Banner, La Familia, Kronmark, Imperium.&lt;/li&gt;
+&lt;li&gt;Überarbeitete NPC-Karten mit größeren Porträts und klarem Rahmen.&lt;/li&gt;
+&lt;li&gt;Gerüchte nach Kategorie geordnet: Lagerklatsch, Landesinfos, Knaller, Sonstiges.&lt;/li&gt;
+&lt;li&gt;Neue Ermittlungsakte.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;Neue Charaktere &amp; Begegnungen&lt;/h3&gt;
+
+&lt;h3&gt;Ehrlichkeit — neues System&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Deine Ehrlichkeit verändert sich durch viele Entscheidungen und beeinflusst Proben.&lt;/li&gt;
+&lt;li&gt;Skrupellosigkeit macht dich zum besseren Dieb — hat aber ihren Preis.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;Sidequests Kapitel 2 erweitert&lt;/h3&gt;
+
+&lt;h3&gt;Stadt&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Fuhrmannsviertel: ehrliche Lastenarbeit, ein Reisegerät-Markt (Ausrüstung verbessert den Gattungsdrill) und Informationen gegen Kupfer.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;Oberfläche &amp; Musik&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Ambient-Musik: zehn Stücke im Loop, mit Play/Pause, Vor/Zurück und Lautstärke in der Sidebar. Startet zufällig, damit kein Stück verbrennt.&lt;/li&gt;
+&lt;li&gt;Neue HUD-Leiste: Kondition als Balken, Geld als Münzen, Wetter — sauberes Layout ohne Umbruch.&lt;/li&gt;
+&lt;li&gt;Journal-Reiter und die Menü-Knöpfe im Mittelalter-Stil.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;Unter der Haube&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Neues Speicherstand-System: alte Spielstände werden automatisch mit neuen Inhalten nachgerüstet.&lt;/li&gt;
+&lt;li&gt;Zahlreiche Fehlerbehebungen an Szenen, Dialogen und Anzeige.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;patchnotes-schliessen&quot;&gt;
+&lt;&lt;link &quot;Verstanden&quot;&gt;&gt;&lt;&lt;run Dialog.close()&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="415" name="DevLoginBak" tags="" position="1100,4150" size="100,100">&lt;h2&gt;Developer Login&lt;/h2&gt;
 
 &lt;input id=&quot;devpw&quot; type=&quot;password&quot;&gt;
 
@@ -21361,7 +22067,7 @@ alles ist, wenn es hart wird.&lt;/p&gt;
 			? Engine.play(&quot;DEBUG_Kap2_Setup&quot;)
 			: alert(&quot;Falsches Passwort.&quot;)
 	)&gt;&gt;
-&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="414" name="DevLogin" tags="" position="1100,4150" size="100,100">&lt;h2&gt;Developer Login&lt;/h2&gt;
+&lt;&lt;/button&gt;&gt;</tw-passagedata><tw-passagedata pid="416" name="DevLogin" tags="" position="1100,4150" size="100,100">&lt;h2&gt;Developer Login&lt;/h2&gt;
 
 &lt;form id=&quot;dev-login-form&quot;&gt;
     &lt;input id=&quot;devpw&quot; type=&quot;password&quot; autocomplete=&quot;off&quot;&gt;
@@ -21388,7 +22094,7 @@ alles ist, wenn es hart wird.&lt;/p&gt;
         $(&quot;#devpw&quot;).focus();
     }, 0);
 })();
-&lt;/script&gt;</tw-passagedata><tw-passagedata pid="415" name="DEBUG_Kap2_Setup" tags="" position="1375,4250" size="100,100">&lt;&lt;run setup.ermInit()&gt;&gt;
+&lt;/script&gt;</tw-passagedata><tw-passagedata pid="417" name="DEBUG_Kap2_Setup" tags="" position="1375,4250" size="100,100">&lt;&lt;run setup.ermInit()&gt;&gt;
 
 &lt;&lt;if not $world.flags&gt;&gt;
     &lt;&lt;set $world.flags = {}&gt;&gt;
@@ -21758,7 +22464,7 @@ alles ist, wenn es hart wird.&lt;/p&gt;
         [[Biwag -&gt; Biwag_Drill]]
         &lt;span class=&quot;subtext&quot;&gt;— Direkt zum Biwag-Test.&lt;/span&gt;
     &lt;/li&gt;
-&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="416" name="DEBUG_Kap2_Setupbak" tags="" position="1375,4250" size="100,100">&lt;&lt;run setup.ermInit()&gt;&gt;
+&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="418" name="DEBUG_Kap2_Setupbak" tags="" position="1375,4250" size="100,100">&lt;&lt;run setup.ermInit()&gt;&gt;
 &lt;&lt;if not $world.flags&gt;&gt;&lt;&lt;set $world.flags = {}&gt;&gt;&lt;&lt;/if&gt;&gt;
 
 
@@ -21851,7 +22557,7 @@ Ermittlung frühestens Tag: &lt;b&gt;&lt;&lt;= $world.ermittlung.fruehestens_tag
 &lt;h4&gt;Starten&lt;/h4&gt;
 [[Regulär: Kapitel-2-Intro (mit Probe &amp; Waffenwahl)|Kap2_Intro]]
 [[Direkt in den Tagesloop (Spezialisierung oben wählen!)|Kap2_Tagesstart]]
-[[Biwag|Biwag_Drill]]</tw-passagedata><tw-passagedata pid="417" name="DEBUG_Menu" tags="" position="100,300" size="100,100">&lt;h3&gt;— DEBUG / Quest-Sprungbrett —&lt;/h3&gt;
+[[Biwag|Biwag_Drill]]</tw-passagedata><tw-passagedata pid="419" name="DEBUG_Menu" tags="" position="100,300" size="100,100">&lt;h3&gt;— DEBUG / Quest-Sprungbrett —&lt;/h3&gt;
 
 &#39;&#39;Jarek-Kette:&#39;&#39;
 &lt;&lt;link &quot;Setup S1 (Vorlesung)&quot;&gt;&gt;
@@ -21908,7 +22614,7 @@ Ermittlung frühestens Tag: &lt;b&gt;&lt;&lt;= $world.ermittlung.fruehestens_tag
 &lt;&lt;link &quot;↻ Flags zurücksetzen&quot;&gt;&gt;
   &lt;&lt;set $npc.jarek.memory.flags = {}&gt;&gt;
   &lt;&lt;goto &quot;DEBUG_Menu&quot;&gt;&gt;
-&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="418" name="Debugger Ermittlung" tags="" position="950,4925" size="100,100">&lt;&lt;if not $world&gt;&gt;&lt;&lt;set $world = {}&gt;&gt;&lt;&lt;/if&gt;&gt;
+&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="420" name="Debugger Ermittlung" tags="" position="950,4925" size="100,100">&lt;&lt;if not $world&gt;&gt;&lt;&lt;set $world = {}&gt;&gt;&lt;&lt;/if&gt;&gt;
 &lt;&lt;if not $world.flags&gt;&gt;&lt;&lt;set $world.flags = {}&gt;&gt;&lt;&lt;/if&gt;&gt;
 &lt;&lt;if not $edu&gt;&gt;&lt;&lt;set $edu = {}&gt;&gt;&lt;&lt;/if&gt;&gt;
 
@@ -22015,7 +22721,7 @@ Ermittlung frühestens Tag: &lt;b&gt;&lt;&lt;= $world.ermittlung.fruehestens_tag
 
 &lt;div id=&quot;archiv-status&quot;&gt;&lt;/div&gt;
 
-&lt;div id=&quot;weiter&quot;&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="419" name="DEBUG_Kap2_Endgame" tags="" position="1100,5225" size="100,100">&lt;&lt;set $world.day to 406&gt;&gt;
+&lt;div id=&quot;weiter&quot;&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="421" name="DEBUG_Kap2_Endgame" tags="" position="100,5350" size="100,100">&lt;&lt;set $world.day to 406&gt;&gt;
 &lt;&lt;if not $world.ermittlung&gt;&gt;&lt;&lt;set $world.ermittlung to {flags:{}, spuren:[], spurenText:{}, verdacht:{}}&gt;&gt;&lt;&lt;/if&gt;&gt;
 &lt;&lt;if not $world.ermittlung.flags&gt;&gt;&lt;&lt;set $world.ermittlung.flags to {}&gt;&gt;&lt;&lt;/if&gt;&gt;
 &lt;&lt;set $world.ermittlung.flags.s9_done to true&gt;&gt;
@@ -22032,7 +22738,7 @@ Kapitel2_Ende ist damit feuerbereit (day ≥ biwagDoneDay+6).&lt;/p&gt;
 
 &lt;&lt;link &quot;→ Duell-Ausgang umschalten&quot;&gt;&gt;&lt;&lt;goto &quot;DEBUG_Duell&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 [[→ Zum Abend (Traum + Karla testen)|Kap2_Abend]]
-[[→ Zum Tag (Kapitel2_Ende / Marschappell)|Kap2_Tagesstart]]</tw-passagedata><tw-passagedata pid="420" name="DEBUG_Duell" tags="" position="1225,5225" size="100,100">&lt;p&gt;&lt;b&gt;Duell-Ausgang setzen&lt;/b&gt; (Flags + Karla-Memory):&lt;/p&gt;
+[[→ Zum Tag (Kapitel2_Ende / Marschappell)|Kap2_Tagesstart]]</tw-passagedata><tw-passagedata pid="422" name="DEBUG_Duell" tags="" position="225,5350" size="100,100">&lt;p&gt;&lt;b&gt;Duell-Ausgang setzen&lt;/b&gt; (Flags + Karla-Memory):&lt;/p&gt;
 &lt;&lt;link &quot;A – versöhnt&quot;&gt;&gt;&lt;&lt;= setup.debugDuellSetzen(&quot;A_versoehnt&quot;)&gt;&gt;&lt;&lt;/link&gt;&gt; ·
 &lt;&lt;link &quot;A – kühl&quot;&gt;&gt;&lt;&lt;= setup.debugDuellSetzen(&quot;A_kuehl&quot;)&gt;&gt;&lt;&lt;/link&gt;&gt; ·
 &lt;&lt;link &quot;B – glimpflich&quot;&gt;&gt;&lt;&lt;= setup.debugDuellSetzen(&quot;B&quot;)&gt;&gt;&lt;&lt;/link&gt;&gt; ·
