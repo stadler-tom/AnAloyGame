@@ -852,6 +852,7 @@
 <p>Du siehst am Tisch 8 Kupfer liegen.</p>
 
 <div class="thought-box">"Verdammt! ich hab nur 2 Kupfer, das ist alles was  von der Käserei übrig ist..."</div>
+<<trenner>>
 [[Dein ganzes Kupfer auf den Tisch legen->Wuerfel_AllIn]]
 <<else>>
 <p>Wie viel willst du setzen?</p>
@@ -948,7 +949,7 @@
             <<else>>
                 <div class="thought-box">Schwer zu sagen, ob da mehr zu holen ist — aber ein Versuch ist's wert.</div>
             <</if>>
-                <<set _label to 'Nachhaken' + setup.checkHint('gossip', 13, _gossipDiff)>>
+                <<set _label to 'Nachhaken' + setup.checkHint('gossip', 11, _gossipDiff)>>
                 <<link _label>><<goto 'Event_Geschichte_Probe'>><</link>>           
         <</if>>
         <hr class="trenner-raute">
@@ -981,7 +982,7 @@
 
 :: Event_Geschichte_Probe {"position":"2400,1900","size":"100,100"}
 <<set _gossipStory = $world.currentGossipStory>>
-<<set _r = setup.skillCheckXp("gossip", 12, _gossipStory.probe.difficulty)>>
+<<set _r = setup.skillCheckXp("gossip", 11, _gossipStory.probe.difficulty)>>
 
 <<scene>>
     <<if $player.knowledge.gossip <= 3>>
@@ -1008,7 +1009,7 @@
         <<= setup.setPlayerSuspicion(5)>>
     <<else>>
         <div class="thought-box">Mist. Er hatte noch was zu sagen — das war spürbar.
-<p>Aber jetzt ist die Tür zu.</div></p>
+<p>Aber jetzt ist die Tür zu.</p></div>
         <<= setup.setPlayerSuspicion(2)>>
     <</if>>
     <<= _gossipStory.probe.fail>>
@@ -1030,36 +1031,38 @@
     [[Zur Pritsche gehen ->Kap1_Tagesstart]]
 <<else>>
     <div class="thought-box">Zwei Rekruten streiten lautstark. Du könntest dazwischengehen — ob du sie auseinanderbekommst, hängt von deiner Kampferfahrung ab.</div>
+    
     <span id="stubeFightJoice">
+    <<trenner>>
         <<set _label to 'Dazwischen gehen.' + setup.checkHint('combat', 13)>>
         <<link _label>>
             <<replace "#stubeFightJoice">>
                 <<set _allianz to (random(1, 100) <= 10)>>
                 <<set _r to setup.skillCheck('combat', 13, _allianz ? 3 : 0)>>
                 <<if _allianz>>
-<p>Kaum stehst du zwischen ihnen, wenden sich beide gemeinsam gegen dich. Zwei gegen einen.</p>
+                    <p>Kaum stehst du zwischen ihnen, wenden sich beide gemeinsam gegen dich. Zwei gegen einen.</p>
                 <<else>>
-<p>Du schiebst dich zwischen die beiden.</p>
+                    <p>Du schiebst dich zwischen die beiden.</p>
                 <</if>>
                 <<if _r.outcome == 'crit'>>
-<p>Ein einziger harter Schlag, perfekt ins Ziel – und es ist vorbei. Die ganze Stube hat es gesehen.</p>
+                    <p>Ein einziger harter Schlag, perfekt ins Ziel – und es ist vorbei. Die ganze Stube hat es gesehen.</p>
                     <<= setup.setPlayerKnowledge('combat', 1)>>
                     <hr class="trenner-raute">
                     [[Stolz geschwellt zur Pritsche gehen ->Kap1_Tagesstart]]
                 <<elseif _r.success>>
-<p>Fäuste fliegen, beide Seiten stecken ein und teilen aus. Am Ende bleibst du stehen.</p>
+                    <p>Fäuste fliegen, beide Seiten stecken ein und teilen aus. Am Ende bleibst du stehen.</p>
                     <<= setup.setPlayerKnowledge('combat', 1)>>
                     <hr class="trenner-raute">
                     [[Zur Pritsche gehen ->Kap1_Tagesstart]]
                 <<elseif _r.outcome == 'fumble'>>
-<p>Du greifst voll daneben und gehst selbst zu Boden, ehe ein Weibel dazwischenfährt.</p>
+                    <p>Du greifst voll daneben und gehst selbst zu Boden, ehe ein Weibel dazwischenfährt.</p>
                     <<= setup.setPlayerCondition(-5)>>
                     <<= setup.setPlayerStat('discipline', -2)>>
                     <<= setup.setPlayerStat('ambition', -1)>>
                     <hr class="trenner-raute">
                     [[Unter Lachen der Anderen zur Pritsche gehen ->Kap1_Tagesstart]]
                 <<else>>
-<p>Es misslingt – du fängst ein paar Hiebe, ein Weibel reißt euch auseinander.</p>
+                    <p>Es misslingt – du fängst ein paar Hiebe, ein Weibel reißt euch auseinander.</p>
                     <<= setup.setPlayerCondition(-2)>>
                     <<= setup.setPlayerStat('discipline', -1)>>
                     <hr class="trenner-raute">
@@ -1067,6 +1070,13 @@
                 <</if>>
             <</replace>>
         <</link>>
+             <<link "Dich raushalten">>
+            <<replace "#stubeFightJoice">>
+                <div class="thought-box">Nicht mein Streit. Sollen sie sich die Köpfe einschlagen — ich habe genug eigene Sorgen.</div>            
+                <hr class="trenner-raute">
+                [[Zur Pritsche gehen ->Kap1_Tagesstart]]
+            <</replace>>
+        <</link>>    
     </span>
 <</if>>
 
@@ -1110,14 +1120,16 @@
 	<<include "Event_Wuerfelspiel">>
 <<else>>
 	<<if random(1,100) <= 40>>
-
-<<set _event = either("Event_Wuerfelspiel", "Event_Schlaegerei")>>
-<<include _event>>
- <</if>>
+    <<set _event = either("Event_Wuerfelspiel", "Event_Schlaegerei")>>
+    <<include _event>>
+    <</if>>
 	
-    <hr class="trenner-raute">
-    [[Zuhören, was geredet wird ->Event_Geschichte]]
-    [[Schlafen->Kap1_Tagesstart]]
+    <<if _event neq "Event_Schlaegerei">>
+        <hr class="trenner-raute">
+            [[Zuhören, was geredet wird ->Event_Geschichte]]
+            [[Schlafen->Kap1_Tagesstart]]
+    <</if>>   
+    
     
 <</if>>
 

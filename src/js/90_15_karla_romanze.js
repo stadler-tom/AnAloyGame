@@ -25,9 +25,9 @@ setup.setRomanze = function (mod) {
 /* Stufe 0-3: Kameradschaft / Mehr als Kameradschaft / Vertrautheit / Etwas Eigenes */
 setup.romanzeStufe = function () {
     var r = setup.romanzeInit().romanze;
-    if (r >= 15) return 3;
-    if (r >= 10) return 2;
-    if (r >= 5)  return 1;
+    if (r >= 8)  return 3;
+    if (r >= 5)  return 2;
+    if (r >= 1)  return 1;
     return 0;
 };
 

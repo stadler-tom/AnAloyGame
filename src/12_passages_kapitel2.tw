@@ -321,9 +321,9 @@ Es bedeutet nur, dass man jetzt selbst wissen soll, wohin man gehört.</p>
 <<dialog>>„Vortreten.“<</dialog>>
 
 <p>Dir wird ganz anders zu mute, aber du kannst dich nicht weigern. Als du anhebst du gehen siest du den Schinder.</p>
-<<if setup.hasAnyRequiredSkill(3)>
+<<if setup.hasAnyRequiredSkill(3) >>
 	<p>Er fixiert dich eisern. Aber er nickt dir anerkennend zu.</p>
-	<<run setNpcAffection("schinder", 2)>>
+	<<= setup.setNpcAffection("schinder", 2)>>
 <<else>>
 	<p>Er fixiert dich eisern. Als wolle er sehen was passiert und wie du dich anstellen wirst.</p>
 <</if>>

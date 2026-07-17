@@ -250,6 +250,7 @@
 
 
 :: Ermittlung_S1_Intro_in_Waffenstube [einmalig interrupt kapitel-opener] {"position":"850,5075","size":"100,100"}
+<<set $npc.orenmalk.known to true>>
 <<scene>>
 <p>Hinter dem Ausgabetisch, auf einem Hocker, der zu niedrig für ihn scheint, sitzt ein schmaler Mann mit tintenfleckigen Fingern und einem Bart, 
 so ordentlich gestutzt, als traue er der Unordnung nicht über den Weg. Die Rekruten treten nacheinander vor, 
@@ -1226,7 +1227,7 @@ genug, dass er wackelt, nicht genug, dass es wie mutwillige Beschädigung aussie
 <</gedanke>>
 
 <p>Kein Einbruch, keine Strafe, kein Hauptmann, der euch von nun an mit anderen Augen ansieht. Nur ein winziger, sauberer Betrug, verübt mit den eigenen Regeln der Akademie als Werkzeug — und ein einziger Satz, gestohlen aus einem offenen Buch, der euch nicht sagt, was er bedeutet, nur, dass er etwas bedeutet.</p>
-
+<<trenner>>
 [[Den Fund mit Karla besprechen|Ermittlung_S3_Erkenntnis]]
 
 
@@ -1562,7 +1563,7 @@ Wenn irgendwer in dieser Akademie weiß, was sie bedeuten, dann der Mann, der ü
 <</if>>
 
 
-:: Ermittlung_S3_Beobachtung [nach_Kap2_abend] {"position":"775,5950","size":"100,100"}
+:: Ermittlung_S3_Beobachtung [nach_Kap2_tag] {"position":"775,5950","size":"100,100"}
 <<scene>>
 <<if setup.ermMit()>>
 <p>Karla nimmt die Nachricht von Halms Abweisung auf, wie sie alles aufnimmt, was sich ihr in den Weg stellt: mit einem kurzen, harten Nicken, als hätte sie nie etwas anderes erwartet. „Dann fragen wir niemanden mehr“, sagt sie. „Fragen hinterlassen Spuren. Augen nicht.“</p>
@@ -1736,7 +1737,7 @@ Und wenn nicht — dann ist der Eintrag eine Lüge mit einer Adresse. Die Fuhren
 
 
 
-:: Ermittlung_S5_Karla_Bericht [nach_Kap2_abend] {"position":"650,5775","size":"100,100"}
+:: Ermittlung_S5_Karla_Bericht [nach_Kap2_tag] {"position":"650,5775","size":"100,100"}
 <<if setup.ermMit()>>
 <<scene>>
 <p>Der Holzstapel ist inzwischen mehr als ein Treffpunkt — er ist eine Gewohnheit geworden, eine kleine Verschwörung aus Windschatten und Dunkelheit, die niemandem auffällt, weil sie nach nichts aussieht. Karla wartet schon, die Arme verschränkt, den Rücken an den kalten Scheiten, und an der Art, wie sie dich ansieht, erkennst du, dass sie deinem Gesicht die Neuigkeit ansieht, ehe du ein Wort gesagt hast.</p>
@@ -1798,7 +1799,7 @@ zwei Freiwillige — das ist mein Weg nach Westhof. Für sie.</p>
 <<gedanke>>
 <p>Jetzt heißt es warten, bis die nächste Fuhre angesetzt wird — und die Hände heben, ehe es ein anderer tut.</p>
 <</gedanke>>
-
+<<trenner>>
 <<weiterImTag "Weiter">>
 
 

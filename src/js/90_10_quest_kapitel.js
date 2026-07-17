@@ -72,14 +72,14 @@ setup.rebuildKnowledgeForChapter2 = function () {
 };
 
 setup.getPeakKnowledgeAfterKapOne = function () {
-    const ignore = ["thievery", "gossip", "combat"];
+    const allowed = ["pike", "crossbow", "cannon", "medicine"];
     const knowledge = State?.variables?.player?.knowledge;
 
     if (!knowledge || typeof knowledge !== "object") return [];
 
     const filteredEntries = Object.entries(knowledge)
         .filter(([key, value]) =>
-            !ignore.includes(key) && typeof value === "number" && value > 0
+            allowed.includes(key) && typeof value === "number" && value > 0
         );
 
     if (filteredEntries.length === 0) return [];

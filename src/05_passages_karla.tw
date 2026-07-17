@@ -802,6 +802,7 @@ von dir erzählt.</p>
 
 
 :: karla_S7_erkennung {"position":"1175,3275","size":"100,100"}
+<<set $npc.luigi.known to true>>
 <p>Du gehst näher.</p>
 <<if $npc.weibelWenzel.known>>
 <p>Wenzel bemerkt dich zuerst. Er bricht mitten im Satz ab, mustert dich kurz, und etwas in seinem Gesicht arbeitet, als gliche er ab, was er sieht, mit dem, was er weiß.</p>
@@ -828,7 +829,8 @@ von dir erzählt.</p>
 <p>Luigi tritt einen Schritt vor. Er mustert dich, langsam, und etwas in seinem Blick wird weich.</p>
 
 <div class="dialog">„Thomaso Wabbler", sagt er. Er legt die Betonung auf eine Art, die du noch nie gehört hast — das gerollte, weiche Ende deines Namens, südländisch, warm. „Buongiorno. Es iste gute, dich endlich zu sehen mite eigene Augen, eh? Endlich. Nach so viele, viele Briefe."</div>
-<div class="dialog">„Du haste geschrieben", sagt er leise, nur für dich. „Und Luigi — Luigi komme. Immer." Er hebt eine Hand, deutet beiläufig auf die drei hinter sich. „Aber non heute allein, eh? Heute habe ich ... wie sagt man ... compagnia mitgebracht. Gesellschaft."</div>
+<div class="dialog">„Du haste geschrieben", sagt er leise, nur für dich. „Und Luigi kommt — Luigi komme, Immer." Er hebt eine Hand, 
+deutet beiläufig auf die drei hinter sich. „Aber non heute allein, eh? Heute habe ich ... wie sagte man ... compagnia mitgebracht. Gesellschaft."</div>
 
 <<trenner>>
 [[Weiter|karla_S7_gespraech]]
@@ -943,6 +945,10 @@ Frage, wie man einen verängstigten Mann bricht.</p>
 <div class="dialog">„Wir habn uns gesetzt. Wir habn geredet. Über das Wetter, über die Ernte, über die Sorgen, die ein Mann so hat in diese unsichere Zeiten. Und irgendwann — ganz natürlisch — sind wir gekommen auf die Frage, wer ihm eigentlisch mehr Angst macht, hm? Die Männer von früher, die ihm habn gedroht ..." Maurice breitet die Hände aus. „... oder die Männer, die jetzt in seine Stube sitzen."</div>
 
 <div class="scenery-text">Hinter ihm, ohne ein Wort, tritt der Hagere einen halben Schritt ins Licht. Er sagt nichts. Er sieht dich nur an, mit dem ruhigen, gleichgültigen Blick eines Mannes, für den Gewalt keine Drohung ist, sondern bloß ein Werkzeug, das man selten in die Hand nehmen muss, weil seine bloße Anwesenheit genügt.</div>
+
+<<dialog>>
+  <p>Er kaut auf einem Zahnstocher herum. Und antwortet im gleichen Akzent wie Luigi. <<quote Hate sich richtig entschieden, Eh!>></p>
+<</dialog>>
 
 <div class="dialog">„Vincente redete nicht viel", sagt Maurice fast zärtlich. „Aber er hat eine ... présence. Eine Wirkung. Der Monsieur Zeuge hat sehr schnell verstanden, dass die alten Drohungen ihn nicht mehr schützen. Dass es jetzt klüger iste, die Wahrheit zu sagen, als sie weiter zu verstecken." Er zwinkert. „Wir habn ihm nur geholfen, die rischtige Wahl zu treffen, eh? Ganz ohne ... Unannehmlichkeiten."</div>
 

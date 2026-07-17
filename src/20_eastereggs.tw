@@ -10,7 +10,7 @@
 <p>Dein interesse ist geweckt.</p>
 
 <p>Setzt du dich zu der Gestalt oder gehst du in die Bänke zu deinen Kammeraden</p>
-<hr class="trenner-raute">
+<<trenner>>
 
 [[Zu den Kammeraden->05_Sidequest_Hansbert_Abbruch]] 
 [[Setz dich zu dem Fremden->05_Sidequest_Hansbert_Hinsetzen]]
@@ -19,7 +19,7 @@
 :: 05_Sidequest_Hansbert_Abbruch [layout] {"position":"250,2500","size":"100,100"}
 <p>Du gehst weiter. Du willst dich am Gottesdienst beteiligen.</p>
 <p>Das ist hier nicht die passende Umgebung für seltsame Begegnungen.</p>
-<hr class="trenner-raute">
+<<trenner>>
 
 [[Neben den anderen Rekruten Platz nehmen->Story005_Gottesdienst]]
 
@@ -96,7 +96,7 @@ Ein dritter.<br>
 <p>Seine Augen sind gerötet, sein Bart wirkt als hätte er Bekanntschaft mit mehreren Krügen Bier gemacht.</p>
 
 <p>Was willst du? Kann man sich hier in den hochheiligen Hallen nicht einmal ganz kurz ausruhen?</p>
-<hr class="trenner-raute">
+<<trenner>>
 
 [[Entschuldigt. Ich wollte nicht stören.->Hansbert_Hoeflich]]
 [[Ein Söldner beim Gottesdienst? Das sieht man selten.->Hansbert_Neugierig]]
@@ -108,7 +108,7 @@ Ein dritter.<br>
 <<set $npc.hansFichtensplitter.known = true>>
 <<run setup.setNpcAffection("hansFichtensplitter", 2)>>
 <<run setup.setPlayerStat("faith",5)>>
-<hr class="trenner-raute">
+<<trenner>>
 [[Die Kirche verlassen|Nachmittag Hub]]
 
 :: Hansbert_Frech [layout] {"position":"200,2625","size":"100,100"}
@@ -133,7 +133,7 @@ Ein dritter.<br>
 <p>Sein Händedruck ist fest.</p>
 
 <div class="dialog">"Barsinger segnet meine Arbeit regelmäßig."</div>
-<hr class="trenner-raute">
+<<trenner>>
 
 [[Er holt Luft ->05_Sidequest_Hansbert_Barsinger]]
 
@@ -152,7 +152,7 @@ Ein dritter.<br>
 <p>Sein Händedruck ist fest.</p>
 
 <div class="dialog">"Barsingers Diener, wenn man den Gerüchten glauben darf."</div>
-<hr class="trenner-raute">
+<<trenner>>
 
 [[Er holt Luft ->05_Sidequest_Hansbert_Barsinger]]
 
@@ -172,7 +172,7 @@ Wer sagt denn, dass ich wegen des Gottesdienstes hier bin?"</div>
 <p>Er tippt sich gegen die Brust.</p>
 
 <div class="dialog">"Hansbert."</div>
-<hr class="trenner-raute">
+<<trenner>>
 
 [[Er holt Luft ->05_Sidequest_Hansbert_Barsinger]]
 
@@ -196,7 +196,7 @@ Wer sagt denn, dass ich wegen des Gottesdienstes hier bin?"</div>
 <div class="thought-box">Zwei vom einem Banner, dem Klang nach. Keine feinen Herren — die reden wie Leute, die zusammen im Dreck gelegen haben. Aber worüber, das krieg ich von hier nicht zusammen. Halbe Sätze, ein Frühjahr, ein Salz, irgendwer der Zettel liest. Brocken ohne Faden.</div>
 <p>In deinen Händen: ein verkorkter Krug und ein versiegelter Brief. Beides muss rein.</p>
 
-<hr class="trenner-raute">
+<<trenner>>
 <span id="flur-wahl">
 <div><<link "Eintreten und abliefern">>
     <<replace "#flur-wahl">><<goto "04_Sidequest_diplomaten_Eintreten">><</replace>>
@@ -229,7 +229,7 @@ Wer sagt denn, dass ich wegen des Gottesdienstes hier bin?"</div>
 <div class="dialog">„Eins noch. Du stellst es hin, sagst deinen Spruch, kommst zurück. Du lässt dich nicht in ein Gespräch verwickeln. Mit denen redet man nicht — mit denen verschwindet man." Er schnaubt. „Ich hab mal einen Boten reingeschickt. Der kam als anderer Mensch wieder raus. Älter."</div>
 
 <div class="thought-box">Ein Krug, ein Brief, zwei Worte und wieder weg. Klingt einfach. Klingt zu einfach für die Miene, die er gerade macht.</div>
-
+<<trenner>>
 [[Zur Gästekammer. ->04_Sidequest_diplomaten]]
 
 
@@ -286,7 +286,7 @@ Wer sagt denn, dass ich wegen des Gottesdienstes hier bin?"</div>
 
 <p>Eine Hand schließt sich um deinen Oberarm — nicht grob, aber ohne jeden Zweifel daran, dass du jetzt mitkommst. Krug und Brief bleiben stehen, wo sie stehen.</p>
 
-<hr class="trenner-raute">
+<<trenner>>
 [[Mitgehen ->04_Sidequest_diplomaten_Kurt]]
 
 
@@ -321,6 +321,7 @@ Wer sagt denn, dass ich wegen des Gottesdienstes hier bin?"</div>
 
 <div class="thought-box">Drei Namen reicher, drei Mal schlechter angesehen. Das hab ich ja sauber hinbekommen...</div>
 
+<<trenner>>
 [[Den Tag hinter dich bringen ->Auf Stube]]
 
 
@@ -360,7 +361,7 @@ Du bleibst stehen, atmest flach und lässt die Brocken nicht mehr einzeln vorbei
 </div>
 <p> Dir wird bewusst, dass  du immer noch mit Krug und Brief da stehst. Die müssen trotzdem rein.</p>
 
-<hr class="trenner-raute">
+<<trenner>>
 [[Eintreten und abliefern ->04_Sidequest_diplomaten_Eintreten]]
 
 
@@ -411,7 +412,7 @@ Du bleibst stehen, atmest flach und lässt die Brocken nicht mehr einzeln vorbei
 <<set $npc.bast.memory.flags.sidequest04Complete = true>>
 <<set $npc.diplomatHannes.memory.flags.sidequest04Complete = true>>
 
-<hr class="trenner-raute">
+<<trenner>>
 [[Die Glocken rufen zum Unterricht->Studium Hub]]
 
 
@@ -428,6 +429,7 @@ Du bleibst stehen, atmest flach und lässt die Brocken nicht mehr einzeln vorbei
 <div class="thought-box">Öl oder Fett. Frisch. Und der Kerl steht hier wie im Parkett. Das ist kein Zufall!</div>
 <div class="dialog">„Schau zu", flüstert der Söldner, ohne dich anzusehen. „Oder schau weg. Aber wenn du was sagst, hast du's mir versaut, Bürschchen."</div>
 
+<<trenner>>
 [[Klappe halten und zusehen. ->03_Sidequest_wenzel_Mitspielen]]
 [[Den Unteroffizier unauffällig warnen. ->03_Sidequest_wenzel_Warnen]]
 [[Wenzel fragen, was das soll. ->03_Sidequest_wenzel_Fragen]]
@@ -442,7 +444,7 @@ Du bleibst stehen, atmest flach und lässt die Brocken nicht mehr einzeln vorbei
 
 <div class="thought-box">Ein Fehler in einer Liste. Klingt nach nichts. Aber hier ist eine Liste das Einzige, was beweist, dass es mich überhaupt gibt. Besser, ich bring das in Ordnung.</div>
 <p>Der Weg zur Schreibstube führt durch die hinteren Gänge der Kaserne, dorthin, wo der Stein nach Tinte und altem Papier riecht und der Lärm des Hofs verstummt.</p>
-
+<<trenner>>
 [[Zur Schreibstube. ->03_Sidequest_wenzel]]
 
 
@@ -497,6 +499,7 @@ Du bleibst stehen, atmest flach und lässt die Brocken nicht mehr einzeln vorbei
 <p>Was war das für ein seltsamer Moment?</p>
 <p>Du sinierst noch etwas befor dir auffällt dass du zu spät zum Appell kommst und noch zum Sergeanten musst !!!</p>
 
+<<trenner>>
 [[Losstürmen! ->Abendappell]]
 
 
@@ -519,7 +522,7 @@ Du bleibst stehen, atmest flach und lässt die Brocken nicht mehr einzeln vorbei
 <div class="thought-box">Der sieht aus, als hätte ihm heute schon jemand den Tag versaut. Vielleicht lass ich ihn besser in Ruhe. Vielleicht.</div>
 
 <p>Er bemerkt dich, ohne den Kopf zu heben. „Steh mir nicht in der Sonne, Frischling."</p>
-
+<<trenner>>
 [[Ihn um einen Tipp fragen. ->02_Sidequest_vasil_Tipp]]
 [[Dich danebenstellen und einfach zusehen. ->02_Sidequest_vasil_Zusehen]]
 [[Lieber weitergehen. ->02_Sidequest_vasil_Ablehnung]]
@@ -567,7 +570,7 @@ Du bleibst stehen, atmest flach und lässt die Brocken nicht mehr einzeln vorbei
 <p>Dann, beim Spannen, ganz beiläufig: „Weißt du, was der Unterschied is zwischen 'nem Bolzen und 'nem Rekruten?" Pause. „Der Bolzen geht dahin, wo man hinzielt."</p>
 
 <p>Er sieht dich an. Wartet. Es ist offensichtlich ein Witz, den er für ausgezeichnet hält.</p>
-
+<<trenner>>
 [[Ehrlich lachen — der Witz ist so dämlich, dass er gut ist. ->02_Sidequest_vasil_Lachen]]
 [[Höflich nicken und weiterschießen. ->02_Sidequest_vasil_Hoeflich]]
 
@@ -590,6 +593,7 @@ Du bleibst stehen, atmest flach und lässt die Brocken nicht mehr einzeln vorbei
 
 :: 02_Sidequest_vasil_finalize [layout] {"position":"325,1400","size":"100,100"}
 <<set $npc.vasil.memory.flags.sidequest02Complete = true>>
+<<trenner>>
 [[Zurück zu den Schützen ->Nachmittag Crossbow]]
 
 
@@ -604,6 +608,7 @@ Du bleibst stehen, atmest flach und lässt die Brocken nicht mehr einzeln vorbei
 
 <div class="scenery-text">Der Abend wird länger als geplant.</div>
 
+<<trenner>>
 [[Noch eine Runde ->Story002_finalize]]
 
 
@@ -626,6 +631,7 @@ Du bleibst stehen, atmest flach und lässt die Brocken nicht mehr einzeln vorbei
 <p>Haddl strahlt. „Der Opa hat immer gesagt: Wer großzügig ist bekommt mehr zurück als er gegeben hat."</p>
 <div class="dialog">„Das hat der Opa diesmal vielleicht sogar gesagt", gibt Lars zu.</div>
 
+<<trenner>>
 [[Noch eine Runde ->Story002_finalize]]
 
 
@@ -646,6 +652,7 @@ Du bleibst stehen, atmest flach und lässt die Brocken nicht mehr einzeln vorbei
 <<if $player.money.copper >= 8>>
 
 <p>Du könntest die Runde schmeißen. Ein Becher Bier kauft mehr als Bier.</p>
+<<trenner>>
 [[Ihnen ein Bier ausgeben ->Story002_Bier_Ausgeben]]
 [[Sich verabschieden und zurück zu den Rekruten ->Auf Stube][$world.kondition += 5]]
 <<else>>
@@ -674,6 +681,7 @@ Du bleibst stehen, atmest flach und lässt die Brocken nicht mehr einzeln vorbei
 <<= setup.setNpcAffection("haddl", 1)>>
 <div class="scenery-text">Das Gespräch findet seinen eigenen Rhythmus. Lars redet wenig aber wenn er redet hat es Gewicht. Haddl füllt die Lücken mit Geschichten die halb gelogen und halb zu gut sind um erfunden zu sein.
 <p>Irgendwann bestellt Lars ohne zu fragen eine neue Runde.</p></div>
+<<trenner>>
 [[Das Bier annehmen ->Story002_BierAnnehmen]]
 
 
@@ -713,7 +721,7 @@ Du bleibst stehen, atmest flach und lässt die Brocken nicht mehr einzeln vorbei
 <<if setup.isFactionKnown("84. Banner")>>
 <p>Das Barret, das Wappen, Du willst mehr über die Kerle erfahren.</p>
 <p>Aber du bist mit deinen Kammeraden gekommen und willst eigentlich die Zeit mit ihnen genießen</p>
-    
+    <<trenner>>
 	[[Hingehen ->Story002_Taverne_Ansprechen_MitAufhaenger]]
     [[Den Nachmittag genießen und die zwei vergessen ->Auf Stube][$world.kondition += 1]]
 <<else>>
@@ -722,7 +730,7 @@ Du bleibst stehen, atmest flach und lässt die Brocken nicht mehr einzeln vorbei
 <p>Und trotzdem.</p>
 
 <p>Irgendetwas an den zwei — die Haltung, der Mantel, die Art wie der Große zuhört — lässt deinen Blick immer wieder rüberwandern.</p>
-
+<<trenner>>
 [[Den Nachmittag genießen und die zwei vergessen ->Auf Stube][$world.kondition += 1]]
 [[Hingehen ->Story002_Taverne_Ansprechen_KeinAufhaenger]]
 <</if>>
@@ -749,7 +757,7 @@ Du bleibst stehen, atmest flach und lässt die Brocken nicht mehr einzeln vorbei
     <<= setup.addItem("Söldner-Handbuch mit Widmung von Lars und Hadde")>>
 
 
-<hr class="trenner-raute">
+<<trenner>>
 <<weiterImTag "Tswu .. viel... lang... verdammt!">>
 
 
@@ -768,7 +776,7 @@ Du findest die Gasse. Du findest das Haus. Du klopfst.</p>
 <p>Der Zettel hilft dir nicht weiter. Du schaust dich um.</p>
 
 <p>Unter dem Vordach des Nachbargebäudes hat sich eine kleine Welt eingerichtet.</p>
-
+<<trenner>>
 [[Nachschauen|EE_Tross]]
 
 :: EE_Tross {"position":"725,875","size":"100,100"}
@@ -814,7 +822,7 @@ Wappen an dem Gürtel. Ein Tier.</p>
 <</if>>
 <</beziehung>>
 
-<hr class="trenner-raute">
+<<trenner>>
 
 <div class="dialog">Der Mann hebt das Kinn. „Ah. Rekrut. Setz dich, setz dich — steh nicht
 so rum, davon krieg ich Zustände."</div>
@@ -824,7 +832,7 @@ zu. Dann sucht er kurz nach Worten, findet keine besseren und sagt einfach:</p>
 
 <div class="dialog">„Also. Was brauchst?"</div>
 
-<hr class="trenner-raute">
+<<trenner>>
 
 [[Ich such' eine Adresse. Die Gasse hier oben stimmt irgendwie nicht|EE_Tross_Adresse]]
 [[Ich weiß es selbst nicht genau|EE_Tross_Ehrlich]]
@@ -862,7 +870,7 @@ hätte die ganze Zeit aufmerksam zugehört. </p>
     blauen Tür kauft dir gebrauchte Stiefel ab, falls du welche über hast."</p>
 <</dialog>>
 
-<hr class="trenner-raute">
+<<trenner>>
 
 <span id="entscheidungs-bereich">
   <<link "Verbessern: Offiziell">>
@@ -894,7 +902,7 @@ hätte die ganze Zeit aufmerksam zugehört. </p>
 
         <<= setup.setNpcAffection("clausz", 2)>>
         <<= setup.setNpcAffection("tilly", 1)>>
-        <hr class="trenner-raute">
+        <<trenner>>
 
         [[Weiter|EE_Tross_Rosi]]
     <</replace>>
@@ -920,7 +928,7 @@ hätte die ganze Zeit aufmerksam zugehört. </p>
 
         <<= setup.setNpcAffection("clausz", 2)>>
         <<= setup.setNpcAffection("tilly", 2)>>
-        <hr class="trenner-raute">
+        <<trenner>>
 
         [[Weiter|EE_Tross_Rosi]]    
     <</replace>>
@@ -952,7 +960,7 @@ jemand, der weiß, wovon er redet — bis sie sich zurücklehnt, den Tintentopf 
 Ellbogen streift und ihn gerade noch auffängt, ohne den Blick von dir zu nehmen, als wäre
 nichts gewesen.</p>
 
-<hr class="trenner-raute">
+<<trenner>>
 
 <span id="entscheidungs-bereich">
   <<link "Verbessern: Offiziell">>
@@ -971,7 +979,7 @@ nichts gewesen.</p>
 
         <<= setup.setNpcAffection("clausz", 2)>>
         <<= setup.setNpcAffection("tilly", 1)>>
-        <hr class="trenner-raute">
+        <<trenner>>
 
         [[Weiter|EE_Tross_Rosi]]
     <</replace>>
@@ -988,7 +996,7 @@ nichts gewesen.</p>
 
         <<= setup.setNpcAffection("clausz", 2)>>
         <<= setup.setNpcAffection("tilly", 2)>>
-        <hr class="trenner-raute">
+        <<trenner>>
 
         [[Weiter|EE_Tross_Rosi]] 
     <</replace>>
@@ -1044,7 +1052,7 @@ mich net volljammern. Dass des a Ritter war, hab ich erst hinterher erfahren."</
 hab."</div>
 
 <<= setup.setNpcAffection("rosi", 3)>>
-<hr class="trenner-raute">
+<<trenner>>
 
 [[Weiter.->EE_Tross_Abgang]]
 
@@ -1063,7 +1071,7 @@ Eine kurze Pause. „Ich fand's zumindest sehr souverän, wie ich das vorhin rü
 <<set $npc.tilly.known to true>>
 <<set $npc.rosi.known to true>>
 
-<hr class="trenner-raute">
+<<trenner>>
 <<weiterImTag "Zurück zum Tagesgeschehen">>
 
 
@@ -1567,6 +1575,11 @@ Heute Nacht sitze ich am richtigen Feuer.</p>
 <<if not $world.besuchGossipGefragt>><<set $world.besuchGossipGefragt to []>><</if>>
 <<set _pool to setup.gossips84Bekannt()>>
 
+/* Nichts zu fragen? Gossip-Phase gilt als erledigt -> direkt weiter */
+<<if not $world.besuchGossipFertig and _pool.length === 0>>
+	<<set $world.besuchGossipFertig to true>>
+<</if>>
+
 <<if not $world.besuchGossipFertig and _pool.length gt 0 and $world.besuchGossipGefragt.length lt 2>>
 <div id="gossip-block">
   <div id="gossip-menu">
@@ -1599,7 +1612,14 @@ Heute Nacht sitze ich am richtigen Feuer.</p>
         <span class="subtext">— <<= _s.rumorText>></span>
       </li>
       <</capture>>
-    <</for>>    
+    <</for>>
+      <li>
+        <<link "Genug gefragt — der Abend ist noch lang">>
+          <<replace "#gossip-menu">><</replace>>
+          <<set $world.besuchGossipFertig to true>>
+          <<append "#gossip-weiter">><<include "Besuch_S3_GossipWeiter">><</append>>
+        <</link>>
+      </li>
     </ul>
   </div>
 
@@ -1610,6 +1630,7 @@ Heute Nacht sitze ich am richtigen Feuer.</p>
 <div id="gossip-weiter">
 <<if $world.besuchGossipFertig>><<include "Besuch_S3_GossipWeiter">><</if>>
 </div>
+
 
 :: Besuch_S3_GossipWeiter
 <<trenner>>

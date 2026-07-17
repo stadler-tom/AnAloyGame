@@ -257,6 +257,7 @@
 
 
 :: Bader_Auftrag_Suche
+<<set $world.flags.silberbrechSuchTag to $world.day>>
 <<scene>>
 <p>Der Pfad hinter dem Lager wird schnell steil, aus Tritten wird Klettern, aus Gras wird nackter, windgeschliffener
 Fels. Weit unter dir liegt das Lager wie ein Häufchen Asche, und die Luft wird dünn und schneidend, je höher du kommst.</p>
@@ -349,7 +350,7 @@ aufbrechen.</p>
 	<</if>>
 <</if>>
 
-<<if $world.duell?.nachwirkung_done AND $world.duell?.tier eq "C" AND $world.duell?.zdenka_trust gt -2>>
+<<if $world.duell?.nachwirkung_done and $world.duell?.tier eq "C" and $world.duell?.zdenka_trust gt -2>>
 	<<set _hatEmpfaenger to true>>
 	<<dialog>>
 	<p>„Ein Brief nach Rabenfurth. An Fräulein Zdenka Hrusa. Was kostet mich das?“</p>
@@ -1382,9 +1383,11 @@ und das ist mehr, als du vor einem Jahr von dir erwartet hättest.</p>
 <div id="gossip-antworten"></div>
 <</if>>
 
-<<if $world.flags.baderAuftrag === "offen" and not setup.hasItem("Silberbrech")>>
+<<if $world.flags.baderAuftrag === "offen" and not setup.hasItem("Silberbrech") and $world.flags.silberbrechSuchTag isnot $world.day>>
 	<li><<link "Auf die Grate über Ohm steigen" "Bader_Auftrag_Suche">><</link>>
 	<span class="subtext">— Der Bader wartet auf sein Bergkraut. Ein steiler Weg, und du kennst ihn besser als die meisten.</span></li>
+<<elseif $world.flags.baderAuftrag === "offen" and not setup.hasItem("Silberbrech")>>
+	<li><span class="subtext">— Für heute reicht der Berg dir. Morgen kannst du es erneut versuchen.</span></li>
 <</if>>
 
 <<trenner>>
