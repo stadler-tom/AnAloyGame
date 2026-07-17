@@ -1497,7 +1497,7 @@ Er grinst, als wär's ein Orden. „Danach hab ich lang keine Stadt mehr von inn
 der Schenke. Ich habe gelernt. Beflissentlich."</p>
 <p>„Bei mir war's genauso", pflichtet Bast bei und nickt würdevoll.</p>
 <p>Einen Herzschlag lang schweigen alle. Nicken. Sehen einander an.</p>
-<p>Dann gröhlt Wenzel über das ganze Feuer: „JA! Das erklärt alles!"</p>
+<p>Dann gröhlt Vasil über das ganze Feuer: „JA! Das erklärt alles!"</p>
 <p>Das Lager bricht in Gelächter aus, Hände klatschen auf Schultern, jemand kippt fast in die Glut. Hannes und Bast
 sitzen betröppelt zwischen dem Sturm, und je würdevoller sie dreinschauen, desto lauter wird gelacht.</p>
 <</dialog>>
@@ -1521,21 +1521,42 @@ gedient, vor gefühlt hundert Jahren. Und wenn ich mir das so anschau —" er de
 „— hat sich seit damals rein gar nichts geändert."</p>
 <</dialog>>
 
-<<<<dialog>>
+<<dialog>>
   <p><<quote Jetzt ich gefunden dich Lenz!>> Eine stimme so fest wie eine Eiche lässt dich umschauen.</p>
-  <<if <<set $npc.konrad.known  >>
+  <<if $npc.konrad.known>>
 	<p><<quote Ah kleiner Rekrut aus Schenke ist auch hier.>></p>
-	<<if $npc.schlaeger.memory.flags.bier_spendiert>>
+	<<if $npc.konrad.memory.flags.bier_spendiert>>
 		<p><<quote Freut mich dich wieder zu sehen!>> er hebt seinen Krug und zwinkert dir zu.</p>
 	<</if>>
   <</if>>
   <p><<quote Ah Konrad! schön das du es einrichten konntest!>>Begrüßt ihn Lenz.</p>
-<<if not $npc.konrad.known  >>
-	<p><<quote Das hier ist ein guter Freund von uns. Konrad Schläger. Er hat den weiten Weg aus dem Imperium auf sich genommen.>></p>
-<</if>>>
+<<if not $npc.konrad.known>>
+	<p><<quote Das hier ist ein guter Freund von uns. Konrad Schläger. Er hat den weiten Weg aus dem Imperium auf sich genommen.>>Stellt ihn Lenz knapp vor.</p>
+	<p><<quote Wünsch ich dir ein schönen Abend! Sind wir beide Gäste wie mir scheint.>> entgegnet dir Konrad freundlich.</p>
+	<p>Du schaust ihn nur verduzt an. und öffnest den Mund um in gleich wieder zu schließen</p>
+	<p>Konrad lacht lauthals auf!<<quote Hast wohl noch nie gehört Akzent von Ostmark! Ist „Ganz im Osten, wo Imperium aufhört
+					und Wald anfängt und nie mehr aufhört. Land, das Mann hart macht — oder tot. Mich hat es gemacht hart.>></p>
+	<p><<quote Ähm, Drey zum Gruße, Konrad, ich bin Thomas.>> bringst du hervor, mehr schüchtern als alles andere.</p>					
+<</if>>
+	<p><<quote Ah ist frischer Kerl für den Haufen! Ist sich immer gut neue Träger zu haben.>></p>
+	<<switch $player.spezialisierung>>
+		<<case "pike">>
+			<p><<quote Ja genau! Ich bin Stolzer Spießer!>></p>
+			<p><<quote Sehr gut! Wenn du mal bist Heinrichsfest wir machen Drill zusammen!>> Konrad schüttelt deine Hand.</p>
+		<<case "crossbow">>
+			<p><<quote Nicht ganz im Haufen. Ich bin Armbruster, so wie Vasil und Haddl!>></p>
+			<p><<quote Auch recht! Muss man manchmal auch erst ein bisschen ausmerzen bevor man in die Gegner marschiert.>> Konrad schüttelt deine Hand.</p>
+		<<case "cannon">>
+			<p><<quote Nein, ich steh weiter hinten, ich bin bei der Artillerie!>></p>
+			<p><<quote Ist auch wichtig. Muss man schießen Mauern sturmreif und erst dann klettern.>> Konrad schüttelt deine Hand.</p>
+		<<case "medicine">>
+			<p><<quote Nicht wirklich, ich bin Feldscher und kümmere mich um das was übrig ist.>></p>
+			<p><<quote Sagst du wie ist. Muss man auch wieder heilen die dies getroffen hat, damit die wieder können maschieren bei nächstes Mal.>> Konrad schüttelt deine Hand.</p>
 
-  <p><<quote Komm konrad, ich muss dich sprechen.>> Lenz führt Konrad Richtug Akademie. Was die beiden wohl aushecken?</p>
-<</dialog>>>>
+	<</switch>>
+
+  <p><<quote Komm konrad, ich muss dich sprechen.>> Lenz hakt ein und führt Konrad Richtug Akademie. Was die beiden wohl aushecken?</p>
+<</dialog>>
 
 <<gedanke>>
 <p>Das ist es also, wohinein ich wachse. Nicht Drill, nicht Rindlers Waage. Das hier — Männer und Frauen, die zu

@@ -2888,9 +2888,34 @@ setup.migrateWorld = function () {
     /* if (w.wuerfelGesamt === undefined) w.wuerfelGesamt = 0; */
 };
 
+setup.migrateNpcs = function () {
+    var npc = State.variables.npc;
+    if (!npc) return;
+    if (!npc.konrad) {
+        npc.konrad = {
+            name: "Konrad Schläger",
+            known: false,
+            image: "images/Konrad.png",
+            faction: "Imperium",
+            affection: 0,
+            trust: false,
+            isRealPlayer: true,
+            memory: { flags: {}, events: [] },
+            journalEntry: "Einer vom Imperium! Ein Hüne von einem Kerl, aus der Ostmark. Den Akzent in dem er spricht hast du noch nie gehört." 
+        };
+
+        /* Bei bestehenden NPCs NUR das Bild nachrüsten — Objekt nicht ersetzen */
+        if (npc.haddl) npc.haddl.image = npc.haddl.image || "images/Haddl.png";
+        if (npc.rosi)  npc.rosi.image  = npc.rosi.image  || "images/Rosi.png";
+        }
+        
+    /* künftige neue NPCs hier genauso nachrüsten */
+};
+
 $(document).on(":passagestart", function () {
     setup.syncPlayerRel();
     setup.migrateWorld();
+    setup.migrateNpcs();
     var known = State.variables.npc && State.variables.npc.sergeant && State.variables.npc.sergeant.known === true;
     jQuery("html").toggleClass("hat-titelbild", known);
 });
@@ -5861,7 +5886,7 @@ setup.duellEinfluss = function () {
     return { wert: wert, band: band };
 };
 
-</script><tw-tag name="widget" color="blue"></tw-tag><tw-tag name="nach_hub" color="green"></tw-tag><tw-tag name="einmalig" color="red"></tw-tag><tw-tag name="nach_Kap2_morgen" color="green"></tw-tag><tw-tag name="script" color="purple"></tw-tag><tw-tag name="nach_stube" color="orange"></tw-tag><tw-tag name="nach_appell" color="yellow"></tw-tag><tw-tag name="layout" color="green"></tw-tag><tw-tag name="journal" color="orange"></tw-tag><tw-tag name="nach_Kap2_tag" color="green"></tw-tag><tw-tag name="header" color="blue"></tw-tag><tw-tag name="startup-debug" color="purple"></tw-tag><tw-tag name="nach_morgen" color="red"></tw-tag><tw-tag name="interrupt" color="purple"></tw-tag><tw-tag name="kapitel-opener" color="red"></tw-tag><tw-tag name="studium" color="yellow"></tw-tag><tw-tag name="pruefung" color="green"></tw-tag><tw-tag name="nach_Kap2_abend" color="yellow"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="0,225" size="100,100">&lt;&lt;include &quot;InitPlayer&quot;&gt;&gt;
+</script><tw-tag name="widget" color="blue"></tw-tag><tw-tag name="nach_hub" color="green"></tw-tag><tw-tag name="studium" color="yellow"></tw-tag><tw-tag name="pruefung" color="green"></tw-tag><tw-tag name="kapitel-opener" color="red"></tw-tag><tw-tag name="nach_Kap2_abend" color="yellow"></tw-tag><tw-tag name="header" color="blue"></tw-tag><tw-tag name="startup-debug" color="purple"></tw-tag><tw-tag name="nach_stube" color="orange"></tw-tag><tw-tag name="interrupt" color="purple"></tw-tag><tw-tag name="journal" color="orange"></tw-tag><tw-tag name="nach_Kap2_tag" color="green"></tw-tag><tw-tag name="script" color="purple"></tw-tag><tw-tag name="einmalig" color="red"></tw-tag><tw-tag name="nach_morgen" color="red"></tw-tag><tw-tag name="nach_appell" color="yellow"></tw-tag><tw-tag name="layout" color="green"></tw-tag><tw-tag name="nach_Kap2_morgen" color="green"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="0,225" size="100,100">&lt;&lt;include &quot;InitPlayer&quot;&gt;&gt;
 &lt;&lt;include &quot;InitNPC&quot;&gt;&gt;
 &lt;&lt;include &quot;InitWorld&quot;&gt;&gt;
 &lt;&lt;include &quot;InitStudium&quot;&gt;&gt;
@@ -20385,7 +20410,7 @@ Er grinst, als wär&#39;s ein Orden. „Danach hab ich lang keine Stadt mehr von
 der Schenke. Ich habe gelernt. Beflissentlich.&quot;&lt;/p&gt;
 &lt;p&gt;„Bei mir war&#39;s genauso&quot;, pflichtet Bast bei und nickt würdevoll.&lt;/p&gt;
 &lt;p&gt;Einen Herzschlag lang schweigen alle. Nicken. Sehen einander an.&lt;/p&gt;
-&lt;p&gt;Dann gröhlt Wenzel über das ganze Feuer: „JA! Das erklärt alles!&quot;&lt;/p&gt;
+&lt;p&gt;Dann gröhlt Vasil über das ganze Feuer: „JA! Das erklärt alles!&quot;&lt;/p&gt;
 &lt;p&gt;Das Lager bricht in Gelächter aus, Hände klatschen auf Schultern, jemand kippt fast in die Glut. Hannes und Bast
 sitzen betröppelt zwischen dem Sturm, und je würdevoller sie dreinschauen, desto lauter wird gelacht.&lt;/p&gt;
 &lt;&lt;/dialog&gt;&gt;
@@ -20409,21 +20434,42 @@ gedient, vor gefühlt hundert Jahren. Und wenn ich mir das so anschau —&quot; 
 „— hat sich seit damals rein gar nichts geändert.&quot;&lt;/p&gt;
 &lt;&lt;/dialog&gt;&gt;
 
-&lt;&lt;&lt;&lt;dialog&gt;&gt;
+&lt;&lt;dialog&gt;&gt;
   &lt;p&gt;&lt;&lt;quote Jetzt ich gefunden dich Lenz!&gt;&gt; Eine stimme so fest wie eine Eiche lässt dich umschauen.&lt;/p&gt;
-  &lt;&lt;if &lt;&lt;set $npc.konrad.known  &gt;&gt;
+  &lt;&lt;if $npc.konrad.known&gt;&gt;
 	&lt;p&gt;&lt;&lt;quote Ah kleiner Rekrut aus Schenke ist auch hier.&gt;&gt;&lt;/p&gt;
-	&lt;&lt;if $npc.schlaeger.memory.flags.bier_spendiert&gt;&gt;
+	&lt;&lt;if $npc.konrad.memory.flags.bier_spendiert&gt;&gt;
 		&lt;p&gt;&lt;&lt;quote Freut mich dich wieder zu sehen!&gt;&gt; er hebt seinen Krug und zwinkert dir zu.&lt;/p&gt;
 	&lt;&lt;/if&gt;&gt;
   &lt;&lt;/if&gt;&gt;
   &lt;p&gt;&lt;&lt;quote Ah Konrad! schön das du es einrichten konntest!&gt;&gt;Begrüßt ihn Lenz.&lt;/p&gt;
-&lt;&lt;if not $npc.konrad.known  &gt;&gt;
-	&lt;p&gt;&lt;&lt;quote Das hier ist ein guter Freund von uns. Konrad Schläger. Er hat den weiten Weg aus dem Imperium auf sich genommen.&gt;&gt;&lt;/p&gt;
-&lt;&lt;/if&gt;&gt;&gt;
+&lt;&lt;if not $npc.konrad.known&gt;&gt;
+	&lt;p&gt;&lt;&lt;quote Das hier ist ein guter Freund von uns. Konrad Schläger. Er hat den weiten Weg aus dem Imperium auf sich genommen.&gt;&gt;Stellt ihn Lenz knapp vor.&lt;/p&gt;
+	&lt;p&gt;&lt;&lt;quote Wünsch ich dir ein schönen Abend! Sind wir beide Gäste wie mir scheint.&gt;&gt; entgegnet dir Konrad freundlich.&lt;/p&gt;
+	&lt;p&gt;Du schaust ihn nur verduzt an. und öffnest den Mund um in gleich wieder zu schließen&lt;/p&gt;
+	&lt;p&gt;Konrad lacht lauthals auf!&lt;&lt;quote Hast wohl noch nie gehört Akzent von Ostmark! Ist „Ganz im Osten, wo Imperium aufhört
+					und Wald anfängt und nie mehr aufhört. Land, das Mann hart macht — oder tot. Mich hat es gemacht hart.&gt;&gt;&lt;/p&gt;
+	&lt;p&gt;&lt;&lt;quote Ähm, Drey zum Gruße, Konrad, ich bin Thomas.&gt;&gt; bringst du hervor, mehr schüchtern als alles andere.&lt;/p&gt;					
+&lt;&lt;/if&gt;&gt;
+	&lt;p&gt;&lt;&lt;quote Ah ist frischer Kerl für den Haufen! Ist sich immer gut neue Träger zu haben.&gt;&gt;&lt;/p&gt;
+	&lt;&lt;switch $player.spezialisierung&gt;&gt;
+		&lt;&lt;case &quot;pike&quot;&gt;&gt;
+			&lt;p&gt;&lt;&lt;quote Ja genau! Ich bin Stolzer Spießer!&gt;&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;&lt;quote Sehr gut! Wenn du mal bist Heinrichsfest wir machen Drill zusammen!&gt;&gt; Konrad schüttelt deine Hand.&lt;/p&gt;
+		&lt;&lt;case &quot;crossbow&quot;&gt;&gt;
+			&lt;p&gt;&lt;&lt;quote Nicht ganz im Haufen. Ich bin Armbruster, so wie Vasil und Haddl!&gt;&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;&lt;quote Auch recht! Muss man manchmal auch erst ein bisschen ausmerzen bevor man in die Gegner marschiert.&gt;&gt; Konrad schüttelt deine Hand.&lt;/p&gt;
+		&lt;&lt;case &quot;cannon&quot;&gt;&gt;
+			&lt;p&gt;&lt;&lt;quote Nein, ich steh weiter hinten, ich bin bei der Artillerie!&gt;&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;&lt;quote Ist auch wichtig. Muss man schießen Mauern sturmreif und erst dann klettern.&gt;&gt; Konrad schüttelt deine Hand.&lt;/p&gt;
+		&lt;&lt;case &quot;medicine&quot;&gt;&gt;
+			&lt;p&gt;&lt;&lt;quote Nicht wirklich, ich bin Feldscher und kümmere mich um das was übrig ist.&gt;&gt;&lt;/p&gt;
+			&lt;p&gt;&lt;&lt;quote Sagst du wie ist. Muss man auch wieder heilen die dies getroffen hat, damit die wieder können maschieren bei nächstes Mal.&gt;&gt; Konrad schüttelt deine Hand.&lt;/p&gt;
 
-  &lt;p&gt;&lt;&lt;quote Komm konrad, ich muss dich sprechen.&gt;&gt; Lenz führt Konrad Richtug Akademie. Was die beiden wohl aushecken?&lt;/p&gt;
-&lt;&lt;/dialog&gt;&gt;&gt;&gt;
+	&lt;&lt;/switch&gt;&gt;
+
+  &lt;p&gt;&lt;&lt;quote Komm konrad, ich muss dich sprechen.&gt;&gt; Lenz hakt ein und führt Konrad Richtug Akademie. Was die beiden wohl aushecken?&lt;/p&gt;
+&lt;&lt;/dialog&gt;&gt;
 
 &lt;&lt;gedanke&gt;&gt;
 &lt;p&gt;Das ist es also, wohinein ich wachse. Nicht Drill, nicht Rindlers Waage. Das hier — Männer und Frauen, die zu
