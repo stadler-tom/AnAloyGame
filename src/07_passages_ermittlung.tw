@@ -2455,7 +2455,7 @@ und einen Schreiber, der beides liefern kann. Die Ausbesserungsfuhren der Waffen
 Jarek verließ die Akademie in einer Kiste des Übungsbestands C. Die C-Fuhren sind ein Kanal, und Orens Feder öffnet das Tor.")>>
 <<set $world.ermittlung.flags.s7_done to true>>
 
-<<run setup.addNpcJournalEntry("jarek", "Jarek ist nicht einfach verschwunden. Seine Spur führt über die Waffenausgabe. Oren Malk hat ihm geholfen in einer Waffenkiste zu entkommen.")>>
+<<set $npc.jarek.memory.flags.oren_hilfe to true>>
 
 <<gedanke>>
 <p>Das Ausgabebuch. Bei der nächsten Waffenpflege, beim nächsten Dienst in der Stube — irgendwann liegt es wieder offen, und diesmal zähle ich nicht Dolche. Diesmal zähle ich, wie oft Westhof im Buch steht und wie oft nichts zurückkam. Jede dieser Zeilen ist eine Fuhre. Und jede Fuhre ist ein Beweis.</p>

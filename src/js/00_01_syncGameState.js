@@ -18,14 +18,17 @@ setup.migriereJarekBruch = function () {
 setup.migriereEnttarnung = function () {
     var npc = State.variables.npc;
     if (!npc) return;
+    var e = State.variables.world.ermittlung;
 
-    // Jarek: Bruch schon passiert (verschwunden) -> enttarnt nachziehen
+    // Jarek: Bruch schon passiert -> enttarnt
     if (npc.jarek && npc.jarek.memory.flags.verschwunden && !npc.jarek.memory.flags.enttarnt) {
         npc.jarek.memory.flags.enttarnt = true;
     }
-
-    // Oren: Ermittlung abgeschlossen / überführt -> enttarnt nachziehen
-    var e = State.variables.world.ermittlung;
+    // Jarek: Oren-Verbindung (Waffenkiste) bei s7 aufgedeckt -> oren_hilfe
+    if (npc.jarek && e && e.flags && e.flags.s7_done && !npc.jarek.memory.flags.oren_hilfe) {
+        npc.jarek.memory.flags.oren_hilfe = true;
+    }
+    // Oren: Ermittlung abgeschlossen -> enttarnt
     if (npc.orenmalk && !npc.orenmalk.memory.flags.enttarnt
         && e && e.flags && e.flags.nachspiel_done) {
         npc.orenmalk.memory.flags.enttarnt = true;
@@ -462,9 +465,10 @@ setup.npcDefaults = {
         memory: { flags: {}, events: [] },
         /* Sichtbares Profil – kein Hinweis auf das Geheimnis */
         /* jarek */
-        journalEntry: [
-            { text: "Schmächtig, ruhig, fällt nicht auf. Hat mir am ersten Abend die Pritsche neben sich angeboten und erklärt, dass er hier wegen des Solds ist – Geld für die Familie daheim. Hält sich aus Streitereien raus und beobachtet mehr als er redet. Niemand nimmt ihn besonders ernst." },
-            { flag: "enttarnt", text: "Jarek war nie der stille Rekrut, für den ich ihn hielt. Ein Loyalist, von Kindheit an auf eine alte Lüge eingeschworen — und mit dem Beweis in der Hand verschwunden. Was harmlos aussah, war Geduld." }
+            journalEntry: [
+            { text: "Schmächtig, ruhig, fällt nicht auf. …" },
+            { flag: "enttarnt", text: "Er hat mich benutzt, um an die Freiheitserklärung zu kommen. Ich habe ihm geglaubt, ich habe ihn reingebracht — und als er sie hatte, hat er mich angegriffen und ist geflohen." },
+            { flag: "oren_hilfe", text: "Jarek ist nicht einfach verschwunden. Seine Spur führt über die Waffenausgabe — Oren Malk hat ihm geholfen, in einer Waffenkiste zu entkommen." }
         ],
     /*
             GEHEIMNIS (nicht im Journal – für interne Plotlogik):

@@ -1303,14 +1303,17 @@ setup.migriereJarekBruch = function () {
 setup.migriereEnttarnung = function () {
     var npc = State.variables.npc;
     if (!npc) return;
+    var e = State.variables.world.ermittlung;
 
-    // Jarek: Bruch schon passiert (verschwunden) -> enttarnt nachziehen
+    // Jarek: Bruch schon passiert -> enttarnt
     if (npc.jarek && npc.jarek.memory.flags.verschwunden && !npc.jarek.memory.flags.enttarnt) {
         npc.jarek.memory.flags.enttarnt = true;
     }
-
-    // Oren: Ermittlung abgeschlossen / überführt -> enttarnt nachziehen
-    var e = State.variables.world.ermittlung;
+    // Jarek: Oren-Verbindung (Waffenkiste) bei s7 aufgedeckt -> oren_hilfe
+    if (npc.jarek && e && e.flags && e.flags.s7_done && !npc.jarek.memory.flags.oren_hilfe) {
+        npc.jarek.memory.flags.oren_hilfe = true;
+    }
+    // Oren: Ermittlung abgeschlossen -> enttarnt
     if (npc.orenmalk && !npc.orenmalk.memory.flags.enttarnt
         && e && e.flags && e.flags.nachspiel_done) {
         npc.orenmalk.memory.flags.enttarnt = true;
@@ -1747,9 +1750,10 @@ setup.npcDefaults = {
         memory: { flags: {}, events: [] },
         /* Sichtbares Profil – kein Hinweis auf das Geheimnis */
         /* jarek */
-        journalEntry: [
-            { text: "Schmächtig, ruhig, fällt nicht auf. Hat mir am ersten Abend die Pritsche neben sich angeboten und erklärt, dass er hier wegen des Solds ist – Geld für die Familie daheim. Hält sich aus Streitereien raus und beobachtet mehr als er redet. Niemand nimmt ihn besonders ernst." },
-            { flag: "enttarnt", text: "Jarek war nie der stille Rekrut, für den ich ihn hielt. Ein Loyalist, von Kindheit an auf eine alte Lüge eingeschworen — und mit dem Beweis in der Hand verschwunden. Was harmlos aussah, war Geduld." }
+            journalEntry: [
+            { text: "Schmächtig, ruhig, fällt nicht auf. …" },
+            { flag: "enttarnt", text: "Er hat mich benutzt, um an die Freiheitserklärung zu kommen. Ich habe ihm geglaubt, ich habe ihn reingebracht — und als er sie hatte, hat er mich angegriffen und ist geflohen." },
+            { flag: "oren_hilfe", text: "Jarek ist nicht einfach verschwunden. Seine Spur führt über die Waffenausgabe — Oren Malk hat ihm geholfen, in einer Waffenkiste zu entkommen." }
         ],
     /*
             GEHEIMNIS (nicht im Journal – für interne Plotlogik):
@@ -1956,7 +1960,29 @@ setup.worldDefaults  = {
     }
 };
 
-/* twine-user-script #2: "0_11_kampf.js" */
+/* twine-user-script #2: "00_02_autosave.js" */
+/* =========================================================
+   AUTOSAVE  (Slot 0)
+   Autosave nach jedem Passagenwechsel — schlicht, wie zuvor.
+   Kein Auto-Continue, kein Restart-Wrap.
+   ========================================================= */
+
+postdisplay["world-tracker"] = function () {
+    const forbidden = ["journalAnsicht", "Kapitel 0"];
+    const title = State.current.title;
+    if (forbidden.includes(title)) return;
+ 
+    State.variables.world ||= {};
+    State.variables.world.lastPassage = title;
+
+    try {
+        Save.browser.slot.save(0, "Autosave");
+    } catch (error) {
+        console.error(error);
+        UI.alert(error);
+    }
+};
+/* twine-user-script #3: "0_11_kampf.js" */
 
 
 /* ================================================================
@@ -2672,7 +2698,7 @@ setup.trimCombatLog = function () {
     }
 };
 
-/* twine-user-script #3: "90_01_config.js" */
+/* twine-user-script #4: "90_01_config.js" */
 /* ================================================================
    SECTION 01  CONFIG
    ================================================================ */
@@ -2739,7 +2765,7 @@ setup.debugTitleAktualisieren = function () {
         }, 150);
     });
 })();
-/* twine-user-script #4: "90_02_interrupts.js" */
+/* twine-user-script #5: "90_02_interrupts.js" */
 
 /* ================================================================
    SECTION 02  INTERRUPT-ENGINE
@@ -3313,7 +3339,7 @@ setup.interruptCond["Kapitel2_Ende"] = w =>
     && w.duell && w.duell.done && w.duell.nachwirkung_done                // Duell durch
     && w.biwagDone                                                        // Biwak-Beurteilung erhalten
     && w.day >= (w.biwagDoneDay + 6);                                     // +6 Tage nach dem Biwak
-/* twine-user-script #5: "90_03_ermittlung.js" */
+/* twine-user-script #6: "90_03_ermittlung.js" */
 
 /* ================================================================
    SECTION 05  ERMITTLUNG — HELPER
@@ -3367,7 +3393,7 @@ setup.ermMit = function () {
     return !!e && e.flags.modus === "mit";
 };
 
-/* twine-user-script #6: "90_04_sidequests.js" */
+/* twine-user-script #7: "90_04_sidequests.js" */
 
 /* ================================================================
    SECTION 06  SIDEQUESTS & DRUCK-SYSTEM
@@ -3444,7 +3470,7 @@ setup.tickSidequestDruck = function () {
         st.druck += 1;
     });
 };
-/* twine-user-script #7: "90_05_world_geld.js" */
+/* twine-user-script #8: "90_05_world_geld.js" */
 
 
 /* ================================================================
@@ -3528,28 +3554,8 @@ setup.renderTagesbericht = function () {
     return out;
 };
 
-/* Autosave nach jedem Passagenwechsel + lastPassage-Tracking */
-postdisplay["world-tracker"] = function () {
-    const forbidden = [
-        "journalAnsicht"
-    ];
 
-    const title = State.current.title;
 
-    if (forbidden.includes(title)) return;
-
-    State.variables.world ||= {};
-    State.variables.world.lastPassage = title;
-
-    try {
-        Save.browser.slot.save(0, "Autosave");
-    }
-    catch (error) {
-        /* Failure.  Handle the error. */
-        console.error(error);
-        UI.alert(error);
-    }
-};
 
 /* Passagen mit Tag "tagesstart" lösen den Tageswechsel aus */
 predisplay["tagesstart"] = function () {
@@ -3709,7 +3715,7 @@ setup.loseMoney = function (copperAmount) {
 
     return `<div class="system-alert status-negative">${parts.join(", ")} verloren</div>`;
 };
-/* twine-user-script #8: "90_06_player_npc.js" */
+/* twine-user-script #9: "90_06_player_npc.js" */
 
 /* ================================================================
    SECTION 09  PLAYER — WERTE, INVENTAR, GERÜCHTE
@@ -4121,7 +4127,7 @@ setup.unbekannteSoeldner = function () {
 };
 
 
-/* twine-user-script #9: "90_07_skillchecks.js" */
+/* twine-user-script #10: "90_07_skillchecks.js" */
 
 /* ================================================================
    SECTION 11  SKILL-CHECKS
@@ -4311,7 +4317,7 @@ setup.faithCheck = function (difficulty, modifier) {
     return { outcome: outcome, success: (outcome === "success" || outcome === "crit"),
              roll: roll, skill: skill, skillKey: "faith", skillName: "Glaube", total: total, dc: dc };
 };
-/* twine-user-script #10: "90_08_vaults_gossip.js" */
+/* twine-user-script #11: "90_08_vaults_gossip.js" */
 
 /* ================================================================
    SECTION 12  TEXT-VAULTS KAPITEL 1
@@ -4721,7 +4727,7 @@ setup.gossips84Bekannt = function () {
     }
     return pool.slice(0, 4);                               // max. 4
 };
-/* twine-user-script #11: "90_09_studium.js" */
+/* twine-user-script #12: "90_09_studium.js" */
 
 /* ================================================================
    SECTION 14  STUDIUM & PRÜFUNG
@@ -5042,7 +5048,7 @@ setup.spendScholarship = function (cost) {
     p.stats.scholarship -= cost;
     return true;
 };
-/* twine-user-script #12: "90_10_quest_kapitel.js" */
+/* twine-user-script #13: "90_10_quest_kapitel.js" */
 
 /* ================================================================
    SECTION 15  QUEST-HELPER & KAPITELWECHSEL
@@ -5135,7 +5141,7 @@ setup.getPeakKnowledgeAfterKapOne = function () {
         .filter(([, value]) => value === maxValue)
         .map(([key]) => setup.knowledgeNames[key] || key);
 };
-/* twine-user-script #13: "90_12_charakterbogen.js" */
+/* twine-user-script #14: "90_12_charakterbogen.js" */
 
 /* ================================================================
    SECTION 17  CHARAKTERBOGEN & JOURNAL
@@ -5748,18 +5754,19 @@ setup.bindPlayerTableEvents();
 /* Mitwachsender Journaleintrag: String = fest; Array von {min?, flag?, text} = gestuft.
    Es greift die LETZTE Stufe, deren Bedingungen erfüllt sind (Zuneigung >= min UND flag gesetzt). */
 setup.resolveJournalEntry = function (npc) {
-    const je = npc.journalEntry;
+    var je = npc.journalEntry;
     if (typeof je === "string") return je;
-    if (Array.isArray(je)) {
-        let text = (je[0] && je[0].text) || "";
-        je.forEach(stage => {
-            const minOk = (stage.min == null) || (npc.affection >= stage.min);
-            const flagOk = (!stage.flag) || !!(npc.memory && npc.memory.flags && npc.memory.flags[stage.flag]);
-            if (minOk && flagOk) text = stage.text;
-        });
-        return text;
-    }
-    return "";
+    if (!Array.isArray(je)) return "";
+
+    var teile = [];
+    je.forEach(function (stage) {
+        if (typeof stage === "string") { teile.push(stage); return; }
+        if (!stage || typeof stage.text !== "string") return;   // defekte Stufe überspringen -> kein [object Object]
+        var minOk  = (stage.min == null) || (npc.affection >= stage.min);
+        var flagOk = (!stage.flag) || !!(npc.memory && npc.memory.flags && npc.memory.flags[stage.flag]);
+        if (minOk && flagOk) teile.push(stage.text);
+    });
+    return teile.join("<br><br>");
 };
 
 setup.fraktionsRubriken = [
@@ -5972,7 +5979,7 @@ setup.notizbuchTabs = function (aktiv) {
 $(document).on('click', '.notizbuch-dialog .nb-tab', function () {
     setup.notizbuch($(this).attr('data-seite'));
 });
-/* twine-user-script #14: "90_13_kap2_hub.js" */
+/* twine-user-script #15: "90_13_kap2_hub.js" */
 
 /* ================================================================
    SECTION 18  KAPITEL 2 — TAGESHUB, STORYLETS & TEXTPOOLS
@@ -6243,7 +6250,7 @@ setup.checkRequirement = function (req) {
     }
     return true;
 };
-/* twine-user-script #15: "90_14_spezialisierung_biwak.js" */
+/* twine-user-script #16: "90_14_spezialisierung_biwak.js" */
 
 
 /* ================================================================
@@ -6340,7 +6347,7 @@ setup.gattungsdrill = function () {
     return { text: scenery, thought: thought, reward: reward };
 };
 
-/* twine-user-script #16: "90_15_karla_romanze.js" */
+/* twine-user-script #17: "90_15_karla_romanze.js" */
 
 /* ================================================================
    SECTION 20  KARLA-ROMANZE (Mini-Sim, Kapitel 2)
@@ -6440,7 +6447,7 @@ setup.gibKarlaGeschenk = function (id) {
     if (!behalten) setup.removeItem(g.item);
     return out;
 };
-/* twine-user-script #17: "90_16_debug.js" */
+/* twine-user-script #18: "90_16_debug.js" */
 
 /* ================================================================
    SECTION 21  DEBUG & LOGGING
@@ -6777,7 +6784,7 @@ setup.debugDuellSetzen = function (variante) {
     if (mem) setup.pushNpcMemory("karla", mem);
     return '<div class="system-alert status-info">Duell: ' + variante + (mem ? ' (+Karla-Memory: „' + mem + '“)' : '') + '</div>';
 };
-/* twine-user-script #18: "90_17_mucisPlayer.js" */
+/* twine-user-script #19: "90_17_mucisPlayer.js" */
 setup.ambientTracks = ["amb01","amb02","amb03","amb04","amb05","amb06","amb07","amb08","amb09","amb10"];
 
 setup.musikSpiele = function (i) {
@@ -6826,7 +6833,7 @@ $(document).one(":storyready", function () {
     if (State.variables.world && State.variables.world.musik) State.variables.world.musik.an = false;
     setup._musikPausiert = false;
 });
-/* twine-user-script #19: "90_18_duell_ende.js" */
+/* twine-user-script #20: "90_18_duell_ende.js" */
 /* ===== DUELL: Ende-Berechnung & Nachwirkung ===== */
 
 /* Ausgang = rein aus dem Wissen (deine S5-Tabelle). Trust steckt schon in den Checks. */
@@ -6862,7 +6869,7 @@ setup.duellEinfluss = function () {
     return { wert: wert, band: band };
 };
 
-/* twine-user-script #20: "90_19_biwag.js" */
+/* twine-user-script #21: "90_19_biwag.js" */
 setup.biwagKatalog = [
     { key:"rationen",     gruppe:"ueberleben", label:"Volle Rationen",                 last:2, text:"Brot, Pökelfleisch, Erbsen für sieben Tage. Ohne: knappe Rationen — ihr müsst unterwegs jagen." },
     { key:"zelte",        gruppe:"ueberleben", label:"Zelte & Planen",                 last:2, text:"Schutz an den Regentagen. Ohne: Nässe und Krankheitsrisiko." },
@@ -7022,7 +7029,7 @@ setup.biwagLogRender = function () {
         out += '<li class="' + cls + '"><span class="biwag-log-mark">' + zeichen + '</span> ' + e.text + '</li>';
     });
     return out + '</ul>';
-};</script><tw-tag name="header" color="blue"></tw-tag><tw-tag name="script" color="purple"></tw-tag><tw-tag name="interrupt" color="purple"></tw-tag><tw-tag name="journal" color="orange"></tw-tag><tw-tag name="startup-debug" color="purple"></tw-tag><tw-tag name="nach_stube" color="orange"></tw-tag><tw-tag name="nach_hub" color="green"></tw-tag><tw-tag name="layout" color="green"></tw-tag><tw-tag name="nach_Kap2_tag" color="green"></tw-tag><tw-tag name="nach_morgen" color="red"></tw-tag><tw-tag name="nach_appell" color="yellow"></tw-tag><tw-tag name="kapitel-opener" color="red"></tw-tag><tw-tag name="nach_Kap2_morgen" color="green"></tw-tag><tw-tag name="widget" color="blue"></tw-tag><tw-tag name="einmalig" color="red"></tw-tag><tw-tag name="studium" color="yellow"></tw-tag><tw-tag name="pruefung" color="green"></tw-tag><tw-tag name="nach_Kap2_abend" color="yellow"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="0,225" size="100,100">&lt;&lt;set $npc to clone(setup.npcDefaults)&gt;&gt;
+};</script><tw-tag name="einmalig" color="red"></tw-tag><tw-tag name="journal" color="orange"></tw-tag><tw-tag name="nach_Kap2_tag" color="green"></tw-tag><tw-tag name="script" color="purple"></tw-tag><tw-tag name="nach_morgen" color="red"></tw-tag><tw-tag name="studium" color="yellow"></tw-tag><tw-tag name="layout" color="green"></tw-tag><tw-tag name="widget" color="blue"></tw-tag><tw-tag name="nach_hub" color="green"></tw-tag><tw-tag name="interrupt" color="purple"></tw-tag><tw-tag name="kapitel-opener" color="red"></tw-tag><tw-tag name="pruefung" color="green"></tw-tag><tw-tag name="nach_Kap2_morgen" color="green"></tw-tag><tw-tag name="nach_Kap2_abend" color="yellow"></tw-tag><tw-tag name="header" color="blue"></tw-tag><tw-tag name="startup-debug" color="purple"></tw-tag><tw-tag name="nach_stube" color="orange"></tw-tag><tw-tag name="nach_appell" color="yellow"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="0,225" size="100,100">&lt;&lt;set $npc to clone(setup.npcDefaults)&gt;&gt;
 &lt;&lt;set $world to clone(setup.worldDefaults)&gt;&gt;
 &lt;&lt;set $player to clone(setup.playerDefaults)&gt;&gt;
 &lt;&lt;include &quot;InitStudium&quot;&gt;&gt;
@@ -13001,7 +13008,7 @@ und einen Schreiber, der beides liefern kann. Die Ausbesserungsfuhren der Waffen
 Jarek verließ die Akademie in einer Kiste des Übungsbestands C. Die C-Fuhren sind ein Kanal, und Orens Feder öffnet das Tor.&quot;)&gt;&gt;
 &lt;&lt;set $world.ermittlung.flags.s7_done to true&gt;&gt;
 
-&lt;&lt;run setup.addNpcJournalEntry(&quot;jarek&quot;, &quot;Jarek ist nicht einfach verschwunden. Seine Spur führt über die Waffenausgabe. Oren Malk hat ihm geholfen in einer Waffenkiste zu entkommen.&quot;)&gt;&gt;
+&lt;&lt;set $npc.jarek.memory.flags.oren_hilfe to true&gt;&gt;
 
 &lt;&lt;gedanke&gt;&gt;
 &lt;p&gt;Das Ausgabebuch. Bei der nächsten Waffenpflege, beim nächsten Dienst in der Stube — irgendwann liegt es wieder offen, und diesmal zähle ich nicht Dolche. Diesmal zähle ich, wie oft Westhof im Buch steht und wie oft nichts zurückkam. Jede dieser Zeilen ist eine Fuhre. Und jede Fuhre ist ein Beweis.&lt;/p&gt;

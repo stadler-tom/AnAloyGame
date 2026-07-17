@@ -610,18 +610,19 @@ setup.bindPlayerTableEvents();
 /* Mitwachsender Journaleintrag: String = fest; Array von {min?, flag?, text} = gestuft.
    Es greift die LETZTE Stufe, deren Bedingungen erfüllt sind (Zuneigung >= min UND flag gesetzt). */
 setup.resolveJournalEntry = function (npc) {
-    const je = npc.journalEntry;
+    var je = npc.journalEntry;
     if (typeof je === "string") return je;
-    if (Array.isArray(je)) {
-        let text = (je[0] && je[0].text) || "";
-        je.forEach(stage => {
-            const minOk = (stage.min == null) || (npc.affection >= stage.min);
-            const flagOk = (!stage.flag) || !!(npc.memory && npc.memory.flags && npc.memory.flags[stage.flag]);
-            if (minOk && flagOk) text = stage.text;
-        });
-        return text;
-    }
-    return "";
+    if (!Array.isArray(je)) return "";
+
+    var teile = [];
+    je.forEach(function (stage) {
+        if (typeof stage === "string") { teile.push(stage); return; }
+        if (!stage || typeof stage.text !== "string") return;   // defekte Stufe überspringen -> kein [object Object]
+        var minOk  = (stage.min == null) || (npc.affection >= stage.min);
+        var flagOk = (!stage.flag) || !!(npc.memory && npc.memory.flags && npc.memory.flags[stage.flag]);
+        if (minOk && flagOk) teile.push(stage.text);
+    });
+    return teile.join("<br><br>");
 };
 
 setup.fraktionsRubriken = [

@@ -81,28 +81,8 @@ setup.renderTagesbericht = function () {
     return out;
 };
 
-/* Autosave nach jedem Passagenwechsel + lastPassage-Tracking */
-postdisplay["world-tracker"] = function () {
-    const forbidden = [
-        "journalAnsicht"
-    ];
 
-    const title = State.current.title;
 
-    if (forbidden.includes(title)) return;
-
-    State.variables.world ||= {};
-    State.variables.world.lastPassage = title;
-
-    try {
-        Save.browser.slot.save(0, "Autosave");
-    }
-    catch (error) {
-        /* Failure.  Handle the error. */
-        console.error(error);
-        UI.alert(error);
-    }
-};
 
 /* Passagen mit Tag "tagesstart" lösen den Tageswechsel aus */
 predisplay["tagesstart"] = function () {
