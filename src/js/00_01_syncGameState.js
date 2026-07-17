@@ -1,17 +1,30 @@
-:: StoryInit {"position":"0,225","size":"100,100"}
-<<set $npc to clone(setup.npcDefaults)>>
-<<set $world to clone(setup.worldDefaults)>>
-<<set $player to clone(setup.playerDefaults)>>
-<<include "InitStudium">>
-<<set setup.studiumVault to JSON.parse(Story.get("StudiumTexte").text)>>
-<<run setup.syncPlayerRel()>>
-<<set setup.trainingsHubTextVault to JSON.parse(Story.get("TrainingsHubTexte").text)>>
-<<set setup.abendappellTextVault to JSON.parse(Story.get("AbendappellTexte").text)>>
-<<include "initEnemy">>
-<<set $showLogo to false>>
 
-:: InitPlayer {"position":"0,325","size":"100,100"}
-<<set $player = {
+setup.reconcileState = function () {
+    var V = State.variables;
+    if (V.player && setup.playerDefaults) setup.fillDefaults(V.player, setup.playerDefaults);
+    if (V.world  && setup.worldDefaults)  setup.fillDefaults(V.world,  setup.worldDefaults);
+    if (V.npc    && setup.npcDefaults)    setup.fillDefaults(V.npc,    setup.npcDefaults);
+};
+
+function _istObjekt(x) { return x !== null && typeof x === "object" && !Array.isArray(x); }
+
+/* Ergänzt in target alle Schlüssel aus defaults, die fehlen. Bestehende Werte bleiben unangetastet. */
+setup.fillDefaults = function (target, defaults) {
+    if (!_istObjekt(target) || !_istObjekt(defaults)) return target;
+    Object.keys(defaults).forEach(function (key) {
+        var dv = defaults[key];
+        if (!(key in target)) {
+            target[key] = clone(dv);                 // fehlt ganz -> tiefe Kopie
+        } else if (_istObjekt(dv) && _istObjekt(target[key])) {
+            setup.fillDefaults(target[key], dv);     // beide Objekte -> rekursiv weiter
+        }
+        /* existiert bereits (Primitive/Array) -> in Ruhe lassen */
+    });
+    return target;
+};
+
+/*-------------PLAYER------------------------*/
+setup.playerDefaults = { 
     name: "Thomas",
     fullname: "Thomaso Wabbler",
     rank: "Zivilist",
@@ -85,11 +98,12 @@
     lars: 0,
     hannes: 0
     }   
-}>>
 
-:: InitNPC {"position":"0,425","size":"100,100"}
-<<set $npc = {
+};
 
+
+/*-------------NPC------------------------*/
+setup.npcDefaults = {
     /* ===========================
        KASERNE / AKADEMIE - OHMS
        =========================== */
@@ -481,36 +495,10 @@
         journalEntry: "Einer vom Imperium! Ein Hüne von einem Kerl, aus der Ostmark. Den Akzent in dem er spricht hast du noch nie gehört."
 
     },
+};
 
-    
-} >>
-
-:: InitStudium {"position":"0,625","size":"100,100"}
-/* Defensiv: legt nur an, was fehlt - sicher beim Merge ins Hauptspiel */
-<<if not $player.knowledge>><<set $player.knowledge = {}>><</if>>
-<<if $player.stats.scholarship === undefined>><<set $player.stats.scholarship = 5>><</if>>
-<<run ["splitterlande","aloy","geographie","diplomatie"].forEach(function(k){
-  if (State.variables.player.knowledge[k] === undefined) { State.variables.player.knowledge[k] = 0; }
-})>>
-<<set $edu = {
-  learned: [],
-  archivzugang: false,
-  exam: {
-    queue: [], pos: 0, correct: 0, lastAnswer: null, done: false, score: 0, total: 0,
-    announced: false,
-    dueDay: null,
-    passed: false,
-    attempts: 0
-  }
-}>>
-
-/* ===========================
-   WORLD/ SPIELSTAND
-   =========================== */
-
-:: InitWorld {"position":"0,525","size":"100,100"}
-<<set $world = {
-
+/*-------------WORLD------------------------*/
+setup.worldDefaults  = { 
     lastPassage:"",
     debug: false,
     flags: {},
@@ -537,55 +525,5 @@
         verdacht: {}, 
         flags: {}
     }
-
-}>>
-
-
-:: initEnemy {"position":"0,725","size":"100,100"}
-<<set $enemy = {
-    mercenary: {
-        name: "Söldner",
-        type: "fighter",
-        weakness: "pike",
-        xp: 50,
-        weapon: "sabre",
-        fightStats: {
-            hp: 11,
-            maxHp: 11,
-            attack: 1,
-            armor: 13,
-            proficiency: 2
-        }
-    },
-
-    shooter: {
-        name: "Armbrustschütze",
-        type: "archer",
-        weakness: "crossbow",
-        xp: 50,
-        weapon: "light_crossbow",
-        fightStats: {
-            hp: 8,
-            maxHp: 8,
-            attack: 1,
-            armor: 12,
-            proficiency: 2
-        }
-    },
-
-    cannonier: {
-        name: "Kanonier",
-        type: "artillery",
-        weakness: "cannon",
-        xp: 25,
-        weapon: "field_knife",
-        fightStats: {
-            hp: 10,
-            maxHp: 10,
-            attack: 0,
-            armor: 10,
-            proficiency: 2
-        }
-    }
-}>>
+};
 

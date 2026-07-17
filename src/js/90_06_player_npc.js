@@ -143,44 +143,11 @@ setup.syncPlayerRel = function () {
     });
 };
 
-setup.migrateWorld = function () {
-    var w = State.variables.world; 
-    if (!w) return;
 
-    if (!w.flags) w.flags = {};
-
-    /* künftige Nachrüstungen einfach hier ergänzen, z.B.: */
-    /* if (w.wuerfelGesamt === undefined) w.wuerfelGesamt = 0; */
-};
-
-setup.migrateNpcs = function () {
-    var npc = State.variables.npc;
-    if (!npc) return;
-    if (!npc.konrad) {
-        npc.konrad = {
-            name: "Konrad Schläger",
-            known: false,
-            image: "images/Konrad.png",
-            faction: "Imperium",
-            affection: 0,
-            trust: false,
-            isRealPlayer: true,
-            memory: { flags: {}, events: [] },
-            journalEntry: "Einer vom Imperium! Ein Hüne von einem Kerl, aus der Ostmark. Den Akzent in dem er spricht hast du noch nie gehört." 
-        };
-
-        /* Bei bestehenden NPCs NUR das Bild nachrüsten — Objekt nicht ersetzen */
-        if (npc.haddl) npc.haddl.image = npc.haddl.image || "images/Haddl.png";
-        if (npc.rosi)  npc.rosi.image  = npc.rosi.image  || "images/Rosi.png";
-        }
-        
-    /* künftige neue NPCs hier genauso nachrüsten */
-};
 
 $(document).on(":passagestart", function () {
     setup.syncPlayerRel();
-    setup.migrateWorld();
-    setup.migrateNpcs();
+     setup.reconcileState();;
     var known = State.variables.npc && State.variables.npc.sergeant && State.variables.npc.sergeant.known === true;
     jQuery("html").toggleClass("hat-titelbild", known);
 });
