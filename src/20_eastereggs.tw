@@ -236,7 +236,7 @@ Wer sagt denn, dass ich wegen des Gottesdienstes hier bin?"</div>
 :: 04_Sidequest_diplomaten_Eintreten {"position":"1150,350","size":"100,100"}
 <p>Du gehst hinein, stellst den Krug auf den Tisch und legst den Brief daneben. „Vom Sergeanten."</p>
 
-<p>Jetzt siehst du sie ganz: zwei in der rot-weißen Kleidung des Banners, abgetragen, gelebt. Keine Amtsketten, kein Brokat — der eine hat einen roten Bart und eine Dokumentenrolle am Gurt, der andere einen kürzeren, gepflegten, und eine kleine Narbe neben der Nase. Söldner, die reden können. Mehr nicht, und das ist schon viel.</p>
+<p>Jetzt siehst du sie ganz: zwei in der rot-weißen Kleidung des Banners, abgetragen, gelebt. Keine Amtsketten, kein Brokat — der eine hat einen braun-roten Bart und eine Dokumentenrolle am Gurt, der andere einen kürzeren, gepflegten, und eine kleine Narbe neben der Nase. Söldner, die reden können. Mehr nicht, und das ist schon viel.</p>
 
 <<set _out to "">>
 <<if $npc.diplomatHannes.known>>
@@ -432,7 +432,7 @@ Du bleibst stehen, atmest flach und lässt die Brocken nicht mehr einzeln vorbei
 <<trenner>>
 [[Klappe halten und zusehen. ->03_Sidequest_wenzel_Mitspielen]]
 [[Den Unteroffizier unauffällig warnen. ->03_Sidequest_wenzel_Warnen]]
-[[Wenzel fragen, was das soll. ->03_Sidequest_wenzel_Fragen]]
+[[Den Weibl fragen, was das soll. ->03_Sidequest_wenzel_Fragen]]
 
 
 :: 03_Sidequest_wenzel_Auftrag [interrupt einmalig kap1] {"position":"450,2825","size":"100,100"}
