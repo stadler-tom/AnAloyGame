@@ -265,3 +265,23 @@ setup.loseMoney = function (copperAmount) {
 
     return `<div class="system-alert status-negative">${parts.join(", ")} verloren</div>`;
 };
+
+/* ===== ALERT-WARTESCHLANGE =====
+   Für Effekte unmittelbar vor einem <<goto>>: Meldung merken,
+   sie erscheint automatisch oben auf der NÄCHSTEN Passage.
+   Verwendung: <<run setup.queueAlert(setup.setPlayerStat("discipline", 1))>> */
+setup.queueAlert = function (html) {
+    if (!html) return "";
+    var w = State.variables.world;
+    if (!Array.isArray(w.pendingAlerts)) w.pendingAlerts = [];
+    w.pendingAlerts.push(html);
+    return "";
+};
+
+postrender["pending-alerts"] = function (content) {
+    var w = State.variables.world;
+    if (w && Array.isArray(w.pendingAlerts) && w.pendingAlerts.length) {
+        jQuery(content).prepend(w.pendingAlerts.join(""));
+        w.pendingAlerts = [];
+    }
+};

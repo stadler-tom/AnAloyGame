@@ -1105,14 +1105,12 @@
 <</if>>
 
 :: Auf Stube {"position":"1925,1750","size":"100,100"}
+<<scene>>
+    <p>Der Raum riecht nach kaltem Holz, Leder und abgestandenem Rauch, der sich irgendwo zwischen den Balken festgesetzt hat.Draußen knackt das Gebäude leise im Wind, als würde es selbst noch den Dienst des Tages verdauen.</p>
+    <p>Ein paar Kerzen flackern unruhig auf dem Tisch.Schatten kriechen über die Wände, ziehen sich über Spinde, Stiefel und halb geöffnete Ausrüstungstaschen.</p>
+<</scene>>
+
 <p>Nach dem harten Tag bist du auf der Stube.</p>
-
-<p>Der Raum riecht nach kaltem Holz, Leder und abgestandenem Rauch, der sich irgendwo zwischen den Balken festgesetzt hat.</p>
-<p>Draußen knackt das Gebäude leise im Wind, als würde es selbst noch den Dienst des Tages verdauen.</p>
-
-<p>Ein paar Kerzen flackern unruhig auf dem Tisch.</p>
-<p>Schatten kriechen über die Wände, ziehen sich über Spinde, Stiefel und halb geöffnete Ausrüstungstaschen.</p>
-
 <p>Irgendwo lacht jemand zu laut. Dann wieder Stille.</p>
 <p>Dieses kurze, gespannte Schweigen, das in Kasernen nie wirklich Ruhe bedeutet.</p>
 
@@ -1125,9 +1123,22 @@
     <</if>>
 	
     <<if _event neq "Event_Schlaegerei">>
+        <p>Es ist ein ruhiger Abend. Einige der Kameraden liegen schon in ihren Pritschen und schalfen oder sind zumindest kurz davor. Andere Reden noch über den Tag, das Erlebte 
+        und Geschichten die man sonst wo aufgeschnappt hat.</p>
+
+        <p>Hier könnten ein paar interessante Sachen zu erfahren sein. Oder du legst dich auch hin und ruhst dich aus.</p>
+
         <hr class="trenner-raute">
-            [[Zuhören, was geredet wird ->Event_Geschichte]]
-            [[Schlafen->Kap1_Tagesstart]]
+            <<link "Zuhören, was geredet wird">>
+                <<run setup.setPlayerStat("ambition", 1)>>
+                <<goto "Event_Geschichte">>
+            <</link>>
+
+            <<link "Schlafen">>
+                <<run setup.setPlayerStat("discipline", 1)>>
+                <<goto "Kap1_Tagesstart">>
+            <</link>>
+
     <</if>>   
     
     

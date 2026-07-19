@@ -19,10 +19,10 @@
 <p>„Nun, Biwakweibel“, sagt Rindler. „Erzählt. Und bedenkt: Ich sehe Eure Männer, ehe ich Euren Worten glaube.“</p>
 <</scene>>
 [[Ehrlich berichten|Biwag_Debrief_Ehrlich]]
-[[Die Woche beschönigen|Biwag_Debrief_Beschoenigen]]
+[[Die Woche beschönigen|Biwag_Debrief_Beschoenigen]] 
 
 
-:: Biwag_Debrief_Beschoenigen    {"position":"4200,3450","size":"100,100"}
+:: Biwag_Debrief_Beschoenigen    {"position":"4200,3450","size":"100,100"} 
 <<scene>>
 <p>Du malst die Woche in helleren Farben, als sie war.<<if $world.biwagWenzelWeg or ($world.biwagMoral lt 55)>> Doch Rindlers Blick wandert über die müden, mürrischen Gesichter deiner Truppe, und ein leises Lächeln, das keines ist, sagt dir: Er sieht durch dich hindurch.<<else>> Deine Männer stehen ordentlich genug, dass die Geschichte trägt.<</if>></p>
 <</scene>>
