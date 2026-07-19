@@ -18,6 +18,9 @@ setup.spezialisierungsName = {
     medicine: "Feldscher"
 };
 
+/* Reisegerät: jedes besessene Stück hebt den Gattungsdrill-XP um 10 % */
+setup.reisegeraetItems = ["Wetterfeste Stiefel", "Lederhandschuhe", "Öltuch-Umhang", "Fuhrmannsmesser", "Waster"];
+
 setup.gattungsdrillVault = null;
 setup.loadGattungsdrillVault = function () {
     if (!setup.gattungsdrillVault) {
@@ -32,8 +35,7 @@ setup.loadGattungsdrillVault = function () {
     return setup.gattungsdrillVault;
 };
 
-/* Reisegerät: jedes besessene Stück hebt den Gattungsdrill-XP um 10 % */
-setup.reisegeraetItems = ["Wetterfeste Stiefel", "Lederhandschuhe", "Öltuch-Umhang", "Fuhrmannsmesser", "Waster"];
+
 
 setup.reisegeraetBonus = function () {
     var n = 0;
@@ -75,6 +77,12 @@ setup.gattungsdrill = function () {
             reward += '<div class="system-alert status-info">Die Vorbereitung des Abends zahlt sich sehr aus (x 2.5).</div>';
         }
 
+        /* Ehrgeiz >= 65: er bleibt länger, übt härter — der Fortschritt dankt es */
+        if ((p.stats.ambition || 50) >= 65) {
+            xp = Math.round(xp * 1.25);
+            reward += '<div class="system-alert status-info">Dein Ehrgeiz lässt dich länger üben als die anderen (x 1.25).</div>';
+        }
+
         /* Reisegerät im Gepäck erleichtert den Drill (+10 % je Stück) */
         var _gear = setup.reisegeraetBonus ? setup.reisegeraetBonus() : 0;
         if (_gear > 0) {
@@ -85,9 +93,21 @@ setup.gattungsdrill = function () {
         var name = (setup.knowledgeNames && setup.knowledgeNames[spez]) || spez;
         reward += '<span class="check-hint">' + name + ' geübt. ' + xp + ' XP erhalten.</span>';
         reward += setup.gainSkillXp(spez, xp);   /* meldet selbst, wenn eine Stufe steigt */
+
+        /* Der Drill formt: gelegentlich wächst die Disziplin mit (Deckel 60) */
+        if ((p.stats.discipline || 0) < 60 && random(1, 3) === 1) {
+            reward += setup.setPlayerStat("discipline", 1);
+        }
     }
 
     reward += setup.setPlayerCondition(-10);
+
+    /* Ehrgeiz >= 75: gelegentlich kennt er kein Maß */
+    if ((p.stats.ambition || 50) >= 75 && random(1, 100) <= 25) {
+        reward += '<div class="system-alert status-negative">Du kannst nicht aufhören. Als die anderen längst die Gestelle räumen, übst du weiter — dein Ehrgeiz kennt kein Pensum.</div>';
+        reward += setup.setPlayerCondition(-5);
+    }
+
     p.chosen_activity = spez;
     State.variables.world.wasPracticing = true;
 

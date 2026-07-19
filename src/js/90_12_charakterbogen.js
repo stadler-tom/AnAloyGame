@@ -525,6 +525,7 @@ setup.renderPlayerTable = function () {
          <div class="stat-section-title">Persönliches</div>
             ${row("Name", esc(p.name))}
             ${row("Rang", esc(p.rank))}
+            ${row("Wesenszug", setup.wesenszugLabel ? setup.wesenszugLabel() : "—")}
             ${knowledgeRow("Kampferfahrung", "combat")}
         </div>
 

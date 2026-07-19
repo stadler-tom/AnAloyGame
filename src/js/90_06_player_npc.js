@@ -409,3 +409,34 @@ setup.unbekannteSoeldner = function () {
 };
 
 
+
+
+/* ===== WESENSZUG: wie die Welt Thomas liest =====
+   Die am stärksten ausgeprägte Eigenschaft (Abstand von 50, mindestens 15).
+   Liefert null, wenn Thomas (noch) unauffällig ist. */
+setup.wesenszug = function () {
+    var s = State.variables.player.stats;
+    var keys = ["mercy", "ambition", "honesty", "discipline", "faith"];
+    var best = null;
+    keys.forEach(function (k) {
+        var wert = (typeof s[k] === "number") ? s[k] : 50;
+        var abstand = Math.abs(wert - 50);
+        if (abstand >= 15 && (!best || abstand > best.abstand)) {
+            best = { key: k, wert: wert, richtung: (wert >= 50 ? "hoch" : "niedrig"), abstand: abstand };
+        }
+    });
+    return best;
+};
+
+setup.wesenszugLabel = function () {
+    var w = setup.wesenszug();
+    if (!w) return "Unbeschrieben";
+    var labels = {
+        mercy:      { hoch: "Gnädig",        niedrig: "Hartherzig" },
+        ambition:   { hoch: "Ehrgeizig",     niedrig: "Genügsam" },
+        honesty:    { hoch: "Aufrichtig",    niedrig: "Gerissen" },
+        discipline: { hoch: "Diszipliniert", niedrig: "Aufsässig" },
+        faith:      { hoch: "Fromm",         niedrig: "Gottlos" }
+    };
+    return labels[w.key][w.richtung];
+};

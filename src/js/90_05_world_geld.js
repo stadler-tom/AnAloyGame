@@ -32,6 +32,18 @@ setup.resetDailyVariables = function () {
     
     player.condition = setup.clamp(player.condition + konditionDelta + konditionDeltaBinge, 0, 100);
 
+    /* Disziplin formt den Tag: Ordnung schenkt Schlaf, Schlamperei kostet den Vormittag */
+    var disziplinBonus = false;
+    var zusatzdienst = false;
+    var disziplin = (player.stats && typeof player.stats.discipline === "number") ? player.stats.discipline : 50;
+    if (player.hasSlept && disziplin >= 65) {
+        player.condition = setup.clamp(player.condition + 2, 0, 100);
+        disziplinBonus = true;
+    }
+    if (disziplin <= 35 && random(1, 100) <= 20) {
+        zusatzdienst = true;
+    }
+
     setup.tickSidequestDruck();
 
     // Suspicion nur abbauen, wenn sie heute NICHT gestiegen ist
@@ -47,10 +59,13 @@ setup.resetDailyVariables = function () {
     world.tagesbericht = {
         condition: player.condition - condBefore,
         suspicion: player.suspicion - suspBefore,
-        hasSlept: player.hasSlept
+        hasSlept: player.hasSlept,
+        disziplinBonus: disziplinBonus,
+        zusatzdienst: zusatzdienst
     };
     world.interruptDoneToday = false;
     world.tagesAktionen = 0;    /* Kap2: zwei freie Unternehmungen pro Tag */
+    if (zusatzdienst) { world.tagesAktionen = 1; }  /* der Vormittag gehört dem Weibel */
     world.abendAktion = false;  /* Kap2: eine Abend-Aktion pro Tag */
     world.schenkeRueckweg = ""; /* Kap2: Schenke-Rücksprung (Tag/Abend) zurücksetzen */
     world.wuerfelSpiel.gespielt = 0; /* Kap2: WürfelspielCounter zurücksetzen */
@@ -76,6 +91,14 @@ setup.renderTagesbericht = function () {
 
     if (b.suspicion < 0) {
         out += '<div class="system-alert status-positive">Du bist eine Weile nicht aufgefallen — Verdacht ' + b.suspicion + '</div>';
+    }
+
+    if (b.disziplinBonus) {
+        out += '<div class="system-alert status-positive">Geordnetes Zeug, geordneter Schlaf — deine Disziplin schenkt dir Kraft (+2 Kondition)</div>';
+    }
+
+    if (b.zusatzdienst) {
+        out += '<div class="system-alert status-negative">Der Weibel hat deinen Spind gesehen. Zusatzdienst — der Vormittag gehört nicht dir (eine Unternehmung weniger)</div>';
     }
 
     return out;

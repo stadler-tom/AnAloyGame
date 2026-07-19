@@ -268,3 +268,99 @@ setup.checkRequirement = function (req) {
     }
     return true;
 };
+
+
+/* ===== WESENSZUG IM ALLTAG: Hof-Zeile & NPC-Vermerke ===== */
+
+setup.wesenszugHofTexte = {
+    mercy: {
+        hoch: [
+            "Der lahme Stallknecht hebt die Hand zum Gruß, als du vorbeigehst. Du hast ihm einmal die Last abgenommen — solche Dinge vergessen die Kleinen des Lagers nicht.",
+            "Am Küchenfenster schiebt dir die Magd wortlos einen Kanten Brot zu. Wer gut zu den Leuten ist, isst selten trocken."
+        ],
+        niedrig: [
+            "Der Junge vom Tross macht einen Bogen um dich. Irgendwann hast du ihm zu deutlich gezeigt, was dich sein Jammern angeht.",
+            "Vor dir stolpert ein Rekrut unter seiner Last, und niemand erwartet, dass du stehen bleibst. Man kennt dich."
+        ]
+    },
+    ambition: {
+        hoch: [
+            "Auf dem Weg über den Hof spürst du Blicke im Rücken. Man redet über dich — als einen, der es eilig hat, nach oben zu kommen.",
+            "Der Weibel nennt beim Einteilen zuerst deinen Namen. Wer sich vordrängt, wird vorn verbraucht."
+        ],
+        niedrig: [
+            "Beim Einteilen fällt dein Name zuletzt. Nicht aus Verachtung — man hat nur aufgehört, mit dir zu rechnen.",
+            "Zwei Zweitjährige wetten im Vorbeigehen, was aus dir wird. Keiner der Einsätze ist hoch."
+        ]
+    },
+    honesty: {
+        hoch: [
+            "Zwei Rekruten streiten am Brunnen um eine Wette — und rufen ausgerechnet dich als Schiedsmann. Dein Wort gilt hier etwas.",
+            "Der Fourier zählt dein Wechselgeld nicht nach. Bei dir nicht."
+        ],
+        niedrig: [
+            "Der Fourier zählt dein Wechselgeld zweimal nach — und einmal die Finger, mit denen du es nimmst.",
+            "Am Brunnen verstummt ein Gespräch, als du näher kommst. Man erzählt sich Dinge über dich, und nicht alle sind falsch."
+        ]
+    },
+    discipline: {
+        hoch: [
+            "Dein Zeug liegt auf der Pritsche wie mit der Schnur gezogen. Der Weibel geht bei der Stubenschau an dir vorbei, ohne den Schritt zu verlangsamen.",
+            "Der Schinder mustert die Reihe und überspringt dich mit den Augen. Es gibt keinen höheren Gruß von ihm."
+        ],
+        niedrig: [
+            "Der Weibel findet bei der Stubenschau wieder etwas an deinem Zeug. Er sucht bei dir inzwischen mit einer gewissen Vorfreude.",
+            "Dein Name steht schon wieder auf der Liste für den Holzplatz. Irgendwer muss ja."
+        ]
+    },
+    faith: {
+        hoch: [
+            "Der Pfaffe nickt dir im Vorbeigehen zu wie einem alten Bekannten. In seinem Buch stehst du auf der richtigen Seite.",
+            "Beim Tischgebet sprechen die Nebenmänner leiser als du. Man rückt dir ein Stück Ehrfurcht zurecht, ob du sie willst oder nicht."
+        ],
+        niedrig: [
+            "Beim Tischgebet bewegst du nur die Lippen, und der Pfaffe sieht es. Er sieht so etwas immer.",
+            "Der Küster wechselt die Seite des Hofes, wenn du kommst. Gottlosigkeit, glauben manche, färbt ab."
+        ]
+    }
+};
+
+/* Eine gelegentliche Beobachtungszeile für den Kap2-Tageshub (ca. jeder 3. Tag). */
+setup.wesenszugHofzeile = function () {
+    var w = setup.wesenszug();
+    if (!w) return "";
+    if (random(1, 100) > 30) return "";
+    var pool = setup.wesenszugHofTexte[w.key] && setup.wesenszugHofTexte[w.key][w.richtung];
+    if (!pool || !pool.length) return "";
+    return '<div class="scenery-text">' + pool[random(0, pool.length - 1)] + '</div>';
+};
+
+/* Wie einzelne NPCs den Wesenszug lesen — nur wo es den NPC wirklich kümmert. */
+setup.wesenszugVermerk = function (npcKey) {
+    var w = setup.wesenszug();
+    if (!w) return "";
+    var texte = {
+        hauptmann: {
+            ambition: {
+                hoch: "Rindler mustert dich einen Atemzug länger als andere Besucher. Männer mit Hunger sind ihm die liebsten Werkzeuge — und die wachsamsten Sorgen.",
+                niedrig: "Rindlers Blick streift dich und wandert weiter wie über ein Stück Inventar. Wer nichts will, ist für Männer wie ihn kaum vorhanden."
+            },
+            discipline: {
+                hoch: "Rindler registriert den Sitz deines Kollers, die Haltung, den pünktlichen Schritt — und quittiert es mit dem knappsten aller Nicken. Bei ihm ist das ein Empfehlungsschreiben.",
+                niedrig: "Rindler lässt dich zwei Atemzüge länger vor dem Tisch stehen als nötig — die stille Gebühr für einen Ruf, der vor dir eingetroffen ist."
+            }
+        },
+        magister: {
+            honesty: {
+                hoch: "Halm prüft deine Worte nicht nach, während du sprichst. Es ist jene Sorte Vertrauen, die man bei ihm nicht geschenkt bekommt, sondern abbezahlt.",
+                niedrig: "Halm wiederholt deine Sätze gern noch einmal, langsam, als wolle er hören, ob sie beim zweiten Mal anders klingen."
+            },
+            faith: {
+                hoch: "Über Halms Pult hängt kein Götterzeichen. Deine Frömmigkeit quittiert er mit der Geduld eines Mannes, der Wunder für schlecht geführte Akten hält.",
+                niedrig: "Ein Mann ohne Götter, sagt Halms Blick, sollte wenigstens der Vernunft treu dienen. Er scheint noch zu prüfen, ob du das tust."
+            }
+        }
+    };
+    var t = texte[npcKey] && texte[npcKey][w.key] && texte[npcKey][w.key][w.richtung];
+    return t ? '<div class="beziehung">' + t + '</div>' : "";
+};

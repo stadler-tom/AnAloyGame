@@ -10,6 +10,58 @@ setup.loadTrainingsHubVault = function () {
     }
 };
 
+/* ===== VAULT-SITUATIONEN =====
+   Pool-Einträge dürfen Strings sein (wie bisher) ODER Objekte mit Ereignis:
+
+   Zufall mit fester Wahrscheinlichkeit:
+   { "text": "Du siehst eine herrenlose Tasche...",
+     "ereignis": { "art": "chance", "chance": 60,
+        "erfolg":     { "text": "Deine Finger sind schneller als die Blicke.", "kupfer": 5 },
+        "fehlschlag": { "text": "Die Tasche gehört doch jemandem.", "suspicion": 2 } } }
+
+   Echter Skillcheck (läuft über skillCheckXp -> Würfelbox + Lernsystem):
+   { "text": "Dein Gegenüber macht im Trainingsrausch ernst:",
+     "ereignis": { "art": "probe", "skill": "pike", "dc": 13, "mod": 0,
+        "erfolg": "Du fängst den Stoß ab und drehst ihn aus der Linie.",
+        "fehlschlag": { "text": "Der Schaft trifft dich quer über die Rippen.", "kondition": -5 } } }
+
+   Ausgänge: String ODER Objekt mit text / kupfer / kupferVerlust / suspicion / kondition. */
+
+setup.vaultAusgang = function (ausgang) {
+    if (!ausgang) return "";
+    if (typeof ausgang === "string") return "<p>" + ausgang + "</p>";
+    var out = "";
+    if (ausgang.text) out += "<p>" + ausgang.text + "</p>";
+    if (typeof ausgang.kupfer === "number" && ausgang.kupfer > 0)               out += setup.addMoney(ausgang.kupfer);
+    if (typeof ausgang.kupferVerlust === "number" && ausgang.kupferVerlust > 0) out += setup.loseMoney(ausgang.kupferVerlust);
+    if (typeof ausgang.suspicion === "number" && ausgang.suspicion !== 0)       out += setup.setPlayerSuspicion(ausgang.suspicion);
+    if (typeof ausgang.kondition === "number" && ausgang.kondition !== 0)       out += setup.setPlayerCondition(ausgang.kondition);
+    return out;
+};
+
+setup.resolveVaultEintrag = function (entry) {
+    if (entry == null) return "";
+    if (typeof entry === "string") return entry;
+
+    var out = entry.text ? entry.text : "";
+    var e = entry.ereignis;
+    if (!e) return out;
+
+    if (e.art === "chance") {
+        var gelungen = random(1, 100) <= (e.chance || 50);
+        out += setup.vaultAusgang(gelungen ? e.erfolg : e.fehlschlag);
+    }
+    else if (e.art === "probe") {
+        var r = setup.skillCheckXp(e.skill, e.dc || 12, e.mod || 0);
+        out += setup.skillCheckAlert(r);
+        out += setup.vaultAusgang(r.success ? e.erfolg : e.fehlschlag);
+    }
+    else {
+        console.warn("Unbekannte Ereignis-Art im Vault:", e.art);
+    }
+    return out;
+};
+
 setup.executeStationRewards = function (stationKey, stationType) {
     var vault = setup.trainingsHubTextVault;
     if (!vault) return "Fehler: TrainingsHub-Daten wurden in StoryInit nicht geladen.";
@@ -59,7 +111,7 @@ setup.executeStationRewards = function (stationKey, stationType) {
         if (!pool || pool.length === 0) return "";
 
         // Hängt die reinen HTML-Boxen direkt per Zeilenumbruch an den Text an
-        return pool[Math.floor(Math.random() * pool.length)] + rewardAlerts;
+        return setup.resolveVaultEintrag(pool[Math.floor(Math.random() * pool.length)]) + rewardAlerts;
     }
 
     // --- AUTOMATISCHE LEVEL-ERMITTLUNG ---
@@ -85,7 +137,7 @@ setup.executeStationRewards = function (stationKey, stationType) {
         return "Fehler: Text-Pool für [" + stationType + "] im Level [" + levelBracket + "] nicht gefunden.";
     }
 
-    return textPool[Math.floor(Math.random() * textPool.length)];
+    return setup.resolveVaultEintrag(textPool[Math.floor(Math.random() * textPool.length)]);
 };
 
 // Beibehalten für direkte/alte Hub-Abrufe falls nötig
@@ -100,12 +152,12 @@ setup.getRandomText = function (category, subKey, stationType) {
     if (subKey) {
         var subPool = vault[category] ? vault[category][subKey] : null;
         if (!subPool || subPool.length === 0) return "Fehler: Unterkategorie [" + subKey + "] nicht gefunden.";
-        return subPool[Math.floor(Math.random() * subPool.length)];
+        return setup.resolveVaultEintrag(subPool[Math.floor(Math.random() * subPool.length)]);
     }
 
     var pool = vault[category];
     if (!pool || pool.length === 0) return "Fehler: Kategorie [" + category + "] nicht gefunden.";
-    return pool[Math.floor(Math.random() * pool.length)];
+    return setup.resolveVaultEintrag(pool[Math.floor(Math.random() * pool.length)]);
 };
 
 /* --- Abendappell --- */

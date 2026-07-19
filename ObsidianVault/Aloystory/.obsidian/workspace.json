@@ -11,17 +11,14 @@
             "id": "2e86e795bfe20ffd",
             "type": "leaf",
             "state": {
-              "type": "canvas",
+              "type": "markdown",
               "state": {
-                "file": "Duell/Ablaufplan.canvas",
-                "viewState": {
-                  "x": 646.8482330512425,
-                  "y": 991.3602347384283,
-                  "zoom": -1.9447680454156808
-                }
+                "file": "Aloy Landesinfos/11_Aloy_Lieder_und_Ingame_Texte.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-layout-dashboard",
-              "title": "Ablaufplan"
+              "icon": "lucide-file",
+              "title": "11_Aloy_Lieder_und_Ingame_Texte"
             }
           }
         ]
@@ -188,6 +185,7 @@
   },
   "active": "2e86e795bfe20ffd",
   "lastOpenFiles": [
+    "Duell/Ablaufplan.canvas",
     "temp Tesing/Unbenannt.canvas",
     "temp Tesing/Ereignis 3.md",
     "temp Tesing/Ereignis 1.md",
@@ -213,7 +211,6 @@
     "Biwag/Story/Biwag_Debrief_Ehrlich.md",
     "Biwag/Story/Biwag_Debrief_Beschoenigen.md",
     "Biwag/Story/Biwag_Debrief.md",
-    "Duell/Ablaufplan.canvas",
     "Unbenannt.canvas",
     "Biwag/Werte/biwagBeatsDone.md",
     "Biwag/Werte/biwagWacheBemerkt.md",

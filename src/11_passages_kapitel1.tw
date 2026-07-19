@@ -1169,38 +1169,44 @@
 <<if _interrupt != null>>
     <<goto _interrupt>>
 <<else>>
-    
+
  <<if not ($edu.exam.passed and $edu.archivzugang) and random(1, 100) <= 50>>
-      <div class="scenery-text">Kaum hast du dein Frühstück beendet, erklingt das vertraute Läuten der Glocken über den Dächern der Akademie.
-<p>Ihr Klang hallt durch Höfe und Korridore und ruft Studenten wie Lehrmeister gleichermaßen zu ihren Pflichten.</p>
-        
-<p>Überall setzen sich Gruppen in Bewegung, Bücher werden unter die Arme geklemmt und Gespräche verstummen.</p>
-<p>Offenbar beginnt gleich die erste Vorlesung des Tages.</p>
-    </div>
+    <<scene>>
+        <p>Die Glocken schlagen an, kaum dass du den letzten Bissen Brot hinuntergeschluckt hast — ein tiefes,
+        metallenes Dröhnen, das über die Dächer der Akademie rollt und sich in jedem Hof und jedem Gang bricht.
+        Überall setzen sich Leiber in Bewegung. Bücher wandern unter Achseln, Stiefel schlagen im Gleichschritt
+        übers Pflaster, und Gespräche verstummen mitten im Satz, als hätte man ihnen die Kehle zugedrückt.</p>
+    <</scene>> 
 
-    <div class="thought-box">
-<p>Zeit, sich dem Studium zu widmen.</p>
-    </div>
-    <hr class="trenner-raute">
-    [[Die Glocken zuStudium läuten ->Studium Hub]]
+    <<gedanke>>
+        <p>Wieder eine Stunde stillsitzen und mir merken, was Halm für wichtig hält. Als hätte ich nicht schon genug im Kopf,
+        das mir den Schlaf raubt.</p>
+    <</gedanke>>
+      
+    <<trenner>>
+    [[Dem Ruf der Glocken folgen ->Studium Hub]]
+
+<<else>>
+    <<scene>>
+        <p>Der Vormittag verlangt dir wenig ab — ein kurzer Drill, kaum der Rede wert, und die Ausbilder
+        selbst wirken heute seltsam zahm, als lastete auch auf ihren Schultern etwas, das nicht zur Sprache kommt.
+        Kaum ist die letzte Übung verklungen, schickt man euch fort, früher als sonst. Auf den Höfen drängen sich
+        die Waffenträger — die einen eilig zu Pflichten, die sie sich selbst auferlegt haben, die anderen mit dem
+        unsicheren Blick von Männern, die nicht wissen, wohin mit unverhoffter Zeit.</p>
+    <</scene>>
+
+    <<if random(1, 100) <= 50>>
+        <p>Der Nachmittag gehört dir. Niemand fragt, wohin du gehst — solange du zum Appell wieder da bist.</p>
     <<else>>
-      <div class="scenery-text">Nach dem Frühstück gab es heute Vormittag lediglich einen kurzen Drill.
-<p>Nichts Außergewöhnliches, aber auch nichts besonders Anstrengendes.</p>
-<p>Die Ausbilder wirkten ungewohnt gelassen und entließen euch bereits vorzeitig.</p>
-
-<p>Auf den Höfen der Akademie herrscht geschäftiges Treiben. Manche Studenten</p>
-<p>eilen ihren Verpflichtungen nach, andere nutzen die unerwartete Freizeit,</p>
-<p>um eigenen Interessen nachzugehen.</p>
-    </div>
-      <<if random(1, 100) <= 50>>
-<p>Den Nachmittag hat man euch zur freien wahl gelassen.</p>
-      <<else>>
-<p>Nach dem Frühstück wurde der reguläre Unterricht überraschend abgesagt. Offenbar waren mehrere Dozenten anderweitig beschäftigt. Die meisten Studenten nutzten die unerwartete Freizeit, um ihren eigenen Angelegenheiten nachzugehen.</p>
-      <</if>>
-      <div class="thought-box">Einfach mal in Ruhe los ziehen...</div>
-      <hr class="trenner-raute">
-        [[Die Akkademie auf eigene Faust erkunden ->Nachmittag Hub]]
+        <p>Der reguläre Unterricht fällt aus, ohne Erklärung, die über ein Schulterzucken hinausgeht. Irgendwo,
+        heißt es, seien die Lehrmeister anderweitig gebunden. Die meisten nutzen die Lücke, ehe sie sich wieder schließt.</p>
     <</if>>
+    <<gedanke>>
+        <p>Freie Zeit ist selten genug hier drin. Ich sollte sie nicht vertrödeln — auch wenn ich noch nicht weiß, wofür.</p>
+    <</gedanke>>
+    <<trenner>>
+    [[Die Akademie auf eigene Faust erkunden ->Nachmittag Hub]]
+<</if>>
 <</if>>
 
 

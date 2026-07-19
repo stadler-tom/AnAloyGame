@@ -667,6 +667,8 @@ Es gibt nichts zu tun, als zu warten, was sie finden.</p>
 
 <p>Halm legt die Feder ab, mit der Umständlichkeit eines Mannes, dem jede Unterbrechung erst ihren Wert beweisen muss, ehe er sie duldet. Er mustert dich über den Rand seines Lesegeräts hinweg, lange, wie einen Text, den er noch nicht ganz entziffert hat.</p>
 
+<<= setup.wesenszugVermerk("magister")>>
+
 <<linkreplace "Sein Urteil abwarten">>
 <<= setup.getNpcInteraction("Kap2_Pool_Halm_Gelehrsamkeit")>>
 
@@ -716,6 +718,8 @@ Es gibt nichts zu tun, als zu warten, was sie finden.</p>
 <</dialog>>
 
 <p>Rindler legt die Feder beiseite, langsam, mit der Umständlichkeit eines Mannes, der jede Unterbrechung erst als mögliche Zeitverschwendung wägt. Er mustert dich einen Atemzug lang, ehe er antwortet.</p>
+
+<<= setup.wesenszugVermerk("hauptmann")>>
 
 <div id="zusatzdienstButton">
 <<link "Seine Antwort abwarten">>

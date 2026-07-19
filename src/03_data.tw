@@ -360,40 +360,25 @@
 {
   "hubIntros": [
     "Der Staub des Exerzierplatzes hat sich in deine Poren gefressen und klebt wie eine zweite Haut auf deinen Wangen. Du wischst dir den Schweiß von der Stirn und blickst über das weitläufige Gelände der Akademie. Der Nachmittag ist kurz, und du weißt bereits, dass man hier keine Zeit verschenkt — du wirst nur an einem einzigen Ort wirklich präsent sein können.",
-
     "Die unbarmherzige Mittagssonne weicht einem drückenden, bleigrauen Nachmittag, der keine Erholung verspricht. Deine Muskeln brennen noch vom Morgenappell, und der Schweiß in deinem Kragen ist längst kalt geworden. Das Lager breitet sich vor dir aus wie ein eigener, lärmender Kosmos — aber deine Energie reicht heute nur noch für einen einzigen Weg.",
-
     "Das Brüllen der Ausbilder hallt noch in deinen Ohren nach, als sich der Exerzierplatz langsam leert. Du bleibst einen Moment stehen und atmest durch. Vor dir liegen die staubigen Gassen des Lagers mit allem, was sie zu bieten haben — und hinter dir liegt ein Morgen, der dich bereits mehr gekostet hat, als du zugeben willst. Einen Abstecher. Mehr ist heute nicht drin.",
-
     "Ein langer, zermürbender Tag neigt sich seinem Ende entgegen, und er tut es ohne Gnade. Die Riemen deiner Ausrüstung haben tiefe, rote Striemen in deine Schultern gegraben, und jeder Schritt kostet mehr als der vorherige. Du stehst am Rand des Platzes und weißt, dass dir bis zum Abendappell nur noch eine einzige freie Entscheidung bleibt. Sie sollte die richtige sein.",
-
     "Der bittere Geschmack von Staub und Schweiß klebt an deinem Gaumen, und kein Schluck Wasser hat ihn bisher vertrieben. Die Formationen haben sich aufgelöst, die Ausbilder sind verschwunden, und für einen kurzen, trügerischen Moment wirkt das Lager fast still. Aber die Zeit läuft. Sie läuft hier immer. Du hast Kraft für einen einzigen Weg — also wähl ihn mit Bedacht."
   ],
-
   "hubScenery": [
     "Der Geruch von verbranntem Pulver, feuchtem Stroh und kochender Brühe liegt schwer in der stickigen Nachmittagsluft und legt sich auf Zunge und Lunge wie ein feuchtes Tuch. Das dumpfe, rhythmische Hämmern aus der Schmiede mischt sich mit dem fernen Brüllen eines Ausbilders, der noch nicht aufgegeben hat.",
-
     "Ein nasskalter Wind fährt durch die engen Zeltgassen und reißt trockenen Staub in flachen, wirbelnden Bahnen mit sich fort. Irgendwo schlägt eine schlecht gesicherte Holztür in stetigem, nervtötendem Takt gegen ihren Rahmen, und das Klirren von Eisen irgendwo in der Tiefe des Lagers gibt ihr einen unregelmäßigen Gegentakt.",
-
     "Rauchschwaden aus den Feldküchen ziehen träge und grau über den festgetretenen Platz, als hätte der Himmel selbst keine Lust mehr, sich zu bewegen. Die Rekruten, die ihre freie Stunde haben, suchen den Schatten der Planwagen, während die älteren Männer schweigend und mit geübten Händen ihre Ausrüstung in Ordnung bringen — als wäre es das Einzige, was sie noch interessiert.",
-
     "Das ständige Wiehern der Zugpferde drückt auf die Stimmung wie ein nasses Tuch auf eine Wunde, untermalt vom harten, monotonen Aufschlagen von Holz auf Holz an den Palisaden. Der Dreck des Lagers klebt an den Stiefeln, an den Hosenbeinen, an den Händen — er gehört bereits dazu, so wie der Lärm und der Geruch und die Erschöpfung.",
-
     "Die Schatten der Baracken werden länger und kriechen wie dunkle, schwere Finger über den festgetretenen Lehm des Platzes. Fliegen kreisen träge über den Abfallgruben am Rand des Lagers, und das gleichmäßige, fast meditative Schleifen von Klingen an Wetzsteinen zieht sich wie ein leises, unerbittliches Grundrauschen durch den Abend."
   ],
-
   "hubThoughts": [
     "Ich kann nicht überall gleichzeitig sein. Jede Stunde hier hat ihren Preis, und wer sie falsch ausgibt, merkt es spätestens dann, wenn es zu spät ist. Ich muss wählen — und ich muss klug wählen.",
-
     "Was ich jetzt tue, hinterlässt Spuren. Nicht auf dem Papier, nicht in der Truppenrolle — aber in mir selbst. Die Zeit der Spielereien ist vorbei. Also: wohin?",
-
     "Meine Knochen verlangen nach Ruhe. Mein Verstand weiß, dass Ruhe hier ein Luxus ist, den die Toten sich leisten. Jeder Vorsprung zählt. Jede Stunde. Also reiß dich zusammen und entscheide.",
-
     "Jede dieser Stationen formt mich zu einem anderen Soldaten. Wer ich in zwei Jahren sein werde, entscheidet sich nicht auf dem Schlachtfeld — es entscheidet sich hier, in diesen langen, grauen Nachmittagen, in denen niemand hinschaut und trotzdem alles gesehen wird.",
-
     "Die Zeit rinnt durch meine Finger wie der feine Staub dieses Platzes. Ein verschwendeter Nachmittag ist eine verpasste Chance, und verpasste Chancen sammeln sich — bis sie einen irgendwann einholen. Konzentrier dich. Entscheid dich. Geh."
   ],
-
   "hubSubtexts": {
     "pike": [
       "— Reihe dich in die eiserne Formation ein. Lerne, was es bedeutet, nicht als Einzelner zu kämpfen, sondern als Teil einer Wand aus Holz und Stahl.",
@@ -431,7 +416,6 @@
       "— Zwischen Heuballen und Hehlern spielt sich das wahre Leben des Lagers ab. Manches lässt sich kaufen. Manches lässt sich stehlen. Und manches erfährt man nur, wenn man zuhört."
     ]
   },
-
   "stations": {
     "pike": {
       "scenery": [
@@ -444,36 +428,112 @@
       "main": {
         "novice": [
           "Du greifst nach dem rauen Holz einer Übungs-Pike, und das erste, was du bemerkst, ist das Gewicht — ein Gewicht, das sich nicht gleichmäßig verteilt, sondern zieht und drückt und sich gegen dich stellt wie ein lebendiges Ding. Deine Arme zittern schon nach wenigen Minuten. Als der Trupp im Gleichschritt anzieht, stolperst du über deine eigenen Stiefel, und der Korporal bellt dich an, bis ihm die Spucke vor den Lippen steht und seine Stimme sich überschlägt.",
-
           "Du rammst die Pike in den Boden, und der Rückstoß fährt dir wie ein Peitschenhieb durch die Schulter, schmerzhaft und abrupt und ohne jede Vorwarnung. Das ungeschliffene Holz reibt bei jeder Bewegung tief in deine ungeschützten Handflächen, und du bemerkst erst jetzt, wie weit du davon entfernt bist, hier irgendetwas richtig zu machen.",
-
           "Der Ausbilder verpasst dir ohne Ankündigung einen harten Hieb mit dem Exerzierstecken gegen die Innenseite der Knie. 'Tiefer! Du stehst da wie eine Hure beim Sonntagsgottesdienst!' Keuchend sackst du ab, und das Gewicht der Esche presst dir die Wirbelsäule zusammen, als wollte es dich in den Boden treiben.",
-
           "Gemeinsam mit den anderen Frischlingen versuchst du, den hölzernen Igel zu formen — dreißig Spitzen, die alle in dieselbe Richtung zeigen sollen, gleichmäßig, geschlossen, unüberwindbar. Deine schwankt wie ein Schilfrohr im Sturm. Als die Nachbarpike gegen deine schlägt, verlierst du beinahe den Halt, und die Flüche, die von der Seite kommen, sind alles andere als leise.",
-
-          "Deine Finger krampfen sich um den dicken Schaft, und das Ausrichten der Waffe nach vorn fühlt sich an, als müsstest du einen ausgewachsenen Baumstamm balancieren. Nach einer halben Stunde brennen deine Unterarme so tief und so stetig, dass du nicht mehr sicher bist, ob du die Pike noch einen einzigen weiteren Schritt tragen kannst."
+          "Deine Finger krampfen sich um den dicken Schaft, und das Ausrichten der Waffe nach vorn fühlt sich an, als müsstest du einen ausgewachsenen Baumstamm balancieren. Nach einer halben Stunde brennen deine Unterarme so tief und so stetig, dass du nicht mehr sicher bist, ob du die Pike noch einen einzigen weiteren Schritt tragen kannst.",
+          {
+            "text": "Dein Übungspartner vergisst sich im Eifer — der Stoß kommt schneller und tiefer, als der Platz erlaubt, und niemand ruft ihn zurück.",
+            "ereignis": {
+              "art": "probe",
+              "skill": "pike",
+              "dc": 11,
+              "mod": 0,
+              "erfolg": "Du fängst den Schaft mit der eigenen Pike ab und drehst ihn aus der Linie, ehe der Schwung dich erreicht. Einen Atemzug lang steht ihr euch gegenüber, dann senkt er die Waffe. Das Nicken danach ist halb Entschuldigung, halb Respekt.",
+              "fehlschlag": {
+                "text": "Der Schaft erwischt dich unterhalb der Schulter und wirft dich aus dem Stand. Du gehst in den Staub, und das Grinsen der Umstehenden brennt länger als der Schmerz.",
+                "kondition": -4
+              }
+            }
+          },
+          {
+            "text": "Marschdrill mit vollem Gepäck, die Reihe dicht auf dicht — und der Nebenmann stolpert mitten im Schritt und kippt in deine Richtung.",
+            "ereignis": {
+              "art": "probe",
+              "skill": "pike",
+              "dc": 11,
+              "mod": 0,
+              "erfolg": "Du fängst ihn mit der Schulter ab, ohne den Tritt zu verlieren, und schiebst ihn zurück in die Spur, ehe vorn jemand den Kopf dreht. Er murmelt einen Dank, den nur du hören sollst.",
+              "fehlschlag": {
+                "text": "Er reißt dich mit, du reißt den Nächsten mit, und am Ende liegt ein Viertel der Reihe im Staub. Der Weibel lässt euch die Strecke noch zweimal laufen — wegen euch, sagt er, und meint dich.",
+                "kondition": -4
+              }
+            }
+          }
         ],
         "medium": [
           "Das Gewicht der Pike zieht immer noch in den Schultern, aber du hast gelernt, wie man damit umgeht — den Schwerpunkt mit dem Becken abfängt, die Last auf den ganzen Körper verteilt statt auf die Arme allein. Du hältst die Formation. Deine Stiefel finden den Takt im Dreck, und der Stoß nach vorn erfolgt ohne Zögern und ohne die zitternde Unentschlossenheit des ersten Tages.",
-
           "Der Ausbilder schlägt dir im Vorbeigehen mit einer Eisenstange gegen den Schaft, um deinen Stand zu prüfen. Du weichst nicht zurück. Die frische Hornhaut an deinen Handflächen schützt dich vor den gröbsten Splittern, und zum ersten Mal seit Beginn der Ausbildung fühlt sich die Waffe nicht wie dein Feind an.",
-
           "Im dumpfen Rhythmus der Trommel senkst du die Pike auf Kniehöhe und wartest das Kommando ab, ohne mit der Spitze zu zucken. Der Schaft liegt ruhig in deinen Händen — schwer noch immer, aber gehorchend. Das ist kein kleiner Unterschied.",
-
           "Du übst das rasche Schwenken der Formation im Kollektiv. 'Flanke rechts!' Das Holz saust herum, Spitzen gleiten haarscharf aneinander vorbei, und du hältst deinen Abstand zum Vordermann ohne darüber nachzudenken. Das ist der Moment, in dem du begreifst, dass Formation keine Choreographie ist — es ist Überleben.",
-
-          "Der Schweiß läuft dir in den Kragen, aber deine Konzentration steht. Wenn du den Stoß ausführst, nutzt du das Gewicht deines gesamten Körpers, nicht nur der Arme. Ein mechanischer Ablauf, der langsam und unwiderruflich Sinn ergibt."
+          "Der Schweiß läuft dir in den Kragen, aber deine Konzentration steht. Wenn du den Stoß ausführst, nutzt du das Gewicht deines gesamten Körpers, nicht nur der Arme. Ein mechanischer Ablauf, der langsam und unwiderruflich Sinn ergibt.",
+          {
+            "text": "Zwei Zweitjährige haben Kupfer auf dich gesetzt: Wer im Stoßfechten dreimal die Mitte des Strohballens trifft, während der Vormann den Ballen an Seilen zerrt, gewinnt den Topf. Dein Einsatz liegt schon auf dem Balken.",
+            "ereignis": {
+              "art": "probe",
+              "skill": "pike",
+              "dc": 14,
+              "mod": 0,
+              "erfolg": {
+                "text": "Dreimal fährt die Spitze dorthin, wo sie soll, egal wie der Ballen tanzt. Der Topf wandert zu dir, und die Verlierer zahlen mit jener mürrischen Sorgfalt, mit der man Schulden unter Waffenleuten zahlt.",
+                "kupfer": 3
+              },
+              "fehlschlag": {
+                "text": "Beim dritten Stoß reißt der Vormann den Ballen zur Seite, deine Spitze geht ins Leere, und der Schwung reißt dich mit. Du landest hart — und dein Einsatz bleibt auf dem Balken liegen.",
+                "kondition": -4,
+                "kupferVerlust": 2
+              }
+            }
+          },
+          {
+            "text": "Der Schinder lässt das Öffnen der Gassen üben — auf Kommando schwenkt die halbe Reihe, und der Neue neben dir steht falsch, mitten im Weg der kommenden Schäfte.",
+            "ereignis": {
+              "art": "probe",
+              "skill": "pike",
+              "dc": 14,
+              "mod": 0,
+              "erfolg": "Du packst ihn am Koller und ziehst ihn in die Lücke, in der er stehen sollte, eine halbe Bewegung, ehe die Schäfte durchschwenken. Der Schinder hat es gesehen und sagt nichts — die Übung läuft weiter, und das ist seine Art von Einverständnis.",
+              "fehlschlag": {
+                "text": "Dein Griff kommt zu spät. Der schwenkende Schaft erwischt euch beide, und ihr geht verknotet zu Boden. Der Schinder lässt die ganze Reihe neu antreten und stellt dich ans Ende — dorthin, wo die Anfänger stehen.",
+                "kondition": -5
+              }
+            }
+          }
         ],
         "expert": [
           "Das sechs Meter lange Eschenholz fühlt sich an wie eine verlängerte Gliedmaße — als wärst du damit geboren worden, als gehörte es zu dir so selbstverständlich wie ein Arm. Ohne nachzudenken senkst du die eiserne Spitze im perfekten Winkel, und dein Blick ist ruhig und absolut leer von allem außer dem, was vor dir liegt.",
-
           "Die Formation bewegt sich um dich herum wie ein einziger, tödlicher Organismus, und du bist ein Teil davon ohne jede Reibung, ohne jedes Zögern. Die komplexen Stiche und Paraden laufen mit einer fast schläfrigen Präzision ab, und der Korporal, der dich in der ersten Woche noch angebrüllt hat bis ihm die Stimme versagte, nickt dir heute schweigend zu.",
-
           "Als die Übungs-Kavallerie auf eure Reihe zuprescht, zuckst du nicht. Du stemmst den Schuh tief in den Lehm, blockierst den Schaft im Boden und bildest mit deinen Nebenmännern eine Wand, gegen die kein Pferd und kein Reiter bestehen würde — nicht weil du mutiger bist, sondern weil du weißt, was du tust.",
-
           "Du beherrschst den Wechsel von der Pike zur Hellebarde in der Zeit, die andere brauchen, um sich umzusehen. Der schwere Stahl der Kurzwaffe wirbelt durch deine Hände, nutzt den Schwung des eigenen Gewichts, schlägt mit kontrollierter, dumpfer Wucht in die hölzerne Übungspuppe — und du bist bereits wieder in Position, bevor der Aufprall verhallt.",
-
-          "Deine Muskeln haben das Gewicht der Waffe so vollständig verinnerlicht, dass du sie im Schlaf führen könntest. Du atmest ruhig durch die Nase, stehst im vordersten Glied und spürst die absolute, stille Kontrolle über den Raum vor dir. Wer in deine Reichweite tritt, hat eine schlechte Entscheidung getroffen."
+          "Deine Muskeln haben das Gewicht der Waffe so vollständig verinnerlicht, dass du sie im Schlaf führen könntest. Du atmest ruhig durch die Nase, stehst im vordersten Glied und spürst die absolute, stille Kontrolle über den Raum vor dir. Wer in deine Reichweite tritt, hat eine schlechte Entscheidung getroffen.",
+          {
+            "text": "Der Schinder stellt dich allein gegen zwei Mann — Stellprobe vor versammelter Reihe. 'Zeig ihnen, warum die Linie hält', sagt er, und es klingt nicht wie eine Bitte.",
+            "ereignis": {
+              "art": "probe",
+              "skill": "pike",
+              "dc": 17,
+              "mod": 0,
+              "erfolg": "Du hältst die beiden auf Distanz, Schaft um Schaft, bis der Erste den Fehler macht und du ihn aus dem Stand hebelst. Der Zweite senkt die Pike von selbst. Die Reihe klopft mit den Schäften auf den Boden — der Gruß der Pikeniere für einen der Ihren.",
+              "fehlschlag": {
+                "text": "Sie kommen von beiden Seiten zugleich, und für einen Herzschlag entscheidest du dich für keinen von beiden. Der Boden fängt dich härter auf als sonst, und der Schinder dreht sich wortlos weg.",
+                "kondition": -8
+              }
+            }
+          },
+          {
+            "text": "Ein grauer Veteran vom 33. Regiment lehnt am Zaun und sieht dem Drill zu. Irgendwann nimmt er selbst eine Übungspike vom Gestell und deutet auf dich. 'Zeig mir den Wechsel vom Fangen ins Setzen', sagt er. 'Den echten. Nicht den vom Exerzierplatz.'",
+            "ereignis": {
+              "art": "probe",
+              "skill": "pike",
+              "dc": 17,
+              "mod": 0,
+              "erfolg": "Du zeigst ihn — Fuß zurück, Schaft flach, die Spitze fällt und fängt sich im Boden, alles eine einzige Bewegung. Der Veteran nickt langsam. Dann zeigt er dir, wie man denselben Wechsel macht, wenn links und rechts kein Platz mehr ist. Das lernt man auf keinem Hof, das lernt man dort, wo es zählt.",
+              "fehlschlag": {
+                "text": "Du bist einen halben Takt zu langsam, und der Veteran hebelt dir die Pike aus den Händen, beiläufig, wie man einem Kind einen Stock wegnimmt. 'Der Platz lügt', sagt er im Gehen. 'Das Feld nicht.' Der Satz arbeitet länger in dir als die Prellung.",
+                "kondition": -6
+              }
+            }
+          }
         ]
       },
       "thoughts": {
@@ -499,9 +559,13 @@
           "Ich bin bereit für das Schlachtfeld. Möge der Feind so unklug sein, diese Reihe stürmen zu wollen. Es wird sein letzter Fehler sein."
         ]
       },
-      "rewards": { "stat": "ambition", "statValue": 1, "knowledge": "pike", "knowledgeValue": 1 }
+      "rewards": {
+        "stat": "ambition",
+        "statValue": 1,
+        "knowledge": "pike",
+        "knowledgeValue": 1
+      }
     },
-
     "cannon": {
       "scenery": [
         "Die schweren Bronzerohre der Artillerie ruhen auf ihren hölzernen Lafetten wie träge, schlafende Monster — unbeweglich, schwer und mit einer Geduld, die sich anfühlt wie eine Drohung. Der Geruch von Schwefel ist hier so tief und so dicht, dass er sich in die Kehle legt wie ein Tuch.",
@@ -511,18 +575,103 @@
       "main": {
         "novice": [
           "Das grobkörnige Schwarzpulver brennt dir in den Augen, noch bevor du begreifst, was du falsch gemacht hast. Als du den schweren Wischer in das heiße Rohr rammst, hustest du so heftig vom beißenden Qualm, dass dir die Augen tränen — und dahinter, tief und konstant, sitzt die nackte Angst, dass dir das Ding um die Ohren fliegt.",
-
-          "Ein alter Büchsenmeister schlägt dir grob auf die Finger, weil du die Lunte zu nah am Zündloch hältst, und sagt dabei kein einziges Wort. Als das Nachbargeschütz donnert und der Boden bebt, weichen deine Knie, und du hasst dich dafür."
+          "Ein alter Büchsenmeister schlägt dir grob auf die Finger, weil du die Lunte zu nah am Zündloch hältst, und sagt dabei kein einziges Wort. Als das Nachbargeschütz donnert und der Boden bebt, weichen deine Knie, und du hasst dich dafür.",
+          {
+            "text": "Ein Funke springt von der Lunte des Nebenmanns, und plötzlich glimmt es im Stroh — einen Schritt neben dem Fass, das gerade abgefüllt wird.",
+            "ereignis": {
+              "art": "probe",
+              "skill": "cannon",
+              "dc": 11,
+              "mod": 0,
+              "erfolg": "Du bist mit zwei Schritten da und erstickst die Glut mit dem nassen Wischlappen, ehe jemand auch nur Luft holen kann. Der Stückmeister sagt nichts — aber sein Blick bleibt einen Atemzug zu lang auf deinen Händen.",
+              "fehlschlag": {
+                "text": "Du schlägst mit der bloßen Hand zu, und die Glut frisst sich durch den Ärmel, ehe der Sand kommt. Das Stroh ist aus, deine Haut nicht.",
+                "kondition": -4
+              }
+            }
+          },
+          {
+            "text": "Kugeln stapeln, vier Lagen hoch, die Pyramide neben der Lafette — und die unterste Lage gibt nach, als du die letzte Kugel auflegst.",
+            "ereignis": {
+              "art": "probe",
+              "skill": "cannon",
+              "dc": 11,
+              "mod": 0,
+              "erfolg": "Du rammst den Fuß gegen die rollende Kugel und stemmst die Lage mit dem Knie zurück, bis der Nebenmann die Keile setzt. Ein paar Pfund Eisen weniger auf dem Fuß — man lernt, warum die Alten die Keile zuerst legen.",
+              "fehlschlag": {
+                "text": "Die Kugel findet deinen Fuß mit der Zielsicherheit von rollendem Eisen. Du beißt den Schrei weg, weil am Geschütz niemand schreit, der wiederkommen will — aber humpeln wirst du trotzdem.",
+                "kondition": -5
+              }
+            }
+          }
         ],
         "medium": [
           "Du misst das Pulver mit ruhiger Hand ab, und die Begriffe Ladeschaufel, Kartätsche und Schildzapfen sind keine Fremdwörter mehr — sie sind Werkzeuge, die du kennst und benutzt. Du hilfst koordiniert dabei, das tonnenschwere Belagerungsgeschütz mit Hebebäumen auszurichten, und der Büchsenmeister sieht dir dabei zu, ohne etwas zu sagen. Das bedeutet, du machst es richtig.",
-
-          "Der Lärm dröhnt noch immer in den Ohren, aber du zuckst nicht mehr zusammen. Du reinigst das Rohr mit dem nassen Wischer, bereitest den nächsten Schuss vor und arbeitest dabei mit einer Ruhe, die du dir vor zwei Wochen nicht hättest vorstellen können."
+          "Der Lärm dröhnt noch immer in den Ohren, aber du zuckst nicht mehr zusammen. Du reinigst das Rohr mit dem nassen Wischer, bereitest den nächsten Schuss vor und arbeitest dabei mit einer Ruhe, die du dir vor zwei Wochen nicht hättest vorstellen können.",
+          {
+            "text": "Beim Auswischen spürst du Widerstand im Rohr — irgendwo tief drin könnte ein glimmender Rest der letzten Ladung sitzen. Die Bedienung wartet. Dein Ruf, wenn du grundlos abbrichst. Deine Finger, wenn du dich irrst.",
+            "ereignis": {
+              "art": "probe",
+              "skill": "cannon",
+              "dc": 14,
+              "mod": 0,
+              "erfolg": "Du ziehst den Wischer zurück, drehst ihn, gehst ein zweites Mal hinein — und förderst einen schwelenden Fetzen Kartuschentuch zutage, der im Tageslicht harmlos aussieht und im Rohr ein Gemetzel gewesen wäre. Die Bedienung ist sehr still. Dann nickt der Richtschütze, einmal, tief.",
+              "fehlschlag": {
+                "text": "Du meldest das Rohr frei. Beim Laden verpufft der Rest mit einem dumpfen Husten, die Ladeschaufel fährt dir gegen den Arm, und nur weil die Kartusche noch nicht gesetzt war, erzählst du das heute Abend selbst.",
+                "kondition": -6
+              }
+            }
+          },
+          {
+            "text": "Vom Westen zieht eine schwarze Wand heran, und auf dem Wall liegen drei offene Kartuschenkisten. Der Stückmeister ist beim Zeugmeister — die Entscheidung, was zuerst unter die Planen kommt, ist deine.",
+            "ereignis": {
+              "art": "probe",
+              "skill": "cannon",
+              "dc": 14,
+              "mod": 0,
+              "erfolg": "Kartuschen zuerst, dann das Zündkraut, dann die Lunten — du hast die Reihenfolge fertig, ehe die ersten Tropfen fallen, und als der Stückmeister durch den Regen zurückkommt, findet er trockenes Pulver und einen Frischling, der nicht gefragt hat, weil er nicht fragen musste.",
+              "fehlschlag": {
+                "text": "Du fängst mit dem Falschen an. Die ersten Böen drücken Wasser unter die schlecht gespannte Plane, und eine halbe Kiste Kartuschen ist hin. Der Stückmeister sagt nichts weiter — du füllst sie neu, heute Nacht, alle.",
+                "kondition": -5
+              }
+            }
+          }
         ],
         "expert": [
           "Du berechnest den tödlichen Winkel fast im Kopf, ein kurzer prüfender Blick auf die Pulverqualität, eine kleine Justierung der Keile an der Lafette — und dann wartest du. Nicht aus Nervosität, sondern weil du weißt, wann der richtige Moment ist. Du regierst diese eiserne Bestie mit einer Autorität, die kein Befehl dir gegeben hat.",
-
-          "Die Mathematik des Todes ist dir in Fleisch und Blut übergegangen, so tief, dass du nicht mehr darüber nachdenken musst. Während um dich herum das Chaos der Übung tobt, senkst du die brennende Lunte mit der Ruhe eines Mannes, der weiß, was gleich passiert — und dem das vollkommen recht ist."
+          "Die Mathematik des Todes ist dir in Fleisch und Blut übergegangen, so tief, dass du nicht mehr darüber nachdenken musst. Während um dich herum das Chaos der Übung tobt, senkst du die brennende Lunte mit der Ruhe eines Mannes, der weiß, was gleich passiert — und dem das vollkommen recht ist.",
+          {
+            "text": "Der Stückmeister tritt beiseite und überlässt dir den Probeschuss — Winkel, Ladung, Keile, alles deins. Auf dem Wall wird gewettet, ob der Frischling die Fassbake auf vierhundert Schritt nimmt. Du legst selbst zwei Kupfer auf dich.",
+            "ereignis": {
+              "art": "probe",
+              "skill": "cannon",
+              "dc": 17,
+              "mod": 0,
+              "erfolg": {
+                "text": "Der Donner rollt, der Rauch reißt auf, und wo die Bake stand, regnet es Holz. Auf dem Wall wird gezahlt, und der Stückmeister sagt zwei Worte mehr als sonst: 'Reihenfolge stimmt.'",
+                "kupfer": 5
+              },
+              "fehlschlag": {
+                "text": "Der Schuss geht lang, die Kugel pflügt harmlos den Hang um, und der Rückstoß springt in die schlecht gesetzten Keile — die Lafette schlägt dir gegen das Schienbein, und dein eigenes Kupfer wandert über den Wall davon.",
+                "kondition": -6,
+                "kupferVerlust": 2
+              }
+            }
+          },
+          {
+            "text": "Beim Klopftest klingt Rohr Nummer vier anders als seine Brüder — einen Halbton zu flach, so leise, dass es auch Einbildung sein könnte. Ein zerlegtes Geschütz kostet die Bedienung den halben Tag. Ein geborstenes Rohr kostet mehr.",
+            "ereignis": {
+              "art": "probe",
+              "skill": "cannon",
+              "dc": 17,
+              "mod": 0,
+              "erfolg": "Du bleibst bei deinem Ohr. Unter dem Ruß, eine Handbreit vor den Schildzapfen, liegt er: ein Haarriss, fein wie ein Frauenhaar. Das Rohr geht aus dem Dienst, und der Stückmeister steht lange davor und schweigt. Jeder am Geschütz weiß, was der nächste scharfe Schuss gewesen wäre.",
+              "fehlschlag": {
+                "text": "Ihr zerlegt das halbe Geschütz und findet nichts als alten Ruß und eine Delle, die schon länger dort wohnt als der Stückmeister. Der Wiederzusammenbau frisst den Abend, und die Blicke der Bedienung tragen schwerer als die Lafette.",
+                "kondition": -5
+              }
+            }
+          }
         ]
       },
       "thoughts": {
@@ -539,32 +688,115 @@
           "Ich verstehe jetzt, warum die Feuerwerker so wenig sprechen. Was sie wissen, braucht keine Worte."
         ]
       },
-      "rewards": { "stat": "ambition", "statValue": 1, "knowledge": "cannon", "knowledgeValue": 1 }
+      "rewards": {
+        "stat": "discipline",
+        "statValue": 1,
+        "knowledge": "cannon",
+        "knowledgeValue": 1
+      }
     },
-
     "medicine": {
       "scenery": [
         "Das Zelt des Feldschers riecht stechend nach Essig, ranzigem Schmalz und dem süßlichen, schweren Dunst von frischem Blut — ein Geruch, der sich festsetzt und nicht wieder loslädt. Aus dem Halbdunkel dringt das Stöhnen eines Mannes, der schon zu erschöpft ist, um laut zu klagen.",
-
         "Auf dem rohen Holztisch liegt das Handwerk des Überlebens ausgebreitet: Knochensägen mit vergilbten Griffen, gebogene Nadeln an einem Faden, der zu grob aussieht für das, wofür er bestimmt ist, und stumpfe Zangen, die in einem Topf kochendem Wasser klappern wie ein schlechtes Omen.",
-
         "Ein Gehilfe trägt einen Eimer voller blutiger Verbände nach draußen, ohne den Blick zu heben. Hier wird nicht marschiert, nicht exerziert, nicht befohlen. Hier wird um jeden einzelnen Atemzug gefeilscht, und manchmal verliert man."
       ],
       "main": {
         "novice": [
           "Der Feldscher nickt dir flüchtig zu und drückt dir einen sauberen Lappen in die Hand, als wäre das Erklärung genug. Du sollst die Wunde eines Infanteristen fixieren, während die Nadel sich durch seine Haut frisst. Sein Schrei hallt in dir nach, lange nachdem er verstummt ist.",
-
-          "Unter deinen ungeschickten Fingern spürst du das Knirschen von gebrochenem Knochen, und dein Magen antwortet darauf bevor dein Verstand kann. Du musst dich zwingen, weiterzumachen — die Schiene anlegen, den Mann ruhig halten, die Hände nicht zittern lassen — und du schaffst es, aber nur knapp."
+          "Unter deinen ungeschickten Fingern spürst du das Knirschen von gebrochenem Knochen, und dein Magen antwortet darauf bevor dein Verstand kann. Du musst dich zwingen, weiterzumachen — die Schiene anlegen, den Mann ruhig halten, die Hände nicht zittern lassen — und du schaffst es, aber nur knapp.",
+          {
+            "text": "Der Feldscher richtet einen offenen Beinbruch, und du sollst halten — das Bein, den Mann, dich selbst. Der Knochen sieht dich an, weiß und falsch aus dem Fleisch.",
+            "ereignis": {
+              "art": "probe",
+              "skill": "medicine",
+              "dc": 11,
+              "mod": 0,
+              "erfolg": "Du schaust nicht weg. Du zählst die Handgriffe des Feldschers mit, hältst, wenn er 'halten' sagt, und atmest erst wieder, als die Schiene sitzt. 'Brauchbar', sagt er. Aus seinem Mund ist das ein Orden.",
+              "fehlschlag": {
+                "text": "Der Boden kommt dir entgegen, und als du wieder hochkommst, hat ein anderer deinen Platz. Der Spott der Wartenden ist milde — es hat schließlich jeden einmal erwischt — aber er klebt trotzdem.",
+                "kondition": -3
+              }
+            }
+          },
+          {
+            "text": "Der Koch sitzt auf dem Schemel des Feldschers, die Wange dick wie ein Hefekloß. Der Feldscher drückt dir die Zange in die Hand: der hintere Backenzahn, vereitert bis zur Wurzel.",
+            "ereignis": {
+              "art": "probe",
+              "skill": "medicine",
+              "dc": 11,
+              "mod": 0,
+              "erfolg": "Du setzt an, wie er es gezeigt hat — tief fassen, aus dem Handgelenk drehen, nicht ziehen, hebeln. Der Zahn kommt ganz heraus, samt Wurzel, und der Koch flucht in drei Sprachen und drückt dir hinterher wortlos die größte Kelle Eintopf des Tages auf.",
+              "fehlschlag": {
+                "text": "Der Zahn bricht ab, der Feldscher muss mit dem Meißel nach, und der Koch sieht dich dabei an, als würdest du das Splittern persönlich genießen. Deine Suppe ist in den nächsten Wochen auffällig dünn.",
+                "kondition": -3
+              }
+            }
+          }
         ],
         "medium": [
           "Das Flicken von Fleisch verliert seinen Schrecken — nicht weil es weniger schlimm geworden wäre, sondern weil du gelernt hast, es von einer anderen Seite zu sehen. Du reinigst Wunden mit Essigwasser, reißt Verbände mit einer Hand ab und gehst dabei im Kopf bereits die nächsten Schritte durch.",
-
-          "Ein Verwundeter kämpft unter deinen Händen, und du drückst ihn mit festem, ruhigem Griff auf den Tisch — nicht grob, aber unmissverständlich. Die Empathie ist noch da. Aber sie steht jetzt hinter der Konzentration, nicht davor."
+          "Ein Verwundeter kämpft unter deinen Händen, und du drückst ihn mit festem, ruhigem Griff auf den Tisch — nicht grob, aber unmissverständlich. Die Empathie ist noch da. Aber sie steht jetzt hinter der Konzentration, nicht davor.",
+          {
+            "text": "Der Feldscher ist beim Hauptmann, als sie den Holzknecht bringen — die Axt ist abgerutscht, und der Oberschenkel pumpt dunkles Blut in den Verband, schneller als der Stoff trinken kann. Es ist niemand da außer dir.",
+            "ereignis": {
+              "art": "probe",
+              "skill": "medicine",
+              "dc": 14,
+              "mod": 0,
+              "erfolg": "Abbinden, hochlagern, Druck auf die Wunde — deine Hände tun es in der Reihenfolge, die der Bader dir eingebläut hat, während dein Kopf hinterherstolpert. Als der Feldscher zurückkommt, wechselt er nur den Verband. 'Weiter so', sagt er, und mehr gibt es aus seinem Mund nicht.",
+              "fehlschlag": {
+                "text": "Du drückst zu zaghaft und bindest zu spät ab. Der Mann überlebt — der Feldscher war schnell genug zurück — aber sein Blick, als er deine Arbeit sieht, sagt alles. Du schrubbst bis in die Nacht Bretter und Becken, und der Geruch geht nicht mehr raus.",
+                "kondition": -5
+              }
+            }
+          },
+          {
+            "text": "Fieberwache in der Krankenstube, tief in der Nacht. Der Waldarbeiter mit dem genähten Unterschenkel wird unruhig, und unter dem Verband riecht etwas, das gestern noch nicht da war.",
+            "ereignis": {
+              "art": "probe",
+              "skill": "medicine",
+              "dc": 14,
+              "mod": 0,
+              "erfolg": "Du wickelst den Verband ab, siehst die roten Bahnen, die vom Schnitt aufwärts kriechen — und weckst den Feldscher, ohne zu zögern. Er schneidet noch in der Nacht. 'Einen halben Tag später', sagt er beim Nähen, ohne aufzusehen, 'und es wäre das Bein gewesen.'",
+              "fehlschlag": {
+                "text": "Du hältst es für Wundfieber, wie es jeder hat, und wartest bis zum Morgen. Der Feldscher schneidet großzügiger, als er gemusst hätte, und sagt kein einziges Wort zu dir — was lauter ist als jeder Vorwurf. Der Waldarbeiter wird wieder gehen. Du erzählst ihm nicht, wie knapp.",
+                "kondition": -4
+              }
+            }
+          }
         ],
         "expert": [
           "Du führst die Knochensäge mit einer Hand, die nicht zittert. Das Schreien um dich herum ist vorhanden, aber es erreicht dich nicht mehr auf dieselbe Weise — es ist Hintergrund geworden, wie der Wind oder das Feuer, während du arbeitest.",
-
-          "Dein diagnostischer Blick braucht Sekunden, keine Minuten. Im Halbdunkel des Lazaretts sortierst du die hoffnungslosen Fälle von denen, die noch eine Chance haben — nicht mit Kälte, sondern mit der grausamen, notwendigen Effizienz eines Menschen, der verstanden hat, dass Mitgefühl allein hier niemanden rettet."
+          "Dein diagnostischer Blick braucht Sekunden, keine Minuten. Im Halbdunkel des Lazaretts sortierst du die hoffnungslosen Fälle von denen, die noch eine Chance haben — nicht mit Kälte, sondern mit der grausamen, notwendigen Effizienz eines Menschen, der verstanden hat, dass Mitgefühl allein hier niemanden rettet.",
+          {
+            "text": "Zwei Verwundete von der Palisaden-Baustelle, ein Feldscher, zwei Hände zu wenig. Er zeigt auf den Schlimmeren — zerquetschte Hand, splitternde Knochen — und dann auf dich.",
+            "ereignis": {
+              "art": "probe",
+              "skill": "medicine",
+              "dc": 17,
+              "mod": 0,
+              "erfolg": "Du arbeitest, wie er es dich gelehrt hat: erst was tötet, dann was verkrüppelt, dann was schmerzt. Die Hand wird nie wieder schön, aber sie wird greifen. Als du fertig bist, merkst du, dass der Feldscher die ganze Zeit zugesehen hat — und nicht eingegriffen hat.",
+              "fehlschlag": {
+                "text": "Du flickst, was zu flicken ist, aber zwei Finger sind nicht zu retten, und du wirst nie erfahren, ob ein Besserer sie gerettet hätte. Der Mann bedankt sich sogar. Das ist das Schlimmste daran. Die Nacht danach gehört nicht dem Schlaf.",
+                "kondition": -5
+              }
+            }
+          },
+          {
+            "text": "Ein Korporal der Wache humpelt seit Tagen und lässt niemanden heran — alte Narbe, sagt er, das renkt sich. Der Feldscher schickt dich: 'Wenn er dich wegschickt, hast du es falsch gesagt.'",
+            "ereignis": {
+              "art": "probe",
+              "skill": "medicine",
+              "dc": 17,
+              "mod": 0,
+              "erfolg": "Du redest nicht über die Wunde. Du redest über den Dienst — dass ein Korporal, der im Wachbuch steht, keinem nützt, wenn er beim Alarm auf halber Treppe hängt. Er brummt, zieht den Stiefel aus, und du findest die eingerissene Naht, ehe sie zum Wundbrand wird. Er sagt nicht danke. Er meldet sich nur nie wieder krank, wenn du Dienst in der Stube hast.",
+              "fehlschlag": {
+                "text": "Du sprichst die Wunde direkt an, und seine Miene schließt sich wie ein Tor. Drei Tage später bricht die Naht beim Drill vollends, und der Feldscher näht neu, was längst hätte heilen können. 'Was hättest du sagen müssen?', fragt er dich beim Aufräumen — und lässt dich mit der Frage allein.",
+                "kondition": -3
+              }
+            }
+          }
         ]
       },
       "thoughts": {
@@ -581,32 +813,124 @@
           "Ich rette keine Helden hier. Ich rette Männer. Das ist genug."
         ]
       },
-      "rewards": { "stat": "mercy", "statValue": 1, "knowledge": "medicine", "knowledgeValue": 1 }
+      "rewards": {
+        "stat": "mercy",
+        "statValue": 1,
+        "knowledge": "medicine",
+        "knowledgeValue": 1
+      }
     },
-
     "crossbow": {
       "scenery": [
         "Am Schießstand herrscht eine konzentrierte, fast unheimliche Stille — die Stille von Menschen, die alle denselben Punkt in der Ferne anstarren und nichts anderes mehr wahrnehmen. Das harte Peitschen der Stahlsehnen und das dumpfe Einschlagen der Bolzen in Strohscheiben geben ihr einen regelmäßigen, fast beruhigenden Takt.",
-
         "Die Schützen stehen in perfekter Reihe. Kein Gespräch, kein Geräusch außer dem, was zur Aufgabe gehört. Die Armbrust ist eine Waffe für Menschen, die gelernt haben zu warten — und hier lernt man es, ob man will oder nicht.",
-
         "Der Wind pfeift durch die hölzernen Schießscharten und macht die Berechnungen komplizierter, als sie ohnehin schon sind. Auf den Tischen liegen Spindelwinden, Fettnäpfchen und Kisten voller gefiederter Bolzen, aufgereiht mit einer Sorgfalt, die zeigt, dass die Leute hier wissen, was sie tun."
       ],
       "main": {
         "novice": [
           "Du legst die schwere Wippe an die Schulter und stemmst den Fuß in den stählernen Steigbügel. Das Spannen der Sehne kostet mehr Kraft als erwartet — weit mehr — und als sie endlich knackend einrastet, zittern deine Arme. Beim Schuss reißt dir der Rückstoß fast die Waffe aus den Händen, und der Bolzen verschwindet irgendwo weit rechts vom Ziel im Nirgendwo.",
-
-          "Das Visier tanzt, deine Finger sind zu hektisch, und als du schließlich drückst, passiert es einen Herzschlag zu früh. Der Bolzen klatsch in den Dreck, meilenweit an der Scheibe vorbei. Der Ausbilder sagt nichts. Das ist fast schlimmer."
+          "Das Visier tanzt, deine Finger sind zu hektisch, und als du schließlich drückst, passiert es einen Herzschlag zu früh. Der Bolzen klatsch in den Dreck, meilenweit an der Scheibe vorbei. Der Ausbilder sagt nichts. Das ist fast schlimmer.",
+          {
+            "text": "Beim Spannen springt die Klinke der Winde — die Sehne mit zweihundert Pfund Zug schnappt zurück, und deine Finger sind noch am Spannhebel.",
+            "ereignis": {
+              "art": "probe",
+              "skill": "crossbow",
+              "dc": 11,
+              "mod": 0,
+              "erfolg": "Du reißt die Hände weg, ein Herzschlag bevor der Hebel durchschlägt. Die Winde surrt leer aus, und der Stand-Korporal hebt eine Braue: 'Schnelle Pfoten. Behalt sie.'",
+              "fehlschlag": {
+                "text": "Der Hebel erwischt zwei Fingerknöchel, und der Schmerz fährt dir bis in den Ellbogen. Nichts gebrochen, sagt der Korporal nach einem Blick — aber spannen wirst du heute mit links.",
+                "kondition": -4
+              }
+            }
+          },
+          {
+            "text": "Die Bolzen der letzten Übung stecken tief im Eichenpfosten, und der Korporal will sie heil zurück — Schäfte kosten, sagt er, Anfänger auch.",
+            "ereignis": {
+              "art": "probe",
+              "skill": "crossbow",
+              "dc": 11,
+              "mod": 0,
+              "erfolg": "Du fasst nah am Eisen, drehst den Bolzen erst aus der Verkeilung und ziehst dann gerade — einer nach dem anderen, kein Splittern, kein Bruch. Der Korporal zählt nach und nickt: alle wieder im Köcher.",
+              "fehlschlag": {
+                "text": "Beim dritten Bolzen verlierst du die Geduld, und der Schaft bricht mit einem trockenen Knacken ab. Der Korporal hält die Hand auf — Ersatz zahlt, wer bricht.",
+                "kupferVerlust": 1
+              }
+            }
+          }
         ],
         "medium": [
           "Das Kurbeln der Spindelwinde wird zur Gewohnheit — eine feste Folge von Bewegungen, die der Körper irgendwann ohne Nachdenken ausführt. Du legst den Schaft an die Wange, fängst den Wind ab, ziehst den Abzug sauber durch. Der Bolzen klatscht mit einem satten, befriedigenden Laut ins Holz der Scheibe.",
-
-          "Finger weg von der Nuss, Bolzen in die Führungsnut, Blick nach vorn, atmen. Die Handgriffe sitzen. Jetzt feilst du an der Geschwindigkeit — und an der Geduld, die der einzige Unterschied zwischen einem guten und einem toten Schützen ist."
+          "Finger weg von der Nuss, Bolzen in die Führungsnut, Blick nach vorn, atmen. Die Handgriffe sitzen. Jetzt feilst du an der Geschwindigkeit — und an der Geduld, die der einzige Unterschied zwischen einem guten und einem toten Schützen ist.",
+          {
+            "text": "Ein Zweitjähriger mit teurem Barett legt drei Kupfer auf den Balken: drei Schuss, wer näher an der Marke liegt, nimmt alles.",
+            "ereignis": {
+              "art": "probe",
+              "skill": "crossbow",
+              "dc": 14,
+              "mod": 0,
+              "erfolg": {
+                "text": "Dein dritter Bolzen küsst die Marke, seiner steckt eine Handbreit tiefer. Er zahlt wortlos und übt danach auffällig lange weiter.",
+                "kupfer": 3
+              },
+              "fehlschlag": {
+                "text": "Beim letzten Schuss zieht ein Windstoß den Bolzen aus der Linie, und der Zweitjährige streicht das Kupfer mit einem Lächeln ein, das dir noch beim Abendessen im Magen liegt.",
+                "kupferVerlust": 3
+              }
+            }
+          },
+          {
+            "text": "Die Fähnchen über den Scheiben drehen unstet, und die Gruppe neben dir schießt Fehlschuss um Fehlschuss. Ihr Vormann sieht zu dir herüber: 'Dann sag du den Wind an, wenn du es besser weißt.'",
+            "ereignis": {
+              "art": "probe",
+              "skill": "crossbow",
+              "dc": 14,
+              "mod": 0,
+              "erfolg": "Du liest die Fähnchen, den Staub, das Gras — und sagst an: zwei Finger links, tief halten. Die nächste Salve sitzt, und der Vormann gibt die Ansage weiter, als wäre sie seine. Sollen sie — am Stand weiß trotzdem jeder, wessen Auge das war.",
+              "fehlschlag": {
+                "text": "Deine Ansage schickt drei Bolzen weit über den Wall in die Hecken. Ihr sucht sie bis zum Appell, auf Knien, Dorn um Dorn, und der Vormann sagt bei jedem gefundenen Schaft deinen Namen — freundlich, laut und für alle.",
+                "kondition": -3
+              }
+            }
+          }
         ],
         "expert": [
           "Du atmest flach aus. Hältst inne. Im exakten Moment zwischen zwei Herzschlägen löst sich der Schuss — präzise und ohne Zögern — und der Bolzen durchschlägt das Zentrum der Eichenbohle auf hundert Schritt und spaltet den Treffer vom Vortag.",
-
-          "Die schwere Belagerungsarmbrust fühlt sich in deinen Händen nicht mehr schwer an. Du beherrschst die Ballistik im Schlaf, lädst blind und in Rekordzeit nach — und weißt dabei genau, dass Geschwindigkeit hier nur die halbe Kunst ist. Die andere Hälfte ist die Ruhe, die kein Befehl lehren kann."
+          "Die schwere Belagerungsarmbrust fühlt sich in deinen Händen nicht mehr schwer an. Du beherrschst die Ballistik im Schlaf, lädst blind und in Rekordzeit nach — und weißt dabei genau, dass Geschwindigkeit hier nur die halbe Kunst ist. Die andere Hälfte ist die Ruhe, die kein Befehl lehren kann.",
+          {
+            "text": "Der Zeugmeister persönlich bringt eine Windenarmbrust mit stählernem Bogen zum Stand — Beutestück, sagt er, und keiner traue sich, sie zu schießen. Auf hundertfünfzig Schritt hängt ein Fassreifen im Wind, und wer schießen will, legt drei Kupfer in den Helm.",
+            "ereignis": {
+              "art": "probe",
+              "skill": "crossbow",
+              "dc": 17,
+              "mod": 0,
+              "erfolg": {
+                "text": "Der stählerne Bogen singt anders als Esche, härter, kürzer — und der Bolzen fährt mitten durch den Reifen, dass er zweimal um den Haken tanzt. Der Helm wandert zu dir, und der Zeugmeister trägt die Waffe weg wie etwas, das jetzt eine Geschichte hat.",
+                "kupfer": 6
+              },
+              "fehlschlag": {
+                "text": "Der fremde Abzug bricht früher, als dein Finger erwartet, der Bolzen splittert am Pfosten, und dein Kupfer bleibt im Helm. Der Zeugmeister sagt nur: 'Drum.'",
+                "kupferVerlust": 3
+              }
+            }
+          },
+          {
+            "text": "Nach dem letzten Licht steckt der Stand-Korporal zwei Fackeln neben eine Scheibe auf achtzig Schritt und legt zwei Kupfer auf den Balken: 'Nachtschuss. Wer trifft, dem gehören sie. Wer danebenliegt, legt zwei dazu.'",
+            "ereignis": {
+              "art": "probe",
+              "skill": "crossbow",
+              "dc": 17,
+              "mod": 0,
+              "erfolg": {
+                "text": "Die Flammen fressen alle Umrisse, also schießt du nicht auf die Scheibe — du schießt auf die Erinnerung an sie, auf den dunklen Fleck zwischen den Lichtern. Das Klack des Einschlags kommt einen Herzschlag vor dem Raunen. Der Korporal schiebt dir das Kupfer hin, ohne ein Wort.",
+                "kupfer": 4
+              },
+              "fehlschlag": {
+                "text": "Das Fackellicht lügt dir die Entfernung schön, der Bolzen verschwindet klanglos in der Nacht, und deine zwei Kupfer bleiben auf dem Balken. 'Die Nacht', sagt der Korporal und steckt sie ein, 'nimmt keine Entschuldigungen.'",
+                "kupferVerlust": 2
+              }
+            }
+          }
         ]
       },
       "thoughts": {
@@ -623,32 +947,132 @@
           "Ich schieße nicht mehr. Ich warte, bis der Schuss selbst kommt. Der Unterschied klingt gering. Er ist alles."
         ]
       },
-      "rewards": { "stat": "ambition", "statValue": 1, "knowledge": "crossbow", "knowledgeValue": 1 }
+      "rewards": {
+        "stat": "ambition",
+        "statValue": 1,
+        "knowledge": "crossbow",
+        "knowledgeValue": 1
+      }
     },
-
     "thievery": {
       "scenery": [
         "Hinter den Stallungen hört der militärische Drill auf wie ein Licht, das man ausdreht. Der beißende Geruch von Pferdemist mischt sich mit dem Rauch billigen Tabaks, und schattenhafte Gestalten drücken sich an die Holzwände mit der geübten Unauffälligkeit von Menschen, die das seit Jahren tun.",
-
         "Hier patrouillieren keine Wachen — sie meiden diese Ecken aus demselben instinktiven Grund, aus dem man dunkle Gassen meidet: nicht weil sie Angst haben, sondern weil sie wissen, dass manche Dinge reibungsloser laufen, wenn man nicht hinschaut. Das Tuscheln und das dumpfe Rollen von Würfeln auf einem umgedrehten Fass sind die einzigen Geräusche.",
-
         "Die Zivilisation endet an den Stalltoren. Dahinter gelten andere Regeln — keine, die in einer Truppenrolle stehen, und keine, über die man laut spricht. Aber Regeln sind es trotzdem."
       ],
       "main": {
         "novice": [
           "Du schleichst dich im Schatten eines Heuwagens entlang und trittst dabei prompt in einen umgekippten Metalleimer. Das Scheppern ist so laut, dass du für einen Moment zu Stein erstarrst und nicht mehr weißt, ob du atmen sollst. Ein Pferd wiehert unruhig. Niemand kommt. Aber es war knapp.",
-
-          "Du versuchst, einem betrunkenen Trossbuben die Geldbörse vom Gürtel zu schneiden. Deine Hände zittern, du rutschst ab, und im letzten Moment, kurz bevor er sich umdreht, ziehst du die Hand zurück. Du gehst mit leeren Händen und mit dem unangenehmen Wissen, dass du noch nicht bereit bist."
+          {
+            "text": "Du versuchst, einem betrunkenen Trossbuben die Geldbörse vom Gürtel zu schneiden.",
+            "ereignis": {
+              "art": "probe",
+              "skill": "thievery",
+              "dc": 13,
+              "erfolg": {
+                "text": "Ein Schnitt, ein Griff, und der Beutel wechselt den Besitzer, während der Bube gerade dem Fass etwas vorsingt. Er wird es erst morgen merken — und bis dahin hundert Verdächtige haben.",
+                "kupfer": 2
+              },
+              "fehlschlag": {
+                "text": "Deine Hände zittern, du rutschst ab, und im letzten Moment, kurz bevor er sich umdreht, ziehst du die Hand zurück. Du gehst mit leeren Händen und mit dem unangenehmen Wissen, dass du noch nicht bereit bist."
+              }
+            }
+          },
+          {
+            "text": "Hinter den Ställen liegt ein ausgedientes Truhenschloss auf dem Fass — das Übungsstück, an dem die Knechte ihre Wetten austragen. Einer hält dir zwei krumme Sperrhaken hin: 'Frischlinge zuerst.'",
+            "ereignis": {
+              "art": "probe",
+              "skill": "thievery",
+              "dc": 11,
+              "mod": 0,
+              "erfolg": "Du fühlst dich durch das Schloss, Zuhaltung um Zuhaltung, und als es aufschnappt, ist es beinahe eine Enttäuschung, wie leise so ein Sieg klingt. Die Runde nickt — nicht beeindruckt, aber auch nicht mehr spöttisch.",
+              "fehlschlag": {
+                "text": "Der Haken verkantet, du drückst nach, und das dünne Eisen bricht mit einem hellen Pling im Schloss ab. Die Runde johlt, und der Besitzer der Haken hält die Hand auf — Werkzeug zahlt, wer es zerbricht.",
+                "kupferVerlust": 1
+              }
+            }
+          }
         ],
         "medium": [
           "Du bewegst dich durch das tote Sichtfeld der Wachen so lautlos, dass du selbst kaum hörst, wie deine Stiefel den Boden berühren. Deine Augen haben gelernt, die kleinen, nervösen Gesten der Hehler zu lesen — das kurze Augenzwinkern, das leichte Rücken des Ellbogens. Im Vorbeigehen lässt du eine Handvoll Eisennägel und ein schmales Seil in deiner Tasche verschwinden, ohne dass irgendjemand den Kopf dreht.",
-
-          "Hinter einer Holzwand belauschst du ein Gespräch zweier Fourier-Gehilfen über unterschlagene Rationen, die irgendwo zwischen den Lagerbeständen verschwunden sind und die niemand sucht. Du hältst dich flach, atmest flach, bewegst dich nicht. Jedes Wort landet in deinem Gedächtnis, als wäre es eingebrannt."
+          "Hinter einer Holzwand belauschst du ein Gespräch zweier Fourier-Gehilfen über unterschlagene Rationen, die irgendwo zwischen den Lagerbeständen verschwunden sind und die niemand sucht. Du hältst dich flach, atmest flach, bewegst dich nicht. Jedes Wort landet in deinem Gedächtnis, als wäre es eingebrannt.",
+          {
+            "text": "Am umgedrehten Fass ist ein Platz frei geworden, und die Knechte würfeln um mehr, als sie haben. Du kennst die Würfel inzwischen gut genug, um zu wissen, wie man ihnen hilft.",
+            "ereignis": {
+              "art": "probe",
+              "skill": "thievery",
+              "dc": 14,
+              "mod": 0,
+              "erfolg": {
+                "text": "Deine Finger führen die Würfel, ohne dass eine Braue zuckt. Du stehst auf, solange du noch gewinnst — die einzige Regel, die an diesem Fass wirklich gilt. Nur einer sieht dir einen Moment zu lange auf die Hände, ehe er weitertrinkt.",
+                "kupfer": 4,
+                "suspicion": 1
+              },
+              "fehlschlag": {
+                "text": "Ein Knecht mit zu wachen Augen greift nach deinem Handgelenk, einen Herzschlag zu spät, um es zu beweisen — aber früh genug, dass du den Tisch mit leeren Taschen verlässt und der Abgang keine Würde hat. Man wird sich dein Gesicht merken.",
+                "kupferVerlust": 4,
+                "suspicion": 2
+              }
+            }
+          },
+          {
+            "text": "Der Mann mit den nervösen Fingern vom Fass braucht einen Boten: ein handgroßes Päckchen, gut verschnürt, von den Ställen zur Wäscherei — ohne dass eine Wache fragt, was darin ist. Zwei Kupfer für den Weg, drei, wenn niemand dich sieht.",
+            "ereignis": {
+              "art": "probe",
+              "skill": "thievery",
+              "dc": 14,
+              "mod": 0,
+              "erfolg": {
+                "text": "Du nimmst den Weg über den Küchenhof, dort, wo Träger mit Bündeln unsichtbar sind, und lieferst ab, ohne dass sich ein Kopf nach dir dreht. Der Empfänger fragt nicht, du fragst nicht — so bleiben alle Beteiligten gesund.",
+                "kupfer": 3,
+                "suspicion": 1
+              },
+              "fehlschlag": {
+                "text": "Die Wache am Zeughaus winkt dich heran, und das Päckchen wandert aufgeknotet über den Tisch: Rauchkraut, unverzollt. Sie behalten es, dich behalten sie im Blick — und der Mann mit den nervösen Fingern lässt dich die nächsten Tage spüren, was seine Ware wert war.",
+                "suspicion": 3
+              }
+            }
+          }
         ],
         "expert": [
           "Du gleitest durch das nächtliche Lager wie ein Schatten, der vergessen hat, dass er einen Körper hat. Das Knirschen von Kieselsteinen unter deinen Stiefeln fängst du instinktiv ab, noch bevor es entsteht. Die verriegelte Kiste im Quartier des Zahlmeisters öffnet sich unter deinen Fingern, und du bist wieder draußen, bevor der Raum deine Wärme gespürt hat.",
-
-          "Niemand sieht dich, wenn du es nicht willst. Du nutzt die Trägheit der betrunkenen Soldaten, die langen Sichtlinien der müden Wachen, die kurzen Momente der Ablenkung — und am Ende hast du mehr gewonnen als jeden Abend auf dem Exerzierplatz, ohne einen einzigen Befehl befolgt zu haben."
+          "Niemand sieht dich, wenn du es nicht willst. Du nutzt die Trägheit der betrunkenen Soldaten, die langen Sichtlinien der müden Wachen, die kurzen Momente der Ablenkung — und am Ende hast du mehr gewonnen als jeden Abend auf dem Exerzierplatz, ohne einen einzigen Befehl befolgt zu haben.",
+          {
+            "text": "Der Hehler am Fass winkt dich heran. Er hat eine Wette laufen: Wer ihm den Gürtelbeutel abnimmt, ohne dass er es merkt, darf behalten, was drin ist. Drei haben es heute versucht. Der Beutel ist noch da.",
+            "ereignis": {
+              "art": "probe",
+              "skill": "thievery",
+              "dc": 17,
+              "mod": 0,
+              "erfolg": {
+                "text": "Du wartest, bis er selbst kassiert — die eine Handbreit Unaufmerksamkeit, die auch ein Hehler hat — und dann liegt der Beutel in deiner Hand, ehe sein Lachen zu Ende ist. Er sieht den leeren Gürtel an, dann dich. 'Sauber', sagt er — und die Runde ist still.",
+                "kupfer": 7
+              },
+              "fehlschlag": {
+                "text": "Seine Hand schnappt dein Handgelenk wie eine Falle. 'Netter Versuch', sagt er, und die Runde grinst. Der Einsatz bleibt bei ihm — und mit ihm die Geschichte, wie der Frischling sich hat erwischen lassen.",
+                "kupferVerlust": 3
+              }
+            }
+          },
+          {
+            "text": "Die zwei Fourier-Gehilfen und ihre unterschlagenen Rationen gehen dir nicht aus dem Kopf. Du weißt inzwischen, welcher Schuppen nachts nicht bewacht wird — und dass ein Versteck, das niemand sucht, ein Versteck ist, das niemand vermisst.",
+            "ereignis": {
+              "art": "probe",
+              "skill": "thievery",
+              "dc": 17,
+              "mod": 0,
+              "erfolg": {
+                "text": "Unter den leeren Mehlsäcken, hinter der doppelten Bretterwand: Speck, Salz, zwei Beutel Kupfer. Du nimmst nur aus einem Beutel, nicht viel — genug, dass es sich lohnt, zu wenig, dass es auffällt. Sollen die Gehilfen sich wundern, wem sie es nicht melden können.",
+                "kupfer": 6,
+                "suspicion": 1
+              },
+              "fehlschlag": {
+                "text": "Du hast den Riegel kaum offen, da schlagen Stimmen um die Ecke — die Gehilfen, nachts, bei ihrem Schatz. Du nimmst den Weg durchs Fensterloch, reißt dir Schulter und Wams am Rahmen auf und liegst lange im Dunkeln, bis die Schritte sterben. Am Morgen fragt der Fourier auffällig beiläufig, wer sich denn so zugerichtet hat.",
+                "kondition": -5,
+                "suspicion": 2
+              }
+            }
+          }
         ]
       },
       "thoughts": {
@@ -665,7 +1089,12 @@
           "Ich bewege mich durch diesen Ort wie durch ein Werkzeug, das ich von innen kenne. Jede Wache, jede Lücke, jeder blinde Winkel. Das Lager ist mein Jagdrevier."
         ]
       },
-      "rewards": { "stat": "honesty", "statValue": -1, "knowledge": "thievery", "knowledgeValue": 1 }
+      "rewards": {
+        "stat": "honesty",
+        "statValue": -1,
+        "knowledge": "thievery",
+        "knowledgeValue": 1
+      }
     }
   }
 }
