@@ -7569,7 +7569,7 @@ setup.biwagLogRender = function () {
         out += '<li class="' + cls + '"><span class="biwag-log-mark">' + zeichen + '</span> ' + e.text + '</li>';
     });
     return out + '</ul>';
-};</script><tw-tag name="script" color="purple"></tw-tag><tw-tag name="widget" color="blue"></tw-tag><tw-tag name="nach_stube" color="orange"></tw-tag><tw-tag name="nach_hub" color="green"></tw-tag><tw-tag name="nach_morgen" color="red"></tw-tag><tw-tag name="nach_appell" color="yellow"></tw-tag><tw-tag name="nach_Kap2_morgen" color="green"></tw-tag><tw-tag name="startup-debug" color="purple"></tw-tag><tw-tag name="einmalig" color="red"></tw-tag><tw-tag name="pruefung" color="green"></tw-tag><tw-tag name="layout" color="green"></tw-tag><tw-tag name="journal" color="orange"></tw-tag><tw-tag name="nach_Kap2_tag" color="green"></tw-tag><tw-tag name="nach_Kap2_abend" color="yellow"></tw-tag><tw-tag name="header" color="blue"></tw-tag><tw-tag name="interrupt" color="purple"></tw-tag><tw-tag name="studium" color="yellow"></tw-tag><tw-tag name="kapitel-opener" color="red"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="0,225" size="100,100">&lt;&lt;set $npc to clone(setup.npcDefaults)&gt;&gt;
+};</script><tw-tag name="pruefung" color="green"></tw-tag><tw-tag name="startup-debug" color="purple"></tw-tag><tw-tag name="nach_appell" color="yellow"></tw-tag><tw-tag name="nach_hub" color="green"></tw-tag><tw-tag name="studium" color="yellow"></tw-tag><tw-tag name="header" color="blue"></tw-tag><tw-tag name="nach_stube" color="orange"></tw-tag><tw-tag name="nach_morgen" color="red"></tw-tag><tw-tag name="interrupt" color="purple"></tw-tag><tw-tag name="nach_Kap2_morgen" color="green"></tw-tag><tw-tag name="nach_Kap2_abend" color="yellow"></tw-tag><tw-tag name="script" color="purple"></tw-tag><tw-tag name="widget" color="blue"></tw-tag><tw-tag name="layout" color="green"></tw-tag><tw-tag name="journal" color="orange"></tw-tag><tw-tag name="nach_Kap2_tag" color="green"></tw-tag><tw-tag name="einmalig" color="red"></tw-tag><tw-tag name="kapitel-opener" color="red"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="0,225" size="100,100">&lt;&lt;set $npc to clone(setup.npcDefaults)&gt;&gt;
 &lt;&lt;set $world to clone(setup.worldDefaults)&gt;&gt;
 &lt;&lt;set $player to clone(setup.playerDefaults)&gt;&gt;
 &lt;&lt;include &quot;InitStudium&quot;&gt;&gt;
@@ -19981,9 +19981,22 @@ Nur ein Mann, dem der Krieg etwas genommen hat — und der trotzdem noch hier st
     &lt;&lt;/if&gt;&gt;
 	
     &lt;&lt;if _event neq &quot;Event_Schlaegerei&quot;&gt;&gt;
+        &lt;p&gt;Es ist ein ruhiger Abend. Einige der Kameraden liegen schon in ihren Pritschen und schalfen oder sind zumindest kurz davor. Andere Reden noch über den Tag, das Erlebte 
+        und Geschichten die man sonst wo aufgeschnappt hat.&lt;/p&gt;
+
+        &lt;p&gt;Hier könnten ein paar interessante Sachen zu erfahren sein. Oder du legst dich auch hin und ruhst dich aus.&lt;/p&gt;
+
         &lt;hr class=&quot;trenner-raute&quot;&gt;
-            [[Zuhören, was geredet wird -&gt;Event_Geschichte]]
-            [[Schlafen-&gt;Kap1_Tagesstart]]
+            &lt;&lt;link &quot;Zuhören, was geredet wird&quot;&gt;&gt;
+                &lt;&lt;run setup.setPlayerStat(&quot;ambition&quot;, 1)&gt;&gt;
+                &lt;&lt;goto &quot;Event_Geschichte&quot;&gt;&gt;
+            &lt;&lt;/link&gt;&gt;
+
+            &lt;&lt;link &quot;Schlafen&quot;&gt;&gt;
+                &lt;&lt;run setup.setPlayerStat(&quot;discipline&quot;, 1)&gt;&gt;
+                &lt;&lt;goto &quot;Kap1_Tagesstart&quot;&gt;&gt;
+            &lt;&lt;/link&gt;&gt;
+
     &lt;&lt;/if&gt;&gt;   
     
     
