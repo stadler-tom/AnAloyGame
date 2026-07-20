@@ -760,8 +760,10 @@ Du bleibst stehen, atmest flach und lässt die Brocken nicht mehr einzeln vorbei
 <<trenner>>
 <<weiterImTag "Tswu .. viel... lang... verdammt!">>
 
+:: EE_Tross_Kap2 [interrupt einmalig]
+<<include "EE_Tross_Intro">>
 
-:: EE_Tross_Intro [kap1] {"position":"725,750","size":"100,100"}
+:: EE_Tross_Intro [interrupt einmalig kap1] {"position":"725,750","size":"100,100"}
 <p>Der Schinder hat dich am Morgen zur Seite genommen — keine große Sache, nur eine Besorgung. 
 Irgendetwas fehlt im Lager, irgendjemand braucht irgendetwas aus der Stadt, und du bist der, der gerade keinen Grund hat nein zu sagen.</p>
 
@@ -1070,6 +1072,7 @@ Eine kurze Pause. „Ich fand's zumindest sehr souverän, wie ich das vorhin rü
 <<set $npc.clausz.known to true>>
 <<set $npc.tilly.known to true>>
 <<set $npc.rosi.known to true>>
+<<set $world.flags.ee_tross_done to true>>
 
 <<trenner>>
 <<weiterImTag "Zurück zum Tagesgeschehen">>
@@ -1461,6 +1464,14 @@ Du weißt nicht, ob sie es ernst meinen oder ob sie nur so tun, aber es ist egal
 
 <p>Der Reihe nach wandern die Blicke am Feuer zu dir, dem neuen Gesicht, und wer dich noch nicht kennt, macht es kurz.</p>
 
+<<if setup.hasNpcMemory("weibelLars", "Saurreiten in Ohm")>>
+	<<dialog>>
+	<p>Eine Pranke klatscht dir auf die Schulter. Fast kippst du vorne über<<quote Der Herr Schweinereiter!>> Der Lagerweibel Lars lacht dir breit ins Gesicht.</p>
+	<p><<quote Da gehts einmal in eine Taverne und dann passiert da sowas. Der Opa ht schon immer gsagt dass unverhofft oft kommt.>> Von der Anderen Seite begüßt dich Haddl.</p>
+<</dialog>>
+<p>Offensichilich hast du eindruck hinterlassen.</p>
+<</if>>
+
 <<dialog>>
 <<for _k range setup.unbekannteSoeldner()>>
 	<<capture _k>>
@@ -1484,6 +1495,10 @@ Du weißt nicht, ob sie es ernst meinen oder ob sie nur so tun, aber es ist egal
 	<</capture>>
 <</for>>
 <</dialog>>
+
+
+
+
 
 <p>Irgendwer fragt, wie die Ausbildung so läuft. Das ist alles, was es braucht. Die Becher werden voller, die
 Geschichten kommen.</p>
@@ -1839,5 +1854,7 @@ Weg, bis die grauen Mauern der Akademie ihn schlucken.</p>
 <p>Ich will mir das merken. Die Gesichter, das Lachen, das Kupfer in Heinrichs Faust. Damit ich weiß, wofür das
 alles ist, wenn es hart wird.</p>
 <</gedanke>>
+
+<<set $world.flags.kap2_Besuch_done to true>>
 
 <<weiterImTag "Zurück auf die Stube, ehe der Morgen graut">>

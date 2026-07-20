@@ -41,7 +41,7 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": true
+                "autoReveal": false
               },
               "icon": "lucide-folder-closed",
               "title": "Dateiexplorer"
@@ -185,6 +185,9 @@
   },
   "active": "2e86e795bfe20ffd",
   "lastOpenFiles": [
+    "SAp2ORA/Prozesse.canvas",
+    "Aloy Landesinfos/11_Aloy_Lieder_und_Ingame_Texte.md",
+    "SAp2ORA",
     "Duell/Ablaufplan.canvas",
     "temp Tesing/Unbenannt.canvas",
     "temp Tesing/Ereignis 3.md",
@@ -206,7 +209,6 @@
     "Aloy Landesinfos/06_Aloy_Splitterlande.md",
     "Aloy Landesinfos/05_Aloy_Pantheon.md",
     "Aloy Landesinfos/10_Aloy_Aloyer_Bote.md",
-    "Aloy Landesinfos/11_Aloy_Lieder_und_Ingame_Texte.md",
     "Biwag/Story/Biwag_Drill.md",
     "Biwag/Story/Biwag_Debrief_Ehrlich.md",
     "Biwag/Story/Biwag_Debrief_Beschoenigen.md",
@@ -223,7 +225,6 @@
     "Duell/Kanon.md.tmp.41676.2443ff23506c",
     "Duell/Kanon.md.tmp.41676.94c8e7fa08fe",
     "Aloy Landesinfos/Charackterinfos",
-    "Aloy Landesinfos",
-    "Duell/Kanon.md.tmp.33544.32cf70f1e319"
+    "Aloy Landesinfos"
   ]
 }

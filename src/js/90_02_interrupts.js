@@ -161,11 +161,9 @@ setup.interruptKapitel["Story004_Interrupt_Schinder_Stellprobe"] = 1;
 setup.interruptKapitel["Story005_Gottesdienst"] = 1;
 
 /* --- EE_Tross_Intro: Schinder-Besorgung führt in den Tross (Easter Egg, spät in Kap 1) --- */
-setup.interruptCond["EE_Tross_Intro"] = w => {
-    var f = State.variables.npc.schinder.memory.flags;
-    var h = w.interruptHistory;
-    return f.tross_seen !== true
-        && w.day >= 17;
+setup.interruptCond["EE_Tross_Intro"] = w =>{
+    !w.flags.ee_tross_done 
+    && w.day >= 17;
 };
 setup.interruptPrio["EE_Tross_Intro"] = 20;
 
@@ -355,6 +353,15 @@ setup.interruptPrio["Kapitel1_Ende"] = 90;
 /* ================================================================
    SECTION 04  INTERRUPT-REGISTRY — KAPITEL 2
    ================================================================ */
+
+/* --- EE_Tross_Kap2: Zweitchance in Kap 2, falls in Kap 1 nicht passiert --- */
+setup.interruptCond["EE_Tross_Kap2"] = w => {
+    w.kapitel1_gesperrt === true 
+    && !w.flags.ee_tross_done 
+    && !w.flags.kap2_Besuch_done;
+};
+setup.interruptPrio["EE_Tross_Kap2"] = 20;
+
 
 /* ===== VERDACHT-ESKALATION (player.suspicion) — Kap 2 ===== */
 setup.interruptCond["Suspicion_Rapport_Rindler"] = w => {
