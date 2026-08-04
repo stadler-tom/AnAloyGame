@@ -6483,7 +6483,8 @@ setup.kap2Storylets = [
         available: function () {
             // Rindler hat laut Dienstplan nicht jeden Tag Zeit
             return State.variables.world.day % 2 === 0
-                && State.variables.npc.hauptmann.affection > -5; // bei zu starker Ablehnung meidet er einen
+                && State.variables.npc.hauptmann.affection > -5 // bei zu starker Ablehnung meidet er einen
+                && State.variables.world.rindler_tag !== State.variables.world.day;
         }
     },
     {
@@ -6493,7 +6494,8 @@ setup.kap2Storylets = [
         available: function () {
             // Halm hält nur an bestimmten Tagen Sprechstunde
             return [1, 4].includes(State.variables.world.day % 7)
-                && State.variables.npc.magister.affection > -10; // bei Feindseligkeit verweigert er komplett
+                && State.variables.npc.magister.affection > -10 // bei Feindseligkeit verweigert er komplett
+                && State.variables.world.halm_tag !== State.variables.world.day;
         }
     },
     {
@@ -7576,7 +7578,7 @@ setup.biwagLogRender = function () {
         out += '<li class="' + cls + '"><span class="biwag-log-mark">' + zeichen + '</span> ' + e.text + '</li>';
     });
     return out + '</ul>';
-};</script><tw-tag name="header" color="blue"></tw-tag><tw-tag name="script" color="purple"></tw-tag><tw-tag name="einmalig" color="red"></tw-tag><tw-tag name="interrupt" color="purple"></tw-tag><tw-tag name="studium" color="yellow"></tw-tag><tw-tag name="journal" color="orange"></tw-tag><tw-tag name="nach_Kap2_abend" color="yellow"></tw-tag><tw-tag name="nach_stube" color="orange"></tw-tag><tw-tag name="nach_hub" color="green"></tw-tag><tw-tag name="pruefung" color="green"></tw-tag><tw-tag name="nach_Kap2_morgen" color="green"></tw-tag><tw-tag name="widget" color="blue"></tw-tag><tw-tag name="nach_appell" color="yellow"></tw-tag><tw-tag name="kapitel-opener" color="red"></tw-tag><tw-tag name="layout" color="green"></tw-tag><tw-tag name="startup-debug" color="purple"></tw-tag><tw-tag name="nach_morgen" color="red"></tw-tag><tw-tag name="nach_Kap2_tag" color="green"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="0,225" size="100,100">&lt;&lt;set $npc to clone(setup.npcDefaults)&gt;&gt;
+};</script><tw-tag name="nach_Kap2_morgen" color="green"></tw-tag><tw-tag name="nach_hub" color="green"></tw-tag><tw-tag name="einmalig" color="red"></tw-tag><tw-tag name="nach_morgen" color="red"></tw-tag><tw-tag name="journal" color="orange"></tw-tag><tw-tag name="nach_Kap2_abend" color="yellow"></tw-tag><tw-tag name="widget" color="blue"></tw-tag><tw-tag name="interrupt" color="purple"></tw-tag><tw-tag name="studium" color="yellow"></tw-tag><tw-tag name="kapitel-opener" color="red"></tw-tag><tw-tag name="nach_Kap2_tag" color="green"></tw-tag><tw-tag name="header" color="blue"></tw-tag><tw-tag name="startup-debug" color="purple"></tw-tag><tw-tag name="nach_stube" color="orange"></tw-tag><tw-tag name="layout" color="green"></tw-tag><tw-tag name="script" color="purple"></tw-tag><tw-tag name="nach_appell" color="yellow"></tw-tag><tw-tag name="pruefung" color="green"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="0,225" size="100,100">&lt;&lt;set $npc to clone(setup.npcDefaults)&gt;&gt;
 &lt;&lt;set $world to clone(setup.worldDefaults)&gt;&gt;
 &lt;&lt;set $player to clone(setup.playerDefaults)&gt;&gt;
 &lt;&lt;include &quot;InitStudium&quot;&gt;&gt;
@@ -20675,7 +20677,8 @@ Es gibt nichts zu tun, als zu warten, was sie finden.&lt;/p&gt;
 &lt;&lt;/if&gt;&gt;
 
 &lt;&lt;set $world.tagesAktionen += 1&gt;&gt;
-&lt;&lt;weiterImTag &quot;Zurück in den Tag&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="337" name="Tageshub_Halm" tags="" position="1900,5600" size="100,100">&lt;&lt;scene&gt;&gt;
+&lt;&lt;weiterImTag &quot;Zurück in den Tag&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="337" name="Tageshub_Halm" tags="" position="1900,5600" size="100,100">&lt;&lt;set $world.halm_tag to $world.day&gt;&gt;
+&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Die Schreibstube liegt im ältesten Flügel der Akademie, wo das Licht durch schmale Fenster fällt wie durch ein Sieb und der Staub in der Luft steht, als hätte er sich seit Jahrzehnten nicht mehr zu bewegen getraut. Magister Cornelius Halm sitzt über einem aufgeschlagenen Folianten, die Feder in der einen, ein Lesegerät aus geschliffenem Glas in der anderen Hand, und hebt den Blick erst, als deine Schritte auf den Dielen ihn nicht länger ignorieren lassen.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
 
@@ -20719,7 +20722,8 @@ Es gibt nichts zu tun, als zu warten, was sie finden.&lt;/p&gt;
 &lt;&lt;if _stufe gte 2&gt;&gt;&lt;li&gt;[[Sie in die Stadt begleiten|Karla_Zeit_Stadtgang]]&lt;/li&gt;&lt;&lt;/if&gt;&gt;
 &lt;&lt;if setup.hatKarlaGeschenk()&gt;&gt;&lt;li&gt;[[Ihr etwas geben|Karla_Geschenk]]&lt;/li&gt;&lt;&lt;/if&gt;&gt;
 &lt;li&gt;[[Doch wieder gehen|Kap2_Tageshub][$world.tagesAktionen -= 1]]&lt;/li&gt;
-&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="339" name="Tageshub_Rindler" tags="" position="1750,5300" size="100,100">&lt;&lt;scene&gt;&gt;
+&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="339" name="Tageshub_Rindler" tags="" position="1750,5300" size="100,100">&lt;&lt;set $world.rindler_tag to $world.day&gt;&gt;
+&lt;&lt;scene&gt;&gt;
 &lt;p&gt;Das Quartier der Hauptleute liegt im steinernen Flügel der Akademie, dort, wo die Mauern dicker sind und die Kälte anders riecht — nach Wachs, nach frisch geöltem Riemenzeug, nach der stillen Schwere von Papier, das Befehle trägt. Der Posten mustert dich, ehe er dich mit einem knappen Nicken einlässt.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
 
@@ -21429,7 +21433,13 @@ Karla hört zu, den Blick bei den Sternen, und wirft nur hin und wieder einen tr
 [[Das Licht löschen. -&gt;Kap2_Abend]]</tw-passagedata><tw-passagedata pid="356" name="Kap2_Abend_Schenke" tags="" position="2875,4050" size="100,100">&lt;&lt;set $world.schenkeRueckweg to &quot;Kap2_Abend&quot;&gt;&gt;
 &lt;&lt;scene&gt;&gt;Die Stadt bei Nacht ist eine andere Stadt. Die Marktstände sind verrammelt, dafür fällt aus den Gassen um den Grauen Wolf warmes Licht auf das Pflaster, und mit ihm Stimmen, Würfelklappern und der Geruch von Bier und Talg. Um diese Stunde sitzt hier jeder, der einen Grund hat, nicht zu schlafen — und jeder, der einen sucht.&lt;&lt;/scene&gt;&gt;
 
-[[Eintreten. -&gt;Stadt_Schenke]]</tw-passagedata><tw-passagedata pid="357" name="Kap2_Abend_Waffenpflege" tags="" position="2425,3950" size="100,100">&lt;&lt;scene&gt;&gt;Du sitzt auf der Bank vor der Baracke, die Waffe über den Knien, und arbeitest dich durch die Handgriffe, die dir das erste Jahr eingebläut hat — Schneide, Schaft, Riemen, jede Schraube, jede Naht.&lt;&lt;/scene&gt;&gt;
+&lt;&lt;link &quot;Eintreten.&quot;&gt;&gt;
+	&lt;&lt;if setup.hasItem(&quot;field_knife&quot;) and not $world.schenkeEncounterVorbei&gt;&gt;
+		&lt;&lt;goto &quot;Stadt_Schenke_MitMesser&quot;&gt;&gt;
+	&lt;&lt;else&gt;&gt;
+		&lt;&lt;goto &quot;Stadt_Schenke&quot;&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
+&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="357" name="Kap2_Abend_Waffenpflege" tags="" position="2425,3950" size="100,100">&lt;&lt;scene&gt;&gt;Du sitzt auf der Bank vor der Baracke, die Waffe über den Knien, und arbeitest dich durch die Handgriffe, die dir das erste Jahr eingebläut hat — Schneide, Schaft, Riemen, jede Schraube, jede Naht.&lt;&lt;/scene&gt;&gt;
 
 &lt;p&gt;Es ist stumpfe Arbeit, und genau das ist ihr Wert: Die Hände tun, was sie können, und der Kopf sortiert derweil den Tag. Als du fertig bist, liegt das Zeug bereit wie für eine Parade — und morgen wird jeder Handgriff einen Fingerbreit leichter gehen.&lt;/p&gt;
 
@@ -22382,14 +22392,9 @@ in den Ärmeln, der dich schon eine Weile betrachtet haben muss.&lt;/p&gt;
 &lt;&lt;else&gt;&gt;
 	&lt;p&gt;Du zählst nach — und steckst den Beutel wieder ein. Dafür reicht es heute nicht.&lt;/p&gt;
 &lt;&lt;/if&gt;&gt;
-[[Zurück zum Markt|Stadt_Markt]]</tw-passagedata><tw-passagedata pid="371" name="Stadt_Schenke_MitMesser" tags="" position="100,4725" size="100,100">&lt;&lt;if $world.schenkeMesserState isnot &quot;armed&quot;&gt;&gt;
+[[Zurück zum Markt|Stadt_Markt]]</tw-passagedata><tw-passagedata pid="371" name="Stadt_Schenke_MitMesser" tags="" position="100,4725" size="100,100">&lt;&lt;if not setup.hasItem(&quot;field_knife&quot;) or $world.schenkeEncounterVorbei&gt;&gt;
     &lt;&lt;goto &quot;Stadt_Schenke&quot;&gt;&gt;
 &lt;&lt;/if&gt;&gt;
-
-&lt;&lt;set $world.schenkeMesserState to &quot;shown&quot;&gt;&gt;
-&lt;&lt;set $world.schenkeMesserSeen to true&gt;&gt;
-&lt;&lt;set $world.schenkeEncounter to true&gt;&gt;
-&lt;&lt;set $world.schenkeEncounterVorbei to false&gt;&gt;
 
 &lt;&lt;scene&gt;&gt;
 &lt;p&gt;„Zum Grauen Wolf“ liegt tief im Gassengewirr, ihr Schild so verwittert, dass der namensgebende Wolf kaum mehr zu erkennen ist. 
@@ -22419,7 +22424,7 @@ Dunkeln, das Kopfsteinpflaster glänzt vom Nieselregen, der seit dem Nachmittag 
 tropft Wasser von einer Dachtraufe, gleichmäßig, wie ein Zählwerk.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
 
-&lt;&lt;if $world.schenkeMesserState is &quot;shown&quot; and not $world.schenkeEncounterVorbei&gt;&gt;
+&lt;&lt;if setup.hasItem(&quot;field_knife&quot;) and not $world.schenkeEncounterVorbei&gt;&gt;
 
 &lt;p&gt;Du bist keine zehn Schritte weit gekommen, als sich vor dir eine Gestalt aus dem Schatten eines Torbogens
 löst. Der Bullige aus der Schenke. Hinter dir Schritte — ein zweiter, den du drinnen gar nicht bemerkt hast.&lt;/p&gt;
@@ -22454,10 +22459,7 @@ löst. Der Bullige aus der Schenke. Hinter dir Schritte — ein zweiter, den du 
 
 [[Zurück zum Tageshub-&gt;Tageshub_Stadt]]
 
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="373" name="VorDerSchenke_Kampf" tags="" position="350,4725" size="100,100">&lt;&lt;set $world.schenkeMesserState to &quot;done&quot;&gt;&gt;
-&lt;&lt;set $world.schenkeEncounterVorbei to true&gt;&gt;
-&lt;&lt;set $world.schenkeEncounter to false&gt;&gt;
-&lt;&lt;set $world.schenkeMesserSeen to true&gt;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="373" name="VorDerSchenke_Kampf" tags="" position="350,4725" size="100,100">&lt;&lt;set $world.schenkeEncounterVorbei to true&gt;&gt;
 
 &lt;div class=&quot;system-alert status-positive&quot;&gt;🎲 Probe auf Kampfkraft — gelungen&lt;/div&gt;
 
@@ -22487,17 +22489,7 @@ und das ist mehr, als du vor einem Jahr von dir erwartet hättest.&lt;/p&gt;
 &lt;&lt;= setup.gainSkillXp(&quot;combat&quot;, 15)&gt;&gt;
 
 &lt;&lt;trenner&gt;&gt;
-[[Zurück zum Tageshub-&gt;Tageshub_Stadt]]</tw-passagedata><tw-passagedata pid="374" name="Stadt_Schenke" tags="" position="2100,5625" size="100,100">&lt;&lt;if $world.schenkeMesserState is undefined&gt;&gt;
-    &lt;&lt;if $world.schenkeEncounterVorbei&gt;&gt;
-        &lt;&lt;set $world.schenkeMesserState to &quot;done&quot;&gt;&gt;
-    &lt;&lt;elseif $world.schenkeMesserSeen&gt;&gt;
-        &lt;&lt;set $world.schenkeMesserState to &quot;shown&quot;&gt;&gt;
-    &lt;&lt;else&gt;&gt;
-        &lt;&lt;set $world.schenkeMesserState to &quot;none&quot;&gt;&gt;
-    &lt;&lt;/if&gt;&gt;
-&lt;&lt;/if&gt;&gt;
-
-&lt;&lt;scene&gt;&gt;
+[[Zurück zum Tageshub-&gt;Tageshub_Stadt]]</tw-passagedata><tw-passagedata pid="374" name="Stadt_Schenke" tags="" position="2100,5625" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;„Zum Grauen Wolf“ liegt tief im Gassengewirr, ihr Schild so verwittert, dass der namensgebende Wolf kaum mehr zu erkennen ist. Drinnen erwartet dich eine Wand aus Wärme, Talglicht und dem beißenden Rauch billigen Tabaks, vermengt mit dem säuerlichen Duft von verschüttetem Bier und feuchtem Stroh, das den Boden bedeckt. An den Tischen sitzen Fuhrleute, ein paar Söldner ohne Banner, ein Weib, das Karten mischt, als wäre es ihr Handwerk.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
 
@@ -22529,7 +22521,7 @@ und das ist mehr, als du vor einem Jahr von dir erwartet hättest.&lt;/p&gt;
  &lt;/li&gt;
  &lt;li&gt;
  &lt;&lt;set _rueck to $world.schenkeRueckweg || &quot;Tageshub_Stadt&quot;&gt;&gt;
- &lt;&lt;if $world.schenkeMesserState is &quot;shown&quot; and not $world.schenkeEncounterVorbei&gt;&gt;
+ &lt;&lt;if setup.hasItem(&quot;field_knife&quot;) and not $world.schenkeEncounterVorbei&gt;&gt;
      &lt;&lt;link &quot;Die Schenke verlassen&quot; &quot;VorDerSchenke&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
      &lt;span class=&quot;subtext&quot;&gt;— Der Weg hinaus führt in die nasse Gasse.&lt;/span&gt;
  &lt;&lt;elseif _rueck === &quot;Kap2_Abend&quot;&gt;&gt;
@@ -22805,7 +22797,11 @@ und das ist mehr, als du vor einem Jahr von dir erwartet hättest.&lt;/p&gt;
 	&lt;li&gt;
 	&lt;&lt;link &quot;Die Schenke aufsuchen&quot;&gt;&gt;
 		&lt;&lt;set $world.stadtActivitiesUsed += 1&gt;&gt;
-		&lt;&lt;goto &quot;Stadt_Schenke&quot;&gt;&gt;
+		&lt;&lt;if setup.hasItem(&quot;field_knife&quot;) and not $world.schenkeEncounterVorbei&gt;&gt;
+			&lt;&lt;goto &quot;Stadt_Schenke_MitMesser&quot;&gt;&gt;
+		&lt;&lt;else&gt;&gt;
+			&lt;&lt;goto &quot;Stadt_Schenke&quot;&gt;&gt;
+		&lt;&lt;/if&gt;&gt;
 	&lt;&lt;/link&gt;&gt;
 	&lt;span class=&quot;subtext&quot;&gt;— Würfeln, trinken, den Ohren der Gaststube lauschen.&lt;/span&gt;
 	&lt;/li&gt;

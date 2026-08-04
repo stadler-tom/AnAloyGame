@@ -984,14 +984,9 @@ in den Ärmeln, der dich schon eine Weile betrachtet haben muss.</p>
 
 :: Stadt_Schenke_MitMesser
 
-<<if $world.schenkeMesserState isnot "armed">>
+<<if not setup.hasItem("field_knife") or $world.schenkeEncounterVorbei>>
     <<goto "Stadt_Schenke">>
 <</if>>
-
-<<set $world.schenkeMesserState to "shown">>
-<<set $world.schenkeMesserSeen to true>>
-<<set $world.schenkeEncounter to true>>
-<<set $world.schenkeEncounterVorbei to false>>
 
 <<scene>>
 <p>„Zum Grauen Wolf“ liegt tief im Gassengewirr, ihr Schild so verwittert, dass der namensgebende Wolf kaum mehr zu erkennen ist. 
@@ -1026,7 +1021,7 @@ Dunkeln, das Kopfsteinpflaster glänzt vom Nieselregen, der seit dem Nachmittag 
 tropft Wasser von einer Dachtraufe, gleichmäßig, wie ein Zählwerk.</p>
 <</scene>>
 
-<<if $world.schenkeMesserState is "shown" and not $world.schenkeEncounterVorbei>>
+<<if setup.hasItem("field_knife") and not $world.schenkeEncounterVorbei>>
 
 <p>Du bist keine zehn Schritte weit gekommen, als sich vor dir eine Gestalt aus dem Schatten eines Torbogens
 löst. Der Bullige aus der Schenke. Hinter dir Schritte — ein zweiter, den du drinnen gar nicht bemerkt hast.</p>
@@ -1066,10 +1061,7 @@ löst. Der Bullige aus der Schenke. Hinter dir Schritte — ein zweiter, den du 
 
 :: VorDerSchenke_Kampf
 
-<<set $world.schenkeMesserState to "done">>
 <<set $world.schenkeEncounterVorbei to true>>
-<<set $world.schenkeEncounter to false>>
-<<set $world.schenkeMesserSeen to true>>
 
 <div class="system-alert status-positive">🎲 Probe auf Kampfkraft — gelungen</div>
 
@@ -1104,16 +1096,6 @@ und das ist mehr, als du vor einem Jahr von dir erwartet hättest.</p>
 
 :: Stadt_Schenke {"position":"2100,5625","size":"100,100"}
 
-<<if $world.schenkeMesserState is undefined>>
-    <<if $world.schenkeEncounterVorbei>>
-        <<set $world.schenkeMesserState to "done">>
-    <<elseif $world.schenkeMesserSeen>>
-        <<set $world.schenkeMesserState to "shown">>
-    <<else>>
-        <<set $world.schenkeMesserState to "none">>
-    <</if>>
-<</if>>
-
 <<scene>>
 <p>„Zum Grauen Wolf“ liegt tief im Gassengewirr, ihr Schild so verwittert, dass der namensgebende Wolf kaum mehr zu erkennen ist. Drinnen erwartet dich eine Wand aus Wärme, Talglicht und dem beißenden Rauch billigen Tabaks, vermengt mit dem säuerlichen Duft von verschüttetem Bier und feuchtem Stroh, das den Boden bedeckt. An den Tischen sitzen Fuhrleute, ein paar Söldner ohne Banner, ein Weib, das Karten mischt, als wäre es ihr Handwerk.</p>
 <</scene>>
@@ -1146,7 +1128,7 @@ und das ist mehr, als du vor einem Jahr von dir erwartet hättest.</p>
  </li>
  <li>
  <<set _rueck to $world.schenkeRueckweg || "Tageshub_Stadt">>
- <<if $world.schenkeMesserState is "shown" and not $world.schenkeEncounterVorbei>>
+ <<if setup.hasItem("field_knife") and not $world.schenkeEncounterVorbei>>
      <<link "Die Schenke verlassen" "VorDerSchenke">><</link>>
      <span class="subtext">— Der Weg hinaus führt in die nasse Gasse.</span>
  <<elseif _rueck === "Kap2_Abend">>
@@ -1430,7 +1412,11 @@ und das ist mehr, als du vor einem Jahr von dir erwartet hättest.</p>
 	<li>
 	<<link "Die Schenke aufsuchen">>
 		<<set $world.stadtActivitiesUsed += 1>>
-		<<goto "Stadt_Schenke">>
+		<<if setup.hasItem("field_knife") and not $world.schenkeEncounterVorbei>>
+			<<goto "Stadt_Schenke_MitMesser">>
+		<<else>>
+			<<goto "Stadt_Schenke">>
+		<</if>>
 	<</link>>
 	<span class="subtext">— Würfeln, trinken, den Ohren der Gaststube lauschen.</span>
 	</li>

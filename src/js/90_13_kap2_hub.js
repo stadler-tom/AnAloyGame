@@ -70,7 +70,8 @@ setup.kap2Storylets = [
         available: function () {
             // Rindler hat laut Dienstplan nicht jeden Tag Zeit
             return State.variables.world.day % 2 === 0
-                && State.variables.npc.hauptmann.affection > -5; // bei zu starker Ablehnung meidet er einen
+                && State.variables.npc.hauptmann.affection > -5 // bei zu starker Ablehnung meidet er einen
+                && State.variables.world.rindler_tag !== State.variables.world.day;
         }
     },
     {
@@ -80,7 +81,8 @@ setup.kap2Storylets = [
         available: function () {
             // Halm hält nur an bestimmten Tagen Sprechstunde
             return [1, 4].includes(State.variables.world.day % 7)
-                && State.variables.npc.magister.affection > -10; // bei Feindseligkeit verweigert er komplett
+                && State.variables.npc.magister.affection > -10 // bei Feindseligkeit verweigert er komplett
+                && State.variables.world.halm_tag !== State.variables.world.day;
         }
     },
     {

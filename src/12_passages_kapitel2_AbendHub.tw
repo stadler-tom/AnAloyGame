@@ -271,7 +271,13 @@ Karla hört zu, den Blick bei den Sternen, und wirft nur hin und wieder einen tr
 <<set $world.schenkeRueckweg to "Kap2_Abend">>
 <<scene>>Die Stadt bei Nacht ist eine andere Stadt. Die Marktstände sind verrammelt, dafür fällt aus den Gassen um den Grauen Wolf warmes Licht auf das Pflaster, und mit ihm Stimmen, Würfelklappern und der Geruch von Bier und Talg. Um diese Stunde sitzt hier jeder, der einen Grund hat, nicht zu schlafen — und jeder, der einen sucht.<</scene>>
 
-[[Eintreten. ->Stadt_Schenke]]
+<<link "Eintreten.">>
+	<<if setup.hasItem("field_knife") and not $world.schenkeEncounterVorbei>>
+		<<goto "Stadt_Schenke_MitMesser">>
+	<<else>>
+		<<goto "Stadt_Schenke">>
+	<</if>>
+<</link>>
 
 
 :: Kap2_Abend_Waffenpflege {"position":"2425,3950","size":"100,100"}

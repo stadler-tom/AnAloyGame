@@ -657,6 +657,7 @@ Es gibt nichts zu tun, als zu warten, was sie finden.</p>
 
 
 :: Tageshub_Halm {"position":"1900,5600","size":"100,100"}
+<<set $world.halm_tag to $world.day>>
 <<scene>>
 <p>Die Schreibstube liegt im ältesten Flügel der Akademie, wo das Licht durch schmale Fenster fällt wie durch ein Sieb und der Staub in der Luft steht, als hätte er sich seit Jahrzehnten nicht mehr zu bewegen getraut. Magister Cornelius Halm sitzt über einem aufgeschlagenen Folianten, die Feder in der einen, ein Lesegerät aus geschliffenem Glas in der anderen Hand, und hebt den Blick erst, als deine Schritte auf den Dielen ihn nicht länger ignorieren lassen.</p>
 <</scene>>
@@ -709,6 +710,7 @@ Es gibt nichts zu tun, als zu warten, was sie finden.</p>
 
 
 :: Tageshub_Rindler {"position":"1750,5300","size":"100,100"}
+<<set $world.rindler_tag to $world.day>>
 <<scene>>
 <p>Das Quartier der Hauptleute liegt im steinernen Flügel der Akademie, dort, wo die Mauern dicker sind und die Kälte anders riecht — nach Wachs, nach frisch geöltem Riemenzeug, nach der stillen Schwere von Papier, das Befehle trägt. Der Posten mustert dich, ehe er dich mit einem knappen Nicken einlässt.</p>
 <</scene>>
