@@ -7578,7 +7578,7 @@ setup.biwagLogRender = function () {
         out += '<li class="' + cls + '"><span class="biwag-log-mark">' + zeichen + '</span> ' + e.text + '</li>';
     });
     return out + '</ul>';
-};</script><tw-tag name="nach_Kap2_morgen" color="green"></tw-tag><tw-tag name="nach_hub" color="green"></tw-tag><tw-tag name="einmalig" color="red"></tw-tag><tw-tag name="nach_morgen" color="red"></tw-tag><tw-tag name="journal" color="orange"></tw-tag><tw-tag name="nach_Kap2_abend" color="yellow"></tw-tag><tw-tag name="widget" color="blue"></tw-tag><tw-tag name="interrupt" color="purple"></tw-tag><tw-tag name="studium" color="yellow"></tw-tag><tw-tag name="kapitel-opener" color="red"></tw-tag><tw-tag name="nach_Kap2_tag" color="green"></tw-tag><tw-tag name="header" color="blue"></tw-tag><tw-tag name="startup-debug" color="purple"></tw-tag><tw-tag name="nach_stube" color="orange"></tw-tag><tw-tag name="layout" color="green"></tw-tag><tw-tag name="script" color="purple"></tw-tag><tw-tag name="nach_appell" color="yellow"></tw-tag><tw-tag name="pruefung" color="green"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="0,225" size="100,100">&lt;&lt;set $npc to clone(setup.npcDefaults)&gt;&gt;
+};</script><tw-tag name="layout" color="green"></tw-tag><tw-tag name="header" color="blue"></tw-tag><tw-tag name="startup-debug" color="purple"></tw-tag><tw-tag name="interrupt" color="purple"></tw-tag><tw-tag name="kapitel-opener" color="red"></tw-tag><tw-tag name="nach_Kap2_abend" color="yellow"></tw-tag><tw-tag name="nach_hub" color="green"></tw-tag><tw-tag name="studium" color="yellow"></tw-tag><tw-tag name="pruefung" color="green"></tw-tag><tw-tag name="journal" color="orange"></tw-tag><tw-tag name="nach_Kap2_morgen" color="green"></tw-tag><tw-tag name="script" color="purple"></tw-tag><tw-tag name="einmalig" color="red"></tw-tag><tw-tag name="nach_morgen" color="red"></tw-tag><tw-tag name="nach_Kap2_tag" color="green"></tw-tag><tw-tag name="widget" color="blue"></tw-tag><tw-tag name="nach_stube" color="orange"></tw-tag><tw-tag name="nach_appell" color="yellow"></tw-tag><tw-passagedata pid="1" name="StoryInit" tags="" position="0,225" size="100,100">&lt;&lt;set $npc to clone(setup.npcDefaults)&gt;&gt;
 &lt;&lt;set $world to clone(setup.worldDefaults)&gt;&gt;
 &lt;&lt;set $player to clone(setup.playerDefaults)&gt;&gt;
 &lt;&lt;include &quot;InitStudium&quot;&gt;&gt;
@@ -21190,7 +21190,19 @@ gut und schlecht, marschiert mit. Ich trage es weiter. Ich habe keine Wahl. Ich 
 &lt;&lt;/gedanke&gt;&gt;
 
 &lt;&lt;trenner&gt;&gt;
-[[Hinaus, dem Abenteuer entgegen-&gt;Kapitel3_Start]]</tw-passagedata><tw-passagedata pid="348" name="Kapitel3_Start" tags="" position="975,4350" size="100,100">TO BE DONE</tw-passagedata><tw-passagedata pid="349" name="Kap2_Abend" tags="" position="2750,3800" size="100,100">&lt;&lt;if $world.abendAktion === undefined&gt;&gt;&lt;&lt;set $world.abendAktion to false&gt;&gt;&lt;&lt;/if&gt;&gt;
+[[Hinaus, dem Abenteuer entgegen-&gt;Kapitel3_Start]]</tw-passagedata><tw-passagedata pid="348" name="Kapitel3_Start" tags="" position="975,4350" size="100,100">&lt;&lt;scene&gt;&gt;Das Tor der Akademie zu Ohm fällt hinter der Kolonne zu, und der Weg vor dir verliert sich grau im Morgen. Was hier war — der
+Drill, die Nächte, die Wahl und der Verrat — bleibt zurück hinter Mauern, die mit jedem Schritt kleiner werden.&lt;&lt;/scene&gt;&gt;
+
+&lt;&lt;formal&gt;&gt;Und hier endet, was bisher geschrieben steht.&lt;br&gt;&lt;br&gt;
+Danke. Nicht Thomas gilt das, sondern dir — dafür, dass du dir die Zeit genommen hast, seine Geschichte nicht nur zu spielen, sondern zu
+lesen. Jede Entscheidung, jeder ausgehaltene Schlag, jede Lüge, die du geschluckt oder ausgesprochen hast, hat aus dem kurzatmigen Kind
+einen gemacht, der in seinem Banner steht und nicht mehr weicht. Das war deine Hand, die ihn geführt hat.&lt;br&gt;&lt;br&gt;
+Wie es mit Thomas weitergeht, steht noch nicht fest. Ein drittes Kapitel ist noch nicht geschrieben — vielleicht wartet eines Tages mehr
+hinter diesem Tor, vielleicht bleibt es bei dem Weg, den ihr gemeinsam gegangen seid. So oder so: einen besseren Begleiter hätte er
+nicht haben können.&lt;br&gt;&lt;br&gt;
+Bis dahin — danke fürs Spielen.&lt;&lt;/formal&gt;&gt;
+
+&lt;&lt;gedanke&gt;&gt;Was kommt, kommt. Aber was war, das war meins. Und ein Stück weit auch deins.&lt;&lt;/gedanke&gt;&gt;</tw-passagedata><tw-passagedata pid="349" name="Kap2_Abend" tags="" position="2750,3800" size="100,100">&lt;&lt;if $world.abendAktion === undefined&gt;&gt;&lt;&lt;set $world.abendAktion to false&gt;&gt;&lt;&lt;/if&gt;&gt;
 &lt;&lt;set $player.hasSlept to true&gt;&gt;
 
 &lt;&lt;scene&gt;&gt;Die Glocke über dem Torhaus schlägt die letzte Stunde des Dienstes. 
@@ -22457,7 +22469,12 @@ löst. Der Bullige aus der Schenke. Hinter dir Schritte — ein zweiter, den du 
 
 &lt;p&gt;Die Gasse liegt ruhig vor dir. Kein Schatten, der sich löst, keine Schritte außer deinen eigenen.&lt;/p&gt;
 
-[[Zurück zum Tageshub-&gt;Tageshub_Stadt]]
+&lt;&lt;set _rueck to $world.schenkeRueckweg || &quot;Tageshub_Stadt&quot;&gt;&gt;
+&lt;&lt;if _rueck === &quot;Kap2_Abend&quot;&gt;&gt;
+	&lt;&lt;link &quot;Zurück zur Akademie&quot; _rueck&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;else&gt;&gt;
+	&lt;&lt;link &quot;Zurück zum Tageshub&quot; _rueck&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;/if&gt;&gt;
 
 &lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="373" name="VorDerSchenke_Kampf" tags="" position="350,4725" size="100,100">&lt;&lt;set $world.schenkeEncounterVorbei to true&gt;&gt;
 
@@ -22489,7 +22506,12 @@ und das ist mehr, als du vor einem Jahr von dir erwartet hättest.&lt;/p&gt;
 &lt;&lt;= setup.gainSkillXp(&quot;combat&quot;, 15)&gt;&gt;
 
 &lt;&lt;trenner&gt;&gt;
-[[Zurück zum Tageshub-&gt;Tageshub_Stadt]]</tw-passagedata><tw-passagedata pid="374" name="Stadt_Schenke" tags="" position="2100,5625" size="100,100">&lt;&lt;scene&gt;&gt;
+&lt;&lt;set _rueck to $world.schenkeRueckweg || &quot;Tageshub_Stadt&quot;&gt;&gt;
+&lt;&lt;if _rueck === &quot;Kap2_Abend&quot;&gt;&gt;
+	&lt;&lt;link &quot;Zurück zur Akademie&quot; _rueck&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;else&gt;&gt;
+	&lt;&lt;link &quot;Zurück zum Tageshub&quot; _rueck&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="374" name="Stadt_Schenke" tags="" position="2100,5625" size="100,100">&lt;&lt;scene&gt;&gt;
 &lt;p&gt;„Zum Grauen Wolf“ liegt tief im Gassengewirr, ihr Schild so verwittert, dass der namensgebende Wolf kaum mehr zu erkennen ist. Drinnen erwartet dich eine Wand aus Wärme, Talglicht und dem beißenden Rauch billigen Tabaks, vermengt mit dem säuerlichen Duft von verschüttetem Bier und feuchtem Stroh, das den Boden bedeckt. An den Tischen sitzen Fuhrleute, ein paar Söldner ohne Banner, ein Weib, das Karten mischt, als wäre es ihr Handwerk.&lt;/p&gt;
 &lt;&lt;/scene&gt;&gt;
 

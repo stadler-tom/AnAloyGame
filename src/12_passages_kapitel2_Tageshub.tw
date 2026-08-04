@@ -1054,7 +1054,12 @@ löst. Der Bullige aus der Schenke. Hinter dir Schritte — ein zweiter, den du 
 
 <p>Die Gasse liegt ruhig vor dir. Kein Schatten, der sich löst, keine Schritte außer deinen eigenen.</p>
 
-[[Zurück zum Tageshub->Tageshub_Stadt]]
+<<set _rueck to $world.schenkeRueckweg || "Tageshub_Stadt">>
+<<if _rueck === "Kap2_Abend">>
+	<<link "Zurück zur Akademie" _rueck>><</link>>
+<<else>>
+	<<link "Zurück zum Tageshub" _rueck>><</link>>
+<</if>>
 
 <</if>>
 
@@ -1091,7 +1096,12 @@ und das ist mehr, als du vor einem Jahr von dir erwartet hättest.</p>
 <<= setup.gainSkillXp("combat", 15)>>
 
 <<trenner>>
-[[Zurück zum Tageshub->Tageshub_Stadt]]
+<<set _rueck to $world.schenkeRueckweg || "Tageshub_Stadt">>
+<<if _rueck === "Kap2_Abend">>
+	<<link "Zurück zur Akademie" _rueck>><</link>>
+<<else>>
+	<<link "Zurück zum Tageshub" _rueck>><</link>>
+<</if>>
 
 
 :: Stadt_Schenke {"position":"2100,5625","size":"100,100"}
