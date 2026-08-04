@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Aloy Landesinfos/11_Aloy_Lieder_und_Ingame_Texte.md",
+                "file": "Aloy Landesinfos/05_Aloy_Pantheon.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "11_Aloy_Lieder_und_Ingame_Texte"
+              "title": "05_Aloy_Pantheon"
             }
           }
         ]
@@ -185,8 +185,8 @@
   },
   "active": "2e86e795bfe20ffd",
   "lastOpenFiles": [
-    "SAp2ORA/Prozesse.canvas",
     "Aloy Landesinfos/11_Aloy_Lieder_und_Ingame_Texte.md",
+    "SAp2ORA/Prozesse.canvas",
     "SAp2ORA",
     "Duell/Ablaufplan.canvas",
     "temp Tesing/Unbenannt.canvas",

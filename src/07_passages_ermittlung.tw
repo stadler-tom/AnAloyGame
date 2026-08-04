@@ -2918,7 +2918,7 @@ was ein flüchtiger Beobachter übersähe, und dein Gedächtnis hält es fest.</
 <<weiterImTag>>
 
 
-:: Ermittlung_Nachspiel_Grodaus [nach_Kap2_tag] {"position":"550,6800","size":"100,100"}
+:: Ermittlung_Nachspiel_Grodaus [interrupt einmalig nach_Kap2_tag] {"position":"550,6800","size":"100,100"}
 <<run setup.ermInit()>>
 <<scene>>
 <p>Drei Tage vergehen, in denen niemand ein Wort verliert. Oren wurde „versetzt“, sagt man in der Stube, mit dem Achselzucken, das Männer für Dinge haben, die sie nichts angehen. Keine Zeremonie, kein Vermerk, kein Dank. Die Akademie schluckt, was geschehen ist, und tut, als wäre es nie geschehen — denn eine Republik, die von ihrer Freiheit singt, gibt nicht zu, dass ein Königstreuer ein Jahr lang ihr Tor gehütet hat.</p>
