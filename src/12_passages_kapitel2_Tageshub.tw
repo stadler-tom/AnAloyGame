@@ -360,7 +360,7 @@ aufbrechen.</p>
 	seine Liste her.</p>
 	<</dialog>>
 	<<if setup.canAffordMoney(6)>>
-		<<link "Einen Brief an Zdenka schicken (6 Kupfer)">>
+		<<link "Einen Brief an Zdenka schicken (6 Kupfer)">> 
 			<<print setup.removeMoney(6)>>
 			<<set $world.flags.sendLetterToZdenka to true>>
 			<<goto "Tageshub_Stadt">>
