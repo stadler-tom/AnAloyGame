@@ -604,6 +604,7 @@ setup.npcDefaults = {
      vincente: {
         name: "Vincente",
         known: false,
+        image:"images/Vinzente.png",
         faction: "La Familia",
         subfaction: null,
         affection: 0,
