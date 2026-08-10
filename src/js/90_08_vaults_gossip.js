@@ -238,12 +238,12 @@ setup.getNaechsterTagText = function (category) {
             return true;
         });
 
-        // 25% Chance, einen Luigi-Moment anzuzeigen
+        // 25% Chance, einen Lorenzo-Moment anzuzeigen
         if (luigiPool.length > 0 && Math.random() < 0.25) {
             var pick = luigiPool[Math.floor(Math.random() * luigiPool.length)];
             return pick ? pick.text : "";
         }
-        return ""; // meistens: kein Luigi-Moment
+        return ""; // meistens: kein Lorenzo-Moment
     }
 
     // Für alle anderen Kategorien: Kontext-Match bevorzugen

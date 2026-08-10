@@ -172,7 +172,7 @@ Dokumentierte Produkte und Inserate:
   Werbung für den Wachdienst: Wer sich über laute Bäcker, verdächtige Nachbarn oder Wucherpreise ärgere, solle sich der Wache anschließen und selbst für Gerechtigkeit sorgen.
 
 - **Heinrichsfest-Tombola**  
-  Das Luigi Handelskontor bewirbt eine Tombola zugunsten eines Waisenhauses für Kriegswaisen aus dem Krieg gegen die Otzlande.
+  Das Lorenzo Handelskontor bewirbt eine Tombola zugunsten eines Waisenhauses für Kriegswaisen aus dem Krieg gegen die Otzlande.
 
 - **Söldnergilde Neu-Ostringen**  
   Sucht tapfere Streiter in den Streitlanden.
@@ -461,7 +461,7 @@ Dokumentierte Anzeigen und Meldungen:
 
 - Fahrer für Karren voll Hartkäse gesucht;
 - GWALT wählt Weibel **Lars Spalter** vom 84. Banner als neues Gilden-Ratsmitglied für die Truppen;
-- Heinrichsfest-Tombola des Luigi Handelskontors zugunsten des Waisenhauses für Kriegswaisen aus dem Krieg gegen die Otzlande;
+- Heinrichsfest-Tombola des Lorenzo Handelskontors zugunsten des Waisenhauses für Kriegswaisen aus dem Krieg gegen die Otzlande;
 - Kontaktanzeige eines „strammen Knechts“;
 - Rabattkarten der Lokale Bumsburg und Bumsbar vermisst;
 - Söldnergilde Neu-Ostringen sucht Streiter;

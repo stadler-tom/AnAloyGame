@@ -583,9 +583,9 @@ setup.npcDefaults = {
        =========================== */
 
     luigi: {
-        name: "Luigi",
+        name: "Lorenzo",
         known: false,
-        image: "images/Luigi.png",
+        image: "images/Lorenzo.png",
         faction: "La Familia",
         subfaction: null,
         affection: 4,
@@ -595,9 +595,9 @@ setup.npcDefaults = {
         journalEntry: "Ein Name. Ein Handelszeichen. Jemand hat sich um dich gekümmert, einmal – in den Bergen Aloys, als du noch klein und krank warst. Wer das war, weißt du nicht mehr genau. Anwalt mit Lizenz in Aloy."
         /*
             PLOTNOTIZ:
-            Luigi ist Thomas' Pate. Er taucht nicht persönlich auf –
+            Lorenzo ist Thomas' Pate. Er taucht nicht persönlich auf –
             wird nur erwähnt: ein Brief, ein Handelszeichen, ein Name der fällt.
-            Der echte Spieler Luigi soll beim Lesen erkennen:
+            Der echte Spieler Lorenzo soll beim Lesen erkennen:
             Das ist mein Patenkind.
         */
     },

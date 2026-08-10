@@ -19,7 +19,7 @@
 
 <<if $world.ermittlung.flags.westhof_done === true>>
 	<div class="info-box">
-		Luigi! Er hat Kontakte und könnte etwas in Erfahrung bringen. Aber kann ich ihn schon wieder um Hilfe bitten oder überreize ich den Bogen?
+		Lorenzo! Er hat Kontakte und könnte etwas in Erfahrung bringen. Aber kann ich ihn schon wieder um Hilfe bitten oder überreize ich den Bogen?
 	</div>
 <</if>> 
 
@@ -373,7 +373,7 @@ aufbrechen.</p>
 	<</if>>
 <</if>>
 
-/* --- Familia / Luigi, wenn die Westhof-Spur steht --- */
+/* --- Familia / Lorenzo, wenn die Westhof-Spur steht --- */
 <<if $world.ermittlung.flags.westhof_done === true and not $world.ermittlung.flags.sendLetterToLuigi>>
 	<<set _hatEmpfaenger to true>>
 	<<dialog>>
@@ -383,7 +383,7 @@ aufbrechen.</p>
 	seine Liste her.</p>
 	<</dialog>>
 	<<if setup.canAffordMoney(8)>>
-		<<link "Einen Brief an Luigi schicken (8 Kupfer)">>
+		<<link "Einen Brief an Lorenzo schicken (8 Kupfer)">>
 			<<print setup.removeMoney(8)>>
 			<<set $world.ermittlung.flags.sendLetterToLuigi to true>>
 			<<set $world.ermittlung.flags.familia_kontakt_tag to $world.day>>

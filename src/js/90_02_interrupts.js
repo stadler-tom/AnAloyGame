@@ -283,7 +283,7 @@ setup.interruptCond["karla_S5"] = w => {
 };
 setup.interruptPrio["karla_S5"] = 60;
 
-/* --- karla_S7: Luigis Ankunft (Phase 5) --- */
+/* --- karla_S7: Lorenzos Ankunft (Phase 5) --- */
 setup.interruptCond["karla_S7"] = w => {
     var f = State.variables.npc.karla.memory.flags;
     return f.brief_gesendet === true
@@ -531,12 +531,12 @@ setup.interruptCond["Ermittlung_S9_Nachtfuhre"] = w => {
 setup.interruptPrio["Ermittlung_S9_Nachtfuhre"] = 58;
 
 /* ===== ERMITTLUNG – La-Familia-Faden (nur Story, liefert Gerüchte, keinen Kopf) =====
-   "Wort an Luigi schicken" setzt: $world.ermittlung.flags.familia_kontaktiert = true
+   "Wort an Lorenzo schicken" setzt: $world.ermittlung.flags.familia_kontaktiert = true
    + $world.ermittlung.flags.familia_kontakt_tag = $world.day */
 setup.interruptCond["Ermittlung_Familia_Antwort"] = w => {
     var e = w.ermittlung || { flags: {} };
     var f = e.flags || {};
-    return State.variables.npc.luigi.known === true   /* Linie zu Luigi muss bestehen */
+    return State.variables.npc.luigi.known === true   /* Linie zu Lorenzo muss bestehen */
         && f.sendLetterToLuigi === true
         && f.familia_antwort !== true
         && w.day >= (f.familia_kontakt_tag || 0) + 5;

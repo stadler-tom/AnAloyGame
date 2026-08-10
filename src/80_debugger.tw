@@ -134,7 +134,7 @@
     <p>
         Ermittlung frühestens Tag:
         <b><<= $world.ermittlung.fruehestens_tag>></b> ·
-        Luigi bekannt:
+        Lorenzo bekannt:
         <b><<= $npc.luigi && $npc.luigi.known ? "ja" : "nein">></b>
     </p>
 </div>
@@ -453,7 +453,7 @@ Karla: <b><<= $npc.karla.memory.flags.verhaftung_seen ? "VERHAFTET" : "frei">></
 Magister: Zuneigung <b>$npc.magister.affection</b> · Archivzugang: <b><<= $edu.archivzugang ? "ja" : "nein">></b><br>
 Skills: Pike $player.knowledge.pike · Armbrust $player.knowledge.crossbow · Geschütz $player.knowledge.cannon · Heilkunde $player.knowledge.medicine · Schatten $player.knowledge.thievery · Gerüchte $player.knowledge.gossip · Gelehrsamkeit $player.stats.scholarship<br>
 Spezialisierung: <b><<= $player.spezialisierung || "— (noch nicht gewählt)">></b> · Kupfer: <b>$player.money.copper</b> · Kondition: <b>$player.condition</b> · Verdacht: <b>$player.suspicion</b><br>
-Ermittlung frühestens Tag: <b><<= $world.ermittlung.fruehestens_tag>></b> · Luigi bekannt: <b><<= $npc.luigi.known ? "ja" : "nein">></b></p>
+Ermittlung frühestens Tag: <b><<= $world.ermittlung.fruehestens_tag>></b> · Lorenzo bekannt: <b><<= $npc.luigi.known ? "ja" : "nein">></b></p>
 </div>
 
 <h4>Jarek-Ausgang</h4>

@@ -431,9 +431,9 @@ Kulturelle Bedeutung:
 - Präsentationsspiel,
 - wirtschaftlicher Austausch mit Humor.
 
-### Käseschmuggel für Luigis
+### Käseschmuggel für Lorenzos
 
-Der **Käseschmuggel für Luigis** ist als eigenes Event genannt. Details sind im Quelldokument nicht ausgearbeitet. Der Titel legt ein komödiantisches Schmuggel- oder Handelsplotformat nahe.
+Der **Käseschmuggel für Lorenzos** ist als eigenes Event genannt. Details sind im Quelldokument nicht ausgearbeitet. Der Titel legt ein komödiantisches Schmuggel- oder Handelsplotformat nahe.
 
 ### Knecht und Kultur Abend / Aloyer Amüsier Abend
 
@@ -720,7 +720,7 @@ Mehrere Spiele sind namentlich genannt, aber nicht vollständig beschrieben. Das
 
 - „Tschuldigung, wo geht’s denn da zum Krieg?“,
 - Hochecker Schanzensturm,
-- Käseschmuggel für Luigis,
+- Käseschmuggel für Lorenzos,
 - Zubertermin.
 
 Diese Begriffe sind gutes Spielmaterial, benötigen aber für eine konkrete Durchführung eigene Regeln.

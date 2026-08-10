@@ -2407,7 +2407,7 @@ Wie ist er tatsächlich hinausgekommen? Mit einem gestohlenen Dokument, mitten i
 <p>„Wenn das stimmt“, sagt Karla langsam, „dann war Jarek nicht das erste Stück Fracht. 
 Ein Weg wie dieser wird nicht für einen einzigen Mann gebaut. Er wird gebaut, weil man ihn braucht — immer wieder.“</p>
 <<if $world.ermittlung.flags.familia_antwort>>
-	<p>„Luigis Brief“, sagst du. „Ware unter falschen Namen, über die Fuhrmannswege. Kein Raub — ein Tragen.“</p>
+	<p>„Lorenzos Brief“, sagst du. „Ware unter falschen Namen, über die Fuhrmannswege. Kein Raub — ein Tragen.“</p>
 <<else>>
 	<p>„Sie müssen still und im Verborgenen bleiben.“ bemerkst du. </p>
 <</if>>
@@ -2446,7 +2446,7 @@ und einen Schreiber, der beides liefern kann. Die Ausbesserungsfuhren der Waffen
 <</formal>>
 
 
-<p>Wenn das stimmt, dann war Jarek nicht das erste Stück Fracht. Ein Weg wie dieser wird nicht für einen einzigen Mann gebaut — er wird gebaut, weil man ihn braucht, immer wieder. Luigis Brief: Ware unter falschen Namen, über die Fuhrmannswege. Kein Raub — ein Tragen. Und die Frage ist: Wie oft stand 'zur Nachprüfung Westhof' in diesem Buch? Ich muss es noch einmal aufschlagen. Diesmal weiß ich, wonach ich suche — und diesmal ist niemand bei mir, der mit mir zählt.</p>
+<p>Wenn das stimmt, dann war Jarek nicht das erste Stück Fracht. Ein Weg wie dieser wird nicht für einen einzigen Mann gebaut — er wird gebaut, weil man ihn braucht, immer wieder. Lorenzos Brief: Ware unter falschen Namen, über die Fuhrmannswege. Kein Raub — ein Tragen. Und die Frage ist: Wie oft stand 'zur Nachprüfung Westhof' in diesem Buch? Ich muss es noch einmal aufschlagen. Diesmal weiß ich, wonach ich suche — und diesmal ist niemand bei mir, der mit mir zählt.</p>
 
 
 <</if>>
@@ -2903,7 +2903,7 @@ was ein flüchtiger Beobachter übersähe, und dein Gedächtnis hält es fest.</
 <p>Etwas läuft, das ist sicher. Ware unter falschen Namen, über die Fuhrmannswege, kein Raub — ein Tragen. Aber keiner von meinen Leuten rührt es an. „Frommes Zeug", sagen sie, und sie sagen es leise, und dann reden sie über das Wetter. Verstehst du? Die Grauwelt hat vor wenig Angst. Vor diesen hier hat sie Angst.</p>
 <p>Eine Tür öffnet man mit Gold, ragazzo. Die nächste mit Furcht. Diese Leute aber wollen kein Gold und fürchten den Tod nicht, denn sie glauben. Maurice hat geredet, bis ihm die Zunge schwer wurde. Vincente hat einem Mann zugesetzt, der lieber die Schläge nahm als ein Wort. Und jeder von ihnen weiß nur sein eigenes kleines Kästchen, nie das nächste.</p>
 <p>Also hör auf einen alten Mann: Den Weg hinein findest nicht ich von außen. Den findest du, wo du schon stehst — hinter deinen eigenen Mauern. Schau in dein eigenes Haus.</p>
-<p>Man hat mir gesagt, die Käserei daheim sei fort. Schade. Es war ein guter Käse. Pass auf dich auf, und auf das Mädchen mit dem roten Kopf, von dem mir Wenzel erzählt. — Luigi.</p>
+<p>Man hat mir gesagt, die Käserei daheim sei fort. Schade. Es war ein guter Käse. Pass auf dich auf, und auf das Mädchen mit dem roten Kopf, von dem mir Wenzel erzählt. — Lorenzo.</p>
 <</dialog>>
 <hr class="trenner-raute">
 

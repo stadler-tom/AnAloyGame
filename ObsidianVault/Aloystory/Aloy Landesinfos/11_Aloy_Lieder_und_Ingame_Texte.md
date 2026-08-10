@@ -232,7 +232,7 @@ Die Verse sind bewusst derb, lokal, anspielungsreich und nicht immer für Außen
 
 ---
 
-## 1.9 „Luigi ist ein weiser Mann“
+## 1.9 „Lorenzo ist ein weiser Mann“
 
 **Typ:** kurzer Reim / Küchen- oder Bewirtungsspruch  
 **Quellenstatus:** im Materialblock nach den Amüsierabend-/Liedtexten enthalten.  
@@ -240,7 +240,7 @@ Die Verse sind bewusst derb, lokal, anspielungsreich und nicht immer für Außen
 
 **Inhaltliche Zusammenfassung:**
 
-Der kurze Reim preist Luigi als weisen Mann, der seiner Frau etwas gönnen will, und verweist darauf, dass Aloyer kochen können. Hurenwaibl Clausz wird als Koch genannt, der einen Schmaus kredenzt.
+Der kurze Reim preist Lorenzo als weisen Mann, der seiner Frau etwas gönnen will, und verweist darauf, dass Aloyer kochen können. Hurenwaibl Clausz wird als Koch genannt, der einen Schmaus kredenzt.
 
 **Spielnutzung:**
 

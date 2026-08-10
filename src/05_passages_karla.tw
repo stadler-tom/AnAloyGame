@@ -816,20 +816,20 @@ von dir erzählt.</p>
 <p>Du nickst, ohne zu verstehen, woher ein fremder Weibel des 84. deinen Namen kennt.</p>
 <</if>>
 
-<p>Er wendet sich zu dem Mann mit dem kurzen Vollbart, der die ganze Zeit in deine Richtung gesehen hat. „Da ist er. Wie bestellt." Dann, zu dir, mit einer ausladenden Geste: „Junge, das hier ist Luigi. Luigi vom Handelskontor. Dein Pate — der Mann, der dich all die Jahre unterstützt hat."</p>
+<p>Er wendet sich zu dem Mann mit dem kurzen Vollbart, der die ganze Zeit in deine Richtung gesehen hat. „Da ist er. Wie bestellt." Dann, zu dir, mit einer ausladenden Geste: „Junge, das hier ist Lorenzo. Lorenzo vom Handelskontor. Dein Pate — der Mann, der dich all die Jahre unterstützt hat."</p>
 
 <p>Die Worte treffen dich wie aus großer Entfernung.</p>
 
-<div class="scenery-text">Luigi. Der Name allein wirft dich um Jahre zurück. Eine Unterschrift am Fuß von Briefen, die immer pünktlich kamen. Ein ferner Wohltäter, den du dir als Kind tausendmal ausgemalt und nie zu Gesicht bekommen hast. Der Mann, der dich von der Straße holte, dein Asthma, deine Berge, dein ganzes Leben danach bezahlte — ohne je vor dir zu stehen.</div>
+<div class="scenery-text">Lorenzo. Der Name allein wirft dich um Jahre zurück. Eine Unterschrift am Fuß von Briefen, die immer pünktlich kamen. Ein ferner Wohltäter, den du dir als Kind tausendmal ausgemalt und nie zu Gesicht bekommen hast. Der Mann, der dich von der Straße holte, dein Asthma, deine Berge, dein ganzes Leben danach bezahlte — ohne je vor dir zu stehen.</div>
 
 <p>Und jetzt steht er vor dir. Aus Fleisch und Blut, normale Statur, ein gepflegter Bart, ruhige Augen, ein schwerer Ring an der Hand. Kleiner, als der Mann in deiner Vorstellung war. Und unendlich viel wirklicher.</p>
 
-<div class="thought-box">All die Jahre war Luigi ein Wort. Eine Unterschrift. Eine Schuld, die ich nie begleichen konnte, weil ich nicht einmal wusste, wem ich sie schulde. Und jetzt hat das Wort ein Gesicht.</div>
+<div class="thought-box">All die Jahre war Lorenzo ein Wort. Eine Unterschrift. Eine Schuld, die ich nie begleichen konnte, weil ich nicht einmal wusste, wem ich sie schulde. Und jetzt hat das Wort ein Gesicht.</div>
 
-<p>Luigi tritt einen Schritt vor. Er mustert dich, langsam, und etwas in seinem Blick wird weich.</p>
+<p>Lorenzo tritt einen Schritt vor. Er mustert dich, langsam, und etwas in seinem Blick wird weich.</p>
 
 <div class="dialog">„Thomaso Wabbler", sagt er. Er legt die Betonung auf eine Art, die du noch nie gehört hast — das gerollte, weiche Ende deines Namens, südländisch, warm. „Buongiorno. Es iste gute, dich endlich zu sehen mite eigene Augen, eh? Endlich. Nach so viele, viele Briefe."</div>
-<div class="dialog">„Du haste geschrieben", sagt er leise, nur für dich. „Und Luigi kommt — Luigi komme, Immer." Er hebt eine Hand, 
+<div class="dialog">„Du haste geschrieben", sagt er leise, nur für dich. „Und Lorenzo kommt — Lorenzo komme, Immer." Er hebt eine Hand, 
 deutet beiläufig auf die drei hinter sich. „Aber non heute allein, eh? Heute habe ich ... wie sagte man ... compagnia mitgebracht. Gesellschaft."</div>
 
 <<trenner>>
@@ -837,7 +837,7 @@ deutet beiläufig auf die drei hinter sich. „Aber non heute allein, eh? Heute 
 
 
 :: karla_S7_gespraech [nach_stube] {"position":"1175,3400","size":"100,100"}
-<p>Luigi tritt neben dich und dreht dich mit einer Hand an der Schulter sanft ein Stück zur Seite, weg von den gaffenden Rekruten, sodass ihr für einen Moment fast unter euch seid.</p>
+<p>Lorenzo tritt neben dich und dreht dich mit einer Hand an der Schulter sanft ein Stück zur Seite, weg von den gaffenden Rekruten, sodass ihr für einen Moment fast unter euch seid.</p>
 
 <div class="dialog">„Lass mich sehen die Junge." Er mustert dich mit einem Schmunzeln, von Kopf bis Fuß. „Die Briefe, die du mir geschrieben haste, als du klein warst — immer dieselbe Schrift, immer dasselbe: ‚Die Lufte hier iste besser.‘" Er lacht leise. „Und ich habe nie gewusste, iste wahr oder iste der Junge nur höflich, eh? Aber jetze sehe ich mite eigene Augen. Iste wahr. Guarda — schau dich an. Schultern wie ein Soldato."</div>
 
@@ -847,11 +847,11 @@ deutet beiläufig auf die drei hinter sich. „Aber non heute allein, eh? Heute 
 
 <p>Er tippt sich mit dem Finger an die Schläfe.</p>
 
-<div class="dialog">„Diese Sache — der Onkel von deine Freundin, das Urteil, der Mann, der hate geschwiegen — die kenne ich jetzte, eh. Und es gibte da Dinge, die ein Rekrut non kann regeln." Ein Lächeln, das du nicht deuten kannst, weil du den Mann dahinter nicht kennst — noch nicht. „Aber Luigi ... Luigi iste kein Rekrut."</div>
+<div class="dialog">„Diese Sache — der Onkel von deine Freundin, das Urteil, der Mann, der hate geschwiegen — die kenne ich jetzte, eh. Und es gibte da Dinge, die ein Rekrut non kann regeln." Ein Lächeln, das du nicht deuten kannst, weil du den Mann dahinter nicht kennst — noch nicht. „Aber Lorenzo ... Lorenzo iste kein Rekrut."</div>
 
 <div class="scenery-text">Hinter ihm wechselt Wenzel ein paar Worte mit einem lebhaften Mann, der mit den Händen redet; ein zweiter, hagerer Begleiter lässt unterdessen den Blick langsam über den Hof gehen, über Mauern und Ausgänge, als zähle er etwas. Niemand drängt. Es ist, als hätten diese Männer Zeit mitgebracht, so viel sie brauchen.</div>
 
-<div class="dialog">„Wir reden", sagt Luigi und drückt noch einmal deine Schulter. „Presto. Bald. Wenn ich habe geordnet, was zu ordnen iste. Du machste jetze deinen Dienst, als wäre nichts — capisci? Niemand musse wissen, warum vier fremde Männer stehen am Tor. Schon gar nicht deine Freundin." Ein kurzes Zwinkern. „Lass dem Luigi seine ... wie sagt man ... seine Überraschung, eh?"</div>
+<div class="dialog">„Wir reden", sagt Lorenzo und drückt noch einmal deine Schulter. „Presto. Bald. Wenn ich habe geordnet, was zu ordnen iste. Du machste jetze deinen Dienst, als wäre nichts — capisci? Niemand musse wissen, warum vier fremde Männer stehen am Tor. Schon gar nicht deine Freundin." Ein kurzes Zwinkern. „Lass dem Lorenzo seine ... wie sagt man ... seine Überraschung, eh?"</div>
 
 <div class="thought-box">Ich habe ihm als Kind Briefe geschrieben, ohne je sein Gesicht zu kennen. Und jetzt steht er hier, weil ich wieder geschrieben habe — aus reiner Verzweiflung, ohne zu glauben, dass es etwas ändert. Ich verstehe noch nicht, wie er helfen will. Aber zum ersten Mal seit der Schmiede ist da etwas, das sich anfühlt wie Boden unter den Füßen.</div>
 
@@ -871,13 +871,13 @@ das vielleicht im Sand verläuft, wie so viele Versprechen.</p>
 
 <p>Dann stehen sie wieder da.</p>
 
-<div class="scenery-text">Diesmal kein Wenzel an ihrer Seite. Diesmal gehen die drei Männer durch das Tor, als gehörten sie hierher — und der Wachposten lässt sie passieren, mit einem knappen Blick auf ein gesiegeltes Papier, das Luigi ihm beiläufig entgegenhält.</div>
+<div class="scenery-text">Diesmal kein Wenzel an ihrer Seite. Diesmal gehen die drei Männer durch das Tor, als gehörten sie hierher — und der Wachposten lässt sie passieren, mit einem knappen Blick auf ein gesiegeltes Papier, das Lorenzo ihm beiläufig entgegenhält.</div>
 
-<p>Luigi sieht dich, hebt die Hand zum Gruß und kommt herüber. Hinter ihm die beiden anderen — der lebhafte Jüngere mit dem wachen Lächeln, der schweigsame Hagere, der wie beim ersten Mal den Hof abtastet.</p>
+<p>Lorenzo sieht dich, hebt die Hand zum Gruß und kommt herüber. Hinter ihm die beiden anderen — der lebhafte Jüngere mit dem wachen Lächeln, der schweigsame Hagere, der wie beim ersten Mal den Hof abtastet.</p>
 
-<div class="dialog">„Thomaso." Luigi klingt zufrieden. „Diesmal brauche ich keinen Weibel, der mich hereinbringt, eh. 
+<div class="dialog">„Thomaso." Lorenzo klingt zufrieden. „Diesmal brauche ich keinen Weibel, der mich hereinbringt, eh. 
 Wir habene jetzte ein eigenes Papier — von einem Diplomaten Hannes. Ein höflicher Mann." Er klopft sich auf die Brusttasche. 
-„Luigi findete immer einen Weg. Mal so, mal so."</div>
+„Lorenzo findete immer einen Weg. Mal so, mal so."</div>
 
 <div class="thought-box">Erst Wenzel, jetzt ein Diplomat des Städtebunds. Dieser Mann zieht an Fäden, von denen ich nicht einmal wusste, dass es sie gibt.</div>
 
@@ -886,7 +886,7 @@ Wir habene jetzte ein eigenes Papier — von einem Diplomaten Hannes. Ein höfli
 
 
 :: karla_S8_bericht {"position":"1175,3675","size":"100,100"}
-<p>Luigi wird ernst, und die Leichtigkeit weicht aus seinem Gesicht — nicht ganz, aber genug, dass du merkst: Jetzt kommt das Eigentliche.</p>
+<p>Lorenzo wird ernst, und die Leichtigkeit weicht aus seinem Gesicht — nicht ganz, aber genug, dass du merkst: Jetzt kommt das Eigentliche.</p>
 
 <div class="dialog">„Ich habe nicht geredet in den letzten Tage, Thomaso. Ich habe gearbeitet." Er senkt die Stimme. „Der Fall von Edric — der Onkel deiner Freundin — er iste wieder offen. Ich habe erwirkt, dass man den Prozess neu aufnimmte. Das alleine iste schon ... molto schwierig. Zwei Jahre altes Urteil. Aber es iste geschehen."</div>
 
@@ -896,7 +896,7 @@ Wir habene jetzte ein eigenes Papier — von einem Diplomaten Hannes. Ein höfli
 
 <div class="thought-box">Er hat geredet. Nach zwei Jahren des Schweigens. Einfach so?</div>
 
-<p>Du musst die Frage nicht aussprechen. Luigi sieht sie dir an, und etwas Verschmitztes legt sich in seine Miene.</p>
+<p>Du musst die Frage nicht aussprechen. Lorenzo sieht sie dir an, und etwas Verschmitztes legt sich in seine Miene.</p>
 
 <div class="dialog">„Du fragste dich, warum ein Mann plötzlich redete, der zwei Jahre lang nichts gesagt hate." 
 Er dreht sich halb um, zu den beiden hinter ihm. „Das ... das erzählene dir besser meine Freunde. Sie warene dabei."</div>
@@ -906,7 +906,7 @@ Er dreht sich halb um, zu den beiden hinter ihm. „Das ... das erzählene dir b
 
 
 :: karla_S8_prognose [nach_hub] {"position":"1175,3925","size":"100,100"}
-<p>Luigi legt dir wieder die Hand auf die Schulter.</p>
+<p>Lorenzo legt dir wieder die Hand auf die Schulter.</p>
 
 <div class="dialog">„Ich sage dir, wie es weitergehte, Thomaso, damite du keine falsche Hoffnung hast — und keine falsche Angst." Sein Blick ist offen, ehrlich. „Ein Gericht iste langsam. Sehr langsam. Es werden Wochen vergehen, vielleicht Monate, bis alles iste geregelt, bis die Tinte trocken iste und Edric durche das Tor geht in die Freiheit. Diese Mühlen mahlene nicht schnell."</div>
 
@@ -916,13 +916,13 @@ Er dreht sich halb um, zu den beiden hinter ihm. „Das ... das erzählene dir b
 
 <div class="thought-box">Sicher. Er sagt es, als gäbe es kein anderes Ergebnis. Und so, wie dieser Mann redet, wie er handelt, wie er Türen öffnet, die für andere verschlossen sind — ich glaube ihm. Ich glaube ihm jedes Wort.</div>
 
-<p>Luigi mustert dich noch einmal, und das Geschäftliche fällt von ihm ab. Was bleibt, ist etwas Wärmeres.</p>
+<p>Lorenzo mustert dich noch einmal, und das Geschäftliche fällt von ihm ab. Was bleibt, ist etwas Wärmeres.</p>
 
 <div class="dialog">„Du haste das gut gemacht, Junge. Du haste geschrieben, als du nicht mehr weiter wusstest. Das iste keine Schwäche — das iste Klugheit. Ein Mann muss wissen, wann er um Hilfe bittete." Er lächelt.</div>
 
 <p>Dann wird er wieder geschäftig, nickt den beiden zu. „Wir gehene. Es iste noch viel zu tun in Grodaus. Aber wir sehene uns wieder, Thomaso — und das nächste Mal mite besseren Nachrichten, eh?"</p>
 
-<div class="scenery-text">Du siehst ihnen nach, wie sie durch das Tor verschwinden, der gesiegelte Passierschein noch in Luigis Hand. Drei Männer, die gekommen sind, weil ein Junge einen Brief geschrieben hat. Dann ist der Hof wieder leer, als wäre nichts gewesen.</div>
+<div class="scenery-text">Du siehst ihnen nach, wie sie durch das Tor verschwinden, der gesiegelte Passierschein noch in Lorenzos Hand. Drei Männer, die gekommen sind, weil ein Junge einen Brief geschrieben hat. Dann ist der Hof wieder leer, als wäre nichts gewesen.</div>
 
 <<set $npc.karla.memory.flags.aufloesung_done to true>>
 <<set $npc.karla.memory.flags.s8_done to true>>
@@ -932,7 +932,7 @@ Er dreht sich halb um, zu den beiden hinter ihm. „Das ... das erzählene dir b
 
 
 :: karla_S8_zeugen {"position":"1175,3800","size":"100,100"}
-<p>Der lebhafte tritt vor, und zum ersten Mal hörst du ihn richtig sprechen — eine andere Färbung als Luigi,
+<p>Der lebhafte tritt vor, und zum ersten Mal hörst du ihn richtig sprechen — eine andere Färbung als Lorenzo,
  weicher, näselnder, mit gerolltem Tonfall, der die Worte tänzeln lässt.</p>
 
 <div class="dialog">„Maurice", stellt er sich vor und legt eine Hand aufs Herz, als wäre das Wort schon eine Höflichkeit.
@@ -947,12 +947,12 @@ Frage, wie man einen verängstigten Mann bricht.</p>
 <div class="scenery-text">Hinter ihm, ohne ein Wort, tritt der Hagere einen halben Schritt ins Licht. Er sagt nichts. Er sieht dich nur an, mit dem ruhigen, gleichgültigen Blick eines Mannes, für den Gewalt keine Drohung ist, sondern bloß ein Werkzeug, das man selten in die Hand nehmen muss, weil seine bloße Anwesenheit genügt.</div>
 
 <<dialog>>
-  <p>Er kaut auf einem Zahnstocher herum. Und antwortet im gleichen Akzent wie Luigi. <<quote Hate sich richtig entschieden, Eh!>></p>
+  <p>Er kaut auf einem Zahnstocher herum. Und antwortet im gleichen Akzent wie Lorenzo. <<quote Hate sich richtig entschieden, Eh!>></p>
 <</dialog>>
 
 <div class="dialog">„Vincente redete nicht viel", sagt Maurice fast zärtlich. „Aber er hat eine ... présence. Eine Wirkung. Der Monsieur Zeuge hat sehr schnell verstanden, dass die alten Drohungen ihn nicht mehr schützen. Dass es jetzt klüger iste, die Wahrheit zu sagen, als sie weiter zu verstecken." Er zwinkert. „Wir habn ihm nur geholfen, die rischtige Wahl zu treffen, eh? Ganz ohne ... Unannehmlichkeiten."</div>
 
-<div class="dialog">„Luigi redet von dir. Oft in letzter Zeit. Also bist du
+<div class="dialog">„Lorenzo redet von dir. Oft in letzter Zeit. Also bist du
 auch ein bisschen meine Sache." Er grinst und klopft auf einen Beutel am Gürtel, in dem es hölzern klackt. „Ein Rat,
 mon ami: Wenn wir uns wiedersehen, bring Würfel mit.</div>
 
@@ -978,7 +978,7 @@ mit Freundlichkeit anrichten — und frage mich, ob es einen Unterschied macht, 
 
 <div class="thought-box">Wo fange ich an? Beim Brief? Bei den Bergen? Bei einem Mann, den ich nie gesehen hatte und der trotzdem mein ganzes Leben bezahlt hat? Ich fange einfach an. Und dann kann ich nicht mehr aufhören.</div>
 
-<p>Du erzählst ihr von Luigi. Von der Patenschaft, die ein Fremder für ein verstoßenes Kind übernahm. Von den Briefen, die du als Junge schriebst, ohne je ein Gesicht zu kennen. Du erzählst ihr von jener Nacht nach der Schmiede, als du nicht schlafen konntest und aus reiner Verzweiflung schriebst — an die einzige Adresse, die dir einfiel, ohne zu glauben, dass je eine Antwort käme.</p>
+<p>Du erzählst ihr von Lorenzo. Von der Patenschaft, die ein Fremder für ein verstoßenes Kind übernahm. Von den Briefen, die du als Junge schriebst, ohne je ein Gesicht zu kennen. Du erzählst ihr von jener Nacht nach der Schmiede, als du nicht schlafen konntest und aus reiner Verzweiflung schriebst — an die einzige Adresse, die dir einfiel, ohne zu glauben, dass je eine Antwort käme.</p>
 
 <p>Karla sagt nichts. Aber ihr Gesicht beginnt sich zu verändern, langsam, während sie begreift, wovon du redest.</p>
 
@@ -1013,7 +1013,7 @@ mit Freundlichkeit anrichten — und frage mich, ob es einen Unterschied macht, 
 <<set $npc.karla.memory.flags.karla_erfahren to true>>
 <<set $npc.karla.memory.flags.s9_done to true>>
 
-<div class="system-alert status-positive">Karla weiß nun alles — vom Brief, von Luigi, von der Wahrheit über ihren Onkel. Was zwischen euch ist, hat sich für immer verändert.</div>
+<div class="system-alert status-positive">Karla weiß nun alles — vom Brief, von Lorenzo, von der Wahrheit über ihren Onkel. Was zwischen euch ist, hat sich für immer verändert.</div>
 
 <<trenner>>
 <<weiterImTag "Weiter">>
