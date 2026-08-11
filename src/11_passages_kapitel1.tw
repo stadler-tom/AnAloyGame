@@ -1126,7 +1126,7 @@
     <<include _event>>
     <</if>>
 
-    <<if _event neq "Event_Schlaegerei">>
+    <<if _event == "">>
         <p>Es ist ein ruhiger Abend. Einige der Kameraden liegen schon in ihren Pritschen und schalfen oder sind zumindest kurz davor. Andere Reden noch über den Tag, das Erlebte 
         und Geschichten die man sonst wo aufgeschnappt hat.</p>
 
