@@ -1024,6 +1024,9 @@
 :: Event_Schlaegerei {"position":"2725,1600","size":"100,100"}
 <<if $player.knowledge.combat == 0>>
 <p>Es hört sich an als würden zwei Rekruten streiten.</p>
+
+    <hr class="trenner-raute">
+    [[Zur Pritsche gehen ->Kap1_Tagesstart]]
 <<elseif $player.knowledge.combat == 10>>
 <p>Zwei Rekruten gehen sich an die Gurgel — doch als du dich aufrichtest, verstummen sie. Vor deiner Kampferfahrung haben sie Respekt.</p>
     
@@ -1117,11 +1120,12 @@
 <<if $world.needsDiceGame>>
 	<<include "Event_Wuerfelspiel">>
 <<else>>
+	<<set _event = "">>
 	<<if random(1,100) <= 40>>
     <<set _event = either("Event_Wuerfelspiel", "Event_Schlaegerei")>>
     <<include _event>>
     <</if>>
-	
+
     <<if _event neq "Event_Schlaegerei">>
         <p>Es ist ein ruhiger Abend. Einige der Kameraden liegen schon in ihren Pritschen und schalfen oder sind zumindest kurz davor. Andere Reden noch über den Tag, das Erlebte 
         und Geschichten die man sonst wo aufgeschnappt hat.</p>
