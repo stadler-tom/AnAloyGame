@@ -134,8 +134,8 @@ setup.isJournalBlocked = function () {
         return true;
     }
 
-    // dynamisch: Kapitel 1, Kapitel 2, ...
-    if (p.startsWith("Kapitel")) {
+    // dynamisch: Kapitel 1, Kapitel 2, ... (Ausnahme: Abschluss-Passage Kapitel3_Start)
+    if (p.startsWith("Kapitel") && p !== "Kapitel3_Start") {
         return true;
     }
 
